@@ -1,0 +1,256 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [
+"expr_gen",
+"calc_gen"
+],
+"oe": "veto",
+"bs": 32,
+"per_task": {
+"object_counting": 50.0
+},
+"command": "python run_gen.py out/dev_ex_veto_count.json --data data/dev --tasks object_counting --machines expr_gen,calc_gen --oe veto   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "47f92222d6a46b71dc6e532ca76f5396a7ec540b53f1be7ceaf02b17c3a7e4cb",
+"rows": [
+{
+"i": 0,
+"task": "object_counting",
+"gold": "9",
+"pred": "9",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 1,
+"task": "object_counting",
+"gold": "5",
+"pred": "5",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 2,
+"task": "object_counting",
+"gold": "6",
+"pred": "9",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 3,
+"task": "object_counting",
+"gold": "11",
+"pred": "11",
+"ok": true,
+"n_written": 4
+},
+{
+"i": 4,
+"task": "object_counting",
+"gold": "5",
+"pred": "5",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 5,
+"task": "object_counting",
+"gold": "3",
+"pred": "3",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 6,
+"task": "object_counting",
+"gold": "4",
+"pred": "4",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 7,
+"task": "object_counting",
+"gold": "7",
+"pred": "10",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 8,
+"task": "object_counting",
+"gold": "10",
+"pred": "11",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 9,
+"task": "object_counting",
+"gold": "7",
+"pred": "12",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 10,
+"task": "object_counting",
+"gold": "7",
+"pred": "11",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 11,
+"task": "object_counting",
+"gold": "5",
+"pred": "10",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 12,
+"task": "object_counting",
+"gold": "4",
+"pred": "4",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 13,
+"task": "object_counting",
+"gold": "3",
+"pred": "5",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 14,
+"task": "object_counting",
+"gold": "8",
+"pred": "8",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 15,
+"task": "object_counting",
+"gold": "4",
+"pred": "8",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 16,
+"task": "object_counting",
+"gold": "4",
+"pred": "6",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 17,
+"task": "object_counting",
+"gold": "2",
+"pred": "6",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 18,
+"task": "object_counting",
+"gold": "8",
+"pred": "10",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 19,
+"task": "object_counting",
+"gold": "4",
+"pred": "4",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 20,
+"task": "object_counting",
+"gold": "2",
+"pred": "2",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 21,
+"task": "object_counting",
+"gold": "20",
+"pred": "20",
+"ok": true,
+"n_written": 4
+},
+{
+"i": 22,
+"task": "object_counting",
+"gold": "10",
+"pred": "10",
+"ok": true,
+"n_written": 4
+},
+{
+"i": 23,
+"task": "object_counting",
+"gold": "10",
+"pred": "10",
+"ok": true,
+"n_written": 4
+},
+{
+"i": 24,
+"task": "object_counting",
+"gold": "9",
+"pred": "16",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 25,
+"task": "object_counting",
+"gold": "7",
+"pred": "7",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 26,
+"task": "object_counting",
+"gold": "6",
+"pred": "11",
+"ok": false,
+"n_written": 4
+},
+{
+"i": 27,
+"task": "object_counting",
+"gold": "6",
+"pred": "6",
+"ok": true,
+"n_written": 3
+},
+{
+"i": 28,
+"task": "object_counting",
+"gold": "4",
+"pred": "9",
+"ok": false,
+"n_written": 3
+},
+{
+"i": 29,
+"task": "object_counting",
+"gold": "4",
+"pred": "7",
+"ok": false,
+"n_written": 3
+}
+]
+}

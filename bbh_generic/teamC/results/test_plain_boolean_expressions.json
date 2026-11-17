@@ -1,0 +1,813 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [],
+"oe": "veto",
+"bs": 32,
+"per_task": {
+"boolean_expressions": 77.0
+},
+"command": "python run_gen.py out/test_plain_boolean_expressions.json --data data/test --tasks boolean_expressions --machines none --oe veto   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "cd8114981062bd89335ed636ff6c5b7b18aa83398d328dbc6dfb4e5fba9b2676",
+"rows": [
+{
+"i": 0,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 1,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 2,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 3,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 4,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 5,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 6,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 7,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 8,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 9,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 10,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 11,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 12,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 13,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 14,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 15,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 16,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 17,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 18,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 19,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 20,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 21,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 22,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 23,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 24,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 25,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 26,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 27,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 28,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 29,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 30,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 31,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 32,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 33,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 34,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 35,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 36,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 37,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 38,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 39,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 40,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 41,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 42,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 43,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 44,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 45,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 46,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 47,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 48,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 49,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 50,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 51,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 52,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 53,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 54,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 55,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 56,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 57,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 58,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 59,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 60,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 61,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 62,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 63,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 64,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 65,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 66,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 67,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 68,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 69,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 70,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 71,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 72,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 73,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 74,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 75,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 76,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 77,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 78,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 79,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 80,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 81,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 82,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 83,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 84,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 85,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 86,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 87,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 88,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 89,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 90,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 91,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 92,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 93,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 94,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 95,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 96,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 97,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0
+},
+{
+"i": 98,
+"task": "boolean_expressions",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0
+},
+{
+"i": 99,
+"task": "boolean_expressions",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0
+}
+]
+}

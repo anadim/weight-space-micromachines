@@ -1,0 +1,14 @@
+Count the total number of items.
+
+Q: Inventory: 14 forks, 9 spoons, 23 plates, and 6 bowls. How many items are there in total?
+A: Let's think step by step.
+We add the quantities: 14 + 9 + 23 + 6 = 52. So the answer is 52.
+
+Q: My bag holds 3 apples, 2 bananas, and 11 grapes. How many pieces of fruit are in it?
+A: Let's think step by step.
+We add the quantities: 3 + 2 + 11 = 16. So the answer is 16.
+
+Q: Packed for the trip: 7 shirts, 18 socks, 4 jackets, 2 hats, and 9 books. How many things were packed?
+A: Let's think step by step.
+We add the quantities: 7 + 18 + 4 + 2 + 9 = 40. So the answer is 40.
+

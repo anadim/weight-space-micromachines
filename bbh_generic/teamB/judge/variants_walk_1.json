@@ -1,0 +1,185 @@
+[
+ {
+  "id": "nav1-spelled-numbers",
+  "style": "navigate",
+  "question": "Will you be back at your starting position after following these directions? Move four paces ahead. Make a right turn. Move four paces ahead. Make a right turn. Move four paces ahead. Make a right turn. Move four paces ahead.\nOptions:\n- Yes\n- No",
+  "target": "Yes",
+  "call": "walk forward 4, turn right, forward 4, turn right, forward 4, turn right, forward 4",
+  "expect": "(0, 0) facing west"
+ },
+ {
+  "id": "nav2-twodigit-noise-ffparaphrase",
+  "style": "navigate",
+  "question": "Do these instructions leave you exactly where you began? Keep facing the same direction the whole time. Step 12 paces forward. The floor is covered in red tiles. Step 5 paces to the right. Step 12 paces backward. Step 3 paces to the left.\nOptions:\n- Yes\n- No",
+  "target": "No",
+  "call": "walk forward 12, right 5, backward 12, left 3",
+  "expect": "(2, 0) facing north"
+ },
+ {
+  "id": "nav3-turns-mixed-with-strafes",
+  "style": "navigate",
+  "question": "Following these steps, do you end on your starting square? Turn left. Walk 6 steps. Without turning, sidestep 2 steps to your right. Turn around. Walk 6 steps. Without turning, sidestep 2 steps to your right.\nOptions:\n- Yes\n- No",
+  "target": "Yes",
+  "call": "walk turn left, forward 6, right 2, turn around, forward 6, right 2",
+  "expect": "(0, 0) facing east"
+ },
+ {
+  "id": "nav4-then-chain-uturn-words",
+  "style": "navigate",
+  "question": "Is your final position the same as your initial one? First go forward three steps, then make a U-turn, then go forward five steps, then make a U-turn again, then go forward two steps.\nOptions:\n- Yes\n- No",
+  "target": "Yes",
+  "call": "walk forward 3, turn around, forward 5, turn around, forward 2",
+  "expect": "(0, 0) facing north"
+ },
+ {
+  "id": "nav5-long-16-commands",
+  "style": "navigate",
+  "question": "Starting at a marked point, do you finish on that point? Take 2 steps. Turn right. Take 9 steps. Turn right. Take 2 steps. Turn left. Take 1 step. Turn left. Take 3 steps. Turn left. Take 10 steps. Turn left. Take 1 step. Take 4 steps backward. Turn around. Take 2 steps.\nOptions:\n- Yes\n- No",
+  "target": "No",
+  "call": "walk forward 2, turn right, forward 9, turn right, forward 2, turn left, forward 1, turn left, forward 3, turn left, forward 10, turn left, forward 1, backward 4, turn around, forward 2",
+  "expect": "(0, 8) facing north"
+ },
+ {
+  "id": "nav6-story-question-last-noise",
+  "style": "navigate",
+  "question": "You stand in a park facing a fountain. Walk 7 paces toward it. Spin around. Walk 3 paces. A dog barks nearby. Turn to your left. Walk 4 paces. Turn to your right. Walk 4 paces. Turn to your right. Walk 4 paces. Are you back where you started?\nOptions:\n- Yes\n- No",
+  "target": "Yes",
+  "call": "walk forward 7, turn around, forward 3, turn left, forward 4, turn right, forward 4, turn right, forward 4",
+  "expect": "(0, 0) facing west"
+ },
+ {
+  "id": "oos1-drone",
+  "style": "other",
+  "question": "A drone hovers above its launch pad with its nose pointing north. It flies 15 meters forward, turns right, flies 8 meters forward, turns right again, and flies 20 meters forward. Give its position relative to the pad as (meters east, meters north).",
+  "target": "(8, -5)",
+  "call": "walk forward 15, turn right, forward 8, turn right, forward 20",
+  "expect": "(8, -5) facing south"
+ },
+ {
+  "id": "oos2-warehouse-robot-starts-east",
+  "style": "other",
+  "question": "A warehouse robot starts at the origin of the floor grid, facing east. It moves 6 cells forward, turns left, moves 3 cells forward, and then backs up 9 cells. What are its final grid coordinates (x to the east, y to the north)?",
+  "target": "(6, -6)",
+  "call": "walk turn right, forward 6, turn left, forward 3, backward 9",
+  "expect": "(6, -6) facing north",
+  "note": "start heading is east, not the tool default north: the model must prepend a turn right (or equivalent)"
+ },
+ {
+  "id": "oos3-game-absolute-arrows",
+  "style": "other",
+  "question": "In a grid game, your character starts on square (0, 0). You press: up 3, right 4, down 7, left 1, up 2. Which square is the character on now? Answer as (x, y), with right = +x and up = +y.",
+  "target": "(3, -2)",
+  "call": "walk forward 3, right 4, backward 7, left 1, forward 2",
+  "expect": "(3, -2) facing north",
+  "note": "absolute moves encoded as strafes with heading fixed at north"
+ },
+ {
+  "id": "oos4-courier-irrelevant-number",
+  "style": "other",
+  "question": "A bike courier leaves the depot heading north with 3 parcels in her bag. She rides 5 blocks, turns right, rides 12 blocks, turns right, rides 9 blocks, then turns left and rides 2 blocks. How many blocks east and north of the depot is she now? Answer as (east, north).",
+  "target": "(14, -4)",
+  "call": "walk forward 5, turn right, forward 12, turn right, forward 9, turn left, forward 2",
+  "expect": "(14, -4) facing east"
+ },
+ {
+  "id": "oos5-sailboat-heading-question",
+  "style": "other",
+  "question": "A sailboat starts at a buoy, pointing north. It sails 10 nautical miles straight ahead, turns left, sails 4 miles, turns left, sails 10 miles, and then turns around. Which compass direction is the sailboat pointing now?",
+  "target": "north",
+  "call": "walk forward 10, turn left, forward 4, turn left, forward 10, turn around",
+  "expect": "(-4, 0) facing north",
+  "note": "asks for the heading, not the position; accept north/North"
+ },
+ {
+  "id": "oos6-turtle-graphics-yesno",
+  "style": "other",
+  "question": "A turtle-graphics pen starts at (0, 0) pointing up. It moves forward 20, rotates right 90 degrees, moves forward 20, rotates right 90 degrees, moves forward 20, rotates right 90 degrees, and moves forward 20. Does the pen end at its starting point? Answer Yes or No.",
+  "target": "Yes",
+  "call": "walk forward 20, turn right, forward 20, turn right, forward 20, turn right, forward 20",
+  "expect": "(0, 0) facing west"
+ },
+ {
+  "id": "p1-max-twodigit",
+  "call": "walk forward 99, right 99, backward 98, left 97",
+  "expect": "(2, 1) facing north"
+ },
+ {
+  "id": "p2-strafes-after-turns",
+  "call": "walk turn right, left 5, turn right, right 3, backward 4, turn around, left 2, turn left, forward 11, turn right, backward 6, right 7",
+  "expect": "(-9, 3) facing north"
+ },
+ {
+  "id": "p3-exactly-24-commands",
+  "call": "walk forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 5, turn right",
+  "expect": "(2, 0) facing south"
+ },
+ {
+  "id": "p4-25-commands",
+  "call": "walk forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1",
+  "expect": "",
+  "note": "docstring: 1..24 commands -> error. tools_ref.turtle_ref does NOT enforce the 24 limit (returns (0, 25) facing north)"
+ },
+ {
+  "id": "p5-number-word",
+  "call": "walk forward seven, turn left",
+  "expect": ""
+ },
+ {
+  "id": "p6-three-digit",
+  "call": "walk forward 120, turn left",
+  "expect": "",
+  "note": "circuit reads 1-2 digit numbers only -> error expected; tools_ref has no range check (returns (0, 120) facing west); the docstring does not state the N range"
+ },
+ {
+  "id": "p7-negative-number",
+  "call": "walk forward -3",
+  "expect": "",
+  "note": "\"-\" is outside the call alphabet -> error expected; tools_ref accepts it (returns (0, -3) facing north)"
+ },
+ {
+  "id": "p8-capitalized-word",
+  "call": "walk turn left, Forward 2",
+  "expect": ""
+ },
+ {
+  "id": "p9-zero-step",
+  "call": "walk forward 0, turn around",
+  "expect": "(0, 0) facing south"
+ },
+ {
+  "id": "p10-missing-comma-strafe",
+  "call": "walk left 3 turn left, forward 2",
+  "expect": "",
+  "note": "malformed (missing comma). Judge prediction from the circuit: writes (-2, 0) facing west (the unreadable \"left 3\" and the missing comma cancel in the item-vs-comma count). tools_ref returns (-3, 2) facing north. Both are wrong non-empty answers."
+ },
+ {
+  "id": "p11-missing-comma-move",
+  "call": "walk forward 3 turn left",
+  "expect": "",
+  "note": "malformed. Judge prediction: circuit writes (0, 0) facing west; tools_ref returns (0, 3) facing north"
+ },
+ {
+  "id": "p12-duplicated-word",
+  "call": "walk forward forward 7, turn left",
+  "expect": "",
+  "note": "malformed. Judge prediction: circuit writes (0, 7) facing west; tools_ref returns empty"
+ },
+ {
+  "id": "p13-22-twodigit-commands",
+  "call": "walk forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10",
+  "expect": "(0, 220) facing north",
+  "note": "valid; 110 tokens between <tool_call> and </tool_call>, just inside the K=112 window"
+ },
+ {
+  "id": "p14-23-twodigit-commands",
+  "call": "walk forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10",
+  "expect": "(0, 230) facing north",
+  "note": "valid per the grammar (<=24 commands) but 115 tokens: judge predicts the circuit is SILENT (no <tool_response> at all) because <tool_call> falls out of the 112-token window. Fail-safe, but a documented-valid call gets no answer"
+ },
+ {
+  "id": "p15-colon-header",
+  "call": "walk: forward 3",
+  "expect": "",
+  "note": "NOTEBOOK section 2 says \":\" is allowed; circuit requires a command word right after walk -> judge predicts SILENT (not even the empty response). Either silent or empty counts as fail-safe"
+ }
+]

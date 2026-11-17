@@ -1,0 +1,560 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [
+"expr_gen",
+"calc_gen",
+"bool_gen"
+],
+"oe": "dotnl",
+"bs": 32,
+"per_task": {
+"num_list": 100.0
+},
+"command": "python run_gen.py out/ood_v4_num_list.json --data data/ood --tasks num_list --machines expr_gen,calc_gen,bool_gen --oe dotnl --prompt_file data/ood/num_list.prompt.txt   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "a0420a19016390cf0027b94cf369b251cacbf191efb236ffd192be82145314a5",
+"rows": [
+{
+"i": 0,
+"task": "num_list",
+"gold": "325",
+"pred": "325",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 1,
+"task": "num_list",
+"gold": "451",
+"pred": "451",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 2,
+"task": "num_list",
+"gold": "143",
+"pred": "143",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 3,
+"task": "num_list",
+"gold": "387",
+"pred": "387",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 4,
+"task": "num_list",
+"gold": "151",
+"pred": "151",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 5,
+"task": "num_list",
+"gold": "247",
+"pred": "247",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 6,
+"task": "num_list",
+"gold": "433",
+"pred": "433",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 7,
+"task": "num_list",
+"gold": "357",
+"pred": "357",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 8,
+"task": "num_list",
+"gold": "454",
+"pred": "454",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 9,
+"task": "num_list",
+"gold": "431",
+"pred": "431",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 10,
+"task": "num_list",
+"gold": "453",
+"pred": "453",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 11,
+"task": "num_list",
+"gold": "81",
+"pred": "81",
+"ok": true,
+"n_written": 4,
+"lenient_ok": true
+},
+{
+"i": 12,
+"task": "num_list",
+"gold": "199",
+"pred": "199",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 13,
+"task": "num_list",
+"gold": "222",
+"pred": "222",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 14,
+"task": "num_list",
+"gold": "148",
+"pred": "148",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 15,
+"task": "num_list",
+"gold": "229",
+"pred": "229",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 16,
+"task": "num_list",
+"gold": "294",
+"pred": "294",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 17,
+"task": "num_list",
+"gold": "473",
+"pred": "473",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 18,
+"task": "num_list",
+"gold": "483",
+"pred": "483",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 19,
+"task": "num_list",
+"gold": "183",
+"pred": "183",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 20,
+"task": "num_list",
+"gold": "112",
+"pred": "112",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 21,
+"task": "num_list",
+"gold": "58",
+"pred": "58",
+"ok": true,
+"n_written": 4,
+"lenient_ok": true
+},
+{
+"i": 22,
+"task": "num_list",
+"gold": "269",
+"pred": "269",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 23,
+"task": "num_list",
+"gold": "301",
+"pred": "301",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 24,
+"task": "num_list",
+"gold": "350",
+"pred": "350",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 25,
+"task": "num_list",
+"gold": "316",
+"pred": "316",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 26,
+"task": "num_list",
+"gold": "293",
+"pred": "293",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 27,
+"task": "num_list",
+"gold": "374",
+"pred": "374",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 28,
+"task": "num_list",
+"gold": "319",
+"pred": "319",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 29,
+"task": "num_list",
+"gold": "390",
+"pred": "390",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 30,
+"task": "num_list",
+"gold": "131",
+"pred": "131",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 31,
+"task": "num_list",
+"gold": "315",
+"pred": "315",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 32,
+"task": "num_list",
+"gold": "289",
+"pred": "289",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 33,
+"task": "num_list",
+"gold": "230",
+"pred": "230",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 34,
+"task": "num_list",
+"gold": "475",
+"pred": "475",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 35,
+"task": "num_list",
+"gold": "412",
+"pred": "412",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 36,
+"task": "num_list",
+"gold": "198",
+"pred": "198",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 37,
+"task": "num_list",
+"gold": "290",
+"pred": "290",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 38,
+"task": "num_list",
+"gold": "263",
+"pred": "263",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 39,
+"task": "num_list",
+"gold": "368",
+"pred": "368",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 40,
+"task": "num_list",
+"gold": "244",
+"pred": "244",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 41,
+"task": "num_list",
+"gold": "93",
+"pred": "93",
+"ok": true,
+"n_written": 4,
+"lenient_ok": true
+},
+{
+"i": 42,
+"task": "num_list",
+"gold": "421",
+"pred": "421",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 43,
+"task": "num_list",
+"gold": "222",
+"pred": "222",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 44,
+"task": "num_list",
+"gold": "314",
+"pred": "314",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 45,
+"task": "num_list",
+"gold": "342",
+"pred": "342",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 46,
+"task": "num_list",
+"gold": "183",
+"pred": "183",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 47,
+"task": "num_list",
+"gold": "149",
+"pred": "149",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 48,
+"task": "num_list",
+"gold": "212",
+"pred": "212",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 49,
+"task": "num_list",
+"gold": "191",
+"pred": "191",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 50,
+"task": "num_list",
+"gold": "245",
+"pred": "245",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 51,
+"task": "num_list",
+"gold": "325",
+"pred": "325",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 52,
+"task": "num_list",
+"gold": "130",
+"pred": "130",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 53,
+"task": "num_list",
+"gold": "244",
+"pred": "244",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 54,
+"task": "num_list",
+"gold": "127",
+"pred": "127",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 55,
+"task": "num_list",
+"gold": "163",
+"pred": "163",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 56,
+"task": "num_list",
+"gold": "371",
+"pred": "371",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 57,
+"task": "num_list",
+"gold": "517",
+"pred": "517",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 58,
+"task": "num_list",
+"gold": "476",
+"pred": "476",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+},
+{
+"i": 59,
+"task": "num_list",
+"gold": "463",
+"pred": "463",
+"ok": true,
+"n_written": 5,
+"lenient_ok": true
+}
+],
+"per_task_lenient": {
+"num_list": 100.0
+}
+}

@@ -1,0 +1,70 @@
+- T1_reordered_paraphrased [temporal] target='(B)' pred='(B)' OK=True
+    host call: 'interval 6am-4pm busy 1pm-4pm, 6am-8am, 11am-1pm, 8am-10am'
+    tool wrote: '10am-11am' | strict run_ref of that call: '10am-11am' | tool==ref: True
+- T2_close_first_irrelevant [temporal] target='(A)' pred='(A)' OK=True
+    host call: 'interval 11am-9pm busy 11am-2pm, 2pm-5pm, 6pm-9pm'
+    tool wrote: '5pm-6pm' | strict run_ref of that call: '5pm-6pm' | tool==ref: True
+- T3_no_seeing_verbs [temporal] target='(D)' pred='(D)' OK=True
+    host call: 'interval 5am-3pm busy 5am-9am, 9am-11am, 1pm-3pm'
+    tool wrote: '11am-1pm' | strict run_ref of that call: '11am-1pm' | tool==ref: True
+- T4_prose_paragraph [temporal] target='(B)' pred='(B)' OK=True
+    host call: 'interval 2pm-11pm busy 2pm-4pm, 4pm-7pm, 8pm-11pm'
+    tool wrote: '7pm-8pm' | strict run_ref of that call: '7pm-8pm' | tool==ref: True
+- T5_seven_sightings_shuffled_gap_first [temporal] target='(A)' pred='(A)' OK=True
+    host call: 'interval 6am-10pm busy 2pm-5pm, 9am-10am, 7am-9am, 12pm-2pm, 10am-12pm, 5pm-7pm, 7pm-10pm'
+    tool wrote: '6am-7am' | strict run_ref of that call: '6am-7am' | tool==ref: True
+- T6_24h_clock [temporal] target='(B)' pred='' OK=False
+    host call: 'interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+4 more identical retries)
+- T7_overlapping_sightings_gap_last [temporal] target='(C)' pred='(C)' OK=True
+    host call: 'interval 8am-8pm busy 8am-11am, 10am-1pm, 1pm-5pm, 5pm-7pm'
+    tool wrote: '7pm-8pm' | strict run_ref of that call: '7pm-8pm' | tool==ref: True
+- O1_two_person_meeting [other] target='12pm to 1pm' pred='12pm to 1pm' OK=True
+    host call: 'interval 9am-5pm busy 9am-11am, 1pm-3pm, 10am-12pm, 2pm-5pm'
+    tool wrote: '12pm-1pm' | strict run_ref of that call: '12pm-1pm' | tool==ref: True
+- O2_room_booking_24h_three_gaps [other] target='8 to 9 and 11 to 12 and 16 to 18' pred='8 to 9 and 11 to 12 and 16 to 18' OK=True
+    host call: 'interval 8-20 busy 9-11, 12-14, 13-16, 18-20'
+    tool wrote: '8-9, 11-12, 16-18' | strict run_ref of that call: '8-9, 11-12, 16-18' | tool==ref: True
+- O3_cabin_days [other] target='1 to 3 and 8 to 12 and 25 to 30' pred='1-3, 8-12, 25-30' OK=True
+    host call: 'interval 1-30 busy 3-8, 18-25, 12-20'
+    tool wrote: '1-3, 8-12, 25-30' | strict run_ref of that call: '1-3, 8-12, 25-30' | tool==ref: True
+- O4_dentist_two_gaps_irrelevant [other] target='12pm to 1pm and 4pm to 5pm' pred='12pm to 1pm and 4pm to 5pm' OK=True
+    host call: 'interval 8am-6pm busy 8am-10am, 9am-12pm, 1pm-4pm, 5pm-6pm'
+    tool wrote: '12pm-1pm, 4pm-5pm' | strict run_ref of that call: '12pm-1pm, 4pm-5pm' | tool==ref: True
+- O5_no_free_time [other] target='none' pred='11am to 1pm' OK=False
+    host call: 'interval 9am-1pm busy 9am-11am, 10am-1pm'
+    tool wrote: 'none' | strict run_ref of that call: 'none' | tool==ref: True
+- O6_evening_until_midnight [other] target='8pm to 9pm' pred='8pm to 9pm' OK=True
+    host call: 'interval 6pm-12am busy 6pm-8pm, 9pm-12am'
+    tool wrote: '8pm-9pm' | strict run_ref of that call: '8pm-9pm' | tool==ref: True
+- O7_alibi_free_response [other] target='1pm to 2pm' pred='1pm-2pm' OK=True
+    host call: 'interval 7am-7pm busy 10am-1pm, 2pm-7pm, 7am-10am'
+    tool wrote: '1pm-2pm' | strict run_ref of that call: '1pm-2pm' | tool==ref: True
+- O8_nurse_coverage_inverted [other] target='6pm to 7pm' pred='6pm to 7pm' OK=True
+    host call: 'interval 6am-10pm busy 6am-2pm, 12pm-6pm, 7pm-10pm'
+    tool wrote: '6pm-7pm' | strict run_ref of that call: '6pm-7pm' | tool==ref: True
+- probe P01_unordered_overlap: call='interval 8am-6pm busy 3pm-5pm, 9am-11am, 10am-12pm, 4pm-6pm' tool wrote='<tool_response>8am-9am, 12pm-3pm</tool_response>' strict ref='8am-9am, 12pm-3pm' judge expect='8am-9am, 12pm-3pm' | ==ref True | ==expect True
+- probe P02_12am_start_12pm_end: call='interval 12am-12pm busy 12am-6am, 11am-12pm' tool wrote='<tool_response>6am-11am</tool_response>' strict ref='6am-11am' judge expect='6am-11am' | ==ref True | ==expect True
+- probe P03_12am_end_three_gaps: call='interval 6pm-12am busy 7pm-9pm, 10pm-11pm' tool wrote='<tool_response>6pm-7pm, 9pm-10pm, 11pm-12am</tool_response>' strict ref='6pm-7pm, 9pm-10pm, 11pm-12am' judge expect='6pm-7pm, 9pm-10pm, 11pm-12am' | ==ref True | ==expect True
+- probe P04_plain_days: call='interval 1-30 busy 3-8, 12-20, 18-25' tool wrote='<tool_response>1-3, 8-12, 25-30</tool_response>' strict ref='1-3, 8-12, 25-30' judge expect='1-3, 8-12, 25-30' | ==ref True | ==expect True
+- probe P05_no_free: call='interval 9am-1pm busy 9am-11am, 10am-1pm' tool wrote='<tool_response>none</tool_response>' strict ref='none' judge expect='none' | ==ref True | ==expect True
+- probe P06_more_than_4_gaps: call='interval 1-20 busy 2-3, 4-5, 6-7, 8-9, 10-11' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P07_exactly_4_gaps: call='interval 0-24 busy 3-5, 8-10, 12-20' tool wrote='<tool_response>0-3, 5-8, 10-12, 20-24</tool_response>' strict ref='0-3, 5-8, 10-12, 20-24' judge expect='0-3, 5-8, 10-12, 20-24' | ==ref True | ==expect True
+- probe P08_malformed_word_to: call='interval 9am to 5pm busy 1pm-2pm' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P09_malformed_minutes: call='interval 9:30am-5pm busy 1pm-2pm' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P10_busy_beyond_window: call='interval 9am-5pm busy 7am-10am, 4pm-8pm' tool wrote='<tool_response>10am-4pm</tool_response>' strict ref='10am-4pm' judge expect='10am-4pm' | ==ref True | ==expect True
+- probe P11_mixed_notation: call='interval 9-17 busy 1pm-2pm' tool wrote='<tool_response>9-13, 14-17</tool_response>' strict ref='9-13, 14-17' judge expect='9-13, 14-17' | ==ref True | ==expect True
+- probe P12_empty_busy_list: call='interval 9am-5pm busy' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P13_stray_time_token: call='interval 9am-5pm busy 1pm-2pm 3pm, 4pm-5pm' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P14_inverted_window: call='interval 5pm-9am busy 1pm-2pm' tool wrote='<tool_response>none</tool_response>' strict ref='none' judge expect='none' | ==ref True | ==expect True
+- probe P15_hour_out_of_range: call='interval 9am-13pm busy 10am-11am' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P16_other_tool_name: call='free 9am-5pm busy 1pm-2pm' tool wrote='(silent)' strict ref=None judge expect='SILENT' | ==ref True | ==expect True
+- probe P17_nested_duplicates: call='interval 10-40 busy 15-35, 20-25, 20-25' tool wrote='<tool_response>10-15, 35-40</tool_response>' strict ref='10-15, 35-40' judge expect='10-15, 35-40' | ==ref True | ==expect True
+- probe P18_two_digit_top: call='interval 90-99 busy 95-97' tool wrote='<tool_response>90-95, 97-99</tool_response>' strict ref='90-95, 97-99' judge expect='90-95, 97-99' | ==ref True | ==expect True
+- probe P19_three_digit: call='interval 0-100 busy 5-6' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P20_missing_busy_keyword: call='interval 9am-5pm 1pm-2pm' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe P21_12pm_start: call='interval 12pm-6pm busy 1pm-3pm' tool wrote='<tool_response>12pm-1pm, 3pm-6pm</tool_response>' strict ref='12pm-1pm, 3pm-6pm' judge expect='12pm-1pm, 3pm-6pm' | ==ref True | ==expect True
+- probe P22_call_longer_than_window: call='interval 6am-11pm busy 6am-7am, 7am-8am, 8am-9am, 9am-10am, 10am-11am, 11am-12pm, 12pm-1pm, 1pm-2pm, 3pm-4pm, 4pm-5pm, 5pm-6pm, 6pm-7pm, 7pm-8pm, 8pm-9pm, 9pm-10pm, 10pm-11pm' tool wrote='(silent)' strict ref='2pm-3pm' judge expect='2pm-3pm' | ==ref False | ==expect False

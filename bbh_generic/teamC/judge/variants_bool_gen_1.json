@@ -1,0 +1,331 @@
+[
+ {
+  "id": "h1",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "not ( true and false ) or false is",
+  "target": "True"
+ },
+ {
+  "id": "h2",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "not (True or False) and (not False or False) is",
+  "target": "False"
+ },
+ {
+  "id": "h3",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "( not ( True and ( False or not ( True and False ) ) ) or ( False and True ) ) is",
+  "target": "False"
+ },
+ {
+  "id": "h4",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "Ignore the weather report for today. not not ( False or True ) and True is",
+  "target": "True"
+ },
+ {
+  "id": "h5",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "What is the value of True and not ( False or False ) and not False ?",
+  "target": "True"
+ },
+ {
+  "id": "h6",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "((True and False) or (not False and True)) and not False is",
+  "target": "True"
+ },
+ {
+  "id": "h7",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "not not not not not True or False and True is",
+  "target": "False"
+ },
+ {
+  "id": "h8",
+  "kind": "host",
+  "task": "boolean_expressions",
+  "question": "False or True and False or not True and not False or False is",
+  "target": "False"
+ },
+ {
+  "id": "h9",
+  "kind": "host",
+  "task": "bool_code",
+  "question": "Given door_open = True, alarm_set = True, night = False. Does `not door_open or (alarm_set and not night)` evaluate to True?",
+  "target": "True"
+ },
+ {
+  "id": "h10",
+  "kind": "host",
+  "task": "bool_code",
+  "question": "Does `(heater or fan) and not (heater and fan)` evaluate to True, given heater = False and fan = True?",
+  "target": "True"
+ },
+ {
+  "id": "a1",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Evaluate: True and not not False =",
+  "expect": "False"
+ },
+ {
+  "id": "a2",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "ok = not (False or True) =",
+  "expect": "False"
+ },
+ {
+  "id": "a3",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "x = ((True or False) and not (False or False)) =",
+  "expect": "True"
+ },
+ {
+  "id": "a4",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "not true or false =",
+  "expect": "False"
+ },
+ {
+  "id": "a5",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "The lamp is on and the door is closed, so the rule gives: True and not False =",
+  "expect": "True"
+ },
+ {
+  "id": "a6",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "In words we check a rule; written out, (True or False) and not True =",
+  "expect": "False"
+ },
+ {
+  "id": "a7",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "not ((((False or True) and True) or False) and False) =",
+  "expect": "True"
+ },
+ {
+  "id": "a8",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Simplify step by step. not True or (False and True) or not (not False and (True or False)) and True or False and not True =",
+  "expect": "False"
+ },
+ {
+  "id": "a9",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "False or True and False or not True and not False or False =",
+  "expect": "False"
+ },
+ {
+  "id": "a10",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Step 2: not ( True ) and ( True ) =",
+  "expect": "False"
+ },
+ {
+  "id": "a11",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Then we get not not not False=",
+  "expect": "True"
+ },
+ {
+  "id": "s1",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "x = True =",
+  "expect": ""
+ },
+ {
+  "id": "s2",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "True && not False =",
+  "expect": ""
+ },
+ {
+  "id": "s3",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "True AND False =",
+  "expect": ""
+ },
+ {
+  "id": "s4",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "a and not b =",
+  "expect": ""
+ },
+ {
+  "id": "s5",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "5 > False and True =",
+  "expect": ""
+ },
+ {
+  "id": "s6",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "(True and False =",
+  "expect": ""
+ },
+ {
+  "id": "s7",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "True and False) =",
+  "expect": ""
+ },
+ {
+  "id": "s8",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "(((((True and False))))) or True =",
+  "expect": ""
+ },
+ {
+  "id": "s9",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "x == True and False =",
+  "expect": ""
+ },
+ {
+  "id": "s10",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "2 ** True or False =",
+  "expect": ""
+ },
+ {
+  "id": "s11",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "x = True if False else not True =",
+  "expect": ""
+ },
+ {
+  "id": "s12",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "flag = !(True and False) =",
+  "expect": ""
+ },
+ {
+  "id": "s13",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Check: True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and True and False =",
+  "expect": ""
+ },
+ {
+  "id": "s14",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "False || not True =",
+  "expect": ""
+ },
+ {
+  "id": "s15",
+  "kind": "alone",
+  "tool": "bool_gen",
+  "text": "Compute this and not (True or False) =",
+  "expect": ""
+ },
+ {
+  "id": "c1",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool not (True and False) or False</tool_call>",
+  "expect": "True"
+ },
+ {
+  "id": "c2",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool ((true or false) and not false)</tool_call>",
+  "expect": "True"
+ },
+ {
+  "id": "c3",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool True or False and False</tool_call>",
+  "expect": "True"
+ },
+ {
+  "id": "c4",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool not ( not ( False or True ) )</tool_call>",
+  "expect": "True"
+ },
+ {
+  "id": "c5",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "The check is <tool_call>bool not not not False</tool_call>",
+  "expect": "True"
+ },
+ {
+  "id": "c6",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool True</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c7",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool a and not b</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c8",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool True && False</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c9",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool(True and False)</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c10",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>expr True and False</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c11",
+  "kind": "alone",
+  "tool": "bool_call",
+  "text": "<tool_call>bool 5 > False and True</tool_call>",
+  "expect": ""
+ }
+]

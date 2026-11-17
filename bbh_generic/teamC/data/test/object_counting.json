@@ -1,0 +1,404 @@
+{
+ "examples": [
+  {
+   "input": "I own three cherries, five apricots, four kiwis, two chisels, a quince, two drills, a giraffe, two xylophones, and two figs. Count the items: how many are there?",
+   "target": "22"
+  },
+  {
+   "input": "I own five drills, five watermelons, three saws, four persimmons, a screwdriver, four wrenches, a rake, five chisels, five shovels, and four hammers. Count the tools: how many are there?",
+   "target": "28"
+  },
+  {
+   "input": "I own two drills, a duck, a pomegranate, a lime, and two chinchillas. In total, how many things do I own?",
+   "target": "7"
+  },
+  {
+   "input": "There are two hamsters, a minibus, four guavas, an eggplant, five turtles, four penguins, three cellos, a duck, three horses, a mango, and two llamas in my house. How many things are there in total?",
+   "target": "27"
+  },
+  {
+   "input": "My collection contains a turtle, a pear, four canaries, two parrots, a radish, a cantaloupe, two apricots, a mango, an asparagus spear, two backpacks, two pineapples, a persimmon, and three lemons. How many fruits do I have?",
+   "target": "11"
+  },
+  {
+   "input": "Last week I got two shallots, a beet, and four turnips. How many vegetables do I have?",
+   "target": "7"
+  },
+  {
+   "input": "Last week I got three guavas, three cornets, a candle, a watermelon, and two beets. How many things are there in total?",
+   "target": "10"
+  },
+  {
+   "input": "I bought two limes, two leeks, a tambourine, four cherries, and two tractors, and my neighbor has a dog. What is the total number of fruits I have?",
+   "target": "6"
+  },
+  {
+   "input": "I own a pillow, four tractors, a duck, a cucumber, and four shallots. Count the animals: how many are there?",
+   "target": "1"
+  },
+  {
+   "input": "My collection contains five tambourines, four mandolins, and two sitars. What is the total number of musical instruments I have?",
+   "target": "11"
+  },
+  {
+   "input": "Last week I got a tape measure, three bassoons, a date, four pliers sets, a chisel, a horse, and three trucks. Count the tools: how many are there?",
+   "target": "6"
+  },
+  {
+   "input": "I have two tape measures, a scooter, five wrenches, two eggplants, a horse, a turtle, a screwdriver, two shovels, and five staplers. Count the tools: how many are there?",
+   "target": "10"
+  },
+  {
+   "input": "There are a tangerine, five cornets, a pineapple, four hammers, and two ferrets in my house. What is the total number of fruits I have?",
+   "target": "2"
+  },
+  {
+   "input": "There are two tape measures, two wrenches, five pliers sets, a hammer, a scooter, two rakes, and a screwdriver in my house. Count the tools: how many are there?",
+   "target": "13"
+  },
+  {
+   "input": "My collection contains two saws, three hammers, three tangerines, two chisels, and five wrenches. How many tools do I have?",
+   "target": "12"
+  },
+  {
+   "input": "I have three eggplants, five ukuleles, two cellos, a harmonica, an umbrella, two mandolins, two screwdrivers, a harp, four sitars, five saws, and three tractors. Count the musical instruments: how many are there?",
+   "target": "15"
+  },
+  {
+   "input": "I have four drums, three sheep, a rabbit, four ukuleles, five banjos, four saxophones, four cellos, a xylophone, a beet, two pomegranates, and two ducks. How many musical instruments do I have?",
+   "target": "22"
+  },
+  {
+   "input": "I have a pineapple, five lemons, a hamster, two pomegranates, a minibus, five coconuts, four dates, and an asparagus spear. How many fruits are there in total?",
+   "target": "17"
+  },
+  {
+   "input": "I own four hamsters, three saws, a chisel, four llamas, and four penguins. What is the total number of tools I have?",
+   "target": "4"
+  },
+  {
+   "input": "I own two mugs, three minibuses, three trucks, two parrots, three drums, two sailboats, a shovel, four vans, and a motorcycle. What is the total number of vehicles I have?",
+   "target": "13"
+  },
+  {
+   "input": "There are two wrenches and two chinchillas in my house. What is the total number of tools I have?",
+   "target": "2"
+  },
+  {
+   "input": "There are three quinces, two dates, a pear, three pomegranates, two lychees, two cantaloupes, and three limes in my house. In total, how many fruits do I own?",
+   "target": "16"
+  },
+  {
+   "input": "My collection contains two vans, a turnip, two scooters, three llamas, a minibus, three guavas, a motorcycle, a skateboard, three kiwis, and four sheep. In total, how many vehicles do I own?",
+   "target": "7"
+  },
+  {
+   "input": "There are two drills, a saw, a tape measure, two screwdrivers, a wrench, and two hammers in my house. How many tools do I have?",
+   "target": "9"
+  },
+  {
+   "input": "I have two cauliflowers, five lizards, a pumpkin, a tractor, an artichoke, a llama, two trucks, a cabbage, a sweet potato, four pillows, and three pears. In total, how many vegetables do I own?",
+   "target": "6"
+  },
+  {
+   "input": "My collection contains two dates, a sitar, five harps, five papayas, a bicycle, and two mangoes. What is the total number of fruits I have?",
+   "target": "9"
+  },
+  {
+   "input": "I own an owl, a horse, and three penguins. How many animals do I have?",
+   "target": "5"
+  },
+  {
+   "input": "I own a pineapple, two notebooks, a cabbage, and three vans. How many vegetables are there in total?",
+   "target": "1"
+  },
+  {
+   "input": "My collection contains four artichokes, a pumpkin, three papayas, three ukuleles, three drills, three radishes, four asparagus spears, two kale bunches, two bell peppers, and two turnips. How many vegetables are there in total?",
+   "target": "18"
+  },
+  {
+   "input": "In my garage I keep a persimmon and four lemons. Count the fruits: how many are there?",
+   "target": "5"
+  },
+  {
+   "input": "There are a coconut, five kettles, a cantaloupe, a cello, and two parrots in my house. How many animals are there in total?",
+   "target": "2"
+  },
+  {
+   "input": "I have five tape measures, five hammers, two drills, five rakes, three wrenches, a chisel, and three screwdrivers. What is the total number of tools I have?",
+   "target": "24"
+  },
+  {
+   "input": "I own a ferret and two chairs. What is the total number of animals I have?",
+   "target": "1"
+  },
+  {
+   "input": "I bought a chinchilla, a persimmon, two sweet potatoes, a hedgehog, four vans, two staplers, a sheep, and a lamp, and my neighbor has a dog. How many items are there in total?",
+   "target": "13"
+  },
+  {
+   "input": "My collection contains four backpacks, a minibus, two pineapples, five tractors, two radishes, a harmonica, three pomegranates, and two saws. In total, how many fruits do I own?",
+   "target": "5"
+  },
+  {
+   "input": "My collection contains five cellos, four bicycles, two cabbages, five vans, an umbrella, an asparagus spear, five scooters, and four minibuses. Count the objects: how many are there?",
+   "target": "27"
+  },
+  {
+   "input": "Last week I got a lemon, a tangerine, a guava, a persimmon, a mango, and a cantaloupe. Count the fruits: how many are there?",
+   "target": "6"
+  },
+  {
+   "input": "I bought a scooter, and my neighbor has a dog. In total, how many vehicles do I own?",
+   "target": "1"
+  },
+  {
+   "input": "I own five sweet potatoes, four tape measures, a wrench, three screwdrivers, a hammer, two saws, three banjos, two tangerines, and a truck. What is the total number of tools I have?",
+   "target": "11"
+  },
+  {
+   "input": "There are a shovel, four papayas, four hedgehogs, five mandolins, and three lemons in my house. In total, how many fruits do I own?",
+   "target": "7"
+  },
+  {
+   "input": "Last week I got three wrenches, a cherry, five minibuses, a truck, a guava, four radishes, five tractors, and a harp. How many vehicles do I have?",
+   "target": "11"
+  },
+  {
+   "input": "I have a motorcycle, three cabbages, five tractors, a van, and two minibuses. In total, how many vehicles do I own?",
+   "target": "9"
+  },
+  {
+   "input": "I have a cabbage, a turnip, a leek, three eggplants, two shallots, two bell peppers, a sweet potato, and a beet. What is the total number of vegetables I have?",
+   "target": "12"
+  },
+  {
+   "input": "Last week I got a turtle, a gecko, a chinchilla, a giraffe, a lizard, five ferrets, a goat, and four hamsters. What is the total number of animals I have?",
+   "target": "15"
+  },
+  {
+   "input": "I have three rakes, a wrench, and a shovel. How many tools do I have?",
+   "target": "5"
+  },
+  {
+   "input": "My collection contains four canoes, a skateboard, two scooters, three ducks, a bicycle, three minibuses, three motorcycles, two turnips, two sailboats, four trucks, four screwdrivers, and an apricot. In total, how many vehicles do I own?",
+   "target": "20"
+  },
+  {
+   "input": "In my garage I keep five wrenches, a tape measure, a goat, two notebooks, three bassoons, five saxophones, a chisel, two saws, a bicycle, a screwdriver, and three drills. Count the tools: how many are there?",
+   "target": "13"
+  },
+  {
+   "input": "I have two scooters and two canoes. How many vehicles are there in total?",
+   "target": "4"
+  },
+  {
+   "input": "I own a bicycle, two scooters, and four skateboards. Count the vehicles: how many are there?",
+   "target": "7"
+  },
+  {
+   "input": "Last week I got five chinchillas. What is the total number of animals I have?",
+   "target": "5"
+  },
+  {
+   "input": "I bought three chinchillas, an artichoke, an eggplant, and two turnips, and my neighbor has a dog. How many vegetables do I have?",
+   "target": "4"
+  },
+  {
+   "input": "Last week I got a pineapple, two tangerines, and two pears. In total, how many fruits do I own?",
+   "target": "5"
+  },
+  {
+   "input": "My collection contains two accordions, two tangerines, a stapler, four cantaloupes, a chisel, and four llamas. How many musical instruments do I have?",
+   "target": "2"
+  },
+  {
+   "input": "My collection contains five sitars, four cellos, a duck, five ukuleles, a bassoon, four cornets, and a gecko. In total, how many musical instruments do I own?",
+   "target": "19"
+  },
+  {
+   "input": "I own a cello, a minibus, three drills, five saxophones, two oboes, five banjos, an ukulele, a sitar, a chair, a hammer, and two wrenches. In total, how many musical instruments do I own?",
+   "target": "15"
+  },
+  {
+   "input": "I have five skateboards, five canoes, and four eggplants. How many vehicles are there in total?",
+   "target": "10"
+  },
+  {
+   "input": "Last week I got four tangerines and two quinces. What is the total number of fruits I have?",
+   "target": "6"
+  },
+  {
+   "input": "There are five artichokes, four eggplants, four cauliflowers, an asparagus spear, five oboes, a kale bunch, a zucchini, a shallot, and three turnips in my house. Count the things: how many are there?",
+   "target": "25"
+  },
+  {
+   "input": "In my garage I keep five tubas and two bassoons. How many musical instruments do I have?",
+   "target": "7"
+  },
+  {
+   "input": "I have a hedgehog, a drill, two lemons, three pliers sets, a quince, a penguin, a chisel, an artichoke, three pomegranates, a hammer, and a rake. What is the total number of tools I have?",
+   "target": "7"
+  },
+  {
+   "input": "Last week I got five giraffes, a candle, two potatoes, two radishes, a notebook, five chinchillas, five geckos, four ferrets, two ducks, two horses, and a goat. How many animals are there in total?",
+   "target": "24"
+  },
+  {
+   "input": "There are two beets, two sweet potatoes, two potatoes, four hedgehogs, a leek, three radishes, an eggplant, four harps, and five cucumbers in my house. In total, how many vegetables do I own?",
+   "target": "16"
+  },
+  {
+   "input": "Last week I got two mandolins, two ukuleles, two cornets, and two saxophones. Count the musical instruments: how many are there?",
+   "target": "8"
+  },
+  {
+   "input": "I own two wrenches, a shovel, a chisel, three mangoes, a zucchini, two hammers, five saws, two pliers sets, a drill, and a tape measure. What is the total number of tools I have?",
+   "target": "15"
+  },
+  {
+   "input": "My collection contains three pears, four rabbits, a horse, a parrot, three giraffes, a ferret, and a penguin. Count the animals: how many are there?",
+   "target": "11"
+  },
+  {
+   "input": "There are two geckos, three saxophones, five artichokes, two ukuleles, three harps, and four sailboats in my house. What is the total number of objects I have?",
+   "target": "19"
+  },
+  {
+   "input": "Last week I got two wrenches, a truck, two persimmons, a mandolin, five watermelons, a pineapple, two lizards, four lychees, a parsnip, a date, a notebook, and a lime. In total, how many fruits do I own?",
+   "target": "14"
+  },
+  {
+   "input": "I bought three kale bunches, a zucchini, a parsnip, a shallot, a radish, a pumpkin, three sweet potatoes, and two turnips, and my neighbor has a dog. How many vegetables do I have?",
+   "target": "13"
+  },
+  {
+   "input": "My collection contains three asparagus spears, a chisel, four pliers sets, four drills, two screwdrivers, two cabbages, and a hammer. How many tools are there in total?",
+   "target": "12"
+  },
+  {
+   "input": "Last week I got a rabbit, two giraffes, four sitars, a saw, and two bicycles. What is the total number of animals I have?",
+   "target": "3"
+  },
+  {
+   "input": "Last week I got a skateboard, a harp, a tuba, a drum, two eggplants, a cabbage, two accordions, four scooters, three sitars, and a harmonica. Count the items: how many are there?",
+   "target": "17"
+  },
+  {
+   "input": "I bought a bicycle, a fig, five vans, a canoe, five scooters, three motorcycles, and two sailboats, and my neighbor has a dog. How many vehicles do I have?",
+   "target": "17"
+  },
+  {
+   "input": "I own a xylophone, two oboes, four cornets, four sitars, four banjos, two saxophones, and a harp. How many musical instruments do I have?",
+   "target": "18"
+  },
+  {
+   "input": "My collection contains three kale bunches, three radishes, five bell peppers, three leeks, and two eggplants. What is the total number of vegetables I have?",
+   "target": "16"
+  },
+  {
+   "input": "My collection contains two lizards, three rabbits, two penguins, a duck, three giraffes, five geckos, and three ferrets. How many animals do I have?",
+   "target": "19"
+  },
+  {
+   "input": "My collection contains five quinces, an apricot, and a cantaloupe. How many fruits do I have?",
+   "target": "7"
+  },
+  {
+   "input": "My collection contains five drills, a cherry, three wrenches, a chisel, four papayas, and three saws. How many tools are there in total?",
+   "target": "12"
+  },
+  {
+   "input": "I own two quinces, five cantaloupes, five drills, two tubas, four pomegranates, four parsnips, and three lychees. In total, how many fruits do I own?",
+   "target": "14"
+  },
+  {
+   "input": "I have four vans, four tractors, three trucks, a bicycle, two bassoons, two canoes, two watermelons, three sailboats, two scooters, a lime, and a minibus. In total, how many vehicles do I own?",
+   "target": "20"
+  },
+  {
+   "input": "In my garage I keep a harp, four bassoons, three kiwis, two pineapples, two banjos, two sitars, and four oboes. What is the total number of musical instruments I have?",
+   "target": "13"
+  },
+  {
+   "input": "I own two wrenches, two papayas, two oboes, and a minibus. In total, how many musical instruments do I own?",
+   "target": "2"
+  },
+  {
+   "input": "Last week I got a skateboard, five canoes, a van, and two tractors. In total, how many vehicles do I own?",
+   "target": "9"
+  },
+  {
+   "input": "I bought three saws, a wrench, a pliers set, two screwdrivers, five drills, two horses, three shovels, two mangoes, a giraffe, and five chisels, and my neighbor has a dog. In total, how many tools do I own?",
+   "target": "20"
+  },
+  {
+   "input": "I have a chinchilla. In total, how many animals do I own?",
+   "target": "1"
+  },
+  {
+   "input": "I own a pumpkin, two limes, four vans, three trucks, two scooters, a tractor, five motorcycles, and five mandolins. Count the vehicles: how many are there?",
+   "target": "15"
+  },
+  {
+   "input": "I have two turtles. What is the total number of animals I have?",
+   "target": "2"
+  },
+  {
+   "input": "I own four shallots, three eggplants, five hammers, five potatoes, three kale bunches, and five skateboards. How many vegetables do I have?",
+   "target": "15"
+  },
+  {
+   "input": "I bought a saxophone, a cello, two harmonicas, two geckos, three sitars, two harps, three giraffes, and two limes, and my neighbor has a dog. What is the total number of musical instruments I have?",
+   "target": "9"
+  },
+  {
+   "input": "I bought two harmonicas, two horses, a candle, three harps, and a penguin, and my neighbor has a dog. What is the total number of musical instruments I have?",
+   "target": "5"
+  },
+  {
+   "input": "Last week I got a giraffe, a llama, a sheep, three hamsters, two rabbits, two ducks, and five hedgehogs. In total, how many animals do I own?",
+   "target": "15"
+  },
+  {
+   "input": "I bought a skateboard, an apricot, a banjo, three kiwis, and two papayas, and my neighbor has a dog. In total, how many fruits do I own?",
+   "target": "6"
+  },
+  {
+   "input": "I have two apricots, three chisels, three pineapples, and a wrench. Count the fruits: how many are there?",
+   "target": "5"
+  },
+  {
+   "input": "My collection contains two pumpkins, two bicycles, three scooters, two pears, two minibuses, two turtles, a tractor, four motorcycles, and two penguins. Count the vehicles: how many are there?",
+   "target": "12"
+  },
+  {
+   "input": "In my garage I keep five canaries, two harps, a shallot, two lemons, and a hedgehog. What is the total number of vegetables I have?",
+   "target": "1"
+  },
+  {
+   "input": "I bought four geckos, five parsnips, a giraffe, and a llama, and my neighbor has a dog. How many animals are there in total?",
+   "target": "6"
+  },
+  {
+   "input": "Last week I got an oboe, a mandolin, two drums, a bell pepper, a chisel, two canoes, and three bicycles. In total, how many musical instruments do I own?",
+   "target": "4"
+  },
+  {
+   "input": "Last week I got a pomegranate and a bassoon. Count the objects: how many are there?",
+   "target": "2"
+  },
+  {
+   "input": "In my garage I keep a guava, two parsnips, two pumpkins, five cucumbers, three eggplants, and a drum. How many vegetables are there in total?",
+   "target": "12"
+  },
+  {
+   "input": "In my garage I keep a beet, a radish, a cabbage, two kale bunches, a sweet potato, two eggplants, two turnips, and two potatoes. How many vegetables do I have?",
+   "target": "12"
+  },
+  {
+   "input": "Last week I got a chinchilla, a llama, a goat, a hedgehog, two hamsters, and a turtle. How many animals are there in total?",
+   "target": "7"
+  }
+ ]
+}

@@ -1,0 +1,556 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [],
+"oe": "dotnl",
+"bs": 32,
+"per_task": {
+"bool_code": 80.0
+},
+"command": "python run_gen.py out/ood_plain_bool_code.json --data data/ood --tasks bool_code --machines none --oe dotnl --prompt_file data/ood/bool_code.prompt.txt   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "0122623b9e54b52295e8757519cee80613300b0a3d01338cb2193f25965fc4a4",
+"rows": [
+{
+"i": 0,
+"task": "bool_code",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 1,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 2,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 3,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 4,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 5,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 6,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 7,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 8,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 9,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 10,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 11,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 12,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 13,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 14,
+"task": "bool_code",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 15,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 16,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 17,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 18,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 19,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 20,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 21,
+"task": "bool_code",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 22,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 23,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 24,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 25,
+"task": "bool_code",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 26,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 27,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 28,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 29,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 30,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 31,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 32,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 33,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 34,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 35,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 36,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 37,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 38,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 39,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 40,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 41,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 42,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 43,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 44,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 45,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 46,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 47,
+"task": "bool_code",
+"gold": "True",
+"pred": "False",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 48,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 49,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 50,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 51,
+"task": "bool_code",
+"gold": "True",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 52,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 53,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 54,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 55,
+"task": "bool_code",
+"gold": "True",
+"pred": "True",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 56,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 57,
+"task": "bool_code",
+"gold": "False",
+"pred": "True",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 58,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 59,
+"task": "bool_code",
+"gold": "False",
+"pred": "False",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+}
+],
+"per_task_lenient": {
+"bool_code": 81.66666666666667
+}
+}

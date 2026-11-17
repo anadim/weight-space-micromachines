@@ -1,0 +1,56 @@
+- nav1-spelled-numbers [navigate] target='Yes' pred='Yes' OK=True
+    host call: 'walk forward 4, turn right, forward 4, turn right, forward 4, turn right, forward 4'
+    tool wrote: '(0, 0) facing west' | strict run_ref of that call: '(0, 0) facing west' | tool==ref: True
+- nav2-twodigit-noise-ffparaphrase [navigate] target='No' pred='No' OK=True
+    host call: 'walk forward 12, right 5, backward 12, left 3'
+    tool wrote: '(2, 0) facing north' | strict run_ref of that call: '(2, 0) facing north' | tool==ref: True
+- nav3-turns-mixed-with-strafes [navigate] target='Yes' pred='Yes' OK=True
+    host call: 'walk turn left, forward 6, right 2, turn around, forward 6, right 2'
+    tool wrote: '(0, 0) facing east' | strict run_ref of that call: '(0, 0) facing east' | tool==ref: True
+- nav4-then-chain-uturn-words [navigate] target='Yes' pred='Yes' OK=True
+    host call: 'walk forward 3, turn around, forward 5, turn around, forward 2'
+    tool wrote: '(0, 0) facing north' | strict run_ref of that call: '(0, 0) facing north' | tool==ref: True
+- nav5-long-16-commands [navigate] target='No' pred='Yes' OK=False
+    host call: 'walk forward 2, turn right, forward 9, turn right, forward 2, turn left, forward 1, turn left, forward 3, turn left, forward 10, turn left, forward 1, forward 4, turn around, forward 2'
+    tool wrote: '(0, 0) facing north' | strict run_ref of that call: '(0, 0) facing north' | tool==ref: True
+- nav6-story-question-last-noise [navigate] target='Yes' pred='' OK=False
+    host call: 'walk forward 7, turn around, forward 3, dog bark, turn left, forward 4, turn right, forward 4, turn right, forward 4, turn right, forward 4'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'walk forward 7, turn around, forward 3, dog bark, turn left, forward 4, turn right, forward 4, turn right, forward 4, turn right, forward 4, turn right, forward 4'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+3 more identical retries)
+- oos1-drone [other] target='(8, -5)' pred='(8, -5)' OK=True
+    host call: 'walk forward 15, turn right, forward 8, turn right, forward 20'
+    tool wrote: '(8, -5) facing south' | strict run_ref of that call: '(8, -5) facing south' | tool==ref: True
+- oos2-warehouse-robot-starts-east [other] target='(6, -6)' pred='(6, 6)' OK=False
+    host call: 'walk forward 6, turn left, forward 3, backward 9'
+    tool wrote: '(6, 6) facing west' | strict run_ref of that call: '(6, 6) facing west' | tool==ref: True
+- oos3-game-absolute-arrows [other] target='(3, -2)' pred='(2, -2)' OK=False
+    host call: 'walk up 3, right 4, down 7, left 1, up 2'
+    tool wrote: '(2, -2) facing north' | strict run_ref of that call: '' | tool==ref: False
+- oos4-courier-irrelevant-number [other] target='(14, -4)' pred='(7, -6)' OK=False
+    host call: 'walk forward 3, turn right, forward 5, turn right, forward 9, turn left, forward 2'
+    tool wrote: '(7, -6) facing east' | strict run_ref of that call: '(7, -6) facing east' | tool==ref: True
+- oos5-sailboat-heading-question [other] target='north' pred='(-4, 0)' OK=False
+    host call: 'walk forward 10, turn left, forward 4, turn left, forward 10, turn around'
+    tool wrote: '(-4, 0) facing north' | strict run_ref of that call: '(-4, 0) facing north' | tool==ref: True
+- oos6-turtle-graphics-yesno [other] target='Yes' pred='Yes' OK=True
+    host call: 'walk forward 20, turn right 90, forward 20, turn right 90, forward 20, turn right 90, forward 20'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'walk forward 20, turn right 90, forward 20, turn right 90, forward 20, turn right 90, forward 20'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+- probe p1-max-twodigit: call='walk forward 99, right 99, backward 98, left 97' tool wrote='<tool_response>(2, 1) facing north</tool_response>' strict ref='(2, 1) facing north' judge expect='(2, 1) facing north' | ==ref True | ==expect True
+- probe p2-strafes-after-turns: call='walk turn right, left 5, turn right, right 3, backward 4, turn around, left 2, turn left, forward 11, turn right, backward 6, right 7' tool wrote='<tool_response>(-9, 3) facing north</tool_response>' strict ref='(-9, 3) facing north' judge expect='(-9, 3) facing north' | ==ref True | ==expect True
+- probe p3-exactly-24-commands: call='walk forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 3, turn left, forward 5, turn right' tool wrote='<tool_response>(2, 0) facing south</tool_response>' strict ref='(2, 0) facing south' judge expect='(2, 0) facing south' | ==ref True | ==expect True
+- probe p4-25-commands: call='walk forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1, forward 1' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p5-number-word: call='walk forward seven, turn left' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p6-three-digit: call='walk forward 120, turn left' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p7-negative-number: call='walk forward -3' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p8-capitalized-word: call='walk turn left, Forward 2' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p9-zero-step: call='walk forward 0, turn around' tool wrote='<tool_response>(0, 0) facing south</tool_response>' strict ref='(0, 0) facing south' judge expect='(0, 0) facing south' | ==ref True | ==expect True
+- probe p10-missing-comma-strafe: call='walk left 3 turn left, forward 2' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p11-missing-comma-move: call='walk forward 3 turn left' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p12-duplicated-word: call='walk forward forward 7, turn left' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe p13-22-twodigit-commands: call='walk forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10' tool wrote='<tool_response>(0, 220) facing north</tool_response>' strict ref='(0, 220) facing north' judge expect='(0, 220) facing north' | ==ref True | ==expect True
+- probe p14-23-twodigit-commands: call='walk forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10, forward 10' tool wrote='<tool_response>(0, 230) facing north</tool_response>' strict ref='(0, 230) facing north' judge expect='(0, 230) facing north' | ==ref True | ==expect True
+- probe p15-colon-header: call='walk: forward 3' tool wrote='(silent)' strict ref=None judge expect='' | ==ref True | ==expect False

@@ -1,0 +1,244 @@
+{
+ "examples": [
+  {
+   "input": "In the storeroom there are 49 candles, 76 plants, 56 board games, 74 chairs, and 70 jars of honey. How many items are there in total?",
+   "target": "325"
+  },
+  {
+   "input": "Inventory: 72 jars of honey, 89 lamps, 26 plants, 90 candles, 73 notebooks, 68 shirts, and 33 tickets. How many items are there in total?",
+   "target": "451"
+  },
+  {
+   "input": "The order contains 34 battery packs, 18 board games, and 91 bags of rice. How many items are there in total?",
+   "target": "143"
+  },
+  {
+   "input": "My shopping list: 92 shirts, 77 notebooks, 54 jars of honey, 16 battery packs, 84 board games, and 64 plants. How many items are there in total?",
+   "target": "387"
+  },
+  {
+   "input": "The order contains 19 candles, 26 jars of honey, 56 shirts, and 50 chairs. How many items are there in total?",
+   "target": "151"
+  },
+  {
+   "input": "In the storeroom there are 36 battery packs, 85 shirts, 41 mugs, 13 cables, and 72 pens. How many items are there in total?",
+   "target": "247"
+  },
+  {
+   "input": "In the storeroom there are 76 towels, 94 battery packs, 63 candles, 21 board games, 20 notebooks, 12 jars of honey, 67 cables, and 80 bags of rice. How many items are there in total?",
+   "target": "433"
+  },
+  {
+   "input": "Inventory: 15 pens, 14 plants, 50 board games, 42 candles, 95 jars of honey, 18 towels, 69 bags of rice, and 54 battery packs. How many items are there in total?",
+   "target": "357"
+  },
+  {
+   "input": "The order contains 95 cables, 32 lamps, 81 bags of rice, 40 tickets, 31 jars of honey, 88 towels, and 87 shirts. How many items are there in total?",
+   "target": "454"
+  },
+  {
+   "input": "In the storeroom there are 28 jars of honey, 57 cables, 74 tickets, 70 lamps, 59 towels, 53 mugs, 63 plants, and 27 chairs. How many items are there in total?",
+   "target": "431"
+  },
+  {
+   "input": "In the storeroom there are 55 candles, 82 bags of rice, 76 shirts, 65 lamps, 42 tickets, 52 cables, and 81 board games. How many items are there in total?",
+   "target": "453"
+  },
+  {
+   "input": "In the storeroom there are 6 jars of honey, 49 tickets, and 26 pens. How many items are there in total?",
+   "target": "81"
+  },
+  {
+   "input": "Inventory: 20 chairs, 61 board games, 60 bags of rice, and 58 battery packs. How many items are there in total?",
+   "target": "199"
+  },
+  {
+   "input": "My shopping list: 24 mugs, 53 candles, 55 pens, 21 towels, 54 tickets, and 15 board games. How many items are there in total?",
+   "target": "222"
+  },
+  {
+   "input": "In the storeroom there are 66 mugs, 49 towels, and 33 tickets. How many items are there in total?",
+   "target": "148"
+  },
+  {
+   "input": "In the storeroom there are 94 shirts, 88 towels, and 47 tickets. How many items are there in total?",
+   "target": "229"
+  },
+  {
+   "input": "My shopping list: 13 board games, 76 shirts, 91 battery packs, 58 chairs, and 56 pens. How many items are there in total?",
+   "target": "294"
+  },
+  {
+   "input": "Inventory: 92 mugs, 41 chairs, 74 towels, 62 plants, 83 tickets, 78 board games, and 43 notebooks. How many items are there in total?",
+   "target": "473"
+  },
+  {
+   "input": "The order contains 54 cables, 58 shirts, 94 notebooks, 43 pens, 83 board games, 28 tickets, 41 lamps, and 82 battery packs. How many items are there in total?",
+   "target": "483"
+  },
+  {
+   "input": "In the storeroom there are 48 pens, 59 jars of honey, 11 mugs, 59 plants, and 6 candles. How many items are there in total?",
+   "target": "183"
+  },
+  {
+   "input": "In the storeroom there are 54 plants, 54 candles, and 4 chairs. How many items are there in total?",
+   "target": "112"
+  },
+  {
+   "input": "In the storeroom there are 2 plants, 7 cables, and 49 jars of honey. How many items are there in total?",
+   "target": "58"
+  },
+  {
+   "input": "My shopping list: 20 plants, 41 tickets, 60 board games, 35 shirts, 62 cables, and 51 mugs. How many items are there in total?",
+   "target": "269"
+  },
+  {
+   "input": "The order contains 23 tickets, 61 bags of rice, 87 lamps, 30 mugs, 95 candles, and 5 jars of honey. How many items are there in total?",
+   "target": "301"
+  },
+  {
+   "input": "In the storeroom there are 86 bags of rice, 56 cables, 51 candles, 48 board games, 75 tickets, and 34 battery packs. How many items are there in total?",
+   "target": "350"
+  },
+  {
+   "input": "Inventory: 47 bags of rice, 21 tickets, 39 cables, 33 lamps, 44 plants, 94 towels, 15 shirts, and 23 battery packs. How many items are there in total?",
+   "target": "316"
+  },
+  {
+   "input": "Inventory: 35 chairs, 60 mugs, 71 towels, 50 bags of rice, 19 pens, and 58 jars of honey. How many items are there in total?",
+   "target": "293"
+  },
+  {
+   "input": "In the storeroom there are 18 towels, 66 cables, 7 battery packs, 78 chairs, 70 lamps, 13 plants, 85 shirts, and 37 board games. How many items are there in total?",
+   "target": "374"
+  },
+  {
+   "input": "The order contains 40 cables, 3 lamps, 56 jars of honey, 82 shirts, 44 plants, and 94 board games. How many items are there in total?",
+   "target": "319"
+  },
+  {
+   "input": "The order contains 83 plants, 55 battery packs, 48 candles, 93 bags of rice, 94 mugs, and 17 board games. How many items are there in total?",
+   "target": "390"
+  },
+  {
+   "input": "My shopping list: 21 notebooks, 44 bags of rice, and 66 jars of honey. How many items are there in total?",
+   "target": "131"
+  },
+  {
+   "input": "My shopping list: 19 towels, 7 notebooks, 28 shirts, 91 battery packs, 72 tickets, 33 mugs, 63 pens, and 2 bags of rice. How many items are there in total?",
+   "target": "315"
+  },
+  {
+   "input": "In the storeroom there are 90 bags of rice, 58 jars of honey, 75 towels, 11 tickets, and 55 cables. How many items are there in total?",
+   "target": "289"
+  },
+  {
+   "input": "The order contains 88 battery packs, 56 tickets, and 86 candles. How many items are there in total?",
+   "target": "230"
+  },
+  {
+   "input": "Inventory: 22 candles, 62 cables, 91 jars of honey, 78 towels, 50 lamps, 85 mugs, and 87 tickets. How many items are there in total?",
+   "target": "475"
+  },
+  {
+   "input": "Inventory: 30 jars of honey, 17 candles, 41 mugs, 91 pens, 49 battery packs, 94 shirts, 57 cables, and 33 notebooks. How many items are there in total?",
+   "target": "412"
+  },
+  {
+   "input": "The order contains 15 tickets, 22 candles, 85 cables, 32 shirts, 16 lamps, and 28 mugs. How many items are there in total?",
+   "target": "198"
+  },
+  {
+   "input": "Inventory: 11 board games, 47 tickets, 40 shirts, 55 mugs, 28 candles, 34 jars of honey, and 75 bags of rice. How many items are there in total?",
+   "target": "290"
+  },
+  {
+   "input": "The order contains 27 cables, 17 tickets, 23 shirts, 17 board games, 12 battery packs, 79 bags of rice, and 88 plants. How many items are there in total?",
+   "target": "263"
+  },
+  {
+   "input": "My shopping list: 72 candles, 42 tickets, 32 bags of rice, 62 lamps, 26 cables, 64 shirts, and 70 pens. How many items are there in total?",
+   "target": "368"
+  },
+  {
+   "input": "My shopping list: 65 mugs, 65 chairs, 30 lamps, and 84 battery packs. How many items are there in total?",
+   "target": "244"
+  },
+  {
+   "input": "Inventory: 61 candles, 4 pens, and 28 notebooks. How many items are there in total?",
+   "target": "93"
+  },
+  {
+   "input": "The order contains 6 shirts, 59 cables, 72 lamps, 57 board games, 60 notebooks, 54 candles, 95 bags of rice, and 18 pens. How many items are there in total?",
+   "target": "421"
+  },
+  {
+   "input": "The order contains 48 bags of rice, 25 lamps, 9 chairs, 47 plants, 49 tickets, and 44 candles. How many items are there in total?",
+   "target": "222"
+  },
+  {
+   "input": "My shopping list: 40 cables, 56 bags of rice, 48 tickets, 48 jars of honey, 76 candles, 14 chairs, and 32 battery packs. How many items are there in total?",
+   "target": "314"
+  },
+  {
+   "input": "In the storeroom there are 64 lamps, 7 shirts, 21 pens, 19 tickets, 55 jars of honey, 51 battery packs, 58 chairs, and 67 cables. How many items are there in total?",
+   "target": "342"
+  },
+  {
+   "input": "The order contains 68 pens, 91 lamps, and 24 tickets. How many items are there in total?",
+   "target": "183"
+  },
+  {
+   "input": "Inventory: 15 shirts, 12 tickets, 32 plants, 54 towels, 7 jars of honey, 16 candles, 2 notebooks, and 11 cables. How many items are there in total?",
+   "target": "149"
+  },
+  {
+   "input": "The order contains 23 pens, 85 lamps, 25 plants, and 79 candles. How many items are there in total?",
+   "target": "212"
+  },
+  {
+   "input": "The order contains 67 cables, 26 towels, 30 notebooks, 44 plants, and 24 candles. How many items are there in total?",
+   "target": "191"
+  },
+  {
+   "input": "My shopping list: 87 tickets, 81 lamps, 38 towels, and 39 plants. How many items are there in total?",
+   "target": "245"
+  },
+  {
+   "input": "In the storeroom there are 28 notebooks, 24 candles, 37 jars of honey, 2 plants, 87 towels, 38 board games, 56 bags of rice, and 53 pens. How many items are there in total?",
+   "target": "325"
+  },
+  {
+   "input": "The order contains 25 pens, 68 towels, and 37 board games. How many items are there in total?",
+   "target": "130"
+  },
+  {
+   "input": "In the storeroom there are 83 jars of honey, 20 battery packs, 7 board games, 33 candles, 70 tickets, and 31 pens. How many items are there in total?",
+   "target": "244"
+  },
+  {
+   "input": "The order contains 23 cables, 95 shirts, and 9 chairs. How many items are there in total?",
+   "target": "127"
+  },
+  {
+   "input": "In the storeroom there are 48 tickets, 40 bags of rice, and 75 notebooks. How many items are there in total?",
+   "target": "163"
+  },
+  {
+   "input": "My shopping list: 52 pens, 45 candles, 72 cables, 27 plants, 90 lamps, 26 chairs, and 59 bags of rice. How many items are there in total?",
+   "target": "371"
+  },
+  {
+   "input": "The order contains 31 notebooks, 83 towels, 58 chairs, 45 plants, 91 shirts, 90 mugs, 29 candles, and 90 pens. How many items are there in total?",
+   "target": "517"
+  },
+  {
+   "input": "In the storeroom there are 69 towels, 66 bags of rice, 76 chairs, 93 shirts, 80 jars of honey, and 92 pens. How many items are there in total?",
+   "target": "476"
+  },
+  {
+   "input": "My shopping list: 72 jars of honey, 83 cables, 54 tickets, 82 mugs, 78 shirts, 11 plants, 49 lamps, and 34 candles. How many items are there in total?",
+   "target": "463"
+  }
+ ]
+}

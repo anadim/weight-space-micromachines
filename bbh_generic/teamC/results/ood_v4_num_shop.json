@@ -1,0 +1,560 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [
+"expr_gen",
+"calc_gen",
+"bool_gen"
+],
+"oe": "dotnl",
+"bs": 32,
+"per_task": {
+"num_shop": 75.0
+},
+"command": "python run_gen.py out/ood_v4_num_shop.json --data data/ood --tasks num_shop --machines expr_gen,calc_gen,bool_gen --oe dotnl --prompt_file data/ood/num_shop.prompt.txt   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "c135860fbc38a9f4b8740595debeb845fe59930dbe4c9b462d4a8ff065568179",
+"rows": [
+{
+"i": 0,
+"task": "num_shop",
+"gold": "248",
+"pred": "248",
+"ok": true,
+"n_written": 14,
+"lenient_ok": true
+},
+{
+"i": 1,
+"task": "num_shop",
+"gold": "347",
+"pred": "",
+"ok": false,
+"n_written": 11,
+"lenient_ok": true
+},
+{
+"i": 2,
+"task": "num_shop",
+"gold": "115",
+"pred": "115",
+"ok": true,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 3,
+"task": "num_shop",
+"gold": "1570",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 4,
+"task": "num_shop",
+"gold": "508",
+"pred": "508",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 5,
+"task": "num_shop",
+"gold": "1200",
+"pred": "1200",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 6,
+"task": "num_shop",
+"gold": "309",
+"pred": "309",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 7,
+"task": "num_shop",
+"gold": "395",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 8,
+"task": "num_shop",
+"gold": "745",
+"pred": "745",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 9,
+"task": "num_shop",
+"gold": "1164",
+"pred": "1164",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 10,
+"task": "num_shop",
+"gold": "476",
+"pred": "476",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 11,
+"task": "num_shop",
+"gold": "209",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 12,
+"task": "num_shop",
+"gold": "1145",
+"pred": "1145",
+"ok": true,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 13,
+"task": "num_shop",
+"gold": "540",
+"pred": "540",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 14,
+"task": "num_shop",
+"gold": "1372",
+"pred": "",
+"ok": false,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 15,
+"task": "num_shop",
+"gold": "172",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 16,
+"task": "num_shop",
+"gold": "884",
+"pred": "884",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 17,
+"task": "num_shop",
+"gold": "1113",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 18,
+"task": "num_shop",
+"gold": "180",
+"pred": "180",
+"ok": true,
+"n_written": 20,
+"lenient_ok": true
+},
+{
+"i": 19,
+"task": "num_shop",
+"gold": "1260",
+"pred": "1260",
+"ok": true,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 20,
+"task": "num_shop",
+"gold": "174",
+"pred": "",
+"ok": false,
+"n_written": 23,
+"lenient_ok": true
+},
+{
+"i": 21,
+"task": "num_shop",
+"gold": "162",
+"pred": "162",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 22,
+"task": "num_shop",
+"gold": "110",
+"pred": "110 dollars",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 23,
+"task": "num_shop",
+"gold": "258",
+"pred": "",
+"ok": false,
+"n_written": 27,
+"lenient_ok": true
+},
+{
+"i": 24,
+"task": "num_shop",
+"gold": "497",
+"pred": "497",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 25,
+"task": "num_shop",
+"gold": "1114",
+"pred": "1114",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 26,
+"task": "num_shop",
+"gold": "234",
+"pred": "234",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 27,
+"task": "num_shop",
+"gold": "37",
+"pred": "37",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 28,
+"task": "num_shop",
+"gold": "2784",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 29,
+"task": "num_shop",
+"gold": "377",
+"pred": "377",
+"ok": true,
+"n_written": 11,
+"lenient_ok": true
+},
+{
+"i": 30,
+"task": "num_shop",
+"gold": "170",
+"pred": "170",
+"ok": true,
+"n_written": 20,
+"lenient_ok": true
+},
+{
+"i": 31,
+"task": "num_shop",
+"gold": "343",
+"pred": "",
+"ok": false,
+"n_written": 20,
+"lenient_ok": true
+},
+{
+"i": 32,
+"task": "num_shop",
+"gold": "441",
+"pred": "441",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 33,
+"task": "num_shop",
+"gold": "45",
+"pred": "45",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 34,
+"task": "num_shop",
+"gold": "486",
+"pred": "486",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 35,
+"task": "num_shop",
+"gold": "2156",
+"pred": "2156",
+"ok": true,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 36,
+"task": "num_shop",
+"gold": "1033",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": false
+},
+{
+"i": 37,
+"task": "num_shop",
+"gold": "753",
+"pred": "753",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 38,
+"task": "num_shop",
+"gold": "80",
+"pred": "80",
+"ok": true,
+"n_written": 22,
+"lenient_ok": true
+},
+{
+"i": 39,
+"task": "num_shop",
+"gold": "151",
+"pred": "151",
+"ok": true,
+"n_written": 10,
+"lenient_ok": true
+},
+{
+"i": 40,
+"task": "num_shop",
+"gold": "3127",
+"pred": "",
+"ok": false,
+"n_written": 22,
+"lenient_ok": true
+},
+{
+"i": 41,
+"task": "num_shop",
+"gold": "2",
+"pred": "",
+"ok": false,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 42,
+"task": "num_shop",
+"gold": "566",
+"pred": "566",
+"ok": true,
+"n_written": 14,
+"lenient_ok": true
+},
+{
+"i": 43,
+"task": "num_shop",
+"gold": "1023",
+"pred": "1023",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 44,
+"task": "num_shop",
+"gold": "32",
+"pred": "32",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 45,
+"task": "num_shop",
+"gold": "2925",
+"pred": "2925",
+"ok": true,
+"n_written": 22,
+"lenient_ok": true
+},
+{
+"i": 46,
+"task": "num_shop",
+"gold": "1516",
+"pred": "1516",
+"ok": true,
+"n_written": 17,
+"lenient_ok": true
+},
+{
+"i": 47,
+"task": "num_shop",
+"gold": "1075",
+"pred": "1075",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 48,
+"task": "num_shop",
+"gold": "284",
+"pred": "284",
+"ok": true,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 49,
+"task": "num_shop",
+"gold": "208",
+"pred": "208",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 50,
+"task": "num_shop",
+"gold": "1745",
+"pred": "1745",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 51,
+"task": "num_shop",
+"gold": "462",
+"pred": "462",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 52,
+"task": "num_shop",
+"gold": "72",
+"pred": "72",
+"ok": true,
+"n_written": 10,
+"lenient_ok": true
+},
+{
+"i": 53,
+"task": "num_shop",
+"gold": "516",
+"pred": "516",
+"ok": true,
+"n_written": 15,
+"lenient_ok": true
+},
+{
+"i": 54,
+"task": "num_shop",
+"gold": "1192",
+"pred": "",
+"ok": false,
+"n_written": 21,
+"lenient_ok": true
+},
+{
+"i": 55,
+"task": "num_shop",
+"gold": "77",
+"pred": "77",
+"ok": true,
+"n_written": 0,
+"lenient_ok": true
+},
+{
+"i": 56,
+"task": "num_shop",
+"gold": "1206",
+"pred": "1206",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 57,
+"task": "num_shop",
+"gold": "200",
+"pred": "200",
+"ok": true,
+"n_written": 19,
+"lenient_ok": true
+},
+{
+"i": 58,
+"task": "num_shop",
+"gold": "1158",
+"pred": "1158",
+"ok": true,
+"n_written": 16,
+"lenient_ok": true
+},
+{
+"i": 59,
+"task": "num_shop",
+"gold": "630",
+"pred": "630",
+"ok": true,
+"n_written": 14,
+"lenient_ok": true
+}
+],
+"per_task_lenient": {
+"num_shop": 95.0
+}
+}

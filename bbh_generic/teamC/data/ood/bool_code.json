@@ -1,0 +1,244 @@
+{
+ "examples": [
+  {
+   "input": "Given cached = False, logged_in = False, online = False, is_admin = False. Does `not online and ((online or logged_in) and not logged_in)` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = True, logged_in = False, verbose = True. Does `not p and not logged_in and (p and not (verbose or logged_in))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given q = True, p = True. Does `(p or not q or q)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given is_admin = True, logged_in = False. Does `(is_admin or not logged_in) or not (not is_admin) and ((not logged_in))` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given online = False, enabled = False, r = False, q = True. Does `enabled or not r and (not (not online))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = False, flag = True. Does `not flag and flag` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given verbose = False, flag = False. Does `(not flag and not flag or not (flag)) or (not flag) or flag` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given verbose = True, debug = True. Does `debug or not debug or (not debug)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given is_admin = False, q = False. Does `not is_admin or is_admin` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given locked = True, ready = True, verbose = True, cached = True. Does `(not ready and not cached and not (locked or locked or verbose))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given online = False, r = False. Does `r and not online` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given is_admin = False, p = True, flag = False, verbose = True. Does `p or not is_admin and (not is_admin)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given debug = True, cached = False, paid = False, locked = False. Does `not (debug or locked) or paid and debug` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given debug = False, verbose = True, logged_in = True. Does `debug or (not (logged_in) or debug)` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given flag = False, debug = True. Does `debug and (not debug and not (not debug) or not debug) and not debug` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given locked = True, paid = False, ready = False, flag = True. Does `locked or (ready and not paid) and flag` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given paid = False, flag = False. Does `paid or not paid and not flag` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given verbose = False, debug = True. Does `debug and not verbose` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given online = False, cached = True, debug = False, locked = False. Does `debug or not locked and debug` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = False, locked = False, logged_in = False, flag = True. Does `((logged_in and flag or not p) and (flag and not flag or not flag) or not flag)` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given verbose = True, locked = False, online = True, debug = False. Does `(verbose and locked or debug) or not locked and online` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given q = True, locked = True, paid = False, online = False. Does `not online and not q or not locked` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given flag = True, r = False, enabled = False. Does `r or not enabled` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given online = True, locked = False, r = True, enabled = True. Does `r or not r` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given flag = False, locked = True, online = True. Does `(locked or not online) and online` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given locked = False, flag = True, p = False. Does `not locked and (p and p and not (p or not locked or p))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given locked = False, logged_in = False, cached = False, p = True. Does `not logged_in or not cached` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given verbose = True, q = True, debug = False, enabled = False. Does `not debug or debug` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given ready = False, locked = True, is_admin = False. Does `locked and (ready or (locked or is_admin and is_admin))` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given r = False, debug = False. Does `not r and (r and (r) and (debug)) or not debug` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given online = True, q = True. Does `(online and not q) or not online` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given logged_in = False, ready = True, q = True, enabled = False. Does `ready or (not (enabled or not ready or not logged_in) and not q)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given verbose = True, paid = False. Does `not paid and verbose and ((paid and verbose) and (verbose))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given q = True, debug = True, p = False. Does `not p or not q` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given p = True, q = False. Does `(not p and not p) or (q and not p)` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = False, paid = False. Does `paid and p or p` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given locked = True, debug = True. Does `debug and debug or (not locked)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given ready = True, cached = False. Does `cached and not (ready) or not ready` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given flag = False, cached = True, verbose = False, is_admin = False. Does `not (is_admin and not verbose and not cached)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given p = False, paid = False, q = False. Does `(not q and q or not q) or paid` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given cached = False, online = False. Does `cached and (not (not online and online)) or ((not cached) or cached and (cached and cached))` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given flag = True, logged_in = False, ready = False. Does `not flag or not (flag and logged_in or not (logged_in or logged_in and ready))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = True, debug = False, enabled = True. Does `(not debug or enabled)` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given is_admin = True, q = False. Does `(q or is_admin) and not q` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given flag = True, q = False, is_admin = False, ready = True. Does `(q) and (q and not (flag or ready or is_admin)) and not (flag or not ready)` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given verbose = True, ready = False. Does `(verbose and ready and ready) or not verbose` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given online = True, ready = False, verbose = False. Does `verbose and not online` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given r = False, is_admin = True, paid = False, ready = False. Does `(not (not r and r or paid)) and ready or is_admin` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given ready = True, logged_in = True, q = True, debug = False. Does `q and logged_in and debug` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given paid = False, flag = False, cached = True, q = False. Does `q or q and paid` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given p = False, online = True, paid = True, r = True. Does `online and not p` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given p = True, debug = False, online = True, verbose = False. Does `((debug and not verbose) or p) and not (verbose or (online and verbose or debug)) and ((not debug or online))` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given flag = False, cached = False, verbose = False. Does `((verbose and flag and verbose)) or flag` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given q = False, debug = True, is_admin = False. Does `(q) and not q` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given paid = False, enabled = True. Does `(not (enabled and paid or not enabled)) or enabled or paid` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given logged_in = False, enabled = False, p = True. Does `not enabled or logged_in` evaluate to True?",
+   "target": "True"
+  },
+  {
+   "input": "Given debug = True, paid = False, online = False. Does `debug and online or ((paid))` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given logged_in = True, locked = False, p = True, is_admin = False. Does `(logged_in or logged_in) and not logged_in` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given ready = False, logged_in = False, cached = False. Does `logged_in and not cached` evaluate to True?",
+   "target": "False"
+  },
+  {
+   "input": "Given locked = True, r = True, verbose = False. Does `not (r) and not locked` evaluate to True?",
+   "target": "False"
+  }
+ ]
+}

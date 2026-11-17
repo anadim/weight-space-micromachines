@@ -1,0 +1,20 @@
+# fine-tuned hosts, run outputs, logs (not released)
+**/runs/
+**/out/
+**/res/
+**/logs/
+**/locks/
+**/done/
+ft100/work/
+# copies of real BBH test data made at run time (never shipped)
+peek/bbh_A.jsonl
+teamB/data/*_bbh.jsonl
+# large generated training sets (regenerate with the team generators; see README)
+teamA/data/train.jsonl
+teamA/data/train_ablate.jsonl
+teamA/data/train3.jsonl
+teamA/data/train3_ablate.jsonl
+teamA/data/train4.jsonl
+teamA/data/train4_ablate.jsonl
+teamA/data_v1/train.jsonl
+teamB/data/*_train.jsonl

@@ -1,0 +1,203 @@
+[
+ {
+  "id": "lies_synonyms",
+  "style": "lies",
+  "question": "Question: Brigid is a truthful person. Teodor states that Brigid is deceiving everyone. Marisol says Teodor is being sincere. Kenji declares that Marisol is not lying. Is Kenji being truthful?",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 true",
+  "expect": "1 true, 2 false, 3 false, 4 false",
+  "probes": "unseen verbs (states/declares), unseen predicates (deceiving everyone, being sincere, not lying), unseen question form, names outside NAMES"
+ },
+ {
+  "id": "lies_shuffled",
+  "style": "lies",
+  "question": "Question: Rosa says Pilar lies. Tomasz tells the truth. Pilar says Tomasz tells the truth. Does Rosa tell the truth?",
+  "target": "No",
+  "call": "truth 1 says 3 false; 2 true; 3 says 2 true",
+  "expect": "1 false, 2 true, 3 true",
+  "probes": "statements out of chain order (anchor in the middle, the asked person first); any consistent numbering is fine, e.g. chain order Tomasz=1, Pilar=2, Rosa=3 -> truth 1 true; 2 says 1 true; 3 says 2 false -> 1 true, 2 true, 3 false"
+ },
+ {
+  "id": "lies_middle",
+  "style": "lies",
+  "question": "Question: Oskar lies. Beatriz says Oskar tells the truth. Lionel says Beatriz lies. Mirela says Lionel lies. Anselm says Mirela tells the truth. Does Lionel tell the truth?",
+  "target": "Yes",
+  "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 false; 5 says 4 true",
+  "expect": "1 false, 2 false, 3 true, 4 false, 5 false",
+  "probes": "question about a person in the middle of the chain (the last person would give No)"
+ },
+ {
+  "id": "lies_noise",
+  "style": "lies",
+  "question": "Question: Henrike always lies. It is raining in the city today. Abebe says Henrike tells the truth. Cosmin claims Abebe lies. Danuta says Cosmin tells the truth. Ewa owns two cats. Fyodor says Danuta lies. Gaspard says Fyodor tells the truth. Does Gaspard tell the truth?",
+  "target": "No",
+  "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 says 4 false; 6 says 5 true",
+  "expect": "1 false, 2 false, 3 true, 4 true, 5 false, 6 false",
+  "probes": "two irrelevant sentences, one of them names a person who makes no statement (Ewa must not get a number or must be harmless), 6 speakers"
+ },
+ {
+  "id": "lies_negation",
+  "style": "lies",
+  "question": "Question: Ines is honest. Jarek denies that Ines is honest. Kaveh says it is not true that Jarek lies. Lorna says Kaveh is lying. Does Lorna tell the truth?",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false",
+  "expect": "1 true, 2 false, 3 false, 4 true",
+  "probes": "negated claims: \"denies that X is honest\" = claims X lies; \"it is not true that X lies\" = claims X tells the truth"
+ },
+ {
+  "id": "lies_tree",
+  "style": "lies",
+  "question": "Question: Teodora tells the truth. Ulrich says Teodora lies. Vasco says Teodora tells the truth. Wendell says Ulrich is honest. Does Wendell tell the truth?",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 1 true; 4 says 2 true",
+  "expect": "1 true, 2 false, 3 true, 4 false",
+  "probes": "tree, not a chain: two people talk about the same person; the last speaker talks about the second person, not the third"
+ },
+ {
+  "id": "court_witnesses",
+  "style": "other",
+  "question": "In a trial, each witness is either completely truthful or completely dishonest. The bailiff, Ruth, is known to be truthful. Witness Marco testified that the bailiff is dishonest. Witness Selin testified that Marco was telling the truth. Witness Ade testified that Selin was lying. Is Ade truthful? Answer Yes or No.",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false",
+  "expect": "1 true, 2 false, 3 false, 4 true",
+  "probes": "courtroom wording (testified, dishonest, bailiff referred to by role in one sentence)"
+ },
+ {
+  "id": "knights_quotes",
+  "style": "other",
+  "question": "On the island of Veritas, knights always tell the truth and knaves always lie. Pell says: \"Quill is a knave.\" Ottilie is a knight. Rhea says: \"Pell is a knight.\" Quill says: \"Ottilie is a knight.\" Sam, a fisherman, is mending nets. Is Rhea a knight?",
+  "target": "No",
+  "call": "truth 1 says 4 false; 2 true; 3 says 1 true; 4 says 2 true",
+  "expect": "1 false, 2 true, 3 false, 4 true",
+  "probes": "knights/knaves with direct quotes, statements out of order, forward reference (Pell talks about Quill before Quill speaks), extra non-speaking islander, query not last"
+ },
+ {
+  "id": "dinner_downward",
+  "style": "other",
+  "question": "At a dinner party every guest either always tells the truth or always lies. We know that Nuno always tells the truth. Nuno says that Aurelie lies. Aurelie says that Hamza tells the truth. Is Hamza telling the truth? Answer Yes or No.",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true",
+  "expect": "1 true, 2 false, 3 false",
+  "probes": "information flows from a KNOWN speaker to the person he talks about. The tool only propagates referent -> speaker and allows one clause per person, so the natural call \"truth 1 true; 1 says 2 false; 2 says 3 true\" is an ERROR (empty response, see probe dup_natural). The call above is the valid re-rooted equivalent (\"A says B lies\" and \"B says A lies\" are the same constraint). Record which call the host writes."
+ },
+ {
+  "id": "switches_parity",
+  "style": "other",
+  "question": "Four lamps are wired together. Lamp 1 is on. Lamp 2 is always in the same state as lamp 1. Lamp 3 is always in the opposite state of lamp 2. Lamp 4 is always in the opposite state of lamp 3. Is lamp 4 on? Answer Yes or No.",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 true; 3 says 2 false; 4 says 3 false",
+  "expect": "1 true, 2 true, 3 false, 4 true",
+  "probes": "STRETCH, tests the team's own rule-13 claim (\"parity of a chain of same/opposite relations\"); not a truth-telling story at all. Not calling the tool here is acceptable (silent); a wrong call is not."
+ },
+ {
+  "id": "refs_out_of_order",
+  "call": "truth 3 says 2 false; 2 says 1 true; 1 false; 4 says 3 true",
+  "expect": "1 false, 2 false, 3 true, 4 true"
+ },
+ {
+  "id": "undefined_ref",
+  "call": "truth 1 true; 2 says 7 false; 3 says 2 true",
+  "expect": "1 true, 2 unknown, 3 unknown"
+ },
+ {
+  "id": "twelve_chain",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 false; 4 says 3 true; 5 says 4 false; 6 says 5 true; 7 says 6 false; 8 says 7 false; 9 says 8 true; 10 says 9 false; 11 says 10 true; 12 says 11 false",
+  "expect": "1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false"
+ },
+ {
+  "id": "twelve_reversed",
+  "call": "truth 12 says 11 true; 11 says 10 false; 10 says 9 false; 9 says 8 true; 8 says 7 false; 7 says 6 true; 6 says 5 false; 5 says 4 true; 4 says 3 false; 3 says 2 true; 2 says 1 false; 1 false",
+  "expect": "1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false"
+ },
+ {
+  "id": "sparse_two_digit_tree",
+  "call": "truth 10 true; 3 says 10 false; 12 says 10 true; 5 says 3 false",
+  "expect": "3 false, 5 true, 10 true, 12 true"
+ },
+ {
+  "id": "eleven_mixed_order",
+  "call": "truth 7 says 11 false; 11 true; 2 says 7 true; 9 says 2 false; 1 says 9 true; 4 says 1 false; 10 says 4 true; 3 says 10 true; 8 says 3 false; 6 says 8 true; 5 says 6 false",
+  "expect": "1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true"
+ },
+ {
+  "id": "self_reference",
+  "call": "truth 1 says 1 false; 2 says 1 true",
+  "expect": "1 unknown, 2 unknown"
+ },
+ {
+  "id": "two_cycle",
+  "call": "truth 1 says 2 true; 2 says 1 true; 3 true",
+  "expect": "1 unknown, 2 unknown, 3 true"
+ },
+ {
+  "id": "single_clause",
+  "call": "truth 5 false",
+  "expect": "5 false"
+ },
+ {
+  "id": "malformed_comma",
+  "call": "truth 1 true, 2 says 1 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "malformed_trailing_semi",
+  "call": "truth 1 true; 2 says 1 true;",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "malformed_capital",
+  "call": "truth 1 True; 2 says 1 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "malformed_names",
+  "call": "truth Ana true; Ben says Ana false",
+  "expect": null,
+  "note": "expect null = the tool must stay SILENT (no <tool_response> written by it): the token after the NAME is not the space token"
+ },
+ {
+  "id": "malformed_double_space",
+  "call": "truth 1  true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "dup_defined_twice",
+  "call": "truth 1 true; 2 says 1 false; 1 says 2 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "dup_natural",
+  "call": "truth 1 true; 1 says 2 false; 2 says 3 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "out_of_range_13",
+  "call": "truth 13 true; 1 says 13 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "out_of_range_0",
+  "call": "truth 0 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "three_digit",
+  "call": "truth 100 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>"
+ },
+ {
+  "id": "other_name_silent",
+  "call": "Truth 1 true; 2 says 1 false",
+  "expect": null,
+  "note": "expect null = the tool must stay SILENT (no <tool_response> written by it): the token after the NAME is not the space token"
+ }
+]

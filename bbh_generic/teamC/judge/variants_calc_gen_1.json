@@ -1,0 +1,412 @@
+[
+ {
+  "id": "a1",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The bill is 12.5 * 4 =",
+  "expect": "50"
+ },
+ {
+  "id": "a2",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Each slice costs $3.75, so six slices cost $3.75 * 6 =",
+  "expect": "22.5",
+  "note": "'$' start token; trailing zero removed"
+ },
+ {
+  "id": "a3",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Pi is roughly 22 / 7 =",
+  "expect": "3.142857",
+  "note": "division truncated to 6 decimals"
+ },
+ {
+  "id": "a4",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Splitting 100 dollars among 8 friends gives 100 / 8 =",
+  "expect": "12.5",
+  "note": "integer operands but a division: calc owns it"
+ },
+ {
+  "id": "a5",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "One inch is 2.54 cm, so 12 inches is 12 x 2.54 =",
+  "expect": "30.48",
+  "note": "' x' as times, unit conversion"
+ },
+ {
+  "id": "a6",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The floor measures 3.5 × 4.2 =",
+  "expect": "14.7",
+  "note": "' ×' as times"
+ },
+ {
+  "id": "a7",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The temperature fell 1.5 degrees per hour for 4 hours: 4 * -1.5 =",
+  "expect": "-6",
+  "note": "spaced negative B (calc_neg patch)"
+ },
+ {
+  "id": "a8",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Balance after the fee:\n-2.5 + 0.75 =",
+  "expect": "-1.75",
+  "note": "negative A at line start (':\\n' then '-')"
+ },
+ {
+  "id": "a9",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "In exact decimal arithmetic 0.1 + 0.2 =",
+  "expect": "0.3"
+ },
+ {
+  "id": "a10",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "She paid 2.5 * 4 + 3 =",
+  "expect": "13",
+  "note": "two-op chain, * first"
+ },
+ {
+  "id": "a11",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "What is left: 100 - 4 * 12.75 =",
+  "expect": "49",
+  "note": "two-op chain with precedence a - b*c"
+ },
+ {
+  "id": "a12",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The car does 450 / 37.5 =",
+  "expect": "12",
+  "note": "km per liter"
+ },
+ {
+  "id": "a13",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Ratio:\n-7.5 / -2.5 =",
+  "expect": "3",
+  "note": "both negative, division"
+ },
+ {
+  "id": "a14",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Each bag weighs 0.45 kg, three bags weigh 0.45*3=",
+  "expect": "1.35",
+  "note": "unspaced operator and '='"
+ },
+ {
+  "id": "a15",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "It costs 4.5. Then 2.5 * 4 =",
+  "expect": "10",
+  "note": "sentence period before the call"
+ },
+ {
+  "id": "a16",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "7.5 / 2 = 3.",
+  "expect": "75",
+  "note": "dot veto must NOT fire: number unfinished, the '.' is the decimal point"
+ },
+ {
+  "id": "s1",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Three rows of four chairs: 3 * 4 =",
+  "expect": "",
+  "note": "integer-only: expr_gen owns it"
+ },
+ {
+  "id": "s2",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Total: $12 * 3 =",
+  "expect": "",
+  "note": "integer-only money"
+ },
+ {
+  "id": "s3",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Dividing by zero: 5.5 / 0 =",
+  "expect": ""
+ },
+ {
+  "id": "s4",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Three steps: 1.5 + 2 + 3 + 4 =",
+  "expect": "",
+  "note": "three operations"
+ },
+ {
+  "id": "s5",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "With x unknown, 2.5 * x =",
+  "expect": "",
+  "note": "variable"
+ },
+ {
+  "id": "s6",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The mean is (7.5 + 8.25) / 2 =",
+  "expect": "",
+  "note": "parentheses: must NOT answer 8.25 / 2 = 4.125"
+ },
+ {
+  "id": "s7",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The sum is 1,250.5 + 3 =",
+  "expect": "",
+  "note": "thousands separator: must NOT answer 253.5"
+ },
+ {
+  "id": "s8",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "assert 0.1 + 0.2 ==",
+  "expect": "",
+  "note": "code comparison '==' is not a call"
+ },
+ {
+  "id": "s9",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The value is -2.5 * 4 =",
+  "expect": "-10",
+  "note": "negative A after a word: -10 or silent is OK (fail-safe); 10 is WRONG"
+ },
+ {
+  "id": "s10",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Pi to 7 places is 3.1415926 * 2 =",
+  "expect": "",
+  "note": "operand has 7 decimals (> 6): silent"
+ },
+ {
+  "id": "s11",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The next address is 192.168.1.1 + 1 =",
+  "expect": "",
+  "note": "dotted address, not a number"
+ },
+ {
+  "id": "s12",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Each share is 4.5 ÷ 1.5 =",
+  "expect": "",
+  "note": "'÷' unsupported: silent is the safe outcome (3 would also be acceptable)"
+ },
+ {
+  "id": "s13",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "A rate of 12.5% * 8 =",
+  "expect": "",
+  "note": "percent sign"
+ },
+ {
+  "id": "s14",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "The bill is 12.5 * 4 = 50.",
+  "expect": "",
+  "note": "DOT VETO: number finished, '.' is a period; correct = writes ONLY the end token (no digits)"
+ },
+ {
+  "id": "s15",
+  "kind": "alone",
+  "tool": "calc_gen",
+  "text": "Sizes 2.5 3 * 4 =",
+  "expect": "12",
+  "note": "OVERLAP PROBE: integer call 3*4 with a stray decimal earlier in the span; pass = calc_gen and expr_gen not BOTH non-silent (see o1)"
+ },
+ {
+  "id": "o1",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Sizes 2.5 3 * 4 =",
+  "expect": "",
+  "note": "OVERLAP PROBE twin of s15"
+ },
+ {
+  "id": "o2",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "The bill is 12.5 * 4 =",
+  "expect": "",
+  "note": "decimal call: expr_gen must stay silent"
+ },
+ {
+  "id": "o3",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Pi is roughly 22 / 7 =",
+  "expect": "",
+  "note": "division: expr_gen must stay silent"
+ },
+ {
+  "id": "c1",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 12.5 * 4</tool_call>",
+  "expect": "50"
+ },
+ {
+  "id": "c2",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 22 / 7</tool_call>",
+  "expect": "3.142857"
+ },
+ {
+  "id": "c3",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 7 * 6</tool_call>",
+  "expect": "42",
+  "note": "integer call is fine in call format (name separates tools)"
+ },
+ {
+  "id": "c4",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc -1.25 + 0.5</tool_call>",
+  "expect": "-0.75"
+ },
+ {
+  "id": "c5",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 3.5*-2</tool_call>",
+  "expect": "-7"
+ },
+ {
+  "id": "c6",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 2.5 × 4</tool_call>",
+  "expect": "10"
+ },
+ {
+  "id": "c7",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 100 - 4 * 12.75</tool_call>",
+  "expect": "49",
+  "note": "two-op chain"
+ },
+ {
+  "id": "c8",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "The fare is 2.75 per km for 18 km. <tool_call>calc 2.75 * 18</tool_call>",
+  "expect": "49.5",
+  "note": "prose before the call"
+ },
+ {
+  "id": "c9",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 1 / 0</tool_call>",
+  "expect": "",
+  "note": "empty response"
+ },
+ {
+  "id": "c10",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc x * 2</tool_call>",
+  "expect": ""
+ },
+ {
+  "id": "c11",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc 1 + 2 + 3 + 4</tool_call>",
+  "expect": "",
+  "note": "three operations"
+ },
+ {
+  "id": "c12",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc $4.50 * 3</tool_call>",
+  "expect": "",
+  "note": "'$' is outside the documented grammar: empty response"
+ },
+ {
+  "id": "c13",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>expr 2.5 * 4</tool_call>",
+  "expect": "",
+  "note": "wrong tool name: calc_call must not answer"
+ },
+ {
+  "id": "c14",
+  "kind": "alone",
+  "tool": "calc_call",
+  "text": "<tool_call>calc (2 + 3) * 1.5</tool_call>",
+  "expect": "",
+  "note": "parentheses: must not answer a partial value"
+ },
+ {
+  "id": "h1",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "A bottle of juice costs 1.75 dollars. Rafael buys 8 bottles. How much does he spend in total?",
+  "target": "14"
+ },
+ {
+  "id": "h2",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "A ribbon is 22.5 meters long. Yuki cuts it into pieces that are 2.5 meters long. How many pieces does she get?",
+  "target": "9"
+ },
+ {
+  "id": "h3",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "Petrol costs 1.6 dollars per liter. Ana buys 45 liters and pays with 100 dollars. How much change does she get?",
+  "target": "28"
+ },
+ {
+  "id": "h4",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "Kofi earns 12.5 dollars per hour. The weather was sunny all week. He works 36 hours and then spends 150 dollars on groceries. How much money does he have left?",
+  "target": "300"
+ },
+ {
+  "id": "h5",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "A pack of yogurts costs 4.2 dollars. Ines buys 5 packs and pays with a 50-dollar bill. How much change does she get?",
+  "target": "29"
+ }
+]

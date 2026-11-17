@@ -1,0 +1,52 @@
+# bbh_ft100: sample-size control for the BBH tool fine-tunes (Teams A and B)
+
+Question: Teams A and B fine-tuned Qwen3-0.6B-Base on 12k-14.5k generated rows, so the host also learns the task itself
+(the FT-no-tools arm is strong). Does learning to CALL a tool take few examples while learning f itself takes thousands?
+Test: fine-tune on n in {32, 100, 300} of the team's own training rows; evaluate each checkpoint with tools attached and
+detached.
+
+Runs: one H100 (GPU 1, two workers, scripts/worker.py). This folder: scripts/, sub/ (the subsampled training rows), NOTEBOOK.md, scores.
+No team code, data, tools or checkpoints were modified; everything used was copied:
+- micromachines/ and bbh_generic/teamA as used by the real-BBH peek (Team A .py files identical to the repo copy except
+  make_data.py, which lacked the later train100 entry; train3/test/oos2 byte-identical across machines).
+- bbh_generic/teamB code + data (.py identical to the peek copy).
+- BBH task files and peek/bbh_A.jsonl as in the peek. Team A ft_v3 checkpoint used read-only (reference row).
+The team agents were told nothing. No individual real-BBH output was read (scripts/score_ft100.py prints aggregates only).
+
+## Setup
+- Subsample (scripts/subsample.py, seed 0; n=100 also seed 1): rows copied verbatim. Split evenly over tools, then evenly
+  over that tool's styles, uniform inside each cell.
+  - A (train3.jsonl, 14,500 rows): cells (track: bbh/alt/mix/code; order: bbh/alt/mix). n=32 -> track 4/4/4/4, order 5/5/6.
+  - B (ft3 rows, 12,000): interval={temporal, lab}, walk={navigate, hiker}, truth={lies, rumor}; n/6 each. Error-recovery
+    rows kept where sampled (n=32: 4, n=100 s0: 13, n=300: 42).
+- Fine-tune: the team's own script, unchanged, with the team's hyperparameters (A ft.py: lr 1e-5, tok_budget 16000 as in
+  ft_v3; B ft_B.py: lr 1e-5, tok_budget 24000, p_zero 0.2, as ft3). Only epochs changed.
+  Epochs: A 10, B 15 (same for every n within a team). Reason: both teams use large token-budget batches (A ~17-20 rows,
+  B ~25-34 rows per step), so 3-5 epochs would give only 5-15 optimizer steps at n=32. With A 10 / B 15 the step counts
+  match across teams: n=32 -> 30 steps, n=100 -> 60 steps, n=300 -> A 170 / B 135 steps.
+  n=100 seed 1 uses subsample seed 1 and ft seed 1.
+- Eval (each checkpoint, tools attached and detached; detached = the host must write the tool response itself):
+  - A: run_eval.py (official 3-shot CoT prompt, greedy, max_new 600, bs 32) on one file = fresh test (seed 1, 600) +
+    held-out oos2 (180) + real BBH (bbh_A.jsonl, 6 tasks x 250).
+  - B: run_eval.py (bs 32, max_new 400) on temporal/navigate/lies_test (seed 1, 100 each), meeting/robot/knights_oos
+    (seed 3, 50 each, zero-shot), and real BBH copied to data/{task}_bbh.jsonl (same as peek/scripts/peek_B.py).
+  - Real BBH scored with the official norm of peek/scripts/score.py; generated sets with the team's harness 'ok'.
+  - Base: B reuses teamB plain_{test,oos} outputs and peek B_base; A reuses peek A_base for real BBH and
+    runs the base on test+oos2 here. References: B ft3 (teamB results + peek); A ft_v3 (peek BBH; test+oos2 run here).
+
+## Log
+- 2026-11-17 20:23 workers started on GPU 1. Training is fast (30 s - 4 min per checkpoint). Actual optimizer steps:
+  A n32 30, n100 60, n300 170; B n32 30, n100 60, n300 120. Final train losses ~0.001-0.005 (sets are memorised).
+- Bug caught in my scorer (fixed 23:05, before any conclusion): BBH task names 'tracking_shuffled_*' start with 'track', so
+  the first Team-A table put the BBH tracking tasks into the fresh-test bucket. Now test = exactly track3/5/7, order3/5/7.
+- 20:45 coordinator request: all 27 BBH tasks for (1) frozen base + Team C tools, (2) A n=100 + A tools, (3) B n=100 + B tools.
+  scripts/run27.py = copy of Team C's run_gen.py loop (= run_bbh.py) with a generic tool attach; data/cot = the repo's
+  pinned official BBH copy (data/download_bbh.sh; the 12 files shared with the peek are byte-identical). Base+C runs on
+  a shared A40 and, in reverse task order (scripts/reorder.py), on the H100; merged from the per-task log lines
+  (which use the same official norm). Base reference = the repo's all-27-task HF-loop base run (mean 40.37, read-only).
+  The own-harness base-no-tools 27-task run was dropped for time (the repo base run is the reference).
+- Setup slip: code/micromachines was first a symlink to the repo's micromachines/ (identical files, diff -r clean);
+  replaced by a real copy at 20:47.
+
+## Results
+(filled below)

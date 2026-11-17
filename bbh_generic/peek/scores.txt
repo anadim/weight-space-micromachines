@@ -1,0 +1,33 @@
+A_base           tracking_shuffled_objects_three_objects    n=250 acc= 40.8 (harness  40.8) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_base           tracking_shuffled_objects_five_objects     n=250 acc= 22.0 (harness  22.0) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_base           tracking_shuffled_objects_seven_objects    n=250 acc= 14.8 (harness  14.8) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_base           logical_deduction_three_objects            n=250 acc= 57.2 (harness  57.2) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_base           logical_deduction_five_objects             n=250 acc= 28.4 (harness  28.4) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_base           logical_deduction_seven_objects            n=250 acc= 16.8 (harness  16.8) call=  0.0 resp=  0.0 implant_wrote=  0.0
+A_ftv3_notools   tracking_shuffled_objects_three_objects    n=250 acc= 70.4 (harness  70.4) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_notools   tracking_shuffled_objects_five_objects     n=250 acc= 66.4 (harness  66.4) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_notools   tracking_shuffled_objects_seven_objects    n=250 acc= 58.8 (harness  58.8) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_notools   logical_deduction_three_objects            n=250 acc= 64.0 (harness  64.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_notools   logical_deduction_five_objects             n=250 acc= 51.2 (harness  51.2) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_notools   logical_deduction_seven_objects            n=250 acc= 57.6 (harness  57.6) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     tracking_shuffled_objects_three_objects    n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     tracking_shuffled_objects_five_objects     n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     tracking_shuffled_objects_seven_objects    n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     logical_deduction_three_objects            n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     logical_deduction_five_objects             n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+A_ftv3_tools     logical_deduction_seven_objects            n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+B_base           temporal_sequences                         n=250 acc= 24.8 (harness  24.8) call=  0.0 resp=  0.0 implant_wrote=  0.0
+B_base           navigate                                   n=250 acc= 61.6 (harness  61.6) call=  0.0 resp=  0.0 implant_wrote=  0.0
+B_base           web_of_lies                                n=250 acc= 58.0 (harness  58.0) call=  0.0 resp=  0.0 implant_wrote=  0.0
+B_ft3_notools    temporal_sequences                         n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+B_ft3_notools    navigate                                   n=250 acc= 87.2 (harness  87.2) call=100.0 resp=100.0 implant_wrote=  0.0
+B_ft3_notools    web_of_lies                                n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+B_ft3_tools      temporal_sequences                         n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+B_ft3_tools      navigate                                   n=250 acc= 99.2 (harness  99.2) call=100.0 resp=100.0 implant_wrote=  0.0
+B_ft3_tools      web_of_lies                                n=250 acc=100.0 (harness 100.0) call=100.0 resp=100.0 implant_wrote=  0.0
+C_base           multistep_arithmetic_two                   n=250 acc= 45.2 (harness  45.2) call=  0.0 resp=  0.0 implant_wrote=  0.0
+C_base           boolean_expressions                        n=250 acc= 82.8 (harness  82.8) call=  0.0 resp=  0.0 implant_wrote=  0.0
+C_base           object_counting                            n=250 acc= 66.0 (harness  66.0) call=  0.0 resp=  0.0 implant_wrote=  0.0
+C_tools          multistep_arithmetic_two                   n=250 acc= 99.2 (harness  99.2) call=  0.0 resp=  0.0 implant_wrote=100.0
+C_tools          boolean_expressions                        n=250 acc= 98.8 (harness  98.8) call=  0.0 resp=  0.0 implant_wrote= 97.6
+C_tools          object_counting                            n=250 acc= 79.2 (harness  79.2) call=  0.0 resp=  0.0 implant_wrote=100.0

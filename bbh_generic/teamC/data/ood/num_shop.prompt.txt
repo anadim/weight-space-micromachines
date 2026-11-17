@@ -1,0 +1,14 @@
+Solve the shopping problem. Write each calculation, then give the answer.
+
+Q: Lena buys 4 scarves at 13 dollars each and 3 hats at 8 dollars each. She pays with a 100-dollar bill. How much change does she get?
+A: Let's think step by step.
+The scarves and hats cost 4 * 13 + 3 * 8 = 76. The change is 100 - 76 = 24. So the answer is 24.
+
+Q: A school orders 12 boxes of chalk with 25 sticks in each box, and 30 loose sticks. How many sticks does it get?
+A: Let's think step by step.
+The number of sticks is 12 * 25 + 30 = 330. So the answer is 330.
+
+Q: Tomas had 250 dollars. He bought 6 books at 17 dollars each and then earned 45 dollars. How much money does he have now?
+A: Let's think step by step.
+He has 250 - 6 * 17 + 45 = 193. So the answer is 193.
+

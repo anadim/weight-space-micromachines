@@ -1,0 +1,244 @@
+{
+ "examples": [
+  {
+   "input": "Ikaika buys 4 towels at 21 dollars each and 4 lamps at 41 dollars each. How much does Ikaika spend in total?",
+   "target": "248"
+  },
+  {
+   "input": "Amara buys 5 shirts at 63 dollars each, 3 mugs at 63 dollars each and 11 bags of rice at 59 dollars each. Amara pays with 1500 dollars. How much change does Amara get?",
+   "target": "347"
+  },
+  {
+   "input": "Ikaika buys 19 towels at 49 dollars each and 6 mugs at 59 dollars each. Ikaika pays with 1400 dollars. How much change does Ikaika get?",
+   "target": "115"
+  },
+  {
+   "input": "Chen buys 13 plants at 48 dollars each, 11 notebooks at 22 dollars each and 8 pens at 88 dollars each. How much does Chen spend in total?",
+   "target": "1570"
+  },
+  {
+   "input": "Farida buys 13 shirts at 24 dollars each and 7 towels at 28 dollars each. How much does Farida spend in total?",
+   "target": "508"
+  },
+  {
+   "input": "Rasa buys 15 shirts at 74 dollars each and 3 bags of rice at 30 dollars each. How much does Rasa spend in total?",
+   "target": "1200"
+  },
+  {
+   "input": "Amara buys 6 towels at 31 dollars each and 3 board games at 41 dollars each. How much does Amara spend in total?",
+   "target": "309"
+  },
+  {
+   "input": "Esteban buys 13 mugs at 79 dollars each and 17 plants at 34 dollars each. Esteban pays with 2000 dollars. How much change does Esteban get?",
+   "target": "395"
+  },
+  {
+   "input": "Noor buys 4 tickets at 21 dollars each, 5 towels at 71 dollars each and 18 mugs at 17 dollars each. How much does Noor spend in total?",
+   "target": "745"
+  },
+  {
+   "input": "Ikaika buys 3 bags of rice at 28 dollars each and 18 battery packs at 60 dollars each. How much does Ikaika spend in total?",
+   "target": "1164"
+  },
+  {
+   "input": "Mihail buys 8 bags of rice at 18 dollars each and 4 shirts at 83 dollars each. How much does Mihail spend in total?",
+   "target": "476"
+  },
+  {
+   "input": "Kwame buys 2 mugs at 10 dollars each, 9 tickets at 49 dollars each and 10 bags of rice at 13 dollars each. Kwame pays with 800 dollars. How much change does Kwame get?",
+   "target": "209"
+  },
+  {
+   "input": "Oskar buys 11 cables at 55 dollars each, 6 lamps at 55 dollars each and 5 mugs at 42 dollars each. How much does Oskar spend in total?",
+   "target": "1145"
+  },
+  {
+   "input": "Quentin buys 18 jars of honey at 22 dollars each and 3 towels at 48 dollars each. How much does Quentin spend in total?",
+   "target": "540"
+  },
+  {
+   "input": "Hana buys 16 towels at 52 dollars each, 5 shirts at 54 dollars each and 6 jars of honey at 45 dollars each. How much does Hana spend in total?",
+   "target": "1372"
+  },
+  {
+   "input": "Dagny buys 15 plants at 70 dollars each, 18 mugs at 97 dollars each and 6 board games at 22 dollars each. Dagny pays with 3100 dollars. How much change does Dagny get?",
+   "target": "172"
+  },
+  {
+   "input": "Goran buys 2 candles at 41 dollars each, 4 notebooks at 85 dollars each and 14 lamps at 33 dollars each. How much does Goran spend in total?",
+   "target": "884"
+  },
+  {
+   "input": "Kwame buys 5 cables at 54 dollars each, 8 pens at 51 dollars each and 5 jars of honey at 87 dollars each. How much does Kwame spend in total?",
+   "target": "1113"
+  },
+  {
+   "input": "Tamar buys 5 plants at 73 dollars each and 5 lamps at 31 dollars each. Tamar pays with 700 dollars. How much change does Tamar get?",
+   "target": "180"
+  },
+  {
+   "input": "Ikaika buys 6 candles at 50 dollars each, 10 lamps at 45 dollars each and 10 tickets at 51 dollars each. How much does Ikaika spend in total?",
+   "target": "1260"
+  },
+  {
+   "input": "Bilal buys 2 battery packs at 35 dollars each, 14 board games at 42 dollars each and 4 notebooks at 17 dollars each. Bilal pays with 900 dollars. How much change does Bilal get?",
+   "target": "174"
+  },
+  {
+   "input": "Chen buys 3 chairs at 16 dollars each and 15 pens at 46 dollars each. Chen pays with 900 dollars. How much change does Chen get?",
+   "target": "162"
+  },
+  {
+   "input": "Farida buys 18 plants at 24 dollars each and 6 mugs at 93 dollars each. Farida pays with 1100 dollars. How much change does Farida get?",
+   "target": "110"
+  },
+  {
+   "input": "Jun buys 4 board games at 63 dollars each, 18 jars of honey at 46 dollars each and 18 pens at 59 dollars each. Jun pays with 2400 dollars. How much change does Jun get?",
+   "target": "258"
+  },
+  {
+   "input": "Tamar buys 7 bags of rice at 56 dollars each and 15 tickets at 7 dollars each. How much does Tamar spend in total?",
+   "target": "497"
+  },
+  {
+   "input": "Quentin buys 4 board games at 16 dollars each and 15 chairs at 70 dollars each. How much does Quentin spend in total?",
+   "target": "1114"
+  },
+  {
+   "input": "Sione buys 3 cables at 24 dollars each and 14 tickets at 21 dollars each. Sione pays with 600 dollars. How much change does Sione get?",
+   "target": "234"
+  },
+  {
+   "input": "Quentin buys 14 notebooks at 85 dollars each, 13 towels at 50 dollars each and 17 bags of rice at 19 dollars each. Quentin pays with 2200 dollars. How much change does Quentin get?",
+   "target": "37"
+  },
+  {
+   "input": "Ikaika buys 18 pens at 96 dollars each, 18 board games at 27 dollars each and 10 mugs at 57 dollars each. How much does Ikaika spend in total?",
+   "target": "2784"
+  },
+  {
+   "input": "Mihail buys 15 chairs at 47 dollars each, 9 tickets at 94 dollars each and 16 mugs at 17 dollars each. Mihail pays with 2200 dollars. How much change does Mihail get?",
+   "target": "377"
+  },
+  {
+   "input": "Tamar buys 11 bags of rice at 15 dollars each and 15 pens at 31 dollars each. Tamar pays with 800 dollars. How much change does Tamar get?",
+   "target": "170"
+  },
+  {
+   "input": "Goran buys 17 board games at 9 dollars each and 12 mugs at 42 dollars each. Goran pays with 1000 dollars. How much change does Goran get?",
+   "target": "343"
+  },
+  {
+   "input": "Amara buys 7 tickets at 44 dollars each and 7 towels at 19 dollars each. How much does Amara spend in total?",
+   "target": "441"
+  },
+  {
+   "input": "Oskar buys 5 bags of rice at 47 dollars each and 10 towels at 32 dollars each. Oskar pays with 600 dollars. How much change does Oskar get?",
+   "target": "45"
+  },
+  {
+   "input": "Esteban buys 3 cables at 77 dollars each and 17 board games at 15 dollars each. How much does Esteban spend in total?",
+   "target": "486"
+  },
+  {
+   "input": "Goran buys 16 plants at 81 dollars each, 4 tickets at 8 dollars each and 9 lamps at 92 dollars each. How much does Goran spend in total?",
+   "target": "2156"
+  },
+  {
+   "input": "Noor buys 19 pens at 52 dollars each and 15 mugs at 3 dollars each. How much does Noor spend in total?",
+   "target": "1033"
+  },
+  {
+   "input": "Goran buys 6 towels at 78 dollars each and 15 plants at 19 dollars each. How much does Goran spend in total?",
+   "target": "753"
+  },
+  {
+   "input": "Tamar buys 18 lamps at 62 dollars each and 12 jars of honey at 92 dollars each. Tamar pays with 2300 dollars. How much change does Tamar get?",
+   "target": "80"
+  },
+  {
+   "input": "Oskar buys 12 jars of honey at 6 dollars each and 7 tickets at 11 dollars each. Oskar pays with 300 dollars. How much change does Oskar get?",
+   "target": "151"
+  },
+  {
+   "input": "Goran buys 9 board games at 82 dollars each, 19 plants at 98 dollars each and 17 bags of rice at 31 dollars each. How much does Goran spend in total?",
+   "target": "3127"
+  },
+  {
+   "input": "Kwame buys 10 shirts at 33 dollars each, 8 tickets at 85 dollars each and 16 pens at 93 dollars each. Kwame pays with 2500 dollars. How much change does Kwame get?",
+   "target": "2"
+  },
+  {
+   "input": "Sione buys 2 jars of honey at 22 dollars each and 6 candles at 87 dollars each. How much does Sione spend in total?",
+   "target": "566"
+  },
+  {
+   "input": "Oskar buys 11 battery packs at 21 dollars each and 18 pens at 44 dollars each. How much does Oskar spend in total?",
+   "target": "1023"
+  },
+  {
+   "input": "Amara buys 8 pens at 71 dollars each and 10 bags of rice at 50 dollars each. Amara pays with 1100 dollars. How much change does Amara get?",
+   "target": "32"
+  },
+  {
+   "input": "Dagny buys 19 plants at 97 dollars each, 6 tickets at 27 dollars each and 10 towels at 92 dollars each. How much does Dagny spend in total?",
+   "target": "2925"
+  },
+  {
+   "input": "Jun buys 5 pens at 68 dollars each and 12 bags of rice at 98 dollars each. How much does Jun spend in total?",
+   "target": "1516"
+  },
+  {
+   "input": "Goran buys 3 notebooks at 41 dollars each and 17 battery packs at 56 dollars each. How much does Goran spend in total?",
+   "target": "1075"
+  },
+  {
+   "input": "Goran buys 9 candles at 96 dollars each and 14 shirts at 18 dollars each. Goran pays with 1400 dollars. How much change does Goran get?",
+   "target": "284"
+  },
+  {
+   "input": "Farida buys 2 candles at 32 dollars each and 19 mugs at 12 dollars each. Farida pays with 500 dollars. How much change does Farida get?",
+   "target": "208"
+  },
+  {
+   "input": "Dagny buys 19 jars of honey at 45 dollars each and 10 candles at 89 dollars each. How much does Dagny spend in total?",
+   "target": "1745"
+  },
+  {
+   "input": "Priya buys 2 bags of rice at 51 dollars each and 6 battery packs at 60 dollars each. How much does Priya spend in total?",
+   "target": "462"
+  },
+  {
+   "input": "Chen buys 17 jars of honey at 64 dollars each, 5 chairs at 38 dollars each and 15 battery packs at 10 dollars each. Chen pays with 1500 dollars. How much change does Chen get?",
+   "target": "72"
+  },
+  {
+   "input": "Priya buys 6 battery packs at 69 dollars each and 2 pens at 51 dollars each. How much does Priya spend in total?",
+   "target": "516"
+  },
+  {
+   "input": "Lucia buys 17 board games at 7 dollars each, 13 cables at 71 dollars each and 6 tickets at 25 dollars each. How much does Lucia spend in total?",
+   "target": "1192"
+  },
+  {
+   "input": "Hana buys 7 pens at 75 dollars each and 14 candles at 57 dollars each. Hana pays with 1400 dollars. How much change does Hana get?",
+   "target": "77"
+  },
+  {
+   "input": "Tamar buys 18 towels at 54 dollars each and 9 chairs at 26 dollars each. How much does Tamar spend in total?",
+   "target": "1206"
+  },
+  {
+   "input": "Priya buys 12 board games at 62 dollars each and 4 mugs at 14 dollars each. Priya pays with 1000 dollars. How much change does Priya get?",
+   "target": "200"
+  },
+  {
+   "input": "Tamar buys 6 bags of rice at 51 dollars each and 12 lamps at 71 dollars each. How much does Tamar spend in total?",
+   "target": "1158"
+  },
+  {
+   "input": "Noor buys 2 pens at 48 dollars each and 6 notebooks at 89 dollars each. How much does Noor spend in total?",
+   "target": "630"
+  }
+ ]
+}

@@ -1,0 +1,631 @@
+[
+ {
+  "id": "T1_reordered_paraphrased",
+  "style": "temporal",
+  "why": "sightings out of chronological order; new verbs (noticed/watched/caught sight of/observed); 'paid a visit'; 'did not admit anyone after'; names and places not in gens.py lists",
+  "question": "Today, Marguerite paid a visit to the stamp museum. Between what times could she have gone?\nWe know that:\nMarguerite's alarm rang at 6am and she got up right away.\nTobias noticed Marguerite tuning a piano at the music school from 1pm to 4pm.\nRavi watched Marguerite buying fabric at the textile market from 6am to 8am.\nFrom 11am to 1pm, Ingeborg caught sight of Marguerite repainting a rowing boat at the harbor.\nSelin observed Marguerite photographing pigeons at the train station from 8am to 10am.\nThe stamp museum did not admit anyone after 4pm.\nBetween what times could Marguerite have gone to the stamp museum?\nOptions:\n(A) 6am to 8am\n(B) 10am to 11am\n(C) 1pm to 4pm\n(D) 8am to 10am",
+  "target": "(B)",
+  "call": "interval 6am-4pm busy 1pm-4pm, 6am-8am, 11am-1pm, 8am-10am",
+  "expect": "10am-11am",
+  "gen": "\n<tool_call>interval 6am-4pm busy 1pm-4pm, 6am-8am, 11am-1pm, 8am-10am</tool_call><tool_response>10am-11am</tool_response>\nThe only time when Marguerite could have gone to the stamp museum was 10am to 11am. So the answer is (B).",
+  "pred": "(B)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 6am-4pm busy 1pm-4pm, 6am-8am, 11am-1pm, 8am-10am",
+    "tool_wrote": "10am-11am",
+    "strict_ref": "10am-11am",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>10am-11am</tool_response>",
+  "tool_ref": "10am-11am",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T2_close_first_irrelevant",
+  "style": "temporal",
+  "why": "closing sentence placed BEFORE the wake sentence; an irrelevant sentence; passive 'was seen by'; different intro and different first question",
+  "question": "Kristof went to the ceramics studio at some point today. When might that have happened?\nWe know that:\nThe ceramics studio stopped letting people in at 9pm.\nKristof got up at 11am.\nKristof's upstairs neighbor keeps three cats.\nAnnelise saw Kristof patching a bicycle tire in the alley from 11am to 2pm.\nKristof was seen by Bartholomew running laps at the stadium from 2pm to 5pm.\nPhilippa spotted Kristof haggling over spices at the bazaar from 6pm to 9pm.\nBetween what times could Kristof have gone to the ceramics studio?\nOptions:\n(A) 5pm to 6pm\n(B) 2pm to 5pm\n(C) 11am to 2pm\n(D) 6pm to 9pm",
+  "target": "(A)",
+  "call": "interval 11am-9pm busy 11am-2pm, 2pm-5pm, 6pm-9pm",
+  "expect": "5pm-6pm",
+  "gen": "\n<tool_call>interval 11am-9pm busy 11am-2pm, 2pm-5pm, 6pm-9pm</tool_call><tool_response>5pm-6pm</tool_response>\nThe only time when Kristof could have gone to the ceramics studio was 5pm to 6pm. So the answer is (A).",
+  "pred": "(A)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 11am-9pm busy 11am-2pm, 2pm-5pm, 6pm-9pm",
+    "tool_wrote": "5pm-6pm",
+    "strict_ref": "5pm-6pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>5pm-6pm</tool_response>",
+  "tool_ref": "5pm-6pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T3_no_seeing_verbs",
+  "style": "temporal",
+  "why": "busy periods stated WITHOUT a 'saw/spotted' verb ('was helping', 'sat together at a lunch meeting', 'until'); 'was up and about from'; 'locks its gates at'; gap spans noon",
+  "question": "Magnus stopped by the lighthouse museum today. Between what times could he have gone?\nWe know that:\nMagnus was up and about from 5am.\nFrom 5am until 9am, Odalys watched Magnus loading crates onto a lorry at the docks.\nBetween 9am and 11am, Magnus was helping Corentin paint a mural downtown.\nLeopold and Magnus sat together at a lunch meeting in the bistro from 1pm to 3pm.\nThe lighthouse museum locks its gates at 3pm.\nDuring which period could Magnus have stopped by the lighthouse museum?\nOptions:\n(A) 9am to 11am\n(B) 1pm to 3pm\n(C) 5am to 9am\n(D) 11am to 1pm",
+  "target": "(D)",
+  "call": "interval 5am-3pm busy 5am-9am, 9am-11am, 1pm-3pm",
+  "expect": "11am-1pm",
+  "gen": "\n<tool_call>interval 5am-3pm busy 5am-9am, 9am-11am, 1pm-3pm</tool_call><tool_response>11am-1pm</tool_response>\nThe only time when Magnus could have stopped by the lighthouse museum was 11am to 1pm. So the answer is (D).",
+  "pred": "(D)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 5am-3pm busy 5am-9am, 9am-11am, 1pm-3pm",
+    "tool_wrote": "11am-1pm",
+    "strict_ref": "11am-1pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>11am-1pm</tool_response>",
+  "tool_ref": "11am-1pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T4_prose_paragraph",
+  "style": "temporal",
+  "why": "no 'We know that:' list; one prose paragraph with pronouns and semicolons; the visit is mentioned mid-paragraph",
+  "question": "Here is what we know about Sunniva's day. She got up at 2pm. Her brother Henrik saw her assembling a bookshelf at home from 2pm to 4pm; after that, from 4pm to 7pm, she was at the gym according to her coach Matteo; and her friend Rosa sat next to her at a dinner party from 8pm to 11pm. Sunniva also went to the night market today, and the night market closed at 11pm. Between what times could Sunniva have gone to the night market?\nOptions:\n(A) 4pm to 7pm\n(B) 7pm to 8pm\n(C) 8pm to 11pm\n(D) 2pm to 4pm",
+  "target": "(B)",
+  "call": "interval 2pm-11pm busy 2pm-4pm, 4pm-7pm, 8pm-11pm",
+  "expect": "7pm-8pm",
+  "gen": "\n<tool_call>interval 2pm-11pm busy 2pm-4pm, 4pm-7pm, 8pm-11pm</tool_call><tool_response>7pm-8pm</tool_response>\nThe only time when Sunniva could have gone to the night market was 7pm to 8pm. So the answer is (B).",
+  "pred": "(B)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 2pm-11pm busy 2pm-4pm, 4pm-7pm, 8pm-11pm",
+    "tool_wrote": "7pm-8pm",
+    "strict_ref": "7pm-8pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>7pm-8pm</tool_response>",
+  "tool_ref": "7pm-8pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T5_seven_sightings_shuffled_gap_first",
+  "style": "temporal",
+  "why": "7 sightings (dev max is 6), shuffled, pronoun 'him', a title instead of a first name, the free slot is right after waking",
+  "question": "Today, Professor Lindqvist went to the rare-book library. Between what times could he have gone?\nWe know that:\nProfessor Lindqvist woke up at 6am.\nA student, Haruto, saw him grading exams in his office from 2pm to 5pm.\nTeodora saw him giving a lecture in hall B from 9am to 10am.\nFrom 7am to 9am, Ansel saw him swimming at the university pool.\nGwendolyn saw him having lunch with the dean from 12pm to 2pm.\nIgnatius saw him at a faculty meeting from 10am to 12pm.\nPaulette saw him at the bus stop from 5pm to 7pm.\nRupert saw him at a concert from 7pm to 10pm.\nThe rare-book library was closed after 10pm.\nBetween what times could Professor Lindqvist have gone to the rare-book library?\nOptions:\n(A) 6am to 7am\n(B) 12pm to 2pm\n(C) 5pm to 7pm\n(D) 9am to 10am",
+  "target": "(A)",
+  "call": "interval 6am-10pm busy 2pm-5pm, 9am-10am, 7am-9am, 12pm-2pm, 10am-12pm, 5pm-7pm, 7pm-10pm",
+  "expect": "6am-7am",
+  "gen": "\n<tool_call>interval 6am-10pm busy 2pm-5pm, 9am-10am, 7am-9am, 12pm-2pm, 10am-12pm, 5pm-7pm, 7pm-10pm</tool_call><tool_response>6am-7am</tool_response>\nThe only time when Professor Lindqvist could have gone to the rare-book library was 6am to 7am. So the answer is (A).",
+  "pred": "(A)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 6am-10pm busy 2pm-5pm, 9am-10am, 7am-9am, 12pm-2pm, 10am-12pm, 5pm-7pm, 7pm-10pm",
+    "tool_wrote": "6am-7am",
+    "strict_ref": "6am-7am",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>6am-7am</tool_response>",
+  "tool_ref": "6am-7am",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T6_24h_clock",
+  "style": "temporal",
+  "why": "24-hour HH:MM notation in the story and in the options (the tool has no ':'; the host must convert to plain integers or am/pm)",
+  "question": "Today, Lucjan went to the swimming hall. Between what times could he have gone?\nWe know that:\nLucjan woke up at 07:00.\nMirela saw Lucjan fixing a fence in the garden from 07:00 to 10:00.\nOsvaldo saw Lucjan teaching a guitar class from 12:00 to 15:00.\nBeatrix saw Lucjan cooking at the soup kitchen from 15:00 to 18:00.\nThe swimming hall was closed after 18:00.\nBetween what times could Lucjan have gone to the swimming hall?\nOptions:\n(A) 12:00 to 15:00\n(B) 10:00 to 12:00\n(C) 07:00 to 10:00\n(D) 15:00 to 18:00",
+  "target": "(B)",
+  "call": "interval 7-18 busy 7-10, 12-15, 15-18",
+  "expect": "10-12",
+  "also_correct": {
+   "call": "interval 7am-6pm busy 7am-10am, 12pm-3pm, 3pm-6pm",
+   "expect": "10am-12pm"
+  },
+  "gen": "\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00</tool_call><tool_response></tool_response>\nThat call",
+  "pred": "",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "interval 07:00-18:00 busy 07:00-10:00, 12:00-15:00, 15:00-18:00",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>10-12</tool_response>",
+  "tool_ref": "10-12",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "T7_overlapping_sightings_gap_last",
+  "style": "temporal",
+  "why": "two sightings overlap (10am-1pm inside 8am-11am/1pm), the free slot is between the last sighting and closing",
+  "question": "Today, Yevgenia went to the climbing wall. Between what times could she have gone?\nWe know that:\nYevgenia woke up at 8am.\nCosimo saw Yevgenia baking bread at the bakery from 8am to 11am.\nAurelio saw Yevgenia at the bakery too, from 10am to 1pm.\nDagny saw Yevgenia volunteering at the animal shelter from 1pm to 5pm.\nEverett saw Yevgenia stuck in traffic from 5pm to 7pm.\nThe climbing wall was closed after 8pm.\nBetween what times could Yevgenia have gone to the climbing wall?\nOptions:\n(A) 1pm to 5pm\n(B) 8am to 11am\n(C) 7pm to 8pm\n(D) 10am to 1pm",
+  "target": "(C)",
+  "call": "interval 8am-8pm busy 8am-11am, 10am-1pm, 1pm-5pm, 5pm-7pm",
+  "expect": "7pm-8pm",
+  "gen": "\n<tool_call>interval 8am-8pm busy 8am-11am, 10am-1pm, 1pm-5pm, 5pm-7pm</tool_call><tool_response>7pm-8pm</tool_response>\nThe only time when Yevgenia could have gone to the climbing wall was 7pm to 8pm. So the answer is (C).",
+  "pred": "(C)",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 8am-8pm busy 8am-11am, 10am-1pm, 1pm-5pm, 5pm-7pm",
+    "tool_wrote": "7pm-8pm",
+    "strict_ref": "7pm-8pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>7pm-8pm</tool_response>",
+  "tool_ref": "7pm-8pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O1_two_person_meeting",
+  "style": "other",
+  "why": "meeting calendar, overlapping meetings of two people, wording unlike gens.meeting_item",
+  "question": "Priyanka and Lorenzo need to schedule a one-hour call tomorrow, sometime between 9am and 5pm. Priyanka has meetings from 9am to 11am and from 1pm to 3pm. Lorenzo is busy from 10am to 12pm and again from 2pm to 5pm. At what time are both of them available?",
+  "target": "12pm to 1pm",
+  "call": "interval 9am-5pm busy 9am-11am, 1pm-3pm, 10am-12pm, 2pm-5pm",
+  "expect": "12pm-1pm",
+  "gen": "\n<tool_call>interval 9am-5pm busy 9am-11am, 1pm-3pm, 10am-12pm, 2pm-5pm</tool_call><tool_response>12pm-1pm</tool_response>\nBoth Priyanka and Lorenzo are free from 12pm to 1pm. So the answer is 12pm to 1pm.",
+  "pred": "12pm to 1pm",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 9am-5pm busy 9am-11am, 1pm-3pm, 10am-12pm, 2pm-5pm",
+    "tool_wrote": "12pm-1pm",
+    "strict_ref": "12pm-1pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>12pm-1pm</tool_response>",
+  "tool_ref": "12pm-1pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O2_room_booking_24h_three_gaps",
+  "style": "other",
+  "why": "room booking, plain 24-hour integers, overlapping reservations, three free gaps",
+  "question": "The seminar room can be reserved between hour 8 and hour 20 (24-hour clock). Existing reservations: 9 to 11, 12 to 14, 13 to 16, and 18 to 20. List every period in which the room is still free.",
+  "target": "8 to 9 and 11 to 12 and 16 to 18",
+  "accept": [
+   "8 to 9, 11 to 12 and 16 to 18",
+   "8 to 9, 11 to 12, and 16 to 18",
+   "8-9, 11-12, 16-18"
+  ],
+  "call": "interval 8-20 busy 9-11, 12-14, 13-16, 18-20",
+  "expect": "8-9, 11-12, 16-18",
+  "gen": "\n<tool_call>interval 8-20 busy 9-11, 12-14, 13-16, 18-20</tool_call><tool_response>8-9, 11-12, 16-18</tool_response>\nThe seminar room is free from 8 to 9 and 11 to 12 and 16 to 18. So the answer is 8 to 9 and 11 to 12 and 16 to 18.",
+  "pred": "8 to 9 and 11 to 12 and 16 to 18",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 8-20 busy 9-11, 12-14, 13-16, 18-20",
+    "tool_wrote": "8-9, 11-12, 16-18",
+    "strict_ref": "8-9, 11-12, 16-18",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>8-9, 11-12, 16-18</tool_response>",
+  "tool_ref": "8-9, 11-12, 16-18",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O3_cabin_days",
+  "style": "other",
+  "why": "units are days of a month, not hours; bookings unordered and overlapping",
+  "question": "A holiday cabin can be rented from day 1 to day 30 of June. It is already booked from day 3 to day 8, from day 18 to day 25, and from day 12 to day 20. Which periods in June are still open for booking?",
+  "target": "1 to 3 and 8 to 12 and 25 to 30",
+  "accept": [
+   "day 1 to day 3, day 8 to day 12 and day 25 to day 30",
+   "1 to 3, 8 to 12 and 25 to 30",
+   "1-3, 8-12, 25-30"
+  ],
+  "call": "interval 1-30 busy 3-8, 18-25, 12-20",
+  "expect": "1-3, 8-12, 25-30",
+  "gen": "\n<tool_call>interval 1-30 busy 3-8, 18-25, 12-20</tool_call><tool_response>1-3, 8-12, 25-30</tool_response>\nThe cabin is free from day 1 to day 3 and day 8 to day 12 and day 25 to day 30. So the answer is 1-3, 8-12, 25-30.",
+  "pred": "1-3, 8-12, 25-30",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 1-30 busy 3-8, 18-25, 12-20",
+    "tool_wrote": "1-3, 8-12, 25-30",
+    "strict_ref": "1-3, 8-12, 25-30",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1-3, 8-12, 25-30</tool_response>",
+  "tool_ref": "1-3, 8-12, 25-30",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O4_dentist_two_gaps_irrelevant",
+  "style": "other",
+  "why": "appointment book, overlaps, two free gaps (one at noon), an irrelevant sentence",
+  "question": "The dental clinic is open from 8am to 6pm on Saturday. The clinic's door is painted blue. Appointments are already booked from 8am to 10am, from 9am to 12pm, from 1pm to 4pm, and from 5pm to 6pm. During which times can a new patient still be seen?",
+  "target": "12pm to 1pm and 4pm to 5pm",
+  "accept": [
+   "12pm to 1pm, 4pm to 5pm",
+   "12pm-1pm, 4pm-5pm"
+  ],
+  "call": "interval 8am-6pm busy 8am-10am, 9am-12pm, 1pm-4pm, 5pm-6pm",
+  "expect": "12pm-1pm, 4pm-5pm",
+  "gen": "\n<tool_call>interval 8am-6pm busy 8am-10am, 9am-12pm, 1pm-4pm, 5pm-6pm</tool_call><tool_response>12pm-1pm, 4pm-5pm</tool_response>\nThe only time when a new patient can be seen is 12pm to 1pm and 4pm to 5pm. So the answer is 12pm to 1pm and 4pm to 5pm.",
+  "pred": "12pm to 1pm and 4pm to 5pm",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 8am-6pm busy 8am-10am, 9am-12pm, 1pm-4pm, 5pm-6pm",
+    "tool_wrote": "12pm-1pm, 4pm-5pm",
+    "strict_ref": "12pm-1pm, 4pm-5pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>12pm-1pm, 4pm-5pm</tool_response>",
+  "tool_ref": "12pm-1pm, 4pm-5pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O5_no_free_time",
+  "style": "other",
+  "why": "no free slot at all; the right answer is 'none'",
+  "question": "The conference hall is available from 9am to 1pm. One talk is scheduled from 9am to 11am and a workshop from 10am to 1pm. When is the hall free for a rehearsal? If it is never free, answer none.",
+  "target": "none",
+  "call": "interval 9am-1pm busy 9am-11am, 10am-1pm",
+  "expect": "none",
+  "gen": "\n<tool_call>interval 9am-1pm busy 9am-11am, 10am-1pm</tool_call><tool_response>none</tool_response>\nThe conference hall is free from 11am to 1pm. So the answer is 11am to 1pm.",
+  "pred": "11am to 1pm",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "interval 9am-1pm busy 9am-11am, 10am-1pm",
+    "tool_wrote": "none",
+    "strict_ref": "none",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>none</tool_response>",
+  "tool_ref": "none",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O6_evening_until_midnight",
+  "style": "other",
+  "why": "window ends at 12am (= 24 at an end)",
+  "question": "Court 3 at the squash club can be rented in the evening from 6pm to 12am. It is reserved from 6pm to 8pm by a birthday party and from 9pm to 12am by a league team. When is court 3 free?",
+  "target": "8pm to 9pm",
+  "call": "interval 6pm-12am busy 6pm-8pm, 9pm-12am",
+  "expect": "8pm-9pm",
+  "gen": "\n<tool_call>interval 6pm-12am busy 6pm-8pm, 9pm-12am</tool_call><tool_response>8pm-9pm</tool_response>\nCourt 3 is free from 8pm to 9pm. So the answer is 8pm to 9pm.",
+  "pred": "8pm to 9pm",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 6pm-12am busy 6pm-8pm, 9pm-12am",
+    "tool_wrote": "8pm-9pm",
+    "strict_ref": "8pm-9pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>8pm-9pm</tool_response>",
+  "tool_ref": "8pm-9pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O7_alibi_free_response",
+  "style": "other",
+  "why": "temporal reasoning but detective framing, free response (no options), statements out of order, 'vouch for'",
+  "question": "A detective is checking a suspect's alibi for Tuesday between 7am and 7pm. A cashier saw the suspect at the supermarket from 10am to 1pm. The suspect's boss confirms he was at the office from 2pm to 7pm. His roommate says he was at home from 7am to 10am. The theft happened during the only period that nobody can vouch for. When did the theft happen?",
+  "target": "1pm to 2pm",
+  "call": "interval 7am-7pm busy 10am-1pm, 2pm-7pm, 7am-10am",
+  "expect": "1pm-2pm",
+  "gen": "\n<tool_call>interval 7am-7pm busy 10am-1pm, 2pm-7pm, 7am-10am</tool_call><tool_response>1pm-2pm</tool_response>\nThe only time when nobody can vouch for is 1pm-2pm. So the answer is 1pm-2pm.",
+  "pred": "1pm-2pm",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 7am-7pm busy 10am-1pm, 2pm-7pm, 7am-10am",
+    "tool_wrote": "1pm-2pm",
+    "strict_ref": "1pm-2pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1pm-2pm</tool_response>",
+  "tool_ref": "1pm-2pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "O8_nurse_coverage_inverted",
+  "style": "other",
+  "why": "inverted semantics: the 'busy' list is the COVERED shifts and the question asks for the uncovered gap",
+  "question": "A clinic must have a nurse on duty from 6am to 10pm. Nurse Abebe works from 6am to 2pm, Nurse Ottilie from 12pm to 6pm, and Nurse Faisal from 7pm to 10pm. During which period is no nurse on duty?",
+  "target": "6pm to 7pm",
+  "call": "interval 6am-10pm busy 6am-2pm, 12pm-6pm, 7pm-10pm",
+  "expect": "6pm-7pm",
+  "gen": "\n<tool_call>interval 6am-10pm busy 6am-2pm, 12pm-6pm, 7pm-10pm</tool_call><tool_response>6pm-7pm</tool_response>\nNo nurse is on duty from 6pm to 7pm. So the answer is 6pm to 7pm.",
+  "pred": "6pm to 7pm",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "interval 6am-10pm busy 6am-2pm, 12pm-6pm, 7pm-10pm",
+    "tool_wrote": "6pm-7pm",
+    "strict_ref": "6pm-7pm",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>6pm-7pm</tool_response>",
+  "tool_ref": "6pm-7pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P01_unordered_overlap",
+  "call": "interval 8am-6pm busy 3pm-5pm, 9am-11am, 10am-12pm, 4pm-6pm",
+  "expect": "8am-9am, 12pm-3pm",
+  "tool_wrote": "<tool_response>8am-9am, 12pm-3pm</tool_response>",
+  "tool_ref": "8am-9am, 12pm-3pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P02_12am_start_12pm_end",
+  "call": "interval 12am-12pm busy 12am-6am, 11am-12pm",
+  "expect": "6am-11am",
+  "tool_wrote": "<tool_response>6am-11am</tool_response>",
+  "tool_ref": "6am-11am",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P03_12am_end_three_gaps",
+  "call": "interval 6pm-12am busy 7pm-9pm, 10pm-11pm",
+  "expect": "6pm-7pm, 9pm-10pm, 11pm-12am",
+  "tool_wrote": "<tool_response>6pm-7pm, 9pm-10pm, 11pm-12am</tool_response>",
+  "tool_ref": "6pm-7pm, 9pm-10pm, 11pm-12am",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P04_plain_days",
+  "call": "interval 1-30 busy 3-8, 12-20, 18-25",
+  "expect": "1-3, 8-12, 25-30",
+  "tool_wrote": "<tool_response>1-3, 8-12, 25-30</tool_response>",
+  "tool_ref": "1-3, 8-12, 25-30",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P05_no_free",
+  "call": "interval 9am-1pm busy 9am-11am, 10am-1pm",
+  "expect": "none",
+  "tool_wrote": "<tool_response>none</tool_response>",
+  "tool_ref": "none",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P06_more_than_4_gaps",
+  "call": "interval 1-20 busy 2-3, 4-5, 6-7, 8-9, 10-11",
+  "expect": "",
+  "note": "6 gaps; circuit cap is 4 -> empty error response. tools_ref.interval_ref has NO cap and would return '1-2, 3-4, 5-6, 7-8, 9-10, 11-20'.",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P07_exactly_4_gaps",
+  "call": "interval 0-24 busy 3-5, 8-10, 12-20",
+  "expect": "0-3, 5-8, 10-12, 20-24",
+  "tool_wrote": "<tool_response>0-3, 5-8, 10-12, 20-24</tool_response>",
+  "tool_ref": "0-3, 5-8, 10-12, 20-24",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P08_malformed_word_to",
+  "call": "interval 9am to 5pm busy 1pm-2pm",
+  "expect": "",
+  "note": "' to' is outside the alphabet -> empty error response",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P09_malformed_minutes",
+  "call": "interval 9:30am-5pm busy 1pm-2pm",
+  "expect": "",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P10_busy_beyond_window",
+  "call": "interval 9am-5pm busy 7am-10am, 4pm-8pm",
+  "expect": "10am-4pm",
+  "tool_wrote": "<tool_response>10am-4pm</tool_response>",
+  "tool_ref": "10am-4pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P11_mixed_notation",
+  "call": "interval 9-17 busy 1pm-2pm",
+  "expect": "9-13, 14-17",
+  "note": "window plain -> output plain; 1pm-2pm = 13-14",
+  "tool_wrote": "<tool_response>9-13, 14-17</tool_response>",
+  "tool_ref": "9-13, 14-17",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P12_empty_busy_list",
+  "call": "interval 9am-5pm busy",
+  "expect": "",
+  "note": "grammar needs >= 1 busy interval (both ref and circuit error); a window with nothing booked cannot be asked",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P13_stray_time_token",
+  "call": "interval 9am-5pm busy 1pm-2pm 3pm, 4pm-5pm",
+  "expect": "",
+  "note": "malformed per grammar (ref -> ''). PREDICTED circuit behaviour from reading the code: it ignores the stray '3pm' (counts still match) and writes '9am-1pm, 2pm-4pm'. Lax-parse probe.",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P14_inverted_window",
+  "call": "interval 5pm-9am busy 1pm-2pm",
+  "expect": "none",
+  "tool_wrote": "<tool_response>none</tool_response>",
+  "tool_ref": "none",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P15_hour_out_of_range",
+  "call": "interval 9am-13pm busy 10am-11am",
+  "expect": "",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P16_other_tool_name",
+  "call": "free 9am-5pm busy 1pm-2pm",
+  "expect": "SILENT",
+  "note": "NAME is not 'interval' -> the tool must write nothing at all (host logits untouched). This is the grammar NOTEBOOK.md section 2 still documents.",
+  "tool_wrote": "(silent)",
+  "tool_ref": null,
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P17_nested_duplicates",
+  "call": "interval 10-40 busy 15-35, 20-25, 20-25",
+  "expect": "10-15, 35-40",
+  "tool_wrote": "<tool_response>10-15, 35-40</tool_response>",
+  "tool_ref": "10-15, 35-40",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P18_two_digit_top",
+  "call": "interval 90-99 busy 95-97",
+  "expect": "90-95, 97-99",
+  "tool_wrote": "<tool_response>90-95, 97-99</tool_response>",
+  "tool_ref": "90-95, 97-99",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P19_three_digit",
+  "call": "interval 0-100 busy 5-6",
+  "expect": "",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P20_missing_busy_keyword",
+  "call": "interval 9am-5pm 1pm-2pm",
+  "expect": "",
+  "note": "malformed per tools_ref grammar (ref -> ''). PREDICTED circuit: answers '9am-1pm, 2pm-5pm' (' busy' is optional in the circuit; NOTEBOOK says header words are optional).",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P21_12pm_start",
+  "call": "interval 12pm-6pm busy 1pm-3pm",
+  "expect": "12pm-1pm, 3pm-6pm",
+  "tool_wrote": "<tool_response>12pm-1pm, 3pm-6pm</tool_response>",
+  "tool_ref": "12pm-1pm, 3pm-6pm",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "P22_call_longer_than_window",
+  "call": "interval 6am-11pm busy 6am-7am, 7am-8am, 8am-9am, 9am-10am, 10am-11am, 11am-12pm, 12pm-1pm, 1pm-2pm, 3pm-4pm, 4pm-5pm, 5pm-6pm, 6pm-7pm, 7pm-8pm, 8pm-9pm, 9pm-10pm, 10pm-11pm",
+  "expect": "2pm-3pm",
+  "note": "by grammar the answer is 2pm-3pm, but the call is ~129 tokens > window K=128, so '<tool_call>' leaves the window; PREDICTED circuit: SILENT (fail-safe). Records the length limit.",
+  "tool_wrote": "(silent)",
+  "tool_ref": "2pm-3pm",
+  "tool_matches_ref": false,
+  "tool_matches_expect": false
+ }
+]

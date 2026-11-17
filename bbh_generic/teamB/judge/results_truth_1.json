@@ -1,0 +1,605 @@
+[
+ {
+  "id": "lies_synonyms",
+  "style": "lies",
+  "question": "Question: Brigid is a truthful person. Teodor states that Brigid is deceiving everyone. Marisol says Teodor is being sincere. Kenji declares that Marisol is not lying. Is Kenji being truthful?",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 true",
+  "expect": "1 true, 2 false, 3 false, 4 false",
+  "probes": "unseen verbs (states/declares), unseen predicates (deceiving everyone, being sincere, not lying), unseen question form, names outside NAMES",
+  "gen": "\nBrigid = 1, Teodor = 2, Marisol = 3, Kenji = 4.\n<tool_call>truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false</tool_call><tool_response>1 true, 2 false, 3 false, 4 true</tool_response>\nKenji is 4, and 4 is true. So Kenji tells the truth. So the answer is Yes.",
+  "pred": "Yes",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false",
+    "tool_wrote": "1 true, 2 false, 3 false, 4 true",
+    "strict_ref": "1 true, 2 false, 3 false, 4 true",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false, 4 false</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false, 4 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "lies_shuffled",
+  "style": "lies",
+  "question": "Question: Rosa says Pilar lies. Tomasz tells the truth. Pilar says Tomasz tells the truth. Does Rosa tell the truth?",
+  "target": "No",
+  "call": "truth 1 says 3 false; 2 true; 3 says 2 true",
+  "expect": "1 false, 2 true, 3 true",
+  "probes": "statements out of chain order (anchor in the middle, the asked person first); any consistent numbering is fine, e.g. chain order Tomasz=1, Pilar=2, Rosa=3 -> truth 1 true; 2 says 1 true; 3 says 2 false -> 1 true, 2 true, 3 false",
+  "gen": "\nRosa = 1, Pilar = 2, Tomasz = 3.\n<tool_call>truth 1 says 2 false; 3 says 2 true</tool_call><tool_response>1 unknown, 2 unknown, 3 unknown</tool_response>\nRosa is 1, and 1 is unknown. So Rosa lies. So the answer is No.",
+  "pred": "No",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "truth 1 says 2 false; 3 says 2 true",
+    "tool_wrote": "1 unknown, 2 unknown, 3 unknown",
+    "strict_ref": "1 unknown, 2 unknown, 3 unknown",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 false, 2 true, 3 true</tool_response>",
+  "tool_ref": "1 false, 2 true, 3 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "lies_middle",
+  "style": "lies",
+  "question": "Question: Oskar lies. Beatriz says Oskar tells the truth. Lionel says Beatriz lies. Mirela says Lionel lies. Anselm says Mirela tells the truth. Does Lionel tell the truth?",
+  "target": "Yes",
+  "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 false; 5 says 4 true",
+  "expect": "1 false, 2 false, 3 true, 4 false, 5 false",
+  "probes": "question about a person in the middle of the chain (the last person would give No)",
+  "gen": "\nOskar = 1, Beatriz = 2, Lionel = 3, Mirela = 4, Anselm = 5.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 false; 5 says 4 true</tool_call><tool_response>1 false, 2 false, 3 true, 4 false, 5 false</tool_response>\nLionel is 3, and 3 is true. So Lionel tells the truth. So the answer is Yes.",
+  "pred": "Yes",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 false; 5 says 4 true",
+    "tool_wrote": "1 false, 2 false, 3 true, 4 false, 5 false",
+    "strict_ref": "1 false, 2 false, 3 true, 4 false, 5 false",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 false, 2 false, 3 true, 4 false, 5 false</tool_response>",
+  "tool_ref": "1 false, 2 false, 3 true, 4 false, 5 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "lies_noise",
+  "style": "lies",
+  "question": "Question: Henrike always lies. It is raining in the city today. Abebe says Henrike tells the truth. Cosmin claims Abebe lies. Danuta says Cosmin tells the truth. Ewa owns two cats. Fyodor says Danuta lies. Gaspard says Fyodor tells the truth. Does Gaspard tell the truth?",
+  "target": "No",
+  "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 says 4 false; 6 says 5 true",
+  "expect": "1 false, 2 false, 3 true, 4 true, 5 false, 6 false",
+  "probes": "two irrelevant sentences, one of them names a person who makes no statement (Ewa must not get a number or must be harmless), 6 speakers",
+  "gen": "\nHenrike = 1, Abebe = 2, Cosmin = 3, Danuta = 4, Ewa = 5, Fyodor = 6, Gaspard = 7.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says ",
+  "pred": "",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 false, 2 false, 3 true, 4 true, 5 false, 6 false</tool_response>",
+  "tool_ref": "1 false, 2 false, 3 true, 4 true, 5 false, 6 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "lies_negation",
+  "style": "lies",
+  "question": "Question: Ines is honest. Jarek denies that Ines is honest. Kaveh says it is not true that Jarek lies. Lorna says Kaveh is lying. Does Lorna tell the truth?",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false",
+  "expect": "1 true, 2 false, 3 false, 4 true",
+  "probes": "negated claims: \"denies that X is honest\" = claims X lies; \"it is not true that X lies\" = claims X tells the truth",
+  "gen": "\nInes = 1, Jarek = 2, Kaveh = 3, Lorna = 4.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false</tool_call><tool_response></tool_response>\n\nThat call was not valid,",
+  "pred": "",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false, 4 true</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false, 4 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "lies_tree",
+  "style": "lies",
+  "question": "Question: Teodora tells the truth. Ulrich says Teodora lies. Vasco says Teodora tells the truth. Wendell says Ulrich is honest. Does Wendell tell the truth?",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 1 true; 4 says 2 true",
+  "expect": "1 true, 2 false, 3 true, 4 false",
+  "probes": "tree, not a chain: two people talk about the same person; the last speaker talks about the second person, not the third",
+  "gen": "\nTeodora = 1, Ulrich = 2, Vasco = 3, Wendell = 4.\n<tool_call>truth 1 true; 2 says 1 false; 3 says 1 true; 4 says 2 true</tool_call><tool_response>1 true, 2 false, 3 true, 4 false</tool_response>\nWendell is 4, and 4 is false. So Wendell lies. So the answer is No.",
+  "pred": "No",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "truth 1 true; 2 says 1 false; 3 says 1 true; 4 says 2 true",
+    "tool_wrote": "1 true, 2 false, 3 true, 4 false",
+    "strict_ref": "1 true, 2 false, 3 true, 4 false",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 true, 4 false</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 true, 4 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "court_witnesses",
+  "style": "other",
+  "question": "In a trial, each witness is either completely truthful or completely dishonest. The bailiff, Ruth, is known to be truthful. Witness Marco testified that the bailiff is dishonest. Witness Selin testified that Marco was telling the truth. Witness Ade testified that Selin was lying. Is Ade truthful? Answer Yes or No.",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false",
+  "expect": "1 true, 2 false, 3 false, 4 true",
+  "probes": "courtroom wording (testified, dishonest, bailiff referred to by role in one sentence)",
+  "gen": "\nRuth = 1, Marco = 2, Selin = 3, Ade = 4.\n<tool_call>truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false</tool_call><tool_response></tool_response>\nAde is 4, and 4 is false. So the answer is No.",
+  "pred": "No",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false, 4 true</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false, 4 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "knights_quotes",
+  "style": "other",
+  "question": "On the island of Veritas, knights always tell the truth and knaves always lie. Pell says: \"Quill is a knave.\" Ottilie is a knight. Rhea says: \"Pell is a knight.\" Quill says: \"Ottilie is a knight.\" Sam, a fisherman, is mending nets. Is Rhea a knight?",
+  "target": "No",
+  "call": "truth 1 says 4 false; 2 true; 3 says 1 true; 4 says 2 true",
+  "expect": "1 false, 2 true, 3 false, 4 true",
+  "probes": "knights/knaves with direct quotes, statements out of order, forward reference (Pell talks about Quill before Quill speaks), extra non-speaking islander, query not last",
+  "gen": "\nPell = 1, Quill = 2, Ottilie = 3, Rhea = 4, Sam = 5.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 says 2 a knave; 3 a knight; ",
+  "pred": "",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 false, 2 true, 3 false, 4 true</tool_response>",
+  "tool_ref": "1 false, 2 true, 3 false, 4 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "dinner_downward",
+  "style": "other",
+  "question": "At a dinner party every guest either always tells the truth or always lies. We know that Nuno always tells the truth. Nuno says that Aurelie lies. Aurelie says that Hamza tells the truth. Is Hamza telling the truth? Answer Yes or No.",
+  "target": "No",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 true",
+  "expect": "1 true, 2 false, 3 false",
+  "probes": "information flows from a KNOWN speaker to the person he talks about. The tool only propagates referent -> speaker and allows one clause per person, so the natural call \"truth 1 true; 1 says 2 false; 2 says 3 true\" is an ERROR (empty response, see probe dup_natural). The call above is the valid re-rooted equivalent (\"A says B lies\" and \"B says A lies\" are the same constraint). Record which call the host writes.",
+  "gen": "\nNuno = 1, Aurelie = 2, Hamza = 3.\n<tool_call>truth 1 true; 1 says 2 false; 2 says 3 true</tool_call><tool_response>1 true, 2 false, 3 false</tool_response>\nHamza is 3, and 3 is false. So the answer is No.",
+  "pred": "No",
+  "called": true,
+  "ok": true,
+  "host_calls": [
+   {
+    "call": "truth 1 true; 1 says 2 false; 2 says 3 true",
+    "tool_wrote": "1 true, 2 false, 3 false",
+    "strict_ref": "1 true, 2 false, 3 false",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "switches_parity",
+  "style": "other",
+  "question": "Four lamps are wired together. Lamp 1 is on. Lamp 2 is always in the same state as lamp 1. Lamp 3 is always in the opposite state of lamp 2. Lamp 4 is always in the opposite state of lamp 3. Is lamp 4 on? Answer Yes or No.",
+  "target": "Yes",
+  "call": "truth 1 true; 2 says 1 true; 3 says 2 false; 4 says 3 false",
+  "expect": "1 true, 2 true, 3 false, 4 true",
+  "probes": "STRETCH, tests the team's own rule-13 claim (\"parity of a chain of same/opposite relations\"); not a truth-telling story at all. Not calling the tool here is acceptable (silent); a wrong call is not.",
+  "gen": "\nLamp 1 = 1, Lamp 2 = 2, Lamp 3 = 3, Lamp 4 = 4.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\n\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3</tool_call><tool_response></tool_response>\nThat call was not valid, so I fix it.\n<tool_call>truth 1 on; 2 always same as 1; 3 always opposite",
+  "pred": "",
+  "called": true,
+  "ok": false,
+  "host_calls": [
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   },
+   {
+    "call": "truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3",
+    "tool_wrote": "",
+    "strict_ref": "",
+    "tool_correct": true
+   }
+  ],
+  "tool_wrote": "<tool_response>1 true, 2 true, 3 false, 4 true</tool_response>",
+  "tool_ref": "1 true, 2 true, 3 false, 4 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "refs_out_of_order",
+  "call": "truth 3 says 2 false; 2 says 1 true; 1 false; 4 says 3 true",
+  "expect": "1 false, 2 false, 3 true, 4 true",
+  "tool_wrote": "<tool_response>1 false, 2 false, 3 true, 4 true</tool_response>",
+  "tool_ref": "1 false, 2 false, 3 true, 4 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "undefined_ref",
+  "call": "truth 1 true; 2 says 7 false; 3 says 2 true",
+  "expect": "1 true, 2 unknown, 3 unknown",
+  "tool_wrote": "<tool_response>1 true, 2 unknown, 3 unknown, 7 unknown</tool_response>",
+  "tool_ref": "1 true, 2 unknown, 3 unknown, 7 unknown",
+  "tool_matches_ref": true,
+  "tool_matches_expect": false
+ },
+ {
+  "id": "twelve_chain",
+  "call": "truth 1 true; 2 says 1 false; 3 says 2 false; 4 says 3 true; 5 says 4 false; 6 says 5 true; 7 says 6 false; 8 says 7 false; 9 says 8 true; 10 says 9 false; 11 says 10 true; 12 says 11 false",
+  "expect": "1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false",
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "twelve_reversed",
+  "call": "truth 12 says 11 true; 11 says 10 false; 10 says 9 false; 9 says 8 true; 8 says 7 false; 7 says 6 true; 6 says 5 false; 5 says 4 true; 4 says 3 false; 3 says 2 true; 2 says 1 false; 1 false",
+  "expect": "1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false",
+  "tool_wrote": "<tool_response>1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false</tool_response>",
+  "tool_ref": "1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "sparse_two_digit_tree",
+  "call": "truth 10 true; 3 says 10 false; 12 says 10 true; 5 says 3 false",
+  "expect": "3 false, 5 true, 10 true, 12 true",
+  "tool_wrote": "<tool_response>3 false, 5 true, 10 true, 12 true</tool_response>",
+  "tool_ref": "3 false, 5 true, 10 true, 12 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "eleven_mixed_order",
+  "call": "truth 7 says 11 false; 11 true; 2 says 7 true; 9 says 2 false; 1 says 9 true; 4 says 1 false; 10 says 4 true; 3 says 10 true; 8 says 3 false; 6 says 8 true; 5 says 6 false",
+  "expect": "1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true",
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "self_reference",
+  "call": "truth 1 says 1 false; 2 says 1 true",
+  "expect": "1 unknown, 2 unknown",
+  "tool_wrote": "<tool_response>1 unknown, 2 unknown</tool_response>",
+  "tool_ref": "1 unknown, 2 unknown",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "two_cycle",
+  "call": "truth 1 says 2 true; 2 says 1 true; 3 true",
+  "expect": "1 unknown, 2 unknown, 3 true",
+  "tool_wrote": "<tool_response>1 unknown, 2 unknown, 3 true</tool_response>",
+  "tool_ref": "1 unknown, 2 unknown, 3 true",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "single_clause",
+  "call": "truth 5 false",
+  "expect": "5 false",
+  "tool_wrote": "<tool_response>5 false</tool_response>",
+  "tool_ref": "5 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "malformed_comma",
+  "call": "truth 1 true, 2 says 1 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "malformed_trailing_semi",
+  "call": "truth 1 true; 2 says 1 true;",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "malformed_capital",
+  "call": "truth 1 True; 2 says 1 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "malformed_names",
+  "call": "truth Ana true; Ben says Ana false",
+  "expect": null,
+  "note": "expect null = the tool must stay SILENT (no <tool_response> written by it): the token after the NAME is not the space token",
+  "tool_wrote": "(silent)",
+  "tool_ref": "",
+  "tool_matches_ref": false,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "malformed_double_space",
+  "call": "truth 1  true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "dup_defined_twice",
+  "call": "truth 1 true; 2 says 1 false; 1 says 2 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "dup_natural",
+  "call": "truth 1 true; 1 says 2 false; 2 says 3 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response>1 true, 2 false, 3 false</tool_response>",
+  "tool_ref": "1 true, 2 false, 3 false",
+  "tool_matches_ref": true,
+  "tool_matches_expect": false
+ },
+ {
+  "id": "out_of_range_13",
+  "call": "truth 13 true; 1 says 13 false",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "out_of_range_0",
+  "call": "truth 0 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "three_digit",
+  "call": "truth 100 true",
+  "expect": "",
+  "note": "expect \"\" = the tool writes the empty error response <tool_response></tool_response>",
+  "tool_wrote": "<tool_response></tool_response>",
+  "tool_ref": "",
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ },
+ {
+  "id": "other_name_silent",
+  "call": "Truth 1 true; 2 says 1 false",
+  "expect": null,
+  "note": "expect null = the tool must stay SILENT (no <tool_response> written by it): the token after the NAME is not the space token",
+  "tool_wrote": "(silent)",
+  "tool_ref": null,
+  "tool_matches_ref": true,
+  "tool_matches_expect": true
+ }
+]

@@ -1,0 +1,64 @@
+- lies_synonyms [lies] target='No' pred='Yes' OK=False
+    host call: 'truth 1 true; 2 says 1 false; 3 says 2 true; 4 says 3 false'
+    tool wrote: '1 true, 2 false, 3 false, 4 true' | strict run_ref of that call: '1 true, 2 false, 3 false, 4 true' | tool==ref: True
+- lies_shuffled [lies] target='No' pred='No' OK=True
+    host call: 'truth 1 says 2 false; 3 says 2 true'
+    tool wrote: '1 unknown, 2 unknown, 3 unknown' | strict run_ref of that call: '1 unknown, 2 unknown, 3 unknown' | tool==ref: True
+- lies_middle [lies] target='Yes' pred='Yes' OK=True
+    host call: 'truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 false; 5 says 4 true'
+    tool wrote: '1 false, 2 false, 3 true, 4 false, 5 false' | strict run_ref of that call: '1 false, 2 false, 3 true, 4 false, 5 false' | tool==ref: True
+- lies_noise [lies] target='No' pred='' OK=False
+    host call: 'truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'truth 1 false; 2 says 1 true; 3 says 2 false; 4 says 3 true; 5 owns 2 cats; 6 says 4 false; 7 says 6 true'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+3 more identical retries)
+- lies_negation [lies] target='Yes' pred='' OK=False
+    host call: 'truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'truth 1 true; 2 denies 1 true; 3 says false 2 false; 4 says 3 false'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+7 more identical retries)
+- lies_tree [lies] target='No' pred='No' OK=True
+    host call: 'truth 1 true; 2 says 1 false; 3 says 1 true; 4 says 2 true'
+    tool wrote: '1 true, 2 false, 3 true, 4 false' | strict run_ref of that call: '1 true, 2 false, 3 true, 4 false' | tool==ref: True
+- court_witnesses [other] target='Yes' pred='No' OK=False
+    host call: 'truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'truth 1 true; 2 testified 1 false; 3 testified 2 true; 4 testified 3 false'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+- knights_quotes [other] target='No' pred='' OK=False
+    host call: 'truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'truth 1 says 2 a knave; 3 a knight; 4 says 1 a knight; 5 a fisherman'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+6 more identical retries)
+- dinner_downward [other] target='No' pred='No' OK=True
+    host call: 'truth 1 true; 1 says 2 false; 2 says 3 true'
+    tool wrote: '1 true, 2 false, 3 false' | strict run_ref of that call: '1 true, 2 false, 3 false' | tool==ref: True
+- switches_parity [other] target='Yes' pred='' OK=False
+    host call: 'truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    host call: 'truth 1 on; 2 always same as 1; 3 always opposite of 2; 4 always opposite of 3'
+    tool wrote: '' | strict run_ref of that call: '' | tool==ref: True
+    (+6 more identical retries)
+- probe refs_out_of_order: call='truth 3 says 2 false; 2 says 1 true; 1 false; 4 says 3 true' tool wrote='<tool_response>1 false, 2 false, 3 true, 4 true</tool_response>' strict ref='1 false, 2 false, 3 true, 4 true' judge expect='1 false, 2 false, 3 true, 4 true' | ==ref True | ==expect True
+- probe undefined_ref: call='truth 1 true; 2 says 7 false; 3 says 2 true' tool wrote='<tool_response>1 true, 2 unknown, 3 unknown, 7 unknown</tool_response>' strict ref='1 true, 2 unknown, 3 unknown, 7 unknown' judge expect='1 true, 2 unknown, 3 unknown' | ==ref True | ==expect False
+- probe twelve_chain: call='truth 1 true; 2 says 1 false; 3 says 2 false; 4 says 3 true; 5 says 4 false; 6 says 5 true; 7 says 6 false; 8 says 7 false; 9 says 8 true; 10 says 9 false; 11 says 10 true; 12 says 11 false' tool wrote='<tool_response>1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false</tool_response>' strict ref='1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false' judge expect='1 true, 2 false, 3 true, 4 true, 5 false, 6 false, 7 true, 8 false, 9 false, 10 true, 11 true, 12 false' | ==ref True | ==expect True
+- probe twelve_reversed: call='truth 12 says 11 true; 11 says 10 false; 10 says 9 false; 9 says 8 true; 8 says 7 false; 7 says 6 true; 6 says 5 false; 5 says 4 true; 4 says 3 false; 3 says 2 true; 2 says 1 false; 1 false' tool wrote='<tool_response>1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false</tool_response>' strict ref='1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false' judge expect='1 false, 2 true, 3 true, 4 false, 5 false, 6 true, 7 true, 8 false, 9 false, 10 true, 11 false, 12 false' | ==ref True | ==expect True
+- probe sparse_two_digit_tree: call='truth 10 true; 3 says 10 false; 12 says 10 true; 5 says 3 false' tool wrote='<tool_response>3 false, 5 true, 10 true, 12 true</tool_response>' strict ref='3 false, 5 true, 10 true, 12 true' judge expect='3 false, 5 true, 10 true, 12 true' | ==ref True | ==expect True
+- probe eleven_mixed_order: call='truth 7 says 11 false; 11 true; 2 says 7 true; 9 says 2 false; 1 says 9 true; 4 says 1 false; 10 says 4 true; 3 says 10 true; 8 says 3 false; 6 says 8 true; 5 says 6 false' tool wrote='<tool_response>1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true</tool_response>' strict ref='1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true' judge expect='1 true, 2 false, 3 false, 4 false, 5 false, 6 true, 7 false, 8 true, 9 true, 10 false, 11 true' | ==ref True | ==expect True
+- probe self_reference: call='truth 1 says 1 false; 2 says 1 true' tool wrote='<tool_response>1 unknown, 2 unknown</tool_response>' strict ref='1 unknown, 2 unknown' judge expect='1 unknown, 2 unknown' | ==ref True | ==expect True
+- probe two_cycle: call='truth 1 says 2 true; 2 says 1 true; 3 true' tool wrote='<tool_response>1 unknown, 2 unknown, 3 true</tool_response>' strict ref='1 unknown, 2 unknown, 3 true' judge expect='1 unknown, 2 unknown, 3 true' | ==ref True | ==expect True
+- probe single_clause: call='truth 5 false' tool wrote='<tool_response>5 false</tool_response>' strict ref='5 false' judge expect='5 false' | ==ref True | ==expect True
+- probe malformed_comma: call='truth 1 true, 2 says 1 false' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe malformed_trailing_semi: call='truth 1 true; 2 says 1 true;' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe malformed_capital: call='truth 1 True; 2 says 1 false' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe malformed_names: call='truth Ana true; Ben says Ana false' tool wrote='(silent)' strict ref='' judge expect=None | ==ref False | ==expect True
+- probe malformed_double_space: call='truth 1  true' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe dup_defined_twice: call='truth 1 true; 2 says 1 false; 1 says 2 true' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe dup_natural: call='truth 1 true; 1 says 2 false; 2 says 3 true' tool wrote='<tool_response>1 true, 2 false, 3 false</tool_response>' strict ref='1 true, 2 false, 3 false' judge expect='' | ==ref True | ==expect False
+- probe out_of_range_13: call='truth 13 true; 1 says 13 false' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe out_of_range_0: call='truth 0 true' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe three_digit: call='truth 100 true' tool wrote='<tool_response></tool_response>' strict ref='' judge expect='' | ==ref True | ==expect True
+- probe other_name_silent: call='Truth 1 true; 2 says 1 false' tool wrote='(silent)' strict ref=None judge expect=None | ==ref True | ==expect True

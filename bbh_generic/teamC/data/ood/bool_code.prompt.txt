@@ -1,0 +1,14 @@
+Decide whether the condition in the code holds.
+
+Q: Given a = True, b = False. Does `a and not b` evaluate to True?
+A: Let's think step by step.
+Substituting the values: True and not False = True. So the answer is True.
+
+Q: Given ready = False, admin = True, beta = True. Does `ready or (admin and not beta)` evaluate to True?
+A: Let's think step by step.
+Substituting the values: False or (True and not True) = False. So the answer is False.
+
+Q: Given x = True, y = True. Does `not (x and y) or not x` evaluate to True?
+A: Let's think step by step.
+Substituting the values: not (True and True) or not True = False. So the answer is False.
+

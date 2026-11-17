@@ -1,0 +1,350 @@
+[
+ {
+  "id": "h1",
+  "kind": "host",
+  "task": "multistep_arithmetic_two",
+  "question": "((12 - 7 * 3) + (25 - -4 * 2)) =",
+  "target": "24",
+  "plain_pred": "24",
+  "plain_ok": true,
+  "tool_pred": "24",
+  "tool_ok": true,
+  "tool_output_marked": " \nLet's recall that the order of operations in mathematics is as follows: (1) Parentheses, (2) exponents, (3) multiplication and division (from left to right), (4) addition and multiplication (from left to right). So, remember to always compute the expressions inside parentheses or brackets first.\nThis equation can be written as \"A + B\", where A = (12 - 7 * 3) and B = (25 - -4 * 2).\nLet's calculate A = (12 - 7 * 3) =[ ][-][9][.\n]Let's calculate B = (25 - -4 * 2) =[ ][3][3][.\n]Then, the final equation is A + B = -9 + 33 =[ ][2][4][.\n]So the answer is 24.\n\nQ"
+ },
+ {
+  "id": "h2",
+  "kind": "host",
+  "task": "multistep_arithmetic_two",
+  "question": "What is the value of ((6 - 2) * (3 + -5)) - (7 * 2)?",
+  "target": "-22",
+  "plain_pred": "-22.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "",
+  "tool_ok": false,
+  "tool_output_marked": " \nFirst, we need to solve the expressions inside the parentheses: (6 - 2) =[ ][4][.\n](3 + -5) =[ ][-][2][.\n]Then, we multiply the results: 4 * -2 =[ ][-][8][.\n]Next, we solve the multiplication part: 7 * 2 =[ ][1][4][.\n]Finally, we subtract the results: -8 - 14 =[ ][-][2][2][.\n]So, the value of ((6 - 2) * (3 + -5)) - (7 * 2) is -22.<|endoftext|>"
+ },
+ {
+  "id": "h3",
+  "kind": "host",
+  "task": "multistep_arithmetic_two",
+  "question": "((3+4*2) - (9-1) * (2+2))=",
+  "target": "-21",
+  "plain_pred": "-21.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "-21.<|endoftext|>",
+  "tool_ok": true,
+  "tool_output_marked": " \nFirst, we need to follow the order of operations, which is parentheses, exponents, multiplication and division (from left to right), and addition and subtraction (from left to right). \nLet's start with the innermost parentheses: \n(3 + 4 * 2) - (9 - 1) * (2 + 2) \nNow, we need to perform the multiplication and division from left to right: \n(3 + 8) - (8) * (4) \nNext, we perform the addition and subtraction from left to right: \n(11) - (32) \nFinally, we perform the subtraction: \n-21 \nSo the answer is -21.<|endoftext|>"
+ },
+ {
+  "id": "h4",
+  "kind": "host",
+  "task": "multistep_arithmetic_two",
+  "question": "A shopkeeper is double-checking a receipt before closing. Compute ((8 * 7 - 6) - (4 * -3 + 15)) =",
+  "target": "47",
+  "plain_pred": "47.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "47",
+  "tool_ok": true,
+  "tool_output_marked": " \nLet's recall that the order of operations in mathematics is as follows: (1) Parentheses, (2) exponents, (3) multiplication and division (from left to right), (4) addition and multiplication (from left to right). So, remember to always compute the expressions inside parentheses or brackets first.\nThis equation can be written as \"A - B\", where A = (8 * 7 - 6) and B = (4 * -3 + 15).\nLet's calculate A = (8 * 7 - 6) =[ ][5][0][.\n]Let's calculate B = (4 * -3 + 15) =[ ][3][.\n]Then, the final equation is A - B = 50 - 3 =[ ][4][7][.\n]So the answer is 47.\n\nQ"
+ },
+ {
+  "id": "h5",
+  "kind": "host",
+  "task": "multistep_arithmetic_two",
+  "question": "Evaluate (14 x 3) - (5 x 5 - 2) =",
+  "target": "19",
+  "plain_pred": "19.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "19.<|endoftext|>",
+  "tool_ok": true,
+  "tool_output_marked": " \nFirst, we need to evaluate the expression inside the parentheses: 5 x 5 - 2. \n5 x 5 =[ ][2][5][.\n]25 - 2 =[ ][2][3][.\n]Now, we can substitute this value back into the original expression: (14 x 3) - 23.\nNext, we need to evaluate the expression inside the parentheses: 14 x 3.\n14 x 3 =[ ][4][2][.\n]Now, we can substitute this value back into the original expression: 42 - 23.\nFinally, we can perform the subtraction: 42 - 23 =[ ][1][9][.\n]So the answer is 19.<|endoftext|>"
+ },
+ {
+  "id": "h6",
+  "kind": "host",
+  "task": "object_counting",
+  "question": "My pantry holds 3 cans of soup, 12 eggs, 2 loaves of bread, and 7 apples. How many food items are in my pantry?",
+  "target": "24",
+  "plain_pred": "24.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "24.<|endoftext|>",
+  "tool_ok": true,
+  "tool_output_marked": " We first identify the food items in the pantry and include their quantity in parentheses:\n- cans of soup (3)\n- eggs (12)\n- loaves of bread (2)\n- apples (7)\nNow, let's add the numbers in parentheses: 3 + 12 + 2 + 7 =[ ][2][4][.\n]So the answer is 24.<|endoftext|>"
+ },
+ {
+  "id": "h7",
+  "kind": "host",
+  "task": "object_counting",
+  "question": "It rained all morning. I have a guitar, 4 trombones, a stool, 2 pianos, and a sofa. How many musical instruments do I have?",
+  "target": "7",
+  "plain_pred": "9.<|endoftext|>",
+  "plain_ok": false,
+  "tool_pred": "9.<|endoftext|>",
+  "tool_ok": false,
+  "tool_output_marked": " \nWe first identify the musical instruments on the list and include their quantity in parentheses:\n- guitar (1)\n- trombones (4)\n- stool (1)\n- pianos (2)\n- sofa (1)\nNow, let's add the numbers in parentheses: 1 + 4 + 1 + 2 + 1 =[ ][9][.\n]So the answer is 9.<|endoftext|>"
+ },
+ {
+  "id": "h8",
+  "kind": "host",
+  "task": "object_counting",
+  "question": "How many birds are there? In the yard there are 11 sparrows, 6 crows, a cat, and 9 pigeons.",
+  "target": "26",
+  "plain_pred": "27.<|endoftext|>",
+  "plain_ok": false,
+  "tool_pred": "27.<|endoftext|>",
+  "tool_ok": false,
+  "tool_output_marked": " \nWe first identify the birds on the list and include their quantity in parentheses:\n- sparrows (11)\n- crows (6)\n- cat (1)\n- pigeons (9)\nNow, let's add the numbers in parentheses: 11 + 6 + 1 + 9 =[ ][2][7][.\n]So the answer is 27.<|endoftext|>"
+ },
+ {
+  "id": "h9",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "For a picnic, Ines buys 7 sandwiches at 6 dollars each, 12 juice boxes at 2 dollars each, and one blanket at 19 dollars. How much does Ines spend in total?",
+  "target": "85",
+  "plain_pred": "85.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "",
+  "tool_ok": false,
+  "tool_output_marked": " \nThe cost of the sandwiches is 7 * 6 =[ ][4][2][.\n]The cost of the juice boxes is 12 * 2 =[ ][2][4][.\n]The cost of the blanket is 19.\nSo, the total cost is 42 + 24 + 19 =[ ][8][5][.\n]Ines spends a total of 85 dollars.<|endoftext|>"
+ },
+ {
+  "id": "h10",
+  "kind": "host",
+  "task": "num_list",
+  "question": "Warehouse count by the manager, Ole: 120 boxes, 45 crates, 300 pallets and 8 barrels. How many containers are there altogether?",
+  "target": "473",
+  "plain_pred": "473.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "473.<|endoftext|>",
+  "tool_ok": true,
+  "tool_output_marked": " We add the quantities: 120 + 45 + 300 + 8 =[ ][4][7][3][.\n]So the answer is 473.<|endoftext|>"
+ },
+ {
+  "id": "h11",
+  "kind": "host",
+  "task": "num_shop",
+  "question": "A theater has 480 seats. Tickets for 17 rows of 24 seats each are sold. How many seats are still free?",
+  "target": "72",
+  "plain_pred": "72 seats.<|endoftext|>",
+  "plain_ok": true,
+  "tool_pred": "72.<|endoftext|>",
+  "tool_ok": true,
+  "tool_output_marked": " \nFirst, calculate the total number of seats sold: 17 rows * 24 seats per row = 408 seats. \nThen, subtract the number of seats sold from the total number of seats: 480 - 408 =[ ][7][2][.\n]So, the answer is 72.<|endoftext|>"
+ },
+ {
+  "id": "a1",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "In the code, x = (12 - 3) * 4 =",
+  "expect": "36",
+  "wrote": " 36<END>",
+  "ok": true
+ },
+ {
+  "id": "a2",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "The bill comes to 4*25 + 3*10 =",
+  "expect": "130",
+  "wrote": " 130<END>",
+  "ok": true
+ },
+ {
+  "id": "a3",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Totals:\n7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 =",
+  "expect": "115",
+  "wrote": " 115<END>",
+  "ok": true
+ },
+ {
+  "id": "a4",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "She had 5 dollars. 120 - 5 * 23 =",
+  "expect": "5",
+  "wrote": " 5<END>",
+  "ok": true
+ },
+ {
+  "id": "a5",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Area check: 123456 * 789 =",
+  "expect": "97406784",
+  "wrote": " 97406784<END>",
+  "ok": true
+ },
+ {
+  "id": "a6",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "so the net change is 2 * (3 + (4 - 1) * 5) - 100 =",
+  "expect": "-64",
+  "wrote": " -64<END>",
+  "ok": true
+ },
+ {
+  "id": "a7",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Answer: -(4 - 9) * 3 =",
+  "expect": "15",
+  "wrote": " 15<END>",
+  "ok": true
+ },
+ {
+  "id": "a8",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "The score after round two, 18 \u00d7 3 - 7 =",
+  "expect": "47",
+  "wrote": " 47<END>",
+  "ok": true
+ },
+ {
+  "id": "a9",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Halve it: 1.5 + 2 * 3 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a10",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Then max(3, 4) + 2 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a11",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "We get 84 / 4 + 1 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a12",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "In Python, 2 ** 10 - 24 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a13",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Recall that 2^3 + 1 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a14",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Let n be the count; then 2 * n + 4 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a15",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "The fee is 1,250 + 300 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a16",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Using the unicode sign, \u22123 + 5 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a17",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "Then (3 + 4 * 2 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a18",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "He scored 5 plus 3 * 4 =",
+  "expect": "",
+  "wrote": " 12<END>",
+  "ok": false
+ },
+ {
+  "id": "a19",
+  "kind": "alone",
+  "tool": "expr_gen",
+  "text": "A discount of 50% + 10 =",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ },
+ {
+  "id": "a20",
+  "kind": "alone",
+  "tool": "expr_call",
+  "text": "Let me compute it. <tool_call>expr (17 - 4) * (3 + 2)</tool_call>",
+  "expect": "65",
+  "wrote": "<tool_response>65</tool_response>",
+  "ok": true
+ },
+ {
+  "id": "a21",
+  "kind": "alone",
+  "tool": "expr_call",
+  "text": "<tool_call>expr 12*12-44</tool_call>",
+  "expect": "100",
+  "wrote": "<tool_response>100</tool_response>",
+  "ok": true
+ },
+ {
+  "id": "a22",
+  "kind": "alone",
+  "tool": "expr_call",
+  "text": "Cube it: <tool_call>expr -3 * -3 * -3</tool_call>",
+  "expect": "-27",
+  "wrote": "<tool_response>-27</tool_response>",
+  "ok": true
+ },
+ {
+  "id": "a23",
+  "kind": "alone",
+  "tool": "expr_call",
+  "text": "<tool_call>expr 2 ** 5</tool_call>",
+  "expect": "",
+  "wrote": "<tool_response></tool_response>",
+  "ok": true
+ },
+ {
+  "id": "a24",
+  "kind": "alone",
+  "tool": "expr_call",
+  "text": "<tool_call>calc 3 + 4</tool_call>",
+  "expect": "",
+  "wrote": "",
+  "ok": true
+ }
+]

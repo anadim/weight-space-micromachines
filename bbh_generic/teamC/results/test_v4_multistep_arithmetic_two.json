@@ -1,0 +1,817 @@
+{
+"model": "Qwen/Qwen3-0.6B-Base",
+"machines": [
+"expr_gen",
+"calc_gen",
+"bool_gen"
+],
+"oe": "dotnl",
+"bs": 32,
+"per_task": {
+"multistep_arithmetic_two": 98.0
+},
+"command": "python run_gen.py out/test_v4_multistep_arithmetic_two.json --data data/test --tasks multistep_arithmetic_two --machines expr_gen,calc_gen,bool_gen --oe dotnl   (reconstructed from the file header; run from teamC/)",
+"source_sha256": "4968de92a085b72b25ac2e9975cb8033e9674328e322d158f526be72e26ef425",
+"rows": [
+{
+"i": 0,
+"task": "multistep_arithmetic_two",
+"gold": "-455",
+"pred": "-455",
+"ok": true,
+"n_written": 19
+},
+{
+"i": 1,
+"task": "multistep_arithmetic_two",
+"gold": "310",
+"pred": "310",
+"ok": true,
+"n_written": 20
+},
+{
+"i": 2,
+"task": "multistep_arithmetic_two",
+"gold": "0",
+"pred": "0",
+"ok": true,
+"n_written": 10
+},
+{
+"i": 3,
+"task": "multistep_arithmetic_two",
+"gold": "-1100",
+"pred": "-1100",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 4,
+"task": "multistep_arithmetic_two",
+"gold": "-23",
+"pred": "-23",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 5,
+"task": "multistep_arithmetic_two",
+"gold": "91",
+"pred": "91",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 6,
+"task": "multistep_arithmetic_two",
+"gold": "-62",
+"pred": "-62",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 7,
+"task": "multistep_arithmetic_two",
+"gold": "-555",
+"pred": "-555",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 8,
+"task": "multistep_arithmetic_two",
+"gold": "-42",
+"pred": "-42",
+"ok": true,
+"n_written": 18
+},
+{
+"i": 9,
+"task": "multistep_arithmetic_two",
+"gold": "14",
+"pred": "14",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 10,
+"task": "multistep_arithmetic_two",
+"gold": "-17",
+"pred": "-17",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 11,
+"task": "multistep_arithmetic_two",
+"gold": "-69",
+"pred": "-69",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 12,
+"task": "multistep_arithmetic_two",
+"gold": "213",
+"pred": "213",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 13,
+"task": "multistep_arithmetic_two",
+"gold": "2",
+"pred": "2",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 14,
+"task": "multistep_arithmetic_two",
+"gold": "428",
+"pred": "428",
+"ok": true,
+"n_written": 19
+},
+{
+"i": 15,
+"task": "multistep_arithmetic_two",
+"gold": "20",
+"pred": "20",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 16,
+"task": "multistep_arithmetic_two",
+"gold": "-18",
+"pred": "-18",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 17,
+"task": "multistep_arithmetic_two",
+"gold": "8",
+"pred": "8",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 18,
+"task": "multistep_arithmetic_two",
+"gold": "-196",
+"pred": "-196",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 19,
+"task": "multistep_arithmetic_two",
+"gold": "35",
+"pred": "35",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 20,
+"task": "multistep_arithmetic_two",
+"gold": "1120",
+"pred": "1120",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 21,
+"task": "multistep_arithmetic_two",
+"gold": "1",
+"pred": "1",
+"ok": true,
+"n_written": 10
+},
+{
+"i": 22,
+"task": "multistep_arithmetic_two",
+"gold": "-19",
+"pred": "-19",
+"ok": true,
+"n_written": 18
+},
+{
+"i": 23,
+"task": "multistep_arithmetic_two",
+"gold": "-9",
+"pred": "-9",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 24,
+"task": "multistep_arithmetic_two",
+"gold": "-4888",
+"pred": "-4888",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 25,
+"task": "multistep_arithmetic_two",
+"gold": "5",
+"pred": "5",
+"ok": true,
+"n_written": 9
+},
+{
+"i": 26,
+"task": "multistep_arithmetic_two",
+"gold": "277",
+"pred": "277",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 27,
+"task": "multistep_arithmetic_two",
+"gold": "-664",
+"pred": "-664",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 28,
+"task": "multistep_arithmetic_two",
+"gold": "78",
+"pred": "78",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 29,
+"task": "multistep_arithmetic_two",
+"gold": "135",
+"pred": "135",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 30,
+"task": "multistep_arithmetic_two",
+"gold": "-5",
+"pred": "-5",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 31,
+"task": "multistep_arithmetic_two",
+"gold": "-12",
+"pred": "-12",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 32,
+"task": "multistep_arithmetic_two",
+"gold": "-792",
+"pred": "-792",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 33,
+"task": "multistep_arithmetic_two",
+"gold": "-51",
+"pred": "-51",
+"ok": true,
+"n_written": 18
+},
+{
+"i": 34,
+"task": "multistep_arithmetic_two",
+"gold": "-31",
+"pred": "-31",
+"ok": true,
+"n_written": 21
+},
+{
+"i": 35,
+"task": "multistep_arithmetic_two",
+"gold": "0",
+"pred": "0",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 36,
+"task": "multistep_arithmetic_two",
+"gold": "-44",
+"pred": "-44",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 37,
+"task": "multistep_arithmetic_two",
+"gold": "-67",
+"pred": "-67",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 38,
+"task": "multistep_arithmetic_two",
+"gold": "-7",
+"pred": "-7",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 39,
+"task": "multistep_arithmetic_two",
+"gold": "-8",
+"pred": "-8",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 40,
+"task": "multistep_arithmetic_two",
+"gold": "65",
+"pred": "65",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 41,
+"task": "multistep_arithmetic_two",
+"gold": "89",
+"pred": "89",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 42,
+"task": "multistep_arithmetic_two",
+"gold": "10",
+"pred": "10",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 43,
+"task": "multistep_arithmetic_two",
+"gold": "133",
+"pred": "133",
+"ok": true,
+"n_written": 19
+},
+{
+"i": 44,
+"task": "multistep_arithmetic_two",
+"gold": "-63",
+"pred": "-63",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 45,
+"task": "multistep_arithmetic_two",
+"gold": "231",
+"pred": "231",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 46,
+"task": "multistep_arithmetic_two",
+"gold": "-18270",
+"pred": "-18270",
+"ok": true,
+"n_written": 18
+},
+{
+"i": 47,
+"task": "multistep_arithmetic_two",
+"gold": "-96",
+"pred": "-96",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 48,
+"task": "multistep_arithmetic_two",
+"gold": "238",
+"pred": "238",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 49,
+"task": "multistep_arithmetic_two",
+"gold": "16",
+"pred": "16",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 50,
+"task": "multistep_arithmetic_two",
+"gold": "-220",
+"pred": "-256",
+"ok": false,
+"n_written": 19
+},
+{
+"i": 51,
+"task": "multistep_arithmetic_two",
+"gold": "4877",
+"pred": "4877",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 52,
+"task": "multistep_arithmetic_two",
+"gold": "-5778",
+"pred": "-5778",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 53,
+"task": "multistep_arithmetic_two",
+"gold": "93",
+"pred": "93",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 54,
+"task": "multistep_arithmetic_two",
+"gold": "-3",
+"pred": "-3",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 55,
+"task": "multistep_arithmetic_two",
+"gold": "-323",
+"pred": "-323",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 56,
+"task": "multistep_arithmetic_two",
+"gold": "35",
+"pred": "35",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 57,
+"task": "multistep_arithmetic_two",
+"gold": "-27",
+"pred": "-27",
+"ok": true,
+"n_written": 18
+},
+{
+"i": 58,
+"task": "multistep_arithmetic_two",
+"gold": "-1540",
+"pred": "-1540",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 59,
+"task": "multistep_arithmetic_two",
+"gold": "-144",
+"pred": "-144",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 60,
+"task": "multistep_arithmetic_two",
+"gold": "221",
+"pred": "11",
+"ok": false,
+"n_written": 23
+},
+{
+"i": 61,
+"task": "multistep_arithmetic_two",
+"gold": "65",
+"pred": "65",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 62,
+"task": "multistep_arithmetic_two",
+"gold": "1152",
+"pred": "1152",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 63,
+"task": "multistep_arithmetic_two",
+"gold": "33",
+"pred": "33",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 64,
+"task": "multistep_arithmetic_two",
+"gold": "45",
+"pred": "45",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 65,
+"task": "multistep_arithmetic_two",
+"gold": "3",
+"pred": "3",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 66,
+"task": "multistep_arithmetic_two",
+"gold": "-756",
+"pred": "-756",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 67,
+"task": "multistep_arithmetic_two",
+"gold": "596",
+"pred": "596",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 68,
+"task": "multistep_arithmetic_two",
+"gold": "77",
+"pred": "77",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 69,
+"task": "multistep_arithmetic_two",
+"gold": "-10",
+"pred": "-10",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 70,
+"task": "multistep_arithmetic_two",
+"gold": "-232",
+"pred": "-232",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 71,
+"task": "multistep_arithmetic_two",
+"gold": "-29",
+"pred": "-29",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 72,
+"task": "multistep_arithmetic_two",
+"gold": "200",
+"pred": "200",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 73,
+"task": "multistep_arithmetic_two",
+"gold": "-90",
+"pred": "-90",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 74,
+"task": "multistep_arithmetic_two",
+"gold": "-110",
+"pred": "-110",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 75,
+"task": "multistep_arithmetic_two",
+"gold": "48",
+"pred": "48",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 76,
+"task": "multistep_arithmetic_two",
+"gold": "838",
+"pred": "838",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 77,
+"task": "multistep_arithmetic_two",
+"gold": "65",
+"pred": "65",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 78,
+"task": "multistep_arithmetic_two",
+"gold": "-129",
+"pred": "-129",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 79,
+"task": "multistep_arithmetic_two",
+"gold": "542",
+"pred": "542",
+"ok": true,
+"n_written": 19
+},
+{
+"i": 80,
+"task": "multistep_arithmetic_two",
+"gold": "5",
+"pred": "5",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 81,
+"task": "multistep_arithmetic_two",
+"gold": "-2",
+"pred": "-2",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 82,
+"task": "multistep_arithmetic_two",
+"gold": "-22",
+"pred": "-22",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 83,
+"task": "multistep_arithmetic_two",
+"gold": "-13",
+"pred": "-13",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 84,
+"task": "multistep_arithmetic_two",
+"gold": "19",
+"pred": "19",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 85,
+"task": "multistep_arithmetic_two",
+"gold": "734",
+"pred": "734",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 86,
+"task": "multistep_arithmetic_two",
+"gold": "80",
+"pred": "80",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 87,
+"task": "multistep_arithmetic_two",
+"gold": "-105",
+"pred": "-105",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 88,
+"task": "multistep_arithmetic_two",
+"gold": "20",
+"pred": "20",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 89,
+"task": "multistep_arithmetic_two",
+"gold": "-97",
+"pred": "-97",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 90,
+"task": "multistep_arithmetic_two",
+"gold": "-18",
+"pred": "-18",
+"ok": true,
+"n_written": 13
+},
+{
+"i": 91,
+"task": "multistep_arithmetic_two",
+"gold": "0",
+"pred": "0",
+"ok": true,
+"n_written": 14
+},
+{
+"i": 92,
+"task": "multistep_arithmetic_two",
+"gold": "1",
+"pred": "1",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 93,
+"task": "multistep_arithmetic_two",
+"gold": "-46",
+"pred": "-46",
+"ok": true,
+"n_written": 15
+},
+{
+"i": 94,
+"task": "multistep_arithmetic_two",
+"gold": "17",
+"pred": "17",
+"ok": true,
+"n_written": 11
+},
+{
+"i": 95,
+"task": "multistep_arithmetic_two",
+"gold": "-2",
+"pred": "-2",
+"ok": true,
+"n_written": 16
+},
+{
+"i": 96,
+"task": "multistep_arithmetic_two",
+"gold": "22",
+"pred": "22",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 97,
+"task": "multistep_arithmetic_two",
+"gold": "14",
+"pred": "14",
+"ok": true,
+"n_written": 17
+},
+{
+"i": 98,
+"task": "multistep_arithmetic_two",
+"gold": "17",
+"pred": "17",
+"ok": true,
+"n_written": 12
+},
+{
+"i": 99,
+"task": "multistep_arithmetic_two",
+"gold": "-11942",
+"pred": "-11942",
+"ok": true,
+"n_written": 23
+}
+]
+}

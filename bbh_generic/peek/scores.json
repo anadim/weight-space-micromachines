@@ -1,0 +1,282 @@
+{
+ "A_base": {
+  "tracking_shuffled_objects_three_objects": {
+   "n": 250,
+   "ok_off": 102,
+   "ok_h": 102,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_five_objects": {
+   "n": 250,
+   "ok_off": 55,
+   "ok_h": 55,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_seven_objects": {
+   "n": 250,
+   "ok_off": 37,
+   "ok_h": 37,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "logical_deduction_three_objects": {
+   "n": 250,
+   "ok_off": 143,
+   "ok_h": 143,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "logical_deduction_five_objects": {
+   "n": 250,
+   "ok_off": 71,
+   "ok_h": 71,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "logical_deduction_seven_objects": {
+   "n": 250,
+   "ok_off": 42,
+   "ok_h": 42,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  }
+ },
+ "A_ftv3_notools": {
+  "tracking_shuffled_objects_three_objects": {
+   "n": 250,
+   "ok_off": 176,
+   "ok_h": 176,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_five_objects": {
+   "n": 250,
+   "ok_off": 166,
+   "ok_h": 166,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_seven_objects": {
+   "n": 250,
+   "ok_off": 147,
+   "ok_h": 147,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_three_objects": {
+   "n": 250,
+   "ok_off": 160,
+   "ok_h": 160,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_five_objects": {
+   "n": 250,
+   "ok_off": 128,
+   "ok_h": 128,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_seven_objects": {
+   "n": 250,
+   "ok_off": 144,
+   "ok_h": 144,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  }
+ },
+ "A_ftv3_tools": {
+  "tracking_shuffled_objects_three_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_five_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "tracking_shuffled_objects_seven_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_three_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_five_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "logical_deduction_seven_objects": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  }
+ },
+ "B_base": {
+  "temporal_sequences": {
+   "n": 250,
+   "ok_off": 62,
+   "ok_h": 62,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "navigate": {
+   "n": 250,
+   "ok_off": 154,
+   "ok_h": 154,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "web_of_lies": {
+   "n": 250,
+   "ok_off": 145,
+   "ok_h": 145,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  }
+ },
+ "B_ft3_notools": {
+  "temporal_sequences": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "navigate": {
+   "n": 250,
+   "ok_off": 218,
+   "ok_h": 218,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "web_of_lies": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  }
+ },
+ "B_ft3_tools": {
+  "temporal_sequences": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "navigate": {
+   "n": 250,
+   "ok_off": 248,
+   "ok_h": 248,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  },
+  "web_of_lies": {
+   "n": 250,
+   "ok_off": 250,
+   "ok_h": 250,
+   "call": 250,
+   "resp_nonempty": 250,
+   "implant_wrote": 0
+  }
+ },
+ "C_base": {
+  "multistep_arithmetic_two": {
+   "n": 250,
+   "ok_off": 113,
+   "ok_h": 113,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "boolean_expressions": {
+   "n": 250,
+   "ok_off": 207,
+   "ok_h": 207,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  },
+  "object_counting": {
+   "n": 250,
+   "ok_off": 165,
+   "ok_h": 165,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 0
+  }
+ },
+ "C_tools": {
+  "multistep_arithmetic_two": {
+   "n": 250,
+   "ok_off": 248,
+   "ok_h": 248,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 250
+  },
+  "boolean_expressions": {
+   "n": 250,
+   "ok_off": 247,
+   "ok_h": 247,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 244
+  },
+  "object_counting": {
+   "n": 250,
+   "ok_off": 198,
+   "ok_h": 198,
+   "call": 0,
+   "resp_nonempty": 0,
+   "implant_wrote": 250
+  }
+ }
+}

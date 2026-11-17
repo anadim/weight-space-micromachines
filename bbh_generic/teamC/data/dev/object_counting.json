@@ -1,0 +1,124 @@
+{
+ "examples": [
+  {
+   "input": "I have a shallot, three bell peppers, three sweet potatoes, a pumpkin, and an asparagus spear. How many vegetables do I have?",
+   "target": "9"
+  },
+  {
+   "input": "I have two xylophones and three bassoons. How many musical instruments do I have?",
+   "target": "5"
+  },
+  {
+   "input": "I have a potato, two pumpkins, a tangerine, two shallots, a shovel, a drum, and a kale bunch. How many vegetables do I have?",
+   "target": "6"
+  },
+  {
+   "input": "I have three parsnips, a cabbage, two beets, three zucchinis, a potato, and a turnip. How many vegetables do I have?",
+   "target": "11"
+  },
+  {
+   "input": "I have three rabbits, a duck, and a parrot. How many animals do I have?",
+   "target": "5"
+  },
+  {
+   "input": "I have two accordions and a saxophone. How many musical instruments do I have?",
+   "target": "3"
+  },
+  {
+   "input": "I have two lizards, a turtle, and a sheep. How many animals do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a drum, a cantaloupe, a cherry, a fig, a watermelon, a candle, a canary, two papayas, and a date. How many fruits do I have?",
+   "target": "7"
+  },
+  {
+   "input": "I have a goat, a drill, three llamas, a penguin, a horse, three hedgehogs, and a duck. How many animals do I have?",
+   "target": "10"
+  },
+  {
+   "input": "I have a turnip, two limes, three canoes, a pumpkin, an artichoke, three leeks, and a kale bunch. How many vegetables do I have?",
+   "target": "7"
+  },
+  {
+   "input": "I have a skateboard, two zucchinis, a cabbage, a pumpkin, two radishes, three giraffes, and a shallot. How many vegetables do I have?",
+   "target": "7"
+  },
+  {
+   "input": "I have a canary, a llama, two cornets, a ferret, two mugs, and three oboes. How many musical instruments do I have?",
+   "target": "5"
+  },
+  {
+   "input": "I have an eggplant, a parsnip, a rabbit, and a shovel. How many things do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a saxophone, a lamp, a leek, and two mandolins. How many musical instruments do I have?",
+   "target": "3"
+  },
+  {
+   "input": "I have a hedgehog, a gecko, three harps, and three turtles. How many items do I have?",
+   "target": "8"
+  },
+  {
+   "input": "I have three limes, two staplers, a guava, a saxophone, and a shallot. How many fruits do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a truck, three persimmons, a cello, and a lemon. How many fruits do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a tambourine, a canoe, a sitar, a tape measure, an apricot, and a cantaloupe. How many musical instruments do I have?",
+   "target": "2"
+  },
+  {
+   "input": "I have a bassoon, a tuba, a screwdriver, an accordion, a tambourine, three cornets, a drum, and a quince. How many musical instruments do I have?",
+   "target": "8"
+  },
+  {
+   "input": "I have a goat, a turtle, a penguin, and a hedgehog. How many animals do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a sheep and a rabbit. How many animals do I have?",
+   "target": "2"
+  },
+  {
+   "input": "I have three beets, three rabbits, three chisels, a cantaloupe, a horse, a potato, a kale bunch, an eggplant, three turtles, and three artichokes. How many things do I have?",
+   "target": "20"
+  },
+  {
+   "input": "I have three potatoes, a zucchini, an eggplant, three turnips, and two cabbages. How many vegetables do I have?",
+   "target": "10"
+  },
+  {
+   "input": "I have three giraffes, three pomegranates, a coconut, a cherry, a hedgehog, and a xylophone. How many things do I have?",
+   "target": "10"
+  },
+  {
+   "input": "I have a parsnip, a cherry, two kiwis, a pomegranate, a pear, a fig, a gecko, three chisels, a goat, a notebook, and three limes. How many fruits do I have?",
+   "target": "9"
+  },
+  {
+   "input": "I have three parsnips, a cauliflower, a sweet potato, a kale bunch, and a cucumber. How many vegetables do I have?",
+   "target": "7"
+  },
+  {
+   "input": "I have an oboe, two banjos, a mandolin, two shovels, a rake, two saws, and two tubas. How many musical instruments do I have?",
+   "target": "6"
+  },
+  {
+   "input": "I have two vans, two cellos, an eggplant, and an oboe. How many items do I have?",
+   "target": "6"
+  },
+  {
+   "input": "I have three canoes, two quinces, a cherry, a date, a hedgehog, and an eggplant. How many fruits do I have?",
+   "target": "4"
+  },
+  {
+   "input": "I have a coconut, three skateboards, and three mangoes. How many fruits do I have?",
+   "target": "4"
+  }
+ ]
+}
