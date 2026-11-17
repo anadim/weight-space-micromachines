@@ -9,6 +9,47 @@ implants, the GSM8K calculator `calc_s3`, and the `rethink` implant; the model i
 use, no custom checkpoint is needed), and contains the harnesses, the exactness tests, and the small result files behind
 the numbers below.
 
+**The rule for every result in this repository:** the implant is fully in weights. At inference it is fixed tensors (a
+linear reader on the token embeddings, compiled ReLU stacks, hard-attention heads over its own cached values, solved write
+directions, and in some implants small fitted parts such as a probe or a detector MLP), attached with forward hooks; the
+only Python in the generation loop is the decode loop and attaching the hooks. Every exception is disclosed where the
+number is reported, and the list is collected in [Exceptions to the in-weights rule](#exceptions-to-the-in-weights-rule).
+
+## Components
+
+| folder | what | host (frozen unless noted) | status |
+|---|---|---|---|
+| `micromachines/`, `scripts/`, `results/`, `tests/` | the nine BBH implants, the GSM8K calculator `calc_s3`, the `rethink` implant (state machine `rethink.py`; compiled `rethink_circuit.py`; compiled mistake detector + rethink `rethink_circuit_v2.py`), harnesses, exactness tests | Qwen3-0.6B-Base; calculator also Qwen3-1.7B/4B-Base | done (this README) |
+| [`bbh_generic/`](bbh_generic/README.md) | BBH redo: eight **generic** tools (state tracker, ordering solver, intervals, 2-D walk, truth propagation, expression, boolean, calculator) built under a held-out protocol with independent judges; one real-BBH run; sample-size study `ft100/` and one-host integration `integrate/` | Qwen3-0.6B-Base, frozen (Team C) or fine-tuned to write tool calls (Teams A, B; checkpoints not released) | done; `ft100/`, `integrate/` **results pending** |
+| [`latent_write/`](latent_write/README.md) | an exact intermediate value (`a*b`) computed by a compiled circuit and written into the residual stream at layer L, never as text | Qwen3-0.6B-Base, 1.7B-Base | done |
+| [`ifeval/`](ifeval/README.md) | IFEval rule keepers: 3 rules compiled into weights (`compiled_v2/`); 14 rules developed on our own prompts (`heldout/`) | Qwen3-0.6B (chat) | `compiled_v2` done; `heldout` **results pending** |
+| [`math500/`](math500/README.md) | which tools could help on MATH-500: failure reading + oracle text injection. **Analysis only, no implant** | Qwen3-0.6B/1.7B-Base | done |
+| [`topic_fence/`](topic_fence/README.md) | probe-gated implant that keeps a chat model off one topic | Qwen3-1.7B (chat) | **results pending** |
+| `finetuned_phase/` | the earlier phase: fine-tuned Qwen2.5-0.5B calls implants through special tokens; "eyes" implant with a trained MNIST CNN | Qwen2.5-0.5B, fine-tuned | snapshot, not re-run |
+
+Each folder's README gives what it is, how it attaches (and its disclosures), the exact commands with seeds and
+hyperparameters, where the result files are, and its headline numbers.
+
+## What is not released
+
+* **Model checkpoints.** No model weights are in this repository. The base models are public Hugging Face checkpoints
+  (`Qwen/Qwen3-0.6B-Base`, `Qwen/Qwen3-1.7B-Base`, `Qwen/Qwen3-4B-Base`, `Qwen/Qwen3-0.6B`, `Qwen/Qwen3-1.7B`,
+  `Qwen/Qwen2.5-0.5B`) and are downloaded on first use.
+* **Fine-tuned hosts** (BBH Teams A and B, `bbh_generic/ft100/`, `bbh_generic/integrate/`, `finetuned_phase/`) are not
+  released. What is released is the recipe: the exact training rows (or the seeded generator that writes them, with the
+  SHA-256 of the original files), the fine-tune scripts and their hyperparameters. See the "Reproduce" sections of
+  `bbh_generic/README.md`, `bbh_generic/ft100/README.md`, `bbh_generic/integrate/README.md`, and `finetuned_phase/README.md`.
+* **Implant tensors** ("weight additions") are included when small: solved veto vectors (`results/gsm_bigger/veto_*.pt`),
+  rethink write directions and the fitted mistake detector (`results/rethink_circuit/`, `results/rethink_v2/`), the
+  gated-rethink probe (`results/rethink/`), latent-write writer banks (`latent_write/results/writers/`), IFEval veto
+  vectors (`ifeval/*/`), topic-fence probes (`topic_fence/fitted/`). Compiled circuits are rebuilt from code at every
+  start (deterministic); the remaining solved pieces are rebuilt by the scripts named in each README.
+* **Raw generations.** Result files keep per-question records (gold, prediction, correctness, token counts, fire flags,
+  a SHA-256 of the generated text) and the SHA-256 of the full output they were reduced from; no generated text and no
+  benchmark question text (`scripts/reduce_outputs.py` and the per-folder reducers).
+* **Benchmark data.** BBH, GSM8K, GSM-Hard, IFEval, MATH-500 and MNIST are downloaded by scripts, not vendored (the BBH
+  3-shot prompt files that the teams' harnesses read are copied in `bbh_generic/team*/cot/`, MIT license).
+
 ## Results
 
 Every number in this section is printed by `python results/summarize.py`, which reads only the files in `results/`.
@@ -57,12 +98,63 @@ How much is known about attaching all nine at once:
 All 27 tasks (no implant on the other 15): with the vLLM base, base 39.42 and with implants 60.49; with the HF-loop base,
 40.37 and 61.27. Qwen2.5-7B 67.33, Qwen2.5-14B 74.45.
 
-### GSM8K / GSM-Hard: calculator implant and a "rethink" implant (full test sets, 1,319 each, greedy, 8-shot)
+### GSM8K / GSM-Hard, everything in weights: calculator, compiled rethink, compiled mistake detector (full test sets)
 
-| Qwen3-0.6B-Base, frozen | as is | + calculator | + rethink | + both |
+Frozen Qwen3-0.6B-Base, 8-shot, greedy, 1,319 problems per set. Every arm runs in the same generation loop with the same
+stop rule, score and budget (`scripts/rethink_v2/run_gsm_v2.py`, max 700 new tokens, batch 32); the harness only attaches
+the implants and generates.
+
+| Qwen3-0.6B-Base, frozen | as is | + calculator | + rethink (always) | + both | + rethink gated by the detector | + calculator + gated rethink |
+|---|---:|---:|---:|---:|---:|---:|
+| GSM8K | 52.01 | 53.30 | 56.56 | **57.54** | 55.65 | 56.71 |
+| GSM-Hard | 26.61 | 34.34 | 29.57 | **37.15** | 29.04 | 35.18 |
+| extra tokens / problem, GSM8K (GSM-Hard) | 0 | 0 | 145 (227) | 145 (241) | 108 (172) | 110 (188) |
+
+* **calculator** = `calc_s3` (+ the solved "no more digits" veto), see below.
+* **rethink (always)** = the compiled `rethink` circuit (`micromachines/rethink_circuit.py`, through the v2 module with the
+  detector output fixed to 1): where the host is about to end its answer (after its first `####`), it writes
+  `Hmm, wait. Let me rethink this.` and the host writes a second solution; the last `####` counts.
+* **gated** = `micromachines/rethink_circuit_v2.py`: a **fitted mistake detector** (a one-hidden-layer ReLU MLP on the
+  host's layer 12-24 states at the token before the first `####`, trained on GSM8K **train** generations plus a
+  train-side "scaled numbers" analogue of GSM-Hard, ~52k labelled states; `results/rethink_v2/detector_hybrid.pt`) decides
+  whether to rethink before the answer (`####` replaced by the phrase, 300-token budget), after it, or not at all.
+  Detector AUROC on the host's own first answers: GSM8K test 0.85, GSM-Hard 0.84 (the earlier layer-28 probe: 0.81 / 0.66).
+  Gated saves 22-26% of the extra tokens and stays 0.5-2 points below always-on: always-on breaks only ~1.7% of right
+  answers, so there is little for a gate to save.
+
+Provenance: `results/rethink_v2/summary.json` (`python scripts/rethink_v2/summarize_v2.py results/rethink_v2/final_eval`,
+with paired bootstrap CIs) over `results/rethink_v2/final_eval/*.json`; AUROCs `results/rethink_v2/auroc_{test,hard}.json`.
+Silent check (`scripts/rethink_v2/check_v2.py`, `results/rethink_v2/silent_check_hybrid.json`): bit-identical logits
+wherever the implant does not write; host weights hash unchanged. The compiled v1 circuit alone, with its own baselines
+at a 320-token budget (`scripts/run_gsm_circuit.py`, `results/rethink_circuit/summary.json`): GSM8K 52.24 -> always 56.56,
++calc 53.37 -> 57.54; GSM-Hard 27.29 -> 29.26, +calc 35.03 -> 37.23; its probe-gated variant 55.34 / 57.09 on GSM8K
+(the GSM-Hard gated runs are partial, 192 and 768 problems). Its end detector is a readout of the final hidden state
+through a fixed copy of the host's LM-head rows; it agrees with the host's own argmax on 8,565 of 8,565 checked positions.
+
+Calculator on bigger hosts (`calc_s3` circuit unchanged; reader re-checked on the host's vocabulary, write directions and
+veto re-solved per host; `scripts/run_gsm.py`, max 320 new tokens):
+
+| host | GSM8K plain -> calc | GSM-Hard plain -> calc |
+|---|---:|---:|
+| Qwen3-0.6B-Base | 52.24 -> 53.37 | 27.29 -> 35.03 |
+| Qwen3-1.7B-Base | 73.09 -> 72.33 | 45.41 -> 51.02 |
+| Qwen3-4B-Base | 84.31 -> 84.69 | 58.98 -> 60.35 |
+
+The gain shrinks with host size. On 1.7B the calculator costs 0.8 points on GSM8K (the dot-continuation of `calc_s3`
+below and the host's bare-number answer format). Provenance: `results/gsm_full_implant/`, `results/gsm_bigger/`
+(`veto_q17.pt`, `veto_q4.pt` are the re-solved veto vectors: `python scripts/solve_veto.py --model Qwen/Qwen3-1.7B-Base
+--out results/gsm_bigger/veto_q17.pt --device cuda`, same for 4B).
+
+### GSM8K / GSM-Hard, earlier run: research harness, rethink as evaluation code (superseded; kept for reference)
+
+**Exception to the in-weights rule:** the two rethink columns of this table were produced by evaluation code (the script
+cut the first answer, appended the phrase as text and generated again). The in-weights runs above replace them; they
+agree within noise.
+
+| Qwen3-0.6B-Base, frozen | as is | + calculator | + rethink (eval code) | + both (eval code) |
 |---|---:|---:|---:|---:|
-| GSM8K | 51.93 | 54.06 | 56.10 | **57.62** |
-| GSM-Hard | 26.99 | 34.50 | 29.26 | **37.23** |
+| GSM8K | 51.93 | 54.06 | 56.10 | 57.62 |
+| GSM-Hard | 26.99 | 34.50 | 29.26 | 37.23 |
 
 Not fully held out: the 8 prompt examples were picked from GSM8K train during a prompt search on the earlier
 Qwen2.5-0.5B setup that was scored on a 200-problem train holdout **and on the first 200 GSM-Hard test problems**
@@ -96,7 +188,11 @@ cache (implant): in float32, 31 of 32 GSM-Hard continuations are identical, and 
 only its batch size changes. The full test sets were not re-run with the implant, so the table's rethink columns are
 the script's numbers.
 
-### Reading the model: a probe decides when to rethink (GSM8K test, generations in vLLM)
+### Reading the model: a probe decides when to rethink (GSM8K test, generations in vLLM; evaluation-code analysis)
+
+**Exception to the in-weights rule:** the policy table below was computed by evaluation code on saved vLLM generations
+(it is the analysis that motivated the gate). The in-weights gate is the gated implant described after the table and,
+on the full test sets, the compiled mistake detector in the GSM section above.
 
 A logistic probe on layer-28 residual states at the model's `####` token, fitted on 1,500 GSM8K training problems, flags
 wrong answers with test AUROC 0.81 (0.83 on solutions written with an oracle calculator). Rethinking only when it fires:
@@ -145,6 +241,13 @@ gated run was not done.
   problems, threshold chosen on those problems; `scripts/gate/export_probe.py`). The rest of the `rethink` implant is
   written: its end-of-answer trigger (the host's own norm + LM head, then a fixed table of end tokens), its token tables,
   its once-per-answer state, and the forced token sequence; its 399 write directions are solved like the others'.
+* **Fitted on data, inside the compiled rethink implants:** the end detector of `rethink_circuit.py` is a fixed copy of
+  the host's own LM-head rows (not fitted); the mistake detector of `rethink_circuit_v2.py` is a fitted 3-head MLP
+  (7 layers x 1,024 inputs -> 256 ReLU -> 3 heads; AdamW, seed 0, weight decay and epoch chosen on a selection split;
+  thresholds grid-searched) on host states from GSM8K **train** generations and a train-side scaled-number analogue
+  (`scripts/rethink_v2/`, `results/rethink_v2/detector_hybrid.pt`). Everything else in both circuits is written: token
+  tables, hard-attention heads (first `####`, gate, once-per-answer), the budget counter and a convolution writer over
+  the implant's own cached rows.
 * **Not trained:** Qwen3-0.6B-Base. No fine-tuning, no new tokens; its weights are bit-identical to the download
   (`scripts/check_silent.py` hashes them before and after attaching).
 
@@ -221,6 +324,37 @@ python results/summarize.py              # the tables above, from results/
 pip install -r requirements-extra.txt && python figures/make_figs.py
 ```
 
+GSM with everything in weights (the first GSM table; one GPU; vLLM only for the detector's TRAIN generations):
+
+```bash
+python scripts/solve_veto.py --device cuda                                       # -> runs/veto_qwen3.pt
+python scripts/rethink_v2/make_scaled_train.py data/gsm8k/train.jsonl data/gsm8k/train_scaled.jsonl   # seed 1234
+python scripts/rethink_v2/make_sel.py                                            # train-side sel / rep splits (md5 rule)
+python scripts/rethink_v2/gen_train.py results/rethink_v2/gen_train_gsm.json --src data/gsm8k/train.jsonl --K 3      # vLLM
+python scripts/rethink_v2/gen_train.py results/rethink_v2/gen_train_scaled.json --src data/gsm8k/train_scaled.jsonl --K 3
+python scripts/rethink_v2/extract_states.py results/rethink_v2/gen_train_gsm.json results/rethink_v2/states_gsm.pt       # ~4 GB
+python scripts/rethink_v2/extract_states.py results/rethink_v2/gen_train_scaled.json results/rethink_v2/states_scaled.pt # ~3 GB
+python scripts/rethink_v2/policy3.py results/rethink_v2/pol3 300 '[12,14,16,18,20,22,24]' 256   # the fitted detector
+cp results/rethink_v2/pol3/detector_hybrid_cap300.pt results/rethink_v2/detector_hybrid.pt      # (shipped)
+bash scripts/rethink_v2/queue.sh scripts/rethink_v2/jobs_baselines.txt 4       # none / always arms -> results/rethink_v2/final/
+bash scripts/rethink_v2/queue.sh scripts/rethink_v2/jobs_hybrid.txt 4          # detector-gated arms
+python scripts/rethink_v2/summarize_v2.py results/rethink_v2/final > out/summary_v2.json
+python scripts/rethink_v2/auroc_eval.py results/rethink_v2/detector_hybrid.pt test out/auroc_test.json \
+       results/rethink_v2/final/test_plain_none_s0.json results/rethink_v2/final/test_plain_none_s1.json
+python scripts/rethink_v2/check_v2.py --mode gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt
+# compiled v1 circuit and its 320-token baselines; bigger hosts
+python scripts/rethink_circuit_build.py                                         # shortlist + write directions (cached)
+python scripts/run_gsm_circuit.py out/test_plain_always.json --split test --mode plain --implant always --bs 32
+python scripts/run_gsm.py out/test_calc.json --split test --mode calc --bs 32
+python scripts/solve_veto.py --model Qwen/Qwen3-4B-Base --out results/gsm_bigger/veto_q4.pt --device cuda
+python scripts/run_gsm.py out/q4_hard_calc.json --model Qwen/Qwen3-4B-Base --split hard --mode calc --veto results/gsm_bigger/veto_q4.pt --bs 32
+python scripts/reduce_outputs.py out/q4_hard_calc.json out/q4_hard_calc_reduced.json      # the compact form kept in results/
+```
+
+The job files run each set as two batch-aligned shards (`--start_batch` / `--max_batches`); a single unsharded run gives
+the same batches. The write directions are solved on first use and cached (`results/rethink_v2/write_dirs_all.pt`,
+`results/rethink_circuit/write_dirs.pt`, both shipped).
+
 Baselines in vLLM: `scripts/baselines/run_bbh_vllm.py`. Rethink gate: `scripts/gate/gen_rethink.py` (vLLM) ->
 `fit_detector.py` -> `cost_curve.py`; the probe for the gated implant: `gen_rethink.py` -> `export_probe.py` ->
 `results/rethink/rethink_probe_L28.pt`, then `run_gsm.py --split test --mode plain --rethink_implant gated`.
@@ -251,14 +385,39 @@ Baselines in vLLM: `scripts/baselines/run_bbh_vllm.py`. Rethink gate: `scripts/g
 * **The rethink implant is unlike the others in two ways.** It reads the host's hidden state (its own next-token choice,
   and for the gate a fitted linear probe), not only its tokens, and it writes a fixed English phrase rather than a
   computed answer. Its state machine is a few lines of tensor code (`micromachines/rethink.py`), not a compiled ReLU
-  circuit. The reported GSM rethink numbers come from the evaluation-code version (`--rethink`); the implant matches
-  it token for token up to the end of the phrase and within bf16 noise after it (`VERIFY.md` section 10). Where it does
+  circuit; the compiled versions (`rethink_circuit.py`, `rethink_circuit_v2.py`) replace the state machine with fixed
+  tensor ops and give the first GSM table. The earlier GSM rethink numbers came from the evaluation-code version
+  (`--rethink`); `rethink.py` matches it token for token up to the end of the phrase and within bf16 noise after it
+  (`VERIFY.md` section 10). Where it does
   not write, the host's logits are bit-identical to the plain model, also at the `####` positions where the gated
   version evaluates its probe (`scripts/check_silent_rethink.py`: 11,598 positions over 80 problems, 0 mismatches).
 * **Baselines are Qwen2.5-7B/14B**, not Qwen3 models of those sizes, and ran in vLLM.
 * **Numerics.** GPU runs use bf16 with left-padded batches, so exact outputs depend on batch composition; reruns match
   token for token with the same batch size and a `--limit` that is a multiple of it. On CPU, Intel MKL is not bitwise
   reproducible across calls unless `MKL_CBWR=COMPATIBLE` is set (`demo.py` sets it).
+
+## Exceptions to the in-weights rule
+
+Collected from this README and the component READMEs (each is also disclosed next to its number):
+
+* **GSM, earlier table** (research harness): the rethink columns were evaluation code. Superseded by the in-weights table.
+* **Rethink-gate policy table** (vLLM generations): evaluation-code analysis; the in-weights gate is reported separately.
+* **`micromachines/rethink.py`** keeps its once-per-answer state in a few lines of tensor code, not a compiled circuit;
+  the compiled `rethink_circuit*.py` are the in-weights versions.
+* **Reading the host's own next-token choice:** the rethink end detector, IFEval's quote-close, and the v2 read point
+  ("the host is about to write `####`") read the host's state through a fixed copy of its LM-head rows. This is a fixed
+  linear map, but it is close to a logit processor.
+* **Fitted parts inside implants** (in weights, but learned from data, not written): the rethink probe and mistake
+  detector, the solved write and veto directions, IFEval veto vectors, the latent-write writer banks, the topic-fence
+  probes (all disclosed with their training data in the component READMEs).
+* **Hosts that are not frozen:** BBH Teams A and B (and `ft100/`, `integrate/`) fine-tune the host to write tool calls;
+  the tools themselves are compiled. Fine-tuned-without-tools is always reported next to with-tools.
+* **`math500/`** has no implant: its tool numbers are oracle text injections from Python (upper bounds).
+* **`latent_write/`** control arms (corrupted / mean values) override the written value from Python; they are controls,
+  not results. Its window looks a few tokens ahead within the prompt (prefill).
+* **`ifeval/heldout/`** (pending) is batched tensor code not exported as weight matrices, and forces the host's best
+  non-blocked token (a masked hard-max, close to a logit processor).
+* **`topic_fence/`** (pending): hooks that emulate in-weight units; its keyword arm is a Python regex baseline.
 
 ## Earlier phase (fine-tuned; separate, not re-run)
 
@@ -273,16 +432,24 @@ was offline while this repo was assembled (marked as such in `finetuned_phase/RE
 ```
 micromachines/          library: hdl.py (ReLU circuit compiler), machine.py (reader, write directions, attach),
                         specs.py (the implants), circuits/ (one hand-written circuit per implant), rethink.py (the
-                        rethink implant), calcfmt.py, boolfmt.py
+                        rethink implant), rethink_circuit.py / rethink_circuit_v2.py (compiled rethink; + mistake
+                        detector), calcfmt.py, boolfmt.py
 demo.py                 one prompt, one implant, bit-identity asserts
 scripts/                run_bbh.py, run_gsm.py, solve_veto.py, build_implants.py, check_silent.py, compare_runs.py,
                         check_silent_rethink.py, compare_rethink.py, gen_deduction_vocab.py, baselines/run_bbh_vllm.py,
-                        gate/{gen_rethink,fit_detector,cost_curve,export_probe,eval_gate}.py
+                        gate/{gen_rethink,fit_detector,cost_curve,export_probe,eval_gate}.py, run_gsm_circuit.py,
+                        rethink_circuit_build.py, check_rethink_circuit.py, summarize_rethink_circuit.py,
+                        rethink_v2/ (detector data, fit, policy, run, checks, summary), reduce_outputs.py
 tests/                  exactness tests (circuit-only and through the Qwen tokenizer/embeddings)
 data/                   download scripts (no data is vendored)
 results/                result files behind every number + summarize.py (see results/README.md)
 figures/                make_figs.py (data figures, from results/), diagram and animation scripts
 finetuned_phase/        the earlier fine-tuned phase (snapshot)
+bbh_generic/            BBH redo with generic tools (teamA/, teamB/, teamC/, peek/, ft100/, integrate/, PROTOCOL.md)
+latent_write/           compiled latent write (exact value written into the residual stream)
+ifeval/                 IFEval rule keepers (compiled_v2/, heldout/)
+math500/                MATH-500 failure analysis (no implant)
+topic_fence/            topic fence (results pending)
 VERIFY.md               what was re-run from a fresh clone, where, and the outcomes
 ```
 
@@ -302,7 +469,19 @@ files in `figures/fonts/`), otherwise the figures fall back to DejaVu Sans.
 
 ## License
 
-MIT (see `LICENSE`). BBH and GSM8K/GSM-Hard are MIT-licensed and are downloaded, not redistributed (pinned BBH commit
-and Hugging Face dataset revisions in `data/`). The earlier phase in `finetuned_phase/` downloads MNIST (LeCun, Cortes,
-Burges; CC BY-SA 3.0), also not redistributed. The Qwen3 weights
-(Apache-2.0) are downloaded from Hugging Face.
+MIT (see `LICENSE`). Datasets are downloaded, not redistributed, with these exceptions noted:
+
+* BBH (MIT; Suzgun et al.): downloaded at a pinned commit (`data/download_bbh.sh`). The official 3-shot CoT prompt
+  files of the 12 tasks are copied in `bbh_generic/team*/cot/` (MIT permits redistribution with the notice; copyright
+  the BIG-Bench Hard authors). No BBH test questions are included.
+* GSM8K (MIT) and GSM-Hard (MIT): downloaded from Hugging Face at pinned revisions (`data/prepare_gsm.py`).
+* IFEval (`google/IFEval`, Apache-2.0), IFBench and Multi-IF: downloaded by `ifeval/data/*.py`. Our generated prompts in
+  `ifeval/heldout/data/` reuse a few generic instruction sentences that also appear in IFEval (disclosed there).
+* MATH-500 (`HuggingFaceH4/MATH-500`, from the MATH dataset, MIT): downloaded by `math500/gen.py`; only per-problem
+  grades are included, no problems.
+* MNIST (LeCun, Cortes, Burges; CC BY-SA 3.0), used in `finetuned_phase/`: downloaded.
+* Topic fence: Alpaca (CC BY-NC 4.0) rows are not included; AdvBench (MIT) is downloaded; `topic_fence/data/test_hand.jsonl`
+  is our own.
+* All other data files in this repository were generated by our own seeded generators.
+
+The Qwen3 / Qwen2.5 weights (Apache-2.0) are downloaded from Hugging Face.
