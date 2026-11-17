@@ -1,0 +1,8 @@
+N1 seed=1 MACRO runs/seeds/comp_N1_s1 (no machines): 37.88 over 8 tasks | 152s
+A1 seed=1 MACRO runs/seeds/comp_A1_s1 (calc,swap,bool,truth,logic,dyck,walk,time,sort,date,shape): 48.75 over 8 tasks | 340s
+N1 seed=2 MACRO runs/seeds/comp_N1_s2 (no machines): 34.62 over 8 tasks | 130s
+A1 seed=2 MACRO runs/seeds/comp_A1_s2 (calc,swap,bool,truth,logic,dyck,walk,time,sort,date,shape): 57.12 over 8 tasks | 343s
+A1 seed=3 MACRO runs/seeds/comp_A1_s3 (calc,swap,bool,truth,logic,dyck,walk,time,sort,date,shape): 53.75 over 8 tasks | 339s
+N1 seed=3 MACRO runs/seeds/comp_N1_s3 (no machines): 32.25 over 8 tasks | 143s
+N1 seed=4 MACRO runs/seeds/comp_N1_s4 (no machines): 42.88 over 8 tasks | 192s
+A1 seed=4 MACRO runs/seeds/comp_A1_s4 (calc,swap,bool,truth,logic,dyck,walk,time,sort,date,shape): 44.38 over 8 tasks | 430s

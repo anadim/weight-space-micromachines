@@ -1,0 +1,4 @@
+# Only for the vLLM baselines (scripts/baselines/run_bbh_vllm.py) and the rethink-gate generations (scripts/gate/gen_rethink.py)
+vllm==0.10.2
+# figures/make_figs.py
+matplotlib==3.10.7

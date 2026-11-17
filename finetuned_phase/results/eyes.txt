@@ -1,0 +1,32 @@
+tool_4k seed=1 split=dev MACRO runs/seeds/eyes_tool_4k_s1 (calc,eye): 98.32 over 3 tasks | 41s
+tool_4k seed=1 split=test MACRO runs/seeds/eyes_tool_4k_s1 (calc,eye): 97.67 over 3 tasks | 58s
+notool_4k seed=1 split=dev MACRO runs/seeds/eyes_notool_4k_s1 (no machines): 92.61 over 3 tasks | 34s
+notool_4k seed=1 split=test MACRO runs/seeds/eyes_notool_4k_s1 (no machines): 94.06 over 3 tasks | 48s
+tool_16k seed=1 split=dev MACRO runs/seeds/eyes_tool_16k_s1 (calc,eye): 98.32 over 3 tasks | 36s
+tool_16k seed=1 split=test MACRO runs/seeds/eyes_tool_16k_s1 (calc,eye): 97.67 over 3 tasks | 52s
+notool_16k seed=1 split=dev MACRO runs/seeds/eyes_notool_16k_s1 (no machines): 98.07 over 3 tasks | 34s
+notool_16k seed=1 split=test MACRO runs/seeds/eyes_notool_16k_s1 (no machines): 97.10 over 3 tasks | 49s
+tool_4k seed=2 split=dev MACRO runs/seeds/eyes_tool_4k_s2 (calc,eye): 98.32 over 3 tasks | 42s
+tool_4k seed=2 split=test MACRO runs/seeds/eyes_tool_4k_s2 (calc,eye): 97.67 over 3 tasks | 61s
+notool_4k seed=2 split=dev MACRO runs/seeds/eyes_notool_4k_s2 (no machines): 94.32 over 3 tasks | 34s
+notool_4k seed=2 split=test MACRO runs/seeds/eyes_notool_4k_s2 (no machines): 93.56 over 3 tasks | 48s
+tool_4k seed=3 split=dev MACRO runs/seeds/eyes_tool_4k_s3 (calc,eye): 98.32 over 3 tasks | 43s
+tool_4k seed=3 split=test MACRO runs/seeds/eyes_tool_4k_s3 (calc,eye): 97.67 over 3 tasks | 62s
+notool_4k seed=3 split=dev MACRO runs/seeds/eyes_notool_4k_s3 (no machines): 94.21 over 3 tasks | 34s
+notool_4k seed=3 split=test MACRO runs/seeds/eyes_notool_4k_s3 (no machines): 92.37 over 3 tasks | 49s
+tool_16k seed=2 split=dev MACRO runs/seeds/eyes_tool_16k_s2 (calc,eye): 98.32 over 3 tasks | 43s
+tool_16k seed=2 split=test MACRO runs/seeds/eyes_tool_16k_s2 (calc,eye): 97.67 over 3 tasks | 59s
+notool_16k seed=2 split=dev MACRO runs/seeds/eyes_notool_16k_s2 (no machines): 97.83 over 3 tasks | 33s
+notool_16k seed=2 split=test MACRO runs/seeds/eyes_notool_16k_s2 (no machines): 98.01 over 3 tasks | 50s
+tool_4k seed=4 split=dev MACRO runs/seeds/eyes_tool_4k_s4 (calc,eye): 98.32 over 3 tasks | 41s
+tool_4k seed=4 split=test MACRO runs/seeds/eyes_tool_4k_s4 (calc,eye): 97.67 over 3 tasks | 59s
+notool_4k seed=4 split=dev MACRO runs/seeds/eyes_notool_4k_s4 (no machines): 94.21 over 3 tasks | 35s
+notool_4k seed=4 split=test MACRO runs/seeds/eyes_notool_4k_s4 (no machines): 92.91 over 3 tasks | 50s
+tool_16k seed=3 split=dev MACRO runs/seeds/eyes_tool_16k_s3 (calc,eye): 98.32 over 3 tasks | 40s
+tool_16k seed=3 split=test MACRO runs/seeds/eyes_tool_16k_s3 (calc,eye): 97.67 over 3 tasks | 57s
+notool_16k seed=3 split=dev MACRO runs/seeds/eyes_notool_16k_s3 (no machines): 96.36 over 3 tasks | 33s
+notool_16k seed=3 split=test MACRO runs/seeds/eyes_notool_16k_s3 (no machines): 97.57 over 3 tasks | 46s
+tool_16k seed=4 split=dev MACRO runs/seeds/eyes_tool_16k_s4 (calc,eye): 98.32 over 3 tasks | 41s
+tool_16k seed=4 split=test MACRO runs/seeds/eyes_tool_16k_s4 (calc,eye): 97.67 over 3 tasks | 62s
+notool_16k seed=4 split=dev MACRO runs/seeds/eyes_notool_16k_s4 (no machines): 99.05 over 3 tasks | 34s
+notool_16k seed=4 split=test MACRO runs/seeds/eyes_notool_16k_s4 (no machines): 97.53 over 3 tasks | 47s

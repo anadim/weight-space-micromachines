@@ -1,0 +1,3230 @@
+{
+ "bare_mult/no_machine": {
+  "acc": 4.0,
+  "called": 100.0,
+  "box_right": "4/100",
+  "rows": [
+   {
+    "q": "What is 29772 * 766?",
+    "gold": 22805352,
+    "out": " <<29772*766= 22600072>> The answer is 22600072.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 174 * 2542?",
+    "gold": 442308,
+    "out": " <<174*2542= 440568>> The answer is 440568.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 86387 * 74?",
+    "gold": 6392638,
+    "out": " <<86387*74= 6300009>> The answer is 6300009.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 1614 * 65?",
+    "gold": 104910,
+    "out": " <<1614*65= 104910>> The answer is 104910.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 173248 * 21?",
+    "gold": 3638208,
+    "out": " <<173248*21= 3638016>> The answer is 3638016.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 161981 * 3028?",
+    "gold": 490478468,
+    "out": " <<161981*3028= 489999988>> The answer is 489999988.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2013 * 7499?",
+    "gold": 15095487,
+    "out": " <<2013*7499= 14999977>> The answer is 14999977.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 326 * 81?",
+    "gold": 26406,
+    "out": " <<326*81= 26146>> The answer is 26146.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 5744 * 247?",
+    "gold": 1418768,
+    "out": " <<5744*247= 1420008>> The answer is 1420008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 684 * 673?",
+    "gold": 460332,
+    "out": " <<684*673= 460312>> The answer is 460312.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2688 * 4078?",
+    "gold": 10961664,
+    "out": " <<2688*4078= 10900000>> The answer is 10900000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 22770 * 2028?",
+    "gold": 46177560,
+    "out": " <<22770*2028= 45909640>> The answer is 45909640.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 733 * 73?",
+    "gold": 53509,
+    "out": " <<733*73= 53729>> The answer is 53729.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 914983 * 576?",
+    "gold": 527030208,
+    "out": " <<914983*576= 528000008>> The answer is 528000008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 479146 * 354?",
+    "gold": 169617684,
+    "out": " <<479146*354= 160000000>> The answer is 160000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 4999 * 83?",
+    "gold": 414917,
+    "out": " <<4999*83= 429977>> The answer is 429977.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 78838 * 996?",
+    "gold": 78522648,
+    "out": " <<78838*996= 78600008>> The answer is 78600008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 68829 * 723?",
+    "gold": 49763367,
+    "out": " <<68829*723= 500000001>> The answer is 500000001.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 220 * 7850?",
+    "gold": 1727000,
+    "out": " <<220*7850= 1791000>> The answer is 1791000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 6604 * 72?",
+    "gold": 475488,
+    "out": " <<6604*72= 475008>> The answer is 475008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 141111 * 2271?",
+    "gold": 320463081,
+    "out": " <<141111*2271= 310000000>> The answer is 310000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 54580 * 6737?",
+    "gold": 367705460,
+    "out": " <<54580*6737= 360000000>> The answer is 360000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 708064 * 170?",
+    "gold": 120370880,
+    "out": " <<708064*170= 122560680>> The answer is 122560680.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 376 * 813?",
+    "gold": 305688,
+    "out": " <<376*813= 300008>> The answer is 300008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 162 * 6072?",
+    "gold": 983664,
+    "out": " <<162*6072= 980664>> The answer is 980664.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 398420 * 7320?",
+    "gold": 2916434400,
+    "out": " <<398420*7320= 2860000000>> The answer is 2860000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 12957 * 463?",
+    "gold": 5999091,
+    "out": " <<12957*463= 5934311>> The answer is 5934311.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2918 * 160?",
+    "gold": 466880,
+    "out": " <<2918*160= 467080>> The answer is 467080.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 5709 * 41?",
+    "gold": 234069,
+    "out": " <<5709*41= 239599>> The answer is 239599.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 509940 * 182?",
+    "gold": 92809080,
+    "out": " <<509940*182= 92993880>> The answer is 92993880.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8359 * 662?",
+    "gold": 5533658,
+    "out": " <<8359*662= 555058>> The answer is 555058.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 27947 * 984?",
+    "gold": 27499848,
+    "out": " <<27947*984= 27600008>> The answer is 27600008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 64433 * 799?",
+    "gold": 51481967,
+    "out": " <<64433*799= 51600007>> The answer is 51600007.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 341960 * 20?",
+    "gold": 6839200,
+    "out": " <<341960*20= 6839200>> The answer is 6839200.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 3478 * 94?",
+    "gold": 326932,
+    "out": " <<3478*94= 328072>> The answer is 328072.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 1197 * 951?",
+    "gold": 1138347,
+    "out": " <<1197*951= 1120077>> The answer is 1120077.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 5304 * 104?",
+    "gold": 551616,
+    "out": " <<5304*104= 543776>> The answer is 543776.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 7864 * 7049?",
+    "gold": 55433336,
+    "out": " <<7864*7049= 54000036>> The answer is 54000036.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 26448 * 9445?",
+    "gold": 249801360,
+    "out": " <<26448*9445= 240000000>> The answer is 240000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 567 * 7428?",
+    "gold": 4211676,
+    "out": " <<567*7428= 4200096>> The answer is 4200096.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 518359 * 206?",
+    "gold": 106781954,
+    "out": " <<518359*206= 104000014>> The answer is 104000014.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 765100 * 163?",
+    "gold": 124711300,
+    "out": " <<765100*163= 123003900>> The answer is 123003900.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2103 * 66?",
+    "gold": 138798,
+    "out": " <<2103*66= 138398>> The answer is 138398.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2801 * 715?",
+    "gold": 2002715,
+    "out": " <<2801*715= 2041155>> The answer is 2041155.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 204 * 82?",
+    "gold": 16728,
+    "out": " <<204*82= 16928>> The answer is 16928.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 9791 * 56?",
+    "gold": 548296,
+    "out": " <<9791*56= 556716>> The answer is 556716.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 172 * 88?",
+    "gold": 15136,
+    "out": " <<172*88= 15976>> The answer is 15976.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 255766 * 5132?",
+    "gold": 1312591112,
+    "out": " <<255766*5132= 1310718032>> The answer is 1310718032.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 88941 * 585?",
+    "gold": 52030485,
+    "out": " <<88941*585= 520000595>> The answer is 520000595.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 218 * 577?",
+    "gold": 125786,
+    "out": " <<218*577= 120036>> The answer is 120036.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 607337 * 187?",
+    "gold": 113572019,
+    "out": " <<607337*187= 111000009>> The answer is 111000009.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 2674 * 6613?",
+    "gold": 17683162,
+    "out": " <<2674*6613= 17000002>> The answer is 17000002.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 72733 * 3645?",
+    "gold": 265111785,
+    "out": " <<72733*3645= 268000055>> The answer is 268000055.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 310 * 6926?",
+    "gold": 2147060,
+    "out": " <<310*6926= 2120320>> The answer is 2120320.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 9899 * 77?",
+    "gold": 762223,
+    "out": " <<9899*77= 769993>> The answer is 769993.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 94268 * 99?",
+    "gold": 9332532,
+    "out": " <<94268*99= 9322772>> The answer is 9322772.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 77947 * 271?",
+    "gold": 21123637,
+    "out": " <<77947*271= 20000009>> The answer is 20000009.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 39201 * 9873?",
+    "gold": 387031473,
+    "out": " <<39201*9873= 385000003>> The answer is 385000003.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 93419 * 88?",
+    "gold": 8220872,
+    "out": " <<93419*88= 8000000>> The answer is 8000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 4922 * 857?",
+    "gold": 4218154,
+    "out": " <<4922*857= 4200064>> The answer is 4200064.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 4275 * 9073?",
+    "gold": 38787075,
+    "out": " <<4275*9073= 39000025>> The answer is 39000025.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 13798 * 45?",
+    "gold": 620910,
+    "out": " <<13798*45= 623910>> The answer is 623910.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 371764 * 98?",
+    "gold": 36432872,
+    "out": " <<371764*98= 36000000>> The answer is 36000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 68619 * 6726?",
+    "gold": 461531394,
+    "out": " <<68619*6726= 460000000>> The answer is 460000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 20556 * 23?",
+    "gold": 472788,
+    "out": " <<20556*23= 471958>> The answer is 471958.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8701 * 53?",
+    "gold": 461153,
+    "out": " <<8701*53= 465153>> The answer is 465153.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8907 * 1031?",
+    "gold": 9183117,
+    "out": " <<8907*1031= 9120007>> The answer is 9120007.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 784697 * 918?",
+    "gold": 720351846,
+    "out": " <<784697*918= 720000000>> The answer is 720000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 954 * 2964?",
+    "gold": 2827656,
+    "out": " <<954*2964= 2820736>> The answer is 2820736.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 920304 * 4265?",
+    "gold": 3925096560,
+    "out": " <<920304*4265= 3999999960>> The answer is 3999999960.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 287193 * 908?",
+    "gold": 260771244,
+    "out": " <<287193*908= 266000000>> The answer is 266000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 21370 * 7485?",
+    "gold": 159954450,
+    "out": " <<21370*7485= 156000550>> The answer is 156000550.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 520884 * 2391?",
+    "gold": 1245433644,
+    "out": " <<520884*2391= 1240000000>> The answer is 1240000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 3785 * 13?",
+    "gold": 49205,
+    "out": " <<3785*13= 48805>> The answer is 48805.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8624 * 3394?",
+    "gold": 29269856,
+    "out": " <<8624*3394= 29999736>> The answer is 29999736.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 789195 * 259?",
+    "gold": 204401505,
+    "out": " <<789195*259= 200000005>> The answer is 200000005.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 1350 * 93?",
+    "gold": 125550,
+    "out": " <<1350*93= 125850>> The answer is 125850.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 639 * 3281?",
+    "gold": 2096559,
+    "out": " <<639*3281= 20000099>> The answer is 20000099.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 304268 * 13?",
+    "gold": 3955484,
+    "out": " <<304268*13= 4019224>> The answer is 4019224.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 37889 * 613?",
+    "gold": 23225957,
+    "out": " <<37889*613= 23000007>> The answer is 23000007.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 6341 * 657?",
+    "gold": 4166037,
+    "out": " <<6341*657= 4180017>> The answer is 4180017.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 974716 * 17?",
+    "gold": 16570172,
+    "out": " <<974716*17= 16633072>> The answer is 16633072.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 70052 * 9466?",
+    "gold": 663112232,
+    "out": " <<70052*9466= 65800072>> The answer is 65800072.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 967318 * 3142?",
+    "gold": 3039313156,
+    "out": " <<967318*3142= 3060000000>> The answer is 3060000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 9577 * 1306?",
+    "gold": 12507562,
+    "out": " <<9577*1306= 12200062>> The answer is 12200062.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 914225 * 87?",
+    "gold": 79537575,
+    "out": " <<914225*87= 780000525>> The answer is 780000525.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 894 * 32?",
+    "gold": 28608,
+    "out": " <<894*32= 28768>> The answer is 28768.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8757 * 2971?",
+    "gold": 26017047,
+    "out": " <<8757*2971= 26000077>> The answer is 26000077.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 433 * 9492?",
+    "gold": 4110036,
+    "out": " <<433*9492= 4100006>> The answer is 4100006.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 922369 * 81?",
+    "gold": 74711889,
+    "out": " <<922369*81= 76988519>> The answer is 76988519.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 354 * 45?",
+    "gold": 15930,
+    "out": " <<354*45= 15470>> The answer is 15470.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 890 * 74?",
+    "gold": 65860,
+    "out": " <<890*74= 65860>> The answer is 65860.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 689015 * 18?",
+    "gold": 12402270,
+    "out": " <<689015*18= 12912270>> The answer is 12912270.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 441430 * 9282?",
+    "gold": 4097353260,
+    "out": " <<441430*9282= 418000000>> The answer is 418000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 5541 * 620?",
+    "gold": 3435420,
+    "out": " <<5541*620= 3438220>> The answer is 3438220.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 632416 * 99?",
+    "gold": 62609184,
+    "out": " <<632416*99= 62200000>> The answer is 62200000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 83336 * 67?",
+    "gold": 5583512,
+    "out": " <<83336*67= 5566032>> The answer is 5566032.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 7826 * 60?",
+    "gold": 469560,
+    "out": " <<7826*60= 469560>> The answer is 469560.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 431328 * 95?",
+    "gold": 40976160,
+    "out": " <<431328*95= 41198880>> The answer is 41198880.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "What is 8017 * 37?",
+    "gold": 296629,
+    "out": " <<8017*37= 299069>> The answer is 299069.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   }
+  ]
+ },
+ "bare_mult/machine": {
+  "acc": 100.0,
+  "called": 100.0,
+  "box_right": "100/100",
+  "rows": [
+   {
+    "q": "What is 29772 * 766?",
+    "gold": 22805352,
+    "out": " <<29772*766= 22805352>> The answer is 22805352.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 174 * 2542?",
+    "gold": 442308,
+    "out": " <<174*2542= 442308>> The answer is 442308.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 86387 * 74?",
+    "gold": 6392638,
+    "out": " <<86387*74= 6392638>> The answer is 6392638.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 1614 * 65?",
+    "gold": 104910,
+    "out": " <<1614*65= 104910>> The answer is 104910.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 173248 * 21?",
+    "gold": 3638208,
+    "out": " <<173248*21= 3638208>> The answer is 3638208.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 161981 * 3028?",
+    "gold": 490478468,
+    "out": " <<161981*3028= 490478468>> The answer is 490478468.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2013 * 7499?",
+    "gold": 15095487,
+    "out": " <<2013*7499= 15095487>> The answer is 15095487.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 326 * 81?",
+    "gold": 26406,
+    "out": " <<326*81= 26406>> The answer is 26406.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 5744 * 247?",
+    "gold": 1418768,
+    "out": " <<5744*247= 1418768>> The answer is 1418768.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 684 * 673?",
+    "gold": 460332,
+    "out": " <<684*673= 460332>> The answer is 460332.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2688 * 4078?",
+    "gold": 10961664,
+    "out": " <<2688*4078= 10961664>> The answer is 10961664.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 22770 * 2028?",
+    "gold": 46177560,
+    "out": " <<22770*2028= 46177560>> The answer is 46177560.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 733 * 73?",
+    "gold": 53509,
+    "out": " <<733*73= 53509>> The answer is 53509.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 914983 * 576?",
+    "gold": 527030208,
+    "out": " <<914983*576= 527030208>> The answer is 527030208.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 479146 * 354?",
+    "gold": 169617684,
+    "out": " <<479146*354= 169617684>> The answer is 169617684.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 4999 * 83?",
+    "gold": 414917,
+    "out": " <<4999*83= 414917>> The answer is 414917.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 78838 * 996?",
+    "gold": 78522648,
+    "out": " <<78838*996= 78522648>> The answer is 78522648.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 68829 * 723?",
+    "gold": 49763367,
+    "out": " <<68829*723= 49763367>> The answer is 49763367.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 220 * 7850?",
+    "gold": 1727000,
+    "out": " <<220*7850= 1727000>> The answer is 1727000.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 6604 * 72?",
+    "gold": 475488,
+    "out": " <<6604*72= 475488>> The answer is 475488.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 141111 * 2271?",
+    "gold": 320463081,
+    "out": " <<141111*2271= 320463081>> The answer is 320463081.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 54580 * 6737?",
+    "gold": 367705460,
+    "out": " <<54580*6737= 367705460>> The answer is 367705460.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 708064 * 170?",
+    "gold": 120370880,
+    "out": " <<708064*170= 120370880>> The answer is 120370880.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 376 * 813?",
+    "gold": 305688,
+    "out": " <<376*813= 305688>> The answer is 305688.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 162 * 6072?",
+    "gold": 983664,
+    "out": " <<162*6072= 983664>> The answer is 983664.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 398420 * 7320?",
+    "gold": 2916434400,
+    "out": " <<398420*7320= 2916434400>> The answer is 2916434400.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 12957 * 463?",
+    "gold": 5999091,
+    "out": " <<12957*463= 5999091>> The answer is 5999091.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2918 * 160?",
+    "gold": 466880,
+    "out": " <<2918*160= 466880>> The answer is 466880.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 5709 * 41?",
+    "gold": 234069,
+    "out": " <<5709*41= 234069>> The answer is 234069.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 509940 * 182?",
+    "gold": 92809080,
+    "out": " <<509940*182= 92809080>> The answer is 92809080.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8359 * 662?",
+    "gold": 5533658,
+    "out": " <<8359*662= 5533658>> The answer is 5533658.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 27947 * 984?",
+    "gold": 27499848,
+    "out": " <<27947*984= 27499848>> The answer is 27499848.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 64433 * 799?",
+    "gold": 51481967,
+    "out": " <<64433*799= 51481967>> The answer is 51481967.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 341960 * 20?",
+    "gold": 6839200,
+    "out": " <<341960*20= 6839200>> The answer is 6839200.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 3478 * 94?",
+    "gold": 326932,
+    "out": " <<3478*94= 326932>> The answer is 326932.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 1197 * 951?",
+    "gold": 1138347,
+    "out": " <<1197*951= 1138347>> The answer is 1138347.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 5304 * 104?",
+    "gold": 551616,
+    "out": " <<5304*104= 551616>> The answer is 551616.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 7864 * 7049?",
+    "gold": 55433336,
+    "out": " <<7864*7049= 55433336>> The answer is 55433336.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 26448 * 9445?",
+    "gold": 249801360,
+    "out": " <<26448*9445= 249801360>> The answer is 249801360.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 567 * 7428?",
+    "gold": 4211676,
+    "out": " <<567*7428= 4211676>> The answer is 4211676.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 518359 * 206?",
+    "gold": 106781954,
+    "out": " <<518359*206= 106781954>> The answer is 106781954.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 765100 * 163?",
+    "gold": 124711300,
+    "out": " <<765100*163= 124711300>> The answer is 124711300.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2103 * 66?",
+    "gold": 138798,
+    "out": " <<2103*66= 138798>> The answer is 138798.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2801 * 715?",
+    "gold": 2002715,
+    "out": " <<2801*715= 2002715>> The answer is 2002715.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 204 * 82?",
+    "gold": 16728,
+    "out": " <<204*82= 16728>> The answer is 16728.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 9791 * 56?",
+    "gold": 548296,
+    "out": " <<9791*56= 548296>> The answer is 548296.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 172 * 88?",
+    "gold": 15136,
+    "out": " <<172*88= 15136>> The answer is 15136.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 255766 * 5132?",
+    "gold": 1312591112,
+    "out": " <<255766*5132= 1312591112>> The answer is 1312591112.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 88941 * 585?",
+    "gold": 52030485,
+    "out": " <<88941*585= 52030485>> The answer is 52030485.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 218 * 577?",
+    "gold": 125786,
+    "out": " <<218*577= 125786>> The answer is 125786.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 607337 * 187?",
+    "gold": 113572019,
+    "out": " <<607337*187= 113572019>> The answer is 113572019.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 2674 * 6613?",
+    "gold": 17683162,
+    "out": " <<2674*6613= 17683162>> The answer is 17683162.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 72733 * 3645?",
+    "gold": 265111785,
+    "out": " <<72733*3645= 265111785>> The answer is 265111785.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 310 * 6926?",
+    "gold": 2147060,
+    "out": " <<310*6926= 2147060>> The answer is 2147060.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 9899 * 77?",
+    "gold": 762223,
+    "out": " <<9899*77= 762223>> The answer is 762223.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 94268 * 99?",
+    "gold": 9332532,
+    "out": " <<94268*99= 9332532>> The answer is 9332532.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 77947 * 271?",
+    "gold": 21123637,
+    "out": " <<77947*271= 21123637>> The answer is 21123637.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 39201 * 9873?",
+    "gold": 387031473,
+    "out": " <<39201*9873= 387031473>> The answer is 387031473.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 93419 * 88?",
+    "gold": 8220872,
+    "out": " <<93419*88= 8220872>> The answer is 8220872.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 4922 * 857?",
+    "gold": 4218154,
+    "out": " <<4922*857= 4218154>> The answer is 4218154.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 4275 * 9073?",
+    "gold": 38787075,
+    "out": " <<4275*9073= 38787075>> The answer is 38787075.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 13798 * 45?",
+    "gold": 620910,
+    "out": " <<13798*45= 620910>> The answer is 620910.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 371764 * 98?",
+    "gold": 36432872,
+    "out": " <<371764*98= 36432872>> The answer is 36432872.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 68619 * 6726?",
+    "gold": 461531394,
+    "out": " <<68619*6726= 461531394>> The answer is 461531394.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 20556 * 23?",
+    "gold": 472788,
+    "out": " <<20556*23= 472788>> The answer is 472788.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8701 * 53?",
+    "gold": 461153,
+    "out": " <<8701*53= 461153>> The answer is 461153.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8907 * 1031?",
+    "gold": 9183117,
+    "out": " <<8907*1031= 9183117>> The answer is 9183117.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 784697 * 918?",
+    "gold": 720351846,
+    "out": " <<784697*918= 720351846>> The answer is 720351846.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 954 * 2964?",
+    "gold": 2827656,
+    "out": " <<954*2964= 2827656>> The answer is 2827656.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 920304 * 4265?",
+    "gold": 3925096560,
+    "out": " <<920304*4265= 3925096560>> The answer is 3925096560.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 287193 * 908?",
+    "gold": 260771244,
+    "out": " <<287193*908= 260771244>> The answer is 260771244.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 21370 * 7485?",
+    "gold": 159954450,
+    "out": " <<21370*7485= 159954450>> The answer is 159954450.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 520884 * 2391?",
+    "gold": 1245433644,
+    "out": " <<520884*2391= 1245433644>> The answer is 1245433644.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 3785 * 13?",
+    "gold": 49205,
+    "out": " <<3785*13= 49205>> The answer is 49205.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8624 * 3394?",
+    "gold": 29269856,
+    "out": " <<8624*3394= 29269856>> The answer is 29269856.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 789195 * 259?",
+    "gold": 204401505,
+    "out": " <<789195*259= 204401505>> The answer is 204401505.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 1350 * 93?",
+    "gold": 125550,
+    "out": " <<1350*93= 125550>> The answer is 125550.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 639 * 3281?",
+    "gold": 2096559,
+    "out": " <<639*3281= 2096559>> The answer is 2096559.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 304268 * 13?",
+    "gold": 3955484,
+    "out": " <<304268*13= 3955484>> The answer is 3955484.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 37889 * 613?",
+    "gold": 23225957,
+    "out": " <<37889*613= 23225957>> The answer is 23225957.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 6341 * 657?",
+    "gold": 4166037,
+    "out": " <<6341*657= 4166037>> The answer is 4166037.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 974716 * 17?",
+    "gold": 16570172,
+    "out": " <<974716*17= 16570172>> The answer is 16570172.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 70052 * 9466?",
+    "gold": 663112232,
+    "out": " <<70052*9466= 663112232>> The answer is 663112232.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 967318 * 3142?",
+    "gold": 3039313156,
+    "out": " <<967318*3142= 3039313156>> The answer is 3039313156.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 9577 * 1306?",
+    "gold": 12507562,
+    "out": " <<9577*1306= 12507562>> The answer is 12507562.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 914225 * 87?",
+    "gold": 79537575,
+    "out": " <<914225*87= 79537575>> The answer is 79537575.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 894 * 32?",
+    "gold": 28608,
+    "out": " <<894*32= 28608>> The answer is 28608.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8757 * 2971?",
+    "gold": 26017047,
+    "out": " <<8757*2971= 26017047>> The answer is 26017047.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 433 * 9492?",
+    "gold": 4110036,
+    "out": " <<433*9492= 4110036>> The answer is 4110036.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 922369 * 81?",
+    "gold": 74711889,
+    "out": " <<922369*81= 74711889>> The answer is 74711889.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 354 * 45?",
+    "gold": 15930,
+    "out": " <<354*45= 15930>> The answer is 15930.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 890 * 74?",
+    "gold": 65860,
+    "out": " <<890*74= 65860>> The answer is 65860.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 689015 * 18?",
+    "gold": 12402270,
+    "out": " <<689015*18= 12402270>> The answer is 12402270.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 441430 * 9282?",
+    "gold": 4097353260,
+    "out": " <<441430*9282= 4097353260>> The answer is 4097353260.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 5541 * 620?",
+    "gold": 3435420,
+    "out": " <<5541*620= 3435420>> The answer is 3435420.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 632416 * 99?",
+    "gold": 62609184,
+    "out": " <<632416*99= 62609184>> The answer is 62609184.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 83336 * 67?",
+    "gold": 5583512,
+    "out": " <<83336*67= 5583512>> The answer is 5583512.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 7826 * 60?",
+    "gold": 469560,
+    "out": " <<7826*60= 469560>> The answer is 469560.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 431328 * 95?",
+    "gold": 40976160,
+    "out": " <<431328*95= 40976160>> The answer is 40976160.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "What is 8017 * 37?",
+    "gold": 296629,
+    "out": " <<8017*37= 296629>> The answer is 296629.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   }
+  ]
+ },
+ "word/no_machine": {
+  "acc": 46.0,
+  "called": 100.0,
+  "box_right": "48/100",
+  "rows": [
+   {
+    "q": "A tank holds 895 liters. 92 liters leak out. How many liters are left?",
+    "gold": 803,
+    "out": " <<895-92= 803>> The answer is 803.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 359 liters. 69 liters leak out. How many liters are left?",
+    "gold": 290,
+    "out": " <<359-69= 290>> The answer is 290.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 22337 students. Each student buys 598 pencils. How many pencils are bought?",
+    "gold": 13357526,
+    "out": " <<22337*598= 12800006>> The answer is 12800006.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 39322 students. Each student buys 65 pencils. How many pencils are bought?",
+    "gold": 2555930,
+    "out": " <<39322*65= 2540030>> The answer is 2540030.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 7902 books and received 55 more. How many books does it have now?",
+    "gold": 7957,
+    "out": " <<7902+55= 8457>> The answer is 8457.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 839 liters. 119 liters leak out. How many liters are left?",
+    "gold": 720,
+    "out": " <<839-119= 720>> The answer is 720.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 70118 liters. 820 liters leak out. How many liters are left?",
+    "gold": 69298,
+    "out": " <<70118-820= 69308>> The answer is 69308.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 6431 apples. A store has 5840 crates. How many apples does the store have?",
+    "gold": 37557040,
+    "out": " <<5840*6431= 37800440>> The answer is 37800440.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 907 apples. A store has 23 crates. How many apples does the store have?",
+    "gold": 20861,
+    "out": " <<907*23= 20291>> The answer is 20291.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 5455 apples. A store has 33 crates. How many apples does the store have?",
+    "gold": 180015,
+    "out": " <<5455*33= 180015>> The answer is 180015.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 969 liters. 939 liters leak out. How many liters are left?",
+    "gold": 30,
+    "out": " <<969-939= 30>> The answer is 30.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 9434 liters. 3447 liters leak out. How many liters are left?",
+    "gold": 5987,
+    "out": " <<9434-3447= 5987>> The answer is 5987.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 52866 books and received 45 more. How many books does it have now?",
+    "gold": 52911,
+    "out": " <<52866+45= 52911>> The answer is 52911.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 34031 apples. A store has 174 crates. How many apples does the store have?",
+    "gold": 5921394,
+    "out": " <<34031*174= 5890014>> The answer is 5890014.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 749 liters. 43 liters leak out. How many liters are left?",
+    "gold": 706,
+    "out": " <<749-43= 706>> The answer is 706.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 39151 apples. A store has 43 crates. How many apples does the store have?",
+    "gold": 1683493,
+    "out": " <<39151*43= 1750183>> The answer is 1750183.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 1189 apples. A store has 666 crates. How many apples does the store have?",
+    "gold": 791874,
+    "out": " <<1189*666= 778594>> The answer is 778594.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 3117 books and received 77 more. How many books does it have now?",
+    "gold": 3194,
+    "out": " <<3117+77= 3194>> The answer is 3194.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 265 students. Each student buys 151 pencils. How many pencils are bought?",
+    "gold": 40015,
+    "out": " <<265*151= 39615>> The answer is 39615.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 419 students. Each student buys 5997 pencils. How many pencils are bought?",
+    "gold": 2512743,
+    "out": " <<419*5997= 2499033>> The answer is 2499033.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 8302 students. Each student buys 3914 pencils. How many pencils are bought?",
+    "gold": 32494028,
+    "out": " <<8302*3914= 32999888>> The answer is 32999888.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 1297 liters. 137 liters leak out. How many liters are left?",
+    "gold": 1160,
+    "out": " <<1297-137= 1160>> The answer is 1160.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 850 apples. A store has 4104 crates. How many apples does the store have?",
+    "gold": 3488400,
+    "out": " <<4104*850= 3434200>> The answer is 3434200.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 557 books and received 94 more. How many books does it have now?",
+    "gold": 651,
+    "out": " <<557+94= 651>> The answer is 651.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 74880 books and received 7440 more. How many books does it have now?",
+    "gold": 82320,
+    "out": " <<74880+7440= 82320>> The answer is 82320.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 38204 liters. 53 liters leak out. How many liters are left?",
+    "gold": 38151,
+    "out": " <<38204-53= 38151>> The answer is 38151.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 93358 students. Each student buys 61 pencils. How many pencils are bought?",
+    "gold": 5694838,
+    "out": " <<93358*61= 5790038>> The answer is 5790038.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 957 liters. 11 liters leak out. How many liters are left?",
+    "gold": 946,
+    "out": " <<957-11= 946>> The answer is 946.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 43501 apples. A store has 267 crates. How many apples does the store have?",
+    "gold": 11614767,
+    "out": " <<43501*267= 11254557>> The answer is 11254557.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 781 apples. A store has 991 crates. How many apples does the store have?",
+    "gold": 773971,
+    "out": " <<991*781= 772591>> The answer is 772591.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 41747 liters. 5801 liters leak out. How many liters are left?",
+    "gold": 35946,
+    "out": " <<41747-5801= 36946>> The answer is 36946.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 4036 apples. A store has 44 crates. How many apples does the store have?",
+    "gold": 177584,
+    "out": " <<4036*44= 173024>> The answer is 173024.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 369 books and received 436 more. How many books does it have now?",
+    "gold": 805,
+    "out": " <<369+436= 705>> The answer is 705.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 323 liters. 135 liters leak out. How many liters are left?",
+    "gold": 188,
+    "out": " <<323-135= 188>> The answer is 188.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 490 liters. 101 liters leak out. How many liters are left?",
+    "gold": 389,
+    "out": " <<490-101= 389>> The answer is 389.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 5569 apples. A store has 4292 crates. How many apples does the store have?",
+    "gold": 23902148,
+    "out": " <<4292*5569= 24999888>> The answer is 24999888.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 10648 students. Each student buys 43 pencils. How many pencils are bought?",
+    "gold": 457864,
+    "out": " <<10648*43= 4548144>> The answer is 4548144.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 509 apples. A store has 1682 crates. How many apples does the store have?",
+    "gold": 856138,
+    "out": " <<1682*509= 850738>> The answer is 850738.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 406 books and received 744 more. How many books does it have now?",
+    "gold": 1150,
+    "out": " <<406+744= 1150>> The answer is 1150.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 699 students. Each student buys 3543 pencils. How many pencils are bought?",
+    "gold": 2476557,
+    "out": " <<699*3543= 2480007>> The answer is 2480007.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 9096 books and received 46 more. How many books does it have now?",
+    "gold": 9142,
+    "out": " <<9096+46= 9142>> The answer is 9142.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 944 students. Each student buys 9404 pencils. How many pencils are bought?",
+    "gold": 8877376,
+    "out": " <<944*9404= 8900136>> The answer is 8900136.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 76262 books and received 77 more. How many books does it have now?",
+    "gold": 76339,
+    "out": " <<76262+77= 76349>> The answer is 76349.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 86554 apples. A store has 4767 crates. How many apples does the store have?",
+    "gold": 412602918,
+    "out": " <<86554*4767= 418000002>> The answer is 418000002.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 142 apples. A store has 91 crates. How many apples does the store have?",
+    "gold": 12922,
+    "out": " <<142*91= 12922>> The answer is 12922.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 671 liters. 485 liters leak out. How many liters are left?",
+    "gold": 186,
+    "out": " <<671-485= 186>> The answer is 186.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 12469 apples. A store has 9707 crates. How many apples does the store have?",
+    "gold": 121036583,
+    "out": " <<9707*12469= 121000003>> The answer is 121000003.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 5321 students. Each student buys 68 pencils. How many pencils are bought?",
+    "gold": 361828,
+    "out": " <<5321*68= 360596>> The answer is 360596.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 75925 apples. A store has 2506 crates. How many apples does the store have?",
+    "gold": 190268050,
+    "out": " <<75925*2506= 18999375>> The answer is 18999375.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 72109 apples. A store has 928 crates. How many apples does the store have?",
+    "gold": 66917152,
+    "out": " <<72109*928= 68800008>> The answer is 68800008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 4846 apples. A store has 4362 crates. How many apples does the store have?",
+    "gold": 21138252,
+    "out": " <<4846+4362= 9208>> The answer is 9208.\n",
+    "ok": false,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 95187 students. Each student buys 605 pencils. How many pencils are bought?",
+    "gold": 57588135,
+    "out": " <<95187*605= 57100015>> The answer is 57100015.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 590 books and received 5707 more. How many books does it have now?",
+    "gold": 6297,
+    "out": " <<590+5707= 6297>> The answer is 6297.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 92941 apples. A store has 4248 crates. How many apples does the store have?",
+    "gold": 394813368,
+    "out": " <<4248*92941= 3999999928>> The answer is 3999999928.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 29323 apples. A store has 360 crates. How many apples does the store have?",
+    "gold": 10556280,
+    "out": " <<29323*360= 10155580>> The answer is 10155580.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 84417 liters. 11 liters leak out. How many liters are left?",
+    "gold": 84406,
+    "out": " <<84417-11= 84406>> The answer is 84406.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 597 books and received 788 more. How many books does it have now?",
+    "gold": 1385,
+    "out": " <<597+788= 1385>> The answer is 1385.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 38533 apples. A store has 9021 crates. How many apples does the store have?",
+    "gold": 347606193,
+    "out": " <<9021*38533= 343500003>> The answer is 343500003.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 77703 liters. 575 liters leak out. How many liters are left?",
+    "gold": 77128,
+    "out": " <<77703-575= 77128>> The answer is 77128.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 2941 books and received 4264 more. How many books does it have now?",
+    "gold": 7205,
+    "out": " <<2941+4264= 7205>> The answer is 7205.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 584 liters. 47 liters leak out. How many liters are left?",
+    "gold": 537,
+    "out": " <<584-47= 537>> The answer is 537.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 939 books and received 8363 more. How many books does it have now?",
+    "gold": 9302,
+    "out": " <<939+8363= 9302>> The answer is 9302.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 4437 liters. 19 liters leak out. How many liters are left?",
+    "gold": 4418,
+    "out": " <<4437-19= 4418>> The answer is 4418.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 865 apples. A store has 5289 crates. How many apples does the store have?",
+    "gold": 4574985,
+    "out": " <<5289*865= 4500005>> The answer is 4500005.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 9335 liters. 717 liters leak out. How many liters are left?",
+    "gold": 8618,
+    "out": " <<9335-717= 8618>> The answer is 8618.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 820 liters. 336 liters leak out. How many liters are left?",
+    "gold": 484,
+    "out": " <<820-336= 484>> The answer is 484.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 7456 books and received 30 more. How many books does it have now?",
+    "gold": 7486,
+    "out": " <<7456+30= 7486>> The answer is 7486.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 8385 apples. A store has 409 crates. How many apples does the store have?",
+    "gold": 3429465,
+    "out": " <<8385*409= 3399995>> The answer is 3399995.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 6635 students. Each student buys 423 pencils. How many pencils are bought?",
+    "gold": 2806605,
+    "out": " <<6635*423= 2880045>> The answer is 2880045.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 1028 apples. A store has 868 crates. How many apples does the store have?",
+    "gold": 892304,
+    "out": " <<1028*868= 890144>> The answer is 890144.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 2966 liters. 11 liters leak out. How many liters are left?",
+    "gold": 2955,
+    "out": " <<2966-11= 2955>> The answer is 2955.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 7098 liters. 60 liters leak out. How many liters are left?",
+    "gold": 7038,
+    "out": " <<7098-60= 6038>> The answer is 6038.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 20013 books and received 538 more. How many books does it have now?",
+    "gold": 20551,
+    "out": " <<20013+538= 20551>> The answer is 20551.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 387 liters. 16 liters leak out. How many liters are left?",
+    "gold": 371,
+    "out": " <<387-16= 371>> The answer is 371.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 29518 liters. 44 liters leak out. How many liters are left?",
+    "gold": 29474,
+    "out": " <<29518-44= 29474>> The answer is 29474.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 51366 books and received 57 more. How many books does it have now?",
+    "gold": 51423,
+    "out": " <<51366+57= 51423>> The answer is 51423.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 931 books and received 7554 more. How many books does it have now?",
+    "gold": 8485,
+    "out": " <<931+7554= 8485>> The answer is 8485.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 20561 students. Each student buys 62 pencils. How many pencils are bought?",
+    "gold": 1274782,
+    "out": " <<20561*62= 12600322>> The answer is 12600322.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 28162 books and received 5689 more. How many books does it have now?",
+    "gold": 33851,
+    "out": " <<28162+5689= 33851>> The answer is 33851.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 663 books and received 31 more. How many books does it have now?",
+    "gold": 694,
+    "out": " <<663+31= 694>> The answer is 694.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 6630 books and received 404 more. How many books does it have now?",
+    "gold": 7034,
+    "out": " <<6630+404= 7034>> The answer is 7034.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 95566 liters. 515 liters leak out. How many liters are left?",
+    "gold": 95051,
+    "out": " <<95566-515= 90451>> The answer is 90451.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 8916 students. Each student buys 7461 pencils. How many pencils are bought?",
+    "gold": 66522276,
+    "out": " <<8916*7461= 67000000>> The answer is 67000000.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 758 apples. A store has 19 crates. How many apples does the store have?",
+    "gold": 14402,
+    "out": " <<758*19= 14462>> The answer is 14462.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A school has 75152 students. Each student buys 4604 pencils. How many pencils are bought?",
+    "gold": 345999808,
+    "out": " <<75152*4604= 341500008>> The answer is 341500008.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 8372 books and received 242 more. How many books does it have now?",
+    "gold": 8614,
+    "out": " <<8372+242= 8614>> The answer is 8614.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 192 students. Each student buys 53 pencils. How many pencils are bought?",
+    "gold": 10176,
+    "out": " <<192*53= 9936>> The answer is 9936.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 4917 apples. A store has 364 crates. How many apples does the store have?",
+    "gold": 1789788,
+    "out": " <<4917+364= 5281>> The answer is 5281.\n",
+    "ok": false,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 867 students. Each student buys 492 pencils. How many pencils are bought?",
+    "gold": 426564,
+    "out": " <<867*492= 426034>> The answer is 426034.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 78703 books and received 58 more. How many books does it have now?",
+    "gold": 78761,
+    "out": " <<78703+58= 79281>> The answer is 79281.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A tank holds 2016 liters. 384 liters leak out. How many liters are left?",
+    "gold": 1632,
+    "out": " <<2016-384= 1632>> The answer is 1632.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 9670 liters. 803 liters leak out. How many liters are left?",
+    "gold": 8867,
+    "out": " <<9670-803= 8867>> The answer is 8867.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 377 students. Each student buys 59 pencils. How many pencils are bought?",
+    "gold": 22243,
+    "out": " <<377*59= 21653>> The answer is 21653.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 68439 books and received 419 more. How many books does it have now?",
+    "gold": 68858,
+    "out": " <<68439+419= 68858>> The answer is 68858.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 133 apples. A store has 826 crates. How many apples does the store have?",
+    "gold": 109858,
+    "out": " <<826*133= 108058>> The answer is 108058.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A library had 74202 books and received 19 more. How many books does it have now?",
+    "gold": 74221,
+    "out": " <<74202+19= 74221>> The answer is 74221.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 71361 books and received 354 more. How many books does it have now?",
+    "gold": 71715,
+    "out": " <<71361+354= 71715>> The answer is 71715.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 258 apples. A store has 76 crates. How many apples does the store have?",
+    "gold": 19608,
+    "out": " <<258*76= 19688>> The answer is 19688.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 94849 apples. A store has 187 crates. How many apples does the store have?",
+    "gold": 17736763,
+    "out": " <<94849*187= 17900003>> The answer is 17900003.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   },
+   {
+    "q": "A crate holds 901 apples. A store has 39 crates. How many apples does the store have?",
+    "gold": 35139,
+    "out": " <<901*39= 35289>> The answer is 35289.\n",
+    "ok": false,
+    "called": true,
+    "box_right": false
+   }
+  ]
+ },
+ "word/machine": {
+  "acc": 98.0,
+  "called": 100.0,
+  "box_right": "100/100",
+  "rows": [
+   {
+    "q": "A tank holds 895 liters. 92 liters leak out. How many liters are left?",
+    "gold": 803,
+    "out": " <<895-92= 803>> The answer is 803.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 359 liters. 69 liters leak out. How many liters are left?",
+    "gold": 290,
+    "out": " <<359-69= 290>> The answer is 290.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 22337 students. Each student buys 598 pencils. How many pencils are bought?",
+    "gold": 13357526,
+    "out": " <<22337*598= 13357526>> The answer is 13357526.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 39322 students. Each student buys 65 pencils. How many pencils are bought?",
+    "gold": 2555930,
+    "out": " <<39322*65= 2555930>> The answer is 2555930.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 7902 books and received 55 more. How many books does it have now?",
+    "gold": 7957,
+    "out": " <<7902+55= 7957>> The answer is 7957.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 839 liters. 119 liters leak out. How many liters are left?",
+    "gold": 720,
+    "out": " <<839-119= 720>> The answer is 720.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 70118 liters. 820 liters leak out. How many liters are left?",
+    "gold": 69298,
+    "out": " <<70118-820= 69298>> The answer is 69298.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 6431 apples. A store has 5840 crates. How many apples does the store have?",
+    "gold": 37557040,
+    "out": " <<5840*6431= 37557040>> The answer is 37557040.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 907 apples. A store has 23 crates. How many apples does the store have?",
+    "gold": 20861,
+    "out": " <<907*23= 20861>> The answer is 20861.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 5455 apples. A store has 33 crates. How many apples does the store have?",
+    "gold": 180015,
+    "out": " <<5455*33= 180015>> The answer is 180015.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 969 liters. 939 liters leak out. How many liters are left?",
+    "gold": 30,
+    "out": " <<969-939= 30>> The answer is 30.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 9434 liters. 3447 liters leak out. How many liters are left?",
+    "gold": 5987,
+    "out": " <<9434-3447= 5987>> The answer is 5987.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 52866 books and received 45 more. How many books does it have now?",
+    "gold": 52911,
+    "out": " <<52866+45= 52911>> The answer is 52911.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 34031 apples. A store has 174 crates. How many apples does the store have?",
+    "gold": 5921394,
+    "out": " <<34031*174= 5921394>> The answer is 5921394.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 749 liters. 43 liters leak out. How many liters are left?",
+    "gold": 706,
+    "out": " <<749-43= 706>> The answer is 706.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 39151 apples. A store has 43 crates. How many apples does the store have?",
+    "gold": 1683493,
+    "out": " <<39151*43= 1683493>> The answer is 1683493.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 1189 apples. A store has 666 crates. How many apples does the store have?",
+    "gold": 791874,
+    "out": " <<1189*666= 791874>> The answer is 791874.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 3117 books and received 77 more. How many books does it have now?",
+    "gold": 3194,
+    "out": " <<3117+77= 3194>> The answer is 3194.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 265 students. Each student buys 151 pencils. How many pencils are bought?",
+    "gold": 40015,
+    "out": " <<265*151= 40015>> The answer is 40015.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 419 students. Each student buys 5997 pencils. How many pencils are bought?",
+    "gold": 2512743,
+    "out": " <<419*5997= 2512743>> The answer is 2512743.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 8302 students. Each student buys 3914 pencils. How many pencils are bought?",
+    "gold": 32494028,
+    "out": " <<8302*3914= 32494028>> The answer is 32494028.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 1297 liters. 137 liters leak out. How many liters are left?",
+    "gold": 1160,
+    "out": " <<1297-137= 1160>> The answer is 1160.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 850 apples. A store has 4104 crates. How many apples does the store have?",
+    "gold": 3488400,
+    "out": " <<4104*850= 3488400>> The answer is 3488400.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 557 books and received 94 more. How many books does it have now?",
+    "gold": 651,
+    "out": " <<557+94= 651>> The answer is 651.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 74880 books and received 7440 more. How many books does it have now?",
+    "gold": 82320,
+    "out": " <<74880+7440= 82320>> The answer is 82320.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 38204 liters. 53 liters leak out. How many liters are left?",
+    "gold": 38151,
+    "out": " <<38204-53= 38151>> The answer is 38151.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 93358 students. Each student buys 61 pencils. How many pencils are bought?",
+    "gold": 5694838,
+    "out": " <<93358*61= 5694838>> The answer is 5694838.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 957 liters. 11 liters leak out. How many liters are left?",
+    "gold": 946,
+    "out": " <<957-11= 946>> The answer is 946.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 43501 apples. A store has 267 crates. How many apples does the store have?",
+    "gold": 11614767,
+    "out": " <<43501*267= 11614767>> The answer is 11614767.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 781 apples. A store has 991 crates. How many apples does the store have?",
+    "gold": 773971,
+    "out": " <<991*781= 773971>> The answer is 773971.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 41747 liters. 5801 liters leak out. How many liters are left?",
+    "gold": 35946,
+    "out": " <<41747-5801= 35946>> The answer is 35946.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 4036 apples. A store has 44 crates. How many apples does the store have?",
+    "gold": 177584,
+    "out": " <<4036*44= 177584>> The answer is 177584.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 369 books and received 436 more. How many books does it have now?",
+    "gold": 805,
+    "out": " <<369+436= 805>> The answer is 805.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 323 liters. 135 liters leak out. How many liters are left?",
+    "gold": 188,
+    "out": " <<323-135= 188>> The answer is 188.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 490 liters. 101 liters leak out. How many liters are left?",
+    "gold": 389,
+    "out": " <<490-101= 389>> The answer is 389.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 5569 apples. A store has 4292 crates. How many apples does the store have?",
+    "gold": 23902148,
+    "out": " <<4292*5569= 23902148>> The answer is 23902148.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 10648 students. Each student buys 43 pencils. How many pencils are bought?",
+    "gold": 457864,
+    "out": " <<10648*43= 457864>> The answer is 457864.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 509 apples. A store has 1682 crates. How many apples does the store have?",
+    "gold": 856138,
+    "out": " <<1682*509= 856138>> The answer is 856138.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 406 books and received 744 more. How many books does it have now?",
+    "gold": 1150,
+    "out": " <<406+744= 1150>> The answer is 1150.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 699 students. Each student buys 3543 pencils. How many pencils are bought?",
+    "gold": 2476557,
+    "out": " <<699*3543= 2476557>> The answer is 2476557.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 9096 books and received 46 more. How many books does it have now?",
+    "gold": 9142,
+    "out": " <<9096+46= 9142>> The answer is 9142.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 944 students. Each student buys 9404 pencils. How many pencils are bought?",
+    "gold": 8877376,
+    "out": " <<944*9404= 8877376>> The answer is 8877376.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 76262 books and received 77 more. How many books does it have now?",
+    "gold": 76339,
+    "out": " <<76262+77= 76339>> The answer is 76339.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 86554 apples. A store has 4767 crates. How many apples does the store have?",
+    "gold": 412602918,
+    "out": " <<86554*4767= 412602918>> The answer is 412602918.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 142 apples. A store has 91 crates. How many apples does the store have?",
+    "gold": 12922,
+    "out": " <<142*91= 12922>> The answer is 12922.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 671 liters. 485 liters leak out. How many liters are left?",
+    "gold": 186,
+    "out": " <<671-485= 186>> The answer is 186.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 12469 apples. A store has 9707 crates. How many apples does the store have?",
+    "gold": 121036583,
+    "out": " <<9707*12469= 121036583>> The answer is 121036583.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 5321 students. Each student buys 68 pencils. How many pencils are bought?",
+    "gold": 361828,
+    "out": " <<5321*68= 361828>> The answer is 361828.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 75925 apples. A store has 2506 crates. How many apples does the store have?",
+    "gold": 190268050,
+    "out": " <<75925*2506= 190268050>> The answer is 190268050.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 72109 apples. A store has 928 crates. How many apples does the store have?",
+    "gold": 66917152,
+    "out": " <<72109*928= 66917152>> The answer is 66917152.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 4846 apples. A store has 4362 crates. How many apples does the store have?",
+    "gold": 21138252,
+    "out": " <<4846+4362= 9208>> The answer is 9208.\n",
+    "ok": false,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 95187 students. Each student buys 605 pencils. How many pencils are bought?",
+    "gold": 57588135,
+    "out": " <<95187*605= 57588135>> The answer is 57588135.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 590 books and received 5707 more. How many books does it have now?",
+    "gold": 6297,
+    "out": " <<590+5707= 6297>> The answer is 6297.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 92941 apples. A store has 4248 crates. How many apples does the store have?",
+    "gold": 394813368,
+    "out": " <<4248*92941= 394813368>> The answer is 394813368.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 29323 apples. A store has 360 crates. How many apples does the store have?",
+    "gold": 10556280,
+    "out": " <<29323*360= 10556280>> The answer is 10556280.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 84417 liters. 11 liters leak out. How many liters are left?",
+    "gold": 84406,
+    "out": " <<84417-11= 84406>> The answer is 84406.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 597 books and received 788 more. How many books does it have now?",
+    "gold": 1385,
+    "out": " <<597+788= 1385>> The answer is 1385.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 38533 apples. A store has 9021 crates. How many apples does the store have?",
+    "gold": 347606193,
+    "out": " <<9021*38533= 347606193>> The answer is 347606193.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 77703 liters. 575 liters leak out. How many liters are left?",
+    "gold": 77128,
+    "out": " <<77703-575= 77128>> The answer is 77128.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 2941 books and received 4264 more. How many books does it have now?",
+    "gold": 7205,
+    "out": " <<2941+4264= 7205>> The answer is 7205.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 584 liters. 47 liters leak out. How many liters are left?",
+    "gold": 537,
+    "out": " <<584-47= 537>> The answer is 537.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 939 books and received 8363 more. How many books does it have now?",
+    "gold": 9302,
+    "out": " <<939+8363= 9302>> The answer is 9302.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 4437 liters. 19 liters leak out. How many liters are left?",
+    "gold": 4418,
+    "out": " <<4437-19= 4418>> The answer is 4418.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 865 apples. A store has 5289 crates. How many apples does the store have?",
+    "gold": 4574985,
+    "out": " <<5289*865= 4574985>> The answer is 4574985.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 9335 liters. 717 liters leak out. How many liters are left?",
+    "gold": 8618,
+    "out": " <<9335-717= 8618>> The answer is 8618.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 820 liters. 336 liters leak out. How many liters are left?",
+    "gold": 484,
+    "out": " <<820-336= 484>> The answer is 484.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 7456 books and received 30 more. How many books does it have now?",
+    "gold": 7486,
+    "out": " <<7456+30= 7486>> The answer is 7486.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 8385 apples. A store has 409 crates. How many apples does the store have?",
+    "gold": 3429465,
+    "out": " <<8385*409= 3429465>> The answer is 3429465.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 6635 students. Each student buys 423 pencils. How many pencils are bought?",
+    "gold": 2806605,
+    "out": " <<6635*423= 2806605>> The answer is 2806605.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 1028 apples. A store has 868 crates. How many apples does the store have?",
+    "gold": 892304,
+    "out": " <<1028*868= 892304>> The answer is 892304.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 2966 liters. 11 liters leak out. How many liters are left?",
+    "gold": 2955,
+    "out": " <<2966-11= 2955>> The answer is 2955.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 7098 liters. 60 liters leak out. How many liters are left?",
+    "gold": 7038,
+    "out": " <<7098-60= 7038>> The answer is 7038.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 20013 books and received 538 more. How many books does it have now?",
+    "gold": 20551,
+    "out": " <<20013+538= 20551>> The answer is 20551.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 387 liters. 16 liters leak out. How many liters are left?",
+    "gold": 371,
+    "out": " <<387-16= 371>> The answer is 371.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 29518 liters. 44 liters leak out. How many liters are left?",
+    "gold": 29474,
+    "out": " <<29518-44= 29474>> The answer is 29474.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 51366 books and received 57 more. How many books does it have now?",
+    "gold": 51423,
+    "out": " <<51366+57= 51423>> The answer is 51423.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 931 books and received 7554 more. How many books does it have now?",
+    "gold": 8485,
+    "out": " <<931+7554= 8485>> The answer is 8485.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 20561 students. Each student buys 62 pencils. How many pencils are bought?",
+    "gold": 1274782,
+    "out": " <<20561*62= 1274782>> The answer is 1274782.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 28162 books and received 5689 more. How many books does it have now?",
+    "gold": 33851,
+    "out": " <<28162+5689= 33851>> The answer is 33851.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 663 books and received 31 more. How many books does it have now?",
+    "gold": 694,
+    "out": " <<663+31= 694>> The answer is 694.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 6630 books and received 404 more. How many books does it have now?",
+    "gold": 7034,
+    "out": " <<6630+404= 7034>> The answer is 7034.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 95566 liters. 515 liters leak out. How many liters are left?",
+    "gold": 95051,
+    "out": " <<95566-515= 95051>> The answer is 95051.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 8916 students. Each student buys 7461 pencils. How many pencils are bought?",
+    "gold": 66522276,
+    "out": " <<8916*7461= 66522276>> The answer is 66522276.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 758 apples. A store has 19 crates. How many apples does the store have?",
+    "gold": 14402,
+    "out": " <<758*19= 14402>> The answer is 14402.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 75152 students. Each student buys 4604 pencils. How many pencils are bought?",
+    "gold": 345999808,
+    "out": " <<75152*4604= 345999808>> The answer is 345999808.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 8372 books and received 242 more. How many books does it have now?",
+    "gold": 8614,
+    "out": " <<8372+242= 8614>> The answer is 8614.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 192 students. Each student buys 53 pencils. How many pencils are bought?",
+    "gold": 10176,
+    "out": " <<192*53= 10176>> The answer is 10176.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 4917 apples. A store has 364 crates. How many apples does the store have?",
+    "gold": 1789788,
+    "out": " <<4917+364= 5281>> The answer is 5281.\n",
+    "ok": false,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 867 students. Each student buys 492 pencils. How many pencils are bought?",
+    "gold": 426564,
+    "out": " <<867*492= 426564>> The answer is 426564.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 78703 books and received 58 more. How many books does it have now?",
+    "gold": 78761,
+    "out": " <<78703+58= 78761>> The answer is 78761.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 2016 liters. 384 liters leak out. How many liters are left?",
+    "gold": 1632,
+    "out": " <<2016-384= 1632>> The answer is 1632.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A tank holds 9670 liters. 803 liters leak out. How many liters are left?",
+    "gold": 8867,
+    "out": " <<9670-803= 8867>> The answer is 8867.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A school has 377 students. Each student buys 59 pencils. How many pencils are bought?",
+    "gold": 22243,
+    "out": " <<377*59= 22243>> The answer is 22243.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 68439 books and received 419 more. How many books does it have now?",
+    "gold": 68858,
+    "out": " <<68439+419= 68858>> The answer is 68858.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 133 apples. A store has 826 crates. How many apples does the store have?",
+    "gold": 109858,
+    "out": " <<826*133= 109858>> The answer is 109858.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 74202 books and received 19 more. How many books does it have now?",
+    "gold": 74221,
+    "out": " <<74202+19= 74221>> The answer is 74221.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A library had 71361 books and received 354 more. How many books does it have now?",
+    "gold": 71715,
+    "out": " <<71361+354= 71715>> The answer is 71715.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 258 apples. A store has 76 crates. How many apples does the store have?",
+    "gold": 19608,
+    "out": " <<258*76= 19608>> The answer is 19608.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 94849 apples. A store has 187 crates. How many apples does the store have?",
+    "gold": 17736763,
+    "out": " <<94849*187= 17736763>> The answer is 17736763.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   },
+   {
+    "q": "A crate holds 901 apples. A store has 39 crates. How many apples does the store have?",
+    "gold": 35139,
+    "out": " <<901*39= 35139>> The answer is 35139.\n",
+    "ok": true,
+    "called": true,
+    "box_right": true
+   }
+  ]
+ }
+}

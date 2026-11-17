@@ -1,0 +1,11 @@
+calc_s4      46443 units  52 layers    2355685 nonzeros K=  54 | 9.0s | calculator: a op b = -> exact digits (+ - * /, signed decimals)
+sum_fn        6024 units  24 layers     212357 nonzeros K=  80 | 1.1s | signed integer sums with brackets, e.g. (-1 + 2 + 45) =
+expr_n        6587 units  25 layers     290978 nonzeros K=  80 | 1.6s | small expressions, <=4 signed numbers, + - * with precedence
+liesnat        345 units   3 layers      75862 nonzeros K=  40 | 0.5s | web of lies: truth value along the chain
+navnat        4100 units  19 layers      62723 nonzeros K=  32 | 0.7s | navigate: position after the moves; answers "Since (X, Y)"
+boolnat       4145 units  31 layers      42118 nonzeros K=  18 | 0.9s | boolean expressions: True/False of the expression
+time_n       52314 units  20 layers     316990 nonzeros K= 212 | 4.9s | temporal sequences: the free interval in the schedule
+track_nat    22004 units  17 layers    2193396 nonzeros K= 400 | 7.3s | tracking shuffled objects: who holds what after the swaps
+logic_nat   203503 units  17 layers   75579341 nonzeros K= 360 | 657.8s | logical deduction: the one ordering consistent with all clues
+calc_s3      46438 units  51 layers    2355185 nonzeros K=  54 | 24.3s | calculator, GSM8K variant (machine writes the space after =)
+nine BBH implants together: {'relu_units': 345465, 'nonzero_weights': 81129450}

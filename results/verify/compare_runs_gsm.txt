@@ -1,0 +1,8 @@
+pred            same on 61/64  (vs qwen3_test_calc_rethink.json)
+ok              same on 64/64  (vs qwen3_test_calc_rethink.json)
+first_ok        same on 63/64  (vs qwen3_test_calc_rethink.json)
+rethink_tokens  same on 42/64  (vs qwen3_test_calc_rethink.json)
+pred            same on 64/64  (vs qwen3_hard_plain_rethink.json)
+ok              same on 64/64  (vs qwen3_hard_plain_rethink.json)
+first_ok        same on 64/64  (vs qwen3_hard_plain_rethink.json)
+rethink_tokens  same on 64/64  (vs qwen3_hard_plain_rethink.json)

@@ -1,0 +1,2 @@
+first pass 76.56% -> after rethink 82.81%
+RESULT Qwen/Qwen3-0.6B-Base mode=calc split=test: 53/64 = 82.81% | 94s

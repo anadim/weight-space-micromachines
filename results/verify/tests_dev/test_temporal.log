@@ -1,0 +1,3 @@
+attached 21s
+time_n on 250 BBH questions: {'exact': 250, 'silent': 0, 'WRONG': 0, 'gold': 250}
+PASS

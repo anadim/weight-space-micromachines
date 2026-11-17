@@ -1,0 +1,7 @@
+# Snapshot of the log of a separate full run (read-only copy), taken 2026-11-17 01:53 UTC. sha256 of the log at snapshot time: 6bf4bbffd50a6d58cffcf2e1faf6f10719cfb30c0c5036234ba26e787840c9cf
+# STATUS: PARTIAL: run still in progress
+# command: research harness bbh_official.py (= scripts/run_bbh.py) Qwen/Qwen3-0.6B-Base --tasks <14 tasks without an implant> --machines <all nine> --bs 16 --min_tokens 4
+causal_judgement                          52.4 (n=187) | 3243s
+date_understanding                        55.2 (n=250) | 6149s
+disambiguation_qa                         34.4 (n=250) | 10202s
+formal_fallacies                          44.0 (n=250) | 15257s

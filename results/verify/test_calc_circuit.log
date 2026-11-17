@@ -1,0 +1,11 @@
+stack1 units 20189 layers 16 nnz 831645 (dense would be 73170302 ) | stack2 units 8479 layers 19 nnz 766105 (dense 18473526 )
+smoke: 43 cases, 0 wrong, 0 non-one-hot steps, 0.3s
+exhaustive 0..59: 14400 cases, 0 wrong, 0 non-one-hot steps, 2.7s
+exhaustive signed -40..39: 25600 cases, 0 wrong, 0 non-one-hot steps, 5.0s
+random +: 3000 cases, 0 wrong, 0 non-one-hot steps, 1.7s
+random -: 3000 cases, 0 wrong, 0 non-one-hot steps, 1.7s
+random *: 3000 cases, 0 wrong, 0 non-one-hot steps, 2.6s
+random /: 3000 cases, 0 wrong, 0 non-one-hot steps, 1.5s
+malformed: 30 cases, 0 wrong, 0 non-one-hot steps, 0.0s
+TOTAL FAILURES 0
+PASS

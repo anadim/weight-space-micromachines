@@ -1,0 +1,11 @@
+attached 9 implants: calc_s4, sum_fn, expr_n, liesnat, navnat, boolnat, time_n, track_nat, logic_nat (521s)
+multistep_arithmetic_two                 100.0 (n=48) | 253s
+object_counting                           81.2 (n=48) | 381s
+web_of_lies                               95.8 (n=48) | 605s
+navigate                                 100.0 (n=48) | 811s
+boolean_expressions                       97.9 (n=48) | 928s
+temporal_sequences                        95.8 (n=48) | 1217s
+tracking_shuffled_objects_five_objects   100.0 (n=48) | 1455s
+logical_deduction_three_objects          100.0 (n=48) | 1637s
+causal_judgement                          60.4 (n=48) | 1913s
+MEAN over 9 tasks: 92.36

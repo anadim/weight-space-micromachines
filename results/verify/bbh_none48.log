@@ -1,0 +1,4 @@
+causal_judgement                          60.4 (n=48) | 107s
+logical_deduction_three_objects           56.2 (n=48) | 155s
+navigate                                  64.6 (n=48) | 241s
+MEAN over 3 tasks: 60.42

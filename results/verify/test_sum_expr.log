@@ -1,0 +1,8 @@
+must-be-silent 2 * 3 + 4.5 {'expr_n': '', 'sum_fn': ''}
+must-be-silent 3 * (4 + 5) {'expr_n': '', 'sum_fn': ''}
+must-be-silent (2 + 3) * 4 {'expr_n': '', 'sum_fn': ''}
+must-be-silent 12 * 3 + 1 {'expr_n': '', 'sum_fn': ''}
+must-be-silent 9 * 5 {'expr_n': '', 'sum_fn': ''}
+must-be-silent x * 3 + 2 {'expr_n': '', 'sum_fn': ''}
+300 exprs x 2 contexts {'exact': 576, 'silent': 24, 'WRONG': 0}
+PASS

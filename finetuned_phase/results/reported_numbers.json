@@ -1,0 +1,154 @@
+{
+ "_note": "Numbers of the earlier fine-tuned phase. 'verified_here': false everywhere: nothing in this file was re-run for this repository. Raw files are named per entry; 'offline' means the raw files are on a machine that was not reachable while this repository was assembled.",
+ "eyes": {
+  "setup": "Qwen2.5-0.5B fine-tuned (lr 1e-5, 3 epochs) on questions about 3-4 pasted MNIST digits (14x14, one token per pixel); with implants = eyes (trained CNN inside) + calculator, box tokens masked from the loss; without = same data, the model writes the digits itself",
+  "seed0": {
+   "source": "lab notebook / earlier blog draft table (raw files offline)",
+   "verified_here": false,
+   "train_questions": [
+    8,
+    32,
+    4000,
+    16000
+   ],
+   "with_implants": [
+    88.0,
+    96.0,
+    97.7,
+    97.7
+   ],
+   "no_implants": [
+    6.5,
+    1.5,
+    93.4,
+    97.4
+   ],
+   "note": "8 and 32 rows: 200-question set; 4,000 and 16,000 rows: separate test set; MNIST test images throughout"
+  },
+  "seeds1to4_test": {
+   "source": "finetuned_phase/results/eyes.txt (MACRO accuracy, test split)",
+   "verified_here": false,
+   "tool_4k": {
+    "1": 97.67,
+    "2": 97.67,
+    "3": 97.67,
+    "4": 97.67
+   },
+   "notool_4k": {
+    "1": 94.06,
+    "2": 93.56,
+    "3": 92.37,
+    "4": 92.91
+   },
+   "tool_16k": {
+    "1": 97.67,
+    "2": 97.67,
+    "3": 97.67,
+    "4": 97.67
+   },
+   "notool_16k": {
+    "1": 97.1,
+    "2": 98.01,
+    "3": 97.57,
+    "4": 97.53
+   }
+  },
+  "five_seed_mean_no_implants": {
+   "4000": 93.26,
+   "16000": 97.52,
+   "source": "computed here: mean of seed 0 (93.4 / 97.4, from the earlier draft table, raw files offline) and seeds 1-4 (eyes.txt test split)",
+   "verified_here": false
+  },
+  "five_seed_with_implants": {
+   "4000": 97.67,
+   "16000": 97.67,
+   "source": "eyes.txt (seeds 1-4 all 97.67)",
+   "verified_here": false
+  }
+ },
+ "finetune_comparison": {
+  "setup": "Qwen2.5-0.5B fine-tuned on GSM8K (+ augmentation) three ways: plain solutions / calls where the model writes the result itself / calls answered by the calculator implant (result masked from the loss)",
+  "seed0": {
+   "source": "lab notebook, 'Final calculator model' table (raw files offline)",
+   "verified_here": false,
+   "arms": [
+    "plain solutions",
+    "calls, model writes the answer",
+    "calls + calculator implant"
+   ],
+   "GSM8K test": [
+    32.4,
+    33.2,
+    35.0
+   ],
+   "GSM-Hard": [
+    12.4,
+    13.6,
+    24.7
+   ],
+   "bare arithmetic, unseen phrasings (400)": [
+    53.0,
+    54.8,
+    99.0
+   ]
+  },
+  "five_seed_mean_std": {
+   "source": "blog figure script ft_fig.py (raw per-seed files offline)",
+   "verified_here": false,
+   "arms": [
+    "plain solutions",
+    "calls, model writes the answer",
+    "calls + calculator implant"
+   ],
+   "GSM8K": {
+    "mean": [
+     33.6,
+     35.2,
+     35.1
+    ],
+    "std": [
+     0.6,
+     0.2,
+     1.2
+    ]
+   },
+   "GSM-Hard": {
+    "mean": [
+     13.4,
+     14.9,
+     23.3
+    ],
+    "std": [
+     0.4,
+     0.9,
+     0.6
+    ]
+   },
+   "arithmetic, new phrasings": {
+    "mean": [
+     50.8,
+     54.5,
+     99.0
+    ],
+    "std": [
+     3.4,
+     1.5,
+     0.4
+    ]
+   }
+  }
+ },
+ "calc_icl": {
+  "setup": "FROZEN Qwen2.5-0.5B (no fine-tune), 6-shot prompt with ' <<a*b=' calls, older calculator circuit, N=100 per set, CPU fp32",
+  "source": "finetuned_phase/results/calc_icl_100.json",
+  "verified_here": false,
+  "bare multiplication": {
+   "no_machine": 4.0,
+   "machine": 100.0
+  },
+  "word problems": {
+   "no_machine": 46.0,
+   "machine": 98.0
+  }
+ }
+}

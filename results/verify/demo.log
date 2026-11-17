@@ -1,0 +1,10 @@
+implant attached in 604s: 46438 ReLU units, 2355185 nonzero weights
+
+prompt ends with: '86 = 631326.\n\nQ: What is 59283 * 914?\nA:'
+frozen model alone      : ' 59283 * 914 = 54000022.\n\n'
+frozen model + implant  : ' 59283 * 914 =[ ][5][4][1][8][4][6][6][2][ ]59'
+exact answer            : 54184662
+
+1. logits bit-identical to the plain model for all 12 steps before the implant first wrote: True
+2. no-trigger text: implant write is exactly zero everywhere: True; logits bit-identical: True
+OK

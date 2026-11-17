@@ -1,0 +1,8 @@
+# How often a single-operator equation 'a op b = v' in the saved full GSM runs has v = (exact value) + extra fraction digits,
+# e.g. '100 / 2 = 50.0'. With calc_s3 such a tail can come from the implant writing a fraction digit after a '.'.
+# Regex over the generated text (first pass), exact values from micromachines.calcfmt.calc_ref. Counted on the saved
+# original outputs (not in this repo; only the summary is kept).
+q3_test_smm4_rt  (GSM8K test, calculator) : 2037 single-op equations | 11 with a tail | 5 problems, 1 of them wrong in the first pass
+q3_hard_smm4_rt  (GSM-Hard, calculator)   : 2306 single-op equations |  8 with a tail | 4 problems, 4 of them wrong in the first pass
+q3_test_plain_rt (GSM8K test, no implant) : 1924 single-op equations | 16 with a tail | 9 problems, 3 of them wrong in the first pass
+q3_hard_plain_rt (GSM-Hard, no implant)   : 2217 single-op equations | 11 with a tail | 5 problems, 5 of them wrong in the first pass

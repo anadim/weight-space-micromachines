@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+runs/
+out/
+data/bbh/
+data/gsm8k/
+data/gsmhard/
+figures/fonts/
+.DS_Store
+figures/anim/frames/
+figures/anim/zoom_frames/
+figures/anim/*.mp4

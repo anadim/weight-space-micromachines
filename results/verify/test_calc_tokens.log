@@ -1,0 +1,2 @@
+calc_s4 200 expressions x 2 contexts: {'exact': 400, 'silent': 0, 'WRONG': 0, 'dot->OE': 362, 'dot->digit(BAD)': 0, 'dot->other': 38, 'neg spoken(BAD)': 0}
+PASS

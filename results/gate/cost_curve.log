@@ -1,0 +1,68 @@
+
+== base -> rethink | test | first solution 95 tok/problem on average
+   never   : acc 52.08% | extra tok/problem    0
+   always  : acc 56.56% | extra tok/problem  101
+   oracle  : acc 58.30% | extra tok/problem   49  (rethink only where wrong)
+   meandiff L16    fire~30% (actual  36%): acc 54.06% | extra tok/problem   42
+   meandiff L16    fire~50% (actual  57%): acc 55.04% | extra tok/problem   65
+   meandiff L16    fire~70% (actual  74%): acc 55.65% | extra tok/problem   81
+   meandiff L16    fire~90% (actual  91%): acc 56.33% | extra tok/problem   94
+   probe L28       fire~30% (actual  42%): acc 55.27% | extra tok/problem   45
+   probe L28       fire~50% (actual  67%): acc 56.18% | extra tok/problem   71
+   probe L28       fire~70% (actual  82%): acc 56.25% | extra tok/problem   85
+   probe L28       fire~90% (actual  94%): acc 56.48% | extra tok/problem   96
+   margin          fire~30% (actual  39%): acc 54.36% | extra tok/problem   41
+   margin          fire~50% (actual  61%): acc 54.89% | extra tok/problem   64
+   margin          fire~70% (actual  81%): acc 56.03% | extra tok/problem   83
+   margin          fire~90% (actual  93%): acc 56.41% | extra tok/problem   96
+
+== base -> rethink | hard | first solution 122 tok/problem on average
+   never   : acc 26.46% | extra tok/problem    0
+   always  : acc 30.02% | extra tok/problem   99
+   oracle  : acc 31.01% | extra tok/problem   74  (rethink only where wrong)
+   meandiff L16    fire~30% (actual  69%): acc 28.43% | extra tok/problem   72
+   meandiff L16    fire~50% (actual  82%): acc 29.34% | extra tok/problem   86
+   meandiff L16    fire~70% (actual  90%): acc 29.64% | extra tok/problem   93
+   meandiff L16    fire~90% (actual  95%): acc 29.95% | extra tok/problem   97
+   probe L28       fire~30% (actual  76%): acc 29.26% | extra tok/problem   78
+   probe L28       fire~50% (actual  87%): acc 30.10% | extra tok/problem   90
+   probe L28       fire~70% (actual  92%): acc 30.02% | extra tok/problem   95
+   probe L28       fire~90% (actual  95%): acc 30.02% | extra tok/problem   97
+   margin          fire~30% (actual  43%): acc 28.51% | extra tok/problem   41
+   margin          fire~50% (actual  62%): acc 28.66% | extra tok/problem   61
+   margin          fire~70% (actual  77%): acc 29.11% | extra tok/problem   77
+   margin          fire~90% (actual  89%): acc 29.80% | extra tok/problem   91
+
+== ocalc -> ocalc_rt | test | first solution 98 tok/problem on average
+   never   : acc 53.07% | extra tok/problem    0
+   always  : acc 56.79% | extra tok/problem  117
+   oracle  : acc 59.29% | extra tok/problem   61  (rethink only where wrong)
+   meandiff L16    fire~30% (actual  36%): acc 55.12% | extra tok/problem   50
+   meandiff L16    fire~50% (actual  57%): acc 56.03% | extra tok/problem   73
+   meandiff L16    fire~70% (actual  74%): acc 56.48% | extra tok/problem   90
+   meandiff L16    fire~90% (actual  91%): acc 56.63% | extra tok/problem  106
+   probe L28       fire~30% (actual  44%): acc 56.41% | extra tok/problem   54
+   probe L28       fire~50% (actual  68%): acc 56.71% | extra tok/problem   81
+   probe L28       fire~70% (actual  83%): acc 56.71% | extra tok/problem   98
+   probe L28       fire~90% (actual  94%): acc 56.79% | extra tok/problem  108
+   margin          fire~30% (actual  39%): acc 55.34% | extra tok/problem   47
+   margin          fire~50% (actual  61%): acc 55.95% | extra tok/problem   72
+   margin          fire~70% (actual  80%): acc 56.33% | extra tok/problem   93
+   margin          fire~90% (actual  94%): acc 56.48% | extra tok/problem  108
+
+== ocalc -> ocalc_rt | hard | first solution 133 tok/problem on average
+   never   : acc 36.01% | extra tok/problem    0
+   always  : acc 37.91% | extra tok/problem  132
+   oracle  : acc 40.33% | extra tok/problem   86  (rethink only where wrong)
+   meandiff L16    fire~30% (actual  71%): acc 36.62% | extra tok/problem  103
+   meandiff L16    fire~50% (actual  83%): acc 37.07% | extra tok/problem  116
+   meandiff L16    fire~70% (actual  89%): acc 37.45% | extra tok/problem  121
+   meandiff L16    fire~90% (actual  95%): acc 37.83% | extra tok/problem  126
+   probe L28       fire~30% (actual  79%): acc 37.68% | extra tok/problem  109
+   probe L28       fire~50% (actual  88%): acc 37.68% | extra tok/problem  118
+   probe L28       fire~70% (actual  93%): acc 37.76% | extra tok/problem  124
+   probe L28       fire~90% (actual  96%): acc 37.83% | extra tok/problem  126
+   margin          fire~30% (actual  46%): acc 36.69% | extra tok/problem   64
+   margin          fire~50% (actual  63%): acc 36.92% | extra tok/problem   85
+   margin          fire~70% (actual  77%): acc 37.30% | extra tok/problem  101
+   margin          fire~90% (actual  91%): acc 37.76% | extra tok/problem  121

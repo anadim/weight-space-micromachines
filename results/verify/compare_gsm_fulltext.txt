@@ -1,0 +1,2 @@
+out/gsm_test_calc_2b.json first-pass text identical 46 / 64 | rethink text identical 42 / 64
+out/gsm_hard_plain_2b.json first-pass text identical 64 / 64 | rethink text identical 64 / 64

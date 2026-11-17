@@ -1,0 +1,106 @@
+{
+ "calc_s4": {
+  "description": "calculator: a op b = -> exact digits (+ - * /, signed decimals)",
+  "relu_units": 46443,
+  "layers": 52,
+  "nonzero_weights": 2355685,
+  "window_tokens": 54,
+  "input_symbols": 26,
+  "output_tokens": 14,
+  "build_seconds": 9.0
+ },
+ "sum_fn": {
+  "description": "signed integer sums with brackets, e.g. (-1 + 2 + 45) =",
+  "relu_units": 6024,
+  "layers": 24,
+  "nonzero_weights": 212357,
+  "window_tokens": 80,
+  "input_symbols": 47,
+  "output_tokens": 13,
+  "build_seconds": 1.1
+ },
+ "expr_n": {
+  "description": "small expressions, <=4 signed numbers, + - * with precedence",
+  "relu_units": 6587,
+  "layers": 25,
+  "nonzero_weights": 290978,
+  "window_tokens": 80,
+  "input_symbols": 47,
+  "output_tokens": 13,
+  "build_seconds": 1.6
+ },
+ "liesnat": {
+  "description": "web of lies: truth value along the chain",
+  "relu_units": 345,
+  "layers": 3,
+  "nonzero_weights": 75862,
+  "window_tokens": 40,
+  "input_symbols": 21,
+  "output_tokens": 4,
+  "build_seconds": 0.5
+ },
+ "navnat": {
+  "description": "navigate: position after the moves; answers \"Since (X, Y)\"",
+  "relu_units": 4100,
+  "layers": 19,
+  "nonzero_weights": 62723,
+  "window_tokens": 32,
+  "input_symbols": 49,
+  "output_tokens": 26,
+  "build_seconds": 0.7
+ },
+ "boolnat": {
+  "description": "boolean expressions: True/False of the expression",
+  "relu_units": 4145,
+  "layers": 31,
+  "nonzero_weights": 42118,
+  "window_tokens": 18,
+  "input_symbols": 18,
+  "output_tokens": 3,
+  "build_seconds": 0.9
+ },
+ "time_n": {
+  "description": "temporal sequences: the free interval in the schedule",
+  "relu_units": 52314,
+  "layers": 20,
+  "nonzero_weights": 316990,
+  "window_tokens": 212,
+  "input_symbols": 27,
+  "output_tokens": 4,
+  "build_seconds": 4.9
+ },
+ "track_nat": {
+  "description": "tracking shuffled objects: who holds what after the swaps",
+  "relu_units": 22004,
+  "layers": 17,
+  "nonzero_weights": 2193396,
+  "window_tokens": 400,
+  "input_symbols": 15,
+  "output_tokens": 7,
+  "build_seconds": 7.3
+ },
+ "logic_nat": {
+  "description": "logical deduction: the one ordering consistent with all clues",
+  "relu_units": 203503,
+  "layers": 17,
+  "nonzero_weights": 75579341,
+  "window_tokens": 360,
+  "input_symbols": 125,
+  "output_tokens": 7,
+  "build_seconds": 657.8
+ },
+ "calc_s3": {
+  "description": "calculator, GSM8K variant (machine writes the space after =)",
+  "relu_units": 46438,
+  "layers": 51,
+  "nonzero_weights": 2355185,
+  "window_tokens": 54,
+  "input_symbols": 26,
+  "output_tokens": 14,
+  "build_seconds": 24.3
+ },
+ "_nine_bbh_total": {
+  "relu_units": 345465,
+  "nonzero_weights": 81129450
+ }
+}

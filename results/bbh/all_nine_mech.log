@@ -1,0 +1,9 @@
+# Snapshot of the log of a separate full run (read-only copy), taken 2026-11-17 01:53 UTC. sha256 of the log at snapshot time: 54d64102fd8ab2c3e6b8d57f7964985f774df20a0b7fdc45f19c42932f3dabe3
+# STATUS: PARTIAL: run still in progress; 6 of the 12 implant tasks finished at n=250 (tracking 3/5/7 and deduction 3/5/7 not yet)
+# command: research harness bbh_official.py (= scripts/run_bbh.py) Qwen/Qwen3-0.6B-Base --tasks <12 implant tasks + dyck> --machines calc_s4,sum_fn,expr_n,liesnat,navnat,boolnat,time_n,track_nat,logic_nat (all nine) --bs 16 --min_tokens 4
+multistep_arithmetic_two                  97.6 (n=250) | 3919s
+object_counting                           79.2 (n=250) | 5930s
+web_of_lies                               97.6 (n=250) | 9489s
+navigate                                  99.6 (n=250) | 12729s
+boolean_expressions                       98.4 (n=250) | 14377s
+temporal_sequences                        98.4 (n=250) | 17841s

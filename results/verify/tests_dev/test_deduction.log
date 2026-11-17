@@ -1,0 +1,6 @@
+attached 314s
+three {'exact': 250, 'silent': 0, 'WRONG': 0, 'ref_silent': 0} 431s
+five {'exact': 500, 'silent': 0, 'WRONG': 0, 'ref_silent': 0} 607s
+seven {'exact': 750, 'silent': 0, 'WRONG': 0, 'ref_silent': 0} 854s
+BBH logical_deduction {'exact': 750, 'silent': 0, 'WRONG': 0, 'ref_silent': 0} | off-task answers (want 0): 0 | longest question tokens 226
+synthetic 300 wrong 0 silent 138 1229s

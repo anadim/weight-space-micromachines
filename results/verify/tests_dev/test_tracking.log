@@ -1,0 +1,5 @@
+three {'exact': 250, 'silent': 0, 'WRONG': 0}
+five {'exact': 500, 'silent': 0, 'WRONG': 0}
+seven {'exact': 750, 'silent': 0, 'WRONG': 0}
+BBH tracking {'exact': 750, 'silent': 0, 'WRONG': 0} | off-task answers written (want 0): 0
+synthetic 200 mismatches 0 | longest prompt tokens 647

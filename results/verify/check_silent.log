@@ -1,0 +1,38 @@
+causal_judgement                              tokens   149 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   404 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   406 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   399 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   178 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   182 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   127 | implant wrote at   0 | quiet positions bit-identical: True
+causal_judgement                              tokens   131 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   118 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   144 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   134 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   138 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   135 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   147 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   142 | implant wrote at   0 | quiet positions bit-identical: True
+date_understanding                            tokens   121 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    27 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    26 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    30 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    34 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    28 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    34 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    25 | implant wrote at   0 | quiet positions bit-identical: True
+sports_understanding                          tokens    28 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    39 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    41 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    39 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    35 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    43 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    37 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    37 | implant wrote at   0 | quiet positions bit-identical: True
+hyperbaton                                    tokens    41 | implant wrote at   0 | quiet positions bit-identical: True
+multistep_arithmetic_two (prompt)             tokens   945 | implant wrote at  37 | quiet positions bit-identical: True
+navigate (prompt)                             tokens   689 | implant wrote at 207 | quiet positions bit-identical: True
+web_of_lies (prompt)                          tokens   802 | implant wrote at  27 | quiet positions bit-identical: True
+tracking_shuffled_objects_five_objects (prompt) tokens   684 | implant wrote at   3 | quiet positions bit-identical: True
+host weights unchanged by attaching: True | after detach bit-identical: True
+SUMMARY {'texts': 36, 'positions': 6719, 'positions_written': 274, 'texts_with_any_mismatch': 0}

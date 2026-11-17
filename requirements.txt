@@ -1,0 +1,12 @@
+# Versions of the environment that produced and verified the results (Python 3.12, CUDA 12.8).
+# torch: install the build that matches your platform (CPU-only is fine for demo.py and the tests).
+torch==2.8.0
+transformers==4.56.2
+tokenizers==0.22.2
+safetensors==0.8.0
+accelerate==1.15.0
+numpy==2.2.6
+# data/prepare_gsm.py
+datasets==5.0.1
+# scripts/gate/fit_detector.py
+scikit-learn==1.9.1
