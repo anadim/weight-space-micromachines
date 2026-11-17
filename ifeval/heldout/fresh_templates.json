@@ -1,0 +1,278 @@
+{
+ "no_comma": [
+  "Do not use a single comma anywhere in what you write.",
+  "Commas are banned for this one, so rephrase as needed to avoid them entirely.",
+  "Please make sure your reply is completely free of commas.",
+  "Rule: zero commas. Not one.",
+  "I'd like the answer to avoid the comma character altogether; use periods or dashes instead where you would normally reach for one.",
+  "Your entire output must not include any ',' characters.",
+  "Write it without any commas at all, please.",
+  "no commas.",
+  "The response should be composed without resorting to commas of any kind.",
+  "Leave the comma key alone while writing this, because none should appear in your response.",
+  "As a stylistic constraint, refrain from using commas throughout your entire answer.",
+  "It is required that the text contain no commas whatsoever.",
+  "Avoid commas completely; if a sentence seems to need one, restructure it.",
+  "Heads up: I'm trying out a comma-free style, so nothing you write here should have a comma in it."
+ ],
+ "lower": [
+  "Write everything in lowercase letters only; no capitals at all.",
+  "Please make sure every single letter in your response is lowercase.",
+  "Don't capitalize anything, not even the first word of a sentence or proper nouns.",
+  "All lowercase, please.",
+  "Your reply must be entirely in small letters. Capital letters are not permitted.",
+  "Rule: the whole response is in lower case, from the first character to the last.",
+  "I'd prefer you skip uppercase entirely; the answer should be in lowercase English only.",
+  "Use no uppercase characters anywhere in the response.",
+  "Respond only in lowercase text, as if the shift key were broken.",
+  "The entire output should be rendered in lowercase; any uppercase letter will count as an error.",
+  "keep it all lower-case.",
+  "Avoid capital letters completely: every word, including names and the start of sentences, should be lowercase.",
+  "Formatting requirement: the answer must not contain a single capital letter.",
+  "Could you write the whole thing in lowercase? No caps anywhere, please."
+ ],
+ "caps": [
+  "Write your entire response in capital letters.",
+  "ALL CAPS please, for the whole answer.",
+  "Please make sure every letter of your reply is uppercase.",
+  "The response must be written entirely in uppercase English; lowercase letters are not allowed.",
+  "Respond as if caps lock were stuck on for the entire answer.",
+  "Don't use any lowercase letters anywhere in what you write.",
+  "Rule: everything you output is in upper case.",
+  "I need the whole thing in block capitals, start to finish.",
+  "Your answer should be fully capitalized, every word and every letter.",
+  "uppercase only.",
+  "Kindly render the complete text in capital letters, with no lowercase characters at all.",
+  "Make your reply shout: all letters should be capitals.",
+  "As a formatting constraint, the full response has to appear in uppercase.",
+  "Could you type the entire answer using only capital letters? Not a single lowercase letter should show up."
+ ],
+ "quote": [
+  "Wrap your entire response in double quotation marks.",
+  "Please put the whole answer inside double quotes, so it starts with \" and ends with \".",
+  "Enclose everything you write in a pair of double quotes.",
+  "The full reply must begin and end with a double quotation mark.",
+  "Surround your answer with quotation marks (\"like this\").",
+  "Present the response as one big quotation: open with a double quote at the very start and close with one at the very end.",
+  "Put your whole output between double quotes.",
+  "Rule: the response is wrapped in double quotation marks, with nothing outside them.",
+  "I'd like the entire text enclosed in \"double quotes\" from the first character to the last.",
+  "in double quotes pls, the whole thing.",
+  "Make sure nothing appears outside a single set of double quotation marks surrounding your answer.",
+  "Format the answer as a quoted string: a double quote first, then your text, then a closing double quote.",
+  "Your output should be fully contained within double quotation marks.",
+  "Begin your reply with a \" character and finish it with a \" character, so that the whole thing is quoted."
+ ],
+ "end": [
+  "End your response with the exact phrase \"{P}\" and nothing after it.",
+  "Your reply must finish with these words: {P}",
+  "Please make sure the very last words of your answer are '{P}', with no further text.",
+  "Close out with \"{P}\" verbatim. Nothing should follow it.",
+  "Wrap up your answer using the precise phrase \"{P}\" as its final words.",
+  "The response has to conclude with the following, word for word: {P}",
+  "Sign off with \"{P}\"; that should be the last thing in your reply.",
+  "Rule: the last characters of the output are \"{P}\". No extra words afterwards.",
+  "Finish with the phrase {P} exactly as written, and don't add anything after it.",
+  "Make \"{P}\" the closing line of your answer, word for word.",
+  "ending must be \"{P}\" exactly.",
+  "Whatever you write, it needs to end on the phrase \"{P}\"; do not follow it with any other words.",
+  "I want the very end of your response to read: '{P}'",
+  "Conclude the text with \"{P}\", and let that be the absolute final thing you say."
+ ],
+ "ps": [
+  "At the end of your reply, add a postscript that begins with {M}",
+  "Please include a short postscript after the main text, starting with \"{M}\".",
+  "Finish with a note marked {M} at the very end.",
+  "Tack on a short addendum at the bottom, introduced by the marker {M}.",
+  "Rule: the response closes with a postscript, and that postscript starts with {M}.",
+  "Add a postscript at the end. It must open with {M}.",
+  "Once you're done with the main answer, append a brief afterthought that begins with \"{M}\".",
+  "I'd like a postscript at the bottom, prefixed with {M}.",
+  "Don't forget a postscript after everything else; start it with {M}.",
+  "Your answer should conclude with an additional note labeled {M}.",
+  "End with a postscript beginning '{M}'.",
+  "plus a postscript at the end starting w/ {M} pls",
+  "Following the body of your response, write a postscript that is introduced by the marker {M}.",
+  "Make sure there's a little extra note after the sign-off, starting with {M}, like you'd add at the end of a letter."
+ ],
+ "forbid": [
+  "Do not use the words {Wq} anywhere in your response.",
+  "Avoid the words {Wdq} completely.",
+  "Your answer must not contain the following words: {Wp}.",
+  "Forbidden words for this task: {Wl}. None of them may appear.",
+  "Don't say {W1} anywhere in your reply.",
+  "Please make sure the word {W1q} does not show up in what you write.",
+  "Steer clear of the word {W1dq} entirely.",
+  "Rule: the words {Wq} are off-limits.",
+  "Write this without ever using {Wdq}.",
+  "Exclude these terms from your answer: {Wl}",
+  "I'd rather you didn't use the words {Wp} at all, so phrase things around them.",
+  "The word {W1q} is banned for this response.",
+  "Make sure none of these words appear in your answer, not even once: {Wl}.",
+  "Whatever you do, keep the word {W1dq} out of it.",
+  "dont use the word {W1}. at all."
+ ],
+ "repeat": [
+  [
+   "after",
+   "Before answering, copy the request above word for word, then give your answer."
+  ],
+  [
+   "after",
+   "Please begin by restating my request exactly as I wrote it above (do not alter a single word), and only then respond to it."
+  ],
+  [
+   "after",
+   "First write out the request above verbatim, without any changes, and then answer it. Do not include this instruction in the repetition."
+  ],
+  [
+   "after",
+   "Rule: your reply opens with an exact copy of the request above. After that copy, provide the response."
+  ],
+  [
+   "after",
+   "Start by echoing back the request above, character for character; then proceed with your answer."
+  ],
+  [
+   "after",
+   "Kindly reproduce the request above in its exact original wording at the very start of your answer; after you have done so, go ahead and fulfill it."
+  ],
+  [
+   "before",
+   "Repeat the request below exactly as written before you answer it. Do not repeat this sentence, only the request."
+  ],
+  [
+   "before",
+   "For the following task, first reproduce the request word for word, then complete it:"
+  ],
+  [
+   "before",
+   "I need you to start your reply by copying out the request that follows, verbatim, and then respond to it."
+  ],
+  [
+   "before",
+   "Please echo the next request back to me unchanged before you do anything else with it."
+  ],
+  [
+   "inline",
+   "Before you respond, repeat that request word for word, then give your answer."
+  ],
+  [
+   "inline",
+   "Start by restating this request exactly, with no changes, and then answer it."
+  ],
+  [
+   "inline",
+   "Copy the request verbatim at the top of your reply (leave out this last sentence), then respond."
+  ],
+  [
+   "inline",
+   "pls repeat my request back exactly first, then answer."
+  ]
+ ],
+ "two": [
+  "Give me two different responses, separated by six asterisks like this: ******",
+  "Please write two distinct versions, and put ****** (six asterisks) between them.",
+  "Provide two alternative answers. Separate them with a line of exactly six asterisks: ******.",
+  "I want two separate takes on this; divide them using the symbol ******.",
+  "Rule: two different responses, with ****** between them and nothing else separating them.",
+  "Write it twice, differently each time, and split the two versions with six asterisks (******).",
+  "Offer a pair of distinct answers, separated only by ******.",
+  "two versions pls, separated by ******",
+  "Respond with two different options. Between the first and the second, place exactly six asterisks, ******, as a divider.",
+  "Could you come up with two contrasting replies? Use ****** to mark where one ends and the other begins.",
+  "Produce two unique responses and separate them with exactly 6 asterisk symbols: ******",
+  "Draft two different answers to this, divided by a separator of six asterisks (******).",
+  "Your output should contain two different responses joined by the separator ******.",
+  "Give two alternatives, one after the other, with the six-asterisk separator ****** in between."
+ ],
+ "paras": [
+  "Your answer should have exactly {N} paragraphs, separated from each other by the markdown divider ***.",
+  "Write {Nw} paragraphs. Put *** between consecutive paragraphs.",
+  "Please make sure the response is split into exactly {Nw} paragraphs, using three asterisks (***) as the separator.",
+  "Rule: {N} paragraphs, no more and no fewer, divided by ***.",
+  "Structure it as {Nw} paragraphs, each separated by a line containing only ***.",
+  "I need precisely {N} paragraphs in your reply; separate them with the markdown horizontal rule ***.",
+  "Break the response into {Nw} paragraphs and use *** to divide them.",
+  "{N} paragraphs, separated by ***.",
+  "The text must consist of exactly {Nw} paragraphs. Paragraphs are separated with three asterisks: ***",
+  "Keep it to {N} paragraphs total, and put three asterisks between each pair of adjacent paragraphs.",
+  "Organize your answer into {Nw} distinct paragraphs, with the divider *** between each one.",
+  "Use exactly {N} paragraphs; between paragraphs, insert the markdown divider ***, and don't use it anywhere else.",
+  "there should be {Nw} paragraphs total, with *** in between them",
+  "Compose a response of {Nw} paragraphs in all, delimited by three asterisks (***)."
+ ],
+ "nth": [
+  "Write exactly {N} paragraphs, separated by blank lines. Paragraph {K} must begin with the word {X}.",
+  "Your response needs {Nw} paragraphs with an empty line between each. The {Kord} paragraph should start with the word \"{X}\".",
+  "Please use {N} paragraphs, separated by two newlines, and make sure the {Kth} paragraph opens with the word {X}.",
+  "Rule: {Nw} paragraphs divided by blank lines; the first word of paragraph {K} is {X}.",
+  "Split it into {N} paragraphs (one blank line between each). Start the {Kord} one with \"{X}\".",
+  "I'd like {Nw} paragraphs, each separated by a blank line, where the {Kth} paragraph begins with the word '{X}'.",
+  [
+   "last",
+   "Write {N} paragraphs separated by blank lines, and begin the final paragraph with the word {X}."
+  ],
+  [
+   "last",
+   "Use exactly {Nw} paragraphs with a blank line between each; the last paragraph must open with \"{X}\"."
+  ],
+  "{N} paragraphs, blank line between them; paragraph {K} starts with {X}.",
+  "There should be {Nw} paragraphs in total, separated by two line breaks, and the word {X} must be the very first word of the {Kord} paragraph.",
+  "Format: exactly {N} paragraphs separated by double newlines. Kick off paragraph number {K} with the word {X}.",
+  "Make the response {Nw} paragraphs long, separating them with empty lines, and have the {Kth} paragraph start with \"{X}\".",
+  [
+   "last",
+   "Please write {Nw} paragraphs, separated by blank lines, and make sure the closing paragraph starts with the word '{X}'."
+  ],
+  "The answer must have {N} paragraphs separated by blank lines; open the {Kord} paragraph with the word {X}, exactly."
+ ],
+ "title": [
+  "Give your answer a title wrapped in double angular brackets, such as <<my title>>.",
+  "Include a title at the top, enclosed in << and >>.",
+  "Please make sure there is a title formatted like <<Title Here>>.",
+  "Rule: the response has a title inside double angle brackets, e.g. <<example>>.",
+  "Start with a title surrounded by double angle brackets (<<like so>>).",
+  "add a title in <<double brackets>> pls",
+  "Put a heading at the beginning, written between << and >>.",
+  "Your response must contain a title, and the title must be wrapped as <<...>>.",
+  "I'd like a title on this, using the format <<your title>>.",
+  "Title the piece and enclose that title in double angular brackets, for instance <<A Title>>.",
+  "Make sure to include a name for it in the form <<name>>.",
+  "Before the main text, write a title wrapped in << >>.",
+  "The output should feature a title marked with double angle brackets: <<title>>.",
+  "Come up with a fitting title and present it between double angular brackets, like <<The Title>>, somewhere in your answer."
+ ],
+ "high": [
+  "Highlight at least {N} sections of your answer with markdown, for example *highlighted section*.",
+  "Please italicize at least {Nw} key parts using single asterisks, like *this*.",
+  "Mark at least {N} important phrases with markdown highlighting (*like this*).",
+  "Rule: no fewer than {Nw} sections highlighted with asterisks, e.g. *important*.",
+  "Emphasize {Nw} or more passages by wrapping them in single asterisks, as in *key point*.",
+  "Use markdown to highlight a minimum of {N} parts of the response, i.e. *highlighted text*.",
+  "Make sure that at least {N} portions are highlighted with *asterisks*.",
+  "highlight {Nw}+ bits with *stars* pls",
+  "Somewhere in the response, highlight at least {Nw} sections by surrounding each with asterisks, for instance *this part*.",
+  "I'd like {N} or more highlighted sections, formatted in markdown as *highlighted*.",
+  "Your answer should include at least {Nw} highlighted segments using the *text* markdown style.",
+  "Call out at least {N} key ideas by putting them between single asterisks, e.g. *main idea*.",
+  "There must be a minimum of {Nw} markdown-highlighted sections (*like this one*) in your reply.",
+  "When you write this, please flag at least {N} sections with markdown highlights, such as *flagged section*, so they stand out."
+ ],
+ "bullets": [
+  "Your answer must contain exactly {N} bullet points, using markdown bullets such as:\n* This is a point.",
+  "Please respond with exactly {Nw} bullet points in markdown (each line starting with \"* \").",
+  "Rule: {N} bullets, no more, no fewer. Use the markdown format * item.",
+  "Give me exactly {Nw} points as a markdown bulleted list, with each point on its own line starting with an asterisk.",
+  "Format the answer as a list of precisely {N} markdown bullet points (* like this).",
+  "{Nw} bullet points exactly, markdown style (* ...).",
+  "I need the response to be exactly {N} bullet points long. Use markdown bullets, e.g.:\n* First item",
+  "Make sure your reply has {Nw} markdown bullet points, no more and no less, each beginning with \"* \".",
+  "Organize the content into exactly {N} bullets, using an asterisk followed by a space at the start of each bullet.",
+  "just {Nw} bullet points pls, markdown asterisks",
+  "The response should be a markdown list containing exactly {N} items, each starting with * .",
+  "Summarize it in {Nw} bullet points only (use * for the bullets), and don't add any other bulleted lines.",
+  "Present your answer as exactly {N} markdown bullet points, like:\n* bullet\n* bullet",
+  "Limit the answer to exactly {Nw} bullet points written in markdown, such as * this one."
+ ]
+}

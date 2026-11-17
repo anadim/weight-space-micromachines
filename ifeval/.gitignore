@@ -1,0 +1,11 @@
+runs/
+*/runs/
+data/*.jsonl
+data/*.json
+!heldout/data/*.jsonl
+*/tables.pt
+*/vocab_strs.json
+*/vecs.pt
+*/vecs2.pt
+*.partial
+heldout/IFBench/

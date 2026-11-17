@@ -1,0 +1,6 @@
+# md5 of the frozen implant (frozen at the end of NOTES.md part 9). circuit.py and tables.py here are byte-identical to the
+# frozen copies; vecs2.pt itself (11.6 MB) is not included: vecs2_forcefix.pt holds its force_fix rows, the only part
+# circuit.py reads (bit-identical tensors).
+cd15769ce3f26bc5b5480e0f8864e4be  circuit.py
+78f6181bfa8d5db939c2f4a242ca96a6  tables.py
+5f5f542254d209649e6e212b01b88366  vecs2.pt (original; not included)

@@ -1,0 +1,6 @@
+res/
+*.log
+data/dev*.jsonl
+data/test.jsonl
+data/mmlu_ret.jsonl
+data/advbench.csv
