@@ -1,0 +1,8 @@
+RESULT Qwen/Qwen3-1.7B-Base mode=plain split=hard: 599/1319 = 45.41% | 1527s
+RESULT Qwen/Qwen3-1.7B-Base mode=calc split=hard: 673/1319 = 51.02% | 1449s
+RESULT Qwen/Qwen3-1.7B-Base mode=plain split=test: 964/1319 = 73.09% | 1209s
+RESULT Qwen/Qwen3-1.7B-Base mode=calc split=test: 954/1319 = 72.33% | 1222s
+RESULT Qwen/Qwen3-4B-Base mode=plain split=hard: 778/1319 = 58.98% | 958s
+RESULT Qwen/Qwen3-4B-Base mode=calc split=hard: 796/1319 = 60.35% | 1625s
+RESULT Qwen/Qwen3-4B-Base mode=calc split=test: 1117/1319 = 84.69% | 1115s
+RESULT Qwen/Qwen3-4B-Base mode=plain split=test: 1112/1319 = 84.31% | 1047s

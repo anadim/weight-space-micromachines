@@ -1,0 +1,28 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "mode": "gated",
+ "intervene": "hybrid",
+ "cap": 300,
+ "detector": "results/rethink_v2/detector_hybrid.pt",
+ "split": "train_rep",
+ "n": 256,
+ "bs": 32,
+ "max_new": 700,
+ "dirs": "results/rethink_v2/write_dirs_all.pt",
+ "out": "results/rethink_v2/silent_check_hybrid.json",
+ "host_weights_unchanged": true,
+ "counts": {
+  "positions": 42064,
+  "written": 1601,
+  "quiet": 40463,
+  "quiet_mismatch": 0,
+  "rows": 256,
+  "rows_fired": 160,
+  "hn_agree": 42052,
+  "hn_fp": 0,
+  "hn_fn": 12,
+  "fires": 160,
+  "cap_fires": 12
+ },
+ "hn_agreement": 0.9997147204260175
+}

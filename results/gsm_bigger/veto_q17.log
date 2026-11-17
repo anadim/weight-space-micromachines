@@ -1,0 +1,6 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+number endings 4752
+model already avoids a digit at 99.3% of number endings
+train: no digit 99.97% | own non-digit choice kept 99.61% | |v| rms 5.27
+held-out: no digit 100.00% | own non-digit choice kept 99.37% | |v| rms 5.27
+saved runs/veto_q17.pt

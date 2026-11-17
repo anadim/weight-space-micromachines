@@ -1,0 +1,8 @@
+test_plain_hybrid_s0 --split test --mode plain --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_plain_hybrid_s1 --split test --mode plain --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 21  --bs 32 --max_new 700
+test_calc_hybrid_s0 --split test --mode calc --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_calc_hybrid_s1 --split test --mode calc --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 21  --bs 32 --max_new 700
+hard_plain_hybrid_s0 --split hard --mode plain --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_plain_hybrid_s1 --split hard --mode plain --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 21  --bs 32 --max_new 700
+hard_calc_hybrid_s0 --split hard --mode calc --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_calc_hybrid_s1 --split hard --mode calc --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --start_batch 21  --bs 32 --max_new 700

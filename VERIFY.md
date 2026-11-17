@@ -151,7 +151,7 @@ all satisfy them), unused imports were removed, and `data/prepare_gsm.py` now pi
 * `finetuned_phase/`: nothing re-run (see its README).
 * Figures: regenerated with `figures/make_figs.py` in the venv from `results/` (DejaVu Sans; Avenir is optional).
 
-## 10. The rethink implant (added after the release; same pod, GPU 0 shared with other jobs)
+## 10. The rethink implant (added after the release; same machine, GPU 0 shared with other jobs)
 
 Before this, the rethink phrase was appended by `scripts/run_gsm.py --rethink` (evaluation code) and the probe gate was
 applied by evaluation code. Now both are an implant, `micromachines/rethink.py` (`--rethink_implant always|gated`).

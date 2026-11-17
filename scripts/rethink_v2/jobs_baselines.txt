@@ -1,0 +1,16 @@
+test_plain_none_s0 --split test --mode plain --implant none --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_plain_none_s1 --split test --mode plain --implant none --start_batch 21  --bs 32 --max_new 700
+test_plain_alwaysA_s0 --split test --mode plain --implant always --intervene end --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_plain_alwaysA_s1 --split test --mode plain --implant always --intervene end --start_batch 21  --bs 32 --max_new 700
+test_calc_none_s0 --split test --mode calc --implant none --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_calc_none_s1 --split test --mode calc --implant none --start_batch 21  --bs 32 --max_new 700
+test_calc_alwaysA_s0 --split test --mode calc --implant always --intervene end --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+test_calc_alwaysA_s1 --split test --mode calc --implant always --intervene end --start_batch 21  --bs 32 --max_new 700
+hard_plain_none_s0 --split hard --mode plain --implant none --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_plain_none_s1 --split hard --mode plain --implant none --start_batch 21  --bs 32 --max_new 700
+hard_plain_alwaysA_s0 --split hard --mode plain --implant always --intervene end --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_plain_alwaysA_s1 --split hard --mode plain --implant always --intervene end --start_batch 21  --bs 32 --max_new 700
+hard_calc_none_s0 --split hard --mode calc --implant none --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_calc_none_s1 --split hard --mode calc --implant none --start_batch 21  --bs 32 --max_new 700
+hard_calc_alwaysA_s0 --split hard --mode calc --implant always --intervene end --start_batch 0 --max_batches 21 --bs 32 --max_new 700
+hard_calc_alwaysA_s1 --split hard --mode calc --implant always --intervene end --start_batch 21  --bs 32 --max_new 700

@@ -1,0 +1,6 @@
+tv_train_none --split train_rep --implant none --max_batches 8 --bs 32 --max_new 700
+tv_train_alwaysA --split train_rep --implant always --intervene end --max_batches 8 --bs 32 --max_new 700
+tv_train_hybrid --split train_rep --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --max_batches 8 --bs 32 --max_new 700
+tv_scaled_none --split scaled_rep --implant none --max_batches 8 --bs 32 --max_new 700
+tv_scaled_alwaysA --split scaled_rep --implant always --intervene end --max_batches 8 --bs 32 --max_new 700
+tv_scaled_hybrid --split scaled_rep --implant gated --intervene hybrid --cap 300 --detector results/rethink_v2/detector_hybrid.pt --max_batches 8 --bs 32 --max_new 700

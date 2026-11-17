@@ -15,18 +15,21 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--model', default='Qwen/Qwen3-0.6B-Base')
 ap.add_argument('--out', default='runs/veto_qwen3.pt')
 ap.add_argument('--train', default='data/gsm8k/train.jsonl')
+ap.add_argument('--device', default='cpu')          # 'cuda' to collect hidden states on GPU (fp32), much faster for 1.7B/4B
+ap.add_argument('--nrows', type=int, default=300)   # number of GSM8K-train solutions (rows 2000..2000+nrows) used
 a = ap.parse_args()
 torch.set_grad_enabled(True)
+dev = a.device
 tok = AutoTokenizer.from_pretrained(a.model)
-model = AutoModelForCausalLM.from_pretrained(a.model, torch_dtype=torch.float32).eval()
+model = AutoModelForCausalLM.from_pretrained(a.model, torch_dtype=torch.float32).to(dev).eval()
 digits = [tok(str(d), add_special_tokens=False)['input_ids'][0] for d in range(10)]
 norm, head = model.model.norm, model.lm_head
-rows = [json.loads(l) for l in open(a.train)][2000:2300]
+rows = [json.loads(l) for l in open(a.train)][2000:2000 + a.nrows]
 H, nxt = [], []
 with torch.no_grad():
     for r in rows:
         body = re.sub(r'<<[^>]*>>', '', r['answer'].split('####')[0])
-        ids = tok(f"Question: {r['question']}\nAnswer: {body}", return_tensors='pt').input_ids
+        ids = tok(f"Question: {r['question']}\nAnswer: {body}", return_tensors='pt').input_ids.to(dev)
         cap = {}
         hk = norm.register_forward_pre_hook(lambda m, x: cap.__setitem__('h', x[0][0]))
         model.model(input_ids=ids); hk.remove(); hs = cap['h']                # the residual stream right before the final norm
@@ -36,16 +39,16 @@ with torch.no_grad():
                 H.append(hs[p]); nxt.append(t[p + 1])
 H = torch.stack(H); print('number endings', len(H))
 with torch.no_grad():
-    base = head(norm(H)); mask = torch.zeros(base.shape[1], dtype=torch.bool); mask[digits] = True
+    base = head(norm(H)); mask = torch.zeros(base.shape[1], dtype=torch.bool, device=dev); mask[digits] = True
     nondig_choice = base.masked_fill(mask, -1e9).argmax(-1)
     print('model already avoids a digit at', f'{100 * (~mask[base.argmax(-1)]).float().mean():.1f}%', 'of number endings')
-torch.manual_seed(0); perm = torch.randperm(len(H)); tr, va = perm[:int(0.8 * len(H))], perm[int(0.8 * len(H)):]
+torch.manual_seed(0); perm = torch.randperm(len(H), device=dev); tr, va = perm[:int(0.8 * len(H))], perm[int(0.8 * len(H)):]
 g = norm.weight.detach(); E = head.weight.detach()
-v = torch.zeros(E.shape[1], requires_grad=True)
+v = torch.zeros(E.shape[1], device=dev, requires_grad=True)
 opt = torch.optim.Adam([v], lr=0.02)
 F = torch.nn.functional
 for step in range(1500):                    # hinge: no digit may win (margin 2); otherwise stay close to the model's own distribution
-    b = tr[torch.randint(len(tr), (256,))]
+    b = tr[torch.randint(len(tr), (256,), device=dev)]
     lg = head(norm(H[b] + v)); lb = base[b]
     dmax = lg[:, digits].max(-1).values; ndmax = lg.masked_fill(mask, -1e9).max(-1).values
     hinge = F.relu(dmax - ndmax + 2).mean()
@@ -58,5 +61,5 @@ with torch.no_grad():
         lg = torch.cat([head(norm(H[idx[i:i + 512]] + v)) for i in range(0, len(idx), 512)])
         print(f'{name}: no digit {100 * (~mask[lg.argmax(-1)]).float().mean():.2f}% | own non-digit choice kept {100 * (lg.argmax(-1) == nondig_choice[idx]).float().mean():.2f}% | |v| rms {v.pow(2).mean().sqrt():.2f}')
 os.makedirs(os.path.dirname(a.out) or '.', exist_ok=True)
-torch.save({'v': v}, a.out)
+torch.save({'v': v.detach().cpu()}, a.out)
 print('saved', a.out)

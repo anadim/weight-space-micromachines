@@ -98,6 +98,28 @@ def gsm():
     return out
 
 
+def gsm_inweights():
+    """GSM with everything in weights, one generation loop for every arm (max 700 new tokens, bs 32, n = 1319):
+    calculator calc_s3 on/off x rethink none / always (compiled, after the answer) / gated (compiled mistake detector).
+    From results/rethink_v2/summary.json (scripts/rethink_v2/summarize_v2.py over results/rethink_v2/final_eval/)."""
+    d = load('rethink_v2/summary.json'); out = {}
+    for s in ('test', 'hard'):
+        for m in ('plain', 'calc'):
+            r = d[f'{s}_{m}']
+            out[s, m] = {arm: (r[arm]['acc'], r[arm]['extra_tokens']) for arm in ('none', 'alwaysA', 'hybrid')}
+    return out
+
+
+def gsm_hosts():
+    """calc_s3 on bigger hosts (repo harness scripts/run_gsm.py, max 320 new tokens): {(host, split): (plain, calc)}."""
+    acc = lambda p: (lambda d: 100 * sum(r['ok'] for r in d['rows']) / len(d['rows']))(load(p))
+    out = {}
+    for host, pre in (('Qwen3-0.6B-Base', 'gsm_full_implant/'), ('Qwen3-1.7B-Base', 'gsm_bigger/q17_'), ('Qwen3-4B-Base', 'gsm_bigger/q4_')):
+        for s in ('test', 'hard'):
+            out[host, s] = (acc(f'{pre}{s}_plain.json'), acc(f'{pre}{s}_calc.json'))
+    return out
+
+
 def gate():
     """Parse results/gate/cost_curve.log -> {(src, split): {'never':(acc,tok), 'always':..., 'oracle':..., name: [(fire, acc, tok), ...]}}"""
     cur, out = None, {}
@@ -131,3 +153,10 @@ if __name__ == '__main__':
     print('\ngate (GSM8K test, vLLM):', {k: v for k, v in g.items() if k in ('never', 'always', 'oracle')}, '| probe L28:', g['probe L28'])
     d = load('gate/detector_summary.json')
     print('detector test AUROC:', {src: round(d[src]['probe L28']['test_auc'], 3) for src in d})
+    print('\nGSM, all in weights, one loop (acc, extra tokens): none / always rethink / detector-gated rethink')
+    for (s, m), v in gsm_inweights().items():
+        print(f'  {s:5s} {m:6s}', '  '.join(f'{k} {a:6.2f} ({t:5.1f})' for k, (a, t) in v.items()))
+    v2 = load('rethink_v2/auroc_test.json'), load('rethink_v2/auroc_hard.json')
+    print('mistake detector AUROC (GSM8K test, GSM-Hard):', [round(x['auroc_head0'], 3) for x in v2])
+    print('\nGSM calculator (calc_s3) on bigger hosts (plain -> calc):')
+    for (h, s), (p, c) in gsm_hosts().items(): print(f'  {h:16s} {s:5s} {p:6.2f} -> {c:6.2f}')

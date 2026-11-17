@@ -1,0 +1,7 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.31it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.87it/s]
+number endings 4752
+model already avoids a digit at 99.6% of number endings
+train: no digit 100.00% | own non-digit choice kept 99.95% | |v| rms 0.93
+held-out: no digit 100.00% | own non-digit choice kept 99.89% | |v| rms 0.93
+saved runs/veto_q4.pt
