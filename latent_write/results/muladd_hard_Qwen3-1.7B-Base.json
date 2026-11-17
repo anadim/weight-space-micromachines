@@ -1,0 +1,500 @@
+{
+ "task": "muladd",
+ "range": "hard",
+ "model": "Qwen3-1.7B-Base",
+ "n": 300,
+ "class": [
+  2,
+  2,
+  "+"
+ ],
+ "units": 427,
+ "nnz": 5215,
+ "circuit_check_task": {
+  "spans_fired": 300,
+  "slot_positions": 1500,
+  "pos_mismatch": 0,
+  "F_mismatch_positions": 0,
+  "P_mismatch": 0,
+  "max_G": 1.0
+ },
+ "circuit_check_text_oracle": {
+  "spans_fired": 0,
+  "slot_positions": 0,
+  "pos_mismatch": 0,
+  "F_mismatch_positions": 0,
+  "P_mismatch": 0,
+  "max_G": 0
+ },
+ "silent_L0": {
+  "batches": 13,
+  "logits_bit_identical_batches": 13,
+  "gen_identical": 318,
+  "n_prompts": 318,
+  "fired_positions": 0.0
+ },
+ "silent_L8": {
+  "batches": 13,
+  "logits_bit_identical_batches": 13,
+  "gen_identical": 318,
+  "n_prompts": 318,
+  "fired_positions": 0.0
+ },
+ "plain": {
+  "acc": 0.02,
+  "follow": 0.0033333333333333335
+ },
+ "text_oracle_true": {
+  "acc": 0.9666666666666667,
+  "follow": 0.0
+ },
+ "text_oracle_corr": {
+  "acc": 0.0,
+  "follow": 0.97
+ },
+ "text_tool_line": {
+  "acc": 0.9033333333333333,
+  "follow": 0.0
+ },
+ "L0_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.0001220703125,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071956,
+  "max_abs_h": 0.134765625
+ },
+ "L0_comp_true": {
+  "acc": 0.9533333333333334,
+  "follow": 0.0
+ },
+ "L0_ref_true": {
+  "acc": 0.9533333333333334,
+  "follow": 0.0
+ },
+ "L0_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L0_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L0_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_refq_true": {
+  "acc": 0.9533333333333334,
+  "follow": 0.0
+ },
+ "L0_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L0_outputs_identical": {
+  "true": 300,
+  "corr": 299,
+  "mean": 300
+ },
+ "L2_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.001953125,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071955,
+  "max_abs_h": 59.25
+ },
+ "L2_comp_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L2_ref_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L2_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9633333333333334
+ },
+ "L2_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9633333333333334
+ },
+ "L2_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_refq_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L2_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9633333333333334
+ },
+ "L2_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L4_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.00390625,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071884,
+  "max_abs_h": 12096.0
+ },
+ "L4_comp_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L4_ref_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L4_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9666666666666667
+ },
+ "L4_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9666666666666667
+ },
+ "L4_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_refq_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L4_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9666666666666667
+ },
+ "L4_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L8_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.00390625,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071916,
+  "max_abs_h": 12096.0
+ },
+ "L8_comp_true": {
+  "acc": 0.94,
+  "follow": 0.0
+ },
+ "L8_ref_true": {
+  "acc": 0.9366666666666666,
+  "follow": 0.0
+ },
+ "L8_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9233333333333333
+ },
+ "L8_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9233333333333333
+ },
+ "L8_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_refq_true": {
+  "acc": 0.9366666666666666,
+  "follow": 0.0
+ },
+ "L8_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9233333333333333
+ },
+ "L8_outputs_identical": {
+  "true": 299,
+  "corr": 300,
+  "mean": 300
+ },
+ "L10_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.001953125,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071936,
+  "max_abs_h": 12096.0
+ },
+ "L10_comp_true": {
+  "acc": 0.9133333333333333,
+  "follow": 0.0
+ },
+ "L10_ref_true": {
+  "acc": 0.9133333333333333,
+  "follow": 0.0
+ },
+ "L10_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.91
+ },
+ "L10_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.91
+ },
+ "L10_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L10_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L10_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L10_refq_true": {
+  "acc": 0.9133333333333333,
+  "follow": 0.0
+ },
+ "L10_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.91
+ },
+ "L10_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L12_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.015625,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071921,
+  "max_abs_h": 12096.0
+ },
+ "L12_comp_true": {
+  "acc": 0.77,
+  "follow": 0.0
+ },
+ "L12_ref_true": {
+  "acc": 0.7666666666666667,
+  "follow": 0.0
+ },
+ "L12_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.82
+ },
+ "L12_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.82
+ },
+ "L12_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_refq_true": {
+  "acc": 0.7666666666666667,
+  "follow": 0.0
+ },
+ "L12_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.82
+ },
+ "L12_outputs_identical": {
+  "true": 298,
+  "corr": 300,
+  "mean": 300
+ },
+ "L14_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.015625,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071881,
+  "max_abs_h": 12096.0
+ },
+ "L14_comp_true": {
+  "acc": 0.42333333333333334,
+  "follow": 0.0033333333333333335
+ },
+ "L14_ref_true": {
+  "acc": 0.42333333333333334,
+  "follow": 0.0033333333333333335
+ },
+ "L14_comp_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.41333333333333333
+ },
+ "L14_ref_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.41
+ },
+ "L14_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_refq_true": {
+  "acc": 0.42333333333333334,
+  "follow": 0.0033333333333333335
+ },
+ "L14_refq_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.41
+ },
+ "L14_outputs_identical": {
+  "true": 298,
+  "corr": 298,
+  "mean": 300
+ },
+ "L16_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.015625,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071923,
+  "max_abs_h": 12096.0
+ },
+ "L16_comp_true": {
+  "acc": 0.14333333333333334,
+  "follow": 0.0
+ },
+ "L16_ref_true": {
+  "acc": 0.14333333333333334,
+  "follow": 0.0
+ },
+ "L16_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.17
+ },
+ "L16_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.16666666666666666
+ },
+ "L16_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_refq_true": {
+  "acc": 0.14333333333333334,
+  "follow": 0.0
+ },
+ "L16_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.16666666666666666
+ },
+ "L16_outputs_identical": {
+  "true": 298,
+  "corr": 296,
+  "mean": 300
+ },
+ "L18_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.03125,
+  "slot_elems": 3072000,
+  "slot_elems_bit_equal": 3071910,
+  "max_abs_h": 12096.0
+ },
+ "L18_comp_true": {
+  "acc": 0.04,
+  "follow": 0.0
+ },
+ "L18_ref_true": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0
+ },
+ "L18_comp_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.023333333333333334
+ },
+ "L18_ref_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.02666666666666667
+ },
+ "L18_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_refq_true": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0
+ },
+ "L18_refq_corr": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.02666666666666667
+ },
+ "L18_outputs_identical": {
+  "true": 289,
+  "corr": 292,
+  "mean": 226
+ }
+}

@@ -1,0 +1,545 @@
+{
+ "task": "lost",
+ "range": "mid",
+ "model": "Qwen3-0.6B-Base",
+ "n": 300,
+ "class": null,
+ "units": 690,
+ "nnz": 6298,
+ "circuit_check_task": {
+  "spans_fired": 1500,
+  "slot_positions": 21000,
+  "pos_mismatch": 0,
+  "F_mismatch_positions": 0,
+  "P_mismatch": 0,
+  "max_G": 1.0
+ },
+ "circuit_check_text_oracle": {
+  "spans_fired": 1200,
+  "slot_positions": 16800,
+  "pos_mismatch": 0,
+  "F_mismatch_positions": 0,
+  "P_mismatch": 0,
+  "max_G": 1.0
+ },
+ "silent_L0": {
+  "batches": 11,
+  "logits_bit_identical_batches": 11,
+  "gen_identical": 268,
+  "n_prompts": 268,
+  "fired_positions": 0.0
+ },
+ "silent_L8": {
+  "batches": 11,
+  "logits_bit_identical_batches": 11,
+  "gen_identical": 268,
+  "n_prompts": 268,
+  "fired_positions": 0.0
+ },
+ "plain": {
+  "acc": 0.03333333333333333,
+  "follow": 0.0033333333333333335
+ },
+ "text_oracle_true": {
+  "acc": 0.9433333333333334,
+  "follow": 0.0
+ },
+ "text_oracle_corr": {
+  "acc": 0.0,
+  "follow": 0.9366666666666666
+ },
+ "text_tool_line": {
+  "acc": 0.7,
+  "follow": 0.0033333333333333335
+ },
+ "L0_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 1.52587890625e-05,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503685,
+  "max_abs_h": 0.1103515625
+ },
+ "L0_comp_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L0_ref_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L0_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9766666666666667
+ },
+ "L0_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9766666666666667
+ },
+ "L0_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_refq_true": {
+  "acc": 0.9633333333333334,
+  "follow": 0.0
+ },
+ "L0_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L0_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L2_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.0001220703125,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503985,
+  "max_abs_h": 9.375
+ },
+ "L2_comp_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L2_ref_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L2_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9833333333333333
+ },
+ "L2_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9833333333333333
+ },
+ "L2_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_comp_meanall": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L2_refq_true": {
+  "acc": 0.9733333333333334,
+  "follow": 0.0
+ },
+ "L2_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9633333333333334
+ },
+ "L2_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 267
+ },
+ "L4_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.00390625,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503960,
+  "max_abs_h": 6432.0
+ },
+ "L4_comp_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L4_ref_true": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L4_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9766666666666667
+ },
+ "L4_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9766666666666667
+ },
+ "L4_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.006666666666666667
+ },
+ "L4_refq_true": {
+  "acc": 0.97,
+  "follow": 0.0
+ },
+ "L4_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9733333333333334
+ },
+ "L4_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L8_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.001953125,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503665,
+  "max_abs_h": 6432.0
+ },
+ "L8_comp_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L8_ref_true": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L8_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9666666666666667
+ },
+ "L8_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9666666666666667
+ },
+ "L8_comp_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_comp_meanall": {
+  "acc": 0.0,
+  "follow": 0.013333333333333334
+ },
+ "L8_refq_true": {
+  "acc": 0.94,
+  "follow": 0.0
+ },
+ "L8_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.93
+ },
+ "L8_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L10_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.0078125,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503972,
+  "max_abs_h": 6432.0
+ },
+ "L10_comp_true": {
+  "acc": 0.9466666666666667,
+  "follow": 0.0
+ },
+ "L10_ref_true": {
+  "acc": 0.9466666666666667,
+  "follow": 0.0
+ },
+ "L10_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L10_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9566666666666667
+ },
+ "L10_comp_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L10_ref_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L10_comp_meanall": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L10_refq_true": {
+  "acc": 0.92,
+  "follow": 0.0
+ },
+ "L10_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.9166666666666666
+ },
+ "L10_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 262
+ },
+ "L12_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.0078125,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503684,
+  "max_abs_h": 6432.0
+ },
+ "L12_comp_true": {
+  "acc": 0.9133333333333333,
+  "follow": 0.0
+ },
+ "L12_ref_true": {
+  "acc": 0.9133333333333333,
+  "follow": 0.0
+ },
+ "L12_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.9166666666666666
+ },
+ "L12_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.9166666666666666
+ },
+ "L12_comp_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L12_ref_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L12_comp_meanall": {
+  "acc": 0.01,
+  "follow": 0.0
+ },
+ "L12_refq_true": {
+  "acc": 0.8833333333333333,
+  "follow": 0.0
+ },
+ "L12_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.8633333333333333
+ },
+ "L12_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L14_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.0009765625,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503669,
+  "max_abs_h": 6432.0
+ },
+ "L14_comp_true": {
+  "acc": 0.8866666666666667,
+  "follow": 0.0
+ },
+ "L14_ref_true": {
+  "acc": 0.8866666666666667,
+  "follow": 0.0
+ },
+ "L14_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.8633333333333333
+ },
+ "L14_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.8633333333333333
+ },
+ "L14_comp_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L14_ref_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L14_comp_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0
+ },
+ "L14_refq_true": {
+  "acc": 0.89,
+  "follow": 0.0
+ },
+ "L14_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.8633333333333333
+ },
+ "L14_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L16_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.00390625,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503981,
+  "max_abs_h": 6432.0
+ },
+ "L16_comp_true": {
+  "acc": 0.8266666666666667,
+  "follow": 0.0
+ },
+ "L16_ref_true": {
+  "acc": 0.8266666666666667,
+  "follow": 0.0
+ },
+ "L16_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.8266666666666667
+ },
+ "L16_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.8266666666666667
+ },
+ "L16_comp_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L16_ref_mean": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0
+ },
+ "L16_comp_meanall": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L16_refq_true": {
+  "acc": 0.66,
+  "follow": 0.0
+ },
+ "L16_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.6733333333333333
+ },
+ "L16_outputs_identical": {
+  "true": 300,
+  "corr": 300,
+  "mean": 300
+ },
+ "L18_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.00048828125,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503970,
+  "max_abs_h": 6432.0
+ },
+ "L18_comp_true": {
+  "acc": 0.03666666666666667,
+  "follow": 0.013333333333333334
+ },
+ "L18_ref_true": {
+  "acc": 0.03666666666666667,
+  "follow": 0.013333333333333334
+ },
+ "L18_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.03333333333333333
+ },
+ "L18_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.03333333333333333
+ },
+ "L18_comp_mean": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0
+ },
+ "L18_ref_mean": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_comp_meanall": {
+  "acc": 0.01,
+  "follow": 0.0033333333333333335
+ },
+ "L18_refq_true": {
+  "acc": 0.03333333333333333,
+  "follow": 0.01
+ },
+ "L18_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.03
+ },
+ "L18_outputs_identical": {
+  "true": 299,
+  "corr": 299,
+  "mean": 207
+ },
+ "L20_residual_check": {
+  "nonslot_bit_equal": true,
+  "slot_pos_equal": true,
+  "slot_max_abs_diff": 0.015625,
+  "slot_elems": 21504000,
+  "slot_elems_bit_equal": 21503973,
+  "max_abs_h": 6432.0
+ },
+ "L20_comp_true": {
+  "acc": 0.023333333333333334,
+  "follow": 0.006666666666666667
+ },
+ "L20_ref_true": {
+  "acc": 0.023333333333333334,
+  "follow": 0.006666666666666667
+ },
+ "L20_comp_corr": {
+  "acc": 0.0,
+  "follow": 0.013333333333333334
+ },
+ "L20_ref_corr": {
+  "acc": 0.0,
+  "follow": 0.013333333333333334
+ },
+ "L20_comp_mean": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L20_ref_mean": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L20_comp_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.006666666666666667
+ },
+ "L20_refq_true": {
+  "acc": 0.02666666666666667,
+  "follow": 0.006666666666666667
+ },
+ "L20_refq_corr": {
+  "acc": 0.0,
+  "follow": 0.01
+ },
+ "L20_outputs_identical": {
+  "true": 298,
+  "corr": 300,
+  "mean": 300
+ }
+}
