@@ -24,6 +24,12 @@ No question text is stored.
 | `gsm/qwen3_{test,hard}_{plain,calc}_rethink.json` | GSM8K test / GSM-Hard, with and without the calculator; `first_ok` before and `ok` after the rethink pass | HF loop (`scripts/run_gsm.py`) |
 | `gate/cost_curve.log` | accuracy vs extra tokens for never / always / probe-gated / margin-gated / perfect rethink | from vLLM generations (`scripts/gate/`) |
 | `gate/detector_summary.json` | detector AUROCs (train, test, GSM-Hard) and gated accuracies, per-problem scores removed | `scripts/gate/fit_detector.py` |
+| `rethink/rethink_probe_L28.pt` | the FITTED probe of the gated `rethink` implant (w, b, mean/std, threshold, fit report) | `scripts/gate/export_probe.py` on a fresh `gen_rethink.py` run (`rethink/gate_gen_summary.txt`) |
+| `rethink/eq_{test,hard}_plain_{ref,imp}.json`, `rethink/eq_test_calc_{ref,imp}.json`, `rethink/eq_test_plain_gated.json` | equivalence subsets (first 224 of the length-sorted order, bs 8): `ref` = evaluation-code rethink (`--rethink`), `imp` / `gated` = the `rethink` implant; per problem gold, first prediction, correctness before/after, implant wrote or not, probe score, extra tokens | HF loop (`scripts/run_gsm.py`) |
+| `rethink/eq_test_plain_evalgate.json` | the evaluation-code gate (probe scores and decisions) on the reference's first answers | `scripts/gate/eval_gate.py` |
+| `rethink/fp32_hard_plain_{ref,imp}.json` | the same comparison in float32, first 32 GSM-Hard problems | HF loop, `--fp32` |
+| `rethink/compare_rethink.txt` | problem-by-problem comparison output (texts, answers, token sequences) for all of the above | `scripts/compare_rethink.py` + token check |
+| `rethink/silent_check_rethink_{always,gated}.json` | logit bit-identity wherever the rethink implant does not write | `scripts/check_silent_rethink.py` |
 | `implant_sizes.json` | ReLU units, layers, nonzero weights per implant | `scripts/build_implants.py` |
 | `silent_check.json` | logits bit-identity with all nine implants attached | `scripts/check_silent.py` |
 | `verify/` | the re-runs from a fresh clone described in `VERIFY.md` (logs, comparisons, compact outputs) | |

@@ -1,0 +1,1808 @@
+{
+"source_file": "eq8_hard_plain_ref.json",
+"source_sha256": "5abd90e28eda3a4442c659245006f18601c2af50386a78d7eaa6724f7e90d32c",
+"command": "python scripts/run_gsm.py OUT.json --bs 8 --max_batches 28 --split hard --mode plain --rethink (first 224 of the length-sorted order; run as 7 chunks via --start_batch)",
+"model": "Qwen/Qwen3-0.6B-Base",
+"mode": "plain",
+"split": "hard",
+"rethink_implant": "none",
+"n": 224,
+"acc": 43.75,
+"first_acc": 42.410714285714285,
+"fired": 224,
+"extra_tokens_mean": 168.25446428571428,
+"rows": [
+{
+"i": 554,
+"gold": "2518759.68",
+"pred": "1574224.8",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 126
+},
+{
+"i": 338,
+"gold": "8300379.0",
+"pred": "8300379",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 118
+},
+{
+"i": 431,
+"gold": "13.0",
+"pred": "13",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 224,
+"gold": "969704.6",
+"pred": "3878818.4",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 78
+},
+{
+"i": 1035,
+"gold": "8.0",
+"pred": "8",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 59
+},
+{
+"i": 837,
+"gold": "3.0",
+"pred": "3",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 47
+},
+{
+"i": 288,
+"gold": "45591556.0",
+"pred": "45591556",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 153
+},
+{
+"i": 1026,
+"gold": "840349.5",
+"pred": "1400582",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 122
+},
+{
+"i": 565,
+"gold": "4558951.2",
+"pred": "4558951.20",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 115
+},
+{
+"i": 552,
+"gold": "378168.4",
+"pred": "378168.40",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 91
+},
+{
+"i": 841,
+"gold": "593487.0",
+"pred": "3560322",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 157
+},
+{
+"i": 1282,
+"gold": "4665278.5",
+"pred": "4665257",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 234
+},
+{
+"i": 494,
+"gold": "53374240.0",
+"pred": "52562300",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 103
+},
+{
+"i": 1089,
+"gold": "16.0",
+"pred": "16",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 182
+},
+{
+"i": 96,
+"gold": "426697344.0",
+"pred": "4236012784",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 184
+},
+{
+"i": 209,
+"gold": "21.0",
+"pred": "21",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 58
+},
+{
+"i": 285,
+"gold": "32.0",
+"pred": "20",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 65
+},
+{
+"i": 512,
+"gold": "168.0",
+"pred": "168",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 81
+},
+{
+"i": 696,
+"gold": "14451452.0",
+"pred": "3612865.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1309,
+"gold": "13138980.0",
+"pred": "6569490",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 95
+},
+{
+"i": 997,
+"gold": "26.0",
+"pred": "26",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 60
+},
+{
+"i": 1011,
+"gold": "16.0",
+"pred": "24",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 92
+},
+{
+"i": 815,
+"gold": "9.0",
+"pred": "9",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 50
+},
+{
+"i": 82,
+"gold": "51318000.0",
+"pred": "513180000",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 118,
+"gold": "1575070.0",
+"pred": "1575070",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 93
+},
+{
+"i": 161,
+"gold": "1895280.0",
+"pred": "1895280",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 113
+},
+{
+"i": 557,
+"gold": "15477630.0",
+"pred": "15417470",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 211
+},
+{
+"i": 421,
+"gold": "3296349.0",
+"pred": "3296353",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 92
+},
+{
+"i": 1047,
+"gold": "8882014.0",
+"pred": "0.000002000002",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 141
+},
+{
+"i": 355,
+"gold": "6.0",
+"pred": "6",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 59
+},
+{
+"i": 718,
+"gold": "12213729.5",
+"pred": "12213729.5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 119,
+"gold": "120.0",
+"pred": "120",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 109
+},
+{
+"i": 1,
+"gold": "3431580.0",
+"pred": "3431580",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 94
+},
+{
+"i": 135,
+"gold": "315933300.0",
+"pred": "5265555",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 166
+},
+{
+"i": 1181,
+"gold": "90000.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 110
+},
+{
+"i": 12,
+"gold": "14053029.666666666",
+"pred": "0.000555",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 138
+},
+{
+"i": 78,
+"gold": "60954715.0",
+"pred": "60954715",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 219
+},
+{
+"i": 231,
+"gold": "2538572.0",
+"pred": "2538572",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 712,
+"gold": "13919358.399999999",
+"pred": "13919358.4",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 242
+},
+{
+"i": 772,
+"gold": "677036.5",
+"pred": "2708646",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 117
+},
+{
+"i": 1028,
+"gold": "0.0003634793",
+"pred": "0.000361",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 170
+},
+{
+"i": 210,
+"gold": "66476740.0",
+"pred": "66477840",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 147
+},
+{
+"i": 1004,
+"gold": "48.0",
+"pred": "50",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 78
+},
+{
+"i": 825,
+"gold": "241125000.0",
+"pred": "241125000",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 82
+},
+{
+"i": 393,
+"gold": "8.0",
+"pred": "8",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 74
+},
+{
+"i": 433,
+"gold": "36918104.0",
+"pred": "36918084",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 162
+},
+{
+"i": 510,
+"gold": "4219328.6",
+"pred": "4219292.2",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 827,
+"gold": "132103989.0",
+"pred": "132681881",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1007,
+"gold": "3532208.0",
+"pred": "3532208",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 174
+},
+{
+"i": 646,
+"gold": "-1025033.0",
+"pred": "-1025173",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 125
+},
+{
+"i": 666,
+"gold": "5697664.0",
+"pred": "4558144",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 177
+},
+{
+"i": 798,
+"gold": "50332236.0",
+"pred": "12583059",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 114
+},
+{
+"i": 61,
+"gold": "278081800.0",
+"pred": "278081800",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 121
+},
+{
+"i": 489,
+"gold": "4064050.0",
+"pred": "4064048.5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 1065,
+"gold": "10.0",
+"pred": "24",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 89
+},
+{
+"i": 269,
+"gold": "29506470.0",
+"pred": "14753235",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 104
+},
+{
+"i": 886,
+"gold": "70.0",
+"pred": "66.67",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 242
+},
+{
+"i": 182,
+"gold": "81840200.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 382,
+"gold": "280.0",
+"pred": "160",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 63
+},
+{
+"i": 593,
+"gold": "12425958.0",
+"pred": "40704930",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 133
+},
+{
+"i": 828,
+"gold": "2844764.0",
+"pred": "2844764",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 96
+},
+{
+"i": 582,
+"gold": "-2062664.0",
+"pred": "2062664",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 112
+},
+{
+"i": 708,
+"gold": "79.0",
+"pred": "80.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 219
+},
+{
+"i": 1199,
+"gold": "2243046.5",
+"pred": "2243036.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 21,
+"gold": "109.0",
+"pred": "109",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 134
+},
+{
+"i": 86,
+"gold": "50.0",
+"pred": "50",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 79
+},
+{
+"i": 847,
+"gold": "22418168.0",
+"pred": "22418166",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 67
+},
+{
+"i": 238,
+"gold": "1884094.0",
+"pred": "1884094",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 105
+},
+{
+"i": 264,
+"gold": "25.0",
+"pred": "25",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 75
+},
+{
+"i": 59,
+"gold": "1545200.0",
+"pred": "386307.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 235,
+"gold": "12.0",
+"pred": "12",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 69
+},
+{
+"i": 1103,
+"gold": "38.0",
+"pred": "50",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 81
+},
+{
+"i": 1262,
+"gold": "23.0",
+"pred": "18",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 105
+},
+{
+"i": 1300,
+"gold": "11.9999986275",
+"pred": "48",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 135
+},
+{
+"i": 1018,
+"gold": "623.0",
+"pred": "623",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 68
+},
+{
+"i": 1130,
+"gold": "154999.5",
+"pred": "154999.5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 354,
+"gold": "14245351.0",
+"pred": "14245371",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 76
+},
+{
+"i": 379,
+"gold": "406787475.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 722,
+"gold": "30.0002184164",
+"pred": "1373.523",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 198
+},
+{
+"i": 1135,
+"gold": "42450360.0",
+"pred": "56600614",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 108
+},
+{
+"i": 768,
+"gold": "3.4568e-06",
+"pred": "6",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 176
+},
+{
+"i": 993,
+"gold": "66.0",
+"pred": "66",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 74,
+"gold": "19776716.0",
+"pred": "19776716",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 96
+},
+{
+"i": 190,
+"gold": "62.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 141
+},
+{
+"i": 377,
+"gold": "316315.8",
+"pred": "316315.80",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 317
+},
+{
+"i": 639,
+"gold": "1107638.25",
+"pred": "39",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 169
+},
+{
+"i": 139,
+"gold": "23103210.4",
+"pred": "23103206.40",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 106
+},
+{
+"i": 650,
+"gold": "-238666.2",
+"pred": "4",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 853,
+"gold": "19.0",
+"pred": "19",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 78
+},
+{
+"i": 868,
+"gold": "261280.125",
+"pred": "228000",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 138
+},
+{
+"i": 967,
+"gold": "80.0",
+"pred": "80",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 102
+},
+{
+"i": 1017,
+"gold": "73692615.0",
+"pred": "73692615",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 133
+},
+{
+"i": 673,
+"gold": "3779684.0",
+"pred": "3779784",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 113
+},
+{
+"i": 796,
+"gold": "16.0",
+"pred": "16",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 87
+},
+{
+"i": 1290,
+"gold": "618449580.0",
+"pred": "38946096",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 165
+},
+{
+"i": 42,
+"gold": "5186630.6",
+"pred": "820000",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 144
+},
+{
+"i": 69,
+"gold": "3.0",
+"pred": "3",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 52
+},
+{
+"i": 436,
+"gold": "5.0",
+"pred": "5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 78
+},
+{
+"i": 511,
+"gold": "120.0",
+"pred": "600",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 73
+},
+{
+"i": 2,
+"gold": "322886700.0",
+"pred": "107628900",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 84
+},
+{
+"i": 493,
+"gold": "21089052.0",
+"pred": "10544524",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 119
+},
+{
+"i": 761,
+"gold": "5.58738e-05",
+"pred": "0.00055",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 157,
+"gold": "16087561.0",
+"pred": "16087561",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 102
+},
+{
+"i": 461,
+"gold": "1850572.0",
+"pred": "1850572",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 103
+},
+{
+"i": 506,
+"gold": "-1346810.5",
+"pred": "134682",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 164
+},
+{
+"i": 667,
+"gold": "2110819.5",
+"pred": "2110815.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 111
+},
+{
+"i": 829,
+"gold": "50.0",
+"pred": "50",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 137
+},
+{
+"i": 850,
+"gold": "156155.9333333333",
+"pred": "7807",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 141
+},
+{
+"i": 917,
+"gold": "48.0",
+"pred": "24",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 71
+},
+{
+"i": 68,
+"gold": "1806106.8000000003",
+"pred": "1806109",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 95
+},
+{
+"i": 254,
+"gold": "16909429.0",
+"pred": "16909429",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 121
+},
+{
+"i": 398,
+"gold": "30.0",
+"pred": "30",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 57
+},
+{
+"i": 399,
+"gold": "100.0",
+"pred": "100",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 520,
+"gold": "-1879059.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 193,
+"gold": "18894535.0",
+"pred": "18894515",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 638,
+"gold": "5860624.0",
+"pred": "5860624",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 175
+},
+{
+"i": 671,
+"gold": "3.0",
+"pred": "3",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 67
+},
+{
+"i": 191,
+"gold": "42474420.0",
+"pred": "7230000000020",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 131
+},
+{
+"i": 833,
+"gold": "13.0",
+"pred": "13",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 69
+},
+{
+"i": 1246,
+"gold": "189.0",
+"pred": "12",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 60
+},
+{
+"i": 294,
+"gold": "3734959.666666666",
+"pred": "2987967",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 121
+},
+{
+"i": 460,
+"gold": "5.0",
+"pred": "5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 86
+},
+{
+"i": 810,
+"gold": "35.0",
+"pred": "35",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 83
+},
+{
+"i": 945,
+"gold": "1973643.0",
+"pred": "986821",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 102
+},
+{
+"i": 1063,
+"gold": "7776190.0",
+"pred": "3888090",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 48
+},
+{
+"i": 1222,
+"gold": "2467914.0",
+"pred": "2467914",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 134
+},
+{
+"i": 184,
+"gold": "-993656.0",
+"pred": "-993656",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 91
+},
+{
+"i": 256,
+"gold": "1109656.8",
+"pred": "1109656.80",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 249
+},
+{
+"i": 330,
+"gold": "50.0",
+"pred": "50",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 116
+},
+{
+"i": 665,
+"gold": "10944466.0",
+"pred": "10944466",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 94
+},
+{
+"i": 1219,
+"gold": "0.0207821553",
+"pred": "-4145401",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 204,
+"gold": "1365127.0",
+"pred": "1365127",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 119
+},
+{
+"i": 668,
+"gold": "700.0",
+"pred": "700",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 92
+},
+{
+"i": 1009,
+"gold": "3119356.8",
+"pred": "5347468.80",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 298,
+"gold": "14802208.0",
+"pred": "14802208",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 106
+},
+{
+"i": 603,
+"gold": "-12054494.0",
+"pred": "-12054494",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 952,
+"gold": "72.0",
+"pred": "270",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 52
+},
+{
+"i": 1293,
+"gold": "98.0",
+"pred": "98",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 15,
+"gold": "8.0",
+"pred": "2",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 45
+},
+{
+"i": 41,
+"gold": "42463867.0",
+"pred": "42464467",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 44
+},
+{
+"i": 93,
+"gold": "8637843.0",
+"pred": "17274106",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 151
+},
+{
+"i": 372,
+"gold": "55938720.00000001",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 375,
+"gold": "-9963054.0",
+"pred": "-9961154",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 432,
+"gold": "7688667.0",
+"pred": "1537729",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 177
+},
+{
+"i": 620,
+"gold": "4.33735e-05",
+"pred": "1000",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 90
+},
+{
+"i": 33,
+"gold": "10074005.666666666",
+"pred": "10073805.66",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 299,
+"gold": "14400.0",
+"pred": "14400",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 160
+},
+{
+"i": 361,
+"gold": "4174244.0",
+"pred": "4174244",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 103
+},
+{
+"i": 618,
+"gold": "0.0008106057",
+"pred": "2250",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 87
+},
+{
+"i": 677,
+"gold": "1227498.3333333333",
+"pred": "1227165",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1185,
+"gold": "6243496.5",
+"pred": "80006243490",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 197,
+"gold": "507210.5",
+"pred": "507210",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 93
+},
+{
+"i": 490,
+"gold": "12.0",
+"pred": "12",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 90
+},
+{
+"i": 502,
+"gold": "850455.5",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 783,
+"gold": "109844510400.0",
+"pred": "54597904800",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 795,
+"gold": "649788.8333333333",
+"pred": "649788",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 848,
+"gold": "0.0145623999",
+"pred": "0.0107",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1265,
+"gold": "90205.775",
+"pred": "90150.775",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1317,
+"gold": "17531620.0",
+"pred": "35063240",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 94
+},
+{
+"i": 185,
+"gold": "18.0",
+"pred": "18",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 67
+},
+{
+"i": 682,
+"gold": "60.0",
+"pred": "60",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 69
+},
+{
+"i": 707,
+"gold": "7186949.0",
+"pred": "7186950",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 85
+},
+{
+"i": 780,
+"gold": "96013532.0",
+"pred": "96013432",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 152
+},
+{
+"i": 1102,
+"gold": "10.0",
+"pred": "100",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 122
+},
+{
+"i": 1243,
+"gold": "25.0",
+"pred": "31",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 85
+},
+{
+"i": 175,
+"gold": "68.0",
+"pred": "68",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 69
+},
+{
+"i": 222,
+"gold": "4083344.0",
+"pred": "4083344",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 135
+},
+{
+"i": 337,
+"gold": "3829972.2",
+"pred": "1436235",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 90
+},
+{
+"i": 360,
+"gold": "-704720.0",
+"pred": "352360",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 469,
+"gold": "79.0",
+"pred": "79",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 96
+},
+{
+"i": 535,
+"gold": "3.0",
+"pred": "13",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 153
+},
+{
+"i": 628,
+"gold": "19866270.0",
+"pred": "19866270",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 100
+},
+{
+"i": 778,
+"gold": "1509980.5",
+"pred": "738855.83",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 136
+},
+{
+"i": 838,
+"gold": "36228324.0",
+"pred": "36228324",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 83
+},
+{
+"i": 1055,
+"gold": "20.0",
+"pred": "0.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1097,
+"gold": "19.999980473",
+"pred": "1024201",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 324,
+"gold": "20.0",
+"pred": "37.5",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 93
+},
+{
+"i": 633,
+"gold": "-3138685400.0",
+"pred": "3138789000",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 704,
+"gold": "30.0",
+"pred": "20",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 97
+},
+{
+"i": 805,
+"gold": "-7712289.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 25,
+"gold": "10.0",
+"pred": "1.67",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 95
+},
+{
+"i": 136,
+"gold": "3813434.5",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 283,
+"gold": "67.0",
+"pred": "67",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 85
+},
+{
+"i": 406,
+"gold": "-17199084.0",
+"pred": "17199128",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 123
+},
+{
+"i": 612,
+"gold": "-2184101.0",
+"pred": "2184101",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 717,
+"gold": "5596098.0",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 803,
+"gold": "5.0",
+"pred": "5",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 86
+},
+{
+"i": 928,
+"gold": "90.0",
+"pred": "90",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 97
+},
+{
+"i": 49,
+"gold": "5407462.8",
+"pred": "2703731",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 89,
+"gold": "13795250.0",
+"pred": "13795250",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 94
+},
+{
+"i": 282,
+"gold": "8752891.0",
+"pred": "8752891",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 90
+},
+{
+"i": 411,
+"gold": "3180819.166666666",
+"pred": "3180820",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 142
+},
+{
+"i": 1016,
+"gold": "9555861.333333334",
+"pred": "9516240",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 77
+},
+{
+"i": 1230,
+"gold": "2523817.0",
+"pred": "2523817",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 150
+},
+{
+"i": 474,
+"gold": "1693236.0",
+"pred": "1693239",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 176
+},
+{
+"i": 765,
+"gold": "117077184.0",
+"pred": "117077184",
+"first_ok": true,
+"ok": false,
+"rethink_tokens": 57
+},
+{
+"i": 851,
+"gold": "785784.96",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 159
+},
+{
+"i": 1147,
+"gold": "803.0",
+"pred": "730",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 77
+},
+{
+"i": 1162,
+"gold": "104459328.0",
+"pred": "8704824",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 103
+},
+{
+"i": 1255,
+"gold": "7283032.0",
+"pred": "1213839",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 81
+},
+{
+"i": 132,
+"gold": "106.0",
+"pred": "102",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 242,
+"gold": "5639310.0",
+"pred": "5639310",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 108
+},
+{
+"i": 530,
+"gold": "1.95766e-05",
+"pred": "0.0000197",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 773,
+"gold": "2076652.9000000004",
+"pred": "-3856680.2",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 832,
+"gold": "14584670.0",
+"pred": "7292345",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 97
+},
+{
+"i": 986,
+"gold": "40556910.0",
+"pred": "40556910",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 1117,
+"gold": "1216948.5",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 161
+},
+{
+"i": 1189,
+"gold": "4.0",
+"pred": "4",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 58
+},
+{
+"i": 1294,
+"gold": "10.0",
+"pred": "10",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 107
+},
+{
+"i": 65,
+"gold": "16684173.0",
+"pred": "16683957",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 119
+},
+{
+"i": 126,
+"gold": "22463288.0",
+"pred": "23477298",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 125
+},
+{
+"i": 248,
+"gold": "1.0",
+"pred": "1",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 82
+},
+{
+"i": 297,
+"gold": "12.0",
+"pred": "2",
+"first_ok": false,
+"ok": true,
+"rethink_tokens": 56
+},
+{
+"i": 307,
+"gold": "15498112.0",
+"pred": "15498192",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 176
+},
+{
+"i": 277,
+"gold": "3437164.5",
+"pred": "2291443",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 150
+},
+{
+"i": 357,
+"gold": "1516586.6666666667",
+"pred": "758293",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 99
+},
+{
+"i": 587,
+"gold": "3841739.2",
+"pred": null,
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 599,
+"gold": "336332346.0",
+"pred": "4805189.60",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 84
+},
+{
+"i": 735,
+"gold": "230.0",
+"pred": "230",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 106
+},
+{
+"i": 921,
+"gold": "-263735172.0",
+"pred": "-263640452",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 215
+},
+{
+"i": 936,
+"gold": "898609.5",
+"pred": "898699.50",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+},
+{
+"i": 1202,
+"gold": "20.0",
+"pred": "-60",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 64
+},
+{
+"i": 801,
+"gold": "2816388.0",
+"pred": "2816387",
+"first_ok": true,
+"ok": true,
+"rethink_tokens": 360
+},
+{
+"i": 889,
+"gold": "12274570.666666666",
+"pred": "3068643",
+"first_ok": false,
+"ok": false,
+"rethink_tokens": 360
+}
+]
+}

@@ -1,0 +1,20 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "mode": "gated",
+ "n_problems": 48,
+ "host_weights_unchanged": true,
+ "counts": {
+  "positions": 6216,
+  "written": 220,
+  "quiet": 5996,
+  "quiet_mismatch": 0,
+  "probe_evals": 48,
+  "probe_below": 26,
+  "probe_below_mismatch": 0,
+  "probe_above": 22,
+  "probe_above_mismatch": 0,
+  "rows": 48,
+  "rows_silent": 26,
+  "rows_silent_all_identical": 26
+ }
+}

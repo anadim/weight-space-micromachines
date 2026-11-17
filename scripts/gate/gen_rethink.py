@@ -6,7 +6,9 @@ For SPLIT in (train = 1500 train problems, seed 99 shuffle; test = 1319):
              appended (' v'), then generation continues
   ocalc_rt : ocalc + rethink (the oracle calculator stays on during the rethink)
 Uses vLLM (the generation numbers in results/gate/ come from this vLLM run, not the HF loop of scripts/run_gsm.py).
-python scripts/gate/gen_rethink.py OUT.json   (run from the repo root after data/prepare_gsm.py)"""
+python scripts/gate/gen_rethink.py OUT.json   (run from the repo root after data/prepare_gsm.py)
+Optional env: SPLITS=test,train (default test,hard,train) and NO_OCALC=1 (skip the oracle-calculator generations; enough
+for the probe of the rethink implant, which uses only 'base' and 'rethink')."""
 import os, sys; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 import json, re, sys, os, random
 from decimal import Decimal, getcontext
@@ -21,7 +23,8 @@ tr = [json.loads(l) for l in open('data/gsm8k/train.jsonl')]; random.Random(99).
 sq = {s['question'] for s in shots}; tr = [r for r in tr if r['question'] not in sq][:1500]
 te = [json.loads(l) for l in open('data/gsm8k/test.jsonl')]
 hd = [json.loads(l) for l in open('data/gsmhard/test.jsonl')]
-llm = LLM(MP, dtype='bfloat16', max_model_len=4096, gpu_memory_utilization=float(os.environ.get('UTIL', '0.5')), enable_prefix_caching=True, seed=0)
+llm = LLM(MP, dtype='bfloat16', max_model_len=4096, gpu_memory_utilization=float(os.environ.get('UTIL', '0.5')), enable_prefix_caching=True, seed=0,
+          enforce_eager=os.environ.get('EAGER') == '1')
 ans = lambda t: (lambda m: m[-1].replace(',', '') if m else None)(re.findall(r'####\s*\$?(-?[\d,]*\.?\d+)', t))
 def ok(a, g):
     try: return a is not None and abs(float(a) - float(g)) < 1e-6 * max(1, abs(float(g)))
@@ -53,17 +56,20 @@ def run_calc(prompts, max_new=360, stop_end=('\n\n',)):
     for k in live: done[k] = cur[k]
     return [d.split('\n\n')[0] if '\n\nQuestion' not in d else d.split('\n\nQuestion')[0] for d in done]
 res = {}
-for split, rows in (('test', te), ('hard', hd), ('train', tr)):
+SPL = os.environ.get('SPLITS', 'test,hard,train').split(','); NO_OCALC = os.environ.get('NO_OCALC') == '1'
+for split, rows in [(k, v) for k, v in (('test', te), ('hard', hd), ('train', tr)) if k in SPL]:
     gold = [r['answer'].split('####')[1].strip().replace(',', '') for r in rows]
     pre = [P + f"Question: {r['question']}\nAnswer:" for r in rows]
     base = [o.outputs[0].text.rstrip() for o in llm.generate(pre, SamplingParams(temperature=0, max_tokens=320, stop=['\n\n']), use_tqdm=False)]
     O = llm.generate([p + b + '\n' + PH for p, b in zip(pre, base)], SamplingParams(temperature=0, max_tokens=360, stop=['\n\nQuestion', '\n\n\n']), use_tqdm=False)
     rt = [(b + '\n' + PH + o.outputs[0].text).rstrip() if ans(o.outputs[0].text) else b for b, o in zip(base, O)]
-    oc = [t.rstrip() for t in run_calc(pre, stop_end=('\n\n',))]
-    O2 = run_calc([p + c + '\n' + PH for p, c in zip(pre, oc)], stop_end=('\n\nQuestion', '\n\n\n'))
-    ocr = [(c + '\n' + PH + t).rstrip() if ans(t) else c for c, t in zip(oc, O2)]
-    R = {'q': [r['question'] for r in rows], 'gold': gold}
-    for name, T in (('base', base), ('rethink', rt), ('ocalc', oc), ('ocalc_rt', ocr)):
+    R = {'q': [r['question'] for r in rows], 'gold': gold}; gens = [('base', base), ('rethink', rt)]
+    if not NO_OCALC:
+        oc = [t.rstrip() for t in run_calc(pre, stop_end=('\n\n',))]
+        O2 = run_calc([p + c + '\n' + PH for p, c in zip(pre, oc)], stop_end=('\n\nQuestion', '\n\n\n'))
+        ocr = [(c + '\n' + PH + t).rstrip() if ans(t) else c for c, t in zip(oc, O2)]
+        gens += [('ocalc', oc), ('ocalc_rt', ocr)]
+    for name, T in gens:
         R[name] = T; R[name + '_ok'] = [ok(ans(t), g) for t, g in zip(T, gold)]
         print(f'{split:5s} {name:9s} {100 * sum(R[name + "_ok"]) / len(rows):.2f}%', flush=True)
     res[split] = R

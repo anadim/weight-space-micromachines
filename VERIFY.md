@@ -134,7 +134,7 @@ have changed the GPU kernels chosen; this is a guess, not tested. The reported G
 
 Not re-generated (it needs vLLM). `results/gate/cost_curve.log` was recomputed with `scripts/gate/cost_curve.py` from the
 saved generations and detector scores; it reproduces every number in the README table (52.08 / 55.27 @ 45 / 56.56 @ 101 /
-58.30 @ 49; AUROC 0.81 and 0.83 in `detector_summary.json`).
+58.30 @ 49; AUROC 0.81 and 0.83 in `detector_summary.json`). The gate as an implant: section 10.
 
 ## Changes after the runs
 
@@ -145,7 +145,96 @@ all satisfy them), unused imports were removed, and `data/prepare_gsm.py` now pi
 
 ## 9. Not re-run
 
-* Full-size BBH (250 per task) and full GSM runs with the repo code: only the subsets above.
+* Full-size BBH (250 per task) and full GSM runs with the repo code: only the subsets above. The rethink implant: only
+  the subsets in section 10 (no full GSM8K / GSM-Hard run with the implant, always or gated).
 * vLLM baselines (Qwen3-0.6B, Qwen2.5-7B/14B): taken from the saved runs.
 * `finetuned_phase/`: nothing re-run (see its README).
 * Figures: regenerated with `figures/make_figs.py` in the venv from `results/` (DejaVu Sans; Avenir is optional).
+
+## 10. The rethink implant (added after the release; same pod, GPU 0 shared with other jobs)
+
+Before this, the rethink phrase was appended by `scripts/run_gsm.py --rethink` (evaluation code) and the probe gate was
+applied by evaluation code. Now both are an implant, `micromachines/rethink.py` (`--rethink_implant always|gated`).
+
+**How the reference works** (`--rethink`, unchanged, kept as the reference): pass 1 generates greedily until
+`<|endoftext|>` or a blank line (checked every 4 tokens on the last 8, max 320 tokens) and cuts the text at the first
+`\n\n`; pass 2 re-encodes `prompt + question + first.rstrip() + "\n" + "Hmm, wait. Let me rethink this.\n"` in a new
+batch and generates again (same stop rule, max 360); the last `####` in pass 2 counts, else the first answer stands.
+The gate (`scripts/gate/`) rethinks only if a logistic probe on the layer-28 state at the first `####` (a fresh forward
+of the first answer) is at least a threshold chosen on GSM8K train.
+
+**How the implant does it** (one generation, the harness only generates, stops and scores):
+* trigger: a pre-hook on the host's final norm (after the calculator's hook, so it sees its write) applies the host's own
+  norm + LM head to the last hidden state; if the host's next token would create the first blank line (any of the 565
+  vocabulary tokens containing `\n\n`, a token starting with `\n` right after one ending with `\n`) or is
+  `<|endoftext|>`, or the answer has reached 320 tokens, the implant fires (once per answer);
+* writer: instead of that token it writes the tokens of `stem.rstrip() + "\n" + PHRASE` one per position (stem = the
+  part of the end token before its blank line; for `\n\n` this is the 10 tokens `\n`, `Hmm`, `,`, ` wait`, `.`,
+  ` Let`, ` me`, ` rethink`, ` this`, `.\n`), with solved write directions (407 possible sequences, 399 distinct
+  tokens, smallest margin 13.2 logits on random states); then it is silent and the host continues;
+* gate (`gated`): at the host's first `####`-containing token it computes the probe score on `norm(h)` (=
+  `hidden_states[28]`) in float64 and arms the writer only if score >= thr. The probe weights are fitted (below).
+
+**The probe (fitted).** The probe file behind section 8 was not kept, so `gen_rethink.py` was re-run (vLLM 0.10.2,
+`NO_OCALC=1`, `UTIL=0.3`) and `scripts/gate/export_probe.py` refitted it with the same code and rule as
+`fit_detector.py`. The new generations differ slightly from the originals (GSM8K test never / always rethink 52.01 /
+56.10 vs 52.08 / 56.56; train 61.87 / 64.67). Refit: train AUROC 0.956 (original 0.955), threshold 0.2506 chosen on
+train (original 0.3277), test AUROC 0.808 (original 0.810); evaluation-code gate on the new test generations 55.65%,
+firing on 65.7% (original 56.18%, 58.2%). Saved as `results/rethink/rethink_probe_L28.pt` (w, b, mean/std, threshold).
+
+**Equivalence runs.** GPU 0 was shared with up to eight other jobs and runs at batch 32 were killed by out-of-memory
+errors, so the comparisons use batch size 8 (`--bs 8`, the first 224 problems of the length-sorted order, run as 7
+chunks of 4 batches with `--start_batch`; chunks are independent, so this equals one run). bf16, greedy. Reference =
+`--rethink` (evaluation code), implant = `--rethink_implant always|gated`, same batches. Compared with
+`scripts/compare_rethink.py` (texts, answers) and a token check (the token sequence the implant run feeds the host up to
+the end of the phrase vs the reference's re-encoding of `prompt + question + first.rstrip() + "\n" + PHRASE`).
+
+| subset (224 problems, bs 8) | host tokens up to end of phrase identical | first answer text identical | rethink text identical | final answer identical | same correctness | accuracy implant / reference |
+|---|---:|---:|---:|---:|---:|---:|
+| GSM8K test, plain, always | 224/224 | 224/224 | 161/224 | 212/224 | 215/224 | 73.66 / 74.11 |
+| GSM-Hard, plain, always | 223/224 | 223/224 | 127/224 | 212/224 | 219/224 | 45.98 / 43.75 |
+| GSM8K test, calculator `calc_s3` + always | 222/224 | 224/224 | 165/224 | 210/224 | 213/224 | 73.21 / 74.55 |
+| GSM8K test, plain, gated (vs evaluation-code gate on the reference) | 219/224 gate decisions agree | 219/224 | 75/110 | 214/224 | 217/224 | 73.21 / 73.66 |
+
+What differs and why:
+* **Up to the end of the phrase the host sees the same tokens** in every problem but one: GSM-Hard #805, where the
+  first answer hit the 320-token budget in the middle of a loop and its last token was a space. The evaluation code
+  strips it (`out.rstrip()`) before appending `\n` + phrase; the implant cannot take back a token the model already
+  emitted, so its text keeps the space. That answer has no `####` either way.
+  With the calculator, 2 problems (#507, #1066) have the same text but different tokens before the phrase: the
+  calculator implant writes ` ` and `-2` as separate tokens (`= -2`), and the script's re-encoding merges them into ` -`.
+  The script's second pass therefore does not even see the calculator's own tokens; the implant run does.
+* **The continuation after the phrase differs in 28-43% of problems, and this is bf16 arithmetic, not the implant.**
+  The reference computes the phrase positions in a fresh prefill of the whole re-encoded text, in a new batch; the
+  implant run computes them one token at a time in the running KV cache. Same tokens, different kernels, so bf16
+  logits differ slightly and near-ties flip. Checks: (1) the same comparison in **float32** (GSM-Hard, first 32
+  problems, bs 8; `--fp32`): rethink text identical **31/32**, final answer and correctness 32/32 (bf16 on the same
+  32 problems: 20/32). The one fp32 difference is a tokenization case, not arithmetic: the model wrote `.` and then
+  `\n\n` as two tokens; the implant replaces `\n\n` by `\n`, `Hmm`, ... while the script re-encodes the same text
+  `statement.\nHmm` with the merged token `.\n`, so the two runs feed the model the same characters as different
+  tokens. In the bf16 subsets the model always ended with a single token (`\n\n` or `.\n\n`), so this did not occur; (2) the evaluation code alone, run with a different batch size (bs 8 vs the saved
+  bs 32 original), agrees with itself less than the implant agrees with it: GSM8K first answers 169/224 identical,
+  rethink texts 113/190, same correctness 211/224, accuracy 74.11 vs 75.45; GSM-Hard first answers 155/224, same
+  correctness 213/224, 43.75 vs 45.98. (At bs 32, today's reference reproduces the saved original GSM-Hard run on
+  224/224 first answers and 157/157 stored rethink texts.)
+* **Gate.** The implant computes the probe on the host's own state during generation (batched, incremental, bf16);
+  the evaluation code recomputes it in a fresh unbatched forward. Scores differ by 0.0097 (median, max 0.070); 5 of 224
+  decisions flip, all with the evaluation-code score just below the threshold 0.2506 (0.241-0.247) and the implant's
+  just above (0.258-0.297). The implant rethought 115/224 problems, the evaluation-code gate 110/224.
+
+Cost on the GSM8K subset (tokens generated after the first answer, phrase included for the implant): never rethink
+68.75%; always (implant) 73.66% at 112 tokens/problem; gated (implant) 73.21% at 62 tokens/problem, firing on 115/224.
+
+So the implant reproduces the evaluation-code rethink exactly at the token level up to the point where it hands
+control back, and from there on differs only by floating-point noise of the same size as a batch-size change of the
+evaluation code itself. The full-set numbers in the README (56.10 / 57.62 / 29.26 / 37.23) were not re-run with the
+implant (see below).
+
+**Silent property** (`scripts/check_silent_rethink.py`; two copies of the same bf16 generation in lockstep, implant
+hook active in one and bypassed in the other, same tokens): always-on, 32 GSM8K problems: 5,922 positions, implant
+wrote at 320 (10 per problem), the other **5,602 logit rows bit-identical**; host weights hash the same before and after
+attaching. Gated, 48 GSM8K problems: 6,216 positions; the probe was evaluated at 48 `####` positions (26 below the threshold, 22 above); the implant wrote at 220 positions (22 problems x 10); all **5,996 other logit rows bit-identical**, including all 48 probe positions and every position of the 26 problems where the gate stayed shut (`results/rethink/silent_check_rethink_{always,gated}.json`).
+
+**Not run:** the full sets (GSM8K and GSM-Hard 1,319 each, with and without calculator, and the gated implant on all of
+GSM8K). With GPU 0 shared, one 224-problem subset took about an hour; the full runs would have taken many hours each.
+

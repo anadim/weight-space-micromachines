@@ -4,9 +4,10 @@ A micromachine (an "implant") is a small network whose weights are written by a 
 descent. It sits next to a **frozen** language model, reads the model's tokens, and, when its moment comes, adds a write
 to the model's last hidden state that makes the model emit the token the implant wants (an exact digit, an answer letter).
 At every other position its write is exactly zero, so the model's logits there are bit-identical to the unmodified model.
-This repository rebuilds nine such implants from code for the public `Qwen/Qwen3-0.6B-Base` checkpoint (downloaded from
-Hugging Face on first use; no custom checkpoint is needed), and contains the harnesses, the exactness tests, and the small
-result files behind the numbers below.
+This repository rebuilds these implants from code for the public `Qwen/Qwen3-0.6B-Base` checkpoint (the nine BBH
+implants, the GSM8K calculator `calc_s3`, and the `rethink` implant; the model is downloaded from Hugging Face on first
+use, no custom checkpoint is needed), and contains the harnesses, the exactness tests, and the small result files behind
+the numbers below.
 
 ## Results
 
@@ -56,7 +57,7 @@ How much is known about attaching all nine at once:
 All 27 tasks (no implant on the other 15): with the vLLM base, base 39.42 and with implants 60.49; with the HF-loop base,
 40.37 and 61.27. Qwen2.5-7B 67.33, Qwen2.5-14B 74.45.
 
-### GSM8K / GSM-Hard: calculator implant and a "rethink" nudge (full test sets, 1,319 each, greedy, 8-shot)
+### GSM8K / GSM-Hard: calculator implant and a "rethink" implant (full test sets, 1,319 each, greedy, 8-shot)
 
 | Qwen3-0.6B-Base, frozen | as is | + calculator | + rethink | + both |
 |---|---:|---:|---:|---:|
@@ -74,9 +75,26 @@ reads it as a decimal point and writes a fraction digit (`50` -> `50.0`); `tests
 shows this in 181 of 200 cases. In the saved GSM runs, equations whose result is the exact value plus extra fraction
 digits are rare and about as common without the implant (GSM8K: 5 problems with the calculator, 9 without; GSM-Hard: 4
 and 5; `results/verify/gsm_dot_tails.txt`), so the effect on the reported accuracies is at most a few problems out of
-1,319. `calc_s4` fixes it. "Rethink" means the **evaluation
-code** appends `Hmm, wait. Let me rethink this.` after the first answer and lets the model continue; it is not written by
-an implant.
+1,319. `calc_s4` fixes it.
+
+"Rethink" is the `rethink` implant (`micromachines/rethink.py`, `scripts/run_gsm.py --rethink_implant always`). It
+reads the host's last hidden state through the host's own final norm and LM head, and when the host's next token would
+end its answer (a token that contains a blank line, such as `\n\n` after `#### 72`, or `<|endoftext|>`, or the 320-token
+first-answer budget), it writes `\nHmm, wait. Let me rethink this.\n` instead, one token per position (10 tokens, one
+solved write direction each, like the other implants), then goes silent and the model writes a second solution in the
+same generation; the last `####` counts. It fires once per answer. The table's numbers were produced by the original
+evaluation-code version of the same nudge (`scripts/run_gsm.py --rethink`, kept as the reference): the script cut the
+first answer at the blank line, appended the phrase to the text, re-encoded it and generated again.
+The implant was checked against that reference on the first 224 problems (length-sorted order) of GSM8K test (with and
+without the calculator) and of GSM-Hard, batch 8 (`VERIFY.md` section 10). Up to the end of the phrase it feeds the
+model the same text in 671 of the 672 problem runs (a 320-token runaway answer ending in a space, which the script
+strips and the implant cannot) and the same tokens in 669 (that one, and two where the script's re-encoding
+merges two calculator tokens). Same correctness on 215/224 (GSM8K: 73.66 vs 74.11), 213/224 (with calculator: 73.21 vs
+74.55) and 219/224 (GSM-Hard: 45.98 vs 43.75). The
+remaining differences come after the phrase and are bf16 noise between re-encoding the text (script) and continuing the
+cache (implant): in float32, 31 of 32 GSM-Hard continuations are identical, and the script alone changes as much when
+only its batch size changes. The full test sets were not re-run with the implant, so the table's rethink columns are
+the script's numbers.
 
 ### Reading the model: a probe decides when to rethink (GSM8K test, generations in vLLM)
 
@@ -93,8 +111,22 @@ wrong answers with test AUROC 0.81 (0.83 on solutions written with an oracle cal
 Provenance: `results/gate/cost_curve.log` (output of `scripts/gate/cost_curve.py` on the saved generations and
 detector scores) and `results/gate/detector_summary.json`. The per-problem generations (8 MB) and detector scores are
 not included, so `cost_curve.py` cannot be re-run from a fresh clone without first re-running `gen_rethink.py` (vLLM) and
-`fit_detector.py`. The gate is applied by evaluation code; the probe is
-not packed into an implant yet. This is a vLLM run, so its 52.08 baseline differs slightly from the 51.93 of the HF loop.
+`fit_detector.py`. The table above was computed by evaluation code from those generations. This is a vLLM run, so its
+52.08 baseline differs slightly from the 51.93 of the HF loop.
+
+The gate is now also part of the implant: `--rethink_implant gated` evaluates a logistic probe on the host's layer-28
+state (Hugging Face `hidden_states[28]`, the final normed state that the LM head reads) at the host's first `####` token,
+inside the same hook, and arms the writer only if the score is at least the threshold chosen on the training problems.
+The probe's weights, standardization and threshold are **fitted** (scikit-learn, on GSM8K training problems); they are
+loaded from `results/rethink/rethink_probe_L28.pt`, made by `scripts/gate/export_probe.py`. The original probe file was not kept,
+so the probe was refitted with the same code on a fresh `gen_rethink.py` run; the refit gives train AUROC 0.956
+(original 0.955), test AUROC 0.808 on the new vLLM generations (original 0.810), threshold 0.251 (original 0.328). The
+fresh vLLM generations themselves differ slightly from the original ones (test: 52.01 never / 56.10 always, vs 52.08 /
+56.56), so the refit probe is close to, not identical with, the one behind the table above; with it, the evaluation-code
+gate on the new generations gives 55.65% while firing on 66% of test problems. As an implant, on the first 224 GSM8K
+test problems (HF loop, batch 8): never 68.75%, always 73.66% at 112 extra tokens per problem, gated 73.21% at 62,
+firing on 51%; its gate decisions match the evaluation-code gate on 219/224 (`VERIFY.md` section 10). The full-set
+gated run was not done.
 
 ## What is written, what is solved, what is trained
 
@@ -108,8 +140,11 @@ not packed into an implant yet. This is a vLLM run, so its 52.08 baseline differ
     norm and LM head so that adding it makes Qwen emit that token;
   - the *veto* vector the calculator uses to end a number (no digit may win; the model's own non-digit choice is kept):
     Adam on hidden states at number endings in 300 GSM8K **training** solutions (`scripts/solve_veto.py`).
-* **Fitted on data, used by evaluation code (not an implant):** the layer-28 probe of the rethink gate
-  (`scripts/gate/fit_detector.py`, scikit-learn logistic regression on GSM8K training problems).
+* **Fitted on data, inside an implant:** the layer-28 probe of the gated `rethink` implant (its weights, input
+  standardization and threshold: scikit-learn logistic regression on the host's states for 1,500 GSM8K training
+  problems, threshold chosen on those problems; `scripts/gate/export_probe.py`). The rest of the `rethink` implant is
+  written: its end-of-answer trigger (the host's own norm + LM head, then a fixed table of end tokens), its token tables,
+  its once-per-answer state, and the forced token sequence; its 399 write directions are solved like the others'.
 * **Not trained:** Qwen3-0.6B-Base. No fine-tuning, no new tokens; its weights are bit-identical to the download
   (`scripts/check_silent.py` hashes them before and after attaching).
 
@@ -167,7 +202,10 @@ python scripts/solve_veto.py             # -> runs/veto_qwen3.pt (CPU)
 python scripts/run_bbh.py out/bbh.json --tasks navigate,web_of_lies      # all nine implants attached
 python scripts/run_bbh.py out/base.json --tasks navigate --machines none  # same harness, no implant
 python scripts/compare_runs.py out/bbh.json                               # question by question vs results/
-python scripts/run_gsm.py out/gsm_test.json --split test --mode calc --rethink
+python scripts/run_gsm.py out/gsm_test.json --split test --mode calc --rethink_implant always   # rethink implant
+python scripts/run_gsm.py out/gsm_ref.json --split test --mode calc --rethink        # reference: eval-code rethink
+python scripts/compare_rethink.py out/gsm_test.json out/gsm_ref.json                 # problem by problem
+python scripts/check_silent_rethink.py   # rethink implant: logits bit-identical wherever it does not write
 python scripts/check_silent.py           # logits bit-identical wherever no implant writes
 
 # exactness tests (Qwen tokenizer + embeddings; CPU or GPU)
@@ -184,7 +222,8 @@ pip install -r requirements-extra.txt && python figures/make_figs.py
 ```
 
 Baselines in vLLM: `scripts/baselines/run_bbh_vllm.py`. Rethink gate: `scripts/gate/gen_rethink.py` (vLLM) ->
-`fit_detector.py` -> `cost_curve.py`.
+`fit_detector.py` -> `cost_curve.py`; the probe for the gated implant: `gen_rethink.py` -> `export_probe.py` ->
+`results/rethink/rethink_probe_L28.pt`, then `run_gsm.py --split test --mode plain --rethink_implant gated`.
 
 **Time and hardware (measured on one NVIDIA A40 46 GB and a 16-core container, see `VERIFY.md`):**
 * attaching implants builds them from code at every start (there is no cache): compiling `logic_nat` takes about 11 min
@@ -209,7 +248,13 @@ Baselines in vLLM: `scripts/baselines/run_bbh_vllm.py`. Rethink gate: `scripts/g
   deduction-7 and 52/250 tracking-7 questions). The cap also lowers the 7B/14B baselines on these tasks: no answer
   extracted on 11/250 and 46/250 (7B), 73/250 and 46/250 (14B), mostly long outputs. Object counting stays at 79.2; from
   reading failures, the model mislabels items (a peach as an animal), which no implant addresses.
-* **The rethink nudge and the probe gate live in evaluation code**, not in implant weights.
+* **The rethink implant is unlike the others in two ways.** It reads the host's hidden state (its own next-token choice,
+  and for the gate a fitted linear probe), not only its tokens, and it writes a fixed English phrase rather than a
+  computed answer. Its state machine is a few lines of tensor code (`micromachines/rethink.py`), not a compiled ReLU
+  circuit. The reported GSM rethink numbers come from the evaluation-code version (`--rethink`); the implant matches
+  it token for token up to the end of the phrase and within bf16 noise after it (`VERIFY.md` section 10). Where it does
+  not write, the host's logits are bit-identical to the plain model, also at the `####` positions where the gated
+  version evaluates its probe (`scripts/check_silent_rethink.py`: 11,598 positions over 80 problems, 0 mismatches).
 * **Baselines are Qwen2.5-7B/14B**, not Qwen3 models of those sizes, and ran in vLLM.
 * **Numerics.** GPU runs use bf16 with left-padded batches, so exact outputs depend on batch composition; reruns match
   token for token with the same batch size and a `--limit` that is a multiple of it. On CPU, Intel MKL is not bitwise
@@ -227,10 +272,12 @@ was offline while this repo was assembled (marked as such in `finetuned_phase/RE
 
 ```
 micromachines/          library: hdl.py (ReLU circuit compiler), machine.py (reader, write directions, attach),
-                        specs.py (the implants), circuits/ (one hand-written circuit per implant), calcfmt.py, boolfmt.py
+                        specs.py (the implants), circuits/ (one hand-written circuit per implant), rethink.py (the
+                        rethink implant), calcfmt.py, boolfmt.py
 demo.py                 one prompt, one implant, bit-identity asserts
 scripts/                run_bbh.py, run_gsm.py, solve_veto.py, build_implants.py, check_silent.py, compare_runs.py,
-                        gen_deduction_vocab.py, baselines/run_bbh_vllm.py, gate/{gen_rethink,fit_detector,cost_curve}.py
+                        check_silent_rethink.py, compare_rethink.py, gen_deduction_vocab.py, baselines/run_bbh_vllm.py,
+                        gate/{gen_rethink,fit_detector,cost_curve,export_probe,eval_gate}.py
 tests/                  exactness tests (circuit-only and through the Qwen tokenizer/embeddings)
 data/                   download scripts (no data is vendored)
 results/                result files behind every number + summarize.py (see results/README.md)

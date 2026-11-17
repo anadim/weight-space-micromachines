@@ -1,0 +1,38 @@
+== GSM8K test, plain: implant (always) vs reference (--rethink), bs 8
+{"n": 224, "first_text": 224, "rethink_compared": 224, "rethink_text": 161, "final_pred": 212, "final_ok": 215, "first_ok": 224, "gate_agree": 0} | accuracy implant 73.66 / reference 74.11
+  i=38: rethink text diverges at char 10: implant 'He runs 3 hours x 3 = 9 miles the first day.\nHe ru' | reference 'He runs 3 days a week so he runs 3 x 60 = 180 mile'
+  i=50: rethink text diverges at char 230: implant "so he makes 147 / 12 = $12.25 per week.\nWait, that doesn't seem right. Let's che" | reference 'so he makes 147 / 12 = $12.25 per week.\n#### 12.25'
+  i=78: rethink text diverges at char 0: implant 'He can buy 18 flowers in 6 packages of 3' | reference 'I think I made a mistake in my calculati'
+out/eq8_test_plain_imp.json: implant rows 224; token sequence up to the end of the phrase identical to the reference re-encoding: 224/224; rethink text differs: 63 (of which same prefix tokens: 63; differs already at the first token: 8)
+== GSM-Hard, plain: implant (always) vs reference, bs 8
+{"n": 224, "first_text": 223, "rethink_compared": 224, "rethink_text": 127, "final_pred": 212, "final_ok": 219, "first_ok": 224, "gate_agree": 0} | accuracy implant 45.98 / reference 43.75
+  i=2: rethink text diverges at char 58: implant "un 1793815 sprints 1793815 times a week.\nThat's 1793815 x 1793815 = 320000000000" | reference 'un 1793815 sprints 1793815 times a week.  He runs 60 meters each sprint.\nSo, he '
+  i=21: rethink text diverges at char 49: implant "nd Allen's ages are in the ratio of 7:11, so Darrell's age is 7x and Allen's age" | reference "nd Allen's ages are in the ratio of 7:11.\nIf their total age now is 162, then Da"
+  i=49: rethink text diverges at char 139: implant "= 1802487.6\nHmm, that's not an integer. But the problem says there are 5 student" | reference "= 1802487.6\nHmm, that's not an integer. So, there must be a mistake in the probl"
+out/eq8_hard_plain_imp.json: implant rows 224; token sequence up to the end of the phrase identical to the reference re-encoding: 223/224; rethink text differs: 97 (of which same prefix tokens: 96; differs already at the first token: 6)
+805 ref [' $', '2', '7', ' -\n', 'Hmm', ',', ' wait'] imp [' $', '2', '7', ' -', ' ', '\n', 'Hmm'] 10 12
+== GSM8K test, calculator: implant (always) vs reference, bs 8
+{"n": 224, "first_text": 224, "rethink_compared": 224, "rethink_text": 165, "final_pred": 210, "final_ok": 213, "first_ok": 224, "gate_agree": 0} | accuracy implant 73.21 / reference 74.55
+  i=78: rethink text diverges at char 0: implant 'He can buy 18 flowers in 6 packages of 3' | reference 'I think I made a mistake. I think I shou'
+  i=80: rethink text diverges at char 123: implant 'er, the two girls got 4 + 4 = 8 liters.\nAfter the two girls got their share, the' | reference 'er, the two girls got 4 + 4 = 8 liters.\nThen the boy got 6 liters, so there were'
+  i=84: rethink text diverges at char 170: implant 'they won 8 more than they lost, so they must have won 16 + 8 = 24 games.\n#### 24' | reference 'they won 8 more than they lost, so they actually won 16 + 8 = 24 games.\n#### 24'
+out/eq8_test_calc_imp.json: implant rows 224; token sequence up to the end of the phrase identical to the reference re-encoding: 222/224; rethink text differs: 59 (of which same prefix tokens: 58; differs already at the first token: 8)
+507 ref ['2', '2', ' =', ' -', '2', ' by', ' buying'] imp ['2', '2', ' =', ' ', '-', '2', ' by'] 20 21
+1066 ref ['4', '6', ' =', ' -', '2', '6', ' pizzas'] imp ['4', '6', ' =', ' ', '-', '2', '6'] 20 21
+== GSM8K test, plain: GATED implant vs reference with the evaluation-code gate
+{"n": 224, "first_text": 219, "rethink_compared": 110, "rethink_text": 75, "final_pred": 214, "final_ok": 217, "first_ok": 224, "gate_agree": 219} | accuracy implant 73.21 / reference 73.66
+  i=38: rethink text diverges at char 10: implant 'He runs 3 hours x 3 = 9 miles the first day.\nHe ru' | reference 'He runs 3 days a week so he runs 3 x 60 = 180 mile'
+  i=50: rethink text diverges at char 230: implant "so he makes 147 / 12 = $12.25 per week.\nWait, that doesn't seem right. Let's che" | reference 'so he makes 147 / 12 = $12.25 per week.\n#### 12.25'
+  i=78: rethink text diverges at char 0: implant 'He can buy 18 flowers in 6 packages of 3' | reference 'I think I made a mistake in my calculati'
+== float32, GSM-Hard first 32: implant vs reference
+{"n": 32, "first_text": 32, "rethink_compared": 32, "rethink_text": 31, "final_pred": 32, "final_ok": 32, "first_ok": 32, "gate_agree": 0} | accuracy implant 56.25 / reference 56.25
+  i=1282: rethink text diverges at char 3: implant 'The problem says they won 9330535 more than' | reference 'They won 9330535 more than they lost, so th'
+out/fp32_hard_plain_imp.json: implant rows 32; token sequence up to the end of the phrase identical to the reference re-encoding: 31/32; rethink text differs: 1 (of which same prefix tokens: 0; differs already at the first token: 1)
+1282 ref [' the', ' problem', ' statement', '.\n', 'Hmm', ',', ' wait'] imp [' the', ' problem', ' statement', '.', '\n', 'Hmm', ','] 10 11
+== bf16 bs 8, same 32 GSM-Hard problems: implant vs reference
+{"n": 32, "first_text": 32, "rethink_compared": 32, "rethink_text": 20, "final_pred": 31, "final_ok": 32, "first_ok": 32, "gate_agree": 0} | accuracy implant 53.12 / reference 53.12
+== noise floor: reference bs 8 vs saved original reference bs 32 (GSM8K test, GSM-Hard)
+{"n": 224, "first_text": 169, "rethink_compared": 187, "rethink_text": 113, "final_pred": 204, "final_ok": 211, "first_ok": 219, "gate_agree": 0} | accuracy implant 74.11 / reference 75.45
+{"n": 224, "first_text": 155, "rethink_compared": 138, "rethink_text": 83, "final_pred": 179, "final_ok": 213, "first_ok": 215, "gate_agree": 0} | accuracy implant 43.75 / reference 45.98
+== reference bs 32 today vs saved original bs 32 (GSM-Hard, first 224)
+{"n": 224, "first_text": 224, "rethink_compared": 157, "rethink_text": 157, "final_pred": 224, "final_ok": 224, "first_ok": 224, "gate_agree": 0} | accuracy implant 45.98 / reference 45.98

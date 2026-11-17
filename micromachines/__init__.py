@@ -5,6 +5,7 @@
 """
 from .specs import SPECS, BBH_MACHINES, VETO_MACHINES, DESCRIPTION
 from .machine import Micromachine, Attached, attach, make_reader, make_out_dirs, symbol_token_ids, first
+from .rethink import RethinkImplant, PHRASE
 
 __all__ = ['SPECS', 'BBH_MACHINES', 'VETO_MACHINES', 'DESCRIPTION', 'Micromachine', 'Attached', 'attach',
-           'make_reader', 'make_out_dirs', 'symbol_token_ids', 'first']
+           'make_reader', 'make_out_dirs', 'symbol_token_ids', 'first', 'RethinkImplant', 'PHRASE']
