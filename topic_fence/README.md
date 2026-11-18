@@ -1,7 +1,10 @@
-# Topic fence (RESULTS PENDING)
+# Topic blocker (dir named `topic_fence/`)
 
-**Status: still running when this repo was packaged. No result is reported here yet.** The code below is the code of the
-running experiment; this README will get the numbers when the final test evaluation and its judging finish.
+The **topic blocker** (originally the "topic fence"; file and directory names keep the old word). Results below are for
+the Qwen3-1.7B host. **Note on "in weights":** in this version the actions are forward hooks that *emulate* in-weight
+units, and the gate latch, the decline-phrase position counter and the monitor's consecutive-hit counter are Python
+bookkeeping in the hook (disclosed under "How it attaches"). A compiled-into-weights version is in progress and not in
+this folder yet.
 
 What it is: an implant that keeps a frozen chat model off one topic while it helps normally with everything else. Two fences,
 tested separately: **math** ("never solve math problems") and **ml** ("never help build, train or debug machine-learning
@@ -25,6 +28,43 @@ hooks that emulate in-weight units (not exported as weight matrices); the keywor
 regex on the prompt and is a **baseline**, not an implant; system-prompt baselines (`sys`, `sys_strong`) are plain prompting.
 Judging uses an LLM judge (`Qwen/Qwen2.5-7B-Instruct`, `s6_judge.py`), validated against 40 hand labels
 (`data/judgeval_hand_labels_q17.json`, 38/40 agreement in `NOTEBOOK.md`).
+
+## Results (Qwen3-1.7B, held-out test)
+
+Test set: 640 prompts hand-written by a separate author plus public items; a prompt is **blocked** when the LLM judge
+says the reply does not help, and **fires** = the implant wrote. The headline arm is **probe + decline + end-of-turn**
+(`probe_text_stop`): the gate probe fires, the implant writes a decline phrase and stops the turn. Source tables:
+`results/q17_math_table.txt`, `results/q17_ml_table.txt` (summaries `results/test_q17_{math,ml}_summary.json`).
+
+| arm | math block (pos) | ml block (pos) | hard-neg block (m / ml) | Alpaca retention block (m / ml) |
+|---|---:|---:|---:|---:|
+| plain host | 11.0 | 4.9 | 1.4 / 2.9 | 5.5 / 5.5 |
+| system prompt | 8.9 | 1.6 | 5.7 / 2.9 | 7.9 / 4.8 |
+| strong system prompt | 73.6 | 61.5 | 82.9 / 15.7 | 85.5 / 20.3 |
+| keyword list + stop | 63.3 | 93.4 | 57.1 / 24.3 | 7.2 / 7.1 |
+| probe + decline, then continue | 34.2 | 10.7 | 0.0 / 2.9 | 7.4 / 5.5 |
+| **probe + decline + end-of-turn** | **98.7** | **98.4** | 1.4 / 8.6 | 9.5 / 5.5 |
+| latent decline vector | 63.3 | 94.3 | 0.0 / 8.6 | 8.3 / 5.5 |
+| per-token monitor (k = 3) | 97.5 | 98.4 | 1.4 / 5.7 | 10.1 / 5.5 |
+
+* **Only writing the opener + end-of-turn blocks.** With "decline then continue" the 1.7B host pivots ("But I can
+  explain...") and solves the task anyway (34.2 / 10.7 blocked); adding end-of-turn takes it to 98.7 / 98.4.
+* **The system prompt is ignored** (8.9 / 1.6 blocked); the *strong* system prompt over-refuses massively (it blocks
+  85.5% of benign Alpaca math requests and drops MMLU from 52.5 to 31.2).
+* **Keyword list**: strong on the ML fence (93.4% block, 3.2% MMLU fires) but weak on math (63.3% block) and it fires on
+  57% of hard negatives / near-misses; the probe's advantage is exactly those near-misses.
+* **The per-token monitor catches drift** that no prompt filter can see: on prompts where the plain host *drifts into*
+  doing the forbidden task, the fraction of replies that end up doing math drops from 93.3% to 16.7% (it fires on 30/30
+  math-drift prompts); for ML, the reply-does-ML rate drops 40.0 → 36.7 (monitor) / 26.7 (opener+EOS).
+* **Silent = bit-identical**: on the prompts where nothing fires the logits match the plain host exactly (484-511
+  prompts per arm checked, max |diff| = 0).
+* **Known failure modes (disclosed):** the math gate fires on ~23% of non-math MMLU multiple-choice questions (a format
+  the dev set never had), lowering MMLU accuracy 52.5 → 43.0; the latent "decline" vector is the host's harm-refusal
+  direction, so it blocks 63-94% via confabulated legality rants and breaks MMLU when the gate misfires (accuracy 7.2,
+  fires on 87% of MMLU). The ML gate does not hit the MMLU trap (accuracy unchanged).
+
+A reduced 0.6B pass (no latent arm) is in `results/q06_{math,ml}_table.txt`: opener+EOS blocks 97.8 (math) / 97.5 (ml);
+on 0.6B the MMLU trap flips to the generation monitor (fires on 47% of MMLU) while the prompt probe fires on only 2%.
 
 ## Data
 

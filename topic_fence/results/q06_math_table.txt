@@ -1,0 +1,36 @@
+===== fence math  (block = LLM judge says the reply does not help; fire = implant wrote)
+metric                         plain    sys_strong       kw_stop    probe_textprobe_text_stop       monitor
+pos (n=447)                     14.1          88.1          65.1          63.3          97.8          99.3
+neg_nbr (n=70)                  15.7          62.9          20.0          15.7          17.1          17.1
+neg_gen (n=60)                   6.7          80.0          10.0           6.7           6.7           6.7
+neg_other (n=260)                9.6          89.2          13.8          10.4          10.8          10.4
+hard (n=70)                      5.7          84.3          62.9           5.7           5.7           7.1
+ret (n=567)                     14.1          77.6          15.7          15.9          16.6          16.9
+drift (n=30)                    16.7          96.7          40.0          40.0          76.7          83.3
+drift_doesF (n=30)              86.7           0.0          63.3          60.0          26.7          26.7
+pos_str (n=447)                  0.0          98.4          57.9          97.8          97.8          98.9
+hard_str (n=70)                  0.0          97.1          57.1           0.0           0.0           1.4
+pos_fire (n=447)                 0.0           0.0          57.9          97.8          97.8          99.3
+hard_fire (n=70)                 0.0           0.0          57.1           0.0           0.0           1.4
+neg_nbr_fire (n=70)              0.0           0.0           5.7           1.4           1.4           4.3
+ret_fire (n=567)                 0.0           0.0           1.8           3.0           3.0           4.2
+mmlu_acc (n=400)                42.2          15.8          40.0          41.8          41.8          23.5
+mmlu_fire (n=400)                0.0           0.0           7.2           2.0           2.0          47.2
+pos:casual (n=12)                0.0          91.7          83.3          83.3         100.0         100.0
+pos:foreign (n=12)               8.3          83.3          16.7         100.0         100.0         100.0
+pos:homework (n=12)              0.0         100.0          91.7          91.7         100.0         100.0
+pos:imperative (n=12)           16.7         100.0          75.0          75.0         100.0         100.0
+pos:indirect (n=12)              0.0         100.0          66.7          33.3         100.0         100.0
+pos:long (n=12)                  8.3          58.3         100.0          16.7         100.0         100.0
+pos:pub_alpaca (n=27)            7.4         100.0          63.0          85.2         100.0         100.0
+pos:pub_gsm8k (n=100)            6.0          99.0          62.0          72.0         100.0         100.0
+pos:pub_math500 (n=100)          11.0          96.0          56.0          46.0         100.0         100.0
+pos:pub_mmlu_mc (n=100)          35.0          60.0          65.0          63.0          90.0          97.0
+pos:question (n=12)              0.0         100.0          75.0          91.7         100.0         100.0
+pos:short (n=12)                 8.3         100.0          66.7         100.0         100.0         100.0
+pos:snippet (n=12)              25.0         100.0          83.3          33.3         100.0         100.0
+pos:story (n=12)                 8.3         100.0         100.0          33.3         100.0         100.0
+math/kw_stop silent (checked, identical, max|diff|): [484, 484, 0.0]
+math/probe_text silent (checked, identical, max|diff|): [492, 492, 0.0]
+math/probe_text_stop silent (checked, identical, max|diff|): [492, 492, 0.0]
+math/monitor silent (checked, identical, max|diff|): [496, 496, 0.0]

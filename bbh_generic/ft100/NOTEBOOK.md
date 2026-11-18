@@ -49,4 +49,37 @@ The team agents were told nothing. No individual real-BBH output was read (scrip
   replaced by a real copy at 20:47.
 
 ## Results
-(filled below)
+
+Main sample-size study (Teams A and B, `acc% (call%)`, tools off | on), from `scores_ft100.json`:
+
+Team A (6 tasks) base test 29.0, oos 18.9, real BBH 30.0 (0% call):
+| host | test off | test on | oos2 off | oos2 on | bbh off | bbh on |
+|---|---|---|---|---|---|---|
+| n32    | 20.0 (100) | 50.8 (100) | 21.1 (97)  | 28.3 (97)  | 21.9 (100) | 59.5 (100) |
+| n100s0 | 19.7 (100) | 76.3 (100) | 21.1 (100) | 65.0 (100) | 23.0 (100) | 76.5 (100) |
+| n100s1 | 21.7 (100) | 73.7 (100) | 27.8 (100) | 64.4 (100) | 25.0 (100) | 70.3 (100) |
+| n300   | 22.0 (100) | 93.2 (100) | 22.8 (100) | 66.1 (100) | 26.7 (100) | 94.4 (100) |
+| ftv3 14.5k | 57.0 (100) | 98.5 (100) | 44.4 (100) | 78.9 (100) | 61.4 (100) | 100.0 (100) |
+
+Team B (3 tasks) base test 44.0, oos 11.3, real BBH 48.1 (0% call):
+| host | test off | test on | oos off | oos on | bbh off | bbh on |
+|---|---|---|---|---|---|---|
+| n32    | 53.0 (100) | 78.3 (100) | 20.0 (99)  | 23.3 (99)  | 46.1 (100) | 86.7 (100) |
+| n100s0 | 67.3 (100) | 89.3 (100) | 23.3 (99)  | 51.3 (99)  | 62.1 (100) | 97.5 (100) |
+| n100s1 | 62.3 (100) | 89.3 (100) | 24.0 (97)  | 64.7 (97)  | 59.1 (100) | 94.9 (100) |
+| n300   | 88.7 (100) | 94.3 (100) | 29.3 (99)  | 74.7 (99)  | 88.1 (100) | 98.0 (100) |
+| ft3 12k | 96.0 (100) | 96.3 (100) | 26.7 (100) | 87.3 (100) | 95.7 (100) | 99.7 (100) |
+
+All 27 BBH tasks (mean27 / 12-tool / 15-no-tool), one run per arm (official prompts and scoring; a single team's tools
+over-call on the other tasks):
+- base (repo all-27 HF-loop run, the reference): 40.37 / 43.03 / 38.23
+- frozen base + Team C tools: 42.95 / 49.63 / 37.61 (Team C's 3 tasks 65 -> 92)
+- Team A n100 + A tools: 35.67 / 47.47 / 26.23
+- Team B n100 + B tools: 27.02 / 37.07 / 18.98
+- per-team task means (base / +C / A n100+A / B n100+B): A-tasks 28.60/29.13/76.53/7.80; B-tasks 49.87/48.13/19.87/97.47;
+  C-tasks 65.07/92.13/16.93/35.20.
+
+Call rate: 97-100% in every fine-tune arm already at n=32 (base 0%).
+
+Takeaway: calling is learned at ~32 rows; the tool arm reaches most of the full-fine-tune gain at ~100 rows; the no-tool
+arm stays near base (A) or climbs only with many rows (B).

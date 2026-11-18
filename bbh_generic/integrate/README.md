@@ -1,10 +1,5 @@
 # Integration: one host, all eight generic tools (protocol rules 14 and 15)
 
-> **RESULTS PENDING.** This experiment was still running when the repository was prepared (real-BBH runs of the
-> integrated host had not finished). The code and the data are final; no result files are included yet. The notebook
-> (`NOTEBOOK.md`) records the setup and the first reads (for example, the composition set's first read with tools:
-> 0/45 questions with every needed tool called); treat them as interim.
-
 What it is: the eight tools of Teams A, B and C (`track`, `order`, `interval`, `walk`, `truth`, `expr`, `bool`, `calc`)
 attached to ONE host at once, and tested (1) on each team's own fresh-test and out-of-style sets, (2) on a new composition
 set of 45 questions that need two or three tools in sequence (`data/compose.jsonl`, 9 families x 5, frozen before any
@@ -23,7 +18,53 @@ attaches Team C's passive `=`-triggered tools (`--tools all+passiveC`; that arm 
 Host: a full fine-tune of Qwen3-0.6B-Base on `data/train_union.jsonl` (302 rows, copied verbatim from each team's own
 seed-2 data: Team A `teamA/data/train100.jsonl` 102 rows, Team B `ft100/sub/B_n100_s0` 100 rows, Team C
 `teamC/data/train/train_C_100.jsonl` 100 rows). Recipe = Team A's ft100a, `teamA/ft.py` unchanged: lr 2e-5, 6 epochs,
-tok_budget 8000, seed 0 (126 optimizer steps). **The fine-tuned checkpoint is not released.**
+tok_budget 8000, seed 0 (126 optimizer steps). **The fine-tuned checkpoint is not released.** This shipped 302-row union
+is the **v1** host. A follow-up **v2** host (reported below) extended the union to **432 rows** by adding ~100 self-
+distilled no-tool-call rows (to curb over-calling on non-tool tasks) and ~30 multi-tool composition rows; that extended
+union is not packaged here.
+
+## Results
+
+All 27 real BBH tasks, one run per arm (official prompts and scoring), base / fine-tuned host **without** tools / with
+tools. `mean27 / 12-tool-task / 15-no-tool-task`:
+
+| arm | mean 27 | 12 tool tasks | 15 no-tool tasks |
+|---|---:|---:|---:|
+| base (frozen, no tools) | 40.98 | 43.27 | 39.15 |
+| **v2** host, no tools | 33.61 | 38.10 | 30.01 |
+| **v2** host, + all 8 tools | **48.36** | **84.33** | 19.58 |
+| v1 host, no tools | 32.13 | 38.63 | 26.93 |
+| v1 host, + all 8 tools | 47.98 | 82.73 | 20.18 |
+
+Reading it: attaching all eight tools to one host lifts the 12 tool tasks to **84.33** (v2); `multistep_arithmetic_two`
+goes 33.2 (v1) → 100 (v2) once Team C's passive tools fire. The **15 no-tool tasks regress** (39.15 → 19.58) because the
+fine-tuned host still calls a tool on many of them; v2's no-call rows cut that over-calling from **88.6%** (v1) to
+**59.2%** of no-tool questions, and a retry loop on empty replies drives the remaining no-tool drop. The fine-tuned host
+without any tools is weaker than base on the no-tool tasks (30.01), confirming the fine-tune teaches calling, not those
+tasks.
+
+Held-out out-of-style sets (strict answer, base → v2 FT + tools; v1 in parentheses): Team A oos2 20.0 → **47.8** (v1
+68.9), Team B oos 11.3 → **70.7** (v1 80.0), Team C ood 62.2 → **97.2** (v1 50.0). Team A judge round 3 (held out, 16
+variants): base 3/16, v1 7/16, **v2 7/16**.
+
+Composition set (45 questions needing 2-3 tools in sequence, frozen before any output), answer strict:
+
+| arm | strict | every needed tool used |
+|---|---:|---:|
+| base | 8.9 | 0.0 |
+| v1 FT + tools | 11.1 | 0.0 |
+| **v2 FT + tools** | **24.4** | 24.4 |
+
+v2 uses every needed tool on 11/45 questions (v1: 0/45); the gap to the per-tool accuracy is mostly the host emitting the
+wrong call, not the tools (each tool's "used/correct" counts are in `TABLES` in the study ledger).
+
+Exactness (shipped v1 code, `test_integ.py`, `check_graph.py`): on the frozen base every tool answers only its own calls
+with no cross-firing, logits are bit-identical where no tool writes, and the CUDA-graph decode step is bit-identical to
+the plain step.
+
+Provenance: v1 numbers are reproduced by the commands below (shipped 302-row union); the v2 numbers are from the follow-up
+432-row run recorded in the project ledger (`bbh_integrate/TABLES_v1_vs_v2.md`), not reproducible from the shipped data
+alone. `NOTEBOOK.md` records the setup and the per-arm run splits.
 
 ## Reproduce
 

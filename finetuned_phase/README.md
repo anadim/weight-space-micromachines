@@ -45,14 +45,18 @@ same data, the model reads the pixels and does the arithmetic itself):
 
 | training questions | eyes + calculator | no implants | source |
 |---:|---:|---:|---|
-| 8 | 88.0 | 6.5 | seed 0 only (raw files offline) |
-| 32 | 96.0 | 1.5 | seed 0 only (raw files offline) |
+| 8 | 78.5 (76.2-81.4) | 4.0 | 4-seed sweep |
+| 32 | 94.7 (89.1-97.2) | 3.7 | 4-seed sweep |
 | 4,000 | 97.67 | 93.26 | mean of 5 seeds: seed 0 offline, seeds 1-4 in `results/eyes.txt` |
 | 16,000 | 97.67 | 97.52 | mean of 5 seeds: seed 0 offline, seeds 1-4 in `results/eyes.txt` |
 
-The no-implant 5-seed means are computed from seed 0 (93.4 / 97.4, rounded to one decimal in the earlier table; raw
-files offline) and seeds 1-4 (`results/eyes.txt`). An earlier blog figure showed 93.24 / 97.56; those were arithmetic
-errors. With implants, seeds 1-4 all scored 97.67 at both sizes (seed 0: 97.7).
+The 8- and 32-question rows are the **4-seed sweep** (same recipe, 4 seeds; ranges are min-max over seeds). An earlier
+**single-seed** draft reported 88.0 / 96.0 (implants) and 6.5 / 1.5 (no implants) for these two rows; the single-seed 88
+at 8 examples **did not reproduce** (the recipe was not recorded), so the 4-seed means above replace it. The sweep lives
+on the compute node (mirrored in the project ledger `SUMMARY.md`; the local `results/eyes.txt` holds only the 4k/16k
+seeds). The no-implant 4,000/16,000 means are computed from seed 0 (93.4 / 97.4; raw files offline) and seeds 1-4
+(`results/eyes.txt`). An earlier blog figure showed 93.24 / 97.56; those were arithmetic errors. With implants, seeds 1-4
+all scored 97.67 at 4,000 and 16,000 (seed 0: 97.7).
 
 **Fine-tune comparison** (Qwen2.5-0.5B fine-tuned on GSM8K solutions three ways; 5 seeds, mean ± std; raw per-seed
 files offline; seed-0 values are in the lab-notebook table copied into `reported_numbers.json`):

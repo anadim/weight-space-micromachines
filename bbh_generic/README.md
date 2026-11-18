@@ -21,8 +21,8 @@ independent judge agents, and run on real BBH **once** at the end. The rules the
 | `teamB/` | `interval` (free intervals), `walk` (2-D position/heading), `truth` (truth propagation); temporal_sequences, navigate, web_of_lies |
 | `teamC/` | `expr` (integer expressions), `bool` (boolean formulas), `calc` (decimal a op b); multistep_arithmetic_two, boolean_expressions, object_counting |
 | `peek/` | the single real-BBH run (scoring scripts and aggregate scores only) |
-| `ft100/` | sample-size control (fine-tune on 32 / 100 / 300 rows) - **results pending** |
-| `integrate/` | one host, all eight tools, composed questions - **results pending** |
+| `ft100/` | sample-size control (fine-tune on 32 / 100 / 300 rows) - **done** |
+| `integrate/` | one host, all eight tools, composed questions - **done** |
 | `PROTOCOL.md` | the binding protocol given to the agents |
 
 ## The tools
@@ -97,8 +97,11 @@ boolean expressions 82.8 -> 98.8; object counting 66.0 -> 79.2. For comparison, 
 
 **Read these with the conditions below.** The Team A and Team B hosts behind this table are the large fine-tunes
 (12k-14.5k rows), made before rule 15; on the BBH-style tasks they learn much of the task itself (the no-tools column).
-Team A's final ~100-row host (ft100a) was not run on real BBH; the sample-size study in `ft100/` runs 32 / 100 / 300-row
-hosts on real BBH (pending).
+Team A's final ~100-row host (ft100a) was not itself run on real BBH; the sample-size study in `ft100/` runs 32 / 100 /
+300-row hosts on real BBH, and finds that **calling** is learned by 32 rows (call rate 97-100% in every fine-tune arm,
+base 0%) while the tool arm reaches most of the full-fine-tune gain at ~100 rows (Team A real BBH with tools: 59.5 @ 32,
+76.5 @ 100, 94.4 @ 300, 100.0 @ 14.5k; Team B: 86.7 / 97.5 / 98.0 / 99.7). The no-tool arm stays near base (Team A) or
+climbs only with many rows (Team B). Full tables in `ft100/README.md`.
 
 Judges' binding conditions (from the `JUDGE_*.md` files):
 * Team A (`order_gen`): report Team A's held-out judge round 3 next to any BBH number: host + tools **5/16**, fine-tuned

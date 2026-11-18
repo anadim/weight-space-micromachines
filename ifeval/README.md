@@ -14,7 +14,7 @@ There are two parts:
 | part | rules | status |
 |---|---|---|
 | `compiled_v2/` | 3 rules: `no_comma`, `lowercase`, `quote` (open + close) | **done**, held-out result below |
-| `heldout/` (Team D) | 14 rules, developed on our own generated prompts, judged per tool | **results pending** (final IFEval / IFBench run in progress when this was packaged) |
+| `heldout/` (Team D) | 14 rules, developed on our own generated prompts, judged per tool | **done**, held-out result below |
 
 Older numbers that came from the Python reference rule-keepers (prompt-strict 58 -> 70 with 8 rules, the Qwen3-1.7B port,
 Multi-IF transfer) are **not** reported here: those rules ran as Python logic at inference, which this repo does not count as
@@ -133,8 +133,31 @@ python solve_vecs2.py vecs2.pt runs/dev_plain.s0.jsonl runs/dev_plain.s1.jsonl r
 `queue.sh` sets `VECS=vecs2_forcefix.pt`; without that file `circuit.py` silently falls back to zero force_fix rows, so keep it.
 `tables.py` caches its lookup tables in `tables.pt` (118 MB, rebuilt on first use, not included).
 
-**Results: PENDING.** At packaging time the final held-out IFEval run (odd keys) and IFBench were still running; the fresh
-(seed 1) and out-of-style runs had finished but were not yet scored in `NOTES.md`. No heldout number is reported here yet.
+**Results (held-out, run once).** Qwen3-0.6B chat, frozen, 14 compiled rule-keepers, no fine-tune. Prompt-strict IFEval
+pass rate, plain host → with the implant:
+
+| IFEval split | n | plain | + 14-rule implant | prompt gained / lost |
+|---|---:|---:|---:|---:|
+| **odd keys (held out, never opened)** | 299 | 56.19 | **71.91** | +49 / -2 |
+| even keys (seen only in reworded form) | 242 | 60.74 | **73.97** | |
+| all | 541 | 58.23 | **72.83** | +82 / -3 |
+
+* Instruction-strict (odd keys): 67.11 → **79.91**.
+* Silent prompts (no rule latched) are byte-identical to the plain host: 180/180 on the odd keys, 323/323 over all 541.
+* Per-rule strict passes on the odd keys: `no_comma` 18 → 35/36, `forbidden_words` 8 → 22/27, `N paragraphs` 7 → 12/16,
+  `repeat the request` 15 → 18/21, `two responses` 6 → 9/11; instructions no rule covers are ~unchanged. Recall on the
+  judges' novel phrasings is modest (~40-75% per tool) and misses fail safe.
+* **Transfer check, IFBench (300 prompts):** the rules latched on only 14 prompts (mostly `highlights` and `bullets`);
+  the other 295/295 responses are byte-identical to the plain host (the constraint types barely overlap).
+
+Development sets (not held out; recorded for context): the FRESH seed-1 phrasings scored 42.6 → 77.5 prompt-strict
+(+252 / -1 instructions), and the out-of-style set 61.9 → 85.7; the "mentions-only" negative set fired on 0/30.
+
+Provenance: the held-out odd-key run was scored once by `heldout/final_score.sh` (official `lm_eval` IFEval checkers,
+`langdetect` seed 0); it finished after this folder was first drafted (the earlier "results pending" note), and the
+numbers above are the scorer's output, also recorded in the project ledger. Rerunning the commands below reproduces them;
+the reduced, text-free per-prompt records are written by `ifeval/data/reduce_ifeval_run.py`. See `heldout/NOTES.md` for
+the full development log and the per-round judge verdicts.
 
 ## Files not included
 
