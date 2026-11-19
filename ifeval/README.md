@@ -16,6 +16,16 @@ There are two parts:
 | `compiled_v2/` | 3 rules: `no_comma`, `lowercase`, `quote` (open + close) | **done**, held-out result below |
 | `heldout/` (Team D) | 14 rules, developed on our own generated prompts, judged per tool | **done**, held-out result below |
 
+Added for the blog post (each folder has its own README with commands and expected numbers):
+
+| folder | what |
+|---|---|
+| [`full14_compiled/`](full14_compiled/README.md) | the 14 `heldout/` rules compiled into plain weight tensors (9,304 ReLU units; matmul / ReLU / hard attention / gather + the readout RMSNorm); 541/541 byte-identical to `circuit.py`. This lifts the "batched tensor code" disclosure below |
+| [`heldout_results/`](heldout_results/README.md) | text-free per-prompt records + scorer output behind 58.23 -> 72.83 (all 541) / 56.19 -> 71.91 (odd) |
+| [`transfer/`](transfer/README.md) | the same 14 rules on Qwen3-1.7B / 4B, and the add-one-rule curve on all three hosts |
+| [`baselines/`](baselines/README.md) | thinking mode instead of implants (59.33), and rule silence on 1,600 prose/code passages |
+| [`xfamily/`](xfamily/README.md) | the 14 rules ported to SmolLM2-1.7B-Instruct (odd keys 48.49 -> 60.54) |
+
 Older numbers that came from the Python reference rule-keepers (prompt-strict 58 -> 70 with 8 rules, the Qwen3-1.7B port,
 Multi-IF transfer) are **not** reported here: those rules ran as Python logic at inference, which this repo does not count as
 an implant result. `compiled_v2/gen.py` keeps the Python reference only as the equivalence check for the compiled circuit.

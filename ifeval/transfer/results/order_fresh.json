@@ -1,0 +1,114 @@
+{
+ "nc": {
+  "n": 84,
+  "plain": 21,
+  "imp": 71,
+  "gain": 50,
+  "pfix": 50,
+  "pbrk": 0
+ },
+ "quote": {
+  "n": 70,
+  "plain": 49,
+  "imp": 58,
+  "gain": 9,
+  "pfix": 18,
+  "pbrk": 1
+ },
+ "para": {
+  "n": 66,
+  "plain": 15,
+  "imp": 57,
+  "gain": 42,
+  "pfix": 40,
+  "pbrk": 0
+ },
+ "end": {
+  "n": 77,
+  "plain": 63,
+  "imp": 73,
+  "gain": 10,
+  "pfix": 28,
+  "pbrk": 0
+ },
+ "title": {
+  "n": 101,
+  "plain": 100,
+  "imp": 101,
+  "gain": 1,
+  "pfix": 32,
+  "pbrk": 0
+ },
+ "high": {
+  "n": 84,
+  "plain": 71,
+  "imp": 81,
+  "gain": 10,
+  "pfix": 27,
+  "pbrk": 0
+ },
+ "two": {
+  "n": 69,
+  "plain": 33,
+  "imp": 62,
+  "gain": 29,
+  "pfix": 30,
+  "pbrk": 0
+ },
+ "lower": {
+  "n": 86,
+  "plain": 54,
+  "imp": 76,
+  "gain": 22,
+  "pfix": 27,
+  "pbrk": 0
+ },
+ "ps": {
+  "n": 79,
+  "plain": 75,
+  "imp": 75,
+  "gain": 0,
+  "pfix": 20,
+  "pbrk": 0
+ },
+ "caps": {
+  "n": 74,
+  "plain": 22,
+  "imp": 56,
+  "gain": 34,
+  "pfix": 33,
+  "pbrk": 0
+ },
+ "nth": {
+  "n": 80,
+  "plain": 24,
+  "imp": 60,
+  "gain": 36,
+  "pfix": 36,
+  "pbrk": 1
+ },
+ "repeat": {
+  "n": 69,
+  "plain": 21,
+  "imp": 63,
+  "gain": 42,
+  "pfix": 35,
+  "pbrk": 0
+ },
+ "forbid": {
+  "n": 83,
+  "plain": 27,
+  "imp": 68,
+  "gain": 41,
+  "pfix": 39,
+  "pbrk": 0
+ },
+ "bul": {
+  "n": 79,
+  "plain": 63,
+  "imp": 72,
+  "gain": 9,
+  "pfix": 20,
+  "pbrk": 0
+ }
+}

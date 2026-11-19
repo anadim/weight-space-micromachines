@@ -1,0 +1,3 @@
+REG MISMATCH b7 ans s=2058 [('acc', [9], [nan], [0.0])]
+batch 7 ok=False 5220s {"steps": 2107, "writes": 2059, "reg_mismatch": 1, "blk_mismatch": 0, "dec_mismatch": 0, "W_mismatch": 0, "W_bf16_mismatch": 0, "active": 2149, "blocked": 2133, "hash_live_writes": 6131, "hash_blocked_tokens": 5810113, "sat": {"acc": 4020, "num_recent": 4021, "s_hn_last": 4021}}
+FINAL {"steps": 2107, "writes": 2059, "reg_mismatch": 1, "blk_mismatch": 0, "dec_mismatch": 0, "W_mismatch": 0, "W_bf16_mismatch": 0, "active": 2149, "blocked": 2133, "hash_live_writes": 6131, "hash_blocked_tokens": 5810113, "sat": {"acc": 4020, "num_recent": 4021, "s_hn_last": 4021}}

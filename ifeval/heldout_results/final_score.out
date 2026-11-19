@@ -1,0 +1,112 @@
+== IFEval ODD (held-out headline)
+run                                         n P-strict  P-loose I-strict  I-loose trunc
+runs/ifeval_plain                         299    56.19    61.54    67.11    71.74    19
+runs/ifeval_imp                           299    71.91    74.58    79.91    82.12    20
+
+per-instruction strict pass (pass/n)
+caps                                             4/12      5/12  
+lower                                           18/23     19/23  
+repeat                                          15/21     18/21  
+two                                              6/11      9/11  
+ps                                              14/14     14/14  
+bullets                                         10/14     13/14  
+high                                            26/28     27/28  
+title                                           17/19     18/19  
+forbid                                           8/27     22/27  
+nth                                              2/6       5/6   
+paras                                            7/16     12/16  
+no_comma                                        18/36     35/36  
+end                                             11/13     13/13  
+quote                                           18/23     21/23  
+change_case:capital_word_frequency               5/9       5/9   
+detectable_content:number_placeholders           9/12     10/12  
+detectable_format:constrained_response           5/6       5/6   
+detectable_format:json_format                    9/11      9/11  
+detectable_format:multiple_sections             10/11     10/11  
+keywords:existence                              18/24     19/24  
+keywords:frequency                              12/25     12/25  
+keywords:letter_frequency                       11/18      9/18  
+language:response_language                      10/18     10/18  
+length_constraints:number_sentences             24/29     24/29  
+length_constraints:number_words                 17/27     18/27  
+
+prompt-strict first->last: gained 49 lost 2; lost keys [1129, 3407]
+silent prompts (circuit wrote nothing): 180; byte-identical to first run: 180/180
+unlatched prompts (no rule latched): 114; byte-identical to first run: 114/114
+== IFEval EVEN (seen in reworded form)
+run                                         n P-strict  P-loose I-strict  I-loose trunc
+runs/ifeval_plain                         242    60.74    65.29    68.24    71.92     9
+runs/ifeval_imp                           242    73.97    75.62    81.10    82.68    12
+
+per-instruction strict pass (pass/n)
+caps                                            10/13     10/13  
+lower                                           10/16     12/16  
+repeat                                          11/20     16/20  
+two                                              8/13     10/13  
+ps                                              12/12     12/12  
+bullets                                         11/17     16/17  
+high                                            19/20     19/20  
+title                                           18/18     18/18  
+forbid                                          15/22     21/22  
+nth                                              2/6       5/6   
+paras                                            6/11     10/11  
+no_comma                                        12/30     27/30  
+end                                             12/13     13/13  
+quote                                           12/18     14/18  
+change_case:capital_word_frequency               9/16      9/16  
+detectable_content:number_placeholders          11/15     12/15  
+detectable_format:constrained_response           4/4       4/4   
+detectable_format:json_format                    6/6       6/6   
+detectable_format:multiple_sections              3/3       3/3   
+keywords:existence                              12/15     14/15  
+keywords:frequency                              10/17     11/17  
+keywords:letter_frequency                        5/15      5/15  
+language:response_language                      10/13     10/13  
+length_constraints:number_sentences             19/23     19/23  
+length_constraints:number_words                 13/25     13/25  
+
+prompt-strict first->last: gained 33 lost 1; lost keys [1332]
+silent prompts (circuit wrote nothing): 143; byte-identical to first run: 143/143
+unlatched prompts (no rule latched): 83; byte-identical to first run: 83/83
+== IFEval ALL 541
+run                                         n P-strict  P-loose I-strict  I-loose trunc
+runs/ifeval_plain                         541    58.23    63.40    67.63    71.94    28
+runs/ifeval_imp                           541    72.83    75.23    80.46    82.49    32
+
+per-instruction strict pass (pass/n)
+caps                                            14/25     15/25  
+lower                                           28/39     31/39  
+repeat                                          26/41     34/41  
+two                                             14/24     19/24  
+ps                                              26/26     26/26  
+bullets                                         21/31     29/31  
+high                                            45/48     46/48  
+title                                           35/37     36/37  
+forbid                                          23/49     43/49  
+nth                                              4/12     10/12  
+paras                                           13/27     22/27  
+no_comma                                        30/66     62/66  
+end                                             23/26     26/26  
+quote                                           30/41     35/41  
+change_case:capital_word_frequency              14/25     14/25  
+detectable_content:number_placeholders          20/27     22/27  
+detectable_format:constrained_response           9/10      9/10  
+detectable_format:json_format                   15/17     15/17  
+detectable_format:multiple_sections             13/14     13/14  
+keywords:existence                              30/39     33/39  
+keywords:frequency                              22/42     23/42  
+keywords:letter_frequency                       16/33     14/33  
+language:response_language                      20/31     20/31  
+length_constraints:number_sentences             43/52     43/52  
+length_constraints:number_words                 30/52     31/52  
+
+prompt-strict first->last: gained 82 lost 3; lost keys [1122, 1332, 3407]
+silent prompts (circuit wrote nothing): 323; byte-identical to first run: 323/323
+unlatched prompts (no rule latched): 197; byte-identical to first run: 197/197
+== IFBench
+IFBench n 300 silent 295 identical 295 | unlatched 286 identical 286 | latched rules: {'high': 9, 'bul': 5}
+runs/ifbench_plain_p.jsonl               n=298 P-strict 18.46 P-loose 22.82 I-strict 19.01 I-loose 24.85
+runs/ifbench_imp_p.jsonl                 n=298 P-strict 19.46 P-loose 23.83 I-strict 19.88 I-loose 25.73
+instructions whose strict pass count changed (first -> last):
+  format:no_bullets_bullets                     0/5 -> 3/5
+FINALDONE

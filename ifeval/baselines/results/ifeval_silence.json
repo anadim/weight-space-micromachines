@@ -1,0 +1,55 @@
+{
+ "maxtok": 160,
+ "rules": [
+  "nc",
+  "lower",
+  "caps",
+  "quote",
+  "end",
+  "ps",
+  "forbid",
+  "repeat",
+  "two",
+  "para",
+  "nth",
+  "title",
+  "high",
+  "bul"
+ ],
+ "wikitext": {
+  "tokens": 133754,
+  "passages": 1000,
+  "latched_passages": 0
+ },
+ "code": {
+  "tokens": 94137,
+  "passages": 600,
+  "latched_passages": 1
+ },
+ "per_rule_latched_passages": {
+  "nc": 0,
+  "lower": 0,
+  "caps": 0,
+  "quote": 0,
+  "end": 0,
+  "ps": 0,
+  "forbid": 0,
+  "repeat": 0,
+  "two": 0,
+  "para": 1,
+  "nth": 0,
+  "title": 0,
+  "high": 0,
+  "bul": 0
+ },
+ "latched_examples": [
+  {
+   "src": "code",
+   "rules": [
+    "para"
+   ],
+   "text": "<omitted: first 200 chars of a PyTorch source file (torch/ao/.../_semi_structured or similar)>"
+  }
+ ],
+ "seconds": 1703.7288217544556
+}

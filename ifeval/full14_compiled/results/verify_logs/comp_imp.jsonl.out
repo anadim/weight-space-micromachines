@@ -1,0 +1,20 @@
+resumed 7
+ifeval/full14_compiled/execu.py:171: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  if sh[0] * sh[1] <= 4_000_000 else torch.sparse_coo_tensor(self.sd[p + '.Wi'], self.sd[p + '.Wv'], sh).to_sparse_csr()
+8/23 batches 539s shadow={"steps": 2096, "writes": 2049, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+9/23 batches 1046s shadow={"steps": 4193, "writes": 4098, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+10/23 batches 1551s shadow={"steps": 6292, "writes": 6147, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+11/23 batches 2062s shadow={"steps": 8393, "writes": 8196, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+12/23 batches 2234s shadow={"steps": 9192, "writes": 8941, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+13/23 batches 2746s shadow={"steps": 11298, "writes": 10990, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+14/23 batches 3255s shadow={"steps": 13406, "writes": 13039, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+15/23 batches 3347s shadow={"steps": 13852, "writes": 13425, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+16/23 batches 3857s shadow={"steps": 15964, "writes": 15474, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+17/23 batches 4368s shadow={"steps": 18080, "writes": 17523, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+18/23 batches 4868s shadow={"steps": 20201, "writes": 19572, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+19/23 batches 5089s shadow={"steps": 21191, "writes": 20486, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+20/23 batches 5613s shadow={"steps": 23322, "writes": 22535, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+21/23 batches 5903s shadow={"steps": 24595, "writes": 23719, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+22/23 batches 6079s shadow={"steps": 25418, "writes": 24439, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+23/23 batches 6214s shadow={"steps": 26242, "writes": 24891, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+done 6214.2668471336365 {"steps": 26242, "writes": 24891, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}

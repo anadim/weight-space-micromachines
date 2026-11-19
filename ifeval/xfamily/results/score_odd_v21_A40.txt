@@ -1,0 +1,35 @@
+run                                         n P-strict  P-loose I-strict  I-loose trunc
+runs_v1/odd_plain.jsonl              299    48.49    51.51    60.04    62.47    59
+runs_v1/odd_imp.jsonl                299    60.87    64.21    71.30    73.51    68
+runs/odd_imp_v21_A40.jsonl                299    62.54    65.89    72.85    75.06    70
+
+per-instruction strict pass (pass/n)
+caps                                             6/12      8/12      8/12  
+lower                                           18/23     19/23     19/23  
+repeat                                           4/21     16/21     16/21  
+two                                              0/11      0/11      0/11  
+ps                                              12/14     11/14     11/14  
+bullets                                         12/14     13/14     13/14  
+high                                            20/28     24/28     24/28  
+title                                           18/19     19/19     19/19  
+forbid                                          11/27     23/27     23/27  
+nth                                              1/6       1/6       1/6   
+paras                                            8/16      2/16     10/16  
+no_comma                                        14/36     32/36     32/36  
+end                                              9/13     11/13     11/13  
+quote                                           16/23     20/23     20/23  
+change_case:capital_word_frequency               7/9       8/9       8/9   
+detectable_content:number_placeholders           5/12      5/12      5/12  
+detectable_format:constrained_response           6/6       6/6       6/6   
+detectable_format:json_format                    6/11      5/11      5/11  
+detectable_format:multiple_sections             10/11     10/11     10/11  
+keywords:existence                              13/24     14/24     14/24  
+keywords:frequency                              13/25     14/25     14/25  
+keywords:letter_frequency                       10/18      9/18      8/18  
+language:response_language                      16/18     16/18     16/18  
+length_constraints:number_sentences             20/29     21/29     21/29  
+length_constraints:number_words                 17/27     16/27     16/27  
+
+prompt-strict first->last: gained 44 lost 2; lost keys [1893, 3069]
+silent prompts (circuit wrote nothing): 164; byte-identical to first run: 164/164
+unlatched prompts (no rule latched): 114; byte-identical to first run: 114/114

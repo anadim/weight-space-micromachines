@@ -1,0 +1,4 @@
+ifeval/full14_compiled/execu.py:171: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  if sh[0] * sh[1] <= 4_000_000 else torch.sparse_coo_tensor(self.sd[p + '.Wi'], self.sd[p + '.Wv'], sh).to_sparse_csr()
+1/1 batches 434s shadow={"steps": 2081, "writes": 2049, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+done 434.2562253475189 {"steps": 2081, "writes": 2049, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}

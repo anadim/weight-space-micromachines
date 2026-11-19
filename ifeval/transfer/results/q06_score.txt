@@ -1,0 +1,21 @@
+== odd
+run                                   n  P-str  P-loo  I-str  I-loo  fix  brk   silent= ident trunc
+runs/q06_ifeval_plain               299  57.53  61.54  67.77  71.08    0    0    0/0      299    16
+runs/q06_ifeval_imp                 299  71.24  73.24  79.25  80.79   42    1  182/182    230    16
+per-rule instruction-strict passes: nc lower caps quote end ps forbid repeat two para nth title high bul other
+runs/q06_ifeval_plain              19/36 18/23 5/12 21/23 12/13 14/14 10/27 15/21 5/11 7/16 2/6 17/19 26/28 11/14 125/190
+runs/q06_ifeval_imp                35/36 19/23 6/12 22/23 13/13 14/14 21/27 18/21 9/11 12/16 5/6 18/19 27/28 13/14 127/190
+== even
+run                                   n  P-str  P-loo  I-str  I-loo  fix  brk   silent= ident trunc
+runs/q06_ifeval_plain               242  58.26  62.81  67.45  71.13    0    0    0/0      242    10
+runs/q06_ifeval_imp                 242  73.14  75.62  80.05  82.15   38    2  142/142    171    12
+per-rule instruction-strict passes: nc lower caps quote end ps forbid repeat two para nth title high bul other
+runs/q06_ifeval_plain              12/30 10/16 10/13 12/18 12/13 12/12 13/22 11/20 6/13 6/11 2/6 18/18 19/20 11/17 103/152
+runs/q06_ifeval_imp                27/30 12/16 10/13 14/18 13/13 12/12 21/22 16/20 10/13 9/11 6/6 18/18 19/20 16/17 102/152
+== all
+run                                   n  P-str  P-loo  I-str  I-loo  fix  brk   silent= ident trunc
+runs/q06_ifeval_plain               541  57.86  62.11  67.63  71.10    0    0    0/0      541    26
+runs/q06_ifeval_imp                 541  72.09  74.31  79.62  81.41   80    3  324/324    401    28
+per-rule instruction-strict passes: nc lower caps quote end ps forbid repeat two para nth title high bul other
+runs/q06_ifeval_plain              31/66 28/39 15/25 33/41 24/26 26/26 23/49 26/41 11/24 13/27 4/12 35/37 45/48 22/31 228/342
+runs/q06_ifeval_imp                62/66 31/39 16/25 36/41 26/26 26/26 42/49 34/41 19/24 21/27 11/12 36/37 46/48 29/31 229/342

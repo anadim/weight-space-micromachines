@@ -1,0 +1,16 @@
+n prompts 720
+rule       n  plain    imp  gain P-fix P-brk
+nc        84     21     71    50    50     0
+para      66     15     57    42    40     0
+repeat    69     21     63    42    35     0
+forbid    83     27     68    41    39     0
+nth       80     24     60    36    36     1
+caps      74     22     56    34    33     0
+two       69     33     62    29    30     0
+lower     86     54     76    22    27     0
+end       77     63     73    10    28     0
+high      84     71     81    10    27     0
+quote     70     49     58     9    18     1
+bul       79     63     72     9    20     0
+title    101    100    101     1    32     0
+ps        79     75     75     0    20     0

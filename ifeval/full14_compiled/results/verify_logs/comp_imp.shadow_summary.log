@@ -1,0 +1,24 @@
+batch done {"steps": 2081, "writes": 2049, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 4165, "writes": 4098, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 6251, "writes": 6147, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 8340, "writes": 8196, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 10431, "writes": 10245, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 12524, "writes": 12294, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+batch done {"steps": 14619, "writes": 14343, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0}
+=== relaunch (resume from partial) with CAP-normalized register compare Wed Nov 18 21:26:28 UTC 2026
+batch done {"steps": 2096, "writes": 2049, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 4193, "writes": 4098, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 6292, "writes": 6147, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 8393, "writes": 8196, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 9192, "writes": 8941, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 11298, "writes": 10990, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 13406, "writes": 13039, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 13852, "writes": 13425, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 15964, "writes": 15474, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 18080, "writes": 17523, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 20201, "writes": 19572, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 21191, "writes": 20486, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 23322, "writes": 22535, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 24595, "writes": 23719, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 25418, "writes": 24439, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}
+batch done {"steps": 26242, "writes": 24891, "reg_mm": 0, "blk_mm": 0, "dec_mm": 0, "W_mm": 0} sat={"acc": 4020, "num_recent": 4020, "s_hn_last": 4020}

@@ -1,0 +1,9 @@
+0 {"trials": 1, "rows": 24, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 854, "top_blocked": 3, "live_rows": 0} 2s
+50 {"trials": 51, "rows": 1224, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 40796, "top_blocked": 157, "live_rows": 0} 58s
+100 {"trials": 101, "rows": 2424, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 83450, "top_blocked": 358, "live_rows": 0} 110s
+150 {"trials": 151, "rows": 3624, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 124879, "top_blocked": 532, "live_rows": 0} 170s
+200 {"trials": 201, "rows": 4824, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 163946, "top_blocked": 728, "live_rows": 0} 233s
+250 {"trials": 251, "rows": 6024, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 205709, "top_blocked": 935, "live_rows": 0} 296s
+300 {"trials": 301, "rows": 7224, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 246621, "top_blocked": 1128, "live_rows": 0} 358s
+350 {"trials": 351, "rows": 8424, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 288485, "top_blocked": 1290, "live_rows": 0} 419s
+FINAL {"trials": 400, "rows": 9600, "blk_mm": 0, "dec_mm": 0, "reg_mm": 0, "blocked_tokens": 329652, "top_blocked": 1464, "live_rows": 0}
