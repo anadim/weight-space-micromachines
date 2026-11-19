@@ -97,6 +97,9 @@ if CW_ARM or a.arm in ('W3d', 'W2ws'):          # coordinator: wires default to 
     if '--link_lr' not in sys.argv: a.link_lr = 1e-2
     if '--link_eps' not in sys.argv: a.link_eps = 1e-12
 if a.arm == 'W3d': assert a.init_links, 'W3d needs --init_links (SFT-distilled W3e links)'
+json.dump(vars(a), open(f'{a.run_dir}/config.json', 'w'), indent=1)   # rewrite with the per-arm defaults applied (the
+# released configs were written before this block: for CW*/W3d/W2ws arms their link_lr / link_eps / call_cost / cw_hidden
+# fields show the CLI defaults, while the runs used link_lr 1e-2, link_eps 1e-12 unless given on the command line)
 # default link specs per arm: SRC:LAYER[:INIT[:GATE]], INIT in {rand (W~N(0,std)), emb (digit d -> host input
 # embedding of token d, rescaled to that layer's residual norm at digit positions), warm (W = hand-wired write D^T)}
 DEFAULT_SPEC = {'W3e': 'calc:7:emb:0.1,calc:14:emb:0.1,calc:21:emb:0.1',
