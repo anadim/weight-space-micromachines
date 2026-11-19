@@ -1,0 +1,11 @@
+{
+ "n": 32,
+ "fp32": true,
+ "identical": "32/32",
+ "rethink_in_text_ref": 25,
+ "rethink_in_text_new": 25,
+ "acc_ref_last": 43.75,
+ "acc_new_last": 43.75,
+ "rt_writes_per_q": 7.9375,
+ "mismatch": []
+}

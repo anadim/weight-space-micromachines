@@ -1,0 +1,19 @@
+{
+ "exact": 517,
+ "wrong": 13,
+ "unparsed": 136,
+ "examples_wrong": [
+  "The minimum age required by the company is 25 years, so it will be 25 - 771626.5 = -7",
+  "The remaining sugar is 6 - 3 = 6 kilos",
+  "Chloe's profit is 1250 - 2500 = -1",
+  "The number of lemons in the last two baskets is 4 - 40 = -3",
+  "He makes 64000 / 1 = $640",
+  "The total amount of energy Noah uses is 13384476 + 17845968 + 4461492 = 356",
+  "ebbie used 4 feet of tape to seal 2 large boxes, 8 medium boxes, and 5 small boxes, for a total of 4*2 + 2*8 + 1*5 = 8 + 16 + 5 = 29 feet of",
+  "She also used 1 foot of tape to stick the address label on each box, so she used 1*2 + 1*8 + 1*5 = 2 + 8 + 5 = 15 feet of",
+  "So there are 220 - 11259476.8 = -1",
+  "In six years, Tom's dog will be 6 + 6 = 24 years old",
+  "If they split into 3 playgroups, each group contains 1494685 people, then the total number of people at the park is 1494685 * 3 = 4",
+  " Jenny's bottle cap flies 2076988 feet + 2076988/3 = 2076988 + 692329.33 = 2769317.33 feet"
+ ]
+}

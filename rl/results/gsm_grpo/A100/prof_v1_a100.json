@@ -1,0 +1,38 @@
+{
+ "nvidia_smi_start": "0, NVIDIA A100 80GB PCIe, 0 MiB, 0 %\n",
+ "bs1": {
+  "prompt_len": 1108,
+  "prefill_ms": 64.88473510742188,
+  "host_fwd_ms": 30.607835394995554,
+  "head_sample_ms": 0.7446015834808349,
+  "implant_graph_ms": 1.0928128242492676,
+  "implant_eager_ms": 8.261427307128907,
+  "python_bookkeeping_ms": 0.09451519846916198,
+  "host_kernels_per_step": 1625,
+  "implant_kernels_per_step_eager": 460,
+  "implant_kernels_table": "-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nvoid at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     325.118us        22.50%     325.118us       5.911us            55  \nvoid cusparse::csrmv_v3_kernel<std::integral_constan...         0.00%       0.000us         0.00%       0.000us       0.000us     277.017us        19.17%     277.017us       5.037us            55  \nvoid cusparse::(anonymous namespace)::csr_partition_...         0.00%       0.000us         0.00%       0.000us       0.000us     263.615us        18.24%     263.615us       4.793us            55  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     124.415us         8.61%     124.415us       2.222us            56  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     118.650us         8.21%     118.650us       2.197us            54  \n                         Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us     105.792us         7.32%     105.792us       1.923us            55  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     101.984us         7.06%     101.984us       1.789us            57  \n                                        Memset (Device)         0.00%       0.000us         0.00%       0.000us       0.000us      75.197us         5.20%      75.197us       1.367us            55  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nSelf CPU time total: 4.729ms\nSelf CUDA time total: 1.445ms\n",
+  "v1_sample_tok_s": 24.026756327976397,
+  "v1_sample_ms_per_step": 41.62026643753052,
+  "v1_ntok": 60,
+  "v1_noimpl_tok_s": 25.42882801090984,
+  "v1_noimpl_ms_per_step": 39.325445890426636
+ },
+ "bs16": {
+  "prompt_len": 1185,
+  "prefill_ms": 296.69732666015625,
+  "host_fwd_ms": 47.66207947049822,
+  "head_sample_ms": 0.4703375816345215,
+  "implant_graph_ms": 1.8282991409301759,
+  "implant_eager_ms": 10.957164764404297,
+  "python_bookkeeping_ms": 0.27932960987091066,
+  "host_kernels_per_step": 1918,
+  "implant_kernels_per_step_eager": 459,
+  "implant_kernels_table": "-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nvoid cusparse::csrmm_alg2_kernel<false, true, false,...         0.00%       0.000us         0.00%       0.000us       0.000us     688.030us        32.58%     688.030us      12.510us            55  \nvoid at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     336.965us        15.95%     336.965us       6.127us            55  \nvoid cusparse::(anonymous namespace)::csr_partition_...         0.00%       0.000us         0.00%       0.000us       0.000us     250.144us        11.84%     250.144us       4.548us            55  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     183.264us         8.68%     183.264us       3.273us            56  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     171.583us         8.12%     171.583us       3.120us            55  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     121.380us         5.75%     121.380us       2.248us            54  \nvoid cusparse::matrix_scalar_multiply_kernel<cuspars...         0.00%       0.000us         0.00%       0.000us       0.000us     118.594us         5.61%     118.594us       2.156us            55  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     106.882us         5.06%     106.882us       1.875us            57  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nSelf CPU time total: 3.418ms\nSelf CUDA time total: 2.112ms\n",
+  "v1_sample_tok_s": 207.4654405012584,
+  "v1_sample_ms_per_step": 51.32631957530975,
+  "v1_ntok": 1363,
+  "v1_noimpl_tok_s": 226.47507767804316,
+  "v1_noimpl_ms_per_step": 48.15651290118694
+ },
+ "nvidia_smi_end": "0, NVIDIA A100 80GB PCIe, 8912 MiB, 60 %\n"
+}

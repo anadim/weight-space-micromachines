@@ -1,0 +1,1 @@
+a1_lr3e-6_s1 --arm 1 --lr 3e-6 --seed 1 --B_max 256 --tok_budget 8192

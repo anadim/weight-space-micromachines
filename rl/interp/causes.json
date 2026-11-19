@@ -1,0 +1,148 @@
+{
+ "base_off->a1_off|gsm": {
+  "up": {
+   "plan": 44,
+   "no_answer:####$": 3,
+   "arith": 18,
+   "no_answer:other": 1,
+   "no_answer:truncated": 2
+  },
+  "down": {
+   "plan": 22,
+   "arith": 8
+  }
+ },
+ "base_off->a1_off|scaled": {
+  "up": {
+   "no_answer:truncated": 3,
+   "arith": 34,
+   "plan": 22,
+   "no_answer:other": 2
+  },
+  "down": {
+   "plan": 12,
+   "arith": 17
+  }
+ },
+ "base_on->a2_on|gsm": {
+  "up": {
+   "plan": 60,
+   "no_answer:truncated": 3,
+   "no_answer:####$": 3,
+   "arith": 16,
+   "no_answer:other": 2
+  },
+  "down": {
+   "plan": 21,
+   "no_answer:other": 1,
+   "arith": 4
+  }
+ },
+ "base_on->a2_on|scaled": {
+  "up": {
+   "no_answer:truncated": 3,
+   "plan": 52,
+   "arith": 25,
+   "no_answer:other": 7,
+   "no_answer:####$": 1
+  },
+  "down": {
+   "no_answer:truncated": 1,
+   "plan": 16,
+   "arith": 10
+  }
+ },
+ "a1_off->a2_on|gsm": {
+  "up": {
+   "plan": 26,
+   "arith": 7,
+   "no_answer:truncated": 1
+  },
+  "down": {
+   "plan": 15,
+   "arith": 3
+  }
+ },
+ "a1_off->a2_on|scaled": {
+  "up": {
+   "arith": 68,
+   "plan": 18
+  },
+  "down": {
+   "arith": 4,
+   "plan": 3,
+   "no_answer:other": 1,
+   "no_answer:truncated": 1
+  }
+ },
+ "a1_on->a2_on|gsm": {
+  "up": {
+   "plan": 27,
+   "arith": 5,
+   "no_answer:truncated": 1
+  },
+  "down": {
+   "plan": 15,
+   "arith": 3
+  }
+ },
+ "a1_on->a2_on|scaled": {
+  "up": {
+   "plan": 20,
+   "arith": 15
+  },
+  "down": {
+   "arith": 5,
+   "plan": 6,
+   "no_answer:other": 1,
+   "no_answer:truncated": 1
+  }
+ },
+ "a1_off->a2_off|gsm": {
+  "up": {
+   "plan": 25,
+   "arith": 6,
+   "no_answer:truncated": 1
+  },
+  "down": {
+   "plan": 15,
+   "arith": 5
+  }
+ },
+ "a1_off->a2_off|scaled": {
+  "up": {
+   "arith": 16,
+   "plan": 14
+  },
+  "down": {
+   "arith": 16,
+   "plan": 2
+  }
+ },
+ "base_off->a2_off|gsm": {
+  "up": {
+   "plan": 54,
+   "no_answer:truncated": 5,
+   "no_answer:####$": 3,
+   "arith": 16,
+   "no_answer:other": 1
+  },
+  "down": {
+   "plan": 21,
+   "arith": 7,
+   "no_answer:other": 1
+  }
+ },
+ "base_off->a2_off|scaled": {
+  "up": {
+   "no_answer:truncated": 3,
+   "arith": 39,
+   "no_answer:other": 5,
+   "plan": 24
+  },
+  "down": {
+   "plan": 9,
+   "arith": 18
+  }
+ }
+}

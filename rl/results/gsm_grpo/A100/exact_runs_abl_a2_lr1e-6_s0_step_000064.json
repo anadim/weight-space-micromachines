@@ -1,0 +1,19 @@
+{
+ "exact": 529,
+ "wrong": 19,
+ "unparsed": 281,
+ "examples_wrong": [
+  "Dara aspires to be half the age of Jane in six years, so Dara will be (1543253 / 2) + 6 = 771626.5 + 6 = 771632.5 years old",
+  "237497520 / 12 = 197914600 dozens.",
+  "After paying off all his debts, Jericho will be left with 30 - 9322041 = -9",
+  "The total number of chickens left is 300 - 11243862 = -1",
+  "Each deer weighs 600 pounds, so the total weight of the deer is 56356902 * 600 = 33814102 * ",
+  "So, the number of lemons in the last two baskets is 4 - 40 = -3",
+  " The first-place team has 12 wins and 2178250 ties, so they have 12*2 + 2178250*1 = 24 + 2178250 = 2178274 points.",
+  "The second-place team has 13 wins and 1 tie, so they have 13*2 + 1*1 = 26 + 1 = 27 points.",
+  "Elsa's team has 8 wins and 10 ties, so they have 8*2 + 10*1 = 16 + 10 = 26 points.",
+  " The portion not covered in dirt is 30 - 4863613 = -4",
+  "At the party, 9893160 cups of juice were left, so the number of cups drunk is 100 - 9893160 = -9",
+  "So, the remaining minutes she needs to add are 60 - 13060998 = -1"
+ ]
+}

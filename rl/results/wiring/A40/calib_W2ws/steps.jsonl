@@ -1,0 +1,7 @@
+{"params": {"wire": 15361, "host": 596049920, "implant_nnz": 2395647, "pct_host": 0.0025771331367681416, "pct_implant": 0.6412046516035126}}
+{"dev": {"u": 0, "t": 0}}
+{"dev_host_curve": {"u": 0}}
+{"drift": {"drift_exact": 1.0, "drift_digit_ok": 10, "drift_digits": {"0": true, "1": true, "2": true, "3": true, "4": true, "5": true, "6": true, "7": true, "8": true, "9": true}, "u": 0}}
+{"dev_hostonly": {"u": 0}}
+{"drift_final": {"drift_final_exact": 1.0, "drift_final_digit_ok": 10, "drift_final_digits": {"0": true, "1": true, "2": true, "3": true, "4": true, "5": true, "6": true, "7": true, "8": true, "9": true}, "u": 0}}
+{"DONE_RUN": 0.02249455451965332}

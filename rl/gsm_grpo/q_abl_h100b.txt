@@ -1,0 +1,2 @@
+a3_lr1e-6_s0 --arm 3 --lr 1e-6 --link_lr 1e-3 --seed 0
+a3b_lr1e-6_s0 --arm 3b --lr 1e-6 --link_lr 1e-3 --seed 0

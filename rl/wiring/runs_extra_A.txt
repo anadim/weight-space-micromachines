@@ -1,0 +1,2 @@
+W2ws 0
+W3d 0 --init_links runs/sft3_W3e_lr1e-2/links_final.pt

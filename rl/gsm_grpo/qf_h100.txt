@@ -1,0 +1,5 @@
+base_H100_calc base 2
+base_H100_R base R digits
+a1_lr1e-6_s0 runs/abl/a1_lr1e-6_s0/step_000064 1
+aR_lr1e-6_s0 runs/abl/aR_lr1e-6_s0/step_000064 R digits
+aR_lr1e-6_s1 runs/abl/aR_lr1e-6_s1/step_000064 R digits

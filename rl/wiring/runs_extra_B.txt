@@ -1,0 +1,2 @@
+CWout 0 --kl 0.01 --eval_all 0
+CWin 0 --kl 0.01 --eval_all 0

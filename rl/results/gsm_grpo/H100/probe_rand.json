@@ -1,0 +1,29 @@
+{
+ "none": {
+  "acc": 46.0,
+  "gsm": 65.0,
+  "scaled": 27.0,
+  "writes": 0.0,
+  "calls": 0.0,
+  "len": 111.3975,
+  "example": " There are 60 seconds in a minute, so 10 minutes is 10 * 60 = 600 seconds.\nThe fan creates 10 liters per second, so in 600 seconds it creates 10 * 600 = 6000 liters of airflow.\nThere are 7 days in a week, so in one week the fan creates 6000 * 7 = 42000 liters of airflow.\n#### 42000<|endoftext|>"
+ },
+ "calc_s4": {
+  "acc": 51.25,
+  "gsm": 64.0,
+  "scaled": 38.5,
+  "writes": 15.44,
+  "calls": 2.4275,
+  "len": 113.12,
+  "example": " There are 60 seconds in a minute, so 10 minutes is 10 * 60 = 600 seconds.\nThe fan creates 10 liters per second, so in 600 seconds it creates 10 * 600 = 6000 liters of airflow.\nThere are 7 days in a week, so in one week the fan creates 6000 * 7 = 42000 liters of airflow.\n#### 42000<|endoftext|>"
+ },
+ "R_digits": {
+  "acc": 8.75,
+  "gsm": 14.0,
+  "scaled": 3.5,
+  "writes": 18.515,
+  "calls": 2.395,
+  "len": 119.645,
+  "example": " There are 60 seconds in a minute, so 10 minutes is 10 * 60 = 744 seconds.\nThe fan creates 10 liters per second, so in 744 seconds it will create 10 * 744 = 0334 liters of airflow.\n#### 0334\n\n"
+ }
+}

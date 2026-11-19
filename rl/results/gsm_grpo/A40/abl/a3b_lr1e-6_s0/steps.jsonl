@@ -1,0 +1,2 @@
+{"dev": {"dev_acc": 44.75, "dev_gsm": 66.0, "dev_scaled": 23.5, "dev_fmt": 94.875, "dev_writes": 14.3825, "dev_calls": 2.3625, "dev_len": 110.8375, "dev_rethink_frac": 0.0, "u": 0, "t": 0}}
+{"dev_host_curve": {"devhost_acc": 44.5, "devhost_gsm": 65.0, "devhost_scaled": 24.0, "devhost_fmt": 94.25, "devhost_writes": 0.0, "devhost_calls": 0.0, "devhost_len": 111.12875, "devhost_rethink_frac": 0.0, "u": 0}}

@@ -1,0 +1,5 @@
+base_A40_calc base 2
+base_A40_R base R digits
+a2_lr3e-6_s1 runs/abl/a2_lr3e-6_s1/step_000064 2
+aR_lr3e-6_s1 runs/abl/aR_lr3e-6_s1/step_000064 R digits
+a1_lr3e-6_s1 runs/abl/a1_lr3e-6_s1/step_000064 1

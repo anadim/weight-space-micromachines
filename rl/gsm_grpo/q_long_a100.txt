@@ -1,0 +1,4 @@
+a2_u500_s0 --arm 2 --seed 0
+a1_u500_s0 --arm 1 --seed 0
+a2_u500_s1 --arm 2 --seed 1
+a1_u500_s1 --arm 1 --seed 1

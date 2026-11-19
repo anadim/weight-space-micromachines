@@ -1,0 +1,6 @@
+base --lr 1e-6
+lr3e-7 --lr 3e-7
+lr3e-6 --lr 3e-6
+lr1e-5 --lr 1e-5
+G16 --lr 1e-6 --G 16 --prompts 64
+P32 --lr 1e-6 --prompts 32

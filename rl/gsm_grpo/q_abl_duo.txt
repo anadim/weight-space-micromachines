@@ -1,0 +1,3 @@
+a2_lr3e-6_s1 --arm 2 --lr 3e-6 --seed 1 --B_max 256 --tok_budget 8192
+aR_lr3e-6_s1 --arm R --rand digits --lr 3e-6 --seed 1 --B_max 256 --tok_budget 8192
+a1_lr3e-6_s1 --arm 1 --lr 3e-6 --seed 1 --B_max 256 --tok_budget 8192

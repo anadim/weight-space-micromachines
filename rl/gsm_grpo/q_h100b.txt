@@ -1,0 +1,2 @@
+a3_ll1e-2 --arm 3 --lr 1e-6 --link_lr 1e-2
+a3b_ll1e-2 --arm 3b --lr 1e-6 --link_lr 1e-2

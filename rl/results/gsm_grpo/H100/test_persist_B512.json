@@ -1,0 +1,10 @@
+{
+ "B": 512,
+ "T": 400,
+ "steps_with_mismatch": 0,
+ "write_events": 4292,
+ "state_checks_mismatch": 0,
+ "real_text_ms_ref_eager": 18.153697161131266,
+ "real_text_ms_fused": 8.670591441589066,
+ "timing": {}
+}

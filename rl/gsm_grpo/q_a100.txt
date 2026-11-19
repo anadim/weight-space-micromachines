@@ -1,0 +1,3 @@
+T0.8 --lr 1e-6 --T 0.8
+kl1e-3 --lr 1e-6 --kl 1e-3
+cispo --lr 1e-6 --loss cispo

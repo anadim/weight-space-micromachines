@@ -1,0 +1,136 @@
+{
+ "B1_S64": {
+  "host_ms": 5.473980712890625,
+  "host_plus_implant_ms": 6.511803690592448,
+  "implant_ms": 1.0378229777018229,
+  "tok_s_host": 182.68241202332143,
+  "tok_s_with_implant": 153.56728297026095
+ },
+ "B1_S256": {
+  "host_ms": 5.5378173828125,
+  "host_plus_implant_ms": 6.57956288655599,
+  "implant_ms": 1.0417455037434893,
+  "tok_s_host": 180.57655767119724,
+  "tok_s_with_implant": 151.98578039937857
+ },
+ "B1_S512": {
+  "host_ms": 5.589643859863282,
+  "host_plus_implant_ms": 6.6329833984375,
+  "implant_ms": 1.0433395385742186,
+  "tok_s_host": 178.90227446878148,
+  "tok_s_with_implant": 150.7617221287732
+ },
+ "B16_S64": {
+  "host_ms": 6.543387858072917,
+  "host_plus_implant_ms": 7.960949198404948,
+  "implant_ms": 1.417561340332031,
+  "tok_s_host": 2445.216506654114,
+  "tok_s_with_implant": 2009.8105893209008
+ },
+ "B16_S256": {
+  "host_ms": 6.6891123453776045,
+  "host_plus_implant_ms": 8.113441975911458,
+  "implant_ms": 1.4243296305338538,
+  "tok_s_host": 2391.9466700326125,
+  "tok_s_with_implant": 1972.036041855414
+ },
+ "B16_S512": {
+  "host_ms": 6.908271789550781,
+  "host_plus_implant_ms": 8.320825703938802,
+  "implant_ms": 1.4125539143880204,
+  "tok_s_host": 2316.0640587709736,
+  "tok_s_with_implant": 1922.8860895891778
+ },
+ "B64_S64": {
+  "host_ms": 7.69563954671224,
+  "host_plus_implant_ms": 9.401728312174479,
+  "implant_ms": 1.7060887654622388,
+  "tok_s_host": 8316.397826525323,
+  "tok_s_with_implant": 6807.259035248357
+ },
+ "B64_S256": {
+  "host_ms": 8.338540649414062,
+  "host_plus_implant_ms": 10.038011678059895,
+  "implant_ms": 1.6994710286458332,
+  "tok_s_host": 7675.203934455509,
+  "tok_s_with_implant": 6375.764648678875
+ },
+ "B64_S512": {
+  "host_ms": 9.191285196940104,
+  "host_plus_implant_ms": 10.905527750651041,
+  "implant_ms": 1.7142425537109371,
+  "tok_s_host": 6963.117630307719,
+  "tok_s_with_implant": 5868.583480169432
+ },
+ "B128_S64": {
+  "host_ms": 8.882029215494791,
+  "host_plus_implant_ms": 11.79172871907552,
+  "implant_ms": 2.909699503580729,
+  "tok_s_host": 14411.121253317056,
+  "tok_s_with_implant": 10855.066551262664
+ },
+ "B128_S256": {
+  "host_ms": 10.2217041015625,
+  "host_plus_implant_ms": 13.125616455078125,
+  "implant_ms": 2.9039123535156257,
+  "tok_s_host": 12522.373835927592,
+  "tok_s_with_implant": 9751.92292400701
+ },
+ "B128_S512": {
+  "host_ms": 11.695596313476562,
+  "host_plus_implant_ms": 14.601470947265625,
+  "implant_ms": 2.905874633789063,
+  "tok_s_host": 10944.290190018664,
+  "tok_s_with_implant": 8766.240090623896
+ },
+ "B256_S64": {
+  "host_ms": 11.455744425455729,
+  "host_plus_implant_ms": 16.2906005859375,
+  "implant_ms": 4.834856160481772,
+  "tok_s_host": 22346.86725649572,
+  "tok_s_with_implant": 15714.583305233467
+ },
+ "B256_S256": {
+  "host_ms": 13.862290445963541,
+  "host_plus_implant_ms": 18.710809326171876,
+  "implant_ms": 4.848518880208335,
+  "tok_s_host": 18467.366630205237,
+  "tok_s_with_implant": 13681.930884834479
+ },
+ "B256_S512": {
+  "host_ms": 16.97384033203125,
+  "host_plus_implant_ms": 21.79728800455729,
+  "implant_ms": 4.82344767252604,
+  "tok_s_host": 15082.031820277209,
+  "tok_s_with_implant": 11744.58033249258
+ },
+ "B512_S64": {
+  "host_ms": 17.79874267578125,
+  "host_plus_implant_ms": 26.435162353515626,
+  "implant_ms": 8.636419677734377,
+  "tok_s_host": 28766.076869950957,
+  "tok_s_with_implant": 19368.142822542904
+ },
+ "B512_S256": {
+  "host_ms": 22.519120279947916,
+  "host_plus_implant_ms": 31.162172444661458,
+  "implant_ms": 8.643052164713541,
+  "tok_s_host": 22736.234525817996,
+  "tok_s_with_implant": 16430.176712141045
+ },
+ "B512_S512": {
+  "host_ms": 28.647349039713543,
+  "host_plus_implant_ms": 37.29884033203125,
+  "implant_ms": 8.651491292317704,
+  "tok_s_host": 17872.50887648345,
+  "tok_s_with_implant": 13726.968330441847
+ },
+ "profile_B512_S256_implantFalse": {
+  "kernels": 4779,
+  "table": "-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                     nvjet_tst_128x8_64x12_2x1_v_bz_TNT         0.00%       0.000us         0.00%       0.000us       0.000us       2.798ms        12.59%       2.798ms      99.913us            28  \n                     nvjet_tst_128x8_64x12_1x1_v_bz_NNT         0.00%       0.000us         0.00%       0.000us       0.000us       2.691ms        12.11%       2.691ms      96.112us            28  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.432ms         6.44%       1.432ms      25.118us            57  \nvoid at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       1.295ms         5.83%       1.295ms      11.362us           114  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.143ms         5.14%       1.143ms      20.409us            56  \nvoid at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     948.380us         4.27%     948.380us       3.749us           253  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     784.064us         3.53%     784.064us      14.001us            56  \nvoid at::native::vectorized_elementwise_kernel<8, at...         0.00%       0.000us         0.00%       0.000us       0.000us     757.951us         3.41%     757.951us       4.485us           169  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     748.796us         3.37%     748.796us      13.371us            56  \nvoid cutlass::Kernel2<cutlass_80_tensorop_bf16_s1681...         0.00%       0.000us         0.00%       0.000us       0.000us     730.272us         3.29%     730.272us      26.081us            28  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     679.710us         3.06%     679.710us      12.138us            56  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     659.361us         2.97%     659.361us      11.774us            56  \nvoid cutlass::Kernel2<cutlass_80_tensorop_bf16_s1681...         0.00%       0.000us         0.00%       0.000us       0.000us     570.687us         2.57%     570.687us      20.382us            28  \n                     nvjet_tst_64x64_64x13_2x1_v_bz_TNT         0.00%       0.000us         0.00%       0.000us       0.000us     458.462us         2.06%     458.462us       8.187us            56  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     434.998us         1.96%     434.998us       3.850us           113  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     412.544us         1.86%     412.544us     206.272us             2  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     411.360us         1.85%     411.360us     205.680us             2  \nvoid at::native::(anonymous namespace)::cunn_SoftMax...         0.00%       0.000us         0.00%       0.000us       0.000us     405.440us         1.82%     405.440us     405.440us             1  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     372.743us         1.68%     372.743us       3.299us           113  \nvoid at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     339.458us         1.53%     339.458us       6.062us            56  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     331.775us         1.49%     331.775us      11.441us            29  \n              nvjet_tst_192x128_64x5_1x2_h_bz_coopB_TNT         0.00%       0.000us         0.00%       0.000us       0.000us     328.926us         1.48%     328.926us      11.747us            28  \n                    nvjet_tst_128x128_64x6_2x1_v_bz_TNT         0.00%       0.000us         0.00%       0.000us       0.000us     263.135us         1.18%     263.135us       9.398us            28  \nvoid at::native::(anonymous namespace)::CatArrayBatc...         0.00%       0.000us         0.00%       0.000us       0.000us     254.687us         1.15%     254.687us       4.548us            56  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     244.864us         1.10%     244.864us     122.432us             2  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nSelf CPU time total: 12.187ms\nSelf CUDA time total: 22.224ms\n"
+ },
+ "profile_B512_S256_implantTrue": {
+  "kernels": 5702,
+  "table": "-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nvoid cusparse::csrmm_alg2_kernel<false, true, false,...         0.00%       0.000us         0.00%       0.000us       0.000us       6.803ms        22.03%       6.803ms     125.974us            54  \n                     nvjet_tst_128x8_64x12_2x1_v_bz_TNT         0.00%       0.000us         0.00%       0.000us       0.000us       2.798ms         9.06%       2.798ms      99.944us            28  \n                     nvjet_tst_128x8_64x12_1x1_v_bz_NNT         0.00%       0.000us         0.00%       0.000us       0.000us       2.687ms         8.70%       2.687ms      95.978us            28  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.454ms         4.71%       1.454ms      25.513us            57  \nvoid at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       1.319ms         4.27%       1.319ms      11.468us           115  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.316ms         4.26%       1.316ms      11.852us           111  \nvoid at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     963.555us         3.12%     963.555us       3.809us           253  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     786.463us         2.55%     786.463us      13.560us            58  \nvoid at::native::vectorized_elementwise_kernel<8, at...         0.00%       0.000us         0.00%       0.000us       0.000us     759.002us         2.46%     759.002us       4.465us           170  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     746.878us         2.42%     746.878us      13.337us            56  \nvoid cutlass::Kernel2<cutlass_80_tensorop_bf16_s1681...         0.00%       0.000us         0.00%       0.000us       0.000us     744.190us         2.41%     744.190us      26.578us            28  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     686.848us         2.22%     686.848us      12.265us            56  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     663.616us         2.15%     663.616us      11.850us            56  \nvoid cutlass::Kernel2<cutlass_80_tensorop_bf16_s1681...         0.00%       0.000us         0.00%       0.000us       0.000us     578.304us         1.87%     578.304us      20.654us            28  \nvoid at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     558.303us         1.81%     558.303us      10.151us            55  \n                     nvjet_tst_64x64_64x13_2x1_v_bz_TNT         0.00%       0.000us         0.00%       0.000us       0.000us     450.113us         1.46%     450.113us       8.038us            56  \nvoid at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     442.016us         1.43%     442.016us       3.912us           113  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     412.192us         1.33%     412.192us     206.096us             2  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     411.583us         1.33%     411.583us     205.791us             2  \nvoid at::native::(anonymous namespace)::cunn_SoftMax...         0.00%       0.000us         0.00%       0.000us       0.000us     405.632us         1.31%     405.632us     405.632us             1  \nvoid at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     376.611us         1.22%     376.611us       3.333us           113  \n              nvjet_tst_192x128_64x5_1x2_h_bz_coopB_TNT         0.00%       0.000us         0.00%       0.000us       0.000us     334.976us         1.08%     334.976us      11.963us            28  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     332.352us         1.08%     332.352us      11.460us            29  \nvoid at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     312.538us         1.01%     312.538us       5.581us            56  \nvoid at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     307.871us         1.00%     307.871us       5.701us            54  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nSelf CPU time total: 13.799ms\nSelf CUDA time total: 30.877ms\n"
+ }
+}

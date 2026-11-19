@@ -1,0 +1,5 @@
+CWinO 0 --eval_all 0
+CW 1 --kl 0.01 --eval_all 0
+CWinC 0 --eval_all 0
+CW 0 --kl 0.01 --eval_all 0 --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --interp 1
+CW 1 --kl 0.01 --eval_all 0 --eval_ckpt runs/L300_CW_s1_kl001evalall0/step_000300 --interp 1

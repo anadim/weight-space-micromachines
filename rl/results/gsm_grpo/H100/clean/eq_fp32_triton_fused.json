@@ -1,0 +1,43 @@
+{
+ "n": 64,
+ "machine": "calc_s4",
+ "prefix_len": 1066,
+ "plain": {
+  "ref_s": 25.021620988845825,
+  "ref_tok_s": 273.8831350316968,
+  "ref_acc": 35.9375,
+  "fast_greedy_tok_s": 1750.729188181631,
+  "fast_stats": {
+   "seconds": 3.897233247756958,
+   "tokens": 6823,
+   "tok_s": 1750.729188181631,
+   "decode_steps": 320,
+   "rows": 64
+  },
+  "fast_acc": 35.9375,
+  "fast_writes_per_seq": 0.0,
+  "text_identical": "64/64",
+  "text_identical_gsm": "32/32",
+  "text_identical_scaled": "32/32",
+  "first_mismatch": []
+ },
+ "calc": {
+  "ref_s": 27.10618782043457,
+  "ref_tok_s": 241.56845821984797,
+  "ref_acc": 43.75,
+  "fast_greedy_tok_s": 1463.7145405600988,
+  "fast_stats": {
+   "seconds": 4.452370882034302,
+   "tokens": 6517,
+   "tok_s": 1463.7145405600988,
+   "decode_steps": 320,
+   "rows": 64
+  },
+  "fast_acc": 43.75,
+  "fast_writes_per_seq": 14.203125,
+  "text_identical": "64/64",
+  "text_identical_gsm": "32/32",
+  "text_identical_scaled": "32/32",
+  "first_mismatch": []
+ }
+}

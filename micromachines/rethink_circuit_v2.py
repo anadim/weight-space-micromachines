@@ -95,6 +95,7 @@ class RethinkCircuitV2:
         Es = set(E_any) | set(E_nl) | Hs
         C = [c for c in range(V) if c not in Es]
         self.W_S = model.lm_head.weight.detach()[torch.tensor(E_any + E_nl + H + C, device=dev)].clone()
+        self.idx_A, self.idx_N, self.idx_H = E_any, E_nl, H          # (rl_implants_v2: kept for the fused decode step)
         self.nS = self.nA + self.nN + self.nH
         self.R = len(seqs); self.seqs = seqs; self.L = max(len(s) for s in seqs)
         out_ids = sorted({t for s in seqs for t in s}); self.out_ids = out_ids

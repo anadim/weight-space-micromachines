@@ -1,0 +1,8 @@
+# held until the supervised sanity test is in (coordinator): link arms
+W2w 0
+W3e3 0
+W3z 0
+W2 1
+W3e 1
+W3z 1
+W4 0 --impl_lr 1e-5
