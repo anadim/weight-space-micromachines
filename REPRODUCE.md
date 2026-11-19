@@ -533,6 +533,11 @@ Wiring arms, 4c, 4s: one seed (CW-full s1 and CWinOx s0/s1 were still running at
 `bash figures/blog/make_blog_figs.sh` (CPU) rebuilds the static figures into `figures/blog/figs/`;
 `figures/blog/README.md` maps each blog figure title to its script and data. The animations need `rsvg-convert`,
 `ffmpeg`, `gifsicle`. RL figures read `rl/results/curves/<run>/steps.jsonl` (env `RL_CURVES`).
+With the Avenir Next fonts in `figures/blog/fonts/` (not shipped) a fresh clone redraws every committed static PNG pixel for
+pixel (`VERIFY.md` section 11). The CW veto figure reads `rl/results/wiring/H100/L300_CW_s0_kl001evalall0/steps.jsonl`.
+The blog figure "RL with and without the calculator" is `rl/interp/make_fig.py` and needs the unreleased traces
+(section 12). Files with a `_v2` suffix are redraws for the current blog text (`make_figs_v2.py`, `make_figs3_v2.py`,
+`transfer_fig_v2.py`, `rl/interp/make_fig_v2.py`); `make_blog_figs.sh` does not run them.
 
 ## 14. Summary: what cannot be reproduced from the repository alone
 
