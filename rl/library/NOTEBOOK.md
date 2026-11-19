@@ -253,3 +253,10 @@ Reward split (m4 u150, sampled 64 train prompts × G8 per type): rows with an of
 the cheap ones (IFEval) persist.
 Figure: fig_mixed_routing.png (u0 vs u150). Seeds running: m1 s1 (H100 host GPU1), m4 s1 (A40 host A40), m4 s2 (H100 host GPU0
 after a 15-min hold), m2 LIBscr (A100) then m2 s1.
+
+## m2 LIBscr (scrambled library, A100, u150) — FINAL
+Test 400: tools on 37.8 (gsm 23.6 / bbh 48.9 / ifeval 51.1 / combo 18.0); all tools off 37.5; host only 27.5. Dev u0 ->
+u150: 20.8 -> 35.2. Unlike m1/m4, the in-wires here DID learn vetoes (greedy fire on test): calc_s4 0 % (it co-fires with
+the scrambled expr/calc_gen at '='), expr 0 %, walk 0 %, bool 0 %; calc_gen 100 %, interval 100 %, IFEval 100 %.
+Removing the (dim-permuted) IFEval write: ifeval 51.1 -> 44.6. Scrambled library ≈ plain RL (36.3) ≈ tools off.
+Summary across arms (test 400, all): LIB 68.2 | LIB-noisy 62.8 | LIBscr 37.8 | plain RL 36.3.
