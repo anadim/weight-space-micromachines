@@ -4,7 +4,7 @@
 # then waits SETTLE seconds so the new run reaches its steady memory before considering the next. Never kills anything.
 GPU=$1; PAR=$2; NEED=$3; EXTRA_ENV="$4"; LIST=$5
 SETTLE=${SETTLE:-300}
-COMMON="--updates 300 --dev_every 25 --dev_extra 64 --dev_n 800 --B_max 128 --tok_budget 4096 --ckpt_every 100 --eval_all 1"
+COMMON="--updates 300 --dev_every 25 --dev_extra 64 --dev_n 800 --B_max 128 --tok_budget 4096 --ckpt_every 300 --eval_all 1"
 LOG=runs/launch_gpu${GPU}.log
 mkdir -p runs
 echo "=== launcher gpu$GPU start $(date) PAR=$PAR NEED=$NEED ===" >> $LOG

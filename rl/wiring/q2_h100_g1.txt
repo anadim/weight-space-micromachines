@@ -1,0 +1,5 @@
+!evalCW1 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 1 --eval_ckpt runs/L300_CW_s1_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s1
+# CWinOx ablation 2: lr only (no floor)
+CWinO 0 --eval_all 0 --cw_lr 1e-3 --link_eps 1e-8
+W3d 1 --init_links runs/sft3_W3e_lr1e-2/links_final.pt
+CWinO 1 --eval_all 0 --cw_lr 1e-3 --link_eps 1e-8

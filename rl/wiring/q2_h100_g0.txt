@@ -1,0 +1,5 @@
+!evalCW0 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 0 --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s0
+# CWinOx ablation 1: floor only (wire lr 1e-2, eps 1e-12 defaults)
+CWinO 0 --eval_all 0 --iw_eps 0.05
+W2ws 1
+CWinO 1 --eval_all 0 --iw_eps 0.05

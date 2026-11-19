@@ -100,6 +100,7 @@ class Engine:
         """partially broken calculator: a call whose largest operand has >= thresh digits writes with D_der (deranged
         digits); otherwise exact. Decided once per burst, recorded in the decision code (+4)."""
         self.partial = thresh; self.D_der_minus_D = (D_der - self.imp.D).float(); self.graphs = {}
+        self.partial_t = torch.tensor(int(thresh), device=self.dev, dtype=torch.int32)   # in-graph: switch in place
 
     def _inwire_step(self, e, B, tokcur):
         iw = self.inwire
@@ -119,16 +120,19 @@ class Engine:
         hn = (hp - hp.mean(-1, keepdim=True)) * torch.rsqrt(hp.var(-1, unbiased=False, keepdim=True) + 1e-5)
         logit = iw.k * 0.5 + iw.b + hn @ iw.v
         u = torch.rand(B, device=self.dev)
-        fire = torch.where(self.greedy, logit > 0, u < torch.sigmoid(logit))
+        ie = float(getattr(iw, 'eps', 0.0))                 # exploration floor: p = ie + (1 - 2 ie) sigmoid(logit)
+        pf = ie + (1 - 2 * ie) * torch.sigmoid(logit)
+        fire = torch.where(self.greedy, logit > 0, u < pf)
         sup = torch.where(start, ~fire, self.iw_sup[:B]) & nz
         e = e * (~sup)[:, None].to(e.dtype)
         brk = torch.zeros_like(nz)
         if self.partial is not None or self.partial_ops is not None:
-            bad = (ops >= self.partial) if self.partial is not None else torch.isin(sop, self.partial_ops)
+            bad = (ops >= self.partial_t) if self.partial is not None else torch.isin(sop, self.partial_ops)
             brk = torch.where(start, bad, self.iw_brk[:B]) & nz
             self.iw_brk[:B] = brk
         dec = torch.where(start, torch.where(fire, 1, 2) + 4 * brk.to(torch.int64), 0).to(torch.int8)
-        lpd = torch.where(start, torch.where(fire, F.logsigmoid(logit), F.logsigmoid(-logit)), torch.zeros_like(logit))
+        lf, lv = ((F.logsigmoid(logit), F.logsigmoid(-logit)) if ie == 0.0 else (torch.log(pf), torch.log1p(-pf)))
+        lpd = torch.where(start, torch.where(fire, lf, lv), torch.zeros_like(logit))
         self.iw_prev[:B] = nz; self.iw_sup[:B] = sup
         self._ops_now = torch.where(start, ops.clamp(max=15) + 16 * sop, torch.zeros_like(ops)).to(torch.int8)   # digits | op<<4
         self._iw_rec = (logit.float(), run.clamp(max=127).to(torch.int8), mx.clamp(max=127).to(torch.int8))
@@ -334,7 +338,8 @@ class Engine:
         prefix_kv = [(self.Kp[i], self.Vp[i]) for i in range(Q.NL)]
         write = feat = None
         imp_on = self.imp is not None and self.imp_on
-        links = self.links if imp_on else None
+        # links also run with NO implant (host-only adapters, feat=None) so prefill matches decode and the update pass
+        links = self.links if (imp_on or (self.imp is None and self.imp_on)) else None
         if imp_on:
             full = torch.cat([self.prefix_ids[None].expand(P, -1), ids], 1)
             tail = []

@@ -1,2 +1,2 @@
-CWout 0 --kl 0.01 --eval_all 0
-CWin 0 --kl 0.01 --eval_all 0
+W2w 1 --link_lr 1e-2 --link_eps 1e-12
+W2w 0 --link_lr 1e-3

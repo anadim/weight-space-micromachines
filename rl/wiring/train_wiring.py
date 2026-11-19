@@ -23,7 +23,7 @@ from engine import Engine
 from implant import CalcImplant
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--arm', default='1', choices=['1', '2', 'R', 'W2', 'W3z', 'W3r', 'W1', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws', 'CWinR', 'CWinP', 'CWinC', 'CWinO'])
+ap.add_argument('--arm', default='1', choices=['1', '2', 'R', 'W2', 'W3z', 'W3r', 'W1', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB'])
 ap.add_argument('--run_dir', required=True)
 ap.add_argument('--updates', type=int, default=64)
 ap.add_argument('--prompts', type=int, default=64); ap.add_argument('--G', type=int, default=8)
@@ -48,6 +48,7 @@ ap.add_argument('--cw_lr', type=float, default=None, help='co-designed wires lr 
 ap.add_argument('--cw_hidden', type=int, default=None, help='64 (CW/CWout/CWin), 32 (CWlean)'); ap.add_argument('--cw_c', type=float, default=0.1)
 ap.add_argument('--cw_mask', type=int, default=0, help='1: out-wires act only where the implant emits (e != 0); 0 = as designed')
 ap.add_argument('--cw_l1', type=float, default=1e-4, help='L1 on out-wire gates (x mean g at firing positions)')
+ap.add_argument('--iw_eps', type=float, default=0.0, help='in-wire exploration floor: p(fire) = eps + (1-2eps) sigmoid')
 ap.add_argument('--iw_layer', type=int, default=14, help='in-wire reads the host residual at this layer input')
 ap.add_argument('--init_links', default='', help='links state file to start from (W3d: SFT-distilled W3e links)')
 ap.add_argument('--calib_traces', default='runs/traces_A_scaled.jsonl', help='W2ws gain calibration traces')
@@ -58,6 +59,10 @@ ap.add_argument('--eval_ckpt', default='', help='checkpoint dir: load host/links
 ap.add_argument('--test_sets', default='test,hard')
 ap.add_argument('--test_n', type=int, default=0, help='limit test items (smoke only); 0 = all')
 ap.add_argument('--interp', type=int, default=0, help='with --eval_ckpt: in-wire logit vs operand size / op / position')
+ap.add_argument('--host_ckpt', default='', help="with --eval_ckpt: host from here ('base' = untrained); wiring from --eval_ckpt")
+ap.add_argument('--break_at', type=int, default=0, help='CWinB: switch calculator correctness after this update')
+ap.add_argument('--break_dir', default='on2off', choices=['on2off', 'off2on'], help='on2off: correct then deranged')
+ap.add_argument('--ha_width', type=int, default=34, help='WOn host-adapter width (param-matched to CW-full wires)')
 ap.add_argument('--link_eps', type=float, default=1e-8, help='Adam eps for link / writer params')
 ap.add_argument('--eval_all', type=int, default=0, help='1: at every dev point also eval wiring-reset and implant-off')
 ap.add_argument('--freeze_host', type=int, default=0, help='1: host params frozen (only links / writer train)')
@@ -76,10 +81,15 @@ dev = 'cuda'
 torch.backends.cuda.matmul.allow_tf32 = False
 
 # ---- arm -> config ----
-HAS_IMPL = a.arm != '1'
-HAS_LINKS = a.arm in ('W2', 'W3z', 'W3r', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws')
-CW_ARM = a.arm in ('CW', 'CWlean', 'CWout', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO')
-HAS_INWIRE = a.arm in ('CW', 'CWlean', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO')
+HAS_IMPL = a.arm not in ('1', 'WOn')
+# WIRES-ONLY RL (host frozen): WOc = CW-full wires + calculator; WOr = same with the deranged calculator;
+#   WOn = no calculator, param-matched h-gated residual adapters at the same layers (7/14/21/final)
+WIRES_ONLY = a.arm in ('WOc', 'WOr', 'WOn')
+if WIRES_ONLY: a.freeze_host = 1
+HAS_LINKS = a.arm in ('W2', 'W3z', 'W3r', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws',
+                      'WOc', 'WOr', 'WOn')
+CW_ARM = a.arm in ('CW', 'CWlean', 'CWout', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB')
+HAS_INWIRE = a.arm in ('CW', 'CWlean', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'CWinB')
 if a.call_cost is None: a.call_cost = 0.002 if a.arm == 'CWinC' else 0.0
 if a.cw_hidden is None: a.cw_hidden = 32 if a.arm == 'CWlean' else 64
 ap_soft_target = 0.9
@@ -103,15 +113,18 @@ DEFAULT_SPEC = {'W3e': 'calc:7:emb:0.1,calc:14:emb:0.1,calc:21:emb:0.1',
                 'CW': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
                 'CWlean': 'calc:final:warm:1,calc:14:cw,calc:final:cw',
                 'CWout': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
-                'CWin': 'calc:final:warm:1'}
-USE_WRITE = a.arm in ('2', 'R', 'W2', 'W1', 'W4', 'CWinR', 'CWinP', 'CWinC', 'CWinO')
+                'CWin': 'calc:final:warm:1',
+                'WOc': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
+                'WOr': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
+                'WOn': 'host:7:ha,host:14:ha,host:21:ha,host:final:ha'}
+USE_WRITE = a.arm in ('2', 'R', 'W2', 'W1', 'W4', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'CWinB')
 #   CWinO: exact on * and /, deranged on + and - (competence map orthogonal to usefulness-by-size)
 # in-wire-only "RL designs the interface" arms: FIXED hand write + trainable in-wire (no out-wires, writer frozen)
 #   CWinR: deranged-digit calculator (arm R implant) | CWinP: deranged only when an operand has >= 5 digits
 #   CWinC: correct calculator, reward - call_cost per fired call
 GATE0 = 1.0 if a.arm == 'W3r' else 0.0
 TRAIN_IMPL = a.arm in ('W1', 'W4')
-IS_R = a.arm in ('R', 'CWinR')
+IS_R = a.arm in ('R', 'CWinR', 'WOr')
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B-Base')
@@ -217,6 +230,21 @@ class CWOut(nn.Module):
         return out
 
 
+class HAdapter(nn.Module):
+    """host-only residual adapter (control for wires-only RL): g(h) * B relu(A LN(h) + c); B = 0, w_g = 0 at init."""
+    init = 'ha'; src = 'host'
+    def __init__(self, d, width):
+        super().__init__()
+        self.A = nn.Parameter(torch.randn(width, d, device=dev) / math.sqrt(d))
+        self.c = nn.Parameter(torch.full((width,), 0.1, device=dev))
+        self.B = nn.Parameter(torch.zeros(d, width, device=dev))
+        self.wg = nn.Parameter(torch.zeros(d, device=dev)); self.bg = nn.Parameter(torch.zeros((), device=dev))
+
+    def forward(self, feat, h=None):
+        ln = _ln(h)
+        return torch.sigmoid(ln @ self.wg + self.bg)[..., None] * F.linear(torch.relu(F.linear(ln, self.A) + self.c), self.B)
+
+
 class InWire(nn.Module):
     """learned host -> implant veto: fire = sigmoid(k*(trigger-0.5) + b + v.LN(h_L[t-1])) at each write-burst start.
     k, b0 set so P(fire | hand on) = 0.95, P(fire | hand off) = 0.02 (off: the calculator produced nothing to write)."""
@@ -225,6 +253,7 @@ class InWire(nn.Module):
         lo, hi = math.log(0.95 / 0.05), math.log(0.02 / 0.98)
         self.k = lo - hi; self.b0 = (lo + hi) / 2; self.L = L
         self.b = nn.Parameter(torch.full((), self.b0, device=dev)); self.v = nn.Parameter(torch.zeros(d, device=dev))
+        self.eps = 0.0
 
 
 # implant feature sources: name -> dim. To add another implant (e.g. the rethink/mistake detector), register its state
@@ -258,6 +287,8 @@ if HAS_LINKS:
         if init == 'cw':
             per_layer.setdefault(key, []).append(CWOut(src, SRC_DIMS[src], Q.D, a.cw_hidden, a.cw_c, bool(a.cw_mask)))
             continue
+        if init == 'ha':
+            per_layer.setdefault(key, []).append(HAdapter(Q.D, a.ha_width)); continue
         per_layer.setdefault(key, []).append(Link(src, SRC_DIMS[src], Q.D, a.link_std, gate0, W0=W0, init=init))
     links = {k: (v[0] if len(v) == 1 else LinkSum(v)) for k, v in per_layer.items()}
     torch.manual_seed(a.seed)
@@ -285,6 +316,7 @@ def _all_cw():
 
 
 INW = InWire(a.iw_layer, Q.D) if HAS_INWIRE else None
+if INW is not None: INW.eps = a.iw_eps
 
 
 def link_norms():
@@ -308,7 +340,14 @@ if links:
         if l.init in ('warm', 'soft') and k == 'final': WARM_FINAL = l
     print('links:', [(f'{l.src}@{k}', l.init, round(float(l.gate.detach().mean()), 3), round(l.w_scale, 2)) for k, l in _all_links()], flush=True)
 CW_LR = a.cw_lr if a.cw_lr is not None else a.link_lr
-cw_params = [p for _, l in _all_cw() for p in l.parameters()] + (list(INW.parameters()) if INW is not None else [])
+def _all_ha():
+    for k, v in (links or {}).items():
+        for l in (v.ls if isinstance(v, LinkSum) else [v]):
+            if isinstance(l, HAdapter): yield k, l
+
+
+cw_params = [p for _, l in _all_cw() for p in l.parameters()] + (list(INW.parameters()) if INW is not None else []) + \
+            [p for _, l in _all_ha() for p in l.parameters()]
 if cw_params:
     groups.append({'params': cw_params, 'lr': CW_LR, 'eps': a.link_eps})
     print('co-designed wires:', [f'out@{k}' for k, _ in _all_cw()], 'in-wire' if INW is not None else '', 'lr', CW_LR, flush=True)
@@ -323,13 +362,16 @@ eng = Engine(W, pre, tok, implant=imp, links=links, B_max=a.B_max, S_max=544, us
 if TRAIN_IMPL: eng.Dp = eng_Dp
 HAS_EXTRA_LINKS = bool(links) and any(l is not WARM_FINAL for _, l in _all_links()) and (USE_WRITE or WARM_FINAL is not None)
 if INW is not None: eng.set_inwire(INW)
-if a.arm in ('CWinP', 'CWinO'):          # same derangement as arm R (seed 12345), applied only to some calls
+if a.arm in ('CWinP', 'CWinO', 'CWinB'):          # same derangement as arm R (seed 12345), applied only to some calls
     g_ = torch.Generator().manual_seed(12345)
     while True:
         p_ = torch.randperm(10, generator=g_)
         if not (p_ == torch.arange(10)).any(): break
     D_der = imp.D.clone(); D_der[:10] = imp.D[p_.to(imp.D.device)]
-    if a.arm == 'CWinP':
+    if a.arm == 'CWinB':                  # tool breaks mid-training: threshold 0 = every call deranged, 999 = none
+        eng.set_partial(999 if a.break_dir == 'on2off' else 0, D_der)
+        print('CWinB:', a.break_dir, 'switch after update', a.break_at, flush=True)
+    elif a.arm == 'CWinP':
         eng.set_partial(a.partial_thresh, D_der)
         print('CWinP: calls with an operand >=', a.partial_thresh, 'digits use deranged digits', p_.tolist(), flush=True)
     else:
@@ -389,7 +431,8 @@ N_HOST = sum(v.numel() for v in P32.values())
 N_WIRE = sum(p.numel() for _, l in (_all_links() if links else []) for p in (l.gate, l.W)) + \
          sum(1 for _, l in (_all_links() if links else []) if l.log_gain is not None) + \
          sum(p.numel() for _, l in _all_cw() for p in l.parameters()) + \
-         (sum(p.numel() for p in INW.parameters()) if INW is not None else 0) + (Dp.numel() if TRAIN_IMPL else 0)
+         (sum(p.numel() for p in INW.parameters()) if INW is not None else 0) + (Dp.numel() if TRAIN_IMPL else 0) + \
+         sum(p.numel() for _, l in _all_ha() for p in l.parameters())
 N_IMPL = 0
 if HAS_IMPL:
     N_IMPL = int(imp.M.stack1.nnz + imp.M.stack2.nnz + (imp.M.reader_w != 0).sum() + (imp.M.reader_b != 0).sum() + (imp.D != 0).sum())
@@ -700,7 +743,11 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None):
         if hcap is not None and dpos:                                   # in-wire decision log-probs (with grad)
             dp_ = torch.tensor(dpos, device=dev); di_ = torch.tensor(didx, device=dev); ds_ = torch.tensor(dsgn, device=dev)
             logit = INW.k * 0.5 + INW.b + _ln(hcap[dp_ - 1]) @ INW.v
-            lp = lp.index_add(0, di_, F.logsigmoid(ds_ * logit))
+            if INW.eps == 0.0:
+                lp = lp.index_add(0, di_, F.logsigmoid(ds_ * logit))
+            else:                                                             # same floor as the rollout
+                pf = INW.eps + (1 - 2 * INW.eps) * torch.sigmoid(logit)
+                lp = lp.index_add(0, di_, torch.where(ds_ > 0, torch.log(pf), torch.log1p(-pf)))
             st['n_dec'] = st.get('n_dec', 0) + len(dpos); st['n_veto'] = st.get('n_veto', 0) + int((ds_ < 0).sum())
         if feat is not None:
             enz = (feat[0, sel].abs().sum(-1) > 0)                    # implant fires at this predictor position
@@ -776,9 +823,10 @@ DEV_EXTRA = {int(x) for x in a.dev_extra.split(',') if x}
 t_start = time.time()
 if a.eval_ckpt:            # one-shot test evaluation of a saved checkpoint (wiring as trained / hand-only / implant off)
     from safetensors.torch import load_file
-    sd = load_file(f'{a.eval_ckpt}/model.safetensors', device=dev)
-    with torch.no_grad():
-        for k in names: P32[k].copy_(sd[k].float())
+    if a.host_ckpt != 'base':                 # transplant: host from --host_ckpt (or the wiring checkpoint itself)
+        sd = load_file(f'{a.host_ckpt or a.eval_ckpt}/model.safetensors', device=dev)
+        with torch.no_grad():
+            for k in names: P32[k].copy_(sd[k].float())
     if links and os.path.exists(f'{a.eval_ckpt}/links.pt'):
         ls = torch.load(f'{a.eval_ckpt}/links.pt', map_location=dev)
         for k, lk in links.items(): lk.load_state_dict(ls[str(k)], strict=False)
@@ -827,9 +875,10 @@ if a.eval_ckpt:            # one-shot test evaluation of a saved checkpoint (wir
                                  mean_logit_all=float(L.mean()), mean_logit_dec=float(Ld.mean()) if len(Ld) else None)
         print('INTERP', json.dumps(out_res['interp'], indent=1), flush=True)
     modes = ['full'] + (['cw_hand'] if CW_ARM else []) + (['hostonly'] if imp is not None else [])
+    out_res['host'] = a.host_ckpt or a.eval_ckpt
     for name in a.test_sets.split(','):
-        items = C.load_test(name, shot_q=shot_q)
-        n0 = len(items); items = [dict(r, kind='gsm') for r in items if len(C.q_ids(tok, r['q'])) + a.max_new <= 544]
+        items = devset if name == 'dev' else C.load_test(name, shot_q=shot_q)
+        n0 = len(items); items = [r if name == 'dev' else dict(r, kind='gsm') for r in items if len(C.q_ids(tok, r['q'])) + a.max_new <= 544]
         if a.test_n: items = items[:a.test_n]
         for md in modes:
             r = evaluate(items, mode=md, tag='t'); out_res[f'{name}_{md}'] = dict(acc=r['t_acc'], n=len(items), n_all=n0,
@@ -890,6 +939,8 @@ TRACK_DRIFT = TRAIN_IMPL or WARM_FINAL is not None
 if TRACK_DRIFT: d0 = writer_drift(); log({'drift': {**d0, 'u': 0}}); print('drift@0', d0, flush=True)
 for u in range(1, a.updates + 1):
     for g, b in zip(opt.param_groups, base_lrs): g['lr'] = b * min(1.0, u / a.warmup)
+    if a.arm == 'CWinB' and u == a.break_at + 1:      # flip the calculator in place (no graph re-capture)
+        eng.partial_t.fill_(0 if a.break_dir == 'on2off' else 999); log({'break_switch': u}); print('BREAK SWITCH at', u, flush=True)
     batch = random.sample(pool, a.prompts)
     qids = [C.q_ids(tok, r['q']) for r in batch]
     t0 = time.time()

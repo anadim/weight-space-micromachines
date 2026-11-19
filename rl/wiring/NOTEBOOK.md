@@ -5,7 +5,7 @@ implant's own weights), does it help beyond the fixed hand-wired end-write? Does
 calculator when the hand write is removed?
 
 ## Setup
-- Base: Qwen3-0.6B-Base, frozen host trained by RL (Dr.GRPO) exactly as arms 1/2/R in `../rl_implants_v2`.
+- Base: Qwen3-0.6B-Base, frozen host trained by RL (Dr.GRPO) exactly as arms 1/2/R in `../gsm_grpo`.
 - Recipe (identical to arm 2): G 8, 64 prompts/update, 64 updates, T 1.0, lr 1e-6 (host), no KL, Dr.GRPO, greedy dev.
 - Dev = split B, n=800 (400 GSM8K-train + 400 scaled). Test never read. SE of an 800-item dev number ~1.7 pp.
 - Implant = calc_s4 + veto (the `<expr> =` calculator). `e` = its one-hot output over {0-9, '.', '-', OS, OE}.
@@ -25,7 +25,7 @@ calculator when the hand write is removed?
 |---|---|---|
 | 1 | no implant | — |
 | 2 | implant frozen, hand-wired end write (before final norm) | — (reference) |
-| R | deranged calculator, frozen, hand write | — (reference; from rl_implants_v2) |
+| R | deranged calculator, frozen, hand write | — (reference; from ../gsm_grpo, called rl_implants_v2 in these notes) |
 | **W2** | arm-2 end write KEPT + zero-init trainable links (read `e`) into host residual at layers 7,14,21 | links |
 | **W3z** | NO end write; only trainable links, gate **zero**-init (step 0 == arm 1) | links |
 | **W3r** | NO end write; only trainable links, gate one-init + small-random W (links live from step 0) | links |
@@ -50,7 +50,7 @@ since Dᵀ has rms ≈ gain). Without this, Adam's ~lr-sized steps could never r
 writer-exactness 1.0. W3e u0 = 45.0 = host-only (no immediate gain or damage on 80 items; dev-800 u0 in the table).
 
 **Schedule (GPU 1, 2 runs fit at once, ~32 GB each):** W2 s0 (started 17:14) ‖ W3e s0 (17:22) → W2w s0 → W3e3 s0 →
-arm 1 s0 → W3z s0 → W2 s1 → W3e s1 → W3z s1 → W1 → W4. A40 machine A40: W3r s0 (running) → W1 lr1e-6.
+arm 1 s0 → W3z s0 → W2 s1 → W3e s1 → W3z s1 → W1 → W4. A40 machine: W3r s0 (running) → W1 lr1e-6.
 
 ## Metrics logged per run (`runs/<arm>/steps.jsonl`)
 - dev acc at u 0/16/32/48/64, split into GSM / scaled halves; fmt, writes/answer, calls/answer, length.
@@ -69,7 +69,7 @@ effective map ||diag(gate) W||_F (`link_eff`).
 
 ## Code
 `train_wiring.py` (arms above), `engine.py` (adds the trainable-writer `Dp` path), `queue_a40.sh` (gated runner),
-`make_fig.py` (figure). Shared engine/implant/kernels from rl_implants_v2.
+`make_fig.py` (figure). Shared engine/implant/kernels from ../gsm_grpo (rl_implants_v2).
 
 ## Results
 Live table: `runs/results.md` on H100 machine (`python3 compile_results.py`). External arm-2 reference copied read-only to
@@ -104,6 +104,23 @@ Live table: `runs/results.md` on H100 machine (`python3 compile_results.py`). Ex
   43.0; hand write on the same host ≈ 37 scaled. Effective norms ×4-5 (L21 62 → 342). CE 0.139 → 0.075.
 - link lr 1e-3: scaled 25.0 → 27.8; links ×1.3-1.5. → **capacity/placement fine; RL signal × lr 1e-3 too small.**
   Wire lr default moved to 1e-2, Adam eps 1e-12 (coordinator).
+
+### W2ws, W3d, CWinO (2026-11-19 ~02:30)
+- **W2ws** (soft warm start: write directions + log-gain, calibrated gain 5.56 → p(digit | host alone wrong) 0.90):
+  RL RAISES the gain 5.55 → 6.94 (u50) → 8.12 (u100) → 9.56 (u300) (hand gain 1e4); p(sampled token) at firing tokens
+  0.94 → 0.995; ||W−W0||/||W0|| 0.11 (u50) → 0.22 (u300); grads stay ~3e-5 (W2w: collapse to 1e-13). Dev 48.8 → 64.1 →
+  69.0 → 70.2 (scaled 62.8) at u0/100/200/300; same host + ORIGINAL soft write 62.1 / 64.9 / 65.2 (scaled 53.2) → the
+  reshaped write is +5.0 (+9.6 scaled); implant off 58.2. Ends = fixed hand wiring (70.0 / 72.0): RL repairs a weakened
+  write by hardening it, but does not find a better one. Exactness 1.0.
+- **W3d** (W3e links initialised from the SFT-distilled checkpoint, no end write, links + host trained, lr 1e-2):
+  dev 49.1 → 65.4 → 71.1 → 69.9 (u0/100/200/300; scaled 35.5 → 57.2 → 63.8 → 62.8); links-off 58.6 / 38.2 at u300
+  (+11.3, +24.6 scaled). Links grow (L21 eff 342 → 411; gate rel change 0.34-0.49). **Parity with hand wiring without
+  any hand-made write**; the same links started blind (W3e) end 63.9 / 48.2 and never move. RL keeps and strengthens
+  wiring that carries signal, but does not discover it.
+- **CWinO s0** (+/− deranged, ×/÷ exact, in-wire lr 1e-2, eps 1e-12): veto-all from u10-20 for every operator (rollout
+  fire 0 %); dev ×/÷-dominant 57.2 vs +/−-dominant 52.3 at u150 (plain-RL level). Exploration collapse: no call is
+  sampled once p(fire) ≈ 0, so ×/÷ cannot be told apart. → **CWinOx** (floor p = 0.05 + 0.9 σ, in-wire lr 1e-3, eps
+  1e-8), seeds 0 (A40 machine) and 1 (H100 GPU 0).
 
 ### Interface arms (fixed hand write + trainable in-wire), 2026-11-19 ~00:40
 - **CW-lean s0** final 66.2 (scaled 58.2); hand-only 63.8, out-only 66.2, in-only 64.2, implant off 55.9. Rollout fire
