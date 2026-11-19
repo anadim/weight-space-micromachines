@@ -91,20 +91,28 @@ for (sp, nm), (rows, meta) in ARMS.items():
         nt = [r.get('n_tok', 0) for r in rows.values()]; cap = meta['max_new']
         lines.append(f'- {sp} {nm}: max_new {cap}; outputs at the cap {sum(x >= cap for x in nt)}/1319; >=320 tokens {sum(x >= 320 for x in nt)}; '
                      f'mean tokens {np.mean(nt):.0f}; no #### answer {sum(r["pred"] in (None, "", "None") for r in rows.values())}')
-try:
-    from transformers import AutoTokenizer
-    tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B-Base')
-    for sp in ['test', 'hard']:
-        for m in ['plain', 'calc']:
-            d = json.load(open(f'{FULL}/gsm_full_implant/a100/{sp}_{m}.json'))['rows']
-            n = [len(tok(r['out'], add_special_tokens=False)['input_ids']) for r in d]
-            trunc = [r for r, k in zip(d, n) if k >= 316 and '\n\n' not in r['out']]
-            noans = [r for r in d if r['pred'] in (None, '', 'None')]
-            tr_noans = [r for r in trunc if r['pred'] in (None, '', 'None')]
-            lines.append(f'- {sp} {m} (320 tok, full text re-tokenized): mean {np.mean(n):.0f} tok; >=316 tok w/o blank-line stop (truncated) {len(trunc)}/1319 '
-                         f'({len(tr_noans)} of them with no #### answer); no answer overall {len(noans)}')
-            res.setdefault('trunc', {})[f'{sp}_{m}'] = {'truncated': len(trunc), 'truncated_noans': len(tr_noans), 'noans': len(noans), 'mean_tok': float(np.mean(n))}
-except Exception as ex:
+if not FULL:   # keep the shipped truncation lines (they need the unreleased full-text outputs)
+    try:
+        prev = json.load(open(OUT)).get('trunc', {})
+        res['trunc'] = prev
+        lines += [l for l in open(OUT.replace('.json', '.md')).read().splitlines() if '(320 tok, full text re-tokenized)' in l]
+    except Exception:
+        pass
+else:
+  try:
+      from transformers import AutoTokenizer
+      tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B-Base')
+      for sp in ['test', 'hard']:
+          for m in ['plain', 'calc']:
+              d = json.load(open(f'{FULL}/gsm_full_implant/a100/{sp}_{m}.json'))['rows']
+              n = [len(tok(r['out'], add_special_tokens=False)['input_ids']) for r in d]
+              trunc = [r for r, k in zip(d, n) if k >= 316 and '\n\n' not in r['out']]
+              noans = [r for r in d if r['pred'] in (None, '', 'None')]
+              tr_noans = [r for r in trunc if r['pred'] in (None, '', 'None')]
+              lines.append(f'- {sp} {m} (320 tok, full text re-tokenized): mean {np.mean(n):.0f} tok; >=316 tok w/o blank-line stop (truncated) {len(trunc)}/1319 '
+                           f'({len(tr_noans)} of them with no #### answer); no answer overall {len(noans)}')
+              res.setdefault('trunc', {})[f'{sp}_{m}'] = {'truncated': len(trunc), 'truncated_noans': len(tr_noans), 'noans': len(noans), 'mean_tok': float(np.mean(n))}
+  except Exception as ex:
     lines.append(f'- tokenizer check failed: {ex}')
 
 open(OUT.replace('.json', '.md'), 'w').write('\n'.join(lines) + '\n')
