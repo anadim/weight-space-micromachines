@@ -238,3 +238,25 @@ attaching. Gated, 48 GSM8K problems: 6,216 positions; the probe was evaluated at
 **Not run:** the full sets (GSM8K and GSM-Hard 1,319 each, with and without calculator, and the gated implant on all of
 GSM8K). With GPU 0 shared, one 224-problem subset took about an hour; the full runs would have taken many hours each.
 
+
+## 11. Fresh-clone CPU check of the blog tables and figures (2026-11-19, laptop, no GPU, no model)
+
+`git clone -b release-prep` into an empty directory; Python 3.9 / numpy 2.0 / matplotlib 3.9 for the scripts below (the
+code targets 3.12; every one of the repository's 396 `.py` files also compiles under Python 3.14). Every path that
+`REPRODUCE.md` names exists in the clone, except files the listed commands create (`data/gsm8k/*`, `ifeval/data/ifeval.jsonl`,
+`runs/veto_qwen3.pt`, `implant14_sd.pt`, `out/*`, fine-tuned host directories). Re-run from shipped files only:
+
+| command | result |
+|---|---|
+| `python results/gsm_bigger/reanalysis/gsm_reanalysis.py` | md / json byte-identical to the shipped ones (after the fix that keeps the full-text-only lines) |
+| `bbh_generic/integrate/code/report_v2.py ../results` | 12 tool tasks 43.27 -> 84.33 (FT alone 38.10), 27-task 40.98 -> 48.36 |
+| `bbh_generic/transfer/code/report_transfer.py ...`, `curve_table.py` | 1.7B 52.08 -> 65.86 (96.37), 4B 71.14 -> 70.98 (97.77); curve 33.61 ... 48.36 |
+| `bbh_generic/callgate/code/cg_report.py`, `cg_silence.py` | identical to `callgate/results/cg_report.txt`, `silence.txt` |
+| `latent_write/summarize.py` | muladd / lost tables as in `latent_write/summary.md` |
+| `rl/gsm_grpo/compile_abl.py`, `compile_long.py` | the 64-update and 300-update tables of `rl/README.md` |
+| `rl/wiring/compile_results.py` (`RUNS=../results/wiring/{H100,A40}`) | `results.md` regenerated from the shipped logs |
+| `evidence/code/agg_eyes.py evidence/eyes_sweep/results/summary.txt` | n=32: 94.74 vs 3.74; n=8: 78.53 vs 4.01 |
+| `bash figures/blog/make_blog_figs.sh` (with the Avenir Next fonts in `figures/blog/fonts/`) | every committed static PNG identical pixel for pixel, except `25_rl_curves.png` (32 pixels) and `16_bbh27.png`, which was a stale bar version and is replaced by the dot plot the blog shows |
+
+Not re-runnable on CPU from the clone: `rl/interp/make_fig*.py` and `analyze.py` (need the unreleased dev traces), the
+animation score jobs (need token ids of the GSM generations), everything that loads a model.
