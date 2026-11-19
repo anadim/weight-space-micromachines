@@ -31,14 +31,17 @@ ap = argparse.ArgumentParser()
 ap.add_argument('out'); ap.add_argument('--model', default='Qwen/Qwen3-0.6B-Base')
 ap.add_argument('--n_rand', type=int, default=150); ap.add_argument('--n_gold', type=int, default=80); ap.add_argument('--n_gen', type=int, default=40)
 ap.add_argument('--bit_texts', type=int, default=60)
+ap.add_argument('--skip1', action='store_true', help='skip check 1 (already run)')
+ap.add_argument('--v2', action='store_true', help='v2 tool set: A/B call form + Team C passive form')
 a = ap.parse_args()
 CS, CE, OS, OE = '<tool_call>', '</tool_call>', '<tool_response>', '</tool_response>'
 tok = AutoTokenizer.from_pretrained(a.model)
 model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16).cuda().eval()
 if a.model == 'Qwen/Qwen3-0.6B-Base': prep_call_tokens(model, tok)      # the four envelope tokens need distinct rows
-t0 = time.time(); NET = attach_all(model, tok); print(f'attached {TOOLS} ({time.time() - t0:.0f}s)', flush=True)
+MACH = integ.TOOLS_V2 if a.v2 else TOOLS
+t0 = time.time(); NET = attach_all(model, tok, MACH, veto=integ.VETO if a.v2 else None); print(f'attached {MACH} ({time.time() - t0:.0f}s)', flush=True)
 E = model.get_input_embeddings()
-NAME2M = {v: k for k, v in CALL_NAME.items()}
+NAME2M = {v: k for k, v in CALL_NAME.items() if k in MACH}      # v2: expr/bool/calc CALLS have no owner -> all silent
 
 # ---------------- call pools ----------------
 spec = importlib.util.spec_from_file_location('A_test_tools', f'{G}/teamA/test_tools.py')
@@ -131,7 +134,7 @@ def silent_others(owner, text, start):
     """teacher forcing over the whole transcript: every non-owner machine must write exactly 0 at every position >= start
     (start = first token of this call; context 2's earlier calls are answered by their own owners)."""
     ids = torch.tensor([tok(text, add_special_tokens=False)['input_ids']], device='cuda'); emb = E(ids); bad = {}
-    for m in TOOLS:
+    for m in MACH:
         if m == owner: continue
         e, _ = NET.nets[m].emit(emb)
         nz = (e[0, start:].abs().sum(-1) > 0).nonzero().flatten().tolist()
@@ -139,10 +142,11 @@ def silent_others(owner, text, start):
     return bad
 
 
-for label, call in pool:
+for label, call in ([] if a.skip1 else pool):
     nm = call.split(' ', 1)[0]
     owner = NAME2M.get(nm)
     want = ref(call) if owner else None
+    if owner is None and nm in ('expr', 'bool', 'calc'): want = None
     if nm == 'walk' or call.startswith('walk'): want = RB.run_ref(call); owner = 'turtle_gen' if want is not None else None
     for ci, ctx in enumerate(CTX):
         text = ctx + CS + call + CE
@@ -161,6 +165,41 @@ for label, call in pool:
 print(f'check 1 done ({time.time() - t0:.0f}s)', flush=True)
 for k, (g, n) in res['check1'].items(): print(f'  {k:22s} {g}/{n}')
 for f in res['fail1'][:15]: print('  FAIL', f)
+
+# ---------------- (1b, v2 only) passive Team C tools inside the integrated set ----------------
+if a.v2:
+    import teamc_tools as TT
+    from micromachines.calcfmt import calc_ref
+    pas = []
+    for _ in range(a.n_rand):
+        e = CC.rand_int_expr(r); v = TT.expr_ref(e)
+        if v: pas.append(('C.passive_expr', 'expr_gen', e, ' ' + v + '.\n'))
+        b = CC.rand_bool(r)
+        if re.search(r'\b(not|and|or)\b', b) and CC.bool_ref(b): pas.append(('C.passive_bool', 'bool_gen', b, ' ' + CC.bool_ref(b) + '.'))
+        d = f'{CC.rand_dec(r)} {r.choice("+-*/")} {CC.rand_dec(r)}'; cv = calc_ref(d.replace(' ', ''))
+        if cv and ('.' in d or '/' in d) and not d.startswith('-'): pas.append(('C.passive_calc', 'calc_gen', d, ' ' + cv))
+    for label, own, e, want in pas:
+        for ci, ctx in enumerate(['', 'Some text before. ', CTX[2]]):
+            text = ctx + 'So ' + e + ' ='
+            got, early = drive(own, text, maxn=30)
+            good = got.startswith(want) if own != 'calc_gen' else got.strip().startswith(want.strip())
+            full = text + got + ' and the text goes on.'
+            start = len(tok(ctx, add_special_tokens=False)['input_ids']) if ctx else 0
+            bad = silent_others(own, full, max(start - 1, 0))
+            ok = good and not bad
+            s_ = res['check1'].setdefault(label, [0, 0]); s_[0] += ok; s_[1] += 1
+            if not ok and len(res['fail1']) < 80: res['fail1'].append({'label': label, 'expr': e, 'ctx': ci, 'want': want, 'got': got, 'others_wrote_at': bad})
+    # passive tools must stay silent on every A/B training transcript (their calls, replies and scaffolds) and A/B gold texts
+    tr = [json.loads(l) for l in open(f'{HERE}/../data/train_union.jsonl')]
+    texts_ab = [x['prompt'][-1500:] + x['completion'] for x in tr if x['team'] in ('A', 'B')]
+    nw = 0
+    with torch.no_grad():
+        for t in texts_ab:
+            ids = torch.tensor([tok(t, add_special_tokens=False)['input_ids']], device='cuda'); emb = E(ids)
+            if any(bool((NET.nets[m].emit(emb)[0].abs().sum(-1) > 0).any()) for m in integ.TOOLS_C_PASSIVE): nw += 1
+    res['check1']['C.passive_silent_on_AB_transcripts'] = [len(texts_ab) - nw, len(texts_ab)]
+    print(f'check 1b done ({time.time() - t0:.0f}s)', flush=True)
+    for k in [k for k in res['check1'] if k.startswith('C.passive')]: print(f'  {k:34s} {res["check1"][k][0]}/{res["check1"][k][1]}')
 
 # ---------------- (2) end-to-end greedy generation with the host ----------------
 eos = tok.convert_tokens_to_ids('<|endoftext|>')
@@ -209,6 +248,7 @@ for f in ('temporal_test', 'robot_oos', 'knights_oos'):
 for t in ('multistep_arithmetic_two', 'boolean_expressions', 'object_counting'):
     for e in json.load(open(f'{G}/teamC/data/test/{t}.json'))['examples'][:5]: texts.append('Q: ' + e['input'] + "\nA: Let's think step by step. (3 + 4) * 2 = 14.")
 texts = texts[:a.bit_texts]
+if a.v2: texts = [t.replace('=', ' equals') for t in texts]      # v2: passive tools fire at '=' by design; test texts without a trigger
 n_eq = n_zero = 0
 with torch.no_grad():
     for t in texts:
@@ -222,4 +262,15 @@ with torch.no_grad():
         n_eq += bool(torch.equal(l0, l1))
 res['check3'] = {'texts': len(texts), 'all_writes_zero': n_zero, 'logits_bit_identical': n_eq, 'max_len': None}
 print(f'check 3: {n_zero}/{len(texts)} all-zero writes, {n_eq}/{len(texts)} bit-identical logits', flush=True)
+if a.v2:                                                     # e2e for the passive tools through the host
+    for own, lab in (('expr_gen', 'C.passive_expr'), ('bool_gen', 'C.passive_bool'), ('calc_gen', 'C.passive_calc')):
+        lst = [x for x in pas if x[1] == own][:a.n_gen]; okc = 0
+        for b in range(0, len(lst), 20):
+            ch = lst[b:b + 20]
+            outs = gen(["Q: Compute it.\nA: Let's think step by step.\n" + e + ' =' for _, _, e, _ in ch], max_new=16)
+            for (_, _, e, w), o in zip(ch, outs):
+                good = o.startswith(w) if own != 'calc_gen' else o.startswith(w)
+                okc += good
+                if not good and len(res['fail2']) < 40: res['fail2'].append({'tool': own, 'expr': e, 'want': w, 'got': o[:60]})
+        res['check2'][own] = [okc, len(lst)]; print(f'  e2e {own:14s} {okc}/{len(lst)}', flush=True)
 json.dump(res, open(a.out, 'w'), indent=1)

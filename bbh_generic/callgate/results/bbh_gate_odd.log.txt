@@ -1,0 +1,17 @@
+attached v2 (130s)
+./micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+causal_judgement                          34.2 call=  0.0 blk= 71.1 ncall= 0.0 | 915s
+disambiguation_qa                         32.0 call=  0.0 blk= 72.8 ncall= 0.0 | 1946s
+formal_fallacies                          45.6 call=  0.0 blk= 95.6 ncall= 0.0 | 3451s
+hyperbaton                                44.4 call=  1.2 blk= 90.0 ncall= 0.0 | 4834s
+logical_deduction_seven_objects           72.0 call=100.0 blk= 27.6 ncall= 1.0 | 6152s
+movie_recommendation                      26.8 call=  0.0 blk=  3.2 ncall= 0.0 | 6962s
+navigate                                  73.6 call=100.0 blk= 14.8 ncall= 1.4 | 8639s
+penguins_in_a_table                       26.0 call= 18.5 blk= 57.5 ncall= 0.2 | 9416s
+ruin_names                                22.4 call=  0.0 blk= 65.6 ncall= 0.0 | 11244s
+snarks                                    32.6 call=  0.0 blk= 59.6 ncall= 0.0 | 11991s
+temporal_sequences                        99.6 call=100.0 blk=  0.0 ncall= 1.0 | 12348s
+tracking_shuffled_objects_seven_objects   96.4 call=100.0 blk=  0.8 ncall= 1.0 | 13331s
+web_of_lies                              100.0 call=100.0 blk=  0.0 ncall= 1.0 | 13786s
+MEAN over 13 tasks: 54.28

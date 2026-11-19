@@ -29,8 +29,8 @@ model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16).to(d
 net = None
 if a.tools != 'none':
     import integ
-    machines = {'all': integ.TOOLS, 'all+passiveC': integ.TOOLS + integ.TOOLS_C_PASSIVE}[a.tools]
-    t0 = time.time(); net = integ.attach_all(model, tok, machines, veto=VETO if 'passive' in a.tools else None)
+    machines = {'all': integ.TOOLS, 'all+passiveC': integ.TOOLS + integ.TOOLS_C_PASSIVE, 'v2': integ.TOOLS_V2}[a.tools]
+    t0 = time.time(); net = integ.attach_all(model, tok, machines, veto=VETO if a.tools in ('all+passiveC', 'v2') else None)
     print(f'attached {machines} ({time.time() - t0:.0f}s)', flush=True)
 eos = tok.convert_tokens_to_ids('<|endoftext|>')
 cot = lambda path: open(path).read().split('-----', 1)[1].strip() + '\n\n'

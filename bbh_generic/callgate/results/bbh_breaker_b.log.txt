@@ -1,0 +1,16 @@
+attached v2 (29s)
+./micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+penguins_in_a_table                       27.4 call= 58.9 blk= 52.1 ncall= 0.6 | 499s
+reasoning_about_colored_objects           30.8 call= 48.8 blk= 36.0 ncall= 0.5 | 1119s
+ruin_names                                26.4 call= 65.6 blk= 31.2 ncall= 0.8 | 2137s
+salient_translation_error_detection       24.0 call= 48.8 blk= 10.0 ncall= 0.5 | 3057s
+snarks                                    27.5 call= 61.2 blk= 27.5 ncall= 0.8 | 3909s
+sports_understanding                      47.2 call=  0.0 blk=  0.0 ncall= 0.0 | 3987s
+temporal_sequences                        99.6 call=100.0 blk=  0.0 ncall= 1.0 | 4235s
+tracking_shuffled_objects_five_objects    95.2 call=100.0 blk=  0.0 ncall= 1.0 | 4717s
+tracking_shuffled_objects_seven_objects   96.4 call=100.0 blk=  0.8 ncall= 1.0 | 5345s
+tracking_shuffled_objects_three_objects   98.4 call=100.0 blk=  0.0 ncall= 1.0 | 5705s
+web_of_lies                              100.0 call=100.0 blk=  0.0 ncall= 1.0 | 6008s
+word_sorting                               3.2 call= 20.0 blk= 13.2 ncall= 0.3 | 6866s
+MEAN over 12 tasks: 56.34

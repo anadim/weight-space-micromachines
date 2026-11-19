@@ -1,0 +1,100 @@
+{
+ "check1": {
+  "C.passive_expr": [
+   444,
+   444
+  ],
+  "C.passive_bool": [
+   378,
+   381
+  ],
+  "C.passive_calc": [
+   342,
+   342
+  ],
+  "C.passive_silent_on_AB_transcripts": [
+   202,
+   202
+  ]
+ },
+ "fail1": [
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 0,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  },
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 1,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  },
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 2,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  }
+ ],
+ "check2": {
+  "track_gen": [
+   40,
+   40
+  ],
+  "order_gen": [
+   40,
+   40
+  ],
+  "interval_gen": [
+   40,
+   40
+  ],
+  "turtle_gen": [
+   40,
+   40
+  ],
+  "truth_gen": [
+   40,
+   40
+  ],
+  "expr_gen": [
+   40,
+   40
+  ],
+  "bool_gen": [
+   39,
+   40
+  ],
+  "calc_gen": [
+   39,
+   40
+  ]
+ },
+ "fail2": [
+  {
+   "tool": "bool_gen",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "want": " False.",
+   "got": " not (not (False and True and False) or (not not False and"
+  },
+  {
+   "tool": "calc_gen",
+   "expr": "5.2 / -85.57",
+   "want": " -0.060768",
+   "got": " -0.0061\n-0.0061 *"
+  }
+ ],
+ "check3": {
+  "texts": 60,
+  "all_writes_zero": 60,
+  "logits_bit_identical": 60,
+  "max_len": null
+ }
+}

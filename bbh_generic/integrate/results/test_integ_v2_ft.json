@@ -1,0 +1,170 @@
+{
+ "check1": {
+  "A.rand_track": [
+   450,
+   450
+  ],
+  "A.rand_order": [
+   450,
+   450
+  ],
+  "A.malformed_track": [
+   63,
+   63
+  ],
+  "A.malformed_order": [
+   60,
+   60
+  ],
+  "B.fuzz_interval": [
+   450,
+   450
+  ],
+  "B.corrupt_interval": [
+   129,
+   129
+  ],
+  "B.fuzz_walk": [
+   450,
+   450
+  ],
+  "B.corrupt_walk": [
+   144,
+   144
+  ],
+  "B.fuzz_truth": [
+   450,
+   450
+  ],
+  "B.corrupt_truth": [
+   147,
+   147
+  ],
+  "B.other": [
+   9,
+   9
+  ],
+  "C.random": [
+   900,
+   900
+  ],
+  "C.edge": [
+   69,
+   69
+  ],
+  "A.gold": [
+   240,
+   240
+  ],
+  "B.gold": [
+   240,
+   240
+  ],
+  "C.gold": [
+   240,
+   240
+  ],
+  "C.passive_expr": [
+   444,
+   444
+  ],
+  "C.passive_bool": [
+   378,
+   381
+  ],
+  "C.passive_calc": [
+   342,
+   342
+  ],
+  "C.passive_silent_on_AB_transcripts": [
+   202,
+   202
+  ]
+ },
+ "fail1": [
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 0,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  },
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 1,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  },
+  {
+   "label": "C.passive_bool",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "ctx": 2,
+   "want": " False.",
+   "got": "",
+   "others_wrote_at": {}
+  }
+ ],
+ "check2": {
+  "track_gen": [
+   40,
+   40
+  ],
+  "order_gen": [
+   40,
+   40
+  ],
+  "interval_gen": [
+   40,
+   40
+  ],
+  "turtle_gen": [
+   40,
+   40
+  ],
+  "truth_gen": [
+   40,
+   40
+  ],
+  "expr_gen": [
+   40,
+   40
+  ],
+  "bool_gen": [
+   39,
+   40
+  ],
+  "calc_gen": [
+   38,
+   40
+  ]
+ },
+ "fail2": [
+  {
+   "tool": "bool_gen",
+   "expr": "not (not (False and True and False) or (not not False and not not False or not True) and not False) or (True and (not not False) and (not False)) and not (False and not not True and not not True)",
+   "want": " False.",
+   "got": " True.\nSo the answer is True.<|endoftext|>Human beings are n"
+  },
+  {
+   "tool": "calc_gen",
+   "expr": "5.2 / -85.57",
+   "want": " -0.060768",
+   "got": " -0.0611754717547"
+  },
+  {
+   "tool": "calc_gen",
+   "expr": "51 + -10.39",
+   "want": " 40.61",
+   "got": " -5.39.\nSo the answer is -5.39."
+  }
+ ],
+ "check3": {
+  "texts": 60,
+  "all_writes_zero": 60,
+  "logits_bit_identical": 60,
+  "max_len": null
+ }
+}

@@ -1,0 +1,110 @@
+{
+ "check1": {
+  "A.rand_track": [
+   450,
+   450
+  ],
+  "A.rand_order": [
+   450,
+   450
+  ],
+  "A.malformed_track": [
+   63,
+   63
+  ],
+  "A.malformed_order": [
+   60,
+   60
+  ],
+  "B.fuzz_interval": [
+   450,
+   450
+  ],
+  "B.corrupt_interval": [
+   129,
+   129
+  ],
+  "B.fuzz_walk": [
+   450,
+   450
+  ],
+  "B.corrupt_walk": [
+   144,
+   144
+  ],
+  "B.fuzz_truth": [
+   450,
+   450
+  ],
+  "B.corrupt_truth": [
+   147,
+   147
+  ],
+  "B.other": [
+   9,
+   9
+  ],
+  "C.random": [
+   900,
+   900
+  ],
+  "C.edge": [
+   69,
+   69
+  ],
+  "A.gold": [
+   240,
+   240
+  ],
+  "B.gold": [
+   240,
+   240
+  ],
+  "C.gold": [
+   240,
+   240
+  ]
+ },
+ "fail1": [],
+ "check2": {
+  "track_gen": [
+   40,
+   40
+  ],
+  "order_gen": [
+   40,
+   40
+  ],
+  "interval_gen": [
+   40,
+   40
+  ],
+  "turtle_gen": [
+   40,
+   40
+  ],
+  "truth_gen": [
+   40,
+   40
+  ],
+  "expr_call": [
+   40,
+   40
+  ],
+  "calc_call": [
+   40,
+   40
+  ],
+  "bool_call": [
+   40,
+   40
+  ]
+ },
+ "fail2": [],
+ "check3": {
+  "texts": 60,
+  "all_writes_zero": 60,
+  "logits_bit_identical": 60,
+  "max_len": null
+ }
+}

@@ -18,10 +18,13 @@ attaches Team C's passive `=`-triggered tools (`--tools all+passiveC`; that arm 
 Host: a full fine-tune of Qwen3-0.6B-Base on `data/train_union.jsonl` (302 rows, copied verbatim from each team's own
 seed-2 data: Team A `teamA/data/train100.jsonl` 102 rows, Team B `ft100/sub/B_n100_s0` 100 rows, Team C
 `teamC/data/train/train_C_100.jsonl` 100 rows). Recipe = Team A's ft100a, `teamA/ft.py` unchanged: lr 2e-5, 6 epochs,
-tok_budget 8000, seed 0 (126 optimizer steps). **The fine-tuned checkpoint is not released.** This shipped 302-row union
-is the **v1** host. A follow-up **v2** host (reported below) extended the union to **432 rows** by adding ~100 self-
-distilled no-tool-call rows (to curb over-calling on non-tool tasks) and ~30 multi-tool composition rows; that extended
-union is not packaged here.
+tok_budget 8000, seed 0 (126 optimizer steps). **The fine-tuned checkpoint is not released.** This 302-row union is
+the **v1** host. The **v2** host (the one in the blog and in `../callgate/`, `../transfer/`) is a full fine-tune with the
+same recipe on `data/train_union_v2.jsonl` (**432 rows**, 156 steps): the A (102) and B (100) rows unchanged, Team C's 100
+rows converted to the passive form (`data/c_passive_v2.jsonl`, `code/make_v2_rows.py`), 100 self-distilled no-tool-call
+rows (`data/nocall_v2.jsonl`: prompts in `code/nocall_prompts.py`, completions = the frozen base's own greedy answers,
+`code/make_nocall.py`) and 30 multi-tool rows of 5 new kinds (`data/multi_v2.jsonl`, `code/make_v2_rows.py`), shuffled by
+`code/make_union_v2.py`. In v2, Team C's tools are attached in their passive form (`--tools v2` = `integ.TOOLS_V2`).
 
 ## Results
 
@@ -62,9 +65,12 @@ Exactness (shipped v1 code, `test_integ.py`, `check_graph.py`): on the frozen ba
 with no cross-firing, logits are bit-identical where no tool writes, and the CUDA-graph decode step is bit-identical to
 the plain step.
 
-Provenance: v1 numbers are reproduced by the commands below (shipped 302-row union); the v2 numbers are from the follow-up
-432-row run recorded in the project ledger (`bbh_integrate/TABLES_v1_vs_v2.md`), not reproducible from the shipped data
-alone. `NOTEBOOK.md` records the setup and the per-arm run splits.
+Provenance: all numbers above are in `results/` (reduced per-question records, no generated text: `../reduce_bbh.py`)
+and are printed by `python code/report_v2.py results` (except the per-tool composition analysis, which needs the full
+outputs; its full-output tables are `TABLES_v1_vs_v2.md`, v1 only: `TABLES.md`). `results/test_integ_*.json` are the
+exactness checks. `NOTEBOOK.md` records the setup and the per-arm run splits (the 27-task runs were split into task
+shards across GPUs; `report_v2.py` merges `b27_<arm>_[TP]*`). The merged v2 / base rows are also in
+`../transfer/results/q06_*.json.gz`.
 
 ## Reproduce
 
@@ -94,3 +100,28 @@ The original runs split the 27-task runs into task halves (`--tasks`) across GPU
 `python scripts/solve_veto.py --out runs/veto_qwen3.pt`. Paths: `code/_paths.py` (env `WSM_REPO`, `BBH_DIR`, `BBH_COT`,
 `VETO`). The original run used byte-identical vendored copies of `micromachines/` and `bbh_generic/`; this code imports the
 repo's own.
+
+### v2 host (432 rows; the blog's BBH numbers)
+
+```bash
+cd bbh_generic/integrate/code
+python make_v2_rows.py ../data/multi_v2.jsonl ../data/c_passive_v2.jsonl       # byte-identical to the shipped files (CPU, seeded)
+python make_nocall.py ../data/nocall_v2.jsonl                                   # GPU; greedy self-distillation of the frozen base
+                                                                                #   (bf16 greedy: may differ in a few rows; the shipped file is the one used)
+python make_union_v2.py ../data ../data/train_union_v2.jsonl                    # byte-identical to the shipped file
+(cd ../../teamA && python ft.py --data ../integrate/data/train_union_v2.jsonl --out ../integrate/runs/ft_int_v2 \
+                                --lr 2e-5 --epochs 6 --tok_budget 8000 --seed 0)   # 156 steps, ~90 s on one H100
+python ../../../scripts/solve_veto.py --out ../../../runs/veto_qwen3.pt         # Team C's calc veto (0.6B base), or set $VETO
+python test_integ.py ../out/test_integ_v2_ft.json --v2 --model ../runs/ft_int_v2
+python eval_integ.py ../out/sets_v2ft_tools.json   --model ../runs/ft_int_v2 --tools v2
+python eval_integ.py ../out/sets_v2ft_notools.json --model ../runs/ft_int_v2 --tools none
+python run27_integ.py ../out/b27_v2ft_tools.json   --model ../runs/ft_int_v2 --tools v2   --max_new 600 --bs 32   # ~1.5 h on one H100
+python run27_integ.py ../out/b27_v2ft_notools.json --model ../runs/ft_int_v2 --tools none --max_new 600 --bs 32
+python report_v2.py ../out
+```
+
+Expected (one run each, greedy): real BBH 27 / 12 / 15 means **48.36 / 84.33 / 19.58** with tools, 33.61 / 38.10 / 30.01
+without, base 40.98 / 43.27 / 39.15. Greedy bf16 decoding with a different batch size or GPU changes a few percent of the
+outputs (`../callgate/NOTEBOOK.md` measured 87-92% identical transcripts across runs), so expect each mean within about
++-1 point. `run27_integ.py` resumes from `OUT.partial` task by task; `--veto` and `--tools subset --machines ...` are used
+by `../transfer/`.

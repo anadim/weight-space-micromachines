@@ -1,0 +1,19 @@
+Generating train split:   0%|          | 0/2251 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 2251/2251 [00:00<00:00, 236709.08 examples/s]
+Generating test split:   0%|          | 0/2376 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2376/2376 [00:00<00:00, 623828.88 examples/s]
+Generating validation split:   0%|          | 0/570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 570/570 [00:00<00:00, 264991.50 examples/s]
+./micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+32/400 | 117s
+64/400 | 196s
+96/400 | 227s
+128/400 | 251s
+160/400 | 282s
+192/400 | 332s
+224/400 | 411s
+256/400 | 455s
+288/400 | 482s
+320/400 | 508s
+352/400 | 534s
+384/400 | 603s
+400/400 | 673s
+ARC-Easy mode=breaker: acc=70.2 call_rate=11.8 blk=7.2 mean_ncall=0.16 (n=400)

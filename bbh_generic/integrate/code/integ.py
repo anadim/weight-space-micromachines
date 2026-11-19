@@ -12,7 +12,7 @@ writes of all machines are added; shared output tokens share one solved write di
 """
 import os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
-from _paths import REPO, G                                   # repo micromachines/ + team code on sys.path
+from _paths import REPO, G, VETO                             # repo micromachines/ + team code on sys.path
 import torch
 from micromachines.specs import SPECS
 from micromachines import machine as MM
@@ -26,6 +26,7 @@ TOOLS_B = ('interval_gen', 'turtle_gen', 'truth_gen')
 TOOLS_C_CALL = ('expr_call', 'bool_call', 'calc_call')
 TOOLS_C_PASSIVE = ('expr_gen', 'calc_gen', 'bool_gen')
 TOOLS = TOOLS_A + TOOLS_B + TOOLS_C_CALL
+TOOLS_V2 = TOOLS_A + TOOLS_B + TOOLS_C_PASSIVE          # v2: Team C in its frozen-host PASSIVE form (fires at the host's own '=')
 CALL_NAME = {'track_gen': 'track', 'order_gen': 'order', 'interval_gen': 'interval', 'turtle_gen': 'walk', 'truth_gen': 'truth',
              'expr_call': 'expr', 'bool_call': 'bool', 'calc_call': 'calc'}
 prep_call_tokens = TT.prep_call_tokens

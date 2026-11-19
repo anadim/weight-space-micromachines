@@ -23,6 +23,10 @@ independent judge agents, and run on real BBH **once** at the end. The rules the
 | `peek/` | the single real-BBH run (scoring scripts and aggregate scores only) |
 | `ft100/` | sample-size control (fine-tune on 32 / 100 / 300 rows) - **done** |
 | `integrate/` | one host, all eight tools, composed questions - **done** |
+| `nl_control/` | the fair fine-tune control: the same ft100 rows as plain worked solutions, no calls - **done** |
+| `callgate/` | a probe implant that blocks `<tool_call>` where no tool fits (27-task mean 48.4 -> 54.6) - **done** |
+| `transfer/` | the v2 setup on Qwen3-1.7B / 4B-Base, and the add-one-tool curve over all 27 tasks - **done** |
+| `reduce_bbh.py` | reduces a run output to the shipped per-question records (no text; SHA-256 of the output) |
 | `PROTOCOL.md` | the binding protocol given to the agents |
 
 ## The tools
@@ -102,6 +106,13 @@ Team A's final ~100-row host (ft100a) was not itself run on real BBH; the sample
 base 0%) while the tool arm reaches most of the full-fine-tune gain at ~100 rows (Team A real BBH with tools: 59.5 @ 32,
 76.5 @ 100, 94.4 @ 300, 100.0 @ 14.5k; Team B: 86.7 / 97.5 / 98.0 / 99.7). The no-tool arm stays near base (Team A) or
 climbs only with many rows (Team B). Full tables in `ft100/README.md`.
+The fair control for "could plain fine-tuning learn f" is `nl_control/`: the same rows as plain worked solutions teach
+the function far better than call strings, but the tool arm stays ahead on real BBH (Team A 56.5 / 55.1 vs 76.5 / 70.3 at
+100 rows; 72.6 vs 94.4 at 300).
+
+**The blog's BBH numbers** (one host, all eight tools, 432-row fine-tune: 12 tool tasks 43.3 -> 84.3, 27 tasks 41.0 ->
+48.4; with the call gate 54.6; add-one-tool curve; 1.7B / 4B) are the integration v2 host: `integrate/README.md` ("v2
+host"), `callgate/README.md`, `transfer/README.md`.
 
 Judges' binding conditions (from the `JUDGE_*.md` files):
 * Team A (`order_gen`): report Team A's held-out judge round 3 next to any BBH number: host + tools **5/16**, fine-tuned

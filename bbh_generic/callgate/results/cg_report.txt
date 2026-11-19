@@ -1,0 +1,38 @@
+
+| arm | 27 mean | 12 tool | 15 no-tool | 15 call% | 15 no-answer% | 15 calls/out | 15 blk% |
+|---|---|---|---|---|---|---|---|
+| v2+tools (baseline) | 48.36 | 84.33 | 19.58 | 59.2 | 35.7 | 5.2 | - |
+| v2 + GATE | 54.58 | 85.63 | 29.74 | 3.8 | 7.3 | 0.0 | 58.4 |
+| v2 + BREAKER | 53.30 | 85.00 | 27.94 | 59.5 | 11.9 | 0.7 | 35.7 |
+
+Reference (15 no-tool means): base(no tools) 39.15 ; FT tools-off 30.01 ; no-answer tools-off 5.6%, tools-on 35.7%
+
+| task | tool | baseline | v2 + GATE | v2 + BREAKER |
+|---|---|---|---|---|
+| boolean_expressions | Y | 80.0 | 84.4 | 81.2 |
+| causal_judgement |  | 32.1 | 34.2 | 41.7 |
+| date_understanding |  | 14.4 | 44.0 | 38.0 |
+| disambiguation_qa |  | 24.0 | 32.0 | 30.4 |
+| dyck_languages |  | 1.2 | 0.4 | 0.8 |
+| formal_fallacies |  | 15.6 | 45.6 | 46.0 |
+| geometric_shapes |  | 3.2 | 22.0 | 8.4 |
+| hyperbaton |  | 16.4 | 44.4 | 39.6 |
+| logical_deduction_five_objects | Y | 69.6 | 74.0 | 74.4 |
+| logical_deduction_seven_objects | Y | 69.2 | 72.0 | 72.0 |
+| logical_deduction_three_objects | Y | 73.6 | 76.4 | 74.8 |
+| movie_recommendation |  | 26.0 | 26.8 | 27.6 |
+| multistep_arithmetic_two | Y | 100.0 | 100.0 | 100.0 |
+| navigate | Y | 72.8 | 73.6 | 70.0 |
+| object_counting | Y | 57.2 | 57.6 | 58.0 |
+| penguins_in_a_table |  | 18.5 | 26.0 | 27.4 |
+| reasoning_about_colored_objects |  | 24.8 | 35.2 | 30.8 |
+| ruin_names |  | 19.2 | 22.4 | 26.4 |
+| salient_translation_error_detection |  | 20.8 | 30.0 | 24.0 |
+| snarks |  | 27.5 | 32.6 | 27.5 |
+| sports_understanding |  | 46.8 | 47.2 | 47.2 |
+| temporal_sequences | Y | 99.6 | 99.6 | 99.6 |
+| tracking_shuffled_objects_five_objects | Y | 95.2 | 95.2 | 95.2 |
+| tracking_shuffled_objects_seven_objects | Y | 96.4 | 96.4 | 96.4 |
+| tracking_shuffled_objects_three_objects | Y | 98.4 | 98.4 | 98.4 |
+| web_of_lies | Y | 100.0 | 100.0 | 100.0 |
+| word_sorting |  | 3.2 | 3.2 | 3.2 |

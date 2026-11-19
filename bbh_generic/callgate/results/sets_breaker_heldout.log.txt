@@ -1,0 +1,17 @@
+./micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+A_oos2      55.0 call=100.0 blk= 37.2 (n=180) | 1038s
+B_oos       71.3 call=100.0 blk= 18.0 (n=150) | 1291s
+C_ood       97.2 call=  2.2 blk=  0.0 (n=180) | 1410s
+  A_oos2/track3                             66.7 (n=30)
+  A_oos2/track5                             53.3 (n=30)
+  A_oos2/track7                             70.0 (n=30)
+  A_oos2/order3                             70.0 (n=30)
+  A_oos2/order5                             33.3 (n=30)
+  A_oos2/order7                             36.7 (n=30)
+  B_oos/meeting                             78.0 (n=50)
+  B_oos/robot                               44.0 (n=50)
+  B_oos/knights                             92.0 (n=50)
+  C_ood/num_list                            95.0 (n=60)
+  C_ood/num_shop                           100.0 (n=60)
+  C_ood/bool_code                           96.7 (n=60)

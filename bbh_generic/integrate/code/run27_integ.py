@@ -15,15 +15,23 @@ ap = argparse.ArgumentParser()
 ap.add_argument('out'); ap.add_argument('--model', default='Qwen/Qwen3-0.6B-Base'); ap.add_argument('--tools', default='none')
 ap.add_argument('--bs', type=int, default=32); ap.add_argument('--min_tokens', type=int, default=4); ap.add_argument('--max_new', type=int, default=400)
 ap.add_argument('--data', default=BBH); ap.add_argument('--cot', default=COT); ap.add_argument('--tasks', default='')
+ap.add_argument('--veto', default=VETO, help='calc_gen veto of THIS host (scripts/solve_veto.py --model ...)')
+ap.add_argument('--machines', default='', help='--tools subset: comma list of machines (add-one-tool curve)')
 a = ap.parse_args()
 tasks = a.tasks.split(',') if a.tasks else sorted(f[:-5] for f in os.listdir(a.data) if f.endswith('.json'))
 dev = 'cuda'
 tok = AutoTokenizer.from_pretrained(a.model)
 model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16).to(dev).eval()
 net = None; t0 = time.time()
-if a.tools == 'all':
+if a.tools == 'subset':                                     # add-one-tool curve: an explicit subset of the v2 machines
+    import integ
+    net = integ.attach_all(model, tok, tuple(a.machines.split(',')), veto=a.veto)
+elif a.tools == 'all':
     import integ
     net = integ.attach_all(model, tok, integ.TOOLS)
+elif a.tools == 'v2':                                       # A/B call form + Team C passive form
+    import integ
+    net = integ.attach_all(model, tok, integ.TOOLS_V2, veto=a.veto)
 elif a.tools == 'A':
     sys.path.insert(0, f'{G}/teamA'); import register; from micromachines.machine import attach
     net = attach(model, tok, machines=register.TOOLS)
@@ -32,7 +40,7 @@ elif a.tools == 'B':
     net = attach(model, tok, machines=circuits_B.TOOLS_B)
 elif a.tools == 'C':      # exactly as bbh_peek run_job.sh C_tools (run_gen.py defaults: oe dotnl, bool_dot 1)
     sys.path.insert(0, f'{G}/teamC'); import teamc_tools as TT
-    net = TT.attach_gen(model, tok, ('expr_gen', 'calc_gen', 'bool_gen'), veto=VETO, oe='dotnl', bool_dot=1)
+    net = TT.attach_gen(model, tok, ('expr_gen', 'calc_gen', 'bool_gen'), veto=a.veto, oe='dotnl', bool_dot=1)
 if net is not None: print(f'attached {a.tools} ({time.time() - t0:.0f}s)', flush=True)
 eos = tok.convert_tokens_to_ids('<|endoftext|>')
 pre = lambda t: open(f'{a.cot}/{t}.txt').read().split('-----', 1)[1].strip() + '\n\n'
@@ -74,7 +82,12 @@ def norm(x, task):   # verbatim from bbh_peek/scripts/score.py
 
 
 t0 = time.time(); per = {}; rows = []
+if os.path.exists(a.out + '.partial'):   # task-level resume (partial is written only after a task completes; greedy => identical)
+    rows = json.load(open(a.out + '.partial'))['rows']
+    for r in rows: per.setdefault(r['task'], []).append(r['ok'])
+    print(f'RESUME from partial: {len(per)} tasks done: {sorted(per)}', flush=True)
 for t in tasks:
+    if t in per: continue
     ex = json.load(open(f'{a.data}/{t}.json'))['examples']
     for b in range(0, len(ex), a.bs):
         ch = ex[b:b + a.bs]

@@ -1,0 +1,19 @@
+attached v2 (55s)
+./micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+OOM, retry 1 in 30s
+boolean_expressions                       84.4 call=  0.0 blk= 56.8 ncall= 0.0 | 131s
+date_understanding                        44.0 call= 15.6 blk= 94.0 ncall= 0.3 | 996s
+dyck_languages                             0.4 call=  0.4 blk= 59.6 ncall= 0.0 | 1764s
+geometric_shapes                          22.0 call=  0.4 blk=100.0 ncall= 0.0 | 3542s
+logical_deduction_five_objects            74.0 call=100.0 blk= 21.6 ncall= 1.0 | 4079s
+logical_deduction_three_objects           76.4 call=100.0 blk=  8.0 ncall= 1.0 | 4315s
+multistep_arithmetic_two                 100.0 call=  0.0 blk=  0.0 ncall= 0.0 | 4557s
+object_counting                           57.6 call=  0.0 blk= 10.8 ncall= 0.0 | 4791s
+reasoning_about_colored_objects           35.2 call= 24.4 blk= 41.6 ncall= 0.3 | 5358s
+salient_translation_error_detection       30.0 call=  0.0 blk= 50.0 ncall= 0.0 | 5852s
+sports_understanding                      47.2 call=  0.0 blk=  0.0 ncall= 0.0 | 5903s
+tracking_shuffled_objects_five_objects    95.2 call=100.0 blk=  0.0 ncall= 1.0 | 6210s
+tracking_shuffled_objects_three_objects   98.4 call=100.0 blk=  0.0 ncall= 1.0 | 6442s
+word_sorting                               3.2 call=  0.0 blk= 18.4 ncall= 0.0 | 7400s
+MEAN over 14 tasks: 54.86
