@@ -1,0 +1,3401 @@
+{
+ "source": "A40 pod <workdir>/ifeval_mm/trace_gen.py (gen.py + per-step trace), IFEval key 3615, Qwen3-0.6B bf16 greedy, thinking off; same bs16 batch as runs/sub_final_odd.jsonl (implant: final rule set, only no_comma detected) and runs/odd_none16.jsonl (base). top3_host = host logits from the same pre-norm hidden state with the write removed; top3_used = logits actually used.",
+ "prompt": "Write a riddle about Camilla that doesn't use commas.",
+ "prompt_tokens": [
+  "<|im_start|>",
+  "user",
+  "\n",
+  "Write",
+  " a",
+  " r",
+  "iddle",
+  " about",
+  " Cam",
+  "illa",
+  " that",
+  " doesn",
+  "'t",
+  " use",
+  " commas",
+  ".",
+  "<|im_end|>",
+  "\n",
+  "<|im_start|>",
+  "assistant",
+  "\n",
+  "<think>",
+  "\n\n",
+  "</think>",
+  "\n\n"
+ ],
+ "base": {
+  "text": "Camilla is a pretty pretty girl,  \nWith a smile that's always bright and clear.  \nShe's got a heart full of love and care,  \nAnd she's the one who makes the world a little better.",
+  "steps": [
+   {
+    "step": 0,
+    "s": "Cam",
+    "top3_host": [
+     [
+      "Cam",
+      23.125
+     ],
+     [
+      "What",
+      21.0
+     ],
+     [
+      "A",
+      18.625
+     ],
+     [
+      "Who",
+      18.375
+     ]
+    ],
+    "top3_used": [
+     [
+      "Cam",
+      23.125
+     ],
+     [
+      "What",
+      21.0
+     ],
+     [
+      "A",
+      18.625
+     ],
+     [
+      "Who",
+      18.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 1,
+    "s": "illa",
+    "top3_host": [
+     [
+      "illa",
+      19.75
+     ],
+     [
+      "ila",
+      17.875
+     ],
+     [
+      "elia",
+      14.688
+     ],
+     [
+      "ille",
+      14.562
+     ]
+    ],
+    "top3_used": [
+     [
+      "illa",
+      19.75
+     ],
+     [
+      "ila",
+      17.875
+     ],
+     [
+      "elia",
+      14.688
+     ],
+     [
+      "ille",
+      14.562
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 2,
+    "s": " is",
+    "top3_host": [
+     [
+      " is",
+      17.625
+     ],
+     [
+      ",",
+      17.375
+     ],
+     [
+      "'s",
+      17.0
+     ],
+     [
+      " has",
+      16.875
+     ]
+    ],
+    "top3_used": [
+     [
+      " is",
+      17.625
+     ],
+     [
+      ",",
+      17.375
+     ],
+     [
+      "'s",
+      17.0
+     ],
+     [
+      " has",
+      16.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 3,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      20.0
+     ],
+     [
+      " the",
+      16.875
+     ],
+     [
+      " like",
+      15.25
+     ],
+     [
+      " known",
+      14.562
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      20.0
+     ],
+     [
+      " the",
+      16.875
+     ],
+     [
+      " like",
+      15.25
+     ],
+     [
+      " known",
+      14.562
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 4,
+    "s": " pretty",
+    "top3_host": [
+     [
+      " pretty",
+      16.75
+     ],
+     [
+      " beautiful",
+      15.688
+     ],
+     [
+      " girl",
+      15.125
+     ],
+     [
+      " star",
+      15.062
+     ]
+    ],
+    "top3_used": [
+     [
+      " pretty",
+      16.75
+     ],
+     [
+      " beautiful",
+      15.688
+     ],
+     [
+      " girl",
+      15.125
+     ],
+     [
+      " star",
+      15.062
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 5,
+    "s": " pretty",
+    "top3_host": [
+     [
+      " pretty",
+      16.875
+     ],
+     [
+      " girl",
+      16.375
+     ],
+     [
+      " special",
+      15.062
+     ],
+     [
+      " good",
+      15.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " pretty",
+      16.875
+     ],
+     [
+      " girl",
+      16.375
+     ],
+     [
+      " special",
+      15.062
+     ],
+     [
+      " good",
+      15.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 6,
+    "s": " girl",
+    "top3_host": [
+     [
+      " girl",
+      17.25
+     ],
+     [
+      " pretty",
+      15.25
+     ],
+     [
+      " person",
+      15.125
+     ],
+     [
+      " lady",
+      15.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " girl",
+      17.25
+     ],
+     [
+      " pretty",
+      15.25
+     ],
+     [
+      " person",
+      15.125
+     ],
+     [
+      " lady",
+      15.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 7,
+    "s": ",",
+    "top3_host": [
+     [
+      ",",
+      20.25
+     ],
+     [
+      ".",
+      20.0
+     ],
+     [
+      " with",
+      18.5
+     ],
+     [
+      "!",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      ",",
+      20.25
+     ],
+     [
+      ".",
+      20.0
+     ],
+     [
+      " with",
+      18.5
+     ],
+     [
+      "!",
+      17.5
+     ]
+    ],
+    "comma_would_win": true,
+    "changed": false
+   },
+   {
+    "step": 8,
+    "s": "  \n",
+    "top3_host": [
+     [
+      "  \n",
+      20.75
+     ],
+     [
+      " with",
+      18.875
+     ],
+     [
+      " full",
+      18.125
+     ],
+     [
+      " who",
+      17.875
+     ]
+    ],
+    "top3_used": [
+     [
+      "  \n",
+      20.75
+     ],
+     [
+      " with",
+      18.875
+     ],
+     [
+      " full",
+      18.125
+     ],
+     [
+      " who",
+      17.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 9,
+    "s": "With",
+    "top3_host": [
+     [
+      "With",
+      22.125
+     ],
+     [
+      "She",
+      21.375
+     ],
+     [
+      "Who",
+      20.5
+     ],
+     [
+      "Her",
+      19.375
+     ]
+    ],
+    "top3_used": [
+     [
+      "With",
+      22.125
+     ],
+     [
+      "She",
+      21.375
+     ],
+     [
+      "Who",
+      20.5
+     ],
+     [
+      "Her",
+      19.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 10,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      19.625
+     ],
+     [
+      " eyes",
+      17.5
+     ],
+     [
+      " bright",
+      17.0
+     ],
+     [
+      " long",
+      16.875
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      19.625
+     ],
+     [
+      " eyes",
+      17.5
+     ],
+     [
+      " bright",
+      17.0
+     ],
+     [
+      " long",
+      16.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 11,
+    "s": " smile",
+    "top3_host": [
+     [
+      " smile",
+      19.75
+     ],
+     [
+      " heart",
+      18.625
+     ],
+     [
+      " sparkle",
+      15.938
+     ],
+     [
+      " big",
+      15.938
+     ]
+    ],
+    "top3_used": [
+     [
+      " smile",
+      19.75
+     ],
+     [
+      " heart",
+      18.625
+     ],
+     [
+      " sparkle",
+      15.938
+     ],
+     [
+      " big",
+      15.938
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 12,
+    "s": " that",
+    "top3_host": [
+     [
+      " that",
+      21.0
+     ],
+     [
+      " and",
+      20.625
+     ],
+     [
+      " like",
+      19.0
+     ],
+     [
+      ",",
+      18.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " that",
+      21.0
+     ],
+     [
+      " and",
+      20.625
+     ],
+     [
+      " like",
+      19.0
+     ],
+     [
+      ",",
+      18.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 13,
+    "s": "'s",
+    "top3_host": [
+     [
+      "'s",
+      19.75
+     ],
+     [
+      " never",
+      19.75
+     ],
+     [
+      " makes",
+      19.375
+     ],
+     [
+      "\u2019s",
+      18.875
+     ]
+    ],
+    "top3_used": [
+     [
+      "'s",
+      19.75
+     ],
+     [
+      " never",
+      19.75
+     ],
+     [
+      " makes",
+      19.375
+     ],
+     [
+      "\u2019s",
+      18.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 14,
+    "s": " always",
+    "top3_host": [
+     [
+      " always",
+      19.375
+     ],
+     [
+      " so",
+      18.75
+     ],
+     [
+      " bright",
+      17.75
+     ],
+     [
+      " never",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " always",
+      19.375
+     ],
+     [
+      " so",
+      18.75
+     ],
+     [
+      " bright",
+      17.75
+     ],
+     [
+      " never",
+      17.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 15,
+    "s": " bright",
+    "top3_host": [
+     [
+      " bright",
+      19.125
+     ],
+     [
+      " so",
+      17.75
+     ],
+     [
+      " there",
+      17.625
+     ],
+     [
+      " kind",
+      17.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " bright",
+      19.125
+     ],
+     [
+      " so",
+      17.75
+     ],
+     [
+      " there",
+      17.625
+     ],
+     [
+      " kind",
+      17.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 16,
+    "s": " and",
+    "top3_host": [
+     [
+      " and",
+      22.875
+     ],
+     [
+      ".",
+      22.625
+     ],
+     [
+      ",",
+      21.125
+     ],
+     [
+      "  \n",
+      18.375
+     ]
+    ],
+    "top3_used": [
+     [
+      " and",
+      22.875
+     ],
+     [
+      ".",
+      22.625
+     ],
+     [
+      ",",
+      21.125
+     ],
+     [
+      "  \n",
+      18.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 17,
+    "s": " clear",
+    "top3_host": [
+     [
+      " clear",
+      19.75
+     ],
+     [
+      " true",
+      19.625
+     ],
+     [
+      " fair",
+      18.25
+     ],
+     [
+      " full",
+      18.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " clear",
+      19.75
+     ],
+     [
+      " true",
+      19.625
+     ],
+     [
+      " fair",
+      18.25
+     ],
+     [
+      " full",
+      18.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 18,
+    "s": ".",
+    "top3_host": [
+     [
+      ".",
+      25.875
+     ],
+     [
+      ",",
+      22.75
+     ],
+     [
+      "!",
+      19.875
+     ],
+     [
+      "  \n",
+      18.875
+     ]
+    ],
+    "top3_used": [
+     [
+      ".",
+      25.875
+     ],
+     [
+      ",",
+      22.75
+     ],
+     [
+      "!",
+      19.875
+     ],
+     [
+      "  \n",
+      18.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 19,
+    "s": "  \n",
+    "top3_host": [
+     [
+      "  \n",
+      28.25
+     ],
+     [
+      "<|im_end|>",
+      25.75
+     ],
+     [
+      " \ufffd",
+      21.125
+     ],
+     [
+      "  \n\n",
+      20.875
+     ]
+    ],
+    "top3_used": [
+     [
+      "  \n",
+      28.25
+     ],
+     [
+      "<|im_end|>",
+      25.75
+     ],
+     [
+      " \ufffd",
+      21.125
+     ],
+     [
+      "  \n\n",
+      20.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 20,
+    "s": "She",
+    "top3_host": [
+     [
+      "She",
+      21.5
+     ],
+     [
+      "Her",
+      19.5
+     ],
+     [
+      "No",
+      19.375
+     ],
+     [
+      "You",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      "She",
+      21.5
+     ],
+     [
+      "Her",
+      19.5
+     ],
+     [
+      "No",
+      19.375
+     ],
+     [
+      "You",
+      17.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 21,
+    "s": "'s",
+    "top3_host": [
+     [
+      "'s",
+      20.5
+     ],
+     [
+      " walks",
+      20.375
+     ],
+     [
+      " loves",
+      19.625
+     ],
+     [
+      "\u2019s",
+      19.375
+     ]
+    ],
+    "top3_used": [
+     [
+      "'s",
+      20.5
+     ],
+     [
+      " walks",
+      20.375
+     ],
+     [
+      " loves",
+      19.625
+     ],
+     [
+      "\u2019s",
+      19.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 22,
+    "s": " got",
+    "top3_host": [
+     [
+      " got",
+      19.625
+     ],
+     [
+      " the",
+      17.625
+     ],
+     [
+      " kind",
+      17.5
+     ],
+     [
+      " not",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " got",
+      19.625
+     ],
+     [
+      " the",
+      17.625
+     ],
+     [
+      " kind",
+      17.5
+     ],
+     [
+      " not",
+      17.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 23,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      20.125
+     ],
+     [
+      " her",
+      19.625
+     ],
+     [
+      " eyes",
+      18.125
+     ],
+     [
+      " the",
+      17.875
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      20.125
+     ],
+     [
+      " her",
+      19.625
+     ],
+     [
+      " eyes",
+      18.125
+     ],
+     [
+      " the",
+      17.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 24,
+    "s": " heart",
+    "top3_host": [
+     [
+      " heart",
+      18.875
+     ],
+     [
+      " special",
+      15.75
+     ],
+     [
+      " big",
+      15.75
+     ],
+     [
+      " sparkle",
+      15.688
+     ]
+    ],
+    "top3_used": [
+     [
+      " heart",
+      18.875
+     ],
+     [
+      " special",
+      15.75
+     ],
+     [
+      " big",
+      15.75
+     ],
+     [
+      " sparkle",
+      15.688
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 25,
+    "s": " full",
+    "top3_host": [
+     [
+      " full",
+      23.125
+     ],
+     [
+      " that",
+      22.25
+     ],
+     [
+      ",",
+      19.0
+     ],
+     [
+      " and",
+      18.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " full",
+      23.125
+     ],
+     [
+      " that",
+      22.25
+     ],
+     [
+      ",",
+      19.0
+     ],
+     [
+      " and",
+      18.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 26,
+    "s": " of",
+    "top3_host": [
+     [
+      " of",
+      25.75
+     ],
+     [
+      " and",
+      20.125
+     ],
+     [
+      ",",
+      18.625
+     ],
+     [
+      " full",
+      18.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " of",
+      25.75
+     ],
+     [
+      " and",
+      20.125
+     ],
+     [
+      ",",
+      18.625
+     ],
+     [
+      " full",
+      18.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 27,
+    "s": " love",
+    "top3_host": [
+     [
+      " love",
+      20.875
+     ],
+     [
+      " joy",
+      19.75
+     ],
+     [
+      " kindness",
+      18.5
+     ],
+     [
+      " kind",
+      18.25
+     ]
+    ],
+    "top3_used": [
+     [
+      " love",
+      20.875
+     ],
+     [
+      " joy",
+      19.75
+     ],
+     [
+      " kindness",
+      18.5
+     ],
+     [
+      " kind",
+      18.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 28,
+    "s": " and",
+    "top3_host": [
+     [
+      " and",
+      22.125
+     ],
+     [
+      ",",
+      21.625
+     ],
+     [
+      " to",
+      19.375
+     ],
+     [
+      " that",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " and",
+      22.125
+     ],
+     [
+      ",",
+      21.625
+     ],
+     [
+      " to",
+      19.375
+     ],
+     [
+      " that",
+      17.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 29,
+    "s": " care",
+    "top3_host": [
+     [
+      " care",
+      19.875
+     ],
+     [
+      " light",
+      18.75
+     ],
+     [
+      " joy",
+      17.875
+     ],
+     [
+      " grace",
+      17.375
+     ]
+    ],
+    "top3_used": [
+     [
+      " care",
+      19.875
+     ],
+     [
+      " light",
+      18.75
+     ],
+     [
+      " joy",
+      17.875
+     ],
+     [
+      " grace",
+      17.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 30,
+    "s": ",",
+    "top3_host": [
+     [
+      ",",
+      24.125
+     ],
+     [
+      ".",
+      23.0
+     ],
+     [
+      "\u2014",
+      19.0
+     ],
+     [
+      "  \n",
+      18.375
+     ]
+    ],
+    "top3_used": [
+     [
+      ",",
+      24.125
+     ],
+     [
+      ".",
+      23.0
+     ],
+     [
+      "\u2014",
+      19.0
+     ],
+     [
+      "  \n",
+      18.375
+     ]
+    ],
+    "comma_would_win": true,
+    "changed": false
+   },
+   {
+    "step": 31,
+    "s": "  \n",
+    "top3_host": [
+     [
+      "  \n",
+      25.125
+     ],
+     [
+      " and",
+      15.875
+     ],
+     [
+      " so",
+      15.625
+     ],
+     [
+      " no",
+      15.0
+     ]
+    ],
+    "top3_used": [
+     [
+      "  \n",
+      25.125
+     ],
+     [
+      " and",
+      15.875
+     ],
+     [
+      " so",
+      15.625
+     ],
+     [
+      " no",
+      15.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 32,
+    "s": "And",
+    "top3_host": [
+     [
+      "And",
+      21.625
+     ],
+     [
+      "But",
+      19.25
+     ],
+     [
+      "No",
+      18.25
+     ],
+     [
+      "Always",
+      17.875
+     ]
+    ],
+    "top3_used": [
+     [
+      "And",
+      21.625
+     ],
+     [
+      "But",
+      19.25
+     ],
+     [
+      "No",
+      18.25
+     ],
+     [
+      "Always",
+      17.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 33,
+    "s": " she",
+    "top3_host": [
+     [
+      " she",
+      19.75
+     ],
+     [
+      " her",
+      18.625
+     ],
+     [
+      " makes",
+      17.375
+     ],
+     [
+      " a",
+      17.25
+     ]
+    ],
+    "top3_used": [
+     [
+      " she",
+      19.75
+     ],
+     [
+      " her",
+      18.625
+     ],
+     [
+      " makes",
+      17.375
+     ],
+     [
+      " a",
+      17.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 34,
+    "s": "'s",
+    "top3_host": [
+     [
+      "'s",
+      21.25
+     ],
+     [
+      " makes",
+      20.125
+     ],
+     [
+      " knows",
+      19.375
+     ],
+     [
+      " walks",
+      18.5
+     ]
+    ],
+    "top3_used": [
+     [
+      "'s",
+      21.25
+     ],
+     [
+      " makes",
+      20.125
+     ],
+     [
+      " knows",
+      19.375
+     ],
+     [
+      " walks",
+      18.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 35,
+    "s": " the",
+    "top3_host": [
+     [
+      " the",
+      19.25
+     ],
+     [
+      " always",
+      19.125
+     ],
+     [
+      " got",
+      18.5
+     ],
+     [
+      " so",
+      18.25
+     ]
+    ],
+    "top3_used": [
+     [
+      " the",
+      19.25
+     ],
+     [
+      " always",
+      19.125
+     ],
+     [
+      " got",
+      18.5
+     ],
+     [
+      " so",
+      18.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 36,
+    "s": " one",
+    "top3_host": [
+     [
+      " one",
+      19.5
+     ],
+     [
+      " kind",
+      18.875
+     ],
+     [
+      " best",
+      18.875
+     ],
+     [
+      " star",
+      18.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " one",
+      19.5
+     ],
+     [
+      " kind",
+      18.875
+     ],
+     [
+      " best",
+      18.875
+     ],
+     [
+      " star",
+      18.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 37,
+    "s": " who",
+    "top3_host": [
+     [
+      " who",
+      20.5
+     ],
+     [
+      " you",
+      19.375
+     ],
+     [
+      " that",
+      19.375
+     ],
+     [
+      " everyone",
+      18.375
+     ]
+    ],
+    "top3_used": [
+     [
+      " who",
+      20.5
+     ],
+     [
+      " you",
+      19.375
+     ],
+     [
+      " that",
+      19.375
+     ],
+     [
+      " everyone",
+      18.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 38,
+    "s": " makes",
+    "top3_host": [
+     [
+      " makes",
+      20.875
+     ],
+     [
+      " brings",
+      19.25
+     ],
+     [
+      " lights",
+      18.125
+     ],
+     [
+      "'s",
+      17.875
+     ]
+    ],
+    "top3_used": [
+     [
+      " makes",
+      20.875
+     ],
+     [
+      " brings",
+      19.25
+     ],
+     [
+      " lights",
+      18.125
+     ],
+     [
+      "'s",
+      17.875
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 39,
+    "s": " the",
+    "top3_host": [
+     [
+      " the",
+      20.5
+     ],
+     [
+      " things",
+      19.75
+     ],
+     [
+      " everything",
+      19.125
+     ],
+     [
+      " life",
+      18.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " the",
+      20.5
+     ],
+     [
+      " things",
+      19.75
+     ],
+     [
+      " everything",
+      19.125
+     ],
+     [
+      " life",
+      18.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 40,
+    "s": " world",
+    "top3_host": [
+     [
+      " world",
+      22.375
+     ],
+     [
+      " day",
+      20.75
+     ],
+     [
+      " night",
+      18.0
+     ],
+     [
+      " days",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      " world",
+      22.375
+     ],
+     [
+      " day",
+      20.75
+     ],
+     [
+      " night",
+      18.0
+     ],
+     [
+      " days",
+      17.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 41,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      20.375
+     ],
+     [
+      " feel",
+      19.875
+     ],
+     [
+      " shine",
+      19.75
+     ],
+     [
+      " round",
+      18.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      20.375
+     ],
+     [
+      " feel",
+      19.875
+     ],
+     [
+      " shine",
+      19.75
+     ],
+     [
+      " round",
+      18.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 42,
+    "s": " little",
+    "top3_host": [
+     [
+      " little",
+      17.75
+     ],
+     [
+      " better",
+      17.5
+     ],
+     [
+      " bit",
+      16.375
+     ],
+     [
+      " nice",
+      16.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " little",
+      17.75
+     ],
+     [
+      " better",
+      17.5
+     ],
+     [
+      " bit",
+      16.375
+     ],
+     [
+      " nice",
+      16.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 43,
+    "s": " better",
+    "top3_host": [
+     [
+      " better",
+      18.75
+     ],
+     [
+      " brighter",
+      18.75
+     ],
+     [
+      " bright",
+      18.0
+     ],
+     [
+      " easier",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      " better",
+      18.75
+     ],
+     [
+      " brighter",
+      18.75
+     ],
+     [
+      " bright",
+      18.0
+     ],
+     [
+      " easier",
+      17.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 44,
+    "s": ".",
+    "top3_host": [
+     [
+      ".",
+      23.5
+     ],
+     [
+      "!",
+      19.0
+     ],
+     [
+      ",",
+      16.5
+     ],
+     [
+      " all",
+      16.125
+     ]
+    ],
+    "top3_used": [
+     [
+      ".",
+      23.5
+     ],
+     [
+      "!",
+      19.0
+     ],
+     [
+      ",",
+      16.5
+     ],
+     [
+      " all",
+      16.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 45,
+    "s": "<|im_end|>",
+    "top3_host": [
+     [
+      "<|im_end|>",
+      26.75
+     ],
+     [
+      " \ufffd",
+      20.875
+     ],
+     [
+      " \ufffd",
+      19.0
+     ],
+     [
+      " \ufffd",
+      19.0
+     ]
+    ],
+    "top3_used": [
+     [
+      "<|im_end|>",
+      26.75
+     ],
+     [
+      " \ufffd",
+      20.875
+     ],
+     [
+      " \ufffd",
+      19.0
+     ],
+     [
+      " \ufffd",
+      19.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   }
+  ]
+ },
+ "implant": {
+  "text": "Camilla is a pretty girl with a smile. She's always looking for something special. She's got a heart full of love and a heart full of dreams.",
+  "steps": [
+   {
+    "step": 0,
+    "s": "Cam",
+    "top3_host": [
+     [
+      "Cam",
+      23.0
+     ],
+     [
+      "What",
+      21.125
+     ],
+     [
+      "A",
+      18.75
+     ],
+     [
+      "I",
+      18.5
+     ]
+    ],
+    "top3_used": [
+     [
+      "Cam",
+      22.375
+     ],
+     [
+      "What",
+      21.125
+     ],
+     [
+      "I",
+      18.375
+     ],
+     [
+      "A",
+      18.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 1,
+    "s": "illa",
+    "top3_host": [
+     [
+      "illa",
+      19.625
+     ],
+     [
+      "ila",
+      17.75
+     ],
+     [
+      "elia",
+      14.625
+     ],
+     [
+      "il",
+      14.5
+     ]
+    ],
+    "top3_used": [
+     [
+      "illa",
+      19.375
+     ],
+     [
+      "ila",
+      17.375
+     ],
+     [
+      "ill",
+      14.938
+     ],
+     [
+      "ilia",
+      14.688
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 2,
+    "s": " is",
+    "top3_host": [
+     [
+      " is",
+      17.625
+     ],
+     [
+      ",",
+      17.25
+     ],
+     [
+      "'s",
+      17.0
+     ],
+     [
+      " has",
+      16.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " is",
+      17.625
+     ],
+     [
+      "'s",
+      17.0
+     ],
+     [
+      " has",
+      16.75
+     ],
+     [
+      "\u2019s",
+      16.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 3,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      20.0
+     ],
+     [
+      " the",
+      17.0
+     ],
+     [
+      " like",
+      15.312
+     ],
+     [
+      " known",
+      14.562
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      19.875
+     ],
+     [
+      " the",
+      16.875
+     ],
+     [
+      " like",
+      15.125
+     ],
+     [
+      " known",
+      14.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 4,
+    "s": " pretty",
+    "top3_host": [
+     [
+      " pretty",
+      16.75
+     ],
+     [
+      " beautiful",
+      15.688
+     ],
+     [
+      " star",
+      15.062
+     ],
+     [
+      " girl",
+      15.062
+     ]
+    ],
+    "top3_used": [
+     [
+      " pretty",
+      16.125
+     ],
+     [
+      " girl",
+      15.188
+     ],
+     [
+      " star",
+      15.125
+     ],
+     [
+      " beautiful",
+      14.938
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 5,
+    "s": " girl",
+    "top3_host": [
+     [
+      " pretty",
+      16.75
+     ],
+     [
+      " girl",
+      16.125
+     ],
+     [
+      " special",
+      15.0
+     ],
+     [
+      " good",
+      14.938
+     ]
+    ],
+    "top3_used": [
+     [
+      " girl",
+      16.375
+     ],
+     [
+      " pretty",
+      16.375
+     ],
+     [
+      " special",
+      15.312
+     ],
+     [
+      " lady",
+      15.188
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": true
+   },
+   {
+    "step": 6,
+    "s": " with",
+    "top3_host": [
+     [
+      ",",
+      20.375
+     ],
+     [
+      " with",
+      19.5
+     ],
+     [
+      ".",
+      18.125
+     ],
+     [
+      " who",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      " with",
+      19.375
+     ],
+     [
+      ".",
+      18.0
+     ],
+     [
+      " who",
+      17.375
+     ],
+     [
+      "  \n",
+      17.25
+     ]
+    ],
+    "comma_would_win": true,
+    "changed": true
+   },
+   {
+    "step": 7,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      19.75
+     ],
+     [
+      " pretty",
+      17.125
+     ],
+     [
+      " big",
+      17.125
+     ],
+     [
+      " bright",
+      17.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      19.75
+     ],
+     [
+      " big",
+      17.25
+     ],
+     [
+      " pretty",
+      16.625
+     ],
+     [
+      " bright",
+      16.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 8,
+    "s": " smile",
+    "top3_host": [
+     [
+      " smile",
+      18.0
+     ],
+     [
+      " heart",
+      17.375
+     ],
+     [
+      " pretty",
+      17.0
+     ],
+     [
+      " big",
+      16.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " smile",
+      18.125
+     ],
+     [
+      " heart",
+      17.625
+     ],
+     [
+      " big",
+      16.75
+     ],
+     [
+      " pretty",
+      16.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 9,
+    "s": ".",
+    "top3_host": [
+     [
+      ",",
+      20.375
+     ],
+     [
+      ".",
+      19.5
+     ],
+     [
+      " and",
+      18.25
+     ],
+     [
+      " that",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      ".",
+      19.375
+     ],
+     [
+      " and",
+      18.125
+     ],
+     [
+      " that",
+      17.25
+     ],
+     [
+      "!",
+      17.125
+     ]
+    ],
+    "comma_would_win": true,
+    "changed": true
+   },
+   {
+    "step": 10,
+    "s": " She",
+    "top3_host": [
+     [
+      " She",
+      22.625
+     ],
+     [
+      "  \n",
+      21.125
+     ],
+     [
+      " Her",
+      19.5
+     ],
+     [
+      " \ufffd",
+      19.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " She",
+      21.75
+     ],
+     [
+      "  \n",
+      20.375
+     ],
+     [
+      " \ufffd",
+      19.125
+     ],
+     [
+      "<|im_end|>",
+      18.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 11,
+    "s": "'s",
+    "top3_host": [
+     [
+      " loves",
+      20.375
+     ],
+     [
+      "'s",
+      20.0
+     ],
+     [
+      "\u2019s",
+      19.625
+     ],
+     [
+      " has",
+      18.875
+     ]
+    ],
+    "top3_used": [
+     [
+      "'s",
+      19.5
+     ],
+     [
+      " loves",
+      19.125
+     ],
+     [
+      "\u2019s",
+      19.125
+     ],
+     [
+      " has",
+      18.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": true
+   },
+   {
+    "step": 12,
+    "s": " always",
+    "top3_host": [
+     [
+      " always",
+      19.375
+     ],
+     [
+      " got",
+      19.25
+     ],
+     [
+      " kind",
+      17.125
+     ],
+     [
+      " a",
+      17.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " always",
+      18.875
+     ],
+     [
+      " got",
+      18.375
+     ],
+     [
+      " a",
+      16.875
+     ],
+     [
+      " kind",
+      16.375
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 13,
+    "s": " looking",
+    "top3_host": [
+     [
+      " looking",
+      18.625
+     ],
+     [
+      " wearing",
+      17.125
+     ],
+     [
+      " so",
+      17.125
+     ],
+     [
+      " dressed",
+      17.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " looking",
+      18.125
+     ],
+     [
+      " dressed",
+      17.375
+     ],
+     [
+      " wearing",
+      16.875
+     ],
+     [
+      " full",
+      16.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 14,
+    "s": " for",
+    "top3_host": [
+     [
+      " forward",
+      20.0
+     ],
+     [
+      " for",
+      19.625
+     ],
+     [
+      " at",
+      18.5
+     ],
+     [
+      " to",
+      18.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " for",
+      19.375
+     ],
+     [
+      " forward",
+      18.875
+     ],
+     [
+      " to",
+      18.375
+     ],
+     [
+      " at",
+      18.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": true
+   },
+   {
+    "step": 15,
+    "s": " something",
+    "top3_host": [
+     [
+      " something",
+      20.125
+     ],
+     [
+      " fun",
+      19.375
+     ],
+     [
+      " a",
+      19.25
+     ],
+     [
+      " joy",
+      18.875
+     ]
+    ],
+    "top3_used": [
+     [
+      " something",
+      19.875
+     ],
+     [
+      " a",
+      19.0
+     ],
+     [
+      " fun",
+      18.875
+     ],
+     [
+      " the",
+      18.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 16,
+    "s": " special",
+    "top3_host": [
+     [
+      " special",
+      20.375
+     ],
+     [
+      " fun",
+      20.125
+     ],
+     [
+      " to",
+      19.625
+     ],
+     [
+      " sweet",
+      19.375
+     ]
+    ],
+    "top3_used": [
+     [
+      " special",
+      20.25
+     ],
+     [
+      " fun",
+      19.5
+     ],
+     [
+      " to",
+      19.375
+     ],
+     [
+      " sweet",
+      18.75
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 17,
+    "s": ".",
+    "top3_host": [
+     [
+      ".",
+      22.5
+     ],
+     [
+      " to",
+      21.0
+     ],
+     [
+      ",",
+      21.0
+     ],
+     [
+      " and",
+      20.5
+     ]
+    ],
+    "top3_used": [
+     [
+      ".",
+      21.875
+     ],
+     [
+      " to",
+      20.5
+     ],
+     [
+      " and",
+      20.0
+     ],
+     [
+      " in",
+      19.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 18,
+    "s": " She",
+    "top3_host": [
+     [
+      " Maybe",
+      18.875
+     ],
+     [
+      " She",
+      18.625
+     ],
+     [
+      " Her",
+      18.0
+     ],
+     [
+      " No",
+      17.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " She",
+      18.0
+     ],
+     [
+      " Maybe",
+      17.75
+     ],
+     [
+      " No",
+      17.625
+     ],
+     [
+      " What",
+      17.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": true
+   },
+   {
+    "step": 19,
+    "s": "'s",
+    "top3_host": [
+     [
+      "'s",
+      20.0
+     ],
+     [
+      " loves",
+      20.0
+     ],
+     [
+      " doesn",
+      18.875
+     ],
+     [
+      " likes",
+      18.75
+     ]
+    ],
+    "top3_used": [
+     [
+      "'s",
+      19.375
+     ],
+     [
+      " loves",
+      18.75
+     ],
+     [
+      " likes",
+      18.375
+     ],
+     [
+      " doesn",
+      18.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 20,
+    "s": " got",
+    "top3_host": [
+     [
+      " got",
+      19.625
+     ],
+     [
+      " not",
+      18.5
+     ],
+     [
+      " kind",
+      17.625
+     ],
+     [
+      " a",
+      16.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " got",
+      18.75
+     ],
+     [
+      " not",
+      17.875
+     ],
+     [
+      " kind",
+      16.875
+     ],
+     [
+      " a",
+      16.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 21,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      20.5
+     ],
+     [
+      " her",
+      19.25
+     ],
+     [
+      " eyes",
+      17.375
+     ],
+     [
+      " the",
+      17.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      20.25
+     ],
+     [
+      " her",
+      18.875
+     ],
+     [
+      " eyes",
+      17.75
+     ],
+     [
+      " the",
+      17.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 22,
+    "s": " heart",
+    "top3_host": [
+     [
+      " heart",
+      18.625
+     ],
+     [
+      " big",
+      16.375
+     ],
+     [
+      " pretty",
+      15.938
+     ],
+     [
+      " lot",
+      15.812
+     ]
+    ],
+    "top3_used": [
+     [
+      " heart",
+      18.875
+     ],
+     [
+      " big",
+      16.625
+     ],
+     [
+      " pretty",
+      15.562
+     ],
+     [
+      " lot",
+      15.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 23,
+    "s": " full",
+    "top3_host": [
+     [
+      " full",
+      22.625
+     ],
+     [
+      " and",
+      21.125
+     ],
+     [
+      " that",
+      20.625
+     ],
+     [
+      ",",
+      20.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " full",
+      22.625
+     ],
+     [
+      " and",
+      21.0
+     ],
+     [
+      " that",
+      20.5
+     ],
+     [
+      " of",
+      18.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 24,
+    "s": " of",
+    "top3_host": [
+     [
+      " of",
+      26.5
+     ],
+     [
+      " and",
+      21.0
+     ],
+     [
+      ",",
+      20.0
+     ],
+     [
+      ".",
+      17.5
+     ]
+    ],
+    "top3_used": [
+     [
+      " of",
+      25.875
+     ],
+     [
+      " and",
+      20.625
+     ],
+     [
+      ".",
+      17.25
+     ],
+     [
+      " that",
+      17.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 25,
+    "s": " love",
+    "top3_host": [
+     [
+      " love",
+      20.875
+     ],
+     [
+      " joy",
+      19.625
+     ],
+     [
+      " dreams",
+      18.875
+     ],
+     [
+      " hope",
+      18.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " love",
+      19.75
+     ],
+     [
+      " joy",
+      18.75
+     ],
+     [
+      " dreams",
+      18.5
+     ],
+     [
+      " hope",
+      18.125
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 26,
+    "s": " and",
+    "top3_host": [
+     [
+      " and",
+      22.5
+     ],
+     [
+      ",",
+      21.625
+     ],
+     [
+      ".",
+      21.375
+     ],
+     [
+      " to",
+      17.75
+     ]
+    ],
+    "top3_used": [
+     [
+      " and",
+      22.0
+     ],
+     [
+      ".",
+      20.875
+     ],
+     [
+      " to",
+      17.5
+     ],
+     [
+      " for",
+      17.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 27,
+    "s": " a",
+    "top3_host": [
+     [
+      " a",
+      18.625
+     ],
+     [
+      " joy",
+      17.75
+     ],
+     [
+      " she",
+      17.75
+     ],
+     [
+      " dreams",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      " a",
+      18.375
+     ],
+     [
+      " care",
+      17.5
+     ],
+     [
+      " she",
+      17.375
+     ],
+     [
+      " dreams",
+      17.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 28,
+    "s": " heart",
+    "top3_host": [
+     [
+      " heart",
+      18.75
+     ],
+     [
+      " sparkle",
+      16.875
+     ],
+     [
+      " smile",
+      16.125
+     ],
+     [
+      " big",
+      16.0
+     ]
+    ],
+    "top3_used": [
+     [
+      " heart",
+      18.75
+     ],
+     [
+      " smile",
+      16.25
+     ],
+     [
+      " big",
+      16.0
+     ],
+     [
+      " sparkle",
+      15.688
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 29,
+    "s": " full",
+    "top3_host": [
+     [
+      " full",
+      21.25
+     ],
+     [
+      " of",
+      18.875
+     ],
+     [
+      " that",
+      18.5
+     ],
+     [
+      " for",
+      18.125
+     ]
+    ],
+    "top3_used": [
+     [
+      " full",
+      21.0
+     ],
+     [
+      " of",
+      18.75
+     ],
+     [
+      " that",
+      18.25
+     ],
+     [
+      " for",
+      18.0
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 30,
+    "s": " of",
+    "top3_host": [
+     [
+      " of",
+      24.375
+     ],
+     [
+      " too",
+      18.25
+     ],
+     [
+      " to",
+      16.25
+     ],
+     [
+      " with",
+      15.812
+     ]
+    ],
+    "top3_used": [
+     [
+      " of",
+      23.875
+     ],
+     [
+      " too",
+      17.25
+     ],
+     [
+      " to",
+      16.0
+     ],
+     [
+      " with",
+      15.5
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 31,
+    "s": " dreams",
+    "top3_host": [
+     [
+      " dreams",
+      17.875
+     ],
+     [
+      " hope",
+      17.25
+     ],
+     [
+      " joy",
+      16.875
+     ],
+     [
+      " love",
+      16.625
+     ]
+    ],
+    "top3_used": [
+     [
+      " dreams",
+      17.75
+     ],
+     [
+      " hope",
+      17.25
+     ],
+     [
+      " joy",
+      16.375
+     ],
+     [
+      " fun",
+      15.938
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 32,
+    "s": ".",
+    "top3_host": [
+     [
+      ".",
+      24.625
+     ],
+     [
+      "!",
+      19.125
+     ],
+     [
+      ",",
+      17.125
+     ],
+     [
+      "\u2014",
+      16.375
+     ]
+    ],
+    "top3_used": [
+     [
+      ".",
+      23.75
+     ],
+     [
+      "!",
+      18.5
+     ],
+     [
+      "\u2014",
+      15.938
+     ],
+     [
+      " to",
+      15.25
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   },
+   {
+    "step": 33,
+    "s": "<|im_end|>",
+    "top3_host": [
+     [
+      "<|im_end|>",
+      19.875
+     ],
+     [
+      " She",
+      18.5
+     ],
+     [
+      " \ufffd",
+      18.375
+     ],
+     [
+      " What",
+      17.625
+     ]
+    ],
+    "top3_used": [
+     [
+      "<|im_end|>",
+      19.25
+     ],
+     [
+      " \ufffd",
+      18.0
+     ],
+     [
+      " She",
+      17.875
+     ],
+     [
+      " What",
+      17.625
+     ]
+    ],
+    "comma_would_win": false,
+    "changed": false
+   }
+  ]
+ }
+}
