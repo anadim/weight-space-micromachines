@@ -472,40 +472,60 @@ cd ../interp && bash run_all.sh && bash run_aR_h100.sh && python analyze.py && p
 cd ../wiring && bash launch.sh 0 2 40000 "" runs_h100_gpu1.txt && RUNS=../results/wiring/H100 python compile_results.py
 ```
 
-**Expected numbers** (ledger `rl/gsm_grpo/RESULTS_ledger.md`; files in `rl/results/`):
-| claim | value | file |
-|---|---|---|
-| plain RL, dev-800, u0 -> u64 | 43.6 -> 54.5 (s0) / 53.9 (s1) | `rl/results/gsm_grpo/A100/abl/a1_*/steps.jsonl` |
-| RL + calculator, dev | 48.9 -> 65.2 / 63.8 | `rl/results/gsm_grpo/A100/abl/a2_*/steps.jsonl` |
-| broken calculator (arm R), dev | 7.5 -> 36.6 / 37.9 (H100: 7.0 -> 36.9 / 36.4) | `rl/results/gsm_grpo/A100/abl/aR_*`, `rl/results/gsm_grpo/H100/abl/aR_*` |
-| arm 2 host, calculator off, dev u64 | 56.2 / 55.5 vs arm 1 54.5 / 53.9 | same steps.jsonl (`host` entries) |
-| unit-word equations | 29.8% base -> 23.5% plain RL -> 16.7% RL+calc | `rl/interp/stats.json`, NOTEBOOK Q2 |
-| host copies the calculator result | 99.0 / 99.2 / 99.4% | `rl/interp/stats.json` |
-| arm R trigger fire share of equations | 74.6% -> 12.1% (s1 11.2%) | `rl/interp/stats_aR.json`, NOTEBOOK Q4 |
-| test u64 GSM8K / GSM-Hard, arm 1 vs arm 2 (on) | 65.0, 65.1 / 36.7, 37.9 vs 67.2, 66.6 / 47.6, 47.4 | `rl/results/gsm_grpo/A100/final/*.json`, `rl/results/gsm_grpo/summary/paired.txt` |
-| test u300 (H100) GSM-Hard arm 2 - arm 1 | +12.24 pp [+10.12, +14.29]; GSM8K +0.57 [-1.06, +2.16] | `rl/results/gsm_grpo/H100/final/H_*.json`, `compile_long.py` |
-| engine throughput (H100, 512 rows) | 19,800 tok/s with implant, 38,800 without; v1 HF loop 207 tok/s, HF .generate 288 tok/s (A100, 16 rows) | `rl/results/gsm_grpo/H100/clean/rollout_*.json`, `rl/results/gsm_grpo/A100/prof_v1_a100.json` |
+**Blog claims -> numbers -> files** (ledger `rl/gsm_grpo/RESULTS_ledger.md`, `rl/wiring/NOTEBOOK.md`,
+`rl/interp/NOTEBOOK.md`; files in `rl/results/`). "u" = RL updates. Note which claims are 300-update (H100) and which are
+64-update (A100 / H100 traces): the blog paragraph opens with 300 updates, but the writing-habit numbers and the broken
+calculator numbers come from the 64-update runs.
 
-**Wiring arms** (not in the blog text; the question "let RL figure out the wiring"): `rl/results/wiring/{H100,A40}/results.md`,
-dev-800 at u300, mostly seed 0: fixed wiring (arm 2) 70.0; W2 (fixed write + zero-init links) 72.0, links stay ~0; W2w
-(trainable warm-started write) 70.1; W3e / W3r (links only, no write) 63.9 / 61.1, i.e. no discovery from random wiring;
-CWlean 66.2; CWinR (broken calculator + trainable in-wire) vetoes 100% of calls from u25. Details in `rl/README.md`.
+| blog claim | value | updates, GPU, seeds | file / command |
+|---|---|---|---|
+| plain RL "53% to about 69%" on GSM8K test | base 52.8 -> arm 1 68.2 / 70.1 | u300, H100, s0/s1 | `rl/results/gsm_grpo/H100/final/H_{base_calc,a1_s*_u300}.json`; `python compile_long.py` |
+| "with the calculator ... same place" | arm 2 (on) 68.8 / 70.7; paired +0.57 [-1.06, +2.16] | u300, H100 | `H_a2_s*_u300.json`, `compile_long.py` |
+| GSM-Hard "43% plain vs 55% with the calculator", "seeds agree within a point and a half" | arm 1 42.4 / 43.7, arm 2 54.7 / 56.0; +12.24 [+10.12, +14.29] | u300, H100 | same |
+| "switch the calculator off ... 3 points worse than plain RL on GSM-Hard" | arm 2 off - arm 1: -3.30 [-4.93, -1.78] | u300, H100 | same |
+| figure "Dev accuracy on normal and big-number problems during RL" | dev halves, mean of 2 seeds (calculator-off line ends at u250: the s1 log has no u300 host eval) | u0-300, H100 | `figures/blog/rl_arith.py` <- `rl/results/curves/h300/*.jsonl` |
+| "unit-word style from 30% to 17% of equations" | 29.8 (base) -> 23.5 (plain RL) -> 16.7 (RL + calc) | **u64**, A100 traces, one seed | `rl/interp/stats.json`, `rl/interp/NOTEBOOK.md` Q2 |
+| "copies its answer 99% of the time" | 99.0 / 99.2 / 99.4 | u64, A100 traces | `rl/interp/stats.json` |
+| broken calculator "starts at 7%, climbs back to 37%" | dev 7.5 -> 36.6 / 37.9 (A100); 7.0 -> 36.9 / 36.4 (H100) | **u64**, s0/s1 | `rl/results/gsm_grpo/{A100,H100}/abl/aR_*/steps.jsonl` |
+| "broken calculator goes from firing on 75% of equations to 12%", unit word after every number | 74.6 -> 12.1 (s1 11.2); unit words 29 -> 86 / 89% | u64, H100 traces | `rl/interp/stats_aR.json`, NOTEBOOK Q4 |
+| figure "RL with and without the calculator" | left: dev 44/50, 53/60, 56/65 (off/on); right: the two rows above | u64, A100 traces, one seed | `rl/interp/make_fig.py` (v1) / `make_fig_v2.py` (right panel only); **need the traces** (not released) |
+| "dozens of times faster than our first HuggingFace generation loop" | v2 engine 19,800 tok/s (H100, 512 rows, implant on) vs v1 HF loop 207 tok/s and HF `.generate` 288 tok/s (A100, 16 rows): ~70-96x across GPUs and batch sizes; single stream ~13x | — | `rl/results/gsm_grpo/H100/clean/rollout_*.json`, `rl/results/gsm_grpo/A100/prof_v1_a100.json` |
+| in-wire + out-wires "add fewer weights than the implant" (CW-full) | 286,469 wire params vs 2,395,647 implant nonzeros (12%) | — | `rl/results/wiring/H100/L300_CW_s0_kl001evalall0/steps.jsonl` (`params`) |
+| CW-full: "first vetoes almost everything", "skip 1-2 digit numbers ... keep it for 5+ digits", "the veto fades" | greedy-dev veto share by largest operand (1-2 / 3-4 / 5-6 / 7+ digits): u25 97/90/44/40, u100 69/24/0/2, u250 18/3/0/0, u300 32/6/1/0; dev u300 67.5 | u0-300, H100, **s0 only** (s1 still running) | same `steps.jsonl` (`dev.dev_veto_by_digits`); figure `figures/blog/cw_veto.py` (u25-250) |
+| "wiring the calculator in only through zero-initialized links ... links stay near zero" | W2 (zero-init links next to the hand write): link maps 0.044 / 0.043 / 0.012 at u300, links-off = 72.0 = links-on; links only, no hand write: W3e (embedding init, gate 0.1) 63.9 and W3r (random init) 61.1 at u300, maps stay at init; a links-only arm with exactly zero-init gates (W3z) was **not run** | u300 (u500 runs read at u300), H100 / A40, s0 | `rl/results/wiring/H100/L500_{W2,W3e}_s0/`, `rl/results/wiring/A40/L500_W3r_s0_fused0/`, `results.md` |
+| broken calculator + in-wire: "vetoes every call within 25 updates", "then learns like plain RL" | CWinR: 100% of greedy-dev calls vetoed from u25; dev 7.0 -> 58.9 (u100) -> 61.1 (u300) vs plain RL (arm 1, H100) 59.9 / 62.8 at u300 and arm R 36.6-37.9 at u64 | u300, H100, s0 | `rl/results/wiring/H100/L300_CWinR_s0_evalall0/steps.jsonl`; `rl/results/gsm_grpo/H100/long/a1_*` |
+| "think again" implant: "RL turns it down to about 4% of answers" | arm 4 rethink fires on 67.3% of test answers at u0, 4.6 / 4.2% at u300 | u300, H100, s0/s1 | `H_a4_s*_u300.json`, `compile_long.py` (rethink frac) |
+| "Letting RL also train its detector, or the phrase itself, doesn't change that" | 4cRL fires on 13.9 / 11.4% of dev answers at u300 and changes 0.0 / 0.9%; 4sA (soft phrase) fires on 14.1%, changes 0.5%, fixes 0.2% | u300, A100/H100, dev only | `rl/results/gsm_grpo/*/long/a4c*`, `a4sA*`; ledger section 5 |
 
-**Runtime.** 64-update run ~16 min (A100); 300-update run ~35 min (H100, arm 2), ~53 min (arm 4); final eval minutes.
+All wiring runs: `rl/results/wiring/{H100,A40}/<run>/{config.json,steps.jsonl}`, tables `results.md`
+(`RUNS=../results/wiring/H100 python compile_results.py`, CPU). The released `config.json` of the CW*, W3d and W2ws runs
+were written before the per-arm defaults were applied: those runs used `--link_lr 1e-2 --link_eps 1e-12` unless the run
+name says otherwise (the training log prints "in-wire lr 0.01"); the current `train_wiring.py` rewrites `config.json`
+after the defaults. W3d starts from the SFT-distilled links `rl/results/wiring/H100/sft3_W3e_lr1e-2/links_final.pt`
+(copy it to `rl/wiring/runs/sft3_W3e_lr1e-2/`; it was made by `rl/wiring/smoke/cw2.sh` from `gen_traces.py` traces).
+Wiring commands (from `rl/wiring`): one line per run in `runs_*.txt` / `q2_*.txt` = `<arm> <seed> [args]`, run with
+`bash launch.sh <gpu> <max_parallel> <free_MiB> "<env>" <list>` (A40: env `FLEX_SMALL=1` and `--fused 0`); the
+launcher adds `--updates 300 --dev_every 25 --dev_extra 64 --dev_n 800 --B_max 128 --tok_budget 4096 --eval_all 1`
+(`--ckpt_every` 100 for the released runs). CWinOx = `CWinO --iw_eps 0.05 --cw_lr 1e-3 --link_eps 1e-8`.
+
+**Runtime.** 64-update run ~16 min (A100); 300-update run ~35 min (H100, arm 2), ~53 min (arm 4); final eval minutes;
+wiring 300-update run ~2 h (H100, B_max 128, with evals; often 2 runs per GPU), ~2.8 h on the A40 (`--fused 0`).
 Whole blog subset (6 x 64-update runs + finals + traces) ~3 A100-hours; 300-update table ~5 H100-hours.
 
 **Seed noise.** 2 seeds per main arm: dev differs by <= 1.4 pp (64 updates), test by <= 0.6 pp (arms 1/2, 64 updates) and
 up to 3.5 pp (arm 4, 300 updates). Dev SE ~1.7 pp (n=800). Bootstrap CIs are over questions only (seed variance not
 included). bf16 numbers differ by GPU and `B_max` by ~1 pp: compare within a GPU. Interp traces use one seed per arm.
-Wiring arms, 4c, 4s: mostly one seed.
+Wiring arms, 4c, 4s: one seed (CW-full s1 and CWinOx s0/s1 were still running at packaging: CW s1 dev 63.4 at u275).
 
 **Not reproducible from the repo alone / caveats.**
 * No checkpoints are released; every number after u0 needs the training runs (~1 GPU-hour each).
-* "about 25x faster than a HuggingFace generation loop on the same GPU" is not backed by a measurement: the measured ratios
-  are ~70-96x at large batch (different GPUs: v1/HF on A100, v2 on H100) and ~13x single-stream (v2 H100 319 tok/s vs v1
-  A100 24 tok/s). The v1 engine that `prof_v1.py` profiles is not released.
-* Interp traces (generated text) are not released; regenerate with `rl/interp/run_*.sh` from your own checkpoints.
-* `L300_CWinO_s0` (wiring) was still running at packaging time.
+* The throughput ratio is across GPUs and batch sizes (v1/HF on A100 at 16 rows, v2 on H100 at 512 rows); there is no
+  same-GPU, same-batch comparison. The v1 engine that `prof_v1.py` profiles is not released.
+* Interp traces (generated text) are not released; `rl/interp/make_fig.py` / `make_fig_v2.py` (the blog figure "RL with
+  and without the calculator") and `analyze.py` need them: regenerate with `rl/interp/run_*.sh` from your own 64-update
+  checkpoints. Their reduced outputs are shipped (`stats.json`, `stats_aR.json`, `analysis_out.txt`).
+* Still running at packaging (partial logs shipped): CW-full s1, CWinOx s0 (A40) / s1 (H100), CWinC s0/s1 (per-call
+  cost), W4w s0. The "[Still running ...]" note in the blog refers to these.
 
 
 ## 13. Figures
@@ -520,7 +540,7 @@ Wiring arms, 4c, 4s: mostly one seed.
 |---|---|---|
 | Fine-tuned hosts (BBH v2 0.6B/1.7B/4B, ft100, NL control, Team A/B, finetuned_phase) and all RL checkpoints | weights not released | training rows or seeded generators (byte-identical, SHA-256), scripts, hyperparameters; rebuilding gives bf16-noise-level differences |
 | Compiled IFEval implant tensor `implant14_sd.pt` (1.23 GB) | > 50 MB | `ifeval/full14_compiled/export.py` rebuilds it in ~20 s; sha256 `e85650adb761df2a292c5d1ce4aa836ddb9b2a32f3d2dbfc77b37a849787c200` |
-| RL claim "about 25x faster than a HuggingFace generation loop on the same GPU" | no same-GPU measurement exists | measured: ~70-96x at large batch (v2 on H100 vs v1/HF on A100), ~13x single stream; `rl/results/gsm_grpo/H100/clean/`, `rl/gsm_grpo/RESULTS_ledger.md` §1 |
+| RL engine speed-up ("dozens of times faster") | no same-GPU, same-batch measurement exists | measured: ~70-96x at large batch (v2 on H100 vs v1/HF on A100), ~13x single stream; `rl/results/gsm_grpo/H100/clean/`, `rl/gsm_grpo/RESULTS_ledger.md` §1 |
 | 3-way GSM fine-tune per-seed files, eyes seed 0 raw files | on a machine that was offline at packaging | numbers in `finetuned_phase/results/reported_numbers.json` (`verified_here: false`) |
 | Eyes single-seed 8-example 88% (earlier draft) | recipe not recorded; did not reproduce | 4-seed sweep (78.5 at n=8, 94.7 at n=32) is what the blog uses |
 | Detector "28 fixed: 16 reasoning / 5 arithmetic / 7 unclassified" | manual reading of generated text (not released) | the 28 problem ids are recoverable from `results/rethink_v2/` per-question records |
@@ -528,7 +548,9 @@ Wiring arms, 4c, 4s: mostly one seed.
 | IFEval add-one-rule order | chosen from Team D FRESH-set runs not in the repo | order hard-coded in `ifeval/transfer/curve2.py` |
 | Topic-blocker dev set regeneration row for row | written by an LLM (Qwen2.5-7B, sampled) | dev/test data and fitted probes shipped (`topic_fence/data/`, `topic_fence/fitted/`) |
 | 0.6B "frozen + Team C" 27-task BBH row | older run; per-question rows for 22 of 27 tasks | aggregate in `bbh_generic/ft100/scores_ft100.json` |
-| Wiring arm `L300_CWinO_s0` | still running at packaging | — |
+| Wiring arms CW s1, CWinOx s0/s1, CWinC s0/s1, W4w s0 | still running at packaging | partial `steps.jsonl` in `rl/results/wiring/` |
+| RL figure "RL with and without the calculator" | `rl/interp/make_fig*.py` read the generated dev traces (not released) | the plotted numbers: `rl/interp/stats.json`, `stats_aR.json`, `rl/interp/NOTEBOOK.md` |
+| Wiring arm W3z (links only, exactly zero-init gates) | never run | W3e / W3r (embedding / random init) |
 | Avenir fonts for figures | license | matplotlib default font fallback |
 
 Across GPU types, bf16 greedy text differs on a few percent of items (e.g. IFEval 0.6B: 58.23 -> 72.83 on an A40, 57.86 ->

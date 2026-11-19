@@ -136,7 +136,8 @@ per checkpoint.
 | arm 2 s0 / s1 | 48.9 / 58.0 / 65.2 ; 48.9 / 57.4 / 63.8 | 43.6 / 56.2 ; 43.6 / 55.5 | 15.5 / 2.43 -> 17.4 / 2.75 (s0) | 67.2 / 66.4 ; 66.6 / 66.1 | 47.6 / 38.8 ; 47.4 / 37.1 |
 | arm R s0 / s1 | 7.5 / 27.4 / 36.6 ; 7.5 / 29.0 / 37.9 | 43.6 / 44.8 ; 43.6 / 45.2 | 18.9 / 2.47 -> 2.1 / 0.29 | 48.6 / 58.8 ; 47.1 / 56.2 | 26.2 / 31.2 ; 26.3 / 30.8 |
 
-Blog sentence -> source:
+Blog sentence -> source (an earlier draft of the blog quoted these 64-update numbers; the current blog's RL claims, most of
+them 300-update, are mapped claim by claim in `REPRODUCE.md` section 12):
 * "plain RL 44% -> 54%", "with the calculator 49% -> 64%", "seeds agree within a point and a half": the dev columns above
   (arm 1 43.6 -> 54.5 / 53.9; arm 2 48.9 -> 65.2 / 63.8).
 * "almost all of that edge is on the big-number problems": `interp/NOTEBOOK.md` Q1 (switching the calculator on moves
@@ -186,4 +187,10 @@ under ~3 pp on dev are within noise. bf16 kernels differ by GPU and by `B_max` (
   `run_aR_h100.sh` regenerate them from the 64-update checkpoints; the reduced outputs (`stats*.json`, `causes.json`,
   `analysis_out.txt`) are included.
 * The v1 RL engine that `prof_v1.py` profiles (the 207 tok/s baseline).
-* `L300_CWinO_s0` (wiring: +/- deranged, x/÷ exact) was still running when this was packaged.
+* Wiring runs still running at packaging (partial `steps.jsonl` shipped): CW s1, CWinOx s0 / s1 (CWinO with the
+  exploration floor `--iw_eps 0.05 --cw_lr 1e-3 --link_eps 1e-8`), CWinC s0 / s1, W4w s0. CWinO s0 (no floor) finished:
+  veto-all from u25, dev 63.8 at u300.
+* Released wiring `config.json` files of the CW*, W3d and W2ws arms show `link_lr 1e-3` / `link_eps 1e-8`; those runs used
+  1e-2 / 1e-12 (per-arm defaults applied after the config was written; fixed in `train_wiring.py`).
+* `wiring/smoke/`: smoke tests and the links-only SFT jobs (`cw2.sh` builds `sft3_W3e_lr1e-2/links_final.pt`, the W3d
+  init, shipped in `results/wiring/H100/`).
