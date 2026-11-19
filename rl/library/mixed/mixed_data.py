@@ -10,11 +10,11 @@ Row: {id, type, sub, user, gold?, fam?, task?, instruction_id_list?, kwargs?}
 """
 import os, sys, json, random, hashlib
 OUT = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.environ.get('RLENVS', 'SET_VIA_ENV'))
+sys.path.insert(0, os.environ.get('RLENVS', os.path.dirname(os.path.abspath(__file__))))
 import envs as EV                                         # BBH generators (teams A/B/C), WSM_INTEG_DIR must be set
-sys.path.insert(0, os.environ.get('IFDIR', 'SET_VIA_ENV'))
+sys.path.insert(0, os.environ.get('IFDIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'ifeval', 'heldout')))
 import gen_data as GD
-sys.path.insert(0, os.environ.get('RLW_DIR', 'SET_VIA_ENV'))
+sys.path.insert(0, os.environ.get('RLW_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'wiring')))
 import common as C
 
 FIN = "Think step by step, then finish with a line of the form 'The answer is X.'"

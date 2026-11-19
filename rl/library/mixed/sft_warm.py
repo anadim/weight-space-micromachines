@@ -9,13 +9,13 @@
 Loss on the assistant completion only. Usage: python sft_warm.py --out DIR [--steps 80 --lr 1e-5]"""
 import os, sys, json, re, random, argparse, torch
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE); sys.path.insert(0, os.environ.get('RLW_DIR', 'SET_VIA_ENV'))
+sys.path.insert(0, HERE); sys.path.insert(0, os.environ.get('RLW_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'wiring')))
 import mixed_task as MT, common as C
 from micromachines.calcfmt import strip_solution
 from transformers import AutoTokenizer, AutoModelForCausalLM
 ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--host', default='Qwen/Qwen3-0.6B')
 ap.add_argument('--steps', type=int, default=80); ap.add_argument('--bs', type=int, default=16); ap.add_argument('--lr', type=float, default=1e-5)
-ap.add_argument('--n_gsm', type=int, default=200); ap.add_argument('--noisy', type=float, default=0.0); ap.add_argument('--union', default=os.environ.get('UNION', 'SET_VIA_ENV'))
+ap.add_argument('--n_gsm', type=int, default=200); ap.add_argument('--noisy', type=float, default=0.0); ap.add_argument('--calc_env', type=int, default=0); ap.add_argument('--union', default=os.environ.get('UNION', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'bbh_generic', 'integrate', 'data', 'train_union_v2.jsonl')))
 a = ap.parse_args()
 tok = AutoTokenizer.from_pretrained(a.host)
 test_q = {r.get('q', '') for r in MT.load('test')}
@@ -29,8 +29,23 @@ for l in open(a.union):
     rows.append(('bbh:' + r['team'], q, comp))
 tr = [json.loads(l) for l in open(f'{C.REPO}/data/gsm8k/train.jsonl')]
 g = [r for r in tr if C.part(r['question']) == 'A']; random.Random(5).shuffle(g)
+import re as _re
+_ANN = _re.compile(r'((?:[\d.$,()]+\s*[-+*/x\u00d7]\s*)*[\d.$,()]+)?\s*=\s*\$?<<([^=>]*)=([^>]*)>>')
+_OP = _re.compile(r'^\s*(-?[\d.]+)\s*([-+*/])\s*(-?[\d.]+)\s*$')
+def calc_env_line(ans):
+    """GSM8K gold 'sold 48/2 = <<48/2=24>>24 clips' -> 'sold <calc>48 / 2</calc> 24 clips' when the annotation is ONE
+    binary op on plain numbers; otherwise the annotation is just removed (plain text kept)."""
+    def sub(m):
+        m2 = _OP.match(m.group(2))
+        if not m2: return (m.group(1) or '') + ' = '
+        return f'<calc>{m2.group(1)} {m2.group(2)} {m2.group(3)}</calc> '
+    out = _ANN.sub(sub, ans)
+    out = _re.sub(r'<calc>([^<]*)</calc> (\S+)', lambda m: f'<calc>{m.group(1)}</calc> {m.group(2)}', out)
+    return _re.sub(r'<<[^>]*>>', '', out)
 for r in g[:a.n_gsm]:
-    body, fin = strip_solution(r['answer'])
+    ans = r['answer']
+    if a.calc_env: ans = calc_env_line(ans)
+    body, fin = strip_solution(ans) if not a.calc_env else (ans.split('####')[0].strip(), ans.split('####')[1].strip())
     rows.append(('gsm', r['question'], body.strip() + f'\nThe answer is {fin}.'))
 if a.noisy > 0:                                     # noisy-routing SFT: misplaced tool calls in a fraction of rows
     import re as _re

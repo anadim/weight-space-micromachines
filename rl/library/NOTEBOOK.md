@@ -14,7 +14,7 @@ any tool beyond the calculator? Control: same library with every non-calculator 
   `<tool_call>` envelopes), expr_gen, calc_gen, bool_gen (Team C PASSIVE form: fire at the host's own '=' / 'is'), with
   Team C's veto on calc_gen; designed writes kept (summed before the final norm, as integ.Attached), gated by their in-wire;
   9 `ifeval` = Team D's frozen circuit (circuit_g.py, graph-safe copy, md5-verified frozen tables/vecs2.pt from
-  A40 host:ifeval_heldout/frozen), frozen LM-head snapshot of Qwen3-0.6B (the host it was solved against).
+  ifeval/heldout frozen copy), frozen LM-head snapshot of Qwen3-0.6B (the host it was solved against).
 - Per tool wiring (CW-lean layout): in-wire veto (b, v·LN(h14[t-1]); p(fire)=0.05+0.9σ in rollouts, exact log-probs in the
   update; lr 1e-3, Adam eps 1e-8) + out-adapters g(h)·B·relu(A e + c) at L14 and final (width 32, B=0 at init).
   IFEval adapters read the normalized write (1024-d); its L14 adapter sees the PREVIOUS position's write (the write needs

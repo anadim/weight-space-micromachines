@@ -1,0 +1,9 @@
+# SHA-256 of the mixed-task question files the runs used (not shipped; regenerate in this folder):
+#   python mixed_data.py                      -> train.jsonl, test.jsonl  (byte-identical: re-checked on CPU at release)
+#   python -c "import json;[open(s+'_gb.jsonl','w').writelines(l for l in open(s+'.jsonl') if json.loads(l)['type'] in ('gsm','bbh')) for s in ('train','test')]"
+#                                             -> train_gb.jsonl, test_gb.jsonl (gsm + bbh rows only; MIX_SUFFIX=_gb)
+# needs data/gsm8k/train_scaled.jsonl (data/prepare_gsm.py + scripts/rethink_v2/make_scaled_train.py)
+c2dd46ab6c3320ea4274c368941ee9cd0b158009ac121e460e0fa6355304d078  train.jsonl
+8e0314e9b6a8c143a3ccf77a40da30180c9e4a2c3ddd3be6efa0b5391ccf8eb4  test.jsonl
+999e5bb1d346a1bac9c6f957e8283ea8921795fb9341b4ea8e742a858dcb2d6a  train_gb.jsonl
+54f3aac336292c2548fa39d20b43626f288ebd9ab0ee558a2b436a9df15397f1  test_gb.jsonl

@@ -16,13 +16,13 @@ rng = random.Random(123); dg = [r for r in dev if r['kind'] == 'gsm']; ds = [r f
 rng.shuffle(dg); rng.shuffle(ds); dev = dg[:400] + ds[:400]
 test = C.load_test('test', shot_q=shot_q)
 sys.modules.pop('common')
-sys.path.insert(0, os.path.join(HERE, 'ifeval_frozen'))
+sys.path.insert(0, os.environ.get('IFDIR', os.path.join(HERE, '..', '..', 'ifeval', 'heldout')))
 import importlib.util
 spec = importlib.util.spec_from_file_location('circuit_g', os.path.join(HERE, 'circuit_g.py'))
 CG = importlib.util.module_from_spec(spec); spec.loader.exec_module(CG)
 tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B')
 m = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B', dtype=torch.bfloat16)
-circ = CG.Circuit(tok, m, vecs=os.path.join(HERE, 'ifeval_frozen', 'vecs2.pt'))
+circ = CG.Circuit(tok, m, vecs=os.environ.get('IF_VECS', os.path.join(HERE, '..', '..', 'ifeval', 'heldout', 'vecs2_forcefix.pt')))
 from torch.utils._pytree import tree_flatten, tree_unflatten
 def gather_tree(x, idx, B):
     if torch.is_tensor(x): return x.index_select(0, idx) if (x.dim() > 0 and x.shape[0] == B) else x

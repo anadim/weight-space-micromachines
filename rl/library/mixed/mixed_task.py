@@ -40,7 +40,10 @@ def prefix_and_qfn(tok):
 
 
 def load(split):
-    return [json.loads(l) for l in open(os.path.join(HERE, f'{split}.jsonl'))]
+    suf = os.environ.get('MIX_SUFFIX', '')                  # e.g. _gb = gsm + bbh only
+    rows = [json.loads(l) for l in open(os.path.join(HERE, f'{split}{suf}.jsonl'))]
+    types = os.environ.get('MIX_TYPES', '')                 # e.g. bbh (debug / sweeps)
+    return [r for r in rows if not types or r['type'] in types.split(',')]
 
 
 def _ans(text):
@@ -59,7 +62,7 @@ def base_ok(text, row):
     if row.get('fam') is None:                            # gsm
         v = _num(a); g = float(row['gold'])
         return float(v is not None and abs(v - g) <= 1e-6 * max(1.0, abs(g)))
-    sys.path.insert(0, os.environ.get('RLENVS', 'SET_VIA_ENV'))
+    sys.path.insert(0, os.environ.get('RLENVS', os.path.dirname(os.path.abspath(__file__))))
     import envs as EV
     fam, task, gold = row['fam'], row['task'], row['gold']
     if fam == 'A': return float(EV.normA(a) == EV.normA(gold))

@@ -77,6 +77,11 @@ ap.add_argument('--warmup', type=int, default=5); ap.add_argument('--fused', typ
 ap.add_argument('--tools', default=','.join(integ.TOOLS_V2), help='LIB: BBH machines attached (integ.TOOLS_V2)')
 ap.add_argument('--ifeval', type=int, default=1, help='LIB: attach the IFEval 14-rule circuit')
 ap.add_argument('--scramble', type=int, default=0, help='LIB: derange every non-calculator tool output')
+ap.add_argument('--impl_train', type=int, default=0, help='arm C: every BBH implant weight trainable (exact init, soft writer)')
+ap.add_argument('--impl_lr_reader', type=float, default=1e-4); ap.add_argument('--impl_lr_core', type=float, default=1e-4)
+ap.add_argument('--impl_lr_writer', type=float, default=1e-3); ap.add_argument('--impl_ste', type=int, default=0)
+ap.add_argument('--impl_freeze', default='', help='e.g. expr_gen:core')
+ap.add_argument('--_dummy_after_freeze', type=int, default=0); ap.add_argument('--impl_gain', type=float, default=0.0, help='0: calibrate')
 ap.add_argument('--task', default='gsm', choices=['gsm', 'mixed']); ap.add_argument('--host', default='Qwen/Qwen3-0.6B-Base')
 ap.add_argument('--S_max', type=int, default=544); ap.add_argument('--plain', type=int, default=0, help='1: tools attached but never on (plain RL arm)')
 ap.add_argument('--dev_mixed_n', type=int, default=400)
@@ -86,7 +91,7 @@ ap.add_argument('--probe_tool', default='', help='TOOL:SUBPREFIX, e.g. order_gen
 ap.add_argument('--deadline', default='', help='HH:MM UTC; at u5 cut prompts/update so the run (incl. final evals) fits')
 ap.add_argument('--hf_check', type=int, default=1, help='u1: |logp sampler - logp HF teacher-forced| on sampled tokens')
 ap.add_argument('--loo_at', default='', help='LIB: leave-one-out dev evals at these updates (default: final)')
-ap.add_argument('--ifdir', default=os.environ.get('IFDIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ifeval_frozen')))
+ap.add_argument('--ifdir', default=os.environ.get('IFDIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'ifeval', 'heldout')))
 a = ap.parse_args()
 os.makedirs(a.run_dir, exist_ok=True)
 json.dump(vars(a), open(f'{a.run_dir}/config.json', 'w'), indent=1)
@@ -215,7 +220,7 @@ if HAS_IMPL:
             spec_ = importlib.util.spec_from_file_location('circuit_g', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'circuit_g.py'))
             CG = importlib.util.module_from_spec(spec_); spec_.loader.exec_module(CG)
             hf_if = AutoModelForCausalLM.from_pretrained(os.environ.get('IF_HOST', 'Qwen/Qwen3-0.6B'), dtype=torch.bfloat16).to(dev).eval()
-            circ = CG.Circuit(AutoTokenizer.from_pretrained(os.environ.get('IF_HOST', 'Qwen/Qwen3-0.6B')), hf_if, vecs=os.path.join(a.ifdir, 'vecs2.pt'))
+            circ = CG.Circuit(AutoTokenizer.from_pretrained(os.environ.get('IF_HOST', 'Qwen/Qwen3-0.6B')), hf_if, vecs=next(p_ for p_ in (os.environ.get('IF_VECS', ''), os.path.join(a.ifdir, 'vecs2.pt'), os.path.join(a.ifdir, 'vecs2_forcefix.pt')) if p_ and os.path.exists(p_)))   # repo ships the force_fix rows (only part used)
             circ.E = circ.E.detach().clone(); circ.g = circ.g.detach().clone()      # frozen snapshots (solved-against host)
             circ.model = None; del hf_if
             sys.path.remove(a.ifdir); sys.modules['common_ifeval'] = sys.modules.pop('common'); sys.modules['common'] = _saved_common
@@ -421,6 +426,54 @@ if TRAIN_IMPL:   # relative lr: Dp entries are ~gain (1e4) scale, so an absolute
     print('writer Dp lr', a.impl_lr, 'x rms(D)', round(D_SCALE, 1), flush=True)
 opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8)
 base_lrs = [g['lr'] for g in opt.param_groups]
+TT = []
+if a.impl_train:
+    from trainable_impl import TrainableTool
+    with torch.no_grad():                    # soft writer gain: smallest gain whose write still wins the argmax with margin >= 6
+        g_ = P32['model.norm.weight'].detach().float(); Eh = P32['model.embed_tokens.weight'].detach().float()
+        torch.manual_seed(5); hr = torch.randn(64, Q.D, device=dev); hr = hr / hr.norm(dim=-1, keepdim=True) * 150.0
+    for t_ in TOOLS:
+        od = t_.M.out_dirs.float()
+        if a.impl_gain > 0: gsel = a.impl_gain
+        else:
+            gsel = None
+            for gg_ in (10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, 10000):
+                ok_ = True
+                for i_ in range(od.shape[0]):
+                    if od[i_].abs().sum() == 0: continue
+                    x_ = hr + gg_ * od[i_][None]; x_ = x_ * torch.rsqrt(x_.pow(2).mean(-1, keepdim=True) + 1e-6) * g_
+                    lg_ = x_ @ Eh.T; tg_ = lg_.argmax(-1)
+                    # target = argmax of the pure write direction
+                    xd = od[i_] * torch.rsqrt(od[i_].pow(2).mean() + 1e-6) * g_; tgt = int((xd @ Eh.T).argmax())
+                    top2 = lg_.topk(2, -1).values
+                    if not bool((tg_ == tgt).all()) or float((top2[:, 0] - top2[:, 1]).min()) < 6: ok_ = False; break
+                if ok_: gsel = gg_; break
+            gsel = gsel or 10000
+        frz_ = [x.split(':')[1] for x in a.impl_freeze.split(',') if x and x.split(':')[0] == t_.name]
+        TT.append(TrainableTool(t_, gain_target=gsel, ste_reader=bool(a.impl_ste), freeze=frz_))
+        print('impl_train:', t_.name, 'soft gain', gsel, flush=True)
+    for tt_ in TT: groups.extend(tt_.groups(a.impl_lr_reader, a.impl_lr_core, a.impl_lr_writer, a.link_eps))
+    opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8); base_lrs = [g['lr'] for g in opt.param_groups]
+DRIFT_STREAMS = None
+if TT:                                       # fixed token streams with tool calls (BBH call transcripts) for exactness drift
+    from micromachines.specs import SPECS as _SP
+    from micromachines.machine import first as _fst
+    _un = os.environ.get('UNION', os.path.join(INTEG, '..', 'data', 'train_union_v2.jsonl'))
+    _rows = [json.loads(l) for l in open(_un)][:96]
+    _ids = [tok(r_['prompt'][-600:] + r_['completion'], add_special_tokens=False)['input_ids'][-384:] for r_ in _rows]
+    _L = max(map(len, _ids)); DRIFT_STREAMS = torch.tensor([[eng_eos_ := 151643] * (_L - len(x)) + x for x in _ids], device=dev)
+    for tt_, n_ in zip(TT, TOOL_NAMES):
+        tt_.out_ids = torch.tensor([_fst(A_bbh.all_ids[n_][o_]) for o_ in _SP[n_]['out']], device=dev)
+def impl_drift():
+    gN = P32['model.norm.weight'].detach().float(); EH = P32['model.embed_tokens.weight'].detach().float()
+    head = lambda D: ((D * torch.rsqrt(D.pow(2).mean(-1, keepdim=True) + 1e-6) * gN) @ EH.T).argmax(-1)
+    out = {}
+    for tt_ in TT:
+        Kt_ = tt_.t.Kt
+        ids_ = torch.cat([torch.full((DRIFT_STREAMS.shape[0], Kt_), 151643, device=dev), DRIFT_STREAMS], 1)
+        out[tt_.t.name] = tt_.drift(E0[ids_], head, tt_.out_ids) | dict(log_gain=float(tt_.log_gain))
+    return out
+IMPL_PARAMS = [p_ for tt_ in TT for gr_ in tt_.groups(0, 0, 0, 0) for p_ in gr_['params']]
 if a.arm == 'LIB':
     eng = LibEngine(W, pre, tok, imp, TOOLS, IFT, E0, links=links, B_max=a.B_max, S_max=a.S_max)
     eng.chat_stop = MIXED
@@ -751,6 +804,43 @@ def tool_stats(out, tag, kinds=None):
     return r
 
 
+@torch.no_grad()
+def _swap_wiring(to_init):
+    cur = dict(links={k: _copy.deepcopy(lk.state_dict()) for k, lk in (links or {}).items()},
+               inw=_copy.deepcopy(INW.state_dict()) if INW is not None else None)
+    src = INIT_WIRING if to_init else to_init
+    for k, lk in (links or {}).items(): lk.load_state_dict(src['links'][k])
+    if INW is not None: INW.load_state_dict(src['inw'])
+    return cur
+@torch.no_grad()
+def _restore_wiring(sv):
+    for k, lk in (links or {}).items(): lk.load_state_dict(sv['links'][k])
+    if INW is not None: INW.load_state_dict(sv['inw'])
+@torch.no_grad()
+def _swap_impl():                              # original implants (arm C): copy frozen weights in, keep the trained ones
+    sv = []
+    for tt_ in TT:
+        M, F0 = tt_.t.M, tt_.frozen
+        cur = {n_: p_.detach().clone() for n_, p_ in M.named_parameters()}
+        cur['_dirs'] = tt_.dirs.detach().clone(); cur['_lg'] = tt_.log_gain.detach().clone(); sv.append(cur)
+        f0 = dict(F0.named_parameters()); f0.update(dict(F0.named_buffers()))
+        for n_, p_ in M.named_parameters():
+            if n_ in f0: p_.copy_(f0[n_].to(p_.dtype))
+        tt_.dirs.copy_(F0.out_dirs.float() if tt_.t.perm is None else F0.out_dirs.float()[tt_.t.perm]); tt_.log_gain.fill_(math.log(float(F0.gain)))
+        tt_.refresh()
+    return sv
+@torch.no_grad()
+def _restore_impl(sv):
+    for tt_, cur in zip(TT, sv):
+        for n_, p_ in tt_.t.M.named_parameters(): p_.copy_(cur[n_])
+        tt_.dirs.copy_(cur['_dirs']); tt_.log_gain.copy_(cur['_lg']); tt_.refresh()
+@torch.no_grad()
+def _swap_host(sd_new):
+    cur = {k: P32[k].detach().to('cpu', copy=True) for k in names}
+    for k in names: P32[k].copy_(sd_new[k].to(dev))
+    sync_weights(); return cur
+
+
 def save(tag):
     d = f'{a.run_dir}/{tag}'; os.makedirs(d, exist_ok=True)
     from safetensors.torch import save_file
@@ -759,6 +849,8 @@ def save(tag):
     save_file(sd, f'{d}/model.safetensors')
     if links: torch.save({str(k): lk.state_dict() for k, lk in links.items()}, f'{d}/links.pt')
     if INW is not None: torch.save(INW.state_dict(), f'{d}/inwire.pt')
+    if TT: torch.save({tt_.t.name: dict(params={n_: p_.detach().cpu() for n_, p_ in tt_.t.M.named_parameters()},
+                                         dirs=tt_.dirs.detach().cpu(), log_gain=tt_.log_gain.detach().cpu()) for tt_ in TT}, f'{d}/implants.pt')
     if TRAIN_IMPL: torch.save(Dp.detach().cpu(), f'{d}/Dp.pt')
     open(f'{d}/DONE', 'w').close()
 
@@ -860,6 +952,14 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
                     feat['ifeval'] = fi_[None]; feat['ifeval_prev'] = fp_[None]
                 fwrite = fwrite[None]
                 e = feat['calc']
+            if TT:                                     # arm C: recompute the BBH tools' features WITH grad (same keep mask)
+                fwrite = torch.zeros(Ltot, Q.D, device=dev)
+                for k_t, (t_, tt_) in enumerate(zip(TOOLS, TT)):
+                    sl_ = full[:, eng.Lt - t_.Kt:]
+                    eg_ = t_.M.emit(E0[sl_])[0][:, t_.Kt:].float() * eng.tool_on[1 + k_t]
+                    Eg = packed(eg_, t_.n_out) * keep[:, 1 + k_t:2 + k_t].to(torch.float32)
+                    feat[t_.name] = Eg[None]; fwrite = fwrite + Eg @ tt_.D_eff().float()
+                fwrite = fwrite[None]
         hcap = None
         if INW is not None:
             hn, hcap = Q.fwd_packed(Wt, ids, packer.pos, bm, eng.cos_t, eng.sin_t, leaves, links=None if a.plain else links, feat=feat,
@@ -952,7 +1052,15 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
         st['link_grad_gate'], st['link_grad_W'] = gg, gw
     tp = ([] if a.freeze_host else [P32[k] for k in names]) + link_params + ([Dp] if TRAIN_IMPL else [])
     gn = torch.nn.utils.clip_grad_norm_(tp, 1.0)
+    if TT:                                             # per-group gradient norms (which implant parts get real gradient)
+        st['impl_grad'] = {}
+        for tt_ in TT:
+            for gr_ in tt_.groups(0, 0, 0, 0):
+                gs_ = [p_.grad.detach().float().norm() for p_ in gr_['params'] if p_.grad is not None]
+                st['impl_grad'][gr_['name']] = float(torch.stack(gs_).norm()) if gs_ else 0.0
+        torch.nn.utils.clip_grad_norm_(IMPL_PARAMS, 1.0)
     opt.step(); opt.zero_grad(set_to_none=True)
+    for tt_ in TT: tt_.refresh()
     with torch.no_grad():   # decoupled L1 on out-wire gates (plain SGD on b_g: lr * lambda * mean g(1-g)), not via Adam
         for _, w_ in _all_cw():
             if getattr(w_, '_l1n', 0):
@@ -1225,8 +1333,12 @@ if a.arm == 'LIB':
     log({'bitid_u0': dict(toolsoff=r['devtoolsoff_hash'], hostonly=log_h0, identical=r['devtoolsoff_hash'] == log_h0)})
     if not MIXED:
         r = evaluate(devset, mode='calconly', tag='devcalconly'); r.update(u=0); log({'dev_calconly': r}); print('calc-only@0', r, flush=True)
+if TT: d_ = impl_drift(); log({'impl_drift': d_, 'u': 0}); print('IMPL_DRIFT u0', d_, flush=True)
 TRACK_DRIFT = TRAIN_IMPL or WARM_FINAL is not None
 if TRACK_DRIFT: d0 = writer_drift(); log({'drift': {**d0, 'u': 0}}); print('drift@0', d0, flush=True)
+import copy as _copy
+INIT_WIRING = dict(links={k: _copy.deepcopy(lk.state_dict()) for k, lk in (links or {}).items()},
+                   inw=_copy.deepcopy(INW.state_dict()) if INW is not None else None)
 UPD_T = []; P0_PROMPTS = a.prompts
 for u in range(1, a.updates + 1):
     for g, b in zip(opt.param_groups, base_lrs): g['lr'] = b * min(1.0, u / a.warmup)
@@ -1328,6 +1440,8 @@ for u in range(1, a.updates + 1):
                 r = evaluate(devset, mode='linksoff', tag='devlinksoff'); r.update(u=u); log({'dev_linksoff_curve': r}); print('links-off', r, flush=True)
         if TRACK_DRIFT:
             d = writer_drift(); log({'drift': {**d, 'u': u}}); print('drift', {k: d[k] for k in d if 'digits' not in k}, flush=True)
+    if TT and (u % 25 == 0 or u == a.updates):
+        d_ = impl_drift(); log({'impl_drift': d_, 'u': u}); print('IMPL_DRIFT', u, {k: round(v.get('exact', -1), 4) for k, v in d_.items()}, flush=True)
     if u % a.ckpt_every == 0 or u == a.updates:
         save(f'step_{u:06d}')
 # end-of-run ablations
@@ -1344,6 +1458,17 @@ if MIXED:                                # final: full TEST (999) with tools on 
             if tres['full'].get(f'test_t_{nm}', {}).get('nb', 0) == 0:
                 tres['loo_' + nm] = 'identical_by_construction'; continue
             r = evaluate(TESTSET, mode='loo_' + nm, tag='test'); tres['loo_' + nm] = r; print('TEST loo', nm, {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+    if not a.plain:                          # swap splits: trained host + ORIGINAL implants/wiring; ORIGINAL host + trained implants/wiring
+        svw = _swap_wiring(True); svi = _swap_impl() if TT else None
+        r = evaluate(TESTSET, mode='full', tag='test'); tres['trained_host_orig_tools'] = r
+        print('TEST trained host + original implants/wiring', {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+        if svi is not None: _restore_impl(svi)
+        _restore_wiring(svw)
+        h0 = Q.load_hf_params(name=a.host, device='cpu', dtype=torch.float32)
+        svh = _swap_host(h0); del h0
+        r = evaluate(TESTSET, mode='full', tag='test'); tres['orig_host_trained_tools'] = r
+        print('TEST original host + trained implants/wiring', {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+        _swap_host(svh)
     log({'mixed_test': tres}); json.dump(tres, open(f'{a.run_dir}/test_eval.json', 'w'), indent=1, default=str)
     log({'DONE_RUN': time.time() - t_start}); print('DONE', time.time() - t_start, flush=True); sys.exit(0)
 if a.arm == 'LIB':                       # leave-one-out: each tool detached (its output forced silent) on the final host

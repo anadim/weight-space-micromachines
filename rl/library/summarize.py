@@ -1,7 +1,7 @@
 """Summarize runs/<name>/steps.jsonl (copied to figdata/<name>_steps.jsonl): dev curve, per-tool rollout/dev stats,
 LOO, IF silence, HF check, test. Prints markdown."""
 import json, os, sys
-FD = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'figdata')
+FD = os.environ.get('LIB_FIGDATA', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'library', 'figdata'))
 TOOLS = ['calc', 'track_gen', 'order_gen', 'interval_gen', 'turtle_gen', 'truth_gen', 'expr_gen', 'calc_gen', 'bool_gen', 'ifeval']
 for name in sys.argv[1:] or ['LIB_s0', 'LIBscr_s0', 'LIB_s1']:
     p = os.path.join(FD, f'{name}_steps.jsonl')

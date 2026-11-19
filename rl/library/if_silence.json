@@ -1,0 +1,27 @@
+{
+ "dev": {
+  "n": 800,
+  "latched_any": 0,
+  "rate": 0.0,
+  "per_rule": {},
+  "assistant_register_on": 0,
+  "examples": []
+ },
+ "test": {
+  "n": 1319,
+  "latched_any": 1,
+  "rate": 0.000758150113722517,
+  "per_rule": {
+   "para": 1
+  },
+  "assistant_register_on": 0,
+  "examples": [
+   [
+    "Marty has 100 centimeters of ribbon that he must cut into 4 equal parts. Each of the cut parts must be divided into 5 eq",
+    [
+     "para"
+    ]
+   ]
+  ]
+ }
+}

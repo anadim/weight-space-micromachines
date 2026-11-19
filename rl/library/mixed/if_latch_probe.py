@@ -6,11 +6,11 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import mixed_task as MT
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B')
-sys.path.insert(0, os.path.join(HERE, '..', 'ifeval_frozen'))
+sys.path.insert(0, os.environ.get('IFDIR', os.path.join(HERE, '..', '..', '..', 'ifeval', 'heldout')))
 import importlib.util
 spec = importlib.util.spec_from_file_location('circuit_g', os.path.join(HERE, '..', 'circuit_g.py')); CG = importlib.util.module_from_spec(spec); spec.loader.exec_module(CG)
 m = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B', dtype=torch.bfloat16)
-circ = CG.Circuit(tok, m, vecs=os.path.join(HERE, '..', 'ifeval_frozen', 'vecs2.pt'))
+circ = CG.Circuit(tok, m, vecs=os.environ.get('IF_VECS', os.path.join(HERE, '..', '..', '..', 'ifeval', 'heldout', 'vecs2_forcefix.pt')))
 RULES = ['nc', 'lower', 'caps', 'quote', 'end', 'ps', 'forbid', 'repeat', 'two', 'para', 'nth', 'title', 'high', 'bul', 'pps', 'star3']
 FIN = "Think step by step, then finish with a line of the form 'The answer is X.'"
 VARIANTS = {

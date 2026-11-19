@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 from matplotlib.colors import LinearSegmentedColormap
-HERE = os.path.dirname(os.path.abspath(__file__)); FD = os.path.join(HERE, '..', 'figdata')
+HERE = os.path.dirname(os.path.abspath(__file__)); FD = os.path.join(HERE, '..', '..', 'results', 'library', 'figdata')
 if os.path.exists('/System/Library/Fonts/Avenir Next.ttc'): fm.fontManager.addfont('/System/Library/Fonts/Avenir Next.ttc')
 INK, SEC, GRID, GREEN, GRAY = '#222', '#6b7280', '#e5e7eb', '#118659', '#b9bec6'
 plt.rcParams.update({'font.family': 'Avenir Next', 'font.size': 14, 'axes.edgecolor': INK, 'text.color': INK,

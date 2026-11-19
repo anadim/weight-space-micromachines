@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 
-HERE = os.path.dirname(os.path.abspath(__file__)); FD = os.path.join(HERE, 'figdata')
+HERE = os.path.dirname(os.path.abspath(__file__)); FD = os.path.join(HERE, '..', 'results', 'library', 'figdata')
 for f in ('/System/Library/Fonts/Avenir Next.ttc',):
     if os.path.exists(f): fm.fontManager.addfont(f)
 plt.rcParams.update({'font.family': 'Avenir Next', 'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,

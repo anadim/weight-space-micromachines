@@ -1,7 +1,7 @@
 """Offline (CPU): for a probe_<tool>.json, compare each tool reply in the full-library outputs with the Python reference
 on the SAME call string (integ.ref), and split item accuracy by whether the tool fired / was exact."""
 import os, sys, re, json
-sys.path.insert(0, os.environ.get('WSM_INTEG_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'bbh_generic', 'integrate', 'code')))
+sys.path.insert(0, os.environ.get('WSM_INTEG_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'bbh_generic', 'integrate', 'code')))
 import integ
 P = json.load(open(sys.argv[1]))
 pat = re.compile(r'<tool_call>(.*?)</tool_call>\s*<tool_response>(.*?)</tool_response>', re.S)
