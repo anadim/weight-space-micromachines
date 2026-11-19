@@ -1,0 +1,53 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[    13s] none: {'true': 0.04, 'follow_inner_corr': 0.0267, 'follow_outer_corr': 0.0067}
+[    26s] text_oracle_P1: {'true': 0.07, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0033}
+[    38s] text_oracle_P1corr: {'true': 0.0133, 'follow_inner_corr': 0.05, 'follow_outer_corr': 0.0167}
+[    50s] text_oracle_P2: {'true': 0.9967, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[    63s] text_oracle_P2corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.9933}
+[    78s] text_tool_both: {'true': 0.97, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[    91s] text_tool_P1: {'true': 0.03, 'follow_inner_corr': 0.01, 'follow_outer_corr': 0.0}
+[   118s] r2_in: {0: 1.0, 4: 0.861, 8: 0.843, 12: 0.849, 14: 0.85, 16: 0.843}
+[   118s] r2_out: {0: 1.0, 4: 0.847, 8: 0.821, 12: 0.828, 14: 0.822, 16: 0.807}
+[   128s] inner_P1:L0:synth:true: {'true': 0.1, 'follow_inner_corr': 0.0233, 'follow_outer_corr': 0.01}
+[   140s] inner_P1:L0:synth:corr: {'true': 0.03, 'follow_inner_corr': 0.0733, 'follow_outer_corr': 0.0133}
+[   151s] inner_P1:L0:mean: {'true': 0.01, 'follow_inner_corr': 0.0033, 'follow_outer_corr': 0.0}
+[   163s] outer_P2:L0:synth:true: {'true': 0.9733, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   176s] outer_P2:L0:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.9767}
+[   189s] outer_P2:L0:mean: {'true': 0.0067, 'follow_inner_corr': 0.0167, 'follow_outer_corr': 0.0033}
+[   201s] inner_P1:L4:synth:true: {'true': 0.11, 'follow_inner_corr': 0.0233, 'follow_outer_corr': 0.0033}
+[   214s] inner_P1:L4:synth:corr: {'true': 0.0267, 'follow_inner_corr': 0.09, 'follow_outer_corr': 0.0033}
+[   227s] inner_P1:L4:mean: {'true': 0.0067, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   240s] outer_P2:L4:synth:true: {'true': 0.9533, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   252s] outer_P2:L4:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.9667}
+[   265s] outer_P2:L4:mean: {'true': 0.0133, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0033}
+[   277s] inner_P1:L8:synth:true: {'true': 0.05, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0033}
+[   289s] inner_P1:L8:synth:corr: {'true': 0.03, 'follow_inner_corr': 0.05, 'follow_outer_corr': 0.0033}
+[   299s] inner_P1:L8:mean: {'true': 0.01, 'follow_inner_corr': 0.01, 'follow_outer_corr': 0.0033}
+[   309s] outer_P2:L8:synth:true: {'true': 0.9333, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   320s] outer_P2:L8:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.9667}
+[   331s] outer_P2:L8:mean: {'true': 0.0067, 'follow_inner_corr': 0.03, 'follow_outer_corr': 0.01}
+[   343s] inner_P1:L12:synth:true: {'true': 0.0467, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0}
+[   355s] inner_P1:L12:synth:corr: {'true': 0.0167, 'follow_inner_corr': 0.0267, 'follow_outer_corr': 0.0033}
+[   368s] inner_P1:L12:mean: {'true': 0.0167, 'follow_inner_corr': 0.0067, 'follow_outer_corr': 0.0033}
+[   381s] outer_P2:L12:synth:true: {'true': 0.7433, 'follow_inner_corr': 0.0067, 'follow_outer_corr': 0.0}
+[   393s] outer_P2:L12:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.6967}
+[   406s] outer_P2:L12:mean: {'true': 0.0067, 'follow_inner_corr': 0.0033, 'follow_outer_corr': 0.0167}
+[   418s] outer_P2+suffix:L12:synth:true: {'true': 0.9533, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   431s] outer_P2+suffix:L12:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.97}
+[   444s] inner_P1:L14:synth:true: {'true': 0.0467, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0}
+[   457s] inner_P1:L14:synth:corr: {'true': 0.02, 'follow_inner_corr': 0.03, 'follow_outer_corr': 0.01}
+[   470s] inner_P1:L14:mean: {'true': 0.0267, 'follow_inner_corr': 0.0267, 'follow_outer_corr': 0.0033}
+[   481s] outer_P2:L14:synth:true: {'true': 0.4567, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0033}
+[   492s] outer_P2:L14:synth:corr: {'true': 0.0033, 'follow_inner_corr': 0.0167, 'follow_outer_corr': 0.3767}
+[   502s] outer_P2:L14:mean: {'true': 0.0067, 'follow_inner_corr': 0.0067, 'follow_outer_corr': 0.0133}
+[   513s] outer_P2+suffix:L14:synth:true: {'true': 0.9333, 'follow_inner_corr': 0.0, 'follow_outer_corr': 0.0}
+[   524s] outer_P2+suffix:L14:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.9467}
+[   534s] inner_P1:L16:synth:true: {'true': 0.0467, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.0}
+[   547s] inner_P1:L16:synth:corr: {'true': 0.0267, 'follow_inner_corr': 0.02, 'follow_outer_corr': 0.0033}
+[   560s] inner_P1:L16:mean: {'true': 0.0267, 'follow_inner_corr': 0.0233, 'follow_outer_corr': 0.0033}
+[   572s] outer_P2:L16:synth:true: {'true': 0.2033, 'follow_inner_corr': 0.01, 'follow_outer_corr': 0.0133}
+[   585s] outer_P2:L16:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.02, 'follow_outer_corr': 0.1433}
+[   597s] outer_P2:L16:mean: {'true': 0.02, 'follow_inner_corr': 0.0133, 'follow_outer_corr': 0.01}
+[   610s] outer_P2+suffix:L16:synth:true: {'true': 0.66, 'follow_inner_corr': 0.01, 'follow_outer_corr': 0.0}
+[   623s] outer_P2+suffix:L16:synth:corr: {'true': 0.0, 'follow_inner_corr': 0.02, 'follow_outer_corr': 0.6233}
+DONE

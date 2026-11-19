@@ -1,0 +1,7 @@
+fence math: 60 pos + 60 neg = 120 prompts
+--- math text_stop: text agreement 120/120  (emulated fired 61)
+--- math monitor: text agreement 120/120  (emulated fired 63)
+fence ml: 60 pos + 60 neg = 120 prompts
+--- ml text_stop: text agreement 120/120  (emulated fired 61)
+--- ml monitor: text agreement 120/120  (emulated fired 61)
+EQUIV_DONE

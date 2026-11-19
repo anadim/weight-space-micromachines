@@ -1,0 +1,12 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+wk_task_N10-69 [0.185, 0.205, 0.11, 0.225, 0.19, 0.075] | e.g. Today is Friday. What day of the week will it be 26 days from today? ->  Wednesday
+wk_oracle_k [0.485, 0.09, 0.1, 0.15, 0.135, 0.04] | e.g. Today is Friday. What day of the week will it be 1 days from today? ->  Saturday
+bool_plain_task [0.895, 0.105] | e.g. What is (False or False) or (True and False)? ->  False
+bool_not_task [0.505, 0.495] | e.g. What is not ((False or True) or (False or True))? ->  False
+bool_not_oracle [1.0, 0.0] | e.g. What is not (False)? ->  True
+cmp_task [0.74, 0.26] | e.g. If 11*7 is greater than 252, say green; otherwise say dog. ->  dog
+cmp_easy [0.755, 0.245] | e.g. If 7 is greater than 8, say dog; otherwise say green. ->  green
+cmp_literal [0.87, 0.13] | e.g. Condition: false. If the condition is true, say cat; otherwise say sun. ->  sun
+cmp_task_c [0.74, 0.26] | e.g. Condition: 21*9 > 193. If the condition is true, say dog; otherwise say green. ->  green
+yn_task [0.62, 0.38] | e.g. Is 24*5 greater than 197? Answer yes or no. ->  no
+yn_oracleP [0.985, 0.015] | e.g. Is 144 greater than 127? Answer yes or no. ->  yes

@@ -1,0 +1,8 @@
+multistep_arithmetic_two                  18.4 (n=250) | 404s
+boolean_expressions                       76.8 (n=250) | 516s
+object_counting                           50.0 (n=250) | 637s
+date_understanding                        49.2 (n=250) | 748s
+sports_understanding                      71.2 (n=250) | 757s
+causal_judgement                          46.0 (n=187) | 1036s
+hyperbaton                                61.6 (n=250) | 1438s
+MEAN over 7 tasks: 53.31

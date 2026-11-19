@@ -1,0 +1,42 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     0s] example_task: Q: Condition: 28*4 > 133. If the condition is true, say green; otherwise say blue.
+A:
+[     0s] example_oracle: Q: Condition: false. If the condition is true, say green; otherwise say blue.
+A:
+[     0s] frac_first_answer: 0.43666666666666665
+[    17s] none(true,follow): [0.5067, 0.4933]
+[    34s] text_oracle: [0.7133, 0.2867]
+[    50s] text_oracle_corr: [0.3367, 0.6633]
+[    68s] text_tool_line: [0.5833, 0.4167]
+[    99s] n_kept: 300
+[    99s] nfit: 2000
+[    99s] pairs: [(17, 17, 0), (18, 18, 0), (19, 18, 0), (20, 18, 0), (21, 18, 0), (22, 18, 0), (23, 18, 0), (24, 18, 0), (25, 18, 0), (26, 18, 0)]
+[    99s] r2: {0: 1.0, 4: 1.0, 8: 1.0, 12: 1.0, 14: 1.0, 16: 1.0, 18: 1.0, 20: 1.0}
+[   116s] none_kept: [0.5067, 0.4933]
+[   131s] L0:synth:true: [0.66, 0.34]
+[   145s] L0:synth:corr: [0.3433, 0.6567]
+[   161s] L0:mean: [0.4633, 0.5367]
+[   188s] L4:synth:true: [0.6, 0.4]
+[   203s] L4:synth:corr: [0.3967, 0.6033]
+[   220s] L4:mean: [0.48, 0.52]
+[   238s] L4:donor:true: [0.6133, 0.3867]
+[   254s] L8:synth:true: [0.6167, 0.3833]
+[   271s] L8:synth:corr: [0.37, 0.63]
+[   287s] L8:mean: [0.4967, 0.5033]
+[   303s] L12:synth:true: [0.6033, 0.3967]
+[   319s] L12:synth:corr: [0.3967, 0.6033]
+[   333s] L12:mean: [0.4933, 0.5067]
+[   349s] L12:donor:true: [0.62, 0.38]
+[   363s] L14:synth:true: [0.6667, 0.3333]
+[   377s] L14:synth:corr: [0.3467, 0.6533]
+[   391s] L14:mean: [0.49, 0.51]
+[   405s] L16:synth:true: [0.53, 0.47]
+[   419s] L16:synth:corr: [0.47, 0.53]
+[   434s] L16:mean: [0.5033, 0.4967]
+[   448s] L18:synth:true: [0.5167, 0.4833]
+[   462s] L18:synth:corr: [0.5033, 0.4967]
+[   477s] L18:mean: [0.5, 0.5]
+[   491s] L20:synth:true: [0.4867, 0.5133]
+[   505s] L20:synth:corr: [0.4967, 0.5033]
+[   519s] L20:mean: [0.49, 0.51]
+DONE

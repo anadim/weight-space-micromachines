@@ -1,0 +1,5 @@
+
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]
+Fetching 10 files:  80%|████████  | 8/10 [00:00<00:00, 13.50it/s]
+Fetching 10 files: 100%|██████████| 10/10 [00:05<00:00,  1.76it/s]
+<workdir>/.cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1

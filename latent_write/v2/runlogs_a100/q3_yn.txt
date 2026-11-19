@@ -1,0 +1,11 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Traceback (most recent call last):
+  File "<workdir>/latent_write2/q3_types.py", line 119, in <module>
+    CV = [corrupt(it, TV[i], rng) for i, it in enumerate(test)]
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/latent_write2/q3_types.py", line 101, in corrupt
+    return r.choice([p for p in PP if (p > it[2]) != (v > it[2]) and abs(p - it[2]) <= 60])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/random.py", line 347, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence

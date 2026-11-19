@@ -1,0 +1,135 @@
+{
+ "template": "lost",
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "example_task": "Q: Each box has 24 pens. There are 8 boxes. 46 pens are lost. How many pens are left?\nA:",
+ "none": [
+  0.0367,
+  0.0033
+ ],
+ "text_tool_line": [
+  0.7167,
+  0.0
+ ],
+ "both:example_oracle": "Q: There are 192 pens. 46 pens are lost. How many pens are left?\nA:",
+ "both:text_oracle(true,follow)": [
+  0.9467,
+  0.0
+ ],
+ "both:text_oracle_corr(true,follow)": [
+  0.0,
+  0.9367
+ ],
+ "both:pairs": [
+  [
+   16,
+   16,
+   0
+  ],
+  [
+   17,
+   17,
+   0
+  ],
+  [
+   18,
+   18,
+   0
+  ],
+  [
+   19,
+   19,
+   0
+  ],
+  [
+   20,
+   20,
+   0
+  ],
+  [
+   21,
+   21,
+   0
+  ],
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ],
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   24,
+   0
+  ],
+  [
+   26,
+   24,
+   0
+  ],
+  [
+   27,
+   24,
+   0
+  ],
+  [
+   28,
+   24,
+   0
+  ],
+  [
+   29,
+   24,
+   0
+  ]
+ ],
+ "both:r2": {
+  "18": 0.786,
+  "20": 0.878,
+  "22": 0.86
+ },
+ "both:L18:synth:true": [
+  0.0333,
+  0.01
+ ],
+ "both:L18:synth:corr": [
+  0.0,
+  0.03
+ ],
+ "both:L18:mean": [
+  0.0,
+  0.0067
+ ],
+ "both:L20:synth:true": [
+  0.0233,
+  0.0033
+ ],
+ "both:L20:synth:corr": [
+  0.0,
+  0.01
+ ],
+ "both:L20:mean": [
+  0.0067,
+  0.0
+ ],
+ "both:L22:synth:true": [
+  0.0333,
+  0.0033
+ ],
+ "both:L22:synth:corr": [
+  0.0333,
+  0.0033
+ ],
+ "both:L22:mean": [
+  0.0333,
+  0.0033
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "passages": 2000,
+ "tokens": 274051,
+ "positions_fired": 1154,
+ "texts_with_quiet_mismatch": 0,
+ "fires_per_1M_tokens": 4210.895052380762,
+ "per_machine_fires": {
+  "calc_s4": 1153,
+  "sum_fn": 1,
+  "expr_n": 0,
+  "liesnat": 0,
+  "navnat": 0,
+  "boolnat": 0,
+  "time_n": 0,
+  "track_nat": 0,
+  "logic_nat": 0
+ },
+ "by_source": {
+  "wikitext": {
+   "tokens": 133754,
+   "fires": 0
+  },
+  "code": {
+   "tokens": 94137,
+   "fires": 0
+  },
+  "gsm8k": {
+   "tokens": 46160,
+   "fires": 1154
+  }
+ },
+ "maxtok": 160,
+ "seconds": 2968.7571835517883
+}

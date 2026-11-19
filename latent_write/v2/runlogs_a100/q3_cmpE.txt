@@ -1,0 +1,42 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     0s] example_task: Q: If 28*4 is greater than 133, say green; otherwise say blue.
+A:
+[     0s] example_oracle: Q: If 5 is greater than 6, say green; otherwise say blue.
+A:
+[     0s] frac_first_answer: 0.43666666666666665
+[    15s] none(true,follow): [0.49, 0.51]
+[    28s] text_oracle: [0.5233, 0.4767]
+[    42s] text_oracle_corr: [0.44, 0.56]
+[    57s] text_tool_line: [0.54, 0.46]
+[    83s] n_kept: 300
+[    83s] nfit: 2000
+[    83s] pairs: [(11, 11, 0), (12, 12, 0), (13, 13, 0), (14, 14, 0), (15, 15, 0), (16, 16, 0), (17, 17, 0), (18, 18, 0), (19, 18, 0), (20, 18, 0), (21, 18, 0), (22, 18, 0)]
+[    83s] r2: {0: 0.105, 4: 0.147, 8: 0.154, 12: 0.137, 14: 0.207, 16: 0.219, 18: 0.192, 20: 0.131}
+[    96s] none_kept: [0.49, 0.51]
+[   108s] L0:synth:true: [0.5667, 0.4333]
+[   121s] L0:synth:corr: [0.46, 0.54]
+[   135s] L0:mean: [0.5333, 0.4667]
+[   147s] L4:synth:true: [0.56, 0.44]
+[   159s] L4:synth:corr: [0.4467, 0.5533]
+[   170s] L4:mean: [0.4833, 0.5167]
+[   184s] L4:donor:true: [0.5833, 0.4167]
+[   195s] L8:synth:true: [0.5667, 0.4333]
+[   207s] L8:synth:corr: [0.4333, 0.5667]
+[   219s] L8:mean: [0.5067, 0.4933]
+[   230s] L12:synth:true: [0.53, 0.47]
+[   242s] L12:synth:corr: [0.45, 0.55]
+[   253s] L12:mean: [0.4933, 0.5067]
+[   266s] L12:donor:true: [0.5467, 0.4533]
+[   277s] L14:synth:true: [0.52, 0.48]
+[   289s] L14:synth:corr: [0.4467, 0.5533]
+[   301s] L14:mean: [0.4933, 0.5067]
+[   312s] L16:synth:true: [0.4767, 0.5233]
+[   325s] L16:synth:corr: [0.4967, 0.5033]
+[   336s] L16:mean: [0.4833, 0.5167]
+[   348s] L18:synth:true: [0.4933, 0.5067]
+[   360s] L18:synth:corr: [0.4833, 0.5167]
+[   372s] L18:mean: [0.4933, 0.5067]
+[   384s] L20:synth:true: [0.4867, 0.5133]
+[   396s] L20:synth:corr: [0.4933, 0.5067]
+[   408s] L20:mean: [0.49, 0.51]
+DONE

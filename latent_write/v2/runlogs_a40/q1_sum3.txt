@@ -1,0 +1,80 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     8s] none: [0.0367, 0.0, 0.0033, 0.0133, 0.0067]
+[    16s] text_oracle_all(true,..): [0.7, 0.0, 0.0033, 0.0, 0.0]
+[    19s] text_oracle_all_corrall: [0.0033, 0.6867]
+[    32s] text_tool_line: [0.77, 0.0, 0.0, 0.0, 0.0067]
+[    50s] all:r2: {0: 1.0, 4: 0.794, 8: 0.737, 12: 0.765, 14: 0.684}
+[    58s] all:L0:synth:true: {'true': 0.34, 'corr0': 0.0, 'corr1': 0.0067, 'corr2': 0.0033, 'corrall': 0.01}
+[    67s] all:L0:synth:corr0: {'true': 0.0, 'corr0': 0.4233, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0067}
+[    75s] all:L0:synth:corr1: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.36, 'corr2': 0.0033, 'corrall': 0.0067}
+[    83s] all:L0:synth:corr2: {'true': 0.0, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.3533, 'corrall': 0.0033}
+[    91s] all:L0:synth:corrall: {'true': 0.0033, 'corr0': 0.0033, 'corr1': 0.0133, 'corr2': 0.0033, 'corrall': 0.36}
+[    99s] all:L0:mean: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   106s] all:L4:synth:true: {'true': 0.53, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0}
+[   114s] all:L4:synth:corr0: {'true': 0.0033, 'corr0': 0.6033, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0067}
+[   122s] all:L4:synth:corr1: {'true': 0.0, 'corr0': 0.0033, 'corr1': 0.5633, 'corr2': 0.0067, 'corrall': 0.0033}
+[   131s] all:L4:synth:corr2: {'true': 0.0, 'corr0': 0.0033, 'corr1': 0.0067, 'corr2': 0.53, 'corrall': 0.01}
+[   139s] all:L4:synth:corrall: {'true': 0.0033, 'corr0': 0.0067, 'corr1': 0.0033, 'corr2': 0.0067, 'corrall': 0.5667}
+[   147s] all:L4:mean: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   155s] all:L8:synth:true: {'true': 0.6, 'corr0': 0.0, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0033}
+[   163s] all:L8:synth:corr0: {'true': 0.0, 'corr0': 0.61, 'corr1': 0.0, 'corr2': 0.0067, 'corrall': 0.01}
+[   171s] all:L8:synth:corr1: {'true': 0.0033, 'corr0': 0.0, 'corr1': 0.6, 'corr2': 0.0, 'corrall': 0.0033}
+[   179s] all:L8:synth:corr2: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0033, 'corr2': 0.6067, 'corrall': 0.0067}
+[   187s] all:L8:synth:corrall: {'true': 0.0033, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.6267}
+[   195s] all:L8:mean: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   203s] all:L12:synth:true: {'true': 0.4733, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0}
+[   211s] all:L12:synth:corr0: {'true': 0.0, 'corr0': 0.5, 'corr1': 0.0033, 'corr2': 0.0, 'corrall': 0.01}
+[   219s] all:L12:synth:corr1: {'true': 0.0033, 'corr0': 0.0, 'corr1': 0.5033, 'corr2': 0.0, 'corrall': 0.0067}
+[   226s] all:L12:synth:corr2: {'true': 0.0033, 'corr0': 0.0, 'corr1': 0.0033, 'corr2': 0.5, 'corrall': 0.0067}
+[   234s] all:L12:synth:corrall: {'true': 0.0033, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.46}
+[   243s] all:L12:mean: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   250s] all+suffix:L12:synth:true: {'true': 0.4667, 'corr0': 0.0067, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0}
+[   258s] all+suffix:L12:synth:corrall: {'true': 0.0033, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.4767}
+[   266s] all:L14:synth:true: {'true': 0.0867, 'corr0': 0.0, 'corr1': 0.0067, 'corr2': 0.0, 'corrall': 0.0}
+[   273s] all:L14:synth:corr0: {'true': 0.0, 'corr0': 0.0833, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   276s] all:L14:synth:corr1: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0767, 'corr2': 0.0033, 'corrall': 0.01}
+[   280s] all:L14:synth:corr2: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0033, 'corr2': 0.1, 'corrall': 0.0}
+[   291s] all:L14:synth:corrall: {'true': 0.0033, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.1067}
+[   298s] all:L14:mean: {'true': 0.0, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0}
+[   306s] all+suffix:L14:synth:true: {'true': 0.09, 'corr0': 0.0, 'corr1': 0.0033, 'corr2': 0.0, 'corrall': 0.0}
+[   314s] all+suffix:L14:synth:corrall: {'true': 0.0033, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.0867}
+[   323s] all:mixed[4, 8, 12]:synth:true: {'true': 0.4767, 'corr0': 0.0067, 'corr1': 0.0033, 'corr2': 0.0, 'corrall': 0.0}
+[   332s] all:mixed[4, 8, 12]:synth:corrall: {'true': 0.0033, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.47}
+[   341s] all:mixed[12, 8, 4]:synth:true: {'true': 0.25, 'corr0': 0.0, 'corr1': 0.0067, 'corr2': 0.0, 'corrall': 0.0}
+[   349s] all:mixed[12, 8, 4]:synth:corrall: {'true': 0.0067, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0, 'corrall': 0.2633}
+[   359s] all:L4:donor:true: {'true': 0.5433, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0}
+[   368s] all:L12:donor:true: {'true': 0.5233, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0067, 'corrall': 0.0}
+[   375s] only0:r2: {0: 1.0, 4: 0.804, 8: 0.777, 12: 0.795, 14: 0.794}
+[   384s] only0:L0:synth:true: {'true': 0.01, 'corr0': 0.01, 'corr1': 0.0033, 'corr2': 0.0133, 'corrall': 0.0033}
+[   392s] only0:L0:synth:corr0: {'true': 0.0133, 'corr0': 0.01, 'corr1': 0.0, 'corr2': 0.01, 'corrall': 0.0033}
+[   401s] only0:L4:synth:true: {'true': 0.01, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0067, 'corrall': 0.0133}
+[   409s] only0:L4:synth:corr0: {'true': 0.0133, 'corr0': 0.0167, 'corr1': 0.0, 'corr2': 0.01, 'corrall': 0.0067}
+[   418s] only0:L8:synth:true: {'true': 0.0233, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.01, 'corrall': 0.0067}
+[   427s] only0:L8:synth:corr0: {'true': 0.0167, 'corr0': 0.0067, 'corr1': 0.0033, 'corr2': 0.0067, 'corrall': 0.0033}
+[   435s] only0:L12:synth:true: {'true': 0.02, 'corr0': 0.01, 'corr1': 0.0, 'corr2': 0.0133, 'corrall': 0.0067}
+[   443s] only0:L12:synth:corr0: {'true': 0.0067, 'corr0': 0.0, 'corr1': 0.0067, 'corr2': 0.01, 'corrall': 0.0067}
+[   451s] only0:L14:synth:true: {'true': 0.02, 'corr0': 0.0167, 'corr1': 0.0, 'corr2': 0.01, 'corrall': 0.0}
+[   459s] only0:L14:synth:corr0: {'true': 0.0167, 'corr0': 0.0033, 'corr1': 0.0067, 'corr2': 0.0033, 'corrall': 0.0033}
+[   466s] only1:r2: {0: 1.0, 4: 0.797, 8: 0.72, 12: 0.749, 14: 0.653}
+[   474s] only1:L0:synth:true: {'true': 0.01, 'corr0': 0.0167, 'corr1': 0.0067, 'corr2': 0.01, 'corrall': 0.0067}
+[   483s] only1:L0:synth:corr1: {'true': 0.0067, 'corr0': 0.0133, 'corr1': 0.0033, 'corr2': 0.0133, 'corrall': 0.0033}
+[   491s] only1:L4:synth:true: {'true': 0.0067, 'corr0': 0.0167, 'corr1': 0.0, 'corr2': 0.0067, 'corrall': 0.0067}
+[   500s] only1:L4:synth:corr1: {'true': 0.0067, 'corr0': 0.0133, 'corr1': 0.0, 'corr2': 0.0067, 'corrall': 0.0}
+[   508s] only1:L8:synth:true: {'true': 0.0333, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0133, 'corrall': 0.0033}
+[   517s] only1:L8:synth:corr1: {'true': 0.0233, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0133, 'corrall': 0.0033}
+[   525s] only1:L12:synth:true: {'true': 0.0167, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.01, 'corrall': 0.0033}
+[   533s] only1:L12:synth:corr1: {'true': 0.0133, 'corr0': 0.0033, 'corr1': 0.01, 'corr2': 0.01, 'corrall': 0.0033}
+[   541s] only1:L14:synth:true: {'true': 0.0267, 'corr0': 0.01, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0033}
+[   549s] only1:L14:synth:corr1: {'true': 0.0133, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0067, 'corrall': 0.0067}
+[   557s] only2:r2: {0: 1.0, 4: 0.802, 8: 0.719, 12: 0.743, 14: 0.656}
+[   565s] only2:L0:synth:true: {'true': 0.0133, 'corr0': 0.0167, 'corr1': 0.0033, 'corr2': 0.0133, 'corrall': 0.0033}
+[   574s] only2:L0:synth:corr2: {'true': 0.0133, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0133, 'corrall': 0.0033}
+[   582s] only2:L4:synth:true: {'true': 0.0133, 'corr0': 0.0, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0067}
+[   590s] only2:L4:synth:corr2: {'true': 0.01, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.0133, 'corrall': 0.0033}
+[   599s] only2:L8:synth:true: {'true': 0.0133, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0067}
+[   607s] only2:L8:synth:corr2: {'true': 0.0133, 'corr0': 0.0033, 'corr1': 0.0033, 'corr2': 0.0033, 'corrall': 0.0}
+[   616s] only2:L12:synth:true: {'true': 0.0133, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0067, 'corrall': 0.0067}
+[   624s] only2:L12:synth:corr2: {'true': 0.0133, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.01, 'corrall': 0.0}
+[   632s] only2:L14:synth:true: {'true': 0.0067, 'corr0': 0.0067, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0033}
+[   640s] only2:L14:synth:corr2: {'true': 0.01, 'corr0': 0.0033, 'corr1': 0.0, 'corr2': 0.0033, 'corrall': 0.0}
+DONE

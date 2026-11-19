@@ -1,0 +1,42 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     0s] example_task: Q: Today is Monday. What day of the week will it be 40 days from today?
+A:
+[     0s] example_oracle: Q: Today is Monday. What day of the week will it be 5 days from today?
+A:
+[     0s] frac_first_answer: 0.14
+[     4s] none(true,follow): [0.0667, 0.0867]
+[     7s] text_oracle: [0.2567, 0.1333]
+[    10s] text_oracle_corr: [0.1267, 0.2933]
+[    14s] text_tool_line: [0.2233, 0.13]
+[    22s] n_kept: 300
+[    22s] nfit: 2000
+[    22s] pairs: [(7, 7, 0), (8, 8, 0)]
+[    22s] r2: {0: 1.0, 4: 0.999, 8: 0.979, 12: 0.973, 14: 0.94, 16: 0.862, 18: 0.83, 20: 0.862}
+[    26s] none_kept: [0.0667, 0.0867]
+[    29s] L0:synth:true: [0.2267, 0.1567]
+[    33s] L0:synth:corr: [0.1167, 0.27]
+[    36s] L0:mean: [0.1467, 0.1567]
+[    39s] L4:synth:true: [0.2567, 0.14]
+[    43s] L4:synth:corr: [0.15, 0.2933]
+[    46s] L4:mean: [0.1467, 0.1567]
+[    50s] L4:donor:true: [0.2567, 0.1433]
+[    54s] L8:synth:true: [0.17, 0.1367]
+[    58s] L8:synth:corr: [0.1533, 0.2133]
+[    61s] L8:mean: [0.14, 0.1367]
+[    64s] L12:synth:true: [0.0667, 0.1067]
+[    68s] L12:synth:corr: [0.0667, 0.1367]
+[    71s] L12:mean: [0.07, 0.1233]
+[    75s] L12:donor:true: [0.0733, 0.1233]
+[    78s] L14:synth:true: [0.08, 0.1233]
+[    82s] L14:synth:corr: [0.07, 0.1167]
+[    85s] L14:mean: [0.06, 0.1167]
+[    88s] L16:synth:true: [0.08, 0.1067]
+[    92s] L16:synth:corr: [0.0667, 0.11]
+[    95s] L16:mean: [0.0767, 0.1067]
+[    99s] L18:synth:true: [0.09, 0.1133]
+[   102s] L18:synth:corr: [0.0833, 0.1133]
+[   106s] L18:mean: [0.0967, 0.1033]
+[   109s] L20:synth:true: [0.0733, 0.11]
+[   112s] L20:synth:corr: [0.0667, 0.11]
+[   116s] L20:mean: [0.08, 0.1]
+DONE

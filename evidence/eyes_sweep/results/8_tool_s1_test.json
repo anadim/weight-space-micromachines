@@ -1,0 +1,22 @@
+{
+ "model": "runs/sw_8_tool_s1",
+ "macro": 77.97922474445771,
+ "per_task": {
+  "eyes_2img": 86.41975308641975,
+  "eyes_3img": 78.62903225806451,
+  "eyes_4img": 68.88888888888889
+ },
+ "n": {
+  "eyes_2img": 162,
+  "eyes_3img": 248,
+  "eyes_4img": 90
+ },
+ "machines": [
+  "calc",
+  "eye"
+ ],
+ "mode": "machines",
+ "seconds": 352.9574701786041,
+ "gen_tokens": 44273,
+ "bs": 16
+}

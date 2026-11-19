@@ -1,0 +1,30 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     0s] example_task: Q: Each box has 24 pens. There are 8 boxes. 46 pens are lost. How many pens are left?
+A:
+[     4s] none: [0.0367, 0.0033]
+[     9s] text_tool_line: [0.7167, 0.0]
+[     9s] numA:example_oracle: Q: There are 192 pens. There are 8 boxes. 46 pens are lost. How many pens are left?
+A:
+[    13s] numA:text_oracle(true,follow): [0.1533, 0.0]
+[    17s] numA:text_oracle_corr(true,follow): [0.0033, 0.1933]
+[    24s] numA:pairs: [(24, 24, 0), (25, 25, 0), (26, 26, 0)]
+[    24s] numA:r2: {18: 0.792, 20: 0.885}
+[    29s] numA:L18:synth:true: [0.0367, 0.0067]
+[    33s] numA:L18:synth:corr: [0.0067, 0.01]
+[    36s] numA:L18:mean: [0.01, 0.0]
+[    40s] numA:L20:synth:true: [0.03, 0.0067]
+[    44s] numA:L20:synth:corr: [0.0067, 0.0067]
+[    48s] numA:L20:mean: [0.01, 0.0067]
+[    48s] sentA:example_oracle: Q: There are 192 pens. There are 8 boxes. 46 pens are lost. How many pens are left?
+A:
+[    52s] sentA:text_oracle(true,follow): [0.1533, 0.0]
+[    56s] sentA:text_oracle_corr(true,follow): [0.0033, 0.1933]
+[    64s] sentA:pairs: [(22, 22, 0), (23, 23, 0), (24, 24, 0), (25, 25, 0), (26, 26, 0), (27, 27, 0), (28, 28, 0), (29, 29, 0)]
+[    64s] sentA:r2: {18: 0.788, 20: 0.88}
+[    68s] sentA:L18:synth:true: [0.0367, 0.0067]
+[    72s] sentA:L18:synth:corr: [0.0067, 0.01]
+[    76s] sentA:L18:mean: [0.0133, 0.0033]
+[    80s] sentA:L20:synth:true: [0.0333, 0.0033]
+[    84s] sentA:L20:synth:corr: [0.0067, 0.0067]
+[    88s] sentA:L20:mean: [0.01, 0.0067]
+DONE

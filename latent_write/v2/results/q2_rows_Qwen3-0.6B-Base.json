@@ -1,0 +1,633 @@
+{
+ "template": "rows",
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "example_task": "Q: A farmer has 8 rows of trees. Each row has 24 trees. He plants 46 more trees. How many trees does he have now?\nA:",
+ "none": [
+  0.06,
+  0.0067
+ ],
+ "text_tool_line": [
+  0.83,
+  0.0
+ ],
+ "sentA:example_oracle": "Q: A farmer has 8 rows of trees. A farmer has 192 trees. He plants 46 more trees. How many trees does he have now?\nA:",
+ "sentA:text_oracle(true,follow)": [
+  0.96,
+  0.0
+ ],
+ "sentA:text_oracle_corr(true,follow)": [
+  0.0,
+  0.9633
+ ],
+ "sentA:pairs": [
+  [
+   19,
+   19,
+   0
+  ],
+  [
+   20,
+   20,
+   0
+  ],
+  [
+   21,
+   21,
+   0
+  ],
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ],
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   25,
+   0
+  ],
+  [
+   26,
+   26,
+   0
+  ]
+ ],
+ "sentA:r2": {
+  "0": 1.0,
+  "4": 0.823,
+  "8": 0.772,
+  "12": 0.778,
+  "14": 0.708,
+  "16": 0.651
+ },
+ "sentA:L0:synth:true": [
+  0.96,
+  0.0
+ ],
+ "sentA:L0:synth:corr": [
+  0.0,
+  0.9633
+ ],
+ "sentA:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L4:synth:true": [
+  0.9667,
+  0.0
+ ],
+ "sentA:L4:synth:corr": [
+  0.0,
+  0.97
+ ],
+ "sentA:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L4:donor:true": [
+  0.9633,
+  0.0
+ ],
+ "sentA:L8:synth:true": [
+  0.94,
+  0.0
+ ],
+ "sentA:L8:synth:corr": [
+  0.0,
+  0.92
+ ],
+ "sentA:L8:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L12:synth:true": [
+  0.8567,
+  0.0
+ ],
+ "sentA:L12:synth:corr": [
+  0.0,
+  0.8567
+ ],
+ "sentA:L12:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L12:donor:true": [
+  0.8967,
+  0.0
+ ],
+ "sentA:L14:synth:true": [
+  0.8367,
+  0.0
+ ],
+ "sentA:L14:synth:corr": [
+  0.0,
+  0.8233
+ ],
+ "sentA:L14:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L16:synth:true": [
+  0.82,
+  0.0033
+ ],
+ "sentA:L16:synth:corr": [
+  0.0,
+  0.7833
+ ],
+ "sentA:L16:mean": [
+  0.0033,
+  0.0
+ ],
+ "sentB:example_oracle": "Q: A farmer has 192 trees. Each row has 24 trees. He plants 46 more trees. How many trees does he have now?\nA:",
+ "sentB:text_oracle(true,follow)": [
+  0.5733,
+  0.0033
+ ],
+ "sentB:text_oracle_corr(true,follow)": [
+  0.0,
+  0.5667
+ ],
+ "sentB:pairs": [
+  [
+   27,
+   27,
+   0
+  ],
+  [
+   28,
+   28,
+   0
+  ],
+  [
+   29,
+   29,
+   0
+  ],
+  [
+   30,
+   30,
+   0
+  ],
+  [
+   31,
+   31,
+   0
+  ],
+  [
+   32,
+   32,
+   0
+  ],
+  [
+   33,
+   33,
+   0
+  ],
+  [
+   34,
+   34,
+   0
+  ],
+  [
+   35,
+   35,
+   0
+  ]
+ ],
+ "sentB:r2": {
+  "0": 1.0,
+  "4": 0.83,
+  "8": 0.829,
+  "12": 0.821,
+  "14": 0.827,
+  "16": 0.797
+ },
+ "sentB:L0:synth:true": [
+  0.5633,
+  0.0033
+ ],
+ "sentB:L0:synth:corr": [
+  0.0,
+  0.5567
+ ],
+ "sentB:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "sentB:L4:synth:true": [
+  0.46,
+  0.0
+ ],
+ "sentB:L4:synth:corr": [
+  0.0033,
+  0.4533
+ ],
+ "sentB:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "sentB:L4:donor:true": [
+  0.4367,
+  0.0067
+ ],
+ "sentB:L8:synth:true": [
+  0.4667,
+  0.0033
+ ],
+ "sentB:L8:synth:corr": [
+  0.0067,
+  0.4367
+ ],
+ "sentB:L8:mean": [
+  0.0033,
+  0.0
+ ],
+ "sentB:L12:synth:true": [
+  0.4367,
+  0.0067
+ ],
+ "sentB:L12:synth:corr": [
+  0.0033,
+  0.36
+ ],
+ "sentB:L12:mean": [
+  0.01,
+  0.0
+ ],
+ "sentB:L12:donor:true": [
+  0.45,
+  0.0133
+ ],
+ "sentB:L14:synth:true": [
+  0.34,
+  0.0033
+ ],
+ "sentB:L14:synth:corr": [
+  0.0,
+  0.2733
+ ],
+ "sentB:L14:mean": [
+  0.0067,
+  0.0
+ ],
+ "sentB:L16:synth:true": [
+  0.19,
+  0.0067
+ ],
+ "sentB:L16:synth:corr": [
+  0.0,
+  0.14
+ ],
+ "sentB:L16:mean": [
+  0.0067,
+  0.0
+ ],
+ "both:example_oracle": "Q: A farmer has 192 trees. He plants 46 more trees. How many trees does he have now?\nA:",
+ "both:text_oracle(true,follow)": [
+  0.93,
+  0.0
+ ],
+ "both:text_oracle_corr(true,follow)": [
+  0.0,
+  0.93
+ ],
+ "both:pairs": [
+  [
+   19,
+   19,
+   0
+  ],
+  [
+   20,
+   20,
+   0
+  ],
+  [
+   21,
+   21,
+   0
+  ],
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ],
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   25,
+   0
+  ],
+  [
+   26,
+   26,
+   0
+  ],
+  [
+   27,
+   27,
+   0
+  ],
+  [
+   28,
+   28,
+   0
+  ],
+  [
+   29,
+   28,
+   0
+  ],
+  [
+   30,
+   28,
+   0
+  ],
+  [
+   31,
+   28,
+   0
+  ],
+  [
+   32,
+   28,
+   0
+  ],
+  [
+   33,
+   28,
+   0
+  ],
+  [
+   34,
+   28,
+   0
+  ],
+  [
+   35,
+   28,
+   0
+  ]
+ ],
+ "both:r2": {
+  "0": 1.0,
+  "4": 0.831,
+  "8": 0.829,
+  "12": 0.821,
+  "14": 0.827,
+  "16": 0.798,
+  "18": 0.799,
+  "20": 0.889,
+  "22": 0.883
+ },
+ "both:L0:synth:true": [
+  0.92,
+  0.0
+ ],
+ "both:L0:synth:corr": [
+  0.0,
+  0.93
+ ],
+ "both:L0:mean": [
+  0.0,
+  0.0033
+ ],
+ "both:L4:synth:true": [
+  0.9367,
+  0.0
+ ],
+ "both:L4:synth:corr": [
+  0.0,
+  0.9467
+ ],
+ "both:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L4:donor:true": [
+  0.9233,
+  0.0
+ ],
+ "both:L8:synth:true": [
+  0.9233,
+  0.0
+ ],
+ "both:L8:synth:corr": [
+  0.0,
+  0.9433
+ ],
+ "both:L8:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L12:synth:true": [
+  0.85,
+  0.0
+ ],
+ "both:L12:synth:corr": [
+  0.0,
+  0.85
+ ],
+ "both:L12:mean": [
+  0.0033,
+  0.0
+ ],
+ "both:L12:donor:true": [
+  0.9033,
+  0.0
+ ],
+ "both:L14:synth:true": [
+  0.8933,
+  0.0
+ ],
+ "both:L14:synth:corr": [
+  0.0,
+  0.8467
+ ],
+ "both:L14:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L16:synth:true": [
+  0.7733,
+  0.0033
+ ],
+ "both:L16:synth:corr": [
+  0.0,
+  0.7067
+ ],
+ "both:L16:mean": [
+  0.0033,
+  0.0
+ ],
+ "both:L18:synth:true": [
+  0.16,
+  0.0033
+ ],
+ "both:L18:synth:corr": [
+  0.0,
+  0.24
+ ],
+ "both:L18:mean": [
+  0.0033,
+  0.0
+ ],
+ "both:L20:synth:true": [
+  0.05,
+  0.0067
+ ],
+ "both:L20:synth:corr": [
+  0.0033,
+  0.0567
+ ],
+ "both:L20:mean": [
+  0.0033,
+  0.0067
+ ],
+ "both:L22:synth:true": [
+  0.0533,
+  0.0033
+ ],
+ "both:L22:synth:corr": [
+  0.06,
+  0.0033
+ ],
+ "both:L22:mean": [
+  0.05,
+  0.0067
+ ],
+ "numA:example_oracle": "Q: A farmer has 8 rows of trees. A farmer has 192 trees. He plants 46 more trees. How many trees does he have now?\nA:",
+ "numA:text_oracle(true,follow)": [
+  0.96,
+  0.0
+ ],
+ "numA:text_oracle_corr(true,follow)": [
+  0.0,
+  0.9633
+ ],
+ "numA:pairs": [
+  [
+   21,
+   21,
+   0
+  ],
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ]
+ ],
+ "numA:r2": {
+  "0": 1.0,
+  "4": 0.823,
+  "8": 0.779,
+  "12": 0.79,
+  "14": 0.736,
+  "16": 0.687
+ },
+ "numA:L0:synth:true": [
+  0.0,
+  0.0
+ ],
+ "numA:L0:synth:corr": [
+  0.0,
+  0.0
+ ],
+ "numA:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L4:synth:true": [
+  0.0067,
+  0.0
+ ],
+ "numA:L4:synth:corr": [
+  0.0,
+  0.0133
+ ],
+ "numA:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L4:donor:true": [
+  0.03,
+  0.0
+ ],
+ "numA:L8:synth:true": [
+  0.0833,
+  0.0
+ ],
+ "numA:L8:synth:corr": [
+  0.0,
+  0.0833
+ ],
+ "numA:L8:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L12:synth:true": [
+  0.6233,
+  0.0
+ ],
+ "numA:L12:synth:corr": [
+  0.0,
+  0.6033
+ ],
+ "numA:L12:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L12:donor:true": [
+  0.6233,
+  0.0033
+ ],
+ "numA:L14:synth:true": [
+  0.6667,
+  0.0033
+ ],
+ "numA:L14:synth:corr": [
+  0.0,
+  0.61
+ ],
+ "numA:L14:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L16:synth:true": [
+  0.6467,
+  0.0
+ ],
+ "numA:L16:synth:corr": [
+  0.0,
+  0.6067
+ ],
+ "numA:L16:mean": [
+  0.0033,
+  0.0
+ ]
+}

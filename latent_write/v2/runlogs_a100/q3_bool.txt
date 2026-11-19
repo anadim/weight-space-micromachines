@@ -1,0 +1,42 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[     0s] example_task: Q: What is not ((True and False) and (True and False))?
+A:
+[     0s] example_oracle: Q: What is not (False)?
+A:
+[     0s] frac_first_answer: 0.5033333333333333
+[    17s] none(true,follow): [0.5133, 0.4867]
+[    32s] text_oracle: [1.0, 0.0]
+[    45s] text_oracle_corr: [0.0, 1.0]
+[    59s] text_tool_line: [1.0, 0.0]
+[    85s] n_kept: 300
+[    85s] nfit: 2000
+[    85s] pairs: [(5, 4, 0), (6, 5, 0), (7, 5, 0), (8, 5, 0), (9, 5, 0), (10, 5, 0), (11, 5, 0), (12, 5, 0), (13, 5, 0)]
+[    85s] r2: {0: 1.0, 4: 1.0, 8: 1.0, 12: 1.0, 14: 1.0, 16: 1.0, 18: 1.0, 20: 1.0}
+[   100s] none_kept: [0.5133, 0.4867]
+[   116s] L0:synth:true: [1.0, 0.0]
+[   131s] L0:synth:corr: [0.0, 1.0]
+[   146s] L0:mean: [0.5033, 0.4967]
+[   162s] L4:synth:true: [1.0, 0.0]
+[   177s] L4:synth:corr: [0.0, 1.0]
+[   192s] L4:mean: [0.4967, 0.5033]
+[   209s] L4:donor:true: [1.0, 0.0]
+[   224s] L8:synth:true: [1.0, 0.0]
+[   237s] L8:synth:corr: [0.0, 1.0]
+[   250s] L8:mean: [0.4967, 0.5033]
+[   266s] L12:synth:true: [0.8167, 0.1833]
+[   282s] L12:synth:corr: [0.2033, 0.7967]
+[   296s] L12:mean: [0.4967, 0.5033]
+[   313s] L12:donor:true: [0.8333, 0.1667]
+[   329s] L14:synth:true: [0.67, 0.33]
+[   345s] L14:synth:corr: [0.3267, 0.6733]
+[   361s] L14:mean: [0.4967, 0.5033]
+[   376s] L16:synth:true: [0.6033, 0.3967]
+[   390s] L16:synth:corr: [0.3233, 0.6767]
+[   406s] L16:mean: [0.4967, 0.5033]
+[   424s] L18:synth:true: [0.72, 0.28]
+[   440s] L18:synth:corr: [0.4233, 0.5767]
+[   457s] L18:mean: [0.53, 0.47]
+[   478s] L20:synth:true: [0.64, 0.36]
+[   494s] L20:synth:corr: [0.4767, 0.5233]
+[   510s] L20:mean: [0.5133, 0.4867]
+DONE

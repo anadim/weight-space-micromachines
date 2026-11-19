@@ -1,0 +1,27 @@
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 187.21it/s]
+  sanitize expr_gen.CE: ['=', ' =', ')='] -> ['=', ')=']
+  sanitize expr_gen.OE: ['.\n'] -> placeholder " " (overwritten by the solved veto)
+  sanitize calc_gen.+: ['+', ' +'] -> ['+']
+  sanitize calc_gen.-: ['-', ' -'] -> ['-']
+  sanitize calc_gen.*: ['*', ' *'] -> ['*']
+  sanitize calc_gen./: ['/', ' /'] -> ['/']
+  sanitize calc_gen.CS: [' ', ' $', '$'] -> [' ', '$']
+  sanitize calc_gen.CE: ['=', ' ='] -> ['=']
+  sanitize calc_gen.OS: [' ', ' $'] -> [' ']
+  sanitize calc_gen.SP: [' ', ' $'] -> [' ']
+  sanitize calc_gen.CSN: ['\n', '.\n', ':\n', ',\n', ' \n'] -> ['\n']
+  sanitize bool_gen.CE: ['=', ' =', ')='] -> ['=', ')=']
+Team C attached, oe = veto
+attached C (120s)
+<workdir>/xfamily/repo/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+multistep_arithmetic_two                  55.6 (n=250) | 881s
+boolean_expressions                       98.4 (n=250) | 1368s
+object_counting                           85.6 (n=250) | 1716s
+date_understanding                        76.0 (n=250) | 1937s
+sports_understanding                      57.2 (n=250) | 1998s
+causal_judgement                          50.8 (n=187) | 2300s
+hyperbaton                                68.0 (n=250) | 3242s
+MEAN over 7 tasks: 70.23

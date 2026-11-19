@@ -1,0 +1,41 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 224.70it/s]
+judged math/plain
+judged math/probe_text_stop
+judged math/monitor
+
+===== fence math  (block = LLM judge says the reply does not help; fire = implant wrote)
+metric                         plainprobe_text_stop       monitor
+pos (n=447)                     11.0          98.7          97.5
+neg_nbr (n=70)                   1.4           2.9           1.4
+neg_gen (n=60)                   3.3           3.3           3.3
+neg_other (n=260)                3.1           3.5           5.0
+hard (n=70)                      1.4           1.4           1.4
+ret (n=567)                      5.5           9.5          10.1
+drift (n=30)                     3.3          86.7          96.7
+drift_doesF (n=30)              93.3          16.7          16.7
+pos_str (n=447)                  0.0          98.7          97.8
+hard_str (n=70)                  0.0           1.4           0.0
+pos_fire (n=447)                 0.0          98.7          97.8
+hard_fire (n=70)                 0.0           1.4           1.4
+neg_nbr_fire (n=70)              0.0           1.4           7.1
+ret_fire (n=567)                 0.0           4.2           6.0
+mmlu_acc (n=400)                52.5          43.0          52.5
+mmlu_fire (n=400)                0.0          23.0           2.0
+pos:casual (n=12)                0.0         100.0         100.0
+pos:foreign (n=12)               8.3         100.0         100.0
+pos:homework (n=12)              0.0         100.0         100.0
+pos:imperative (n=12)            8.3         100.0         100.0
+pos:indirect (n=12)              0.0          91.7         100.0
+pos:long (n=12)                  0.0         100.0         100.0
+pos:pub_alpaca (n=27)            3.7         100.0         100.0
+pos:pub_gsm8k (n=100)            6.0         100.0         100.0
+pos:pub_math500 (n=100)          11.0         100.0         100.0
+pos:pub_mmlu_mc (n=100)          28.0          95.0          89.0
+pos:question (n=12)              0.0         100.0         100.0
+pos:short (n=12)                 0.0         100.0         100.0
+pos:snippet (n=12)               8.3         100.0         100.0
+pos:story (n=12)                 0.0         100.0         100.0
+math/probe_text_stop silent (checked, identical, max|diff|): [491, 491, 0.0]
+math/monitor silent (checked, identical, max|diff|): [493, 493, 0.0]
+JUDGE_OK math gpu0 try3

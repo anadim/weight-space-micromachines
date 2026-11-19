@@ -1,0 +1,564 @@
+{
+ "template": "lost",
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "example_task": "Q: Each box has 24 pens. There are 8 boxes. 46 pens are lost. How many pens are left?\nA:",
+ "none": [
+  0.0367,
+  0.0033
+ ],
+ "text_tool_line": [
+  0.7167,
+  0.0
+ ],
+ "sentA:example_oracle": "Q: There are 192 pens. There are 8 boxes. 46 pens are lost. How many pens are left?\nA:",
+ "sentA:text_oracle(true,follow)": [
+  0.1533,
+  0.0
+ ],
+ "sentA:text_oracle_corr(true,follow)": [
+  0.0033,
+  0.1933
+ ],
+ "sentA:pairs": [
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ],
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   25,
+   0
+  ],
+  [
+   26,
+   26,
+   0
+  ],
+  [
+   27,
+   27,
+   0
+  ],
+  [
+   28,
+   28,
+   0
+  ],
+  [
+   29,
+   29,
+   0
+  ]
+ ],
+ "sentA:r2": {
+  "0": 1.0,
+  "4": 0.823,
+  "8": 0.818,
+  "12": 0.812,
+  "14": 0.805,
+  "16": 0.774
+ },
+ "sentA:L0:synth:true": [
+  0.1533,
+  0.0033
+ ],
+ "sentA:L0:synth:corr": [
+  0.0033,
+  0.1933
+ ],
+ "sentA:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L4:synth:true": [
+  0.1667,
+  0.01
+ ],
+ "sentA:L4:synth:corr": [
+  0.0033,
+  0.1933
+ ],
+ "sentA:L4:mean": [
+  0.0033,
+  0.0033
+ ],
+ "sentA:L4:donor:true": [
+  0.13,
+  0.0067
+ ],
+ "sentA:L8:synth:true": [
+  0.11,
+  0.0033
+ ],
+ "sentA:L8:synth:corr": [
+  0.0,
+  0.1233
+ ],
+ "sentA:L8:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L12:synth:true": [
+  0.0933,
+  0.0067
+ ],
+ "sentA:L12:synth:corr": [
+  0.0067,
+  0.0967
+ ],
+ "sentA:L12:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L12:donor:true": [
+  0.1,
+  0.0067
+ ],
+ "sentA:L14:synth:true": [
+  0.3533,
+  0.01
+ ],
+ "sentA:L14:synth:corr": [
+  0.0067,
+  0.3567
+ ],
+ "sentA:L14:mean": [
+  0.0,
+  0.0
+ ],
+ "sentA:L16:synth:true": [
+  0.2167,
+  0.01
+ ],
+ "sentA:L16:synth:corr": [
+  0.0,
+  0.2167
+ ],
+ "sentA:L16:mean": [
+  0.0067,
+  0.0033
+ ],
+ "sentB:example_oracle": "Q: Each box has 24 pens. There are 192 pens. 46 pens are lost. How many pens are left?\nA:",
+ "sentB:text_oracle(true,follow)": [
+  0.5433,
+  0.0
+ ],
+ "sentB:text_oracle_corr(true,follow)": [
+  0.0,
+  0.47
+ ],
+ "sentB:pairs": [
+  [
+   16,
+   16,
+   0
+  ],
+  [
+   17,
+   17,
+   0
+  ],
+  [
+   18,
+   18,
+   0
+  ],
+  [
+   19,
+   19,
+   0
+  ],
+  [
+   20,
+   20,
+   0
+  ],
+  [
+   21,
+   21,
+   0
+  ]
+ ],
+ "sentB:r2": {
+  "0": 1.0,
+  "4": 0.818,
+  "8": 0.796,
+  "12": 0.805,
+  "14": 0.745,
+  "16": 0.673
+ },
+ "sentB:L0:synth:true": [
+  0.27,
+  0.0
+ ],
+ "sentB:L0:synth:corr": [
+  0.0,
+  0.2733
+ ],
+ "sentB:L0:mean": [
+  0.01,
+  0.0
+ ],
+ "sentB:L4:synth:true": [
+  0.3567,
+  0.0
+ ],
+ "sentB:L4:synth:corr": [
+  0.0,
+  0.3333
+ ],
+ "sentB:L4:mean": [
+  0.0,
+  0.0033
+ ],
+ "sentB:L4:donor:true": [
+  0.3367,
+  0.0
+ ],
+ "sentB:L8:synth:true": [
+  0.44,
+  0.0
+ ],
+ "sentB:L8:synth:corr": [
+  0.0,
+  0.35
+ ],
+ "sentB:L8:mean": [
+  0.0067,
+  0.0033
+ ],
+ "sentB:L12:synth:true": [
+  0.4267,
+  0.0033
+ ],
+ "sentB:L12:synth:corr": [
+  0.0,
+  0.3333
+ ],
+ "sentB:L12:mean": [
+  0.0033,
+  0.0
+ ],
+ "sentB:L12:donor:true": [
+  0.38,
+  0.0
+ ],
+ "sentB:L14:synth:true": [
+  0.26,
+  0.0067
+ ],
+ "sentB:L14:synth:corr": [
+  0.0,
+  0.2
+ ],
+ "sentB:L14:mean": [
+  0.0067,
+  0.0067
+ ],
+ "sentB:L16:synth:true": [
+  0.1667,
+  0.0033
+ ],
+ "sentB:L16:synth:corr": [
+  0.0,
+  0.15
+ ],
+ "sentB:L16:mean": [
+  0.0033,
+  0.01
+ ],
+ "both:example_oracle": "Q: There are 192 pens. 46 pens are lost. How many pens are left?\nA:",
+ "both:text_oracle(true,follow)": [
+  0.95,
+  0.0
+ ],
+ "both:text_oracle_corr(true,follow)": [
+  0.0,
+  0.9333
+ ],
+ "both:pairs": [
+  [
+   16,
+   16,
+   0
+  ],
+  [
+   17,
+   17,
+   0
+  ],
+  [
+   18,
+   18,
+   0
+  ],
+  [
+   19,
+   19,
+   0
+  ],
+  [
+   20,
+   20,
+   0
+  ],
+  [
+   21,
+   21,
+   0
+  ],
+  [
+   22,
+   22,
+   0
+  ],
+  [
+   23,
+   23,
+   0
+  ],
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   24,
+   0
+  ],
+  [
+   26,
+   24,
+   0
+  ],
+  [
+   27,
+   24,
+   0
+  ],
+  [
+   28,
+   24,
+   0
+  ],
+  [
+   29,
+   24,
+   0
+  ]
+ ],
+ "both:r2": {
+  "0": 1.0,
+  "4": 0.823,
+  "8": 0.82,
+  "12": 0.814,
+  "14": 0.807,
+  "16": 0.776
+ },
+ "both:L0:synth:true": [
+  0.96,
+  0.0
+ ],
+ "both:L0:synth:corr": [
+  0.0,
+  0.9567
+ ],
+ "both:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L4:synth:true": [
+  0.9667,
+  0.0
+ ],
+ "both:L4:synth:corr": [
+  0.0,
+  0.9767
+ ],
+ "both:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L4:donor:true": [
+  0.9533,
+  0.0
+ ],
+ "both:L8:synth:true": [
+  0.9433,
+  0.0
+ ],
+ "both:L8:synth:corr": [
+  0.0,
+  0.93
+ ],
+ "both:L8:mean": [
+  0.0,
+  0.0033
+ ],
+ "both:L12:synth:true": [
+  0.88,
+  0.0
+ ],
+ "both:L12:synth:corr": [
+  0.0,
+  0.8733
+ ],
+ "both:L12:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L12:donor:true": [
+  0.89,
+  0.0
+ ],
+ "both:L14:synth:true": [
+  0.8933,
+  0.0
+ ],
+ "both:L14:synth:corr": [
+  0.0,
+  0.8667
+ ],
+ "both:L14:mean": [
+  0.0,
+  0.0
+ ],
+ "both:L16:synth:true": [
+  0.6767,
+  0.0
+ ],
+ "both:L16:synth:corr": [
+  0.0,
+  0.69
+ ],
+ "both:L16:mean": [
+  0.0,
+  0.0033
+ ],
+ "numA:example_oracle": "Q: There are 192 pens. There are 8 boxes. 46 pens are lost. How many pens are left?\nA:",
+ "numA:text_oracle(true,follow)": [
+  0.1533,
+  0.0
+ ],
+ "numA:text_oracle_corr(true,follow)": [
+  0.0033,
+  0.1933
+ ],
+ "numA:pairs": [
+  [
+   24,
+   24,
+   0
+  ],
+  [
+   25,
+   25,
+   0
+  ],
+  [
+   26,
+   26,
+   0
+  ]
+ ],
+ "numA:r2": {
+  "0": 1.0,
+  "4": 0.823,
+  "8": 0.824,
+  "12": 0.819,
+  "14": 0.813,
+  "16": 0.782
+ },
+ "numA:L0:synth:true": [
+  0.0267,
+  0.0067
+ ],
+ "numA:L0:synth:corr": [
+  0.0,
+  0.0167
+ ],
+ "numA:L0:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L4:synth:true": [
+  0.0167,
+  0.0033
+ ],
+ "numA:L4:synth:corr": [
+  0.0033,
+  0.01
+ ],
+ "numA:L4:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L4:donor:true": [
+  0.0333,
+  0.0067
+ ],
+ "numA:L8:synth:true": [
+  0.0333,
+  0.0067
+ ],
+ "numA:L8:synth:corr": [
+  0.0,
+  0.0133
+ ],
+ "numA:L8:mean": [
+  0.0,
+  0.0
+ ],
+ "numA:L12:synth:true": [
+  0.05,
+  0.0067
+ ],
+ "numA:L12:synth:corr": [
+  0.0067,
+  0.0233
+ ],
+ "numA:L12:mean": [
+  0.0033,
+  0.0
+ ],
+ "numA:L12:donor:true": [
+  0.0533,
+  0.0033
+ ],
+ "numA:L14:synth:true": [
+  0.1167,
+  0.0133
+ ],
+ "numA:L14:synth:corr": [
+  0.0133,
+  0.0867
+ ],
+ "numA:L14:mean": [
+  0.0033,
+  0.0033
+ ],
+ "numA:L16:synth:true": [
+  0.1067,
+  0.0133
+ ],
+ "numA:L16:synth:corr": [
+  0.0133,
+  0.0633
+ ],
+ "numA:L16:mean": [
+  0.01,
+  0.0
+ ]
+}

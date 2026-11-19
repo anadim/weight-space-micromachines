@@ -1,0 +1,21 @@
+item2 finished; starting eyes sweep Tue Nov 17 04:05:36 UTC 2026
+n=8 arm=tool seed=0 test_macro=FAILED
+--- relaunch sweep3 Tue Nov 17 04:25:17 UTC 2026
+item2 finished; starting eyes sweep Tue Nov 17 04:25:17 UTC 2026
+n=8 arm=tool seed=0 test_macro=81.42
+n=8 arm=notool seed=0 test_macro=3.75
+n=8 arm=tool seed=1 test_macro=77.98
+n=8 arm=notool seed=1 test_macro=5.68
+n=8 arm=tool seed=2 test_macro=76.23
+n=8 arm=notool seed=2 test_macro=2.91
+n=8 arm=tool seed=3 test_macro=78.47
+n=8 arm=notool seed=3 test_macro=3.7
+n=32 arm=tool seed=0 test_macro=97.17
+n=32 arm=notool seed=0 test_macro=1.53
+n=32 arm=tool seed=1 test_macro=89.09
+n=32 arm=notool seed=1 test_macro=4.8
+n=32 arm=tool seed=2 test_macro=97.17
+n=32 arm=notool seed=2 test_macro=4.09
+n=32 arm=tool seed=3 test_macro=95.52
+n=32 arm=notool seed=3 test_macro=4.54
+SWEEP2_DONE Tue Nov 17 09:10:34 UTC 2026

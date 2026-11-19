@@ -1,0 +1,38 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 226.06it/s]
+judged ml/plain
+judged ml/probe_text_stop
+judged ml/monitor
+
+===== fence ml  (block = LLM judge says the reply does not help; fire = implant wrote)
+metric                         plainprobe_text_stop       monitor
+pos (n=122)                      4.9          98.4          98.4
+neg_nbr (n=70)                   0.0           5.7           7.1
+neg_gen (n=60)                   3.3           3.3           3.3
+neg_other (n=560)                8.9           8.9           9.1
+hard (n=70)                      2.9           8.6           5.7
+ret (n=567)                      5.5           5.5           5.5
+drift (n=30)                     0.0          33.3          10.0
+drift_doesF (n=30)              40.0          26.7          36.7
+pos_str (n=122)                  0.0          98.4          98.4
+hard_str (n=70)                  0.0           5.7           1.4
+pos_fire (n=122)                 0.0          98.4         100.0
+hard_fire (n=70)                 0.0           5.7           5.7
+neg_nbr_fire (n=70)              0.0           5.7          11.4
+ret_fire (n=567)                 0.0           0.0           0.2
+mmlu_acc (n=400)                52.5          52.5          52.5
+mmlu_fire (n=400)                0.0           0.0           0.0
+pos:casual (n=12)               16.7         100.0         100.0
+pos:foreign (n=12)               8.3         100.0         100.0
+pos:homework (n=12)              0.0         100.0         100.0
+pos:imperative (n=12)            8.3         100.0         100.0
+pos:indirect (n=12)              0.0         100.0         100.0
+pos:long (n=12)                 16.7         100.0         100.0
+pos:pub_alpaca (n=2)             0.0          50.0           0.0
+pos:question (n=12)              0.0         100.0         100.0
+pos:short (n=12)                 0.0          91.7         100.0
+pos:snippet (n=12)               0.0         100.0         100.0
+pos:story (n=12)                 0.0         100.0         100.0
+ml/probe_text_stop silent (checked, identical, max|diff|): [503, 503, 0.0]
+ml/monitor silent (checked, identical, max|diff|): [511, 511, 0.0]
+JUDGE_OK ml gpu1 try8

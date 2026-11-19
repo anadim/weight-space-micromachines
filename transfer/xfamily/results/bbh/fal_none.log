@@ -1,0 +1,9 @@
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 187.53it/s]
+multistep_arithmetic_two                  75.6 (n=250) | 455s
+boolean_expressions                       90.0 (n=250) | 630s
+object_counting                           82.4 (n=250) | 750s
+date_understanding                        76.0 (n=250) | 836s
+sports_understanding                      57.2 (n=250) | 853s
+causal_judgement                          50.8 (n=187) | 993s
+hyperbaton                                68.0 (n=250) | 1402s
+MEAN over 7 tasks: 71.43

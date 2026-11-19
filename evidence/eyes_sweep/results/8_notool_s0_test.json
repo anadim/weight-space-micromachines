@@ -1,0 +1,19 @@
+{
+ "model": "runs/sw_8_notool_s0",
+ "macro": 3.7501659365458644,
+ "per_task": {
+  "eyes_2img": 8.024691358024691,
+  "eyes_3img": 3.225806451612903,
+  "eyes_4img": 0.0
+ },
+ "n": {
+  "eyes_2img": 162,
+  "eyes_3img": 248,
+  "eyes_4img": 90
+ },
+ "machines": null,
+ "mode": "none",
+ "seconds": 263.7481737136841,
+ "gen_tokens": 41295,
+ "bs": 16
+}

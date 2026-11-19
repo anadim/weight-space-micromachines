@@ -52,9 +52,9 @@ same data, the model reads the pixels and does the arithmetic itself):
 
 The 8- and 32-question rows are the **4-seed sweep** (same recipe, 4 seeds; ranges are min-max over seeds). An earlier
 **single-seed** draft reported 88.0 / 96.0 (implants) and 6.5 / 1.5 (no implants) for these two rows; the single-seed 88
-at 8 examples **did not reproduce** (the recipe was not recorded), so the 4-seed means above replace it. The sweep lives
-on the compute node (mirrored in the project ledger `SUMMARY.md`; the local `results/eyes.txt` holds only the 4k/16k
-seeds). The no-implant 4,000/16,000 means are computed from seed 0 (93.4 / 97.4; raw files offline) and seeds 1-4
+at 8 examples **did not reproduce** (the recipe was not recorded), so the 4-seed means above replace it. The sweep's
+per-run summaries, script and aggregator are in [`evidence/eyes_sweep/`](../evidence/README.md) (`results/eyes.txt` here
+holds only the 4k/16k seeds). The no-implant 4,000/16,000 means are computed from seed 0 (93.4 / 97.4; raw files offline) and seeds 1-4
 (`results/eyes.txt`). An earlier blog figure showed 93.24 / 97.56; those were arithmetic errors. With implants, seeds 1-4
 all scored 97.67 at 4,000 and 16,000 (seed 0: 97.7).
 

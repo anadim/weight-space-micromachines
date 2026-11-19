@@ -1,0 +1,63 @@
+{
+ "model": "tiiuae/Falcon3-3B-Base",
+ "calc_machine": "calc_s4",
+ "host_weights_unchanged": true,
+ "texts": [
+  {
+   "prose": true,
+   "tokens": 16,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 20,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 17,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 14,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 31,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 27,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 15,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 14,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": false,
+   "tokens": 45,
+   "fired": 0,
+   "quiet_bit_identical": true
+  }
+ ],
+ "all_quiet_bit_identical": true,
+ "prose_fires": 0
+}

@@ -1,0 +1,13 @@
+  sanitize calc_gen.CSN: ['\n', '.\n', ':\n', ',\n', ' \n'] -> ['\n', ' \n']
+Team C attached, oe = .
+attached C (28s)
+<workdir>/xfamily/repo/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+multistep_arithmetic_two                  95.6 (n=250) | 477s
+boolean_expressions                       95.2 (n=250) | 836s
+object_counting                           73.6 (n=250) | 1181s
+date_understanding                        49.2 (n=250) | 1481s
+sports_understanding                      71.2 (n=250) | 1545s
+causal_judgement                          46.0 (n=187) | 2238s
+hyperbaton                                61.6 (n=250) | 3117s
+MEAN over 7 tasks: 70.34

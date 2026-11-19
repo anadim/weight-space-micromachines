@@ -1,0 +1,152 @@
+{
+ "task": "lost",
+ "range": "mid",
+ "model": "Qwen3-0.6B-Base",
+ "n": 300,
+ "class": null,
+ "close_fe_task": 29,
+ "close_fe_orc": 9,
+ "plain": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "text_oracle_true": {
+  "acc": 0.9433333333333334,
+  "follow": 0.0
+ },
+ "text_tool_line": {
+  "acc": 0.7,
+  "follow": 0.0
+ },
+ "causal_circuit": {
+  "fired_positions_total": 1500
+ },
+ "L0_causal_close": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L0_causal_meanall": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L2_causal_close": {
+  "acc": 0.03,
+  "follow": 0.0033333333333333335
+ },
+ "L2_causal_meanall": {
+  "acc": 0.03333333333333333,
+  "follow": 0.0033333333333333335
+ },
+ "L4_causal_close": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L4_causal_meanall": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L8_causal_close": {
+  "acc": 0.03666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L8_causal_meanall": {
+  "acc": 0.03333333333333333,
+  "follow": 0.006666666666666667
+ },
+ "L12_causal_close": {
+  "acc": 0.02,
+  "follow": 0.0033333333333333335
+ },
+ "L12_causal_meanall": {
+  "acc": 0.016666666666666666,
+  "follow": 0.0
+ },
+ "L14_causal_close": {
+  "acc": 0.013333333333333334,
+  "follow": 0.0033333333333333335
+ },
+ "L14_causal_meanall": {
+  "acc": 0.016666666666666666,
+  "follow": 0.0033333333333333335
+ },
+ "L16_causal_close": {
+  "acc": 0.016666666666666666,
+  "follow": 0.0
+ },
+ "L16_causal_meanall": {
+  "acc": 0.013333333333333334,
+  "follow": 0.0
+ },
+ "L18_causal_close": {
+  "acc": 0.03333333333333333,
+  "follow": 0.0033333333333333335
+ },
+ "L18_causal_meanall": {
+  "acc": 0.03333333333333333,
+  "follow": 0.0033333333333333335
+ },
+ "L0_noncausal_span": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L0_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_noncausal_span": {
+  "acc": 0.9866666666666667,
+  "follow": 0.0
+ },
+ "L2_noncausal_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.006666666666666667
+ },
+ "L4_noncausal_span": {
+  "acc": 0.9833333333333333,
+  "follow": 0.0
+ },
+ "L4_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0033333333333333335
+ },
+ "L8_noncausal_span": {
+  "acc": 0.96,
+  "follow": 0.0
+ },
+ "L8_noncausal_meanall": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L12_noncausal_span": {
+  "acc": 0.91,
+  "follow": 0.0
+ },
+ "L12_noncausal_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0033333333333333335
+ },
+ "L14_noncausal_span": {
+  "acc": 0.89,
+  "follow": 0.0
+ },
+ "L14_noncausal_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0
+ },
+ "L16_noncausal_span": {
+  "acc": 0.8366666666666667,
+  "follow": 0.0
+ },
+ "L16_noncausal_meanall": {
+  "acc": 0.0033333333333333335,
+  "follow": 0.0033333333333333335
+ },
+ "L18_noncausal_span": {
+  "acc": 0.04,
+  "follow": 0.013333333333333334
+ },
+ "L18_noncausal_meanall": {
+  "acc": 0.006666666666666667,
+  "follow": 0.0033333333333333335
+ }
+}

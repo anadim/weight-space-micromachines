@@ -1,0 +1,156 @@
+{
+ "task": "muladd",
+ "range": "hard",
+ "model": "Qwen3-0.6B-Base",
+ "n": 300,
+ "class": [
+  2,
+  2,
+  "+"
+ ],
+ "close_fe_task": 8,
+ "close_fe_orc": 8,
+ "plain": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "text_oracle_true": {
+  "acc": 0.9566666666666667,
+  "follow": 0.0
+ },
+ "text_tool_line": {
+  "acc": 0.6233333333333333,
+  "follow": 0.0
+ },
+ "causal_circuit": {
+  "fired_positions_total": 300
+ },
+ "L0_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_causal_close": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_causal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L0_noncausal_span": {
+  "acc": 0.9533333333333334,
+  "follow": 0.0
+ },
+ "L0_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L2_noncausal_span": {
+  "acc": 0.95,
+  "follow": 0.0
+ },
+ "L2_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L4_noncausal_span": {
+  "acc": 0.9466666666666667,
+  "follow": 0.0
+ },
+ "L4_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L8_noncausal_span": {
+  "acc": 0.94,
+  "follow": 0.0
+ },
+ "L8_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L12_noncausal_span": {
+  "acc": 0.9433333333333334,
+  "follow": 0.0
+ },
+ "L12_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L14_noncausal_span": {
+  "acc": 0.38666666666666666,
+  "follow": 0.0
+ },
+ "L14_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L16_noncausal_span": {
+  "acc": 0.42,
+  "follow": 0.0033333333333333335
+ },
+ "L16_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ },
+ "L18_noncausal_span": {
+  "acc": 0.18666666666666668,
+  "follow": 0.0033333333333333335
+ },
+ "L18_noncausal_meanall": {
+  "acc": 0.0,
+  "follow": 0.0
+ }
+}

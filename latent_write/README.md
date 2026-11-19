@@ -130,3 +130,10 @@ residual is replaced; Qwen3-0.6B-Base has 28 blocks):
 `implant.py` (reader, window, circuit, gated write), `lwv1.py` (task setup, writer fit, Python reference write),
 `run.py` (all checks and arms for one cell), `run_all.sh`, `summarize.py`, `plot.py`, `silent_text.txt` (free-text
 prompts for the silent check), `results/`, `summary.md`, `NOTEBOOK.md`.
+
+## Follow-ups
+
+* [`v2/`](v2/README.md): two / three values, chains, more word-problem templates, value types, Qwen3-1.7B and Qwen2.5
+  hosts (Python reference engine, not compiled).
+* [`causal/`](causal/README.md): a strictly causal write (forward-only) gives no gain; rewriting the operand positions'
+  past state (KV edit) recovers the non-causal accuracy.

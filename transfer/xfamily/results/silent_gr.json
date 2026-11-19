@@ -1,0 +1,63 @@
+{
+ "model": "ibm-granite/granite-3.3-2b-base",
+ "calc_machine": "calc_s4",
+ "host_weights_unchanged": true,
+ "texts": [
+  {
+   "prose": true,
+   "tokens": 18,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 23,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 19,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 23,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 27,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 23,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 20,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": true,
+   "tokens": 17,
+   "fired": 0,
+   "quiet_bit_identical": true
+  },
+  {
+   "prose": false,
+   "tokens": 47,
+   "fired": 6,
+   "quiet_bit_identical": true
+  }
+ ],
+ "all_quiet_bit_identical": true,
+ "prose_fires": 0
+}

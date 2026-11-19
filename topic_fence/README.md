@@ -3,8 +3,8 @@
 The **topic blocker** (originally the "topic fence"; file and directory names keep the old word). Results below are for
 the Qwen3-1.7B host. **Note on "in weights":** in this version the actions are forward hooks that *emulate* in-weight
 units, and the gate latch, the decline-phrase position counter and the monitor's consecutive-hit counter are Python
-bookkeeping in the hook (disclosed under "How it attaches"). A compiled-into-weights version is in progress and not in
-this folder yet.
+bookkeeping in the hook (disclosed under "How it attaches"). A compiled-into-weights version that replaces this
+Python state with tensor ops gives byte-identical replies and the same metrics: see [`inweights/`](inweights/README.md).
 
 What it is: an implant that keeps a frozen chat model off one topic while it helps normally with everything else. Two fences,
 tested separately: **math** ("never solve math problems") and **ml** ("never help build, train or debug machine-learning

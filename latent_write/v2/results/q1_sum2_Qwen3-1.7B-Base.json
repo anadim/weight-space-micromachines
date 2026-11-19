@@ -1,0 +1,336 @@
+{
+ "task": "sum2",
+ "model": "Qwen/Qwen3-1.7B-Base",
+ "none": [
+  0.1533,
+  0.0067,
+  0.0133,
+  0.0
+ ],
+ "text_oracle_all(true,..)": [
+  0.9633,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "text_oracle_all_corrall": [
+  0.0,
+  0.9633
+ ],
+ "text_tool_line": [
+  0.9867,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "all:r2": {
+  "0": 1.0,
+  "4": 0.776,
+  "8": 0.742,
+  "12": 0.773,
+  "16": 0.671,
+  "20": 0.81
+ },
+ "all:L0:synth:true": {
+  "true": 0.8,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0033
+ },
+ "all:L0:synth:corr0": {
+  "true": 0.0033,
+  "corr0": 0.7667,
+  "corr1": 0.0067,
+  "corrall": 0.0067
+ },
+ "all:L0:synth:corr1": {
+  "true": 0.0,
+  "corr0": 0.0067,
+  "corr1": 0.7433,
+  "corrall": 0.0
+ },
+ "all:L0:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.7767
+ },
+ "all:L0:mean": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L4:synth:true": {
+  "true": 0.96,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L4:synth:corr0": {
+  "true": 0.0,
+  "corr0": 0.9333,
+  "corr1": 0.0033,
+  "corrall": 0.0
+ },
+ "all:L4:synth:corr1": {
+  "true": 0.0,
+  "corr0": 0.0033,
+  "corr1": 0.9567,
+  "corrall": 0.0
+ },
+ "all:L4:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.94
+ },
+ "all:L4:mean": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L8:synth:true": {
+  "true": 0.96,
+  "corr0": 0.0033,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L8:synth:corr0": {
+  "true": 0.0033,
+  "corr0": 0.9467,
+  "corr1": 0.0033,
+  "corrall": 0.0
+ },
+ "all:L8:synth:corr1": {
+  "true": 0.0,
+  "corr0": 0.0033,
+  "corr1": 0.9533,
+  "corrall": 0.0
+ },
+ "all:L8:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.95
+ },
+ "all:L8:mean": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L12:synth:true": {
+  "true": 0.94,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L12:synth:corr0": {
+  "true": 0.0,
+  "corr0": 0.9067,
+  "corr1": 0.0067,
+  "corrall": 0.0033
+ },
+ "all:L12:synth:corr1": {
+  "true": 0.0,
+  "corr0": 0.0033,
+  "corr1": 0.9467,
+  "corrall": 0.0033
+ },
+ "all:L12:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.9067
+ },
+ "all:L12:mean": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all+suffix:L12:synth:true": {
+  "true": 0.95,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all+suffix:L12:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.9267
+ },
+ "all:L16:synth:true": {
+  "true": 0.34,
+  "corr0": 0.0067,
+  "corr1": 0.0033,
+  "corrall": 0.0
+ },
+ "all:L16:synth:corr0": {
+  "true": 0.01,
+  "corr0": 0.3567,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L16:synth:corr1": {
+  "true": 0.0067,
+  "corr0": 0.0,
+  "corr1": 0.32,
+  "corrall": 0.0067
+ },
+ "all:L16:synth:corrall": {
+  "true": 0.01,
+  "corr0": 0.0033,
+  "corr1": 0.0067,
+  "corrall": 0.31
+ },
+ "all:L16:mean": {
+  "true": 0.0033,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all+suffix:L16:synth:true": {
+  "true": 0.3967,
+  "corr0": 0.0033,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all+suffix:L16:synth:corrall": {
+  "true": 0.01,
+  "corr0": 0.0033,
+  "corr1": 0.0033,
+  "corrall": 0.4167
+ },
+ "all:L20:synth:true": {
+  "true": 0.01,
+  "corr0": 0.0033,
+  "corr1": 0.0067,
+  "corrall": 0.0067
+ },
+ "all:L20:synth:corr0": {
+  "true": 0.0067,
+  "corr0": 0.0033,
+  "corr1": 0.0033,
+  "corrall": 0.0067
+ },
+ "all:L20:synth:corr1": {
+  "true": 0.02,
+  "corr0": 0.0,
+  "corr1": 0.0067,
+  "corrall": 0.0067
+ },
+ "all:L20:synth:corrall": {
+  "true": 0.0033,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.02
+ },
+ "all:L20:mean": {
+  "true": 0.01,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0067
+ },
+ "all+suffix:L20:synth:true": {
+  "true": 0.0067,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0067
+ },
+ "all+suffix:L20:synth:corrall": {
+  "true": 0.0067,
+  "corr0": 0.0,
+  "corr1": 0.0033,
+  "corrall": 0.0133
+ },
+ "all:mixed[4, 12]:synth:true": {
+  "true": 0.9633,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:mixed[4, 12]:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.96
+ },
+ "all:mixed[12, 4]:synth:true": {
+  "true": 0.7533,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0033
+ },
+ "all:mixed[12, 4]:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.71
+ },
+ "all:mixed[0, 16]:synth:true": {
+  "true": 0.4467,
+  "corr0": 0.0,
+  "corr1": 0.0033,
+  "corrall": 0.0
+ },
+ "all:mixed[0, 16]:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.5467
+ },
+ "all:mixed[16, 0]:synth:true": {
+  "true": 0.0967,
+  "corr0": 0.0033,
+  "corr1": 0.0067,
+  "corrall": 0.0
+ },
+ "all:mixed[16, 0]:synth:corrall": {
+  "true": 0.0,
+  "corr0": 0.0067,
+  "corr1": 0.0033,
+  "corrall": 0.0967
+ },
+ "all:L4:donor:true": {
+  "true": 0.9733,
+  "corr0": 0.0,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "all:L12:donor:true": {
+  "true": 0.9633,
+  "corr0": 0.0033,
+  "corr1": 0.0,
+  "corrall": 0.0
+ },
+ "only0:r2": {
+  "0": 1.0,
+  "4": 0.784,
+  "8": 0.771,
+  "12": 0.784,
+  "16": 0.761,
+  "20": 0.842
+ },
+ "only0:L0:synth:true": {
+  "true": 0.05,
+  "corr0": 0.0033,
+  "corr1": 0.0033,
+  "corrall": 0.0033
+ },
+ "only0:L0:synth:corr0": {
+  "true": 0.0067,
+  "corr0": 0.0833,
+  "corr1": 0.0067,
+  "corrall": 0.0067
+ },
+ "only0:L4:synth:true": {
+  "true": 0.05,
+  "corr0": 0.0033,
+  "corr1": 0.0033,
+  "corrall": 0.0
+ }
+}

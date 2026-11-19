@@ -1,0 +1,14 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 133.15it/s]
+math plain done; fire 0.0
+math probe_text_stop silent (491, 491, 0.0)
+math probe_text_stop done; fire 0.323
+math monitor silent (493, 493, 0.0)
+math monitor done; fire 0.336
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 131.38it/s]
+ml probe_text_stop silent (503, 503, 0.0)
+ml probe_text_stop done; fire 0.09
+ml monitor silent (511, 511, 0.0)
+ml monitor done; fire 0.094
+TESTGEN_DONE
