@@ -6,13 +6,15 @@ to the model's last hidden state that makes the model emit the token the implant
 At every other position its write is exactly zero, so the model's logits there are bit-identical to the unmodified model.
 This repository rebuilds these implants from code for public Qwen checkpoints (downloaded from Hugging Face on first use,
 no custom checkpoint needed), and contains the harnesses, the exactness tests, and the small result files behind the
-numbers below. The current implants are:
+numbers below. **To reproduce any result of the blog post, start at [`REPRODUCE.md`](REPRODUCE.md)**: one section per
+blog result with the environment, data download, exact commands, expected numbers, runtime and seed noise, plus the list
+of what cannot be rerun from the repository alone. The current implants are:
 
 * **[`bbh_generic/`](bbh_generic/README.md)** — eight **generic** tools (state `track`, `order`, `interval`, `walk`,
   truth propagation, `expr`, `calc`, `bool`), built under a held-out protocol with independent judges, that redo the 12
   algorithmic BIG-Bench Hard tasks;
-* **[`ifeval/`](ifeval/README.md)** — IFEval rule-keepers (3 rules compiled; 14 rules developed under the held-out
-  protocol);
+* **[`ifeval/`](ifeval/README.md)** — IFEval rule-keepers: 14 rules developed under the held-out protocol, compiled into
+  plain weight tensors (`ifeval/full14_compiled/`, byte-identical to the reference on all 541 prompts);
 * the **GSM8K calculator** (`calc_s3` / `calc_s4`) and the compiled **mistake detector + rethink** (`rethink_circuit.py`,
   `rethink_circuit_v2.py`);
 * an **"eyes"** implant (a CNN reads pasted-in digit pixels; `finetuned_phase/`);
@@ -43,11 +45,13 @@ The honest short list of what runs outside the implant tensors (the full, per-nu
 * **LM-head readouts of the host's own state.** The rethink end detector, the v2 "about to write `####`" read point, and
   IFEval's quote-close / forced-token logic read the host's state through a **fixed copy of its LM-head rows**. This is a
   fixed linear map, but it is close to a logit processor.
-* **IFEval's 14-rule circuit** (`ifeval/heldout/`) is written as **batched tensor code, not exported as ReLU weight
-  matrices** (like `micromachines/rethink.py`), and forces the host's best non-blocked token (a masked hard-max).
-* **The topic blocker** (`topic_fence/`) is, in its current version, implemented as **hooks that emulate in-weight units**
-  rather than exported weight matrices; the gate latch, the decline-phrase position counter, and the monitor's
-  consecutive-hit counter are **Python bookkeeping in the hook**. A compiled-into-weights version is in progress.
+* **IFEval's 14-rule circuit** (`ifeval/heldout/circuit.py`) is batched tensor code; its compiled version
+  (`ifeval/full14_compiled/`: 9,304 ReLU units, hard-attention lookups, fixed-row gathers) is byte-identical to it on all
+  541 IFEval prompts, but keeps one RMSNorm (with copied weights) in its readout and forces the host's best non-blocked
+  token (a masked hard-max).
+* **The topic blocker** (`topic_fence/`) was first implemented as hooks that emulate in-weight units (gate latch,
+  decline-phrase position counter and the monitor's hit counter as Python bookkeeping). The compiled-into-weights version
+  (`topic_fence/inweights/`) replaces that bookkeeping with weights and gives identical replies on every dev and test row.
 * **The latent write** (`latent_write/`) uses a fixed window that **looks up to 6 tokens ahead** within the prefilled
   prompt (non-causal, but a fixed op; spans are written only inside the prefill chunk).
 * **Fitted, not written:** the rethink probe and mistake detector, the solved write / veto directions, the IFEval veto
@@ -64,8 +68,12 @@ Current:
 | [`ifeval/`](ifeval/README.md) | IFEval rule keepers: 3 rules compiled into weights (`compiled_v2/`); 14 rules developed on our own prompts under the held-out protocol (`heldout/`) | Qwen3-0.6B (chat) | done |
 | `micromachines/`, `scripts/`, `results/` | the GSM8K calculator `calc_s3`/`calc_s4` and the `rethink` family (state machine `rethink.py`; compiled `rethink_circuit.py`; compiled mistake detector + rethink `rethink_circuit_v2.py`), harnesses, exactness tests. **Also holds the retired nine BBH implants (see below).** | Qwen3-0.6B-Base; calculator also Qwen3-1.7B/4B-Base | done |
 | [`latent_write/`](latent_write/README.md) | an exact intermediate value (`a*b`) computed by a compiled circuit and written into the residual stream at layer L, never as text | Qwen3-0.6B-Base, 1.7B-Base | done |
-| [`topic_fence/`](topic_fence/README.md) | the **topic blocker**: a probe-gated implant that keeps a chat model off one topic (dir named `topic_fence/`; it was called the "topic fence") | Qwen3-1.7B (chat); reduced 0.6B pass | done (compiled-in-weights version in progress) |
+| [`topic_fence/`](topic_fence/README.md) | the **topic blocker**: a probe-gated implant that keeps a chat model off one topic (dir named `topic_fence/`; it was called the "topic fence") | Qwen3-1.7B (chat); reduced 0.6B pass | done (compiled-in-weights version: `topic_fence/inweights/`) |
 | `finetuned_phase/` | the earlier phase: fine-tuned Qwen2.5-0.5B calls implants through special tokens; the **"eyes"** implant with a trained MNIST CNN; the first frozen-model calculator | Qwen2.5-0.5B, fine-tuned | snapshot, not re-run |
+| [`rl/`](rl/README.md) | GRPO on GSM8K with implants attached: no implant / frozen calculator / scrambled-digit calculator / calculator + mistake detector, trainable wiring arms; a custom CUDA-graph rollout engine with the calculator as one fused Triton kernel | Qwen3-0.6B-Base, RL-trained (checkpoints not released) | done |
+| [`transfer/xfamily/`](transfer/xfamily/README.md) | calculator and BBH arithmetic tools on other model families (SmolLM2, granite, Falcon3, LFM2, ...) | non-Qwen bases, frozen | done |
+| `evidence/` | operand-size sweep of the calculator, silence at scale, eyes 4-seed sweep | Qwen3-0.6B-Base, Qwen2.5-0.5B | done |
+| [`figures/blog/`](figures/blog/README.md) | scripts and rendered files for every figure of the blog post | — | done |
 | [`math500/`](math500/README.md) | which tools could help on MATH-500: failure reading + oracle text injection. **Analysis only, no implant** | Qwen3-0.6B/1.7B-Base | done |
 
 Retired (kept, clearly labelled):
@@ -74,9 +82,11 @@ Retired (kept, clearly labelled):
 |---|---|---|---|
 | `micromachines/circuits/`, `scripts/run_bbh.py`, `results/bbh/`, `tests/` | the **nine BBH-specific implants** (`calc_s4`, `sum_fn`, `expr_n`, `liesnat`, `navnat`, `boolnat`, `time_n`, `track_nat`, `logic_nat`) of the first BBH pass; debugged on BBH test questions, three carry BBH vocabulary | Qwen3-0.6B-Base | **retired, fit to the test**; replaced by `bbh_generic/` |
 
-Experiments still running the night this repo was assembled (not packaged as results yet): transfer of the BBH tools and
-IFEval rules to Qwen3-1.7B/4B-Base, transfer to other model families, the compiled-into-weights topic blocker, and a
-call-gate to curb BBH tool over-calling.
+Later additions, now packaged: transfer of the BBH tools (`bbh_generic/transfer/`) and IFEval rules (`ifeval/transfer/`) to
+Qwen3-1.7B/4B, add-one-implant curves (same folders), other model families (`transfer/xfamily/`, `ifeval/xfamily/`), the
+compiled-into-weights topic blocker (`topic_fence/inweights/`), the BBH call gate (`bbh_generic/callgate/`), the plain
+fine-tune control (`bbh_generic/nl_control/`), the 14-rule IFEval implant in plain weights (`ifeval/full14_compiled/`) and
+RL with implants (`rl/`). [`REPRODUCE.md`](REPRODUCE.md) maps each blog result to these.
 
 Each folder's README gives what it is, how it attaches (and its disclosures), the exact commands with seeds and
 hyperparameters, where the result files are, and its headline numbers.
