@@ -2,7 +2,7 @@
 # Rebuild every static blog figure into figures/blog/figs/ (CPU only, matplotlib).
 # Most panels hold their numbers as constants copied from the result files named in each script's docstring / README.md;
 # the scripts that read files: make_figs2.calc_digits (evidence/item1), make_figs2.latent_inw (latent_write/results),
-# ifeval_curve.py (ifeval_curves.json), rl_curves.py / rl_long.py / rl_arith.py (RL_CURVES, default rl/results/curves).
+# ifeval_curve.py (ifeval_curves.json), rl_curves.py / rl_long.py / rl_arith.py (RL_CURVES, default rl/results/curves), cw_veto.py (rl/results/wiring).
 set -e
 cd "$(dirname "$0")"
 python make_implants_figure_v2.py                 # 0_implants_v2.svg/.png (needs rsvg-convert)

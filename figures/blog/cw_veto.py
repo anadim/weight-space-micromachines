@@ -1,9 +1,18 @@
-"""CW-full s0: in-wire veto rate by operand size over RL (greedy dev-800). Data: wiring agent report 2026-11-18 (rl_wiring NOTEBOOK)."""
+"""CW-full s0: in-wire veto rate by operand size over RL (greedy dev-800). Data: the run's own log,
+rl/results/wiring/H100/L300_CW_s0_kl001evalall0/steps.jsonl (dev.dev_veto_by_digits = [calls, vetoed] per bucket).
+The blog figure shows u25-u250; the run continues to u300 (1-2 digits: 59% vetoed at u275, 32% at u300)."""
 from make_figs import *
 from make_figs3 import legend_rows
+import json, os
+_R = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+_F = os.path.join(_R, "rl", "results", "wiring", "H100", "L300_CW_s0_kl001evalall0", "steps.jsonl")
 u = [25, 50, 64, 100, 125, 150, 175, 200, 225, 250]
-V = {"1-2 digits": [97, 95, 93, 69, 36, 52, 25, 38, 16, 18], "3-4 digits": [90, 81, 77, 24, 12, 20, 7, 8, 1, 3],
-     "5-6 digits": [44, 21, 16, 0, 0, 16, 2, 1, 0, 0], "7+ digits": [40, 21, 9, 2, 2, 10, 0, 1, 0, 0]}
+_B = {"1-2 digits": "1-2", "3-4 digits": "3-4", "5-6 digits": "5-6", "7+ digits": "7+"}
+_D = {}
+for _l in open(_F):
+    _j = json.loads(_l)
+    if "dev" in _j and "dev_veto_by_digits" in _j["dev"]: _D[_j["dev"]["u"]] = _j["dev"]["dev_veto_by_digits"]
+V = {nm: [round(100 * _D[x][b][1] / max(_D[x][b][0], 1)) for x in u] for nm, b in _B.items()}
 cols = ["#b9bec6", "#7aa892", "#3f8f68", BLUE]
 fig = plt.figure(figsize=(16, 10))
 title(fig, "RL redesigns when the calculator fires",
