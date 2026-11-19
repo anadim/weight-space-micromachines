@@ -1,0 +1,2 @@
+NEED=22000 !!test_CWinOx_s1 python train_wiring.py --arm CWinO --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets test,hard --eval_ckpt runs/L300_CWinO_s1_evalall0iweps005cwlr1e3linkeps1e8/step_000300 --run_dir runs/TEST_CWinOx_s1
+CWinO 1 --eval_all 0 --cw_lr 1e-3 --link_eps 1e-8

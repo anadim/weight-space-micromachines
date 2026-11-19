@@ -1,5 +1,14 @@
-!evalCW0 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 0 --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s0
-# CWinOx ablation 1: floor only (wire lr 1e-2, eps 1e-12 defaults)
-CWinO 0 --eval_all 0 --iw_eps 0.05
+!!evalCW0 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 0 --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s0
+!!tpW3d_base python train_wiring.py --arm W3e --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets dev,hard --eval_ckpt runs/L300_W3d_s0_initlinksrunssft3W3elr1e2linksfinalpt/step_000300 --host_ckpt base --run_dir runs/TP_W3d_base
+!!tpW3d_arm1 python train_wiring.py --arm W3e --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets dev,hard --eval_ckpt runs/L300_W3d_s0_initlinksrunssft3W3elr1e2linksfinalpt/step_000300 --host_ckpt ../gsm_grpo/runs/long/a1_u300_s1/step_000300 --run_dir runs/TP_W3d_arm1
+# wires-only RL (host frozen): calculator + CW wires
+# CWfx: CW-full with the CWinOx in-wire settings (determinism check for the size-ordered veto)
+# wires-only RL (host frozen; small batch so it fits next to a library run)
+NEED=24000 WOc 0 --eval_all 0 --iw_eps 0.05 --B_max 64 --tok_budget 2048
+NEED=24000 WOn 0 --eval_all 0 --B_max 64 --tok_budget 2048
+# CWinOx ablation 1: floor only (wire lr 1e-2, eps 1e-12)
+# wires-only control: no calculator, param-matched host adapters
+# tool breaks mid-training: correct u0-150, deranged u151-300
+CWinB 0 --eval_all 0 --break_at 150 --break_dir on2off --iw_eps 0.05 --cw_lr 1e-3 --link_eps 1e-8
 W2ws 1
 CWinO 1 --eval_all 0 --iw_eps 0.05

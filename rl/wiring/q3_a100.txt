@@ -1,0 +1,7 @@
+# CWfx s0: CW-full with the CWinOx in-wire settings (size-veto reliability check)
+CW 0 --kl 0.01 --eval_all 0 --iw_eps 0.05 --iw_lr 1e-3 --iw_adam_eps 1e-8
+NEED=24000 !!test_a1_s2 python train_wiring.py --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets test,hard --arm 1 --eval_ckpt ../gsm_grpo/runs/long/a1_u300_s2/step_000300 --run_dir runs/TEST_a1_s2
+NEED=24000 !!test_a2_s2 python train_wiring.py --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets test,hard --arm 2 --eval_ckpt ../gsm_grpo/runs/long/a2_u300_s2/step_000300 --run_dir runs/TEST_a2_s2
+# CWinOx ablation 1: floor only (wire lr 1e-2, eps 1e-12)
+CWinO 0 --eval_all 0 --iw_eps 0.05
+W3d 1 --init_links runs/sft3_W3e_lr1e-2/links_final.pt

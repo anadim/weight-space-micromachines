@@ -17,13 +17,13 @@ live surface (and the one that can break calculator exactness). We track "writer
 import os, sys, time, json, math, random, argparse, torch, torch.nn as nn, torch.nn.functional as F
 from torch.utils.checkpoint import checkpoint
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'gsm_grpo'))   # shared: common, hostkern, implant*
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'gsm_grpo'))   # shared: hostkern, implant_persist, implant_triton
 import common as C, fastqwen as Q
 from engine import Engine
 from implant import CalcImplant
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--arm', default='1', choices=['1', '2', 'R', 'W2', 'W3z', 'W3r', 'W1', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB'])
+ap.add_argument('--arm', default='1', choices=['1', '2', 'R', 'W2', 'W3z', 'W3r', 'W1', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB', 'CWall', 'CWcore'])
 ap.add_argument('--run_dir', required=True)
 ap.add_argument('--updates', type=int, default=64)
 ap.add_argument('--prompts', type=int, default=64); ap.add_argument('--G', type=int, default=8)
@@ -49,6 +49,8 @@ ap.add_argument('--cw_hidden', type=int, default=None, help='64 (CW/CWout/CWin),
 ap.add_argument('--cw_mask', type=int, default=0, help='1: out-wires act only where the implant emits (e != 0); 0 = as designed')
 ap.add_argument('--cw_l1', type=float, default=1e-4, help='L1 on out-wire gates (x mean g at firing positions)')
 ap.add_argument('--iw_eps', type=float, default=0.0, help='in-wire exploration floor: p(fire) = eps + (1-2eps) sigmoid')
+ap.add_argument('--iw_lr', type=float, default=None, help='separate lr for the in-wire (default: same as the CW wires)')
+ap.add_argument('--iw_adam_eps', type=float, default=None, help='Adam eps for the in-wire (default: link_eps)')
 ap.add_argument('--iw_layer', type=int, default=14, help='in-wire reads the host residual at this layer input')
 ap.add_argument('--init_links', default='', help='links state file to start from (W3d: SFT-distilled W3e links)')
 ap.add_argument('--calib_traces', default='runs/traces_A_scaled.jsonl', help='W2ws gain calibration traces')
@@ -72,6 +74,12 @@ ap.add_argument('--sft_n', type=int, default=2000); ap.add_argument('--sft_kind'
 ap.add_argument('--diag', type=int, default=0, help='1: in-update check that zeroing link gates changes the train forward')
 ap.add_argument('--no_eval', type=int, default=0)
 ap.add_argument('--gpu_tag', default='', help='launcher process tag (no effect)')
+ap.add_argument('--host_init', default='', help='start the host from this checkpoint dir (model.safetensors), e.g. the call-form SFT host')
+ap.add_argument('--core_lr', type=float, default=1e-3, help='CWcore: arithmetic-core lr, RELATIVE to each layer rms(nonzeros)')
+ap.add_argument('--core_eps', type=float, default=1e-8)
+ap.add_argument('--grad_check', type=int, default=0, help='1: one CE backward on calib traces, report per-group grads + module exactness, exit')
+ap.add_argument('--exact_every', type=int, default=50)
+ap.add_argument('--reader_lr', type=float, default=None, help='CWall: reader lr, RELATIVE to rms(reader_w) (default link_lr)')
 ap.add_argument('--warmup', type=int, default=5); ap.add_argument('--fused', type=int, default=1)
 a = ap.parse_args()
 os.makedirs(a.run_dir, exist_ok=True)
@@ -87,9 +95,9 @@ HAS_IMPL = a.arm not in ('1', 'WOn')
 WIRES_ONLY = a.arm in ('WOc', 'WOr', 'WOn')
 if WIRES_ONLY: a.freeze_host = 1
 HAS_LINKS = a.arm in ('W2', 'W3z', 'W3r', 'W4', 'W3e', 'W3e3', 'W2w', 'W4w', 'CW', 'CWlean', 'CWout', 'CWin', 'W3d', 'W2ws',
-                      'WOc', 'WOr', 'WOn')
-CW_ARM = a.arm in ('CW', 'CWlean', 'CWout', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB')
-HAS_INWIRE = a.arm in ('CW', 'CWlean', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'CWinB')
+                      'WOc', 'WOr', 'WOn', 'CWall', 'CWcore')
+CW_ARM = a.arm in ('CW', 'CWlean', 'CWout', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'WOn', 'CWinB', 'CWall', 'CWcore')
+HAS_INWIRE = a.arm in ('CW', 'CWlean', 'CWin', 'CWinR', 'CWinP', 'CWinC', 'CWinO', 'WOc', 'WOr', 'CWinB', 'CWall', 'CWcore')
 if a.call_cost is None: a.call_cost = 0.002 if a.arm == 'CWinC' else 0.0
 if a.cw_hidden is None: a.cw_hidden = 32 if a.arm == 'CWlean' else 64
 ap_soft_target = 0.9
@@ -115,6 +123,9 @@ DEFAULT_SPEC = {'W3e': 'calc:7:emb:0.1,calc:14:emb:0.1,calc:21:emb:0.1',
                 # as designed (width 64, 7/14/21/final, ~287K wiring params = 0.048% of host); CWlean = budget follow-up
                 'CW': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
                 'CWlean': 'calc:final:warm:1,calc:14:cw,calc:final:cw',
+                # ALL-TRAINABLE: host + in-wire + out-adapters (7/14/21/final) + soft writer (W2ws start) + implant reader
+                'CWall': 'calc:final:soft:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
+                'CWcore': 'calc:final:soft:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',   # + arithmetic core trainable
                 'CWout': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
                 'CWin': 'calc:final:warm:1',
                 'WOc': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
@@ -127,6 +138,8 @@ USE_WRITE = a.arm in ('2', 'R', 'W2', 'W1', 'W4', 'CWinR', 'CWinP', 'CWinC', 'CW
 #   CWinC: correct calculator, reward - call_cost per fired call
 GATE0 = 1.0 if a.arm == 'W3r' else 0.0
 TRAIN_IMPL = a.arm in ('W1', 'W4')
+TRAIN_READER = a.arm in ('CWall', 'CWcore')
+TRAIN_CORE = a.arm == 'CWcore'     # implant reader (reader_w, reader_b) trainable; arithmetic stacks frozen
 IS_R = a.arm in ('R', 'CWinR', 'WOr')
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -135,11 +148,19 @@ pre, shot_q = C.prefix_ids(tok); Lp = len(pre)
 P32 = Q.load_hf_params(dtype=torch.float32)
 for v in P32.values(): v.requires_grad_(not a.freeze_host)
 names = list(P32)
+if a.host_init:
+    from safetensors.torch import load_file as _lf
+    _sd = _lf(f'{a.host_init}/model.safetensors')
+    with torch.no_grad():
+        for k in names: P32[k].copy_(_sd[k].float())
+    del _sd; print('host from', a.host_init, flush=True)
 W = Q.fuse({k: v.detach() for k, v in P32.items()}, torch.bfloat16)
 W_ref = Q.fuse({k: v.detach() for k, v in P32.items()}, torch.bfloat16) if a.kl > 0 else None
 imp = None
 if HAS_IMPL:
     hf = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B-Base', dtype=torch.bfloat16).to(dev).eval()
+    TAG = os.environ.get('CALC_MACHINE', '') == 'calc_tag'
+    if TAG and a.fused: print('calc_tag: fused kernel off (token filter runs in the torch step)', flush=True); a.fused = 0
     imp = CalcImplant(hf, tok, a.B_max, fused=bool(a.fused), random=('digits' if IS_R else None))
     RESID_NORM = None
     if HAS_LINKS and 'emb' in (a.link_spec or DEFAULT_SPEC.get(a.arm, '')):
@@ -154,6 +175,45 @@ if HAS_IMPL:
             RESID_NORM = {l: float(hs[l][0, m].float().norm(dim=-1).median()) for l in range(Q.NL)}
         print('resid norm @digit positions:', {l: round(RESID_NORM[l], 1) for l in (0, 7, 14, 21)}, 'n_pos', int(m.sum()), flush=True)
     del hf; torch.cuda.empty_cache()
+RD = RD0 = None
+if TRAIN_READER:
+    RD = [imp.M.reader_w, imp.M.reader_b]
+    RD0 = [t.detach().clone() for t in RD]
+    for t in RD: t.requires_grad_(True)
+    import types as _ty
+    def _symbols_ste(self, emb, ids=None):     # forward = the exact hand clamp; backward = straight-through (the clamp is
+        x = F.linear(emb.float(), self.reader_w, self.reader_b)        # saturated at 0/1 on every token -> true gradient 0)
+        y = torch.clamp(x, 0, 1)
+        return y if not torch.is_grad_enabled() else y.detach() + (x - x.detach())
+    imp.M.symbols = _types_bind = _ty.MethodType(_symbols_ste, imp.M)
+    if imp.fk is not None:                          # the fused rollout kernel must read the SAME storage
+        assert imp.fk.rw.data_ptr() == imp.M.reader_w.data_ptr() and imp.fk.rb.data_ptr() == imp.M.reader_b.data_ptr(), \
+            'fused kernel holds a copy of the reader'
+    if TRAIN_CORE:                                  # arithmetic core: every existing nonzero weight + every bias
+        import types
+        def _lin_grad(self, l, x):
+            b = getattr(self, f'b{l}'); wv = getattr(self, f'wv{l}')
+            if torch.is_grad_enabled() and wv.requires_grad:      # training pass: sparse matrix rebuilt from the param
+                A_ = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), wv, getattr(self, f'shape{l}'), is_coalesced=True)
+                flat = x.reshape(-1, x.shape[-1])
+                return (torch.sparse.mm(A_, flat.T).T + b).reshape(*x.shape[:-1], -1)
+            return type(self).lin(self, l, x)                     # rollout / eval: cached CSR (values refreshed in place)
+        CORE, CORE0, CORE_NAMES = [], [], []
+        for nm in ('stack1', 'stack2'):
+            net = getattr(imp.M, nm); net.lin = types.MethodType(_lin_grad, net)
+            for l in range(net.L + 1):
+                for kind in ('wv', 'b'):
+                    t = getattr(net, f'{kind}{l}'); t.requires_grad_(True); CORE.append(t); CORE0.append(t.detach().clone())
+                    CORE_NAMES.append((nm, l, kind))
+        def core_refresh():
+            with torch.no_grad():
+                for nm in ('stack1', 'stack2'):
+                    net = getattr(imp.M, nm)
+                    for (l, dv), csr in net._csr.items():
+                        csr.values().copy_(getattr(net, f'wv{l}').detach())
+        print('core trainable:', len(CORE), 'tensors,', sum(t.numel() for t in CORE), 'values', flush=True)
+    print('reader trainable:', [tuple(t.shape) for t in RD], [str(t.dtype) for t in RD],
+          'nnz', int((RD0[0] != 0).sum()), 'rms(nz)', round(float(RD0[0][RD0[0] != 0].pow(2).mean().sqrt()), 3), flush=True)
 
 # ---- trainable writer (W1/W4): Dp = out_dirs * gain (fp32, n_out x d) ----
 Dp = eng_Dp = None
@@ -349,8 +409,12 @@ def _all_ha():
             if isinstance(l, HAdapter): yield k, l
 
 
-cw_params = [p for _, l in _all_cw() for p in l.parameters()] + (list(INW.parameters()) if INW is not None else []) + \
+IW_SEP = INW is not None and a.iw_lr is not None
+cw_params = [p for _, l in _all_cw() for p in l.parameters()] + (list(INW.parameters()) if (INW is not None and not IW_SEP) else []) + \
             [p for _, l in _all_ha() for p in l.parameters()]
+if IW_SEP:                                  # in-wire in its own Adam group (CWfx: lr 1e-3, eps 1e-8 with the floor)
+    groups.append({'params': list(INW.parameters()), 'lr': a.iw_lr, 'eps': a.iw_adam_eps if a.iw_adam_eps is not None else a.link_eps})
+    print('in-wire group: lr', a.iw_lr, 'eps', groups[-1]['eps'], flush=True)
 if cw_params:
     groups.append({'params': cw_params, 'lr': CW_LR, 'eps': a.link_eps})
     print('co-designed wires:', [f'out@{k}' for k, _ in _all_cw()], 'in-wire' if INW is not None else '', 'lr', CW_LR, flush=True)
@@ -359,6 +423,16 @@ if TRAIN_IMPL:   # relative lr: Dp entries are ~gain (1e4) scale, so an absolute
     D_SCALE = max(1.0, float(imp.D.float().pow(2).mean().sqrt()))
     groups.append({'params': [Dp], 'lr': a.impl_lr * D_SCALE, 'eps': a.link_eps})
     print('writer Dp lr', a.impl_lr, 'x rms(D)', round(D_SCALE, 1), flush=True)
+if TRAIN_CORE:     # relative lr per tensor: lr * rms(its nonzeros); Adam eps 1e-8 so ~0 gradients make ~0 steps
+    for t, t0 in zip(CORE, CORE0):
+        nz = t0[t0 != 0]; sc = float(nz.pow(2).mean().sqrt()) if nz.numel() else 1.0
+        groups.append({'params': [t], 'lr': a.core_lr * sc, 'eps': a.core_eps})
+    print('core lr (relative)', a.core_lr, 'eps', a.core_eps, flush=True)
+if TRAIN_READER:   # relative lr: same relative step as the other wiring (reader values are O(1..10))
+    R_SCALE = float(RD0[0][RD0[0] != 0].pow(2).mean().sqrt())
+    RLR = (a.reader_lr if a.reader_lr is not None else a.link_lr) * R_SCALE
+    groups.append({'params': RD, 'lr': RLR, 'eps': a.link_eps})
+    print('reader lr', RLR, '(relative', RLR / R_SCALE, ')', flush=True)
 opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8)
 base_lrs = [g['lr'] for g in opt.param_groups]
 eng = Engine(W, pre, tok, implant=imp, links=links, B_max=a.B_max, S_max=544, use_write=USE_WRITE)
@@ -389,8 +463,9 @@ def p_written(log_s, n=128, hard=True):
     rows = [json.loads(l) for l in open(a.calib_traces)][:n]
     seqs = [C.q_ids(tok, r['q']) + r['resp'] for r in rows]; qls = [len(C.q_ids(tok, r['q'])) for r in rows]
     T = max(map(len, seqs)); ids = torch.tensor([x + [eng.eos] * (T - len(x)) for x in seqs], device=dev)
-    Kt = imp.K + imp.W
-    e = imp.full(W['E'][torch.cat([eng.prefix_ids[-Kt:][None].expand(len(seqs), -1), ids], 1)])[:, Kt:]
+    Kt = (imp.K + imp.W) * (4 if imp.tagf else 1)
+    _cat = torch.cat([eng.prefix_ids[-Kt:][None].expand(len(seqs), -1), ids], 1)
+    e = (imp.emit_ids(_cat) if imp.tagf else imp.full(W['E'][_cat]))[:, Kt:]
     wd = e @ WARM_FINAL.W0.T
     hn = Q.fwd_chunk(W, ids, eng.Lp, eng.cos_t, eng.sin_t, prefix_kv=[(eng.Kp[i], eng.Vp[i]) for i in range(Q.NL)],
                      final_write=math.exp(log_s) * wd)
@@ -534,11 +609,26 @@ def _cw_ctx(out_on, in_trained, writer_trained):
     if INW is not None and not in_trained: INW.v.detach().zero_(); INW.b.detach().fill_(INW.b0)
     if WARM_FINAL is not None and not writer_trained:
         WARM_FINAL.gate.detach().copy_(WARM_FINAL.g0); WARM_FINAL.W.detach().copy_(WARM_FINAL.W0)
+        if WARM_FINAL.log_gain is not None:
+            sv['lg'] = WARM_FINAL.log_gain.detach().clone(); WARM_FINAL.log_gain.detach().copy_(WARM_FINAL.lg0)
+        if TRAIN_READER:                                  # the implant side: reader back to the hand-written one
+            sv['rd'] = [t.detach().clone() for t in RD]
+            for t, t0 in zip(RD, RD0): t.detach().copy_(t0)
+        if TRAIN_CORE:
+            sv['core'] = [t.detach().clone() for t in CORE]
+            for t, t0 in zip(CORE, CORE0): t.detach().copy_(t0)
+            core_refresh()
     return sv
 def _cw_restore(sv):
     for (_, l), b in zip(_all_cw(), sv['B']): l.B.detach().copy_(b)
     if sv['iw'] is not None: INW.v.detach().copy_(sv['iw'][0]); INW.b.detach().copy_(sv['iw'][1])
     if sv['wf'] is not None: WARM_FINAL.gate.detach().copy_(sv['wf'][0]); WARM_FINAL.W.detach().copy_(sv['wf'][1])
+    if 'lg' in sv: WARM_FINAL.log_gain.detach().copy_(sv['lg'])
+    if 'rd' in sv:
+        for t, t1 in zip(RD, sv['rd']): t.detach().copy_(t1)
+    if 'core' in sv:
+        for t, t1 in zip(CORE, sv['core']): t.detach().copy_(t1)
+        core_refresh()
 CW_MODES = {'cw_hand': (False, False, False), 'cw_out': (True, False, True), 'cw_in': (False, True, True)}
 def _reset_ctx():
     """original hand-made wiring with the CURRENT host: warm links back to init, other links off, writer Dp back to D."""
@@ -569,6 +659,7 @@ def evaluate(items, mode='full', tag='dev'):
     saved = None; rs_saved = None
     if mode == 'reset': rs_saved = _reset_ctx()
     cw_saved = _cw_ctx(*CW_MODES[mode]) if mode in CW_MODES else None
+    if mode == 'reset' and TRAIN_READER: cw_saved = _cw_ctx(False, False, False)   # CWall: reset = EVERYTHING hand-made
     m21 = None
     if mode == 'cw_mask21':                  # only the L21 out-wire restricted to firing tokens (graphs re-captured)
         m21 = [l for k, l in _all_cw() if k == 21][0]; m21.mflag.fill_(1.0)
@@ -640,6 +731,8 @@ def save(tag):
     if links: torch.save({str(k): lk.state_dict() for k, lk in links.items()}, f'{d}/links.pt')
     if INW is not None: torch.save(INW.state_dict(), f'{d}/inwire.pt')
     if TRAIN_IMPL: torch.save(Dp.detach().cpu(), f'{d}/Dp.pt')
+    if TRAIN_READER: torch.save([t.detach().cpu() for t in RD], f'{d}/reader.pt')
+    if TRAIN_CORE: torch.save([t.detach().cpu() for t in CORE], f'{d}/core.pt')
     open(f'{d}/DONE', 'w').close()
 
 
@@ -675,7 +768,7 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None):
     norm = (n_total_rows * a.max_new) if a.loss == 'drgrpo' else tot_tok
     st = dict(loss=0.0, kl=0.0, clipfrac=0.0, ratio=0.0, ntok=tot_tok, n_micro=len(micro),
               pack_fill=sum(bn[1] for bn in bins) / (len(bins) * a.tok_budget))
-    Kt = imp.K + imp.W if imp is not None else 0
+    Kt = ((imp.K + imp.W) * (4 if imp.tagf else 1)) if imp is not None else 0
     n_e = n_sel = 0
     cw_acc = {}                                       # per out-wire: sum g, sum (g > .5), n firing positions
     for mb in micro:
@@ -697,7 +790,7 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None):
                 Tm = max(lens)
                 full = torch.tensor([x + [eng.eos] * (Tm - len(x)) for x in seqs], device=dev)
                 full = torch.cat([eng.prefix_ids[-Kt:][None].expand(len(seqs), -1), full], 1)
-                eb = imp.full(W['E'][full])[:, Kt:]
+                eb = (imp.emit_ids(full) if imp.tagf else imp.full(W['E'][full]))[:, Kt:]
                 es = [eb[j, :n] for j, n in enumerate(lens)]
                 e = torch.cat(es + [torch.zeros(Ltot - sum(lens), imp.n_out, device=dev)])[None]
                 dpos, didx, dsgn = [], [], []
@@ -719,6 +812,12 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None):
                             if b_ in (1, 2): dpos.append(pp); didx.append(si + t); dsgn.append(1.0 if b_ == 1 else -1.0)
                         o2 += lens[j]; si += rl
                     e = e * keep.to(dev)[None, :, None].to(e.dtype)
+            if TRAIN_READER:                                    # same e, now with the exact gradient to the reader
+                eg = (imp.emit_ids(full) if imp.tagf else imp.M.emit(W['E'][full])[0])[:, Kt:]
+                eg = torch.cat([eg[j, :n] for j, n in enumerate(lens)] + [torch.zeros(Ltot - sum(lens), imp.n_out, device=dev)])[None]
+                if INW is not None and batch_dec is not None: eg = eg * keep.to(dev)[None, :, None].to(eg.dtype)
+                st['reader_eq'] = st.get('reader_eq', 0.0) + float((eg.detach() - e).abs().max())
+                e = eg
             feat = e
             if USE_WRITE:
                 fwrite = e @ Dp if TRAIN_IMPL else e @ imp.D     # Dp carries grad (writer); e frozen
@@ -810,15 +909,76 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None):
             gg[n] = float(l.gate.grad.norm()) if l.gate.grad is not None else -1.0
             gw[n] = float(l.W.grad.norm()) if l.W.grad is not None else -1.0
         st['link_grad_gate'], st['link_grad_W'] = gg, gw
-    tp = ([] if a.freeze_host else [P32[k] for k in names]) + link_params + ([Dp] if TRAIN_IMPL else [])
+    if TRAIN_CORE:
+        gs = {}
+        for (nm, l, kind), t in zip(CORE_NAMES, CORE):
+            g_ = t.grad; k_ = f'{nm}:{kind}'
+            acc = gs.setdefault(k_, [0.0, 0, 0]); acc[2] += t.numel()
+            if g_ is not None: acc[0] += float(g_.pow(2).sum()); acc[1] += int((g_ != 0).sum())
+        st['core_grad'] = {k: dict(norm=v[0] ** 0.5, frac_nz=v[1] / max(1, v[2])) for k, v in gs.items()}
+    if TRAIN_READER:
+        st['reader_grad'] = [float(t.grad.norm()) if t.grad is not None else 0.0 for t in RD]
+        st['reader_grad_nnz'] = int((RD[0].grad != 0).sum()) if RD[0].grad is not None else 0
+    if a.grad_check:                                   # report every group's gradient, no step
+        gg = {}
+        if not a.freeze_host: gg['host'] = float(sum(P32[k].grad.pow(2).sum() for k in names if P32[k].grad is not None) ** 0.5)
+        if WARM_FINAL is not None:
+            gg['writer_W'] = float(WARM_FINAL.W.grad.norm()) if WARM_FINAL.W.grad is not None else 0.0
+            gg['writer_loggain'] = float(WARM_FINAL.log_gain.grad.abs()) if (WARM_FINAL.log_gain is not None and WARM_FINAL.log_gain.grad is not None) else 0.0
+        for k_, w_ in _all_cw():
+            gg[f'out@{k_}'] = float(sum(p.grad.pow(2).sum() for p in w_.parameters() if p.grad is not None) ** 0.5)
+        if INW is not None: gg['inwire'] = float(sum(p.grad.pow(2).sum() for p in INW.parameters() if p.grad is not None) ** 0.5)
+        st['group_grad'] = gg
+        return st
+    tp = ([] if a.freeze_host else [P32[k] for k in names]) + link_params + ([Dp] if TRAIN_IMPL else []) + (RD if TRAIN_READER else [])
     gn = torch.nn.utils.clip_grad_norm_(tp, 1.0)
     opt.step(); opt.zero_grad(set_to_none=True)
+    if TRAIN_CORE: core_refresh()
     with torch.no_grad():   # decoupled L1 on out-wire gates (plain SGD on b_g: lr * lambda * mean g(1-g)), not via Adam
         for _, w_ in _all_cw():
             if getattr(w_, '_l1n', 0):
                 w_.bg -= CW_LR * min(1.0, 1.0) * a.cw_l1 * (w_._l1g / w_._l1n); w_._l1g = 0.0; w_._l1n = 0
     st['grad_norm'] = float(gn); st['train_s'] = time.time() - t0
     return st
+
+
+# -------- module exactness (calc_tag): 10k random '<calc>a op b</calc>' calls, teacher-forced along the exact answer --------
+_MX = None
+@torch.no_grad()
+def module_exact(n=10000, bs=1000):
+    """% of calls where the CURRENT reader + core write exactly ' ' + digits, then the end veto, then stay silent on '.'"""
+    global _MX
+    from micromachines.calcfmt import calc_ref
+    from micromachines.specs import SPECS as _S
+    from micromachines.machine import first as _fi
+    outs = _S['calc_tag']['out']; im = imp.A.all_ids['calc_tag']; otok = [_fi(im[x]) for x in outs]
+    OS_, OE_ = outs.index('OS'), outs.index('OE')
+    if _MX is None:
+        r = random.Random(77); T_ = lambda x: tok(x, add_special_tokens=False)['input_ids']; rows = []
+        while len(rows) < n:
+            op = r.choice('+-*/'); a_ = str(r.randint(0, 10 ** r.randint(1, 9))); b_ = str(r.randint(1, 10 ** r.randint(1, 6 if op in '*/' else 9)))
+            if r.random() < 0.15: a_ += '.' + str(r.randint(1, 99))
+            res = calc_ref(f'{a_}{op}{b_}')
+            if not res: continue
+            pre_ = T_(f'So we get <calc>{a_} {op} {b_}</calc>'); ans = T_(' ' + res); post = T_('.')
+            want = [otok[OS_]] + ans[1:]                 # expected write sequence: ' ' then the digit tokens
+            rows.append((pre_ + ans + post, len(pre_) - 1, len(want), op))
+        _MX = rows
+    pad = tok(' and', add_special_tokens=False)['input_ids'][0]
+    ok = {o: [0, 0] for o in '+-*/'}
+    for i in range(0, n, bs):
+        ch = _MX[i:i + bs]; L = max(len(x[0]) for x in ch) + imp.K + imp.W
+        X = torch.tensor([[pad] * (L - len(x[0])) + x[0] for x in ch], device=dev)
+        e = imp.emit_ids(X); fire = e.abs().sum(-1) > 0; am = e.argmax(-1)
+        for j, (ids_, p0, nw, op) in enumerate(ch):
+            off = L - len(ids_); p = off + p0; good = True
+            for k in range(nw):                                   # positions CE .. last-but-one written token
+                if not bool(fire[j, p + k]) or otok[int(am[j, p + k])] != ids_[p0 + 1 + k] or int(am[j, p + k]) == OE_: good = False; break
+            if good:
+                good = bool(fire[j, p + nw]) and int(am[j, p + nw]) == OE_ and (not bool(fire[j, p + nw + 1]) or int(am[j, p + nw + 1]) == OE_)   # veto, then no digit on the host's '.'
+            ok[op][0] += int(good); ok[op][1] += 1
+    tot = sum(v[0] for v in ok.values()) / max(1, sum(v[1] for v in ok.values()))
+    return dict(exact=100 * tot, **{f'exact_{o}': 100 * v[0] / max(1, v[1]) for o, v in ok.items()})
 
 
 # ------------------------------------------------------------------ main loop
@@ -837,6 +997,13 @@ if a.eval_ckpt:            # one-shot test evaluation of a saved checkpoint (wir
         INW.load_state_dict(torch.load(f'{a.eval_ckpt}/inwire.pt', map_location=dev))
     if TRAIN_IMPL and os.path.exists(f'{a.eval_ckpt}/Dp.pt'):
         Dp.data.copy_(torch.load(f'{a.eval_ckpt}/Dp.pt').to(dev))
+    if TRAIN_READER and os.path.exists(f'{a.eval_ckpt}/reader.pt'):
+        with torch.no_grad():
+            for t, t1 in zip(RD, torch.load(f'{a.eval_ckpt}/reader.pt')): t.copy_(t1.to(dev))
+        if TRAIN_CORE and os.path.exists(f'{a.eval_ckpt}/core.pt'):
+            for t, t1 in zip(CORE, torch.load(f'{a.eval_ckpt}/core.pt')): t.copy_(t1.to(dev))
+            core_refresh()
+        print('reader loaded: drift', float((RD[0].detach() - RD0[0]).norm() / RD0[0].norm()), flush=True)
     sync_weights()
     out_res = {'ckpt': a.eval_ckpt, 'params': PARAMS}
     if a.interp and INW is not None:
@@ -931,14 +1098,24 @@ if a.sft:      # supervised sanity test: CE on gold solutions (calc-heavy proble
             r = evaluate(devset); r.update(u=u); log({'dev': r}); print('dev', r, flush=True)
     r = evaluate(devset, mode='hostonly', tag='devhostonly'); r.update(u=a.sft); log({'dev_hostonly': r}); print('host-only', r, flush=True)
     if links: torch.save({str(k): lk.state_dict() for k, lk in links.items()}, f'{a.run_dir}/links_final.pt')
+    save('sft_final')
     log({'DONE_RUN': time.time() - t_start}); print('DONE', flush=True); sys.exit(0)
+if a.grad_check:      # one CE backward on call-form gold traces: which parameter groups get a real gradient at u0?
+    rows_ = [json.loads(l) for l in open(a.calib_traces)][:a.prompts]
+    a.sft = 1
+    st = train_step([C.q_ids(tok, r['q']) for r in rows_], [r['resp'] for r in rows_], None, None, len(rows_))
+    print('GRADCHECK', json.dumps({k: st.get(k) for k in ('group_grad', 'core_grad', 'reader_grad', 'reader_grad_nnz', 'reader_eq', 'loss')}, indent=1), flush=True)
+    if imp is not None and imp.tagf: print('MODULE_EXACT u0', module_exact(), flush=True)
+    sys.exit(0)
 log({'params': PARAMS})
+if imp is not None and imp.tagf and (TRAIN_READER or TRAIN_CORE):
+    mx = module_exact(); log({'module_exact': {**mx, 'u': 0}}); print('module exact@0', mx, flush=True)
 res0 = evaluate(devset); res0.update(u=0, t=0); log({'dev': res0}); print('dev@0', res0, flush=True)
 if imp is not None:
     r = evaluate(devset, mode='hostonly', tag='devhost'); r.update(u=0); log({'dev_host_curve': r}); print('host-only@0', r, flush=True)
     if HAS_EXTRA_LINKS:
         r = evaluate(devset, mode='linksoff', tag='devlinksoff'); r.update(u=0); log({'dev_linksoff_curve': r})
-TRACK_DRIFT = TRAIN_IMPL or WARM_FINAL is not None
+TRACK_DRIFT = (TRAIN_IMPL or WARM_FINAL is not None) and digit_rows is not None   # no digit map for deranged implants
 if TRACK_DRIFT: d0 = writer_drift(); log({'drift': {**d0, 'u': 0}}); print('drift@0', d0, flush=True)
 for u in range(1, a.updates + 1):
     for g, b in zip(opt.param_groups, base_lrs): g['lr'] = b * min(1.0, u / a.warmup)
@@ -997,6 +1174,13 @@ for u in range(1, a.updates + 1):
     if WARM_FINAL is not None and WARM_FINAL.log_gain is not None: rec['gain'] = float(torch.exp(WARM_FINAL.log_gain.detach()))
     if TRAIN_IMPL:
         rec['Dp_delta'] = float((Dp.detach() - imp.D.float()).norm() / imp.D.float().norm())
+    if TRAIN_CORE:
+        rec['core_drift'] = {nm: float(sum((t.detach() - t0).pow(2).sum() for (n_, _, _), t, t0 in zip(CORE_NAMES, CORE, CORE0) if n_ == nm) ** 0.5 /
+                                        sum(t0.pow(2).sum() for (n_, _, _), t0 in zip(CORE_NAMES, CORE0) if n_ == nm) ** 0.5) for nm in ('stack1', 'stack2')}
+    if TRAIN_READER:
+        rec['reader_drift'] = [float((t.detach() - t0).norm() / t0.norm().clamp(min=1e-12)) for t, t0 in zip(RD, RD0)]
+    if WARM_FINAL is not None:
+        rec['writer_dir_drift'] = float((WARM_FINAL.W.detach() - WARM_FINAL.W0).norm() / WARM_FINAL.W0.norm())
     log(rec)
     if u % 5 == 0 or u == 1:
         print(json.dumps({k: (round(v, 4) if isinstance(v, float) else v) for k, v in rec.items()
@@ -1015,6 +1199,8 @@ for u in range(1, a.updates + 1):
             r = evaluate(devset, mode='hostonly', tag='devhost'); r.update(u=u); log({'dev_host_curve': r}); print('host-only', r, flush=True)
             if HAS_EXTRA_LINKS:
                 r = evaluate(devset, mode='linksoff', tag='devlinksoff'); r.update(u=u); log({'dev_linksoff_curve': r}); print('links-off', r, flush=True)
+        if imp is not None and imp.tagf and (TRAIN_READER or TRAIN_CORE) and u % a.exact_every == 0:
+            mx = module_exact(); log({'module_exact': {**mx, 'u': u}}); print('module exact', u, mx, flush=True)
         if TRACK_DRIFT:
             d = writer_drift(); log({'drift': {**d, 'u': u}}); print('drift', {k: d[k] for k in d if 'digits' not in k}, flush=True)
     if u % a.ckpt_every == 0 or u == a.updates:

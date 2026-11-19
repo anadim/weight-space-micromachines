@@ -1,5 +1,14 @@
-!evalCW1 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 1 --eval_ckpt runs/L300_CW_s1_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s1
+!!evalCW1 python train_wiring.py --kl 0.01 --eval_all 0 --B_max 128 --tok_budget 4096 --interp 1 --arm CW --seed 1 --eval_ckpt runs/L300_CW_s1_kl001evalall0/step_000300 --run_dir runs/EVAL_CW_s1
+!!tpCW_base python train_wiring.py --arm CW --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets dev,hard --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --host_ckpt base --run_dir runs/TP_CW_base
+!!tpCW_arm1 python train_wiring.py --arm CW --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets dev,hard --eval_ckpt runs/L300_CW_s0_kl001evalall0/step_000300 --host_ckpt ../gsm_grpo/runs/long/a1_u300_s1/step_000300 --run_dir runs/TP_CW_arm1
+# wires-only RL: deranged calculator + CW wires
+# CWfx: CW-full with the CWinOx in-wire settings (determinism check for the size-ordered veto)
+# wires-only RL (host frozen; small batch so it fits next to a library run)
+NEED=24000 WOr 0 --eval_all 0 --iw_eps 0.05 --B_max 64 --tok_budget 2048
+CW 1 --kl 0.01 --eval_all 0 --iw_eps 0.05 --iw_lr 1e-3 --iw_adam_eps 1e-8
 # CWinOx ablation 2: lr only (no floor)
 CWinO 0 --eval_all 0 --cw_lr 1e-3 --link_eps 1e-8
-W3d 1 --init_links runs/sft3_W3e_lr1e-2/links_final.pt
-CWinO 1 --eval_all 0 --cw_lr 1e-3 --link_eps 1e-8
+# tool breaks mid-training: deranged u0-150, correct u151-300
+# wires-only, out-wires MASKED to implant firing tokens (removes the generic-adapter confound)
+NEED=24000 WOc 0 --eval_all 0 --iw_eps 0.05 --B_max 64 --tok_budget 2048 --cw_mask 1
+CWinB 0 --eval_all 0 --break_at 150 --break_dir off2on --iw_eps 0.05 --cw_lr 1e-3 --link_eps 1e-8

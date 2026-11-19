@@ -19,6 +19,7 @@ class Engine:
     def __init__(self, W, prefix_ids, tok, implant=None, links=None, B_max=512, S_max=544, use_write=True, sync_every=16,
                  kern='triton'):
         self.W, self.tok, self.imp, self.links = W, tok, implant, links
+        if implant is not None and getattr(implant, 'tagf', False): implant.Eref = W['E']   # calc_tag filter feeds
         B_max = next(b for b in B_BUCKETS if b >= B_max)          # graphs run whole buckets
         self.use_write = use_write                    # False: implant runs (feature for links) but its designed write is off
         dev = W['E'].device; self.dev = dev
@@ -161,7 +162,7 @@ class Engine:
         imp = self.imp if self.imp_on else None
         links = self.links if self.imp_on else None
         if imp is not None:
-            e = self.imp.step(emb, B)
+            e = self.imp.step(emb, B, tok)
             feat = e
             if self.use_write: write = (e @ self.Dp) if self.Dp is not None else (self.imp.last_w if self.imp.fk is not None else e @ self.imp.D)
             wf = (e.abs().sum(-1) > 0).to(torch.int8)
@@ -242,7 +243,7 @@ class Engine:
         emb = W['E'][tok]
         feat = write = wf = None; dec = lpd = None
         if imp is not None:
-            e = imp.step(emb, B)
+            e = imp.step(emb, B, tok)
             if self.inwire is not None: e, dec, lpd = self._inwire_step(e, B, tok)
             feat = e
             if self.use_write:
@@ -340,20 +341,26 @@ class Engine:
         imp_on = self.imp is not None and self.imp_on
         # links also run with NO implant (host-only adapters, feat=None) so prefill matches decode and the update pass
         links = self.links if (imp_on or (self.imp is None and self.imp_on)) else None
+        TAG = imp_on and getattr(self.imp, 'tagf', False)
         if imp_on:
             full = torch.cat([self.prefix_ids[None].expand(P, -1), ids], 1)
             tail = []
+            KW = (self.imp.K + self.imp.W) * (4 if TAG else 1)              # calc_tag: room for skipped tag tokens
             for p in range(P):
                 Lt = self.Lp + len(qids[p])
-                tail.append(full[p, Lt - (self.imp.K + self.imp.W):Lt])
+                tail.append(full[p, Lt - KW:Lt])
             tail = torch.stack(tail)
-            emb_tail = self.W['E'][tail]
-            e_last = self.imp.M.emit(emb_tail)[0][:, -1]                     # implant output at the last prompt token
+            if TAG:
+                self.imp.Eref = self.W['E']
+                e_last = self.imp.emit_ids(tail)[:, -1]
+            else:
+                emb_tail = self.W['E'][tail]
+                e_last = self.imp.M.emit(emb_tail)[0][:, -1]                     # implant output at the last prompt token
             eq = torch.zeros(P, T, self.imp.n_out, device=self.dev); eq[torch.arange(P), lens - 1] = e_last
             feat = eq
             if links is not None:                                       # links need e at every question position
-                Kt = self.imp.K + self.imp.W
-                ef = self.imp.full(self.W['E'][full[:, self.Lp - Kt:]])[:, Kt:]
+                Kt = (self.imp.K + self.imp.W) * (4 if TAG else 1)
+                ef = self.imp.emit_ids(full[:, self.Lp - Kt:])[:, Kt:] if TAG else self.imp.full(self.W['E'][full[:, self.Lp - Kt:]])[:, Kt:]
                 feat = ef
             if self.use_write: write = eq @ (self.Dp if self.Dp is not None else self.imp.D)
         PC = 64                                              # prefill in chunks of prompts (bounded memory)
@@ -377,7 +384,8 @@ class Engine:
                 self.iw_h[rr] = hc[ss].to(self.iw_h.dtype)
             del hn, kvs, r_
         if imp_on:
-            self.imp.prime_rows(emb_tail[src], allrows)
+            if TAG: self.imp.prime_rows_ids(tail[src], allrows)
+            else: self.imp.prime_rows(emb_tail[src], allrows)
             if self.inwire is not None:
                 self.iw_prev[allrows] = (e_last.abs().sum(-1) > 0)[src]; self.iw_sup[allrows] = False
                 for t in (self.iw_run, self.iw_max, self.iw_ops, self.iw_cop, self.iw_sop): t[allrows] = 0

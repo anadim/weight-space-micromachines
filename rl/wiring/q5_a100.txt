@@ -1,0 +1,2 @@
+NEED=22000 !!test_W3d_s1 python train_wiring.py --arm W3e --eval_all 0 --B_max 128 --tok_budget 4096 --test_sets test,hard --eval_ckpt runs/L300_W3d_s1_initlinksrunssft3W3elr1e2linksfinalpt/step_000300 --run_dir runs/TEST_W3d_s1
+W3d 2 --init_links runs/sft3_W3e_lr1e-2/links_final.pt

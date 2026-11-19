@@ -1,0 +1,141 @@
+{
+ "window": "rollout calls pooled over updates u-9..u",
+ "rates": {
+  "CWinOx_s0@u25": {
+   "+": {
+    "calls": 2624,
+    "fired": 306,
+    "pct": 11.66
+   },
+   "\u2212": {
+    "calls": 1738,
+    "fired": 241,
+    "pct": 13.87
+   },
+   "\u00d7": {
+    "calls": 3200,
+    "fired": 866,
+    "pct": 27.06
+   },
+   "\u00f7": {
+    "calls": 1580,
+    "fired": 548,
+    "pct": 34.68
+   }
+  },
+  "CWinOx_s0@u100": {
+   "+": {
+    "calls": 2863,
+    "fired": 165,
+    "pct": 5.76
+   },
+   "\u2212": {
+    "calls": 2111,
+    "fired": 110,
+    "pct": 5.21
+   },
+   "\u00d7": {
+    "calls": 4055,
+    "fired": 578,
+    "pct": 14.25
+   },
+   "\u00f7": {
+    "calls": 1274,
+    "fired": 226,
+    "pct": 17.74
+   }
+  },
+  "CWinOx_s0@u300": {
+   "+": {
+    "calls": 3200,
+    "fired": 152,
+    "pct": 4.75
+   },
+   "\u2212": {
+    "calls": 2421,
+    "fired": 132,
+    "pct": 5.45
+   },
+   "\u00d7": {
+    "calls": 5273,
+    "fired": 4801,
+    "pct": 91.05
+   },
+   "\u00f7": {
+    "calls": 1663,
+    "fired": 1429,
+    "pct": 85.93
+   }
+  },
+  "CWinO_nofloor_s0@u300:\u00d7\u00f7": {
+   "calls": 7503,
+   "fired": 0,
+   "pct": 0.0
+  },
+  "CWinO_flooronly_s0@u300:\u00d7\u00f7": {
+   "calls": 5414,
+   "fired": 260,
+   "pct": 4.8
+  },
+  "CWinO_lronly_s0@u300:\u00d7\u00f7": {
+   "calls": 7907,
+   "fired": 7514,
+   "pct": 95.03
+  },
+  "CWinO_lronly_s1@u300:\u00d7\u00f7": {
+   "calls": 7745,
+   "fired": 6222,
+   "pct": 80.34
+  },
+  "CWinOx_s0@u300:\u00d7\u00f7": {
+   "calls": 6936,
+   "fired": 6230,
+   "pct": 89.82
+  },
+  "CWinOx_s1@u300:\u00d7\u00f7": {
+   "calls": 7631,
+   "fired": 5828,
+   "pct": 76.37
+  },
+  "CWinOx_s2@u300:\u00d7\u00f7": {
+   "calls": 6803,
+   "fired": 6017,
+   "pct": 88.45
+  },
+  "CWinO_nofloor_s0@u300:+\u2212": {
+   "calls": 6200,
+   "fired": 0,
+   "pct": 0.0
+  },
+  "CWinO_flooronly_s0@u300:+\u2212": {
+   "calls": 4841,
+   "fired": 216,
+   "pct": 4.46
+  },
+  "CWinO_lronly_s0@u300:+\u2212": {
+   "calls": 5995,
+   "fired": 26,
+   "pct": 0.43
+  },
+  "CWinO_lronly_s1@u300:+\u2212": {
+   "calls": 6233,
+   "fired": 11,
+   "pct": 0.18
+  },
+  "CWinOx_s0@u300:+\u2212": {
+   "calls": 5621,
+   "fired": 284,
+   "pct": 5.05
+  },
+  "CWinOx_s1@u300:+\u2212": {
+   "calls": 6096,
+   "fired": 369,
+   "pct": 6.05
+  },
+  "CWinOx_s2@u300:+\u2212": {
+   "calls": 3244,
+   "fired": 171,
+   "pct": 5.27
+  }
+ }
+}
