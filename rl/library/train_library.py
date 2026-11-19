@@ -77,7 +77,12 @@ ap.add_argument('--warmup', type=int, default=5); ap.add_argument('--fused', typ
 ap.add_argument('--tools', default=','.join(integ.TOOLS_V2), help='LIB: BBH machines attached (integ.TOOLS_V2)')
 ap.add_argument('--ifeval', type=int, default=1, help='LIB: attach the IFEval 14-rule circuit')
 ap.add_argument('--scramble', type=int, default=0, help='LIB: derange every non-calculator tool output')
+ap.add_argument('--task', default='gsm', choices=['gsm', 'mixed']); ap.add_argument('--host', default='Qwen/Qwen3-0.6B-Base')
+ap.add_argument('--S_max', type=int, default=544); ap.add_argument('--plain', type=int, default=0, help='1: tools attached but never on (plain RL arm)')
+ap.add_argument('--dev_mixed_n', type=int, default=400)
 ap.add_argument('--no_test', type=int, default=0); ap.add_argument('--bench', type=int, default=0)
+ap.add_argument('--dump_ref', type=int, default=0); ap.add_argument('--misfire_probe', type=int, default=0)
+ap.add_argument('--probe_tool', default='', help='TOOL:SUBPREFIX, e.g. order_gen:order (u0 LOO on those test items)')
 ap.add_argument('--deadline', default='', help='HH:MM UTC; at u5 cut prompts/update so the run (incl. final evals) fits')
 ap.add_argument('--hf_check', type=int, default=1, help='u1: |logp sampler - logp HF teacher-forced| on sampled tokens')
 ap.add_argument('--loo_at', default='', help='LIB: leave-one-out dev evals at these updates (default: final)')
@@ -132,16 +137,34 @@ TRAIN_IMPL = a.arm in ('W1', 'W4')
 IS_R = a.arm in ('R', 'CWinR')
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
-tok = AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B-Base')
-pre, shot_q = C.prefix_ids(tok); Lp = len(pre)
-P32 = Q.load_hf_params(dtype=torch.float32)
+tok = AutoTokenizer.from_pretrained(a.host)
+MIXED = a.task == 'mixed'
+if MIXED:
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mixed'))
+    import mixed_task as MT
+    pre, QF = MT.prefix_and_qfn(tok); shot_q = set()
+else:
+    pre, shot_q = C.prefix_ids(tok)
+Lp = len(pre)
+_QC = {}
+def QID(r):
+    if not MIXED: return C.q_ids(tok, r['q'])
+    k = r['id'] if 'id' in r else r['user']
+    if k not in _QC: _QC[k] = QF(r)
+    return _QC[k]
+def SCORE(t, r):
+    if not MIXED: return C.score(tok, t, r['gold'])
+    txt = tok.decode(t, skip_special_tokens=False)
+    rw, b, f = MT.score(txt, r)
+    return rw, float('answer is' in txt.lower() or r['type'] == 'ifeval')
+P32 = Q.load_hf_params(name=a.host, dtype=torch.float32)
 for v in P32.values(): v.requires_grad_(not a.freeze_host)
 names = list(P32)
 W = Q.fuse({k: v.detach() for k, v in P32.items()}, torch.bfloat16)
 W_ref = Q.fuse({k: v.detach() for k, v in P32.items()}, torch.bfloat16) if a.kl > 0 else None
 imp = None
 if HAS_IMPL:
-    hf = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B-Base', dtype=torch.bfloat16).to(dev).eval()
+    hf = AutoModelForCausalLM.from_pretrained(a.host, dtype=torch.bfloat16).to(dev).eval()
     imp = CalcImplant(hf, tok, a.B_max, fused=bool(a.fused), random=('digits' if IS_R else None))
     RESID_NORM = None
     if HAS_LINKS and 'emb' in (a.link_spec or DEFAULT_SPEC.get(a.arm, '')):
@@ -158,8 +181,14 @@ if HAS_IMPL:
     TOOLS, IFT = [], None
     E0 = None
     if a.arm == 'LIB':
-        with torch.no_grad():          # the 4 envelope tokens share one untrained row in the base checkpoint: give them
-            integ.prep_call_tokens(hf, tok)    # Team C's distinct random rows IN THE TOOLS' SNAPSHOT ONLY (host untouched)
+        _env_ids = [tok.convert_tokens_to_ids(t) for t in ('<tool_call>', '</tool_call>', '<tool_response>', '</tool_response>')]
+        _Er = hf.get_input_embeddings().weight.detach()[_env_ids].float()
+        _shared = bool((_Er[1:] - _Er[0]).abs().max() < 1e-6)
+        print('envelope token rows shared (untrained):', _shared, flush=True)
+        if _shared:                    # base checkpoint: the 4 envelope tokens share one untrained row -> Team C's distinct
+            with torch.no_grad():      # random rows IN THE TOOLS' SNAPSHOT ONLY. NOT on a host whose rows are already
+                integ.prep_call_tokens(hf, tok)   # distinct (instruct): the tied head would then be solved against rows
+                                                  # the real host does not have, and <tool_response> writes would not win
         E0 = hf.get_input_embeddings().weight.detach().clone()          # FROZEN snapshot the BBH readers were solved on
         veto_bbh = integ.VETO if os.path.exists(integ.VETO) else None
         A_bbh = integ.attach_all(hf, tok, tuple(TOOL_NAMES), veto=veto_bbh)
@@ -185,8 +214,8 @@ if HAS_IMPL:
             sys.path.insert(0, a.ifdir)
             spec_ = importlib.util.spec_from_file_location('circuit_g', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'circuit_g.py'))
             CG = importlib.util.module_from_spec(spec_); spec_.loader.exec_module(CG)
-            hf_if = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B', dtype=torch.bfloat16).to(dev).eval()
-            circ = CG.Circuit(AutoTokenizer.from_pretrained('Qwen/Qwen3-0.6B'), hf_if, vecs=os.path.join(a.ifdir, 'vecs2.pt'))
+            hf_if = AutoModelForCausalLM.from_pretrained(os.environ.get('IF_HOST', 'Qwen/Qwen3-0.6B'), dtype=torch.bfloat16).to(dev).eval()
+            circ = CG.Circuit(AutoTokenizer.from_pretrained(os.environ.get('IF_HOST', 'Qwen/Qwen3-0.6B')), hf_if, vecs=os.path.join(a.ifdir, 'vecs2.pt'))
             circ.E = circ.E.detach().clone(); circ.g = circ.g.detach().clone()      # frozen snapshots (solved-against host)
             circ.model = None; del hf_if
             sys.path.remove(a.ifdir); sys.modules['common_ifeval'] = sys.modules.pop('common'); sys.modules['common'] = _saved_common
@@ -393,7 +422,9 @@ if TRAIN_IMPL:   # relative lr: Dp entries are ~gain (1e4) scale, so an absolute
 opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8)
 base_lrs = [g['lr'] for g in opt.param_groups]
 if a.arm == 'LIB':
-    eng = LibEngine(W, pre, tok, imp, TOOLS, IFT, E0, links=links, B_max=a.B_max, S_max=544)
+    eng = LibEngine(W, pre, tok, imp, TOOLS, IFT, E0, links=links, B_max=a.B_max, S_max=a.S_max)
+    eng.chat_stop = MIXED
+    eng.imp_on = not a.plain
 else:
     eng = Engine(W, pre, tok, implant=imp, links=links, B_max=a.B_max, S_max=544, use_write=USE_WRITE)
 if TRAIN_IMPL: eng.Dp = eng_Dp
@@ -481,24 +512,38 @@ PARAMS = dict(wire=N_WIRE, host=N_HOST, implant_nnz=N_IMPL, pct_host=100 * N_WIR
 print(f'PARAMS trainable wiring {N_WIRE:,} = {PARAMS["pct_host"]:.4f}% of host ({N_HOST:,}) = '
       f'{PARAMS["pct_implant"] if N_IMPL else float("nan"):.2f}% of implant nonzeros ({N_IMPL:,})', flush=True)
 
-pool = C.load_train('A', shot_q=shot_q)
-pool = [r for r in pool if len(C.q_ids(tok, r['q'])) + a.max_new <= 544]
-devset = C.load_train('B', shot_q=shot_q)
-rng_dev = random.Random(123)
-dg = [r for r in devset if r['kind'] == 'gsm']; ds = [r for r in devset if r['kind'] == 'scaled']
-rng_dev.shuffle(dg); rng_dev.shuffle(ds)
-devset = dg[:a.dev_n // 2] + ds[:a.dev_n // 2]
-# op class per dev problem from its gold solution's calculator annotations <<expr=val>> (scaled -> source solution)
-import re as _re0
-_tr = [json.loads(l) for l in open(f'{C.REPO}/data/gsm8k/train.jsonl')]
-_sol = {r['question']: r['answer'] for r in _tr}
-for l in open(f'{C.REPO}/data/gsm8k/train_scaled.jsonl'):
-    r = json.loads(l); _sol[r['question']] = _tr[r['src']]['answer']
-for r in devset:
-    ex = ' '.join(_re0.findall(r'<<([^=>]*)=', _sol.get(r['q'], '')))
-    md, as_ = len(_re0.findall(r'[*/]', ex)), len(_re0.findall(r'(?<=[\d)\s])[+-]', ex))
-    r['opclass'] = 'muldiv' if md > as_ else ('addsub' if as_ > md else 'tie')
-del _tr
+if MIXED:
+    pool = [dict(r, kind=r['type']) for r in MT.load('train')]
+    pool = [r for r in pool if len(QID(r)) + a.max_new <= a.S_max]
+    TESTSET = [dict(r, kind=r['type']) for r in MT.load('test')]
+    TESTSET = [r for r in TESTSET if len(QID(r)) + a.max_new <= a.S_max]
+    rs_ = random.Random(123); bytype = {}
+    for r in TESTSET: bytype.setdefault(r['type'], []).append(r)
+    devset = []
+    for t_, rr in sorted(bytype.items()):
+        rs_.shuffle(rr); devset += rr[:max(1, round(a.dev_mixed_n * len(rr) / len(TESTSET)))]
+    TYPES = sorted(bytype)
+    print('mixed: pool', len(pool), 'test', len(TESTSET), 'dev', len(devset), {t_: len(v) for t_, v in bytype.items()}, flush=True)
+if not MIXED:
+  pool = C.load_train('A', shot_q=shot_q)
+  pool = [r for r in pool if len(C.q_ids(tok, r['q'])) + a.max_new <= 544]
+  devset = C.load_train('B', shot_q=shot_q)
+if not MIXED:
+    rng_dev = random.Random(123)
+    dg = [r for r in devset if r['kind'] == 'gsm']; ds = [r for r in devset if r['kind'] == 'scaled']
+    rng_dev.shuffle(dg); rng_dev.shuffle(ds)
+    devset = dg[:a.dev_n // 2] + ds[:a.dev_n // 2]
+    # op class per dev problem from its gold solution's calculator annotations <<expr=val>> (scaled -> source solution)
+    import re as _re0
+    _tr = [json.loads(l) for l in open(f'{C.REPO}/data/gsm8k/train.jsonl')]
+    _sol = {r['question']: r['answer'] for r in _tr}
+    for l in open(f'{C.REPO}/data/gsm8k/train_scaled.jsonl'):
+        r = json.loads(l); _sol[r['question']] = _tr[r['src']]['answer']
+    for r in devset:
+        ex = ' '.join(_re0.findall(r'<<([^=>]*)=', _sol.get(r['q'], '')))
+        md, as_ = len(_re0.findall(r'[*/]', ex)), len(_re0.findall(r'(?<=[\d)\s])[+-]', ex))
+        r['opclass'] = 'muldiv' if md > as_ else ('addsub' if as_ > md else 'tie')
+    del _tr
 print(f'arm {a.arm} | impl {HAS_IMPL} links {HAS_LINKS} write {USE_WRITE} gate0 {GATE0} train_impl {TRAIN_IMPL} '
       f'| pool {len(pool)} dev {len(devset)} prefix {Lp}', flush=True)
 
@@ -617,14 +662,23 @@ def evaluate(items, mode='full', tag='dev'):
         else: eng.tool_on[TNAMES.index(mode[4:])] = 0
     if mode == 'hostonly': eng.imp_on = False
     elif mode == 'linksoff' and links is not None: saved = _zero_gates_ctx()
-    qids = [C.q_ids(tok, r['q']) for r in items]
+    qids = [QID(r) for r in items]
     out = eng.generate(qids, G=1, greedy=True, max_new=a.max_new)
-    sc = [C.score(tok, t, r['gold']) for t, r in zip(out['tokens'], items)]
+    sc = [SCORE(t, r) for t, r in zip(out['tokens'], items)]
     acc = lambda kind: 100 * sum(s[0] for s, r in zip(sc, items) if r['kind'] == kind) / max(1, sum(r['kind'] == kind for r in items))
     res = {f'{tag}_acc': 100 * sum(s[0] for s in sc) / len(sc), f'{tag}_gsm': acc('gsm'), f'{tag}_scaled': acc('scaled'),
            f'{tag}_fmt': 100 * sum(s[1] for s in sc) / len(sc),
            f'{tag}_writes': sum(sum(w) for w in out['wflag']) / len(sc), f'{tag}_calls': sum(calls_of(w) for w in out['wflag']) / len(sc),
            f'{tag}_len': sum(map(len, out['tokens'])) / len(sc)}
+    if MIXED:                                         # per task type: accuracy + per-tool routing
+        for t_ in TYPES:
+            ii = [i for i, r in enumerate(items) if r['type'] == t_]
+            if not ii: continue
+            res[f'{tag}_{t_}'] = 100 * sum(sc[i][0] for i in ii) / len(ii)
+            if a.arm == 'LIB' and mode != 'hostonly':
+                sub = {k: [out[k][i] for i in ii] for k in ('dec', 'wt', 'ifw', 'if_lat', 'if_lat_prompt', 'if_ans') if out.get(k)}
+                res[f'{tag}_tools_{t_}'] = {k[len(tag) + 3:]: v for k, v in tool_stats(sub, tag).items() if k.startswith(f'{tag}_t_')}
+                res[f'{tag}_if_{t_}'] = {k: v for k, v in tool_stats(sub, tag).items() if k.startswith(f'{tag}_if_')}
     for oc in ('muldiv', 'addsub'):                  # accuracy by the problem's dominant arithmetic (gold solution)
         ii = [i for i, r in enumerate(items) if r.get('opclass') == oc]
         if ii:
@@ -632,7 +686,7 @@ def evaluate(items, mode='full', tag='dev'):
             for kd in ('gsm', 'scaled'):
                 jj = [i for i in ii if items[i]['kind'] == kd]
                 if jj: res[f'{tag}_acc_{oc}_{kd}'] = 100 * sum(sc[i][0] for i in jj) / len(jj)
-    eng.imp_on = True
+    eng.imp_on = not a.plain
     if ton is not None: eng.tool_on.copy_(ton)
     if saved is not None: _restore_gates(saved)
     if rs_saved is not None: _reset_restore(rs_saved)
@@ -757,16 +811,16 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
             ql, rl = len(batch_q[i]), len(batch_r[i])
             sel.append(torch.arange(o + ql - 1, o + ql + rl - 1)); o += lens[j]
         sel = torch.cat(sel).to(dev); tgt = ids[sel + 1]
-        feat = fwrite = None
-        if imp is not None and a.arm == 'LIB':
+        feat = fwrite = None; dpos, didx, dsgn, dtool = [], [], [], []
+        if imp is not None and a.arm == 'LIB' and not a.plain:
             with torch.no_grad():
                 Tm = max(lens)
                 full0 = torch.tensor([x + [eng.eos] * (Tm - len(x)) for x in seqs], device=dev)
                 def packed(eb_, nf_):
                     return torch.cat([eb_[j, :n] for j, n in enumerate(lens)] + [torch.zeros(Ltot - sum(lens), nf_, device=dev)])
-                full = torch.cat([eng.prefix_ids[None].expand(len(seqs), -1), full0], 1)
-                Es = {'calc': packed(imp.full(W['E'][full[:, Lp - Kt:]])[:, Kt:] * eng.tool_on[0], imp.n_out)}
-                tf_ = eng.tool_feats(full, Lp)
+                full = torch.cat([eng.tool_prefix[None].expand(len(seqs), -1), full0], 1)
+                Es = {'calc': packed(imp.full(W['E'][full[:, eng.Lt - Kt:]])[:, Kt:] * eng.tool_on[0], imp.n_out)}
+                tf_ = eng.tool_feats(full, eng.Lt)
                 for t_ in TOOLS: Es[t_.name] = packed(tf_[t_.name], t_.n_out)
                 if IFT is not None:                                # recorded IF writes (sparse) at response positions
                     wif = torch.zeros(Ltot, Q.D, device=dev); o2 = 0
@@ -808,7 +862,7 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
                 e = feat['calc']
         hcap = None
         if INW is not None:
-            hn, hcap = Q.fwd_packed(Wt, ids, packer.pos, bm, eng.cos_t, eng.sin_t, leaves, links=links, feat=feat,
+            hn, hcap = Q.fwd_packed(Wt, ids, packer.pos, bm, eng.cos_t, eng.sin_t, leaves, links=None if a.plain else links, feat=feat,
                                     final_write=fwrite, capture=INW.L)
         else:
             hn = Q.fwd_packed(Wt, ids, packer.pos, bm, eng.cos_t, eng.sin_t, leaves, links=links, feat=feat, final_write=fwrite)
@@ -913,17 +967,18 @@ def hf_check(qids, out, G, nrows=48):
     recomputed teacher-forced (Micromachine.emit, not the decode-step code), recorded in-wire decisions replayed, the
     adapters added by forward pre-hooks (L14 input, final-norm input) and the fixed writes at the final-norm input.
     Compared on tokens WITHOUT an in-wire decision (decision log-probs are not a host quantity)."""
-    hfm = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-0.6B-Base', dtype=torch.bfloat16, attn_implementation='sdpa').to(dev).eval()
+    hfm = AutoModelForCausalLM.from_pretrained(a.host, dtype=torch.bfloat16, attn_implementation='sdpa').to(dev).eval()
     rows = list(range(0, len(out['tokens']), max(1, len(out['tokens']) // nrows)))[:nrows]
     gaps, gaps_fire, n_any_fire = [], [], 0; flag_mis, flag_n = [], []
     for j in rows:
         q = qids[j // G]; r = out['tokens'][j]; d = out['dec'][j].to(torch.int64)
         seq = torch.tensor(eng.prefix_ids.tolist() + q + r, device=dev)[None]
+        seqt = torch.cat([eng.tool_prefix[:256][None], seq], 1)        # same padded stream the engine's tools see
         L0 = Lp + len(q)
         T_ = seq.shape[1]
-        e_c = imp.full(W['E'][seq])                                   # calc (live host embedding, as in decode)
+        e_c = imp.full(W['E'][seqt])[:, 256:]                         # calc (live host embedding, as in decode)
         Es = {'calc': e_c[0] * eng.tool_on[0]}
-        for t_ in TOOLS: Es[t_.name] = t_.full(E0[seq])[0] * eng.tool_on[1 + TOOLS.index(t_)]
+        for t_ in TOOLS: Es[t_.name] = t_.full(E0[seqt])[0, 256:] * eng.tool_on[1 + TOOLS.index(t_)]
         if IFT is not None:
             wif = torch.zeros(T_, Q.D, device=dev); pz, vz = out['ifw'][j]
             if len(pz): wif[L0 - 1 + pz.to(dev)] = vz.to(dev)
@@ -986,6 +1041,26 @@ if a.eval_ckpt:            # one-shot test evaluation of a saved checkpoint (wir
     if TRAIN_IMPL and os.path.exists(f'{a.eval_ckpt}/Dp.pt'):
         Dp.data.copy_(torch.load(f'{a.eval_ckpt}/Dp.pt').to(dev))
     sync_weights()
+    if a.misfire_probe:                     # sampled rollouts (T, G) on TRAIN prompts: reward with vs without an off-type call
+        rs_ = random.Random(99); out_mp = {}
+        for t_, tools_ in (('ifeval', ['calc', 'expr_gen', 'track_gen']), ('bbh', ['calc'])):
+            items = [r for r in pool if r['type'] == t_]; rs_.shuffle(items); items = items[:a.misfire_probe]
+            o_ = eng.generate([QID(r) for r in items], G=a.G, T=a.T, max_new=a.max_new)
+            R_ = [SCORE(t, items[j // a.G])[0] for j, t in enumerate(o_['tokens'])]
+            for nm in tools_:
+                k_ = TNAMES.index(nm)
+                fired = [bool((d[:, k_] == 1).any()) for d in o_['dec']]
+                yes = [r for r, f in zip(R_, fired) if f]; no = [r for r, f in zip(R_, fired) if not f]
+                # within-group comparison: prompts with both kinds of rows
+                diffs = []
+                for p_ in range(len(items)):
+                    g = range(p_ * a.G, (p_ + 1) * a.G); y = [R_[j] for j in g if fired[j]]; n = [R_[j] for j in g if not fired[j]]
+                    if y and n: diffs.append(sum(y) / len(y) - sum(n) / len(n))
+                out_mp[f'{nm}@{t_}'] = dict(rows=len(R_), rows_with_call=len(yes), mean_reward_with=sum(yes) / max(1, len(yes)),
+                                           mean_reward_without=sum(no) / max(1, len(no)), groups_mixed=len(diffs),
+                                           within_group_diff=sum(diffs) / max(1, len(diffs)))
+                print('MISFIRE', nm, t_, out_mp[f'{nm}@{t_}'], flush=True)
+        json.dump(out_mp, open(f'{a.run_dir}/misfire_probe.json', 'w'), indent=1); sys.exit(0)
     out_res = {'ckpt': a.eval_ckpt, 'params': PARAMS}
     if a.interp and INW is not None:
         import numpy as np
@@ -1080,6 +1155,32 @@ if a.sft:      # supervised sanity test: CE on gold solutions (calc-heavy proble
     if links: torch.save({str(k): lk.state_dict() for k, lk in links.items()}, f'{a.run_dir}/links_final.pt')
     log({'DONE_RUN': time.time() - t_start}); print('DONE', flush=True); sys.exit(0)
 log({'params': PARAMS})
+if a.dump_ref:                              # bit-exactness reference for a new engine: fixed prompts, greedy outputs, per-step tool flags
+    rs_ = random.Random(7); by_ = {}
+    for r in TESTSET: by_.setdefault(r['type'], []).append(r)
+    items = []
+    for t_ in sorted(by_): rs_.shuffle(by_[t_]); items += by_[t_][:a.dump_ref // len(by_)]
+    o_ = eng.generate([QID(r) for r in items], G=1, greedy=True, max_new=a.max_new)
+    ref = dict(host=a.host, max_new=a.max_new, tnames=TNAMES, prefix_ids=pre, q_ids=[QID(r) for r in items], items=items,
+               tokens=o_['tokens'], logp=o_['logp'], tool_fire_flags=[w.tolist() for w in o_['wt']],
+               inwire_dec=[d.tolist() for d in o_['dec']], ifeval_write_pos=[p_.tolist() for p_, _ in o_['ifw']],
+               ifeval_write_vec=[v_.tolist() for _, v_ in o_['ifw']], texts=[tok.decode(t) for t in o_['tokens']],
+               notes='greedy; tool_fire_flags[t][i]=1 iff tool i (tnames order) wrote at the step producing token t (post in-wire); '
+                     'inwire_dec 1 fire / 2 veto at burst starts; in-wires at init (fire at greedy); wires zero-init')
+    json.dump(ref, open(f'{a.run_dir}/engine_reference.json', 'w')); print('DUMPED', len(items), flush=True); sys.exit(0)
+if a.probe_tool:                            # u0 leave-one-out of one tool on its own items, outputs saved
+    nm_, sub_ = a.probe_tool.split(':')
+    items = [r for r in TESTSET if r['type'] in ('bbh', 'combo') and r.get('task', r.get('sub', '')).startswith(sub_)]
+    resp = {}
+    for md in ('full', 'loo_' + nm_):
+        eng.tool_on.fill_(1.0)
+        if md != 'full': eng.tool_on[TNAMES.index(nm_)] = 0.0     # leave-one-out (the probe calls generate directly)
+        o_ = eng.generate([QID(r) for r in items], G=1, greedy=True, max_new=a.max_new)
+        sc_ = [SCORE(t, r) for t, r in zip(o_['tokens'], items)]
+        resp[md] = dict(acc=100 * sum(x[0] for x in sc_) / len(items), n=len(items),
+                        texts=[tok.decode(t) for t in o_['tokens']], ok=[x[0] for x in sc_])
+        print('PROBE', md, resp[md]['acc'], len(items), flush=True)
+    json.dump(dict(items=items, **resp), open(f'{a.run_dir}/probe_{nm_}.json', 'w')); sys.exit(0)
 if a.bench:                                 # per-component decode-step cost (CUDA-graph replay), then exit
     def gtime(fn, n=20):
         s_ = torch.cuda.Stream(); s_.wait_stream(torch.cuda.current_stream())
@@ -1122,7 +1223,8 @@ if a.arm == 'LIB':
     r = evaluate(devset, mode='toolsoff', tag='devtoolsoff'); r.update(u=0); log({'dev_toolsoff0': r})
     print('BITID u0: tools-off hash', r['devtoolsoff_hash'], 'host-only hash', log_h0, 'identical', r['devtoolsoff_hash'] == log_h0, flush=True)
     log({'bitid_u0': dict(toolsoff=r['devtoolsoff_hash'], hostonly=log_h0, identical=r['devtoolsoff_hash'] == log_h0)})
-    r = evaluate(devset, mode='calconly', tag='devcalconly'); r.update(u=0); log({'dev_calconly': r}); print('calc-only@0', r, flush=True)
+    if not MIXED:
+        r = evaluate(devset, mode='calconly', tag='devcalconly'); r.update(u=0); log({'dev_calconly': r}); print('calc-only@0', r, flush=True)
 TRACK_DRIFT = TRAIN_IMPL or WARM_FINAL is not None
 if TRACK_DRIFT: d0 = writer_drift(); log({'drift': {**d0, 'u': 0}}); print('drift@0', d0, flush=True)
 UPD_T = []; P0_PROMPTS = a.prompts
@@ -1149,13 +1251,13 @@ for u in range(1, a.updates + 1):
         print('DEADLINE', dict(t_update=t_u, t_dev=T_DEV, left_s=left, need_s=need, prompts=a.prompts), flush=True)
     t_upd0 = time.time()
     batch = random.sample(pool, a.prompts)
-    qids = [C.q_ids(tok, r['q']) for r in batch]
+    qids = [QID(r) for r in batch]
     t0 = time.time()
     out = eng.generate(qids, G=a.G, T=a.T, max_new=a.max_new)
     t_roll = time.time() - t0
     R = []; fmt = 0
     for j, t in enumerate(out['tokens']):
-        s = C.score(tok, t, batch[j // a.G]['gold']); R.append(s[0]); fmt += s[1]
+        s = SCORE(t, batch[j // a.G]); R.append(s[0]); fmt += s[1]
     R_raw = list(R)
     if a.call_cost and INW is not None:       # cost-aware variant: pay per fired call
         R = [r_ - a.call_cost * sum(1 for x in d if (x & 3) == 1) for r_, d in zip(R, out['dec'])]
@@ -1175,16 +1277,25 @@ for u in range(1, a.updates + 1):
                writes=sum(sum(w) for w in out['wflag']) / len(R), calls=sum(calls_of(w) for w in out['wflag']) / len(R),
                roll_s=t_roll, roll_tok_s=out['stats']['tok_s'], gen_tokens=out['stats']['tokens'],
                mem_gb=torch.cuda.max_memory_allocated() / 1e9)
-    if u == 1 and a.hf_check and a.arm == 'LIB':
+    if u == 1 and a.hf_check and a.arm == 'LIB' and not a.plain:
         try: log({'hf_check': hf_check(qids, out, a.G)})
         except Exception as ex_: print('hf_check failed', repr(ex_), flush=True); log({'hf_check_error': repr(ex_)})
     if idx:
         st = train_step([qids[j // a.G] for j in idx], [out['tokens'][j] for j in idx], [out['logp'][j] for j in idx],
                         [float(advt.view(-1)[j]) for j in idx], len(R),
                         batch_dec=[out['dec'][j] for j in idx] if INW is not None else None,
-                        batch_ifw=[out['ifw'][j] for j in idx] if IFT is not None else None)
+                        batch_ifw=[out['ifw'][j] for j in idx] if (IFT is not None and not a.plain) else None)
         rec.update(st)
         sync_weights()
+    if MIXED:
+        for t_ in TYPES:
+            jj = [j for j in range(len(R)) if kinds[j] == t_]
+            if not jj: continue
+            rec[f'r_{t_}'] = sum(R[j] for j in jj) / len(jj)
+            if INW is not None and not a.plain:
+                sub = {k: [out[k][j] for j in jj] for k in ('dec', 'wt', 'ifw', 'if_lat', 'if_lat_prompt', 'if_ans') if out.get(k)}
+                rec[f'roll_tools_{t_}'] = {k[7:]: v for k, v in tool_stats(sub, 'roll').items() if k.startswith('roll_t_')}
+                rec[f'roll_if_{t_}'] = {k: v for k, v in tool_stats(sub, 'roll').items() if k.startswith('roll_if_')}
     if INW is not None:                               # rollout per-tool bursts / fire / veto (+ reward of rows with a fired call)
         rec.update(tool_stats(out, 'roll')); rec['reward_raw'] = sum(R_raw) / len(R_raw)
         for k_, nm in enumerate(TNAMES):
@@ -1220,6 +1331,21 @@ for u in range(1, a.updates + 1):
     if u % a.ckpt_every == 0 or u == a.updates:
         save(f'step_{u:06d}')
 # end-of-run ablations
+if MIXED and a.no_test:
+    log({'DONE_RUN': time.time() - t_start}); print('DONE (pilot, no test)', time.time() - t_start, flush=True); sys.exit(0)
+if MIXED:                                # final: full TEST (999) with tools on / all off / host only / leave-one-out
+    tres = {}
+    if a.test_n: TESTSET = TESTSET[::max(1, len(TESTSET) // a.test_n)][:a.test_n]
+    r = evaluate(TESTSET, mode='full', tag='test'); tres['full'] = r; print('TEST full', {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+    if not a.plain:
+        for md in ('toolsoff', 'hostonly'):
+            r = evaluate(TESTSET, mode=md, tag='test'); tres[md] = r; print('TEST', md, {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+        for nm in TNAMES:
+            if tres['full'].get(f'test_t_{nm}', {}).get('nb', 0) == 0:
+                tres['loo_' + nm] = 'identical_by_construction'; continue
+            r = evaluate(TESTSET, mode='loo_' + nm, tag='test'); tres['loo_' + nm] = r; print('TEST loo', nm, {k: v for k, v in r.items() if not isinstance(v, dict)}, flush=True)
+    log({'mixed_test': tres}); json.dump(tres, open(f'{a.run_dir}/test_eval.json', 'w'), indent=1, default=str)
+    log({'DONE_RUN': time.time() - t_start}); print('DONE', time.time() - t_start, flush=True); sys.exit(0)
 if a.arm == 'LIB':                       # leave-one-out: each tool detached (its output forced silent) on the final host
     for nm in TNAMES:
         nb_ = LAST_DEV.get(f'dev_t_{nm}', {}).get('nb', 1)

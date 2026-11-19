@@ -223,6 +223,10 @@ class LibEngine(Engine):
         self.if_lat = torch.zeros(self.B_max + 1, device=dev, dtype=torch.bool)
         self.if_ans = torch.zeros(self.B_max + 1, device=dev, dtype=torch.bool)
         self.if_prefix_state = None
+        # tool/calc features see [256 x <|endoftext|>] + prefix (a short chat prefix is shorter than a tool's K+W window;
+        # decode priming and teacher forcing use the same padded stream, so they agree)
+        self.tool_prefix = torch.cat([torch.full((256,), self.eos, device=self.dev, dtype=torch.long), self.prefix_ids])
+        self.Lt = len(self.tool_prefix)
         self.exact_checks = {t.name: (t.check_exact(E0[self.prefix_ids][None]), getattr(t, 'fast1_check_rand', None))
                              for t in tools if t.fast1 is not None}
         print('DenseStack exactness (real prefix windows, random windows):', self.exact_checks, flush=True)
@@ -392,7 +396,10 @@ class LibEngine(Engine):
             self.out_dec3[r, gl + 1] = torch.where(live[:, None], dec, self.out_dec3[r, gl + 1])
             if self.iftool is not None:
                 self.out_ifw[r, gl + 1] = torch.where(live[:, None], self.out_ifw_cur, self.out_ifw[r, gl + 1])
-        stop = (nxt == self.eos) | self.has_nn[nxt] | (self.ends_nl[tok] & self.starts_nl[nxt]) | (gl + 2 >= self.maxnew)
+        if getattr(self, 'chat_stop', False):            # chat format: stop only at <|im_end|> / <|endoftext|>
+            stop = (nxt == self.eos) | (nxt == 151645) | (gl + 2 >= self.maxnew)
+        else:
+            stop = (nxt == self.eos) | self.has_nn[nxt] | (self.ends_nl[tok] & self.starts_nl[nxt]) | (gl + 2 >= self.maxnew)
         self.glen[:B] += live.long()
         self.done[:B] |= stop
         self.slot[:B] = torch.clamp(slot + 1, max=self.S_max - 1)
@@ -483,13 +490,13 @@ class LibEngine(Engine):
         feat = write = None; e_last_all = None
         allrows = torch.cat(rows); src = torch.cat([torch.full((len(r),), p, device=self.dev) for p, r in enumerate(rows)])
         if on:
-            full = torch.cat([self.prefix_ids[None].expand(P, -1), ids], 1)
+            full = torch.cat([self.tool_prefix[None].expand(P, -1), ids], 1)
             Kc_ = self.imp.K + self.imp.W
-            tail = torch.stack([full[p, self.Lp + len(qids[p]) - Kc_:self.Lp + len(qids[p])] for p in range(P)])
+            tail = torch.stack([full[p, self.Lt + len(qids[p]) - Kc_:self.Lt + len(qids[p])] for p in range(P)])
             emb_tail = self.W['E'][tail]
-            ef = self.imp.full(self.W['E'][full[:, self.Lp - Kc_:]])[:, Kc_:] * self.tool_on[0]
+            ef = self.imp.full(self.W['E'][full[:, self.Lt - Kc_:]])[:, Kc_:] * self.tool_on[0]
             feat = {'calc': ef}
-            tf = self.tool_feats(full, self.Lp)
+            tf = self.tool_feats(full, self.Lt)
             feat.update(tf)
             ar = torch.arange(P, device=self.dev)
             e_last = [ef[ar, lens - 1]] + [tf[t.name][ar, lens - 1] for t in self.tools]
@@ -521,9 +528,9 @@ class LibEngine(Engine):
             del hn, kvs, r_
         if on:
             self.imp.prime_rows(emb_tail[src], allrows)
-            full0 = torch.cat([self.prefix_ids[None].expand(P, -1), ids], 1)
+            full0 = full
             for t in self.tools:
-                tl = torch.stack([full0[p, self.Lp + len(qids[p]) - t.Kt:self.Lp + len(qids[p])] for p in range(P)])
+                tl = torch.stack([full0[p, self.Lt + len(qids[p]) - t.Kt:self.Lt + len(qids[p])] for p in range(P)])
                 t.prime_rows(self.E0[tl][src], allrows)
             if self.mwire is not None:
                 NTb = 1 + len(self.tools)
@@ -585,7 +592,7 @@ class LibEngine(Engine):
         Bb = next(b for b in B_BUCKETS if b >= n)
         self.tokb[:n] = first; self.slot[:n] = lens.repeat_interleave(G); self.glen[:n] = 0
         self.rowid[:n] = torch.arange(n, device=dev)
-        self.done[:n] = (first == self.eos) | self.has_nn[first] | (max_new <= 1)
+        self.done[:n] = (first == self.eos) | ((first == 151645) if getattr(self, 'chat_stop', False) else self.has_nn[first]) | (max_new <= 1)
         self.tokb[n:Bb] = self.eos; self.slot[n:Bb] = 0; self.glen[n:Bb] = 0; self.rowid[n:Bb] = DUMMY; self.done[n:Bb] = True
         maxlen = int(lens.max()); live_n = n; step = 0
         glen_final = torch.zeros(n + 1, dtype=torch.long, device=dev)
