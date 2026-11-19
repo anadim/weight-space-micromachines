@@ -1,0 +1,51 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+nockpt {'train_s': 10.423398733139038, 'loss': 0.0031814279209356755, 'gn': 0.07104175537824631, 'parts': {'setup_prefix': 0.05, 'tail+prefix_bwd': 0.09, 'fuse': 0.142, 'features': 0.203, 'fwd_packed': 4.051, 'lp_of_hidden': 0.31, 'loss_misc': 0.101, 'backward': 5.363, 'clip_opt': 0.108}, 'peak_gb': 29.881618944}
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                                      Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                  triton_tem_fused_zeros_1         0.00%       0.000us         0.00%       0.000us       0.000us     850.331ms        11.85%     850.331ms       2.531ms           336  
+                                ampere_bf16_s1688gemm_bf16_128x128_ldg8_f2f_stages_32x1_nn         0.00%       0.000us         0.00%       0.000us       0.000us     438.338ms         6.11%     438.338ms     326.145us          1344  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     408.146ms         5.69%     408.146ms      66.538us          6134  
+void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     388.630ms         5.42%     388.630ms      53.244us          7299  
+                               ampere_bf16_s16816gemm_bf16_256x128_ldg8_f2f_stages_32x3_tn         0.00%       0.000us         0.00%       0.000us       0.000us     315.138ms         4.39%     315.138ms     875.384us           360  
+void at::native::vectorized_elementwise_kernel<4, at::native::bfloat16_copy_kernel_cuda...         0.00%       0.000us         0.00%       0.000us       0.000us     300.021ms         4.18%     300.021ms      48.602us          6173  
+void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::Te...         0.00%       0.000us         0.00%       0.000us       0.000us     299.341ms         4.17%     299.341ms      48.382us          6187  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, s...         0.00%       0.000us         0.00%       0.000us       0.000us     294.825ms         4.11%     294.825ms      45.470us          6484  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::BFlo...         0.00%       0.000us         0.00%       0.000us       0.000us     277.604ms         3.87%     277.604ms      76.559us          3626  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, floa...         0.00%       0.000us         0.00%       0.000us       0.000us     264.632ms         3.69%     264.632ms      57.491us          4603  
+                                ampere_bf16_s1688gemm_bf16_128x128_ldg8_f2f_stages_32x1_nt         0.00%       0.000us         0.00%       0.000us       0.000us     242.434ms         3.38%     242.434ms     228.066us          1063  
+void at::native::(anonymous namespace)::cunn_SoftMaxForward<4, float, float, float, at:...         0.00%       0.000us         0.00%       0.000us       0.000us     229.566ms         3.20%     229.566ms       9.565ms            24  
+                                                                        triton_tem_fused_0         0.00%       0.000us         0.00%       0.000us       0.000us     201.599ms         2.81%     201.599ms     599.998us           336  
+void at::native::vectorized_elementwise_kernel<4, at::native::BUnaryFunctor<float, floa...         0.00%       0.000us         0.00%       0.000us       0.000us     180.499ms         2.52%     180.499ms       2.149ms            84  
+                                            ampere_bf16_s1688gemm_bf16_128x128_ldg8_f2f_tn         0.00%       0.000us         0.00%       0.000us       0.000us     153.781ms         2.14%     153.781ms     228.841us           672  
+void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     147.514ms         2.06%     147.514ms      35.874us          4112  
+                               ampere_bf16_s16816gemm_bf16_128x128_ldg8_f2f_stages_32x5_nt         0.00%       0.000us         0.00%       0.000us       0.000us     144.356ms         2.01%     144.356ms     429.630us           336  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     120.760ms         1.68%     120.760ms      61.896us          1951  
+void at::native::(anonymous namespace)::cunn_SoftMaxBackward<4, float, float, float, at...         0.00%       0.000us         0.00%       0.000us       0.000us     117.186ms         1.63%     117.186ms       9.766ms            12  
+                                                            Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us     108.420ms         1.51%     108.420ms      36.752us          2950  
+void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, floa...         0.00%       0.000us         0.00%       0.000us       0.000us     107.687ms         1.50%     107.687ms      31.114us          3461  
+                                ampere_bf16_s1688gemm_bf16_128x128_ldg8_f2f_stages_32x1_tn         0.00%       0.000us         0.00%       0.000us       0.000us     106.273ms         1.48%     106.273ms     316.289us           336  
+void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::po...         0.00%       0.000us         0.00%       0.000us       0.000us     103.577ms         1.44%     103.577ms      70.509us          1469  
+void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<c10::BFloat16...         0.00%       0.000us         0.00%       0.000us       0.000us      98.040ms         1.37%      98.040ms      36.664us          2674  
+void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::func_wra...         0.00%       0.000us         0.00%       0.000us       0.000us      95.679ms         1.33%      95.679ms      29.975us          3192  
+void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      80.219ms         1.12%      80.219ms      46.994us          1707  
+void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous name...         0.00%       0.000us         0.00%       0.000us       0.000us      80.093ms         1.12%      80.093ms      57.210us          1400  
+void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<...         0.00%       0.000us         0.00%       0.000us       0.000us      78.116ms         1.09%      78.116ms      37.610us          2077  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::BFloat...         0.00%       0.000us         0.00%       0.000us       0.000us      77.062ms         1.07%      77.062ms      69.929us          1102  
+void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_256x128_32x3_nn_ali...         0.00%       0.000us         0.00%       0.000us       0.000us      66.659ms         0.93%      66.659ms       5.555ms            12  
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 5.381s
+Self CUDA time total: 7.177s
+
+BITWISE done

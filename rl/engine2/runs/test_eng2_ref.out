@@ -1,0 +1,17 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+engine2 built
+OLD {"rows": 32, "tokens_equal_rows": 32, "logp_equal_rows": 32, "fire_equal_rows": 32, "dec_equal_rows": 32, "ifw_pos_equal_rows": 32, "ifw_vec_equal_rows": 32}
+NEW0 {"rows": 32, "tokens_equal_rows": 32, "logp_equal_rows": 32, "fire_equal_rows": 32, "dec_equal_rows": 32, "ifw_pos_equal_rows": 32, "ifw_vec_equal_rows": 32}
+NEW1 {"rows": 32, "tokens_equal_rows": 32, "logp_equal_rows": 32, "fire_equal_rows": 32, "dec_equal_rows": 32, "ifw_pos_equal_rows": 32, "ifw_vec_equal_rows": 32}
+DONE 0

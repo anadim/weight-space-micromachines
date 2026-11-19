@@ -1,0 +1,11 @@
+{
+ "steps": 256,
+ "write_mismatch": 0,
+ "state_mismatch": 0,
+ "can_rows_total": 11776,
+ "can_steps": 256,
+ "extra_tests": 256,
+ "nz_write_rows": 763,
+ "rows": 64,
+ "first_bad": null
+}

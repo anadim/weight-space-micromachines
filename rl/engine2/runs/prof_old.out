@@ -1,0 +1,58 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+tools [('track_gen', 12, 96, 12, 24, 91, 37, 2), ('order_gen', 9, 88, 10, 31, 50, 11, 2), ('interval_gen', 18, 128, 42, 21, 720, 19, 3), ('turtle_gen', 23, 128, 20, 23, 414, 12, 3), ('truth_gen', 17, 128, 64, 20, 1054, 38, 3), ('expr_gen', 13, 72, 17, 308, 29, 667, 5), ('calc_gen', 14, 54, 54, 26, 564, 33, 20), ('bool_gen', 3, 48, 2, 151, 3, 850, 1)]
+warm {'seconds': 59.51880216598511, 'tokens': 30969, 'tok_s': 520.3229714474786, 'decode_steps': 512, 'rows': 256}
+ROLLOUT {'o_stats': {'seconds': 109.1823992729187, 'tokens': 61432, 'tok_s': 562.6547905989955, 'decode_steps': 1024, 'rows': 512}, 'wall': 109.18251752853394, 'rows': 512, 'len_mean': 119.984375, 'len_max': 512}
+ROLLOUT hostonly {'o_stats': {'seconds': 7.88391375541687, 'tokens': 60785, 'tok_s': 7710.003164131002, 'decode_steps': 1024, 'rows': 512}, 'len_mean': 118.720703125}
+Traceback (most recent call last):
+  File "<workdir>/rl_library/engine2/prof_old.py", line 63, in <module>
+    torch.cuda.synchronize(); t0 = time.time(); eng._prefill(qids[:A.B_max // 8], rows); torch.cuda.synchronize()
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/lib_engine.py", line 534, in _prefill
+    t.prime_rows(self.E0[tl][src], allrows)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/lib_engine.py", line 124, in prime_rows
+    e = M.prime_sym(M.symbols(emb_tail))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/bbh_integrate/code/micromachines/machine.py", line 72, in prime_sym
+    e, S = self.emit_sym(sym)
+           ^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/bbh_integrate/code/micromachines/machine.py", line 57, in emit_sym
+    S = self.stack1(win)
+        ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/bbh_integrate/code/bbh_generic/teamC/teamc_tools.py", line 494, in forward
+    def forward(self, x): return self.net(x.double()).float()
+                                 ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py", line 217, in forward
+    return torch.cat([self.forward(flat[i:i + chunk]) for i in range(0, flat.shape[0], chunk)]).reshape(*x.shape[:-1], -1)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py", line 219, in forward
+    wires = x.new_zeros(*x.shape[:-1], n_in + self.n_units)      # one buffer holds every wire
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.35 GiB. GPU 0 has a total capacity of 44.42 GiB of which 629.81 MiB is free. Including non-PyTorch memory, this process has 43.80 GiB memory in use. Of the allocated memory 39.47 GiB is allocated by PyTorch, with 1.75 GiB allocated in private pools (e.g., CUDA Graphs), and 2.93 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

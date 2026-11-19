@@ -1,0 +1,17 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+{"u": 1, "t": 33.1435, "reward": 0.3164, "fmt": 0.9238, "kept_groups": 32, "len": 122.5488, "roll_s": 32.0741, "roll_tok_s": 1956.5315, "gen_tokens": 62745, "ifC_rollbacks": 0, "tk_flag": 0, "sync_s": 0.0334, "loss": 0.0002, "grad_norm": 0.0675, "ntok": 29638, "n_micro": 13, "clipfrac": 0.0037, "ratio": 1.0001, "train_s": 11.6399, "r_bbh": 0.6776, "r_combo": 0.0865, "r_gsm": 0.1574, "r_ifeval": 0.4, "upd_s": 45.7065, "mem_gb": 35.0529}
+{"u": 2, "t": 78.991, "reward": 0.3359, "fmt": 0.9434, "kept_groups": 32, "len": 159.7012, "roll_s": 32.7878, "roll_tok_s": 2494.1309, "gen_tokens": 81767, "ifC_rollbacks": 0, "tk_flag": 0, "sync_s": 0.0296, "loss": -0.0005, "grad_norm": 0.0859, "ntok": 37314, "n_micro": 14, "clipfrac": 0.0049, "ratio": 1.0, "train_s": 9.263, "r_bbh": 0.6818, "r_combo": 0.0417, "r_gsm": 0.1319, "r_ifeval": 0.4837, "upd_s": 43.5932, "mem_gb": 35.4811}
+{"u": 3, "t": 118.0072, "reward": 0.3008, "fmt": 0.9297, "kept_groups": 38, "len": 138.1836, "roll_s": 28.4846, "roll_tok_s": 2484.3317, "gen_tokens": 70750, "ifC_rollbacks": 1, "tk_flag": 0, "sync_s": 0.0335, "loss": 0.0017, "grad_norm": 0.09, "ntok": 41772, "n_micro": 16, "clipfrac": 0.0045, "ratio": 1.0002, "train_s": 10.5523, "r_bbh": 0.6094, "r_combo": 0.0481, "r_gsm": 0.1324, "r_ifeval": 0.3681, "upd_s": 40.5042, "mem_gb": 35.4811}
+{"u": 4, "t": 157.9021, "reward": 0.252, "fmt": 0.9551, "kept_groups": 34, "len": 137.0195, "roll_s": 27.6833, "roll_tok_s": 2534.9859, "gen_tokens": 70154, "ifC_rollbacks": 1, "tk_flag": 0, "sync_s": 0.0358, "loss": 0.0038, "grad_norm": 0.0876, "ntok": 37530, "n_micro": 15, "clipfrac": 0.0043, "ratio": 1.0, "train_s": 9.8179, "r_bbh": 0.5577, "r_combo": 0.0446, "r_gsm": 0.1167, "r_ifeval": 0.2955, "upd_s": 39.2008, "mem_gb": 35.6041}
+DONE 169.0081877708435

@@ -31,3 +31,9 @@ wandb/
 data/ifeval*/
 data/math500/
 !math500/results/runs/
+
+# engine2 test / benchmark logs are small and shipped (no checkpoints: *.pt stays out)
+!rl/engine2/runs/
+rl/engine2/runs/**/*.pt
+rl/engine2/tables.pt
+rl/engine2/vocab_strs.json

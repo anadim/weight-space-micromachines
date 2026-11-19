@@ -1,0 +1,94 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+tools [('track_gen', 12, 96, 12, 24, 91, 37, 2), ('order_gen', 9, 88, 10, 31, 50, 11, 2), ('interval_gen', 18, 128, 42, 21, 720, 19, 3), ('turtle_gen', 23, 128, 20, 23, 414, 12, 3), ('truth_gen', 17, 128, 64, 20, 1054, 38, 3), ('expr_gen', 13, 72, 17, 308, 29, 667, 5), ('calc_gen', 14, 54, 54, 26, 564, 33, 20), ('bool_gen', 3, 48, 2, 151, 3, 850, 1)]
+warm {'seconds': 59.922874450683594, 'tokens': 30969, 'tok_s': 516.8143264804065, 'decode_steps': 512, 'rows': 256}
+ROLLOUT {'o_stats': {'seconds': 109.91655611991882, 'tokens': 61432, 'tok_s': 558.8966955349089, 'decode_steps': 1024, 'rows': 512}, 'wall': 109.91665649414062, 'rows': 512, 'len_mean': 119.984375, 'len_max': 512}
+prefill 6.794228792190552
+COMP B 128 {'calc': 5.259, 'track_gen': 4.28, 'order_gen': 9.097, 'interval_gen': 3.567, 'turtle_gen': 4.367, 'truth_gen': 3.31, 'expr_gen': 31.439, 'calc_gen': 5.589, 'bool_gen': 7.498, 'bbh_sum': 69.147}
+COMP B 256 {'calc': 10.902, 'track_gen': 8.056, 'order_gen': 16.664, 'interval_gen': 7.555, 'turtle_gen': 8.199, 'truth_gen': 6.273, 'expr_gen': 32.93, 'calc_gen': 11.663, 'bool_gen': 7.653, 'bbh_sum': 98.993}
+IF 3.697085380554199 22.522099812825523
+STEP False 128 128 7.793
+STEP False 128 384 14.064
+STEP False 128 640 20.358
+STEP False 256 128 12.586
+STEP False 256 384 24.999
+STEP False 256 640 37.406
+STEP True 128 128 91.412
+STEP True 128 384 96.821
+STEP True 128 640 102.551
+STEP True 256 128 132.083
+STEP True 256 384 143.916
+STEP True 256 640 156.316
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                                      Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+void cusparse::csrmm_alg2_kernel<false, true, false, long, long, long, long, float, flo...         0.00%       0.000us         0.00%       0.000us       0.000us      93.710ms        20.23%      93.710ms     121.543us           771  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_32x32_16x5_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us      85.189ms        18.39%      85.189ms      42.701us          1995  
+                                                                        attn_suffix_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      32.360ms         6.99%      32.360ms     385.235us            84  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, s...         0.00%       0.000us         0.00%       0.000us       0.000us      23.400ms         5.05%      23.400ms      63.934us           366  
+                                                                    ampere_sgemm_32x128_nn         0.00%       0.000us         0.00%       0.000us       0.000us      16.521ms         3.57%      16.521ms      12.631us          1308  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_64x32_16x4_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us      14.974ms         3.23%      14.974ms       2.496ms             6  
+void at::native::vectorized_gather_kernel<16, long>(char*, char*, long*, int, long, lon...         0.00%       0.000us         0.00%       0.000us       0.000us      14.222ms         3.07%      14.222ms       3.448us          4125  
+void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      13.963ms         3.01%      13.963ms      11.297us          1236  
+void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::la...         0.00%       0.000us         0.00%       0.000us       0.000us      13.696ms         2.96%      13.696ms       3.899us          3513  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      13.448ms         2.90%      13.448ms       4.042us          3327  
+void at::native::vectorized_elementwise_kernel<2, at::native::(anonymous namespace)::la...         0.00%       0.000us         0.00%       0.000us       0.000us       7.977ms         1.72%       7.977ms       3.987us          2001  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       7.270ms         1.57%       7.270ms      13.614us           534  
+                               ampere_bf16_s16816gemm_bf16_256x128_ldg8_f2f_stages_32x3_tn         0.00%       0.000us         0.00%       0.000us       0.000us       7.087ms         1.53%       7.087ms     787.430us             9  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       5.653ms         1.22%       5.653ms       4.882us          1158  
+void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::Te...         0.00%       0.000us         0.00%       0.000us       0.000us       5.367ms         1.16%       5.367ms       8.282us           648  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       5.091ms         1.10%       5.091ms       2.537us          2007  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, floa...         0.00%       0.000us         0.00%       0.000us       0.000us       4.803ms         1.04%       4.803ms       2.686us          1788  
+void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_128x128_32x5_tn_ali...         0.00%       0.000us         0.00%       0.000us       0.000us       4.739ms         1.02%       4.739ms      28.208us           168  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       4.695ms         1.01%       4.695ms      13.850us           339  
+void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       4.354ms         0.94%       4.354ms     181.422us            24  
+void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<float>, std::...         0.00%       0.000us         0.00%       0.000us       0.000us       4.136ms         0.89%       4.136ms       3.455us          1197  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_64x64_16x4_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us       3.906ms         0.84%       3.906ms       1.302ms             3  
+                               ampere_bf16_s16816gemm_bf16_128x128_ldg8_f2f_stages_32x5_tn         0.00%       0.000us         0.00%       0.000us       0.000us       3.809ms
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/torchinductor_root/ll/cllotttjo3b4ageyof77bbc5inphcvikng2vyccdmijenvspn53n.py:548: UserWarning: Logical operators 'and' and 'or' are deprecated for non-scalar tensors; please use '&' or '|' instead
+  scatter_mask = offs_m2[:, None] < Q_LEN and offs_n2[None, :] < KV_LEN
+UserWarning: Enable tracemalloc to get the object allocation traceback
+Traceback (most recent call last):
+  File "<workdir>/rl_library/engine2/prof_old.py", line 131, in <module>
+    st = G['train_step']([qids[j // 8] for j in idx], [out['tokens'][j] for j in idx], [out['logp'][j] for j in idx],
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workdir>/rl_library/train_library.py", line 926, in train_step
+    loss.backward()
+  File "/usr/local/lib/python3.12/dist-packages/torch/_tensor.py", line 647, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.12/dist-packages/torch/autograd/__init__.py", line 354, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.12/dist-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.19 GiB. GPU 0 has a total capacity of 44.42 GiB of which 981.81 MiB is free. Including non-PyTorch memory, this process has 43.46 GiB memory in use. Of the allocated memory 41.57 GiB is allocated by PyTorch, with 1.47 GiB allocated in private pools (e.g., CUDA Graphs), and 492.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,16 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+base {'train_s': 11.288533449172974, 'loss': 0.0031814279209356755, 'gn': 0.07104175537824631, 'parts': {'setup_prefix': 0.042, 'tail+prefix_bwd': 0.072, 'fuse': 0.136, 'features': 0.16, 'fwd_packed': 3.645, 'lp_of_hidden': 0.359, 'loss_misc': 0.079, 'backward': 6.685, 'clip_opt': 0.105}, 'peak_gb': 22.545801216}
+nockpt {'train_s': 7.510693311691284, 'loss': 0.0031814279209356755, 'gn': 0.07104175537824631, 'parts': {'setup_prefix': 0.027, 'tail+prefix_bwd': 0.073, 'fuse': 0.136, 'features': 0.16, 'fwd_packed': 1.583, 'lp_of_hidden': 0.306, 'loss_misc': 0.082, 'backward': 5.03, 'clip_opt': 0.104}, 'peak_gb': 32.26894336}
+base2 {'train_s': 8.880560159683228, 'loss': 0.0031814279209356755, 'gn': 0.07104175537824631, 'parts': {'setup_prefix': 0.033, 'tail+prefix_bwd': 0.079, 'fuse': 0.136, 'features': 0.18, 'fwd_packed': 1.59, 'lp_of_hidden': 0.301, 'loss_misc': 0.093, 'backward': 6.357, 'clip_opt': 0.103}, 'peak_gb': 27.320450048}
+BITWISE base==nockpt True base==base2 True ntok 27641 n_micro 12

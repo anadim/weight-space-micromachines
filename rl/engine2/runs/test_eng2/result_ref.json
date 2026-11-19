@@ -1,0 +1,32 @@
+{
+ "old_vs_ref": {
+  "rows": 32,
+  "tokens_equal_rows": 32,
+  "logp_equal_rows": 32,
+  "fire_equal_rows": 32,
+  "dec_equal_rows": 32,
+  "ifw_pos_equal_rows": 32,
+  "ifw_vec_equal_rows": 32
+ },
+ "new_vs_ref_0": {
+  "rows": 32,
+  "tokens_equal_rows": 32,
+  "logp_equal_rows": 32,
+  "fire_equal_rows": 32,
+  "dec_equal_rows": 32,
+  "ifw_pos_equal_rows": 32,
+  "ifw_vec_equal_rows": 32
+ },
+ "new_s_0": 6.020071506500244,
+ "new_vs_ref_1": {
+  "rows": 32,
+  "tokens_equal_rows": 32,
+  "logp_equal_rows": 32,
+  "fire_equal_rows": 32,
+  "dec_equal_rows": 32,
+  "ifw_pos_equal_rows": 32,
+  "ifw_vec_equal_rows": 32
+ },
+ "new_s_1": 3.8238601684570312,
+ "tk_flag": 0
+}

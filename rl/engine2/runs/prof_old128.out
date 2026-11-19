@@ -1,0 +1,52 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+tools [('track_gen', 12, 96, 12, 24, 91, 37, 2), ('order_gen', 9, 88, 10, 31, 50, 11, 2), ('interval_gen', 18, 128, 42, 21, 720, 19, 3), ('turtle_gen', 23, 128, 20, 23, 414, 12, 3), ('truth_gen', 17, 128, 64, 20, 1054, 38, 3), ('expr_gen', 13, 72, 17, 308, 29, 667, 5), ('calc_gen', 14, 54, 54, 26, 564, 33, 20), ('bool_gen', 3, 48, 2, 151, 3, 850, 1)]
+warm {'seconds': 41.33163833618164, 'tokens': 16689, 'tok_s': 403.7826873509265, 'decode_steps': 512, 'rows': 128}
+ROLLOUT {'o_stats': {'seconds': 138.74085402488708, 'tokens': 59237, 'tok_s': 426.96147732645625, 'decode_steps': 2048, 'rows': 512}, 'wall': 138.74094986915588, 'rows': 512, 'len_mean': 115.697265625, 'len_max': 512}
+prefill 6.764599084854126
+COMP B 128 {'calc': 5.219, 'track_gen': 4.321, 'order_gen': 8.506, 'interval_gen': 3.575, 'turtle_gen': 4.306, 'truth_gen': 3.322, 'expr_gen': 31.439, 'calc_gen': 5.666, 'bool_gen': 7.498, 'bbh_sum': 68.633}
+IF 3.274933497111003 12.485146522521973
+STEP False 128 128 7.802
+STEP False 128 384 14.072
+STEP False 128 640 20.362
+STEP True 128 128 81.525
+STEP True 128 384 86.935
+STEP True 128 640 92.668
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                                      Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+------------------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+void cusparse::csrmm_alg2_kernel<false, true, false, long, long, long, long, float, flo...         0.00%       0.000us         0.00%       0.000us       0.000us      94.535ms        21.83%      94.535ms     122.614us           771  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_32x32_16x5_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us      84.712ms        19.56%      84.712ms      42.462us          1995  
+                                                                        attn_suffix_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      32.242ms         7.45%      32.242ms     383.838us            84  
+                                                                    ampere_sgemm_32x128_nn         0.00%       0.000us         0.00%       0.000us       0.000us      18.178ms         4.20%      18.178ms      13.897us          1308  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_64x32_16x4_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us      15.786ms         3.65%      15.786ms       2.631ms             6  
+void at::native::vectorized_gather_kernel<16, long>(char*, char*, long*, int, long, lon...         0.00%       0.000us         0.00%       0.000us       0.000us      14.037ms         3.24%      14.037ms       3.403us          4125  
+void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      13.868ms         3.20%      13.868ms      11.220us          1236  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      13.233ms         3.06%      13.233ms       3.977us          3327  
+void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::la...         0.00%       0.000us         0.00%       0.000us       0.000us      12.579ms         2.91%      12.579ms       3.581us          3513  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, s...         0.00%       0.000us         0.00%       0.000us       0.000us      12.120ms         2.80%      12.120ms      33.115us           366  
+void at::native::vectorized_elementwise_kernel<2, at::native::(anonymous namespace)::la...         0.00%       0.000us         0.00%       0.000us       0.000us       8.022ms         1.85%       8.022ms       4.009us          2001  
+                               ampere_bf16_s16816gemm_bf16_256x128_ldg8_f2f_stages_32x3_tn         0.00%       0.000us         0.00%       0.000us       0.000us       6.195ms         1.43%       6.195ms     688.287us             9  
+void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_128x128_32x5_tn_ali...         0.00%       0.000us         0.00%       0.000us       0.000us       5.104ms         1.18%       5.104ms      30.381us           168  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       5.070ms         1.17%       5.070ms       2.526us          2007  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       5.033ms         1.16%       5.033ms       4.346us          1158  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, floa...         0.00%       0.000us         0.00%       0.000us       0.000us       4.855ms         1.12%       4.855ms       2.715us          1788  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       4.312ms         1.00%       4.312ms       8.076us           534  
+void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<float>, std::...         0.00%       0.000us         0.00%       0.000us       0.000us       4.065ms         0.94%       4.065ms       3.396us          1197  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_64x64_16x4_nn_align1>(cutlass_80_ten...         0.00%       0.000us         0.00%       0.000us       0.000us       3.910ms         0.90%       3.910ms       1.303ms             3  
+                               ampere_bf16_s16816gemm_bf16_128x128_ldg8_f2f_stages_32x5_tn         0.00%       0.000us         0.00%       0.000us       0.000us       3.862ms         0.89%       3.862ms      45.981us            84  
+void cusparse::(anonymous namespace)::csr_partition_kernel<long, long>(long const*, lon...         0.00%       0.000us         0.00%       0.000us       0.000us       3.516ms         0.81%       3.516ms       4.560us           771  
+void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::Te...         0.00%       0.000us         0.00%       0.000us       0.000us       3.352ms         0.77%       3.352ms       5.173us           648  
+void at::native::vectorized_elementwise_kernel<4, at::native::compare_scalar_kernel<flo...         0.00%       0.000us         0.00%       0.000us       0.000us       3.255ms
+TRAIN {'train_s': 44.74655294418335, 'sync_s': 0.03367447853088379, 'n_micro': 13, 'ntok': 28305, 'loss': -0.0020453774195630103, 'grad_norm': 0.07169482111930847, 'rows': 248}
+TRAIN {'train_s': 41.00847101211548, 'sync_s': 0.03927326202392578, 'n_micro': 13, 'ntok': 28305, 'loss': -0.0021317416249075904, 'grad_norm': 0.06126798316836357, 'rows': 248}
+DONE

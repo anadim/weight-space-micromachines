@@ -1,0 +1,18 @@
+{
+ "roll_s": 61.57078003883362,
+ "stats": {
+  "seconds": 61.565073013305664,
+  "tokens": 30434,
+  "tok_s": 494.338729906525,
+  "decode_steps": 880,
+  "rows": 256,
+  "refills": 12
+ },
+ "kept_groups": 18,
+ "feature_check": {
+  "rows": 128,
+  "positions": 25166,
+  "mismatched_positions": 0,
+  "nonzero_positions": 1196
+ }
+}

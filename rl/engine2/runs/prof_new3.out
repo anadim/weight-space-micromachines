@@ -1,0 +1,49 @@
+<workdir>/rl_library/bbh_integrate/code/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+envelope token rows shared (untrained): False
+BBH tools: [('track_gen', 12, 96, 12, 91), ('order_gen', 9, 88, 10, 50), ('interval_gen', 18, 128, 42, 720), ('turtle_gen', 23, 128, 20, 414), ('truth_gen', 17, 128, 64, 1054), ('expr_gen', 13, 72, 17, 29), ('calc_gen', 14, 54, 54, 564), ('bool_gen', 3, 48, 2, 3)] veto <workdir>/rl_library/bbh_integrate/data/veto_qwen3.pt
+IFEval circuit attached (frozen head snapshot of Qwen3-0.6B)
+links: [('calc@final', 'warm', 1.0, 9258.2)]
+co-designed wires: ['out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@final', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14', 'out@14'] in-wire lr 0.001
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+PARAMS trainable wiring 775,518 = 0.1301% of host (596,049,920) = 4.95% of implant nonzeros (15,681,170)
+mixed: pool 5000 test 999 dev 400 {'gsm': 300, 'bbh': 300, 'combo': 149, 'ifeval': 250}
+arm LIB | impl True links True write False gate0 0.0 train_impl False | pool 5000 dev 400 prefix 35
+DenseStack exactness (real prefix windows, random windows): {'expr_gen': (True, False), 'bool_gen': (True, False)}
+STEP serial False C 16 37.653183937072754 ms
+STEP serial True C 16 42.2025203704834 ms
+STEP host-only 25.048327445983887 ms
+TK alone 15.165352821350098 ms
+--------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                            Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+--------------------------------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                                        tk3_step         0.00%       0.000us         0.00%       0.000us       0.000us      81.624ms        35.44%      81.624ms      27.208ms             3  
+                                                              attn_suffix_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      66.244ms        28.76%      66.244ms     788.624us            84  
+                      ampere_bf16_s1688gemm_bf16_128x128_ldg8_f2f_stages_32x1_tn         0.00%       0.000us         0.00%       0.000us       0.000us      17.582ms         7.63%      17.582ms     104.657us           168  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add...         0.00%       0.000us         0.00%       0.000us       0.000us       6.408ms         2.78%       6.408ms      17.508us           366  
+             ampere_bf16_s16816gemm_bf16_64x64_sliced1x2_ldg8_f2f_stages_64x5_tn         0.00%       0.000us         0.00%       0.000us       0.000us       6.240ms         2.71%       6.240ms      37.140us           168  
+                      ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_32x6_tn         0.00%       0.000us         0.00%       0.000us       0.000us       3.769ms         1.64%       3.769ms     628.130us             6  
+void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kerne...         0.00%       0.000us         0.00%       0.000us       0.000us       3.450ms         1.50%       3.450ms       3.506us           984  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<f...         0.00%       0.000us         0.00%       0.000us       0.000us       3.250ms         1.41%       3.250ms       1.818us          1788  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us       2.836ms         1.23%       2.836ms       5.311us           534  
+                     ampere_bf16_s16816gemm_bf16_256x128_ldg8_f2f_stages_32x3_tn         0.00%       0.000us         0.00%       0.000us       0.000us       2.507ms         1.09%       2.507ms     835.682us             3  
+void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_c...         0.00%       0.000us         0.00%       0.000us       0.000us       2.329ms         1.01%       2.329ms       3.768us           618  
+void at::native::vectorized_elementwise_kernel<4, at::native::compare_scalar_...         0.00%       0.000us         0.00%       0.000us       0.000us       2.219ms         0.96%       2.219ms       2.125us          1044  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us       1.580ms         0.69%       1.580ms       4.661us           339  
+                                                                   sample_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.549ms         0.67%       1.549ms     516.311us             3  
+void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us       1.450ms         0.63%       1.450ms      60.415us            24  
+void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOt...         0.00%       0.000us         0.00%       0.000us       0.000us       1.440ms         0.63%       1.440ms       1.936us           744  
+                                                              attn_prefix_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.289ms         0.56%       1.289ms      15.341us            84  
+                                                                   memcpy32_post         0.00%       0.000us         0.00%       0.000us       0.000us       1.178ms         0.51%       1.178ms       1.564us           753  
+                                                ampere_sgemm_128x32_sliced1x4_nn         0.00%       0.000us         0.00%       0.000us       0.000us       1.155ms         0.50%       1.155ms     385.058us             3  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us       1.102ms         0.48%       1.102ms       3.060us           360  
+                                                                  qk_rope_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.051ms         0.46%       1.051ms      12.511us            84  
+void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<f...         0.00%       0.000us         0.00%       0.000us       0.000us       1.017ms         0.44%       1.017ms       2.529us           402  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us     967.939us         0.42%     967.939us     161.323us             6  
+void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocas...         0.00%       0.000us         0.00%       0.000us       0.000us     907.007us         0.39%     907.007us       2.584us           351  
+void at::native::vectorized_elementwise_kernel<2, at::native::BUnaryFunctor<l...         0.00%       0.000us         0.00%       0.000us       0.000us     862.243us         0.37%     862.243us      95.805us             9  
+void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous name...         0.00%       0.000us         0.00%       0.000us       0.000us     859.072us         0.37%     859.072us       4.033us           213  
+                                                                  add_rms_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     838.792us         0.36%     838.792us       4.905us           171  
+void at::native::reduce_kernel<512, 1, at::native::ReduceOp<bool, at::native:...         0.00%       0.000us         0.00%       0.000us       0.000us     709.443us         0.31%     709.443us     236.481us             3  
+void at::native::vectorized_elementwise_kernel<2, at::native::(anonymous name...      
+n kernels per step 4850.0 sum ms per step 76.77547299999986

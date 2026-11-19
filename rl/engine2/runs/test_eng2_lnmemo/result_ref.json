@@ -1,0 +1,28 @@
+{
+ "new_vs_ref_0": {
+  "rows": 32,
+  "tokens_equal_rows": 32,
+  "logp_equal_rows": 32,
+  "fire_equal_rows": 32,
+  "dec_equal_rows": 32,
+  "ifw_pos_equal_rows": 32,
+  "ifw_vec_equal_rows": 32
+ },
+ "new_s_0": 6.26171088218689,
+ "new_vs_ref_1": {
+  "rows": 32,
+  "tokens_equal_rows": 32,
+  "logp_equal_rows": 32,
+  "fire_equal_rows": 32,
+  "dec_equal_rows": 32,
+  "ifw_pos_equal_rows": 32,
+  "ifw_vec_equal_rows": 32
+ },
+ "new_s_1": 3.6757683753967285,
+ "tk_flag": 0,
+ "ifC_hist": {
+  "32": 10,
+  "16": 6
+ },
+ "n_rollback": 0
+}

@@ -1,0 +1,57 @@
+{
+ "roll_s": 45.50411915779114,
+ "kept_groups": 31,
+ "feature_check": {
+  "rows": 4,
+  "positions": 692,
+  "mismatched_positions": 0,
+  "nonzero_positions": 33
+ },
+ "update": {
+  "old_s": 42.16063070297241,
+  "new_s": 6.892932176589966,
+  "new2_s": 6.756164312362671,
+  "loss": [
+   0.0031814279209356755,
+   0.0031814291432965547,
+   0.0031814291432965547
+  ],
+  "grad_norm": [
+   0.07104175537824631,
+   0.07104932516813278,
+   0.07104932516813278
+  ],
+  "params_equal_old_new": false,
+  "params_equal_new_new2": true,
+  "max_abs_param_diff": 0.0031110942363739014,
+  "stats_equal": {
+   "loss": false,
+   "kl": true,
+   "clipfrac": true,
+   "ratio": false,
+   "ntok": true,
+   "n_micro": true,
+   "pack_fill": true,
+   "n_dec_t": true,
+   "n_veto_t": true,
+   "n_dec": true,
+   "n_veto": true,
+   "frac_e": true,
+   "p_fire": false,
+   "cw_gate_mean": true,
+   "cw_gate_open": true,
+   "cw_B_norm": true,
+   "cw_out_fire": true,
+   "cw_out_silent": true,
+   "iw_v_norm": true,
+   "iw_b": true,
+   "link_grad_gate": false,
+   "link_grad_W": false,
+   "grad_norm": false
+  },
+  "update_cos": 0.9999998807907104,
+  "update_rel_err": 0.0001134033445850946,
+  "loss_rel_err": 3.842176876423818e-07,
+  "grad_norm_rel_err": 0.00010655409408411879
+ }
+}

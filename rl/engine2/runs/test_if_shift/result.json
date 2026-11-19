@@ -1,0 +1,21 @@
+{
+ "rows": 64,
+ "steps": 256,
+ "nonzero_write_row_steps": 744,
+ "shift_1": {
+  "write_mismatch_row_steps": 0,
+  "latch_mismatch": 0
+ },
+ "shift_37": {
+  "write_mismatch_row_steps": 0,
+  "latch_mismatch": 0
+ },
+ "shift_300": {
+  "write_mismatch_row_steps": 0,
+  "latch_mismatch": 0
+ },
+ "shift_2000": {
+  "write_mismatch_row_steps": 0,
+  "latch_mismatch": 0
+ }
+}
