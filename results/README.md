@@ -1,6 +1,6 @@
 # Result files
 
-Small files behind every number in the top-level README. `python results/summarize.py` rebuilds the README tables
+Small files behind every number in the top-level `DETAILS.md`. `python results/summarize.py` rebuilds the README tables
 from them. The original run outputs also held the full generated text per question; here each question keeps only its
 task, gold label, extracted prediction and correctness (plus token counts where available), and each file records the
 SHA-256 of the original output it was reduced from (`source_sha256`) and the command that produced it (`command`).

@@ -13,6 +13,10 @@ while an implant is attached inside the forward pass. Arms:
 | 4s | arm 4c with the rethink phrase replaced by trainable soft vectors (init = phrase embeddings) | host + detector + 9 vectors |
 | W1, W2, W2w, W2ws, W3e, W3r, W3z, W4 (`wiring/`) | different wirings of the same calculator: trainable writer, zero/embedding/random-init links into layers 7/14/21, warm-started final write | host + wiring |
 | CW, CWlean, CWout, CWin, CWinR/P/O/C (`wiring/`) | "co-designed" wiring: trainable out-adapters and a trainable in-wire that can veto each calculator call | host + wiring |
+| CWinO / CWinOx / CWinOlr (`wiring/`) | half-broken calculator (exact on x and ÷, deranged on + and −) behind a trainable in-wire; CWinOx = exploration floor 0.05 + in-wire lr 1e-3 / eps 1e-8, CWinOlr = lr only | host + wiring |
+| W3d (`wiring/`) | links into layers 7/14/21 started from a short supervised distillation of the hand wiring, no hand write | host + links |
+| LIB, LIBscr, LIBnoIF (`library/`) | calc_s4 + the 8 BBH implants + the 14-rule IFEval implant, each behind its own in-wire + out-adapters, GSM8K RL (LIBscr: the BBH implants' writes deranged) | host + wiring |
+| m1 / m2 / m3 / m4 (`library/mixed/`) | mixed GSM / BBH / IFEval / combo questions, Qwen3-0.6B (chat) after a short call-format SFT; m1 all implants, m2 all scrambled, m3 plain RL (implants never on), m4 noisy-routing SFT | host + wiring |
 
 The implant itself stays exact in every arm (the circuit is frozen; writer exactness is logged where the writer trains).
 
@@ -44,6 +48,17 @@ The implant itself stays exact in every arm (the circuit is frozen; writer exact
   `final_eval.py` (links take `(feat, x)`), `gen_traces.py`, `compile_results.py`, `make_fig.py`, launchers
   (`launch.sh` + `runs_*.txt`, `queue_run.sh`, `queue_a40.sh`, `cap300.sh`, `handoff_*.sh`), `NOTEBOOK.md` (setup,
   arms, every result). Shared modules are imported from `../gsm_grpo`.
+* `library/` — the implant library (all implants attached at once): `train_library.py` (GSM8K arms LIB / LIBscr /
+  LIBnoIF and, with `--task mixed`, the mixed-task arms), `lib_engine.py` (the BBH implants and the IFEval circuit inside
+  the v2 engine), its own `engine.py` / `fastqwen.py` / `implant.py` / `common.py` (the versions the runs used),
+  `circuit_g.py` (IFEval circuit as graph-capturable ops), `trainable_impl.py` (experimental trainable-implant arm, not
+  in the blog), `mixed/` (data generator `mixed_data.py` + `envs.py`, reward `mixed_task.py`, format SFT `sft_warm.py`,
+  probes), `launch/` (the launch scripts as queued; the final mixed runs used `--updates 150 --prompts 64 --ckpt_every
+  150 --test_n 400`, see `NOTEBOOK.md`), `NOTEBOOK.md` (every result). The IFEval circuit is read from
+  `../ifeval/heldout/` (`IFDIR`), with `vecs2_forcefix.pt` as its force_fix rows (`IF_VECS`).
+* `engine2/` — megakernel rollout + trainer for the library arm (NVRTC-compiled CUDA kernels; work in progress, no blog
+  number uses it). See `engine2/README.md`.
+* `figures/` — the blog's RL figures, their scripts and the plotted values (`figures/README.md`).
 * `interp/` — how RL changes the use of the calculator (text analysis of greedy dev traces): `dump_traces.py` (GPU),
   `run_all.sh`, `run_R.sh`, `run_aR_h100.sh`, `eqparse.py`, `analyze.py`, `fmt_probe.py`, `aR_analysis.py`,
   `causes.py`, `excerpts.py`, `show.py`, `make_fig.py`; outputs `stats.json`, `stats_aR.json`, `causes.json`,
@@ -58,7 +73,10 @@ The implant itself stays exact in every arm (the circuit is frozen; writer exact
   * `gsm_grpo/summary/` — `summ_{A100,H100,A40}.txt` (summ_runs.py output), `table.md` (64-update table),
     `table_u300_H100.md`, `paired.txt` (paired bootstrap, 64 updates).
   * `wiring/{H100,A40}/` — per run `config.json` + `steps.jsonl`, `results.md` / `results.json` (`compile_results.py`);
-    `wiring/figdata/` — the logs `make_fig.py` reads.
+    `wiring/figdata/` — the `steps.jsonl` logs the figures read (incl. CWinOx s0-s2, CWinOlr s0/s1, CWinOfloor s0, W3d
+    s0/s1) and `fig_competence_map.json` (per-op pass rates with call counts).
+  * `library/figdata/` — `steps.jsonl` logs of LIB s0/s1, LIBscr s0, LIBnoIF s0, the mixed arms m1/m2/m4, their final
+    test summaries (`mix_*_test.json`: accuracy per task type, tools on / off / host only, leave-one-out) and u0 probes.
 * `micromachines/rethink_circuit_v2.py` keeps three index lists (`idx_A`, `idx_N`, `idx_H`) that `rethink_step.py` needs
   for arms 4/4c/4s; this one-line addition (committed with this folder) changes no computation.
 
@@ -160,6 +178,29 @@ GSM8K test arm 1 68.2 / 70.1, arm 2 (on) 68.8 / 70.7, arm 4 (on) 69.5 / 66.0; GS
 [+10.12, +14.29]; arm 2 implant off - arm 1 on GSM-Hard -3.30 [-4.93, -1.78]; arm 4 - arm 2 on GSM8K -2.01
 [-3.71, -0.38]. RL switches the frozen rethink almost off (fires on 68% -> ~4% of answers).
 
+**300 updates, three seeds (the blog's figure "Test accuracy after 300 RL updates")**: seed 2 ran on an A100
+(`wiring/NOTEBOOK.md` "Headline seed 2"): GSM8K arm 1 70.9, arm 2 71.3 (off 70.1); GSM-Hard arm 1 45.0, arm 2 55.8 (off
+40.6). Means over seeds 0-2: GSM8K 69.7 / 70.3 (off 69.4), GSM-Hard 43.7 / 55.5 (off 40.0). The seed-2 per-question
+records are not in the repo (see "Not released").
+
+**Half-broken calculator** (`wiring/NOTEBOOK.md` §48, `results/wiring/figdata/fig_competence_map.json`; rollout calls
+pooled over u291-300): x and ÷ calls let through 89.8 / 76.4 / 88.4% (CWinOx s0/s1/s2) and 95.0 / 80.3% (CWinOlr
+s0/s1), + and − 5.1 / 6.1 / 5.3% and 0.4 / 0.2%; dev at u300 with the learned in-wire 65.0 / 64.9 / 67.4 / 66.1 / 66.6
+vs the hand trigger 19.0 / 18.8 / 36.0 / 18.3 / 17.8 vs no calculator 61.3 / 60.1 / 64.3 / 61.3 / 62.0. Without the
+step-size change (lr 1e-2, eps 1e-12) the in-wire collapses to veto-all (CWinO s0) or to the floor (CWinOfloor s0).
+
+**Distilled links (W3d)**: links-on minus links-off on dev at u300 +11.3 (s0), +11.5 (s1), +10.6 at u250 (s2, OOM at
+u251); scaled half +24.6 / +24.0; the gap starts at +4.9 / +6.0 at u0 and the link norms grow 15-20%.
+
+**Library, GSM8K** (`library/NOTEBOOK.md`, one seed per arm unless noted): LIB s0 dev 68.6, test GSM8K 69.4 /
+GSM-Hard 56.1; LIBscr s0 67.9 / 69.3 / 51.9 (scrambled expr_gen / calc_gen vetoed to the floor by u25-50); LIB s1 dev
+71.0, GSM8K 70.1; LIBnoIF s0 68.1 / 67.3 / 54.1. Non-arithmetic implants never fire on GSM8K.
+
+**Library, mixed tasks** (u150, test 400 stratified, `results/library/figdata/mix_*_test.json`): m1 implants on 68.2
+(all off 36.8, host only 31.8), m3 plain RL 36.3, m2 scrambled 37.8, m4 noisy SFT 62.8; leave-one-out (m1): − IFEval
+implant ifeval 81.5 -> 46.7, − track bbh 87.6 -> 72.3; m4 calculator calls on BBH answers 0.16 -> 0.04 per answer,
+on IFEval 0.22 -> 0.23.
+
 **Wiring** (`wiring/NOTEBOOK.md`, `results/wiring/*/results.md`, dev-800 at u300, seed 0 unless noted): fixed wiring
 (arm 2 ref) 70.0; W2 (fixed write + zero-init links) 72.0, links stay ~0; W2w (trainable warm write) 70.1, the
 saturated write gets no gradient; W1 (trainable writer, A40) 68.9, exactness 1.000; W3e / W3r (no write, links only)
@@ -187,9 +228,18 @@ under ~3 pp on dev are within noise. bf16 kernels differ by GPU and by `B_max` (
   `run_aR_h100.sh` regenerate them from the 64-update checkpoints; the reduced outputs (`stats*.json`, `causes.json`,
   `analysis_out.txt`) are included.
 * The v1 RL engine that `prof_v1.py` profiles (the 207 tok/s baseline).
-* Wiring runs still running at packaging (partial `steps.jsonl` shipped): CW s1, CWinOx s0 / s1 (CWinO with the
-  exploration floor `--iw_eps 0.05 --cw_lr 1e-3 --link_eps 1e-8`), CWinC s0 / s1, W4w s0. CWinO s0 (no floor) finished:
-  veto-all from u25, dev 63.8 at u300.
+* Wiring runs that were still running at the first packaging have partial `steps.jsonl` under `results/wiring/{H100,A40}/`;
+  the finished CWinOx s0/s1/s2, CWinOlr s0/s1, CWinOfloor s0 and W3d s0/s1 logs are in `results/wiring/figdata/` (their
+  `config.json` files are not; the arm arguments are the run lists `wiring/q*.txt`, `runs_*.txt`). CWinO s0 (no floor)
+  finished: veto-all from u25, dev 63.8 at u300.
+* Seed-2 headline runs (arms 1 / 2, A100): only the dev logs (`figures/data/a{1,2}_s2.out`) and the test numbers in
+  `wiring/NOTEBOOK.md`; the per-question test records stayed on the training machine.
+* Library / mixed runs: no checkpoints, no SFT'd hosts (`mixed/sft_host*`, rebuilt by `mixed/sft_warm.py`), no
+  generated text. The mixed train / test question files (`mixed/{train,test}{,_gb}.jsonl`) are not shipped:
+  `mixed/mixed_data.py` regenerates them from GSM8K train (scaled), the BBH team generators and the IFEval-like
+  generator (`ifeval/heldout/gen_data.py`); the original files' SHA-256 are in `library/mixed/DATA_SHA256.txt` (regeneration re-checked byte-identical on CPU).
+* `ifeval/heldout/vecs2.pt` (11.6 MB) is not shipped; its force_fix rows (the only part the circuit reads) are
+  `ifeval/heldout/vecs2_forcefix.pt`.
 * Released wiring `config.json` files of the CW*, W3d and W2ws arms show `link_lr 1e-3` / `link_eps 1e-8`; those runs used
   1e-2 / 1e-12 (per-arm defaults applied after the config was written; fixed in `train_wiring.py`).
 * `wiring/smoke/`: smoke tests and the links-only SFT jobs (`cw2.sh` builds `sft3_W3e_lr1e-2/links_final.pt`, the W3d

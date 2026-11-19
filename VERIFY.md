@@ -50,7 +50,7 @@ such as `1/0`; the current circuit is silent instead, and the test now counts si
 
 ### `calc_s3` and the reported GSM numbers
 
-The GSM8K / GSM-Hard numbers in the README (51.93 / 54.06 / 56.10 / 57.62 and 26.99 / 34.50 / 29.26 / 37.23) were
+The GSM8K / GSM-Hard numbers in `DETAILS.md` (51.93 / 54.06 / 56.10 / 57.62 and 26.99 / 34.50 / 29.26 / 37.23) were
 produced with `calc_s3` (research harness `gsm_icl.py --mode smm4` = `calc_s3` + veto; `scripts/run_gsm.py --mode calc`
 is the same configuration). `calc_s3` has no dot veto: if the model ends a sentence with `.` right after the implant's
 number, the implant reads it as a decimal point and writes a fraction digit (`50.` -> `50.0`). To bound the effect on
@@ -227,7 +227,7 @@ Cost on the GSM8K subset (tokens generated after the first answer, phrase includ
 
 So the implant reproduces the evaluation-code rethink exactly at the token level up to the point where it hands
 control back, and from there on differs only by floating-point noise of the same size as a batch-size change of the
-evaluation code itself. The full-set numbers in the README (56.10 / 57.62 / 29.26 / 37.23) were not re-run with the
+evaluation code itself. The full-set numbers in `DETAILS.md` (56.10 / 57.62 / 29.26 / 37.23) were not re-run with the
 implant (see below).
 
 **Silent property** (`scripts/check_silent_rethink.py`; two copies of the same bf16 generation in lockstep, implant

@@ -1,6 +1,6 @@
 # BBH redo: generic tools under a held-out protocol
 
-The nine BBH implants in the top-level README were debugged on BBH test questions, and three of them (`logic_nat`,
+The nine BBH implants in the top-level `DETAILS.md` were debugged on BBH test questions, and three of them (`logic_nat`,
 `track_nat`, `time_n`) carry BBH vocabulary. This folder is the redo: three agent teams rebuilt the 12 algorithmic BBH
 tasks as **generic tools** (functions that are useful outside BBH), developed only on their own generated data, checked by
 independent judge agents, and run on real BBH **once** at the end. The rules the agents worked under are in

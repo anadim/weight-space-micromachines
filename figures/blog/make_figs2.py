@@ -2,7 +2,7 @@
 Data sources:
   calc_digits : evidence/item1/*.json  (frozen Qwen3-0.6B-Base, 2-shot, n=100 per cell)
   finetune    : same numbers as ft_fig.py (Qwen2.5-0.5B, 5 seeds), clearer labels
-  ifeval      : ~/wsm_ifeval/NOTES.md + runs17 scores (held-out odd keys; Multi-IF English turns 1-3)
+  ifeval      : ifeval/heldout/NOTES.md + runs17 scores (held-out odd keys; Multi-IF English turns 1-3)
   latent      : latent_bbh (not released; figure 12 is not in the blog)
 """
 import json, os

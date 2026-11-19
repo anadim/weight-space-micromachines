@@ -29,9 +29,10 @@ source of each constant is named in the script's docstring.
 | The topic blocker in action | `make_anim_blocker.py` | `figs/anim/blocker_trace.json` | `figs/anim/blocker.gif` |
 | Block a topic by reading the model's state | `make_figs3.py: topic_blocker()` | `topic_fence/results/q17_{math,ml}_table.txt` (same for the in-weights version, `topic_fence/inweights/`) | `figs/21_topic_blocker.png` |
 | The model treats the written value as its own | `make_figs2.py: latent_inw()` | `latent_write/results/{muladd,lost}_mid_Qwen3-0.6B-Base.json` (reads them) | `figs/15_latent_inweights.png` |
-| Dev accuracy on normal and big-number problems during RL, with and without the calculator | `rl_arith.py` | `RL_CURVES/h300/*.jsonl` (= `rl/results/curves/h300/`, 300-update H100 runs, 2 seeds; reads them) | `figs/28_rl_arith.png` |
-| RL with and without the calculator | `rl/interp/make_fig.py` (v1, two panels) / `rl/interp/make_fig_v2.py` (right panel) | 64-update A100 dev traces (**not released**; numbers in `rl/interp/stats.json`, `stats_aR.json`) | `rl/interp/fig_rl_calc_use.png`, `figs/fig_rl_calc_use_v2.png` |
-| How often the RL-trained in-wire vetoes a calculator call, by operand size | `cw_veto.py` | `rl/results/wiring/H100/L300_CW_s0_kl001evalall0/steps.jsonl` (reads it; u25-250 plotted) | `figs/27_cw_veto.png` |
+| **RL figures of the current blog (rl1-rl6, W3d link animation)** | see [`rl/figures/README.md`](../../rl/figures/README.md) | | `rl/figures/` |
+| (earlier draft) Dev accuracy on normal and big-number problems during RL, with and without the calculator | `rl_arith.py` | `RL_CURVES/h300/*.jsonl` (= `rl/results/curves/h300/`, 300-update H100 runs, 2 seeds; reads them) | `figs/28_rl_arith.png` |
+| (earlier draft) RL with and without the calculator | `rl/interp/make_fig.py` (v1, two panels) / `rl/interp/make_fig_v2.py` (right panel) | 64-update A100 dev traces (**not released**; numbers in `rl/interp/stats.json`, `stats_aR.json`) | `rl/interp/fig_rl_calc_use.png`, `figs/fig_rl_calc_use_v2.png` |
+| (earlier draft; now `rl/figures/rl6_wiring.png`) How often the RL-trained in-wire vetoes a calculator call, by operand size | `cw_veto.py` | `rl/results/wiring/H100/L300_CW_s0_kl001evalall0/steps.jsonl` (reads it; u25-250 plotted) | `figs/27_cw_veto.png` |
 | (not in the current blog) | `rl_curves.py`, `rl_long.py` | `rl/results/curves/` | `figs/25_rl_curves.png`, `figs/26_rl_long.png` |
 
 Also kept: `make_figs2.gsm_calc()` -> `figs/14_gsm_calc.png` (calculator on GSM8K / GSM-Hard, three Qwen3 sizes, from

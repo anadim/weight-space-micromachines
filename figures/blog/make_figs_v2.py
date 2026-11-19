@@ -109,7 +109,7 @@ def per_task():
 
 # ---------------------------------------------------------------- 3. calculator + rethink stack
 def gsm():
-    # ~/weight-space-micromachines/results/rethink_v2/summary.json + audit_part3 (always-on arms: final_eval/*_alwaysA_*)
+    # results/rethink_v2/summary.json + audit_part3 (always-on arms: final_eval/*_alwaysA_*)
     # color = calculator (gray off, green on); texture = rethink (solid none, // detector-gated, xx every time)
     import matplotlib as mpl
     mpl.rcParams["hatch.linewidth"] = 2.2

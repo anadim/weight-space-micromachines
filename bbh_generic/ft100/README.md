@@ -84,4 +84,4 @@ reference rows reuse the peek outputs (`PEEK_OUT`, default `bbh_generic/peek/out
 
 Note: the frozen-base fresh-test row here (Team A, 29.0 mean) was re-run in this study at batch size 32 and differs from
 Team A's own base run (28.5 at the default batch size 16; `teamA/results/test_base_plain.json`); bf16 runs with left-padded
-batches depend on batch composition (see the top-level README, Caveats).
+batches depend on batch composition (see the top-level `DETAILS.md`, Caveats).
