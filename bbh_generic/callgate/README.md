@@ -44,9 +44,10 @@ sizes) 87-92% of unblocked BBH outputs are identical, the usual bf16 batch noise
   `cg_neg_prompts.py`, `cg_gen_puz.py` (own negatives), `cg_train_probe.py`, `cg_select.py`, `cg_loso.py`, `cg_logo.py`
   (probe fit and own-data model selection), `cg_report.py`, `cg_silence.py` (tables, from saved results);
   `run_callgate.sh` (every step); `_cgpaths.py` (paths: `WSM_REPO`, `FT_HOST`, `BBH_DIR`, `BBH_COT`, `CG_RESULTS`, `VETO`).
-* `results/` — `probe_v{1,2,3}.pt` (v3 is the one used on BBH), `states{2,3,4}.pt` (the own-data opener states the probes
-  were fit on, 5 MB), reduced per-question records of every run (`*.json.gz`: gold, prediction, correctness, blocked,
-  tool calls, SHA-256 of the text; no text), run logs, `cg_report.txt`, `silence.txt`.
+* `results/` — `probe_v{1,2,3}.pt` (v3 is the one used on BBH), reduced per-question records of every run (`*.json.gz`: gold, prediction, correctness, blocked,
+  tool calls, SHA-256 of the text; no text), run logs, `cg_report.txt`, `silence.txt`. The own-data opener states the
+  probes were fit on (`states{2,3,4}.pt`, hidden-state dumps of the fine-tuned host, 5 MB) are not shipped; `run_callgate.sh
+  states` regenerates them on a GPU.
 
 ## Reproduce
 
@@ -57,6 +58,7 @@ cd bbh_generic/callgate/code
 python cg_report.py ../../integrate/results "v2 + GATE=../results/bbh_gate_even.json,../results/bbh_gate_odd.json" \
                     "v2 + BREAKER=../results/bbh_breaker.json,../results/bbh_breaker_b.json"
 python cg_silence.py ../../integrate/results ../results
+# probe refit: needs results/states{2,3,4}.pt from `run_callgate.sh states` (GPU, below; not shipped)
 CG_LAM=0.1 python cg_train_probe.py probe_check.pt 0.5 ../results/states{2,3,4}.pt   # = results/probe_v3.pt (to 5e-6)
 ```
 

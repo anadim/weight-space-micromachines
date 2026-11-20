@@ -105,9 +105,10 @@ hyperparameters, where the result files are, and its headline numbers.
   `bbh_generic/README.md`, `bbh_generic/ft100/README.md`, `bbh_generic/integrate/README.md`, and `finetuned_phase/README.md`.
 * **Implant tensors** ("weight additions") are included when small: solved veto vectors (`results/gsm_bigger/veto_*.pt`),
   rethink write directions and the fitted mistake detector (`results/rethink_circuit/`, `results/rethink_v2/`), the
-  gated-rethink probe (`results/rethink/`), latent-write writer banks (`latent_write/results/writers/`), IFEval veto
+  gated-rethink probe (`results/rethink/`), IFEval veto
   vectors (`ifeval/*/`), topic-blocker probes (`topic_fence/fitted/`). Compiled circuits are rebuilt from code at every
-  start (deterministic); the remaining solved pieces are rebuilt by the scripts named in each README.
+  start (deterministic); the remaining solved pieces are rebuilt by the scripts named in each README (the latent-write
+  writer banks, 36 MB, are refit by `latent_write/run.py` on every run and are not shipped).
 * **Raw generations.** Result files keep per-question records (gold, prediction, correctness, token counts, fire flags,
   a SHA-256 of the generated text) and the SHA-256 of the full output they were reduced from; no generated text and no
   benchmark question text (`scripts/reduce_outputs.py` and the per-folder reducers).

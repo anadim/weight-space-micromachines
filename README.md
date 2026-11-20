@@ -39,6 +39,7 @@ python tests/test_calc_circuit.py cuda 200   # all pairs 0..199, 4 operations (t
 | Mistake detector | reads hidden states before the final answer; forces "Hmm, wait. Let me rethink this." | GSM8K 52% → 56%; with the calculator 57% GSM8K / 35% GSM-Hard; AUROC 0.85 | [`micromachines/rethink_circuit_v2.py`](micromachines/rethink_circuit_v2.py), [`scripts/rethink_v2/`](scripts/rethink_v2/), [`results/rethink_v2/`](results/rethink_v2/) |
 | Topic blocker | a linear probe on the prompt's last hidden state, compiled into one ReLU unit; writes a decline sentence | blocks ~99% of math requests; 10% of normal requests (vs 6%) | [`topic_fence/`](topic_fence/README.md) |
 | Latent write | computes 23×7 and writes the state of "161" into the residual stream (no text) | (23×7)+58: 15% → 96-99%; word problem 3% → 98% (text tool line: 70%) | [`latent_write/`](latent_write/README.md) |
+| GSM8K push (single call) | calculator v2 (chain2), answer-sanity DFA, forget in weight space, serial tries + ReLU voter, on the frozen RL+calc host | GSM8K test 71.3 → 73.4 (S2F) → 80.4 (8 serial tries, one stream) | [`gsm_push/`](gsm_push/README.md) |
 | RL with implants | GRPO on Qwen3-0.6B with implants (and trainable wiring) attached | GSM-Hard 44% (plain RL) vs 55% (RL + calculator); RL learns a half-broken calculator's competence map; mixed tasks 68% vs 36% | [`rl/`](rl/README.md) |
 
 ## Reproducing the headline numbers
@@ -62,7 +63,46 @@ One GPU per command; `REPRODUCE.md` has the full commands, the expected values a
 | RL: half-broken calculator, x÷ let through, +− blocked | `cd rl/wiring && bash launch.sh 0 1 40000 "" q4_a100.txt` | `rl/results/wiring/figdata/fig_competence_map.json` | §12 |
 | RL: all implants attached; mixed tasks 68 vs 36 | `bash rl/library/launch/h100_LIB_s0.sh`; `bash rl/library/launch/h100_m1_mixLIB.sh` | `rl/library/NOTEBOOK.md`, `rl/results/library/figdata/` | §12 |
 | RL: distilled links +11 (+24 on big numbers) | `cd rl/wiring && bash launch.sh 0 1 40000 "" q5_a100.txt` | `rl/results/wiring/figdata/W3d_s*.jsonl` | §12 |
-| Blog figures | `bash figures/blog/make_blog_figs.sh`; RL: `cd rl/figures && python make_blog_figs_rl.py && python make_rl45.py && python make_rl6.py` (CPU) | `figures/blog/figs/`, `rl/figures/` | §13 |
+| GSM8K push: 71.3 → 73.4 (S2F), 80.4 (N = 8 serial tries) | `HOOK=stack3_hook.py bash gsm_push/final/run_stk.sh fgtw 0 test - STK_CFGS=S0,S1,S2F_fwntf STK_FORGET=weights STK_FORGET_MOD=forget_ws` (needs the RL+calc host, `CKPT=`) | `gsm_push/results/final/fgtw/test.log`, `ser8/test.log` | §15 |
+| Blog figures | `bash figures/blog/make_blog_figs.sh`; RL: `cd rl/figures && python make_blog_figs_rl.py && python make_rl45.py && python make_rl6.py`; v3 RL re-renders: `cd rl/figures/v3 && python make_rerender_v3.py && python make_new_v3.py`; review re-renders: `figures/blog/review_final/*.py` (CPU) | `figures/blog/figs/`, `rl/figures/`, `rl/figures/v3/`, `figures/blog/review_final/` | §13 |
+
+## Repository layout
+
+The repository is organised by component (one folder per blog section), each with its own README:
+
+| path | contents |
+|---|---|
+| `micromachines/` | the package: the HDL / compiler (`hdl.py`: `Net`, `Lin`, `compile_net`), circuit specs (`specs.py`), circuits (`circuits/`: calculator, BBH tools), rethink circuits |
+| `scripts/` | GSM / rethink / gate / baseline drivers and implant builders (`solve_veto.py`, `rethink_circuit_build.py`, `rethink_v2/`) |
+| `ifeval/`, `bbh_generic/`, `topic_fence/`, `latent_write/`, `transfer/`, `finetuned_phase/`, `evidence/`, `math500/` | one experiment each: implant builders, eval harnesses, small result records |
+| `rl/` | RL engines and launchers: `gsm_grpo/` (v2 GRPO engine, Triton), `wiring/` (trainable wiring, call-form ladder), `library/` (all tools attached, mixed tasks), `engine2/` (NVRTC megakernel, work in progress), `interp/`, `results/`, `figures/` |
+| `gsm_push/` | the single-call GSM8K implant stack on the RL+calc host (calc v2, sanity DFA, weight-space forget, serial voter) and RL with it attached |
+| `figures/` | blog figure scripts and rendered figures (`figures/blog/`, `figures/blog/review_final/`) |
+| `results/` | small result records for the top-level GSM / rethink runs |
+| `data/` | data preparation scripts (benchmarks are downloaded, not vendored) |
+| `tests/` | CPU exactness tests |
+| `README.md`, `REPRODUCE.md`, `DETAILS.md`, `VERIFY.md` | docs: overview, per-result repro, full notes, fresh-clone checks |
+
+## Rebuilding the implants
+
+Implants are code. Compiled circuits (calculator, BBH tools, IFEval rules, chain2, sanity DFA, forget, voter) are
+rebuilt deterministically from `micromachines/` and the per-folder builders every time a script starts. The solved or
+fitted pieces are rebuilt by one script each:
+
+| gadget | rebuild | shipped? |
+|---|---|---|
+| calculator veto `runs/veto_qwen3.pt` | `python scripts/solve_veto.py --device cuda` (bit-identical, VERIFY.md) | no (rebuilt) |
+| veto for bigger / other hosts | `scripts/solve_veto.py --model ...` | yes, `results/gsm_bigger/veto_*.pt`, `transfer/xfamily/results/veto_*.pt` (10-14 KB) |
+| compiled IFEval implant `implant14_sd.pt` (1.23 GB) | `ifeval/full14_compiled/export.py` (~20 s) | no |
+| IFEval force_fix rows `ifeval/heldout/vecs2_forcefix.pt` | `ifeval/heldout/solve_vecs2.py` (needs plain dev runs of the host) | yes, **7.4 MB** |
+| IFEval compiled-v2 veto vectors `ifeval/compiled_v2/dirs.pt` | solved against the host (`ifeval/README.md`) | yes, 4.2 MB |
+| mistake detector `results/rethink_v2/detector_hybrid.pt` | `scripts/rethink_v2/policy3.py` (needs ~7 GB of extracted states + vLLM generations) | yes, **7.4 MB** |
+| rethink write directions `results/rethink*/write_dirs*.pt` | solved on first use (`scripts/rethink_circuit_build.py`) | yes, 1.6 MB each |
+| latent-write writer banks | refit by `latent_write/run.py` on every run | no (36 MB) |
+| call-gate probe `bbh_generic/callgate/results/probe_v*.pt` | `run_callgate.sh states && run_callgate.sh probe` | yes, 6 KB |
+| topic-blocker probes `topic_fence/fitted/*.pt` | `topic_fence/` fit scripts | yes, 0.5 MB |
+| GSM verifier probe `gsm_push/final/verifier_probe_L18.pt`, op veto `gsm_push/calc_v2/veto_op_qwen3.pt` | `gsm_push/selection/` probe fit, `gsm_push/calc_v2/solve_veto_op.py` | yes, 6 KB |
+| sanity DFA tables | `san_engine.build_tables` from the tokenizer, on first use (`$DFA_CACHE`) | no |
 
 ## Hardware
 
@@ -90,7 +130,8 @@ The RL engines use custom GPU kernels that are compiled at runtime to PTX / cubi
 
 * Model checkpoints: fine-tuned hosts, RL'd hosts, trained wiring. Recipes, seeds and training rows (or seeded
   generators with SHA-256) are included.
-* Files over 5 MB that scripts rebuild, e.g. the compiled IFEval implant tensor (1.23 GB, `ifeval/full14_compiled/export.py`,
+* Hidden-state dumps and per-row generation dumps (e.g. the call-gate opener states, `gsm_push` rows).
+* Files over 5 MB that scripts rebuild, e.g. the latent-write writer banks (36 MB), the compiled IFEval implant tensor (1.23 GB, `ifeval/full14_compiled/export.py`,
   SHA-256 in `REPRODUCE.md`), `ifeval/heldout/vecs2.pt` (11.6 MB; its used rows are `vecs2_forcefix.pt`), the engine2
   table cache `rl/engine2/tables.pt` (118 MB, rebuilt on first use).
 * Generated text and benchmark question text: result files keep per-question records (gold, prediction, correctness,

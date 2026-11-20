@@ -6,6 +6,8 @@ tokenizers==0.22.2
 safetensors==0.8.0
 accelerate==1.15.0
 numpy==2.2.6
+# RL engines and gsm_push kernels (Linux + CUDA only; pulled in by the torch 2.8.0 CUDA wheels)
+triton==3.4.0 ; platform_system == "Linux"
 # data/prepare_gsm.py
 datasets==5.0.1
 # scripts/gate/fit_detector.py

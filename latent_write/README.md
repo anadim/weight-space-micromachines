@@ -105,10 +105,10 @@ residual is replaced; Qwen3-0.6B-Base has 28 blocks):
 * Silent: 268-318 prompts per cell without the pattern (near misses, other layouts, free text with parentheses and
   `*`): 0 fired positions, logits bit-identical to the plain model, generations identical.
 
-`results/writers/` holds the four fitted writer banks used for the 0.6B numbers (float32, 36 MB in all; SHA-256 below).
-`run.py` refits them on every run (closed-form ridge; same seeds), so it does not need these files. The two 1.7B banks
-(9 and 15 MB) are not included; `run_all.sh` regenerates them. Refitting on another GPU can differ in the last bits
-(bf16 host forward), so a refit may flip an item or two, not the tables.
+The four fitted writer banks used for the 0.6B numbers (float32, 36 MB in all) are not shipped: `run.py` refits
+them on every run (closed-form ridge; same seeds) and saves them as `writers_<task>_<cell>_<model>.pt` in `lwv1.OUT_DIR`. The SHA-256 of the original
+banks is below. Refitting on another GPU can differ in the last bits (bf16 host forward), so a refit may flip an item or
+two, not the tables. The 1.7B banks (9 and 15 MB) are regenerated the same way by `run_all.sh`.
 
 ```
 1b3767942da7bacaf0c705db119c94fcc9d8a0d7112e0139227a84a7154fb90f  writers_lost_mid_Qwen3-0.6B-Base.pt

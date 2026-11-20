@@ -37,3 +37,46 @@ data/math500/
 rl/engine2/runs/**/*.pt
 rl/engine2/tables.pt
 rl/engine2/vocab_strs.json
+
+# ---- release cleanup (2026-11-20): weights, dumps and run outputs never go into git ----
+# any checkpoint or tensor file; small shipped gadgets are re-included explicitly below
+*.pt
+*.pth
+*.npy
+*.npz
+*.pkl
+*.gguf
+*.onnx
+*.h5
+lora/
+adapters/
+step_*/
+# per-row / hidden-state dumps and run outputs
+rows/
+**/out/
+**/rd/
+**/logs/
+**/bench/
+gsm_push/**/rows/
+latent_write/results/writers/
+latent_write/out/
+rl/wiring/cf_results/
+dfa_tables*.pt
+*.mp4
+*.err
+# small implant gadgets and probes that are shipped (each <= ~7.5 MB; see README "Rebuilding the implants")
+!results/rethink/rethink_probe_L28.pt
+!results/rethink_circuit/write_dirs.pt
+!results/rethink_v2/write_dirs_all.pt
+!results/rethink_v2/detector_hybrid.pt
+!results/gsm_bigger/veto_q*.pt
+!transfer/xfamily/results/veto_*.pt
+!ifeval/heldout/vecs2_forcefix.pt
+!ifeval/compiled_v2/dirs.pt
+!ifeval/xfamily/vecs_sm2i.pt
+!bbh_generic/callgate/results/probe_v*.pt
+!topic_fence/fitted/lat_*_q17.pt
+!rl/results/wiring/H100/sft3_W3e_lr1e-2/links_final.pt
+!gsm_push/final/verifier_probe_L18.pt
+!gsm_push/calc_v2/veto_op_qwen3.pt
+!gsm_push/selection/results/*.pt
