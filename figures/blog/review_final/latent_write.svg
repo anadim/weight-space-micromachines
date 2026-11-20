@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="504pt" viewBox="0 0 1152 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-19T16:03:37.162289</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 1152 504 
+L 1152 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 79.83 439.7625 
+L 555 439.7625 
+L 555 49.84 
+L 79.83 49.84 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m6b9e469788" d="M 0 0 
+L 0 6 
+" style="stroke: #222222; stroke-width: 1.5"/>
+      </defs>
+      <g>
+       <use xlink:href="#m6b9e469788" x="95.937458" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="95.937458" y="461.3575" transform="rotate(-0 95.937458 461.3575)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m6b9e469788" x="176.474746" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="176.474746" y="461.3575" transform="rotate(-0 176.474746 461.3575)">4</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m6b9e469788" x="257.012034" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="257.012034" y="461.3575" transform="rotate(-0 257.012034 461.3575)">8</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m6b9e469788" x="337.549322" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="337.549322" y="461.3575" transform="rotate(-0 337.549322 461.3575)">12</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m6b9e469788" x="418.08661" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="418.08661" y="461.3575" transform="rotate(-0 418.08661 461.3575)">16</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m6b9e469788" x="498.623898" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="498.623898" y="461.3575" transform="rotate(-0 498.623898 461.3575)">20</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="fill: #222222; font: 18px 'Avenir Next'; text-anchor: middle" x="317.415" y="483.1475" transform="rotate(-0 317.415 483.1475)">layer the value is written into (of 28)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 79.83 426.316897 
+L 555 426.316897 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <defs>
+       <path id="m03f62382e4" d="M 0 0 
+L -6 0 
+" style="stroke: #6b7280; stroke-width: 1.5"/>
+      </defs>
+      <g>
+       <use xlink:href="#m03f62382e4" x="79.83" y="426.316897" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="70.33" y="432.364397" transform="rotate(-0 70.33 432.364397)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 79.83 342.281875 
+L 555 342.281875 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m03f62382e4" x="79.83" y="342.281875" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="70.33" y="348.329375" transform="rotate(-0 70.33 348.329375)">25</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 79.83 258.246853 
+L 555 258.246853 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m03f62382e4" x="79.83" y="258.246853" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="70.33" y="264.294353" transform="rotate(-0 70.33 264.294353)">50</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <path d="M 79.83 174.211832 
+L 555 174.211832 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m03f62382e4" x="79.83" y="174.211832" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="70.33" y="180.259332" transform="rotate(-0 70.33 180.259332)">75</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <path d="M 79.83 90.17681 
+L 555 90.17681 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m03f62382e4" x="79.83" y="90.17681" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="70.33" y="96.22431" transform="rotate(-0 70.33 96.22431)">100</text>
+     </g>
+    </g>
+    <g id="text_13">
+     <text style="fill: #222222; font: 18px 'Avenir Next'; text-anchor: middle" x="31.005" y="244.80125" transform="rotate(-90 31.005 244.80125)">accuracy (%)</text>
+    </g>
+   </g>
+   <g id="line2d_17">
+    <path d="M 79.83 375.895884 
+L 555 375.895884 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke-dasharray: 14,10.5; stroke-dashoffset: 0; stroke: #b9bec6; stroke-width: 3.5"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 79.83 102.501947 
+L 555 102.501947 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke-dasharray: 3.5,7; stroke-dashoffset: 0; stroke: #6b7280; stroke-width: 3.5"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 79.83 439.7625 
+L 79.83 49.84 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 79.83 439.7625 
+L 555 439.7625 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_19">
+    <path d="M 95.937458 95.779145 
+L 136.206102 94.658678 
+L 176.474746 93.538211 
+L 257.012034 96.899612 
+L 297.280678 98.020079 
+L 337.549322 103.622414 
+L 377.817966 201.103039 
+L 418.08661 243.680783 
+L 458.355254 365.811681 
+L 498.623898 412.871293 
+L 538.892542 380.377751 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke: #118659; stroke-width: 5; stroke-linecap: square"/>
+    <defs>
+     <path id="maab9209364" d="M 0 5.5 
+C 1.458617 5.5 2.857689 4.920485 3.889087 3.889087 
+C 4.920485 2.857689 5.5 1.458617 5.5 0 
+C 5.5 -1.458617 4.920485 -2.857689 3.889087 -3.889087 
+C 2.857689 -4.920485 1.458617 -5.5 0 -5.5 
+C -1.458617 -5.5 -2.857689 -4.920485 -3.889087 -3.889087 
+C -4.920485 -2.857689 -5.5 -1.458617 -5.5 0 
+C -5.5 1.458617 -4.920485 2.857689 -3.889087 3.889087 
+C -2.857689 4.920485 -1.458617 5.5 0 5.5 
+z
+" style="stroke: #118659"/>
+    </defs>
+    <g clip-path="url(#p0f02d1d7d5)">
+     <use xlink:href="#maab9209364" x="95.937458" y="95.779145" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="136.206102" y="94.658678" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="176.474746" y="93.538211" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="257.012034" y="96.899612" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="297.280678" y="98.020079" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="337.549322" y="103.622414" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="377.817966" y="201.103039" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="418.08661" y="243.680783" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="458.355254" y="365.811681" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="498.623898" y="412.871293" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="538.892542" y="380.377751" style="fill: #118659; stroke: #118659"/>
+    </g>
+   </g>
+   <g id="text_14">
+    <g id="patch_5">
+     <path d="M 88.457161 368.932381 
+L 218.372161 368.932381 
+L 218.372161 350.117381 
+L 88.457161 350.117381 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: start" x="89.897161" y="363.652381" transform="rotate(-0 89.897161 363.652381)">model alone: 15</text>
+   </g>
+   <g id="text_15">
+    <g id="patch_6">
+     <path d="M 422.103136 93.857744 
+L 552.413136 93.857744 
+L 552.413136 75.042744 
+L 422.103136 75.042744 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #6b7280; font: 700 16px 'Avenir Next'; text-anchor: end" x="550.973136" y="88.577744" transform="rotate(-0 550.973136 88.577744)">value as text: 96</text>
+   </g>
+   <g id="text_16">
+    <g id="patch_7">
+     <path d="M 100.957754 137.259889 
+L 319.370567 137.259889 
+L 319.370567 118.288951 
+L 100.957754 118.288951 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #118659; font: 700 17px 'Avenir Next'; text-anchor: start" x="101.977754" y="132.159889" transform="rotate(-0 101.977754 132.159889)">written into the model: 98</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #222222; font: 700 22px 'Avenir Next'; text-anchor: start" x="79.83" y="33.84" transform="rotate(-0 79.83 33.84)">What is (23×7)+58?  (one shot)</text>
+   </g>
+   <g id="line2d_20">
+    <path d="M 95.937458 99.140546 
+L 136.206102 98.020079 
+L 176.474746 98.020079 
+L 257.012034 99.140546 
+L 297.280678 99.140546 
+L 337.549322 101.38148 
+L 377.817966 196.621171 
+L 418.08661 239.198915 
+L 458.355254 356.847945 
+L 498.623898 411.750826 
+L 538.892542 422.955496 
+" clip-path="url(#p0f02d1d7d5)" style="fill: none; stroke-dasharray: 9.25,4; stroke-dashoffset: 0; stroke: #222222; stroke-width: 2.5"/>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_8">
+    <path d="M 659.55 439.7625 
+L 1134.72 439.7625 
+L 1134.72 49.84 
+L 659.55 49.84 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_7">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m6b9e469788" x="677.148889" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="677.148889" y="461.3575" transform="rotate(-0 677.148889 461.3575)">0</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m6b9e469788" x="765.143333" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="765.143333" y="461.3575" transform="rotate(-0 765.143333 461.3575)">4</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#m6b9e469788" x="853.137778" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="853.137778" y="461.3575" transform="rotate(-0 853.137778 461.3575)">8</text>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#m6b9e469788" x="941.132222" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="941.132222" y="461.3575" transform="rotate(-0 941.132222 461.3575)">12</text>
+     </g>
+    </g>
+    <g id="xtick_11">
+     <g id="line2d_25">
+      <g>
+       <use xlink:href="#m6b9e469788" x="1029.126667" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="1029.126667" y="461.3575" transform="rotate(-0 1029.126667 461.3575)">16</text>
+     </g>
+    </g>
+    <g id="xtick_12">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#m6b9e469788" x="1117.121111" y="439.7625" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: middle" x="1117.121111" y="461.3575" transform="rotate(-0 1117.121111 461.3575)">20</text>
+     </g>
+    </g>
+    <g id="text_24">
+     <text style="fill: #222222; font: 18px 'Avenir Next'; text-anchor: middle" x="897.135" y="483.1475" transform="rotate(-0 897.135 483.1475)">layer the value is written into (of 28)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_6">
+     <g id="line2d_27">
+      <path d="M 659.55 426.316897 
+L 1134.72 426.316897 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#m03f62382e4" x="659.55" y="426.316897" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="650.05" y="432.364397" transform="rotate(-0 650.05 432.364397)">0</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_29">
+      <path d="M 659.55 342.281875 
+L 1134.72 342.281875 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#m03f62382e4" x="659.55" y="342.281875" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="650.05" y="348.329375" transform="rotate(-0 650.05 348.329375)">25</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_31">
+      <path d="M 659.55 258.246853 
+L 1134.72 258.246853 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#m03f62382e4" x="659.55" y="258.246853" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="650.05" y="264.294353" transform="rotate(-0 650.05 264.294353)">50</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_33">
+      <path d="M 659.55 174.211832 
+L 1134.72 174.211832 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_34">
+      <g>
+       <use xlink:href="#m03f62382e4" x="659.55" y="174.211832" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="650.05" y="180.259332" transform="rotate(-0 650.05 180.259332)">75</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_35">
+      <path d="M 659.55 90.17681 
+L 1134.72 90.17681 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_36">
+      <g>
+       <use xlink:href="#m03f62382e4" x="659.55" y="90.17681" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_29">
+      <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: end" x="650.05" y="96.22431" transform="rotate(-0 650.05 96.22431)">100</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_37">
+    <path d="M 659.55 415.112227 
+L 1134.72 415.112227 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke-dasharray: 14,10.5; stroke-dashoffset: 0; stroke: #b9bec6; stroke-width: 3.5"/>
+   </g>
+   <g id="line2d_38">
+    <path d="M 659.55 191.018836 
+L 1134.72 191.018836 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke-dasharray: 3.5,7; stroke-dashoffset: 0; stroke: #6b7280; stroke-width: 3.5"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 659.55 439.7625 
+L 659.55 49.84 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 659.55 439.7625 
+L 1134.72 439.7625 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_39">
+    <path d="M 677.148889 95.779145 
+L 721.146111 95.779145 
+L 765.143333 95.779145 
+L 853.137778 103.622414 
+L 897.135 108.104282 
+L 941.132222 119.308951 
+L 985.129444 128.272687 
+L 1029.126667 148.441092 
+L 1073.123889 413.99176 
+L 1117.121111 418.473628 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke: #118659; stroke-width: 5; stroke-linecap: square"/>
+    <g clip-path="url(#p068d477b76)">
+     <use xlink:href="#maab9209364" x="677.148889" y="95.779145" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="721.146111" y="95.779145" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="765.143333" y="95.779145" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="853.137778" y="103.622414" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="897.135" y="108.104282" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="941.132222" y="119.308951" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="985.129444" y="128.272687" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="1029.126667" y="148.441092" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="1073.123889" y="413.99176" style="fill: #118659; stroke: #118659"/>
+     <use xlink:href="#maab9209364" x="1117.121111" y="418.473628" style="fill: #118659; stroke: #118659"/>
+    </g>
+   </g>
+   <g id="text_30">
+    <g id="patch_11">
+     <path d="M 669.109306 408.148725 
+L 788.689306 408.148725 
+L 788.689306 389.333725 
+L 669.109306 389.333725 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #6b7280; font: 16px 'Avenir Next'; text-anchor: start" x="670.549306" y="402.868725" transform="rotate(-0 670.549306 402.868725)">model alone: 3</text>
+   </g>
+   <g id="text_31">
+    <g id="patch_12">
+     <path d="M 669.109306 218.478039 
+L 799.419306 218.478039 
+L 799.419306 199.663039 
+L 669.109306 199.663039 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #6b7280; font: 700 16px 'Avenir Next'; text-anchor: start" x="670.549306" y="213.198039" transform="rotate(-0 670.549306 213.198039)">value as text: 70</text>
+   </g>
+   <g id="text_32">
+    <g id="patch_13">
+     <path d="M 682.728472 137.259889 
+L 901.141285 137.259889 
+L 901.141285 118.288951 
+L 682.728472 118.288951 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="fill: #118659; font: 700 17px 'Avenir Next'; text-anchor: start" x="683.748472" y="132.159889" transform="rotate(-0 683.748472 132.159889)">written into the model: 98</text>
+   </g>
+   <g id="patch_14">
+    <path d="M 1005.988048 276.217937 
+Q 1026.45694 275.663003 1046.925831 275.108069 
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_33">
+    <text style="fill: #222222; font: 15px 'Avenir Next'" transform="translate(776.142639 274.653987)">dashed: a wrong value written,</text>
+    <text style="fill: #222222; font: 15px 'Avenir Next'" transform="translate(776.142639 291.860862)">model follows it</text>
+   </g>
+   <g id="text_34">
+    <text style="fill: #222222; font: 700 22px 'Avenir Next'; text-anchor: start" x="659.55" y="33.84" transform="rotate(-0 659.55 33.84)">Word problem: 23 pens per box, 58 lost</text>
+   </g>
+   <g id="line2d_40">
+    <path d="M 677.148889 98.020079 
+L 721.146111 95.779145 
+L 765.143333 98.020079 
+L 853.137778 101.38148 
+L 897.135 104.742881 
+L 941.132222 118.188484 
+L 985.129444 136.115955 
+L 1029.126667 148.441092 
+L 1073.123889 415.112227 
+L 1117.121111 421.835029 
+" clip-path="url(#p068d477b76)" style="fill: none; stroke-dasharray: 9.25,4; stroke-dashoffset: 0; stroke: #222222; stroke-width: 2.5"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0f02d1d7d5">
+   <rect x="79.83" y="49.84" width="475.17" height="389.9225"/>
+  </clipPath>
+  <clipPath id="p068d477b76">
+   <rect x="659.55" y="49.84" width="475.17" height="389.9225"/>
+  </clipPath>
+ </defs>
+</svg>

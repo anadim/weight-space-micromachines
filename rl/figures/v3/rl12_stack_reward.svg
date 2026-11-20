@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="504pt" viewBox="0 0 1152 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-20T14:35:39.945602</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 1152 504 
+L 1152 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 88.56 426.42 
+L 635.572 426.42 
+L 635.572 55.07125 
+L 88.56 55.07125 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m42eb57b015" d="M 0 0 
+L 0 6 
+" style="stroke: #222222; stroke-width: 1.5"/>
+      </defs>
+      <g>
+       <use xlink:href="#m42eb57b015" x="104.995646" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="104.995646" y="451.03875" transform="rotate(-0 104.995646 451.03875)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m42eb57b015" x="189.281008" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="189.281008" y="451.03875" transform="rotate(-0 189.281008 451.03875)">10</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m42eb57b015" x="273.56637" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="273.56637" y="451.03875" transform="rotate(-0 273.56637 451.03875)">20</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m42eb57b015" x="357.851732" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="357.851732" y="451.03875" transform="rotate(-0 357.851732 451.03875)">30</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m42eb57b015" x="442.137094" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="442.137094" y="451.03875" transform="rotate(-0 442.137094 451.03875)">40</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m42eb57b015" x="526.422456" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="526.422456" y="451.03875" transform="rotate(-0 526.422456 451.03875)">50</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m42eb57b015" x="610.707818" y="426.42" style="fill: #222222; stroke: #222222; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="fill: #222222; font: 20px 'Avenir Next'; text-anchor: middle" x="610.707818" y="451.03875" transform="rotate(-0 610.707818 451.03875)">60</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="fill: #222222; font: 22px 'Avenir Next'; text-anchor: middle" x="362.066" y="476.469375" transform="rotate(-0 362.066 476.469375)">RL update</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_8">
+      <path d="M 88.56 426.42 
+L 635.572 426.42 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9">
+      <defs>
+       <path id="m8c524ef8d2" d="M 0 0 
+L -6 0 
+" style="stroke: #6b7280; stroke-width: 1.5"/>
+      </defs>
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="426.42" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="433.979375" transform="rotate(-0 79.06 433.979375)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_10">
+      <path d="M 88.56 352.15025 
+L 635.572 352.15025 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="352.15025" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="359.709625" transform="rotate(-0 79.06 359.709625)">0.2</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_12">
+      <path d="M 88.56 277.8805 
+L 635.572 277.8805 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="277.8805" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="285.439875" transform="rotate(-0 79.06 285.439875)">0.4</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <path d="M 88.56 203.61075 
+L 635.572 203.61075 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="203.61075" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="211.170125" transform="rotate(-0 79.06 211.170125)">0.6</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_16">
+      <path d="M 88.56 129.341 
+L 635.572 129.341 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="129.341" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="136.900375" transform="rotate(-0 79.06 136.900375)">0.8</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_18">
+      <path d="M 88.56 55.07125 
+L 635.572 55.07125 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #e5e7eb; stroke-width: 1.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m8c524ef8d2" x="88.56" y="55.07125" style="fill: #6b7280; stroke: #6b7280; stroke-width: 1.5"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="fill: #6b7280; font: 20px 'Avenir Next'; text-anchor: end" x="79.06" y="62.630625" transform="rotate(-0 79.06 62.630625)">1.0</text>
+     </g>
+    </g>
+    <g id="text_15">
+     <text style="fill: #222222; font: 22px 'Avenir Next'; text-anchor: middle" x="37.9425" y="240.745625" transform="rotate(-90 37.9425 240.745625)">reward</text>
+    </g>
+   </g>
+   <g id="line2d_20">
+    <path d="M 113.424182 197.872896 
+L 121.852718 198.437011 
+L 130.281254 194.407619 
+L 138.70979 190.861754 
+L 147.138327 191.425869 
+L 155.566863 192.312335 
+L 163.995399 192.87645 
+L 172.423935 194.488207 
+L 180.852471 193.924092 
+L 189.281008 189.16941 
+L 197.709544 185.140018 
+L 206.13808 185.704133 
+L 214.566616 188.04118 
+L 222.995153 180.304748 
+L 231.423689 173.213018 
+L 239.852225 166.846579 
+L 248.280761 165.154234 
+L 256.709297 161.124843 
+L 265.137834 162.817187 
+L 273.56637 163.300714 
+L 281.994906 162.978363 
+L 290.423442 159.432498 
+L 298.851978 164.348356 
+L 307.280515 167.007755 
+L 315.709051 167.813633 
+L 324.137587 163.703653 
+L 332.566123 164.59012 
+L 340.994659 164.751295 
+L 349.423196 161.930721 
+L 357.851732 161.205431 
+L 366.280268 161.124843 
+L 374.708804 160.641316 
+L 383.137341 158.384856 
+L 391.565877 157.578978 
+L 399.994413 162.414248 
+L 408.422949 161.769545 
+L 416.851485 160.883079 
+L 425.280022 160.238376 
+L 433.708558 159.432498 
+L 442.137094 159.271322 
+L 450.56563 155.806045 
+L 458.994166 157.337214 
+L 467.422703 156.531336 
+L 475.851239 155.64487 
+L 484.279775 154.919579 
+L 492.708311 153.38841 
+L 501.136847 155.000167 
+L 509.565384 155.483694 
+L 517.99392 155.64487 
+L 526.422456 157.014863 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #118659; stroke-width: 3.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_21">
+    <path d="M 113.424182 182.07768 
+L 121.852718 180.788275 
+L 130.281254 185.05943 
+L 138.70979 185.784721 
+L 147.138327 186.993538 
+L 155.566863 189.733525 
+L 163.995399 189.088822 
+L 172.423935 188.524707 
+L 180.852471 182.883558 
+L 189.281008 183.9312 
+L 197.709544 184.656491 
+L 206.13808 179.418282 
+L 214.566616 174.421836 
+L 222.995153 170.231268 
+L 231.423689 167.813633 
+L 239.852225 167.088343 
+L 248.280761 164.59012 
+L 256.709297 167.652457 
+L 265.137834 159.996613 
+L 273.56637 159.110147 
+L 281.994906 158.304268 
+L 290.423442 164.509532 
+L 298.851978 169.586565 
+L 307.280515 171.359498 
+L 315.709051 174.099484 
+L 324.137587 176.194768 
+L 332.566123 178.531815 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke-dasharray: 12.95,5.6; stroke-dashoffset: 0; stroke: #5fae8f; stroke-width: 3.5"/>
+   </g>
+   <g id="line2d_22">
+    <path d="M 113.424182 143.073167 
+L 121.852718 141.139059 
+L 130.281254 143.073167 
+L 138.70979 142.750816 
+L 147.138327 137.270843 
+L 155.566863 141.783762 
+L 163.995399 155.967221 
+L 172.423935 147.263735 
+L 180.852471 152.421356 
+L 189.281008 148.230789 
+L 197.709544 142.750816 
+L 206.13808 139.849654 
+L 214.566616 135.659086 
+L 222.995153 140.816708 
+L 231.423689 141.461411 
+L 239.852225 134.369681 
+L 248.280761 143.395519 
+L 256.709297 143.71787 
+L 265.137834 145.651978 
+L 273.56637 155.322518 
+L 281.994906 157.901329 
+L 290.423442 160.802491 
+L 298.851978 160.157789 
+L 307.280515 152.743708 
+L 315.709051 153.066059 
+L 324.137587 149.197843 
+L 332.566123 144.684924 
+L 340.994659 143.073167 
+L 349.423196 144.362573 
+L 357.851732 144.040221 
+L 366.280268 147.586086 
+L 374.708804 153.066059 
+L 383.137341 163.703653 
+L 391.565877 165.31541 
+L 399.994413 164.670707 
+L 408.422949 166.282464 
+L 416.851485 162.736599 
+L 425.280022 157.901329 
+L 433.708558 155.322518 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke-dasharray: 3.5,5.775; stroke-dashoffset: 0; stroke: #6b7280; stroke-width: 3.5"/>
+   </g>
+   <g id="line2d_23">
+    <path d="M 113.424182 176.960353 
+L 121.852718 175.106832 
+L 130.281254 173.273459 
+L 138.70979 172.749638 
+L 147.138327 171.198322 
+L 155.566863 168.700099 
+L 163.995399 169.788035 
+L 172.423935 170.896118 
+L 180.852471 169.88877 
+L 189.281008 168.236719 
+L 197.709544 166.846579 
+L 206.13808 166.504081 
+L 214.566616 165.698202 
+L 222.995153 164.952765 
+L 231.423689 166.685403 
+L 239.852225 164.368503 
+L 248.280761 162.656012 
+L 256.709297 161.910574 
+L 265.137834 163.502184 
+L 273.56637 165.0535 
+L 281.994906 165.335557 
+L 290.423442 165.557174 
+L 298.851978 166.483934 
+L 307.280515 163.764094 
+L 315.709051 163.643213 
+L 324.137587 164.428944 
+L 332.566123 163.864829 
+L 340.994659 162.595571 
+L 349.423196 160.198083 
+L 357.851732 159.432498 
+L 366.280268 157.014863 
+L 374.708804 155.201637 
+L 383.137341 155.886633 
+L 391.565877 156.712659 
+L 399.994413 156.591777 
+L 408.422949 154.637522 
+L 416.851485 155.040461 
+L 425.280022 156.329866 
+L 433.708558 156.148544 
+L 442.137094 156.873834 
+L 450.56563 156.934275 
+L 458.994166 157.377508 
+L 467.422703 157.115598 
+L 475.851239 156.652218 
+L 484.279775 158.203534 
+L 492.708311 157.337214 
+L 501.136847 156.329866 
+L 509.565384 154.51664 
+L 517.99392 154.25473 
+L 526.422456 155.584429 
+L 534.850992 153.448851 
+L 543.279529 150.769306 
+L 551.708065 148.75461 
+L 560.136601 148.230789 
+L 568.565137 146.276534 
+L 576.993673 147.102559 
+L 585.42221 148.774757 
+L 593.850746 148.855345 
+L 602.279282 147.666674 
+L 610.707818 149.177696 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #b9bec6; stroke-width: 3.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_24">
+    <path d="M 113.424182 357.759163 
+L 121.852718 352.601542 
+L 130.281254 348.733326 
+L 138.70979 347.121569 
+L 147.138327 343.575704 
+L 155.566863 334.227515 
+L 163.995399 333.260461 
+L 172.423935 333.582812 
+L 180.852471 334.872218 
+L 189.281008 333.905164 
+L 197.709544 336.483975 
+L 206.13808 335.516921 
+L 214.566616 332.293407 
+L 222.995153 331.326353 
+L 231.423689 340.674542 
+L 239.852225 341.963947 
+L 248.280761 335.516921 
+L 256.709297 337.128677 
+L 265.137834 331.326353 
+L 273.56637 332.93811 
+L 281.994906 333.260461 
+L 290.423442 334.227515 
+L 298.851978 337.77338 
+L 307.280515 332.93811 
+L 315.709051 333.582812 
+L 324.137587 335.194569 
+L 332.566123 330.359299 
+L 340.994659 333.905164 
+L 349.423196 330.68165 
+L 357.851732 331.004002 
+L 366.280268 330.68165 
+L 374.708804 327.458137 
+" clip-path="url(#p073f8af933)" style="fill: none; stroke: #c27c0e; stroke-width: 3.5; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 88.56 426.42 
+L 88.56 55.07125 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 88.56 426.42 
+L 635.572 426.42 
+" style="fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_16">
+    <text style="fill: #222222; font: 700 22px 'Avenir Next'; text-anchor: start" x="88.56" y="39.07125" transform="rotate(-0 88.56 39.07125)">Training reward (final answer correct, 9-update mean)</text>
+   </g>
+   <g id="legend_1">
+    <g id="line2d_25">
+     <path d="M 655.44212 75.96625 
+L 671.44212 75.96625 
+L 687.44212 75.96625 
+" style="fill: none; stroke: #118659; stroke-width: 3.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_17">
+     <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: start" x="700.24212" y="81.56625" transform="rotate(-0 700.24212 81.56625)">A: implant stack, N = 4, vote reward</text>
+    </g>
+    <g id="line2d_26">
+     <path d="M 655.44212 99.90125 
+L 671.44212 99.90125 
+L 687.44212 99.90125 
+" style="fill: none; stroke-dasharray: 12.95,5.6; stroke-dashoffset: 0; stroke: #5fae8f; stroke-width: 3.5"/>
+    </g>
+    <g id="text_18">
+     <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: start" x="700.24212" y="105.50125" transform="rotate(-0 700.24212 105.50125)">A': A + per-attempt credit</text>
+    </g>
+    <g id="line2d_27">
+     <path d="M 655.44212 123.83625 
+L 671.44212 123.83625 
+L 687.44212 123.83625 
+" style="fill: none; stroke-dasharray: 3.5,5.775; stroke-dashoffset: 0; stroke: #6b7280; stroke-width: 3.5"/>
+    </g>
+    <g id="text_19">
+     <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: start" x="700.24212" y="129.43625" transform="rotate(-0 700.24212 129.43625)">A-reset: A + programmatic position reset (16 prompts)</text>
+    </g>
+    <g id="line2d_28">
+     <path d="M 655.44212 147.77125 
+L 671.44212 147.77125 
+L 687.44212 147.77125 
+" style="fill: none; stroke: #b9bec6; stroke-width: 3.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_20">
+     <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: start" x="700.24212" y="153.37125" transform="rotate(-0 700.24212 153.37125)">B: S2F implants, one attempt</text>
+    </g>
+    <g id="line2d_29">
+     <path d="M 655.44212 171.70625 
+L 671.44212 171.70625 
+L 687.44212 171.70625 
+" style="fill: none; stroke: #c27c0e; stroke-width: 3.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_21">
+     <text style="fill: #222222; font: 16px 'Avenir Next'; text-anchor: start" x="700.24212" y="177.30625" transform="rotate(-0 700.24212 177.30625)">C: implant stack on the base host (16 prompts)</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p073f8af933">
+   <rect x="88.56" y="55.07125" width="547.012" height="371.34875"/>
+  </clipPath>
+ </defs>
+</svg>
