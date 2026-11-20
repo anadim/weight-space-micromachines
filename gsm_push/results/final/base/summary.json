@@ -1,0 +1,230 @@
+{
+ "probe_auroc": {
+  "dev/orig": [
+   0.794,
+   516
+  ],
+  "dev/refit": [
+   0.827,
+   516
+  ]
+ },
+ "probe_used": "refit",
+ "dev": {
+  "S0": {
+   "acc": 63.5,
+   "tok_q": 92.1,
+   "n": 600,
+   "fixes": 0,
+   "breaks": 0,
+   "delta": 0.0,
+   "ci_delta": [
+    0.0,
+    0.0
+   ]
+  },
+  "S1": {
+   "acc": 64.5,
+   "tok_q": 92.1,
+   "n": 600,
+   "fixes": 6,
+   "breaks": 0,
+   "delta": 1.0,
+   "ci_delta": [
+    0.33,
+    1.83
+   ],
+   "fire_rate": 2.33,
+   "silent_identical": "586/586"
+  },
+  "S2": {
+   "acc": 68.17,
+   "tok_q": 114.1,
+   "n": 600,
+   "fixes": 28,
+   "breaks": 0,
+   "delta": 4.67,
+   "ci_delta": [
+    3.17,
+    6.33
+   ],
+   "fire_rate": 8.67,
+   "c2_fire_rate": 2.33,
+   "vs_S1": {
+    "fixes": 22,
+    "breaks": 0
+   },
+   "path_counts": {
+    "S1": 548,
+    "S1>plan1": 30,
+    "S1>plan1>re2q": 12,
+    "S1>plan1>re2q>T1s0": 10
+   }
+  },
+  "S3": {
+   "acc": 65.67,
+   "tok_q": 780.7,
+   "n": 600,
+   "fixes": 70,
+   "breaks": 57,
+   "delta": 2.17,
+   "ci_delta": [
+    -1.67,
+    5.83
+   ],
+   "fire_rate": 39.83,
+   "rule": "probe_vote_sanity",
+   "K": 8,
+   "mean_samples": 8.0
+  },
+  "S3a": {
+   "acc": 71.5,
+   "tok_q": 1012.3,
+   "n": 600,
+   "fixes": 88,
+   "breaks": 40,
+   "delta": 8.0,
+   "ci_delta": [
+    4.33,
+    11.5
+   ],
+   "fire_rate": 37.67,
+   "rule": "probe_vote_sanity",
+   "K": "adaptive 4/8/16 thr .75",
+   "mean_samples": 10.02
+  },
+  "maj8": {
+   "acc": 62.17,
+   "tok_q": 780.7,
+   "n": 600,
+   "fixes": 61,
+   "breaks": 69,
+   "delta": -1.33,
+   "ci_delta": [
+    -5.17,
+    2.17
+   ],
+   "fire_rate": 41.83,
+   "rule": "majority",
+   "K": 8,
+   "mean_samples": 8.0
+  },
+  "majsan8": {
+   "acc": 62.83,
+   "tok_q": 780.7,
+   "n": 600,
+   "fixes": 62,
+   "breaks": 66,
+   "delta": -0.67,
+   "ci_delta": [
+    -4.5,
+    2.83
+   ],
+   "fire_rate": 41.83,
+   "rule": "majority_sanity",
+   "K": 8,
+   "mean_samples": 8.0
+  },
+  "pv8": {
+   "acc": 65.67,
+   "tok_q": 780.7,
+   "n": 600,
+   "fixes": 70,
+   "breaks": 57,
+   "delta": 2.17,
+   "ci_delta": [
+    -1.67,
+    5.83
+   ],
+   "fire_rate": 39.83,
+   "rule": "probe_vote",
+   "K": 8,
+   "mean_samples": 8.0
+  },
+  "pvsan8": {
+   "acc": 65.67,
+   "tok_q": 780.7,
+   "n": 600,
+   "fixes": 70,
+   "breaks": 57,
+   "delta": 2.17,
+   "ci_delta": [
+    -1.67,
+    5.83
+   ],
+   "fire_rate": 39.83,
+   "rule": "probe_vote_sanity",
+   "K": 8,
+   "mean_samples": 8.0
+  },
+  "pvsan16": {
+   "acc": 73.0,
+   "tok_q": 1553.4,
+   "n": 600,
+   "fixes": 90,
+   "breaks": 33,
+   "delta": 9.5,
+   "ci_delta": [
+    6.0,
+    13.0
+   ],
+   "fire_rate": 36.17,
+   "rule": "probe_vote_sanity",
+   "K": 16,
+   "mean_samples": 16.0
+  },
+  "maj16": {
+   "acc": 70.17,
+   "tok_q": 1553.4,
+   "n": 600,
+   "fixes": 79,
+   "breaks": 39,
+   "delta": 6.67,
+   "ci_delta": [
+    3.0,
+    10.0
+   ],
+   "fire_rate": 36.83,
+   "rule": "majority",
+   "K": 16,
+   "mean_samples": 16.0
+  },
+  "sample0": {
+   "acc": 39.17,
+   "tok_q": 96.3,
+   "n": 600,
+   "fixes": 28,
+   "breaks": 174,
+   "delta": -24.33,
+   "ci_delta": [
+    -28.33,
+    -20.17
+   ],
+   "fire_rate": 61.0,
+   "rule": "majority",
+   "K": 1,
+   "mean_samples": 1.0
+  },
+  "samples": {
+   "mean_ok": 37.3,
+   "flagged": 17.45,
+   "c2_fire": 6.73,
+   "oracle8": 81.17
+  },
+  "S4": {
+   "acc": 67.67,
+   "tok_q": 1068.7,
+   "n": 600,
+   "fixes": 75,
+   "breaks": 50,
+   "delta": 4.17,
+   "ci_delta": [
+    0.33,
+    7.67
+   ],
+   "fire_rate": 65.0,
+   "rule": "repair flagged, then probe_vote_sanity",
+   "K": 8
+  }
+ }
+}

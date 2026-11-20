@@ -1,0 +1,13 @@
+items 300
+S0 acc=78.00 tok 41160 sec=8 probe_capture 300
+S1 acc=79.33 tok 41166 sec=7 rollback_tok 30 fire_rows 7 silent_identical 293/293
+casc step plan1 rows 13 sec=1
+casc step re2q rows 6 sec=1
+casc step T1s0 rows 5 sec=1
+S2 acc=80.67 tok 45881 fire_rows 13
+samp rows 4800 mean_ok=78.25 tok/row=138.9 cap 0.9916666746139526 flagged 251 sec=82
+rep step plan1 rows 251 sec=6
+rep step re2q rows 113 sec=3
+rep step off rows 69 sec=2
+rep done repaired 251 still_flagged 56
+DONE

@@ -1,0 +1,9 @@
+{"form": "chain", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "paren", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "comma", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "sign", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "decimal", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "exactlit", "n": 10000, "wrong": 0, "nofire": 0, "ex": []}
+{"form": "restate_or_agree", "n": 10000, "acted": 0}
+{"form": "restate_wrong", "n": 10000, "wrong": 0, "missed": 0, "acted_on_right": 0}
+{"form": "silent", "n": 10000, "acted": 0, "ex": []}

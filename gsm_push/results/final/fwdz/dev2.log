@@ -1,0 +1,4 @@
+items 300 S_max 1280 gen_max 960 SAN_CLASSES None
+S2_plan acc=79.67 tok/q 156.0 sec=24 rollback_tok 0 c2_fire_rows 28 san_fire_rows 14
+S2_typed acc=80.33 tok/q 151.6 sec=20 rollback_tok 0 c2_fire_rows 28 san_fire_rows 14
+DONE

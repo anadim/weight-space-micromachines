@@ -1,0 +1,304 @@
+{
+ "dev/san_typed": {
+  "n": 600,
+  "base": 80.33,
+  "acc": 80.5,
+  "fires": 27,
+  "fire_rate": 4.5,
+  "precision": 1.0,
+  "fixes": 1,
+  "breaks": 0,
+  "same_answer_after": 17,
+  "extra_tok_per_item": 5.8,
+  "extra_tok_per_fire": 128.1,
+  "examples": [
+   {
+    "j": 372,
+    "gold": "4",
+    "before": "3.6",
+    "after": "4",
+    "phrase": "nonint",
+    "cont": "Wait, the answer should be a whole number. Let me solve it again.\nMark spends $12 + $10 + $6 + $8 = $36.\nHe has $10 bills, so he needs 36 / 10 = 3.6 bills.\nSince he can't use a fraction of a bill, he needs to use 4 $10 bills to make up the $36.\n#### 4\n\n"
+   }
+  ]
+ },
+ "dev/probe_check": {
+  "n": 600,
+  "base": 80.33,
+  "acc": 80.17,
+  "fires": 77,
+  "fire_rate": 12.83,
+  "precision": 0.714,
+  "fixes": 2,
+  "breaks": 3,
+  "same_answer_after": 53,
+  "extra_tok_per_item": 11.5,
+  "extra_tok_per_fire": 89.9,
+  "examples": [
+   {
+    "j": 14,
+    "gold": "480",
+    "before": "480",
+    "after": "840",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how much she will miss on her vacation.\nShe works 5 days a week and has 6 days of paid vacation, so she has 5 - 6 = -1 day of work.\nBut since she has 6 days of paid vacation, she actually has 6 - (-1) = 7 days of unpaid work.\nHer weekly pay is $120, so he"
+   },
+   {
+    "j": 31,
+    "gold": "216",
+    "before": "480",
+    "after": "216",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the total number of books he borrows in a week from Monday to Friday.\nHe borrows 40 books each day from Monday to Thursday.\nSo that's 40 x 4 = 160 books.\nHe borrows 56 books on Friday.\nSo the total is 160 + 56 = 216 books.\n#### 216\n\n"
+   },
+   {
+    "j": 101,
+    "gold": "36",
+    "before": "36",
+    "after": "48",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how many earrings Alissa has now after receiving 12 from Barbie.\nWe know Alissa received 12 earrings, and her total is 36.\nSo, Alissa's current number of earrings is 12 + 36 = 48.\n#### 48\n\n"
+   },
+   {
+    "j": 311,
+    "gold": "54",
+    "before": "54",
+    "after": "108",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the final amount of water in the aquarium.\nNancy starts with 36 cubic feet.\nShe triples it, so 36 x 3 = 108 cubic feet.\n#### 108\n\n"
+   },
+   {
+    "j": 372,
+    "gold": "4",
+    "before": "3.6",
+    "after": "4",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how many $10 bills he needs to use to pay $36.\n36 / 10 = 3.6\nSince he can't use a fraction of a bill, he needs to use 4 $10 bills to make up $36.\n#### 4\n\n"
+   }
+  ]
+ },
+ "dev/unused_hint": {
+  "n": 600,
+  "base": 80.33,
+  "acc": 80.33,
+  "fires": 29,
+  "fire_rate": 4.83,
+  "precision": 0.414,
+  "fixes": 2,
+  "breaks": 2,
+  "same_answer_after": 23,
+  "extra_tok_per_item": 6.1,
+  "extra_tok_per_fire": 126.7,
+  "examples": [
+   {
+    "j": 30,
+    "gold": "53",
+    "before": "35",
+    "after": "53",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 18 yet. Let me solve it again using all the numbers.\nCarl made $105 in profit and each watermelon is $3.\nSo, the number of watermelons he sold is 105 / 3 = 35.\nHe sold 18 watermelons this evening.\nSo, the total number of watermelons he started with is 35 + 18 = 53.\n#### 53"
+   },
+   {
+    "j": 56,
+    "gold": "88",
+    "before": "88",
+    "after": "45.4",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 1.4 yet. Let me solve it again using all the numbers.\nThe snake starts with 1.4 meters of snake.\nIt eats 50 centimeters per alligator.\nIn one week, it eats 1 alligator.\nSo in 616 days, it eats 88 alligators.\nThe total length of the snake after 616 days is 1.4 + 88 * 0.5 = "
+   },
+   {
+    "j": 362,
+    "gold": "2913",
+    "before": "2880",
+    "after": "2913",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 33 yet. Let me solve it again using all the numbers.\nSmaug has 33 copper coins.\nThe total value in copper coins from the silver coins is 480 copper coins.\nThe total value in copper coins from the gold coins is 2400 copper coins.\nSo the total value in copper coins is 480 + "
+   },
+   {
+    "j": 472,
+    "gold": "363",
+    "before": "363",
+    "after": "693",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 2 yet. Let me solve it again using all the numbers.\nFirst month: $300 + $30 = $330\nSecond month: $330 + $33 = $363\nTotal after 2 months: $330 + $363 = $693\n#### 693\n\n"
+   }
+  ]
+ },
+ "dev/all_typed": {
+  "n": 600,
+  "base": 80.33,
+  "acc": 80.17,
+  "fires": 101,
+  "fire_rate": 16.83,
+  "precision": 0.614,
+  "fixes": 4,
+  "breaks": 5,
+  "same_answer_after": 73,
+  "extra_tok_per_item": 18.6,
+  "extra_tok_per_fire": 110.6,
+  "examples": [
+   {
+    "j": 14,
+    "gold": "480",
+    "before": "480",
+    "after": "840",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how much she will miss on her vacation.\nShe works 5 days a week and has 6 days of paid vacation, so she has 5 - 6 = -1 day of work.\nBut since she has 6 days of paid vacation, she actually has 6 - (-1) = 7 days of unpaid work.\nHer weekly pay is $120, so he"
+   },
+   {
+    "j": 30,
+    "gold": "53",
+    "before": "35",
+    "after": "53",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 18 yet. Let me solve it again using all the numbers.\nCarl made $105 in profit and each watermelon is $3.\nSo, the number of watermelons he sold is 105 / 3 = 35.\nHe sold 18 watermelons this evening.\nSo, the total number of watermelons he started with is 35 + 18 = 53.\n#### 53"
+   },
+   {
+    "j": 31,
+    "gold": "216",
+    "before": "480",
+    "after": "216",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the total number of books he borrows in a week from Monday to Friday.\nHe borrows 40 books each day from Monday to Thursday.\nSo that's 40 x 4 = 160 books.\nHe borrows 56 books on Friday.\nSo the total is 160 + 56 = 216 books.\n#### 216\n\n"
+   },
+   {
+    "j": 56,
+    "gold": "88",
+    "before": "88",
+    "after": "45.4",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 1.4 yet. Let me solve it again using all the numbers.\nThe snake starts with 1.4 meters of snake.\nIt eats 50 centimeters per alligator.\nIn one week, it eats 1 alligator.\nSo in 616 days, it eats 88 alligators.\nThe total length of the snake after 616 days is 1.4 + 88 * 0.5 = "
+   },
+   {
+    "j": 101,
+    "gold": "36",
+    "before": "36",
+    "after": "48",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how many earrings Alissa has now after receiving 12 from Barbie.\nWe know Alissa received 12 earrings, and her total is 36.\nSo, Alissa's current number of earrings is 12 + 36 = 48.\n#### 48\n\n"
+   },
+   {
+    "j": 311,
+    "gold": "54",
+    "before": "54",
+    "after": "108",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the final amount of water in the aquarium.\nNancy starts with 36 cubic feet.\nShe triples it, so 36 x 3 = 108 cubic feet.\n#### 108\n\n"
+   },
+   {
+    "j": 362,
+    "gold": "2913",
+    "before": "2880",
+    "after": "2913",
+    "phrase": "unused",
+    "cont": "Wait, we have not used the 33 yet. Let me solve it again using all the numbers.\nSmaug has 33 copper coins.\nThe total value in copper coins from the silver coins is 480 copper coins.\nThe total value in copper coins from the gold coins is 2400 copper coins.\nSo the total value in copper coins is 480 + "
+   },
+   {
+    "j": 372,
+    "gold": "4",
+    "before": "3.6",
+    "after": "4",
+    "phrase": "nonint",
+    "cont": "Wait, the answer should be a whole number. Let me solve it again.\nMark spends $12 + $10 + $6 + $8 = $36.\nHe has $10 bills, so he needs 36 / 10 = 3.6 bills.\nSince he can't use a fraction of a bill, he needs to use 4 $10 bills to make up the $36.\n#### 4\n\n"
+   }
+  ]
+ },
+ "dev2/san_typed": {
+  "n": 300,
+  "base": 77.0,
+  "acc": 77.0,
+  "fires": 13,
+  "fire_rate": 4.33,
+  "precision": 1.0,
+  "fixes": 0,
+  "breaks": 0,
+  "same_answer_after": 12,
+  "extra_tok_per_item": 5.1,
+  "extra_tok_per_fire": 118.2,
+  "examples": []
+ },
+ "dev2/probe_check": {
+  "n": 300,
+  "base": 77.0,
+  "acc": 76.67,
+  "fires": 41,
+  "fire_rate": 13.67,
+  "precision": 0.756,
+  "fixes": 1,
+  "breaks": 2,
+  "same_answer_after": 33,
+  "extra_tok_per_item": 12.9,
+  "extra_tok_per_fire": 94.4,
+  "examples": [
+   {
+    "j": 50,
+    "gold": "19",
+    "before": "19",
+    "after": "30",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the difference in price between the two stores, not the discount. The original price at the first store is $950, and at the second store is \u20ac920. The difference is $950 - \u20ac920 = $30.\n#### 30\n\n"
+   },
+   {
+    "j": 200,
+    "gold": "60",
+    "before": "60",
+    "after": "50",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how many more gift bags he needs to make for the 80 people. He has already made 10 extravagant bags and 20 average bags, so he has made 10 + 20 = 30 gift bags.\nHe needs to make 80 - 30 = 50 more gift bags.\n#### 50\n\n"
+   },
+   {
+    "j": 216,
+    "gold": "204",
+    "before": "89.25",
+    "after": "204",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the original price before the 75% discount. If the sale price is $51 and the discount is 75%, then the original price is $51 / (1 - 0.75) = $51 / 0.25 = $204.\n#### 204\n\n"
+   }
+  ]
+ },
+ "dev2/unused_hint": {
+  "n": 300,
+  "base": 77.0,
+  "acc": 77.0,
+  "fires": 18,
+  "fire_rate": 6.0,
+  "precision": 0.333,
+  "fixes": 0,
+  "breaks": 0,
+  "same_answer_after": 17,
+  "extra_tok_per_item": 8.3,
+  "extra_tok_per_fire": 138.6,
+  "examples": []
+ },
+ "dev2/all_typed": {
+  "n": 300,
+  "base": 77.0,
+  "acc": 76.33,
+  "fires": 54,
+  "fire_rate": 18.0,
+  "precision": 0.63,
+  "fixes": 0,
+  "breaks": 2,
+  "same_answer_after": 48,
+  "extra_tok_per_item": 19.9,
+  "extra_tok_per_fire": 110.6,
+  "examples": [
+   {
+    "j": 50,
+    "gold": "19",
+    "before": "19",
+    "after": "30",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find the difference in price between the two stores, not the discount. The original price at the first store is $950, and at the second store is \u20ac920. The difference is $950 - \u20ac920 = $30.\n#### 30\n\n"
+   },
+   {
+    "j": 200,
+    "gold": "60",
+    "before": "60",
+    "after": "50",
+    "phrase": "check",
+    "cont": "Wait, let me check that. We need to find out how many more gift bags he needs to make for the 80 people. He has already made 10 extravagant bags and 20 average bags, so he has made 10 + 20 = 30 gift bags.\nHe needs to make 80 - 30 = 50 more gift bags.\n#### 50\n\n"
+   }
+  ]
+ }
+}

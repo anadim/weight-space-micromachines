@@ -1,0 +1,4 @@
+items 300 S_max 1280 gen_max 960 missing_only False forget weights
+S1 acc=79.33 tok/q 136.9 sec=16 rollback_tok 0 c2_fire_rows 28 san_fire_rows 0
+S2F_fwntf acc=81.00 tok/q 146.9 sec=21 rollback_tok 0 c2_fire_rows 28 san_fire_rows 12 vsS1 +5/-0 silent_identical 288/288
+DONE

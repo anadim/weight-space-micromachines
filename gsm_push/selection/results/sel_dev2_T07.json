@@ -1,0 +1,614 @@
+{
+ "probe": {
+  "layer": 18,
+  "C": 0.001,
+  "n_train": 23756,
+  "cv": {}
+ },
+ "dev2_T0.7": {
+  "n": 300,
+  "T": "0.7",
+  "greedy": 77.0,
+  "greedy_tok": 136.90333333333334,
+  "tok_per_sample": 137.67854166666666,
+  "acc": {
+   "sample0@1": 77.54,
+   "majority@1": 77.54,
+   "maj_sanity@1": 77.54,
+   "probe_vote@1": 77.54,
+   "probe_vote_sanity@1": 77.54,
+   "probe_select@1": 77.54,
+   "logprob_vote@1": 77.54,
+   "sample0@2": 78.04,
+   "majority@2": 78.26,
+   "maj_sanity@2": 79.46,
+   "probe_vote@2": 80.84,
+   "probe_vote_sanity@2": 81.06,
+   "probe_select@2": 80.84,
+   "logprob_vote@2": 78.97,
+   "g+majority@2": 77.02,
+   "g+maj_sanity@2": 77.68,
+   "g+probe_vote@2": 79.61,
+   "g+probe_vote_sanity@2": 80.2,
+   "sample0@4": 77.87,
+   "majority@4": 80.6,
+   "maj_sanity@4": 82.12,
+   "probe_vote@4": 82.71,
+   "probe_vote_sanity@4": 83.16,
+   "probe_select@4": 81.87,
+   "logprob_vote@4": 80.63,
+   "g+majority@4": 79.6,
+   "g+maj_sanity@4": 80.83,
+   "g+probe_vote@4": 81.61,
+   "g+probe_vote_sanity@4": 82.16,
+   "sample0@8": 78.27,
+   "majority@8": 82.03,
+   "maj_sanity@8": 83.71,
+   "probe_vote@8": 83.6,
+   "probe_vote_sanity@8": 84.27,
+   "probe_select@8": 82.24,
+   "logprob_vote@8": 81.9,
+   "g+majority@8": 81.04,
+   "g+maj_sanity@8": 82.86,
+   "g+probe_vote@8": 83.3,
+   "g+probe_vote_sanity@8": 83.82,
+   "sample0@16": 77.0,
+   "majority@16": 83.0,
+   "maj_sanity@16": 84.0,
+   "probe_vote@16": 84.33,
+   "probe_vote_sanity@16": 85.0,
+   "probe_select@16": 82.33,
+   "logprob_vote@16": 82.67,
+   "g+majority@16": 81.76,
+   "g+maj_sanity@16": 83.33,
+   "g+probe_vote@16": 84.02,
+   "g+probe_vote_sanity@16": 84.64
+  },
+  "tok": {
+   "K1": 139.0,
+   "K2": 275.5,
+   "K4": 548.3,
+   "K8": 1103.0,
+   "K16": 2202.9
+  },
+  "oracle@16": 93.33,
+  "cmp": {
+   "probe_vote-majority@2": [
+    2.59,
+    1.58,
+    3.63
+   ],
+   "maj_sanity-majority@2": [
+    1.2,
+    0.74,
+    1.76
+   ],
+   "probe_vote_sanity-maj_sanity@2": [
+    1.6,
+    0.69,
+    2.5
+   ],
+   "probe_select-majority@2": [
+    2.59,
+    1.57,
+    3.64
+   ],
+   "logprob_vote-majority@2": [
+    0.71,
+    -0.07,
+    1.48
+   ],
+   "majority-greedy@2": [
+    1.26,
+    -1.42,
+    3.99
+   ],
+   "probe_vote_sanity-greedy@2": [
+    4.06,
+    1.41,
+    6.77
+   ],
+   "g+probe_vote_sanity-greedy@2": [
+    3.2,
+    1.73,
+    4.9
+   ],
+   "probe_vote-majority@4": [
+    2.11,
+    1.23,
+    3.07
+   ],
+   "maj_sanity-majority@4": [
+    1.52,
+    0.8,
+    2.41
+   ],
+   "probe_vote_sanity-maj_sanity@4": [
+    1.03,
+    0.34,
+    1.78
+   ],
+   "probe_select-majority@4": [
+    1.27,
+    -0.38,
+    2.9
+   ],
+   "logprob_vote-majority@4": [
+    0.03,
+    -0.43,
+    0.49
+   ],
+   "majority-greedy@4": [
+    3.6,
+    0.92,
+    6.34
+   ],
+   "probe_vote_sanity-greedy@4": [
+    6.16,
+    3.57,
+    8.93
+   ],
+   "g+probe_vote_sanity-greedy@4": [
+    5.16,
+    3.21,
+    7.3
+   ],
+   "probe_vote-majority@8": [
+    1.57,
+    0.58,
+    2.64
+   ],
+   "maj_sanity-majority@8": [
+    1.68,
+    0.8,
+    2.73
+   ],
+   "probe_vote_sanity-maj_sanity@8": [
+    0.56,
+    -0.33,
+    1.53
+   ],
+   "probe_select-majority@8": [
+    0.21,
+    -2.09,
+    2.47
+   ],
+   "logprob_vote-majority@8": [
+    -0.13,
+    -0.6,
+    0.29
+   ],
+   "majority-greedy@8": [
+    5.03,
+    2.32,
+    8.01
+   ],
+   "probe_vote_sanity-greedy@8": [
+    7.27,
+    4.53,
+    10.17
+   ],
+   "g+probe_vote_sanity-greedy@8": [
+    6.82,
+    4.36,
+    9.52
+   ],
+   "probe_vote-majority@16": [
+    1.33,
+    0.0,
+    3.0
+   ],
+   "maj_sanity-majority@16": [
+    1.0,
+    0.0,
+    2.33
+   ],
+   "probe_vote_sanity-maj_sanity@16": [
+    1.0,
+    -0.67,
+    2.67
+   ],
+   "probe_select-majority@16": [
+    -0.67,
+    -3.67,
+    2.67
+   ],
+   "logprob_vote-majority@16": [
+    -0.33,
+    -1.0,
+    0.0
+   ],
+   "majority-greedy@16": [
+    6.0,
+    2.67,
+    9.34
+   ],
+   "probe_vote_sanity-greedy@16": [
+    8.0,
+    4.67,
+    11.67
+   ],
+   "g+probe_vote_sanity-greedy@16": [
+    7.64,
+    4.77,
+    10.81
+   ]
+  },
+  "within_auroc": {
+   "probe": 0.722,
+   "logprob": 0.611,
+   "nq": 108
+  },
+  "adaptive": {
+   "maj_sanity_k02_thr1.0": {
+    "acc": 83.33,
+    "tok": 597.7,
+    "mean_samples": 4.34
+   },
+   "maj_sanity_k02_thr0.75": {
+    "acc": 83.67,
+    "tok": 550.6,
+    "mean_samples": 4.0
+   },
+   "maj_sanity_k02_thr0.6": {
+    "acc": 84.0,
+    "tok": 497.9,
+    "mean_samples": 3.62
+   },
+   "maj_sanity_k02_thr0.5": {
+    "acc": 79.0,
+    "tok": 275.5,
+    "mean_samples": 2.0
+   },
+   "maj_sanity_k04_thr1.0": {
+    "acc": 84.0,
+    "tok": 1020.8,
+    "mean_samples": 7.41
+   },
+   "maj_sanity_k04_thr0.75": {
+    "acc": 84.0,
+    "tok": 829.8,
+    "mean_samples": 6.03
+   },
+   "maj_sanity_k04_thr0.6": {
+    "acc": 84.0,
+    "tok": 732.8,
+    "mean_samples": 5.32
+   },
+   "maj_sanity_k04_thr0.5": {
+    "acc": 83.33,
+    "tok": 593.7,
+    "mean_samples": 4.31
+   },
+   "probe_vote_sanity_k02_thr1.0": {
+    "acc": 84.33,
+    "tok": 606.5,
+    "mean_samples": 4.41
+   },
+   "probe_vote_sanity_k02_thr0.75": {
+    "acc": 83.0,
+    "tok": 505.8,
+    "mean_samples": 3.67
+   },
+   "probe_vote_sanity_k02_thr0.6": {
+    "acc": 82.33,
+    "tok": 391.8,
+    "mean_samples": 2.85
+   },
+   "probe_vote_sanity_k02_thr0.5": {
+    "acc": 80.67,
+    "tok": 275.5,
+    "mean_samples": 2.0
+   },
+   "probe_vote_sanity_k04_thr1.0": {
+    "acc": 85.33,
+    "tok": 1020.8,
+    "mean_samples": 7.41
+   },
+   "probe_vote_sanity_k04_thr0.75": {
+    "acc": 85.33,
+    "tok": 826.5,
+    "mean_samples": 6.0
+   },
+   "probe_vote_sanity_k04_thr0.6": {
+    "acc": 85.0,
+    "tok": 694.8,
+    "mean_samples": 5.05
+   },
+   "probe_vote_sanity_k04_thr0.5": {
+    "acc": 84.33,
+    "tok": 594.1,
+    "mean_samples": 4.31
+   },
+   "G_maj_sanity_k00_thr1.0": {
+    "acc": 78.67,
+    "tok": 240.3,
+    "tok_x_greedy": 1.76
+   },
+   "G_maj_sanity_k00_thr0.75": {
+    "acc": 78.67,
+    "tok": 231.4,
+    "tok_x_greedy": 1.69
+   },
+   "G_maj_sanity_k00_thr0.5": {
+    "acc": 78.67,
+    "tok": 211.9,
+    "tok_x_greedy": 1.55
+   },
+   "G_maj_sanity_k01_thr1.0": {
+    "acc": 81.67,
+    "tok": 635.6,
+    "tok_x_greedy": 4.64
+   },
+   "G_maj_sanity_k01_thr0.75": {
+    "acc": 81.67,
+    "tok": 581.7,
+    "tok_x_greedy": 4.25
+   },
+   "G_maj_sanity_k01_thr0.5": {
+    "acc": 77.33,
+    "tok": 281.2,
+    "tok_x_greedy": 2.05
+   },
+   "G_maj_sanity_k02_thr1.0": {
+    "acc": 82.33,
+    "tok": 847.2,
+    "tok_x_greedy": 6.19
+   },
+   "G_maj_sanity_k02_thr0.75": {
+    "acc": 82.33,
+    "tok": 774.5,
+    "tok_x_greedy": 5.66
+   },
+   "G_maj_sanity_k02_thr0.5": {
+    "acc": 82.0,
+    "tok": 510.7,
+    "tok_x_greedy": 3.73
+   },
+   "G_maj_sanity_k03_thr1.0": {
+    "acc": 82.67,
+    "tok": 1027.5,
+    "tok_x_greedy": 7.51
+   },
+   "G_maj_sanity_k03_thr0.75": {
+    "acc": 83.33,
+    "tok": 847.8,
+    "tok_x_greedy": 6.19
+   },
+   "G_maj_sanity_k03_thr0.5": {
+    "acc": 82.33,
+    "tok": 614.8,
+    "tok_x_greedy": 4.49
+   },
+   "G_probe_vote_sanity_k00_thr1.0": {
+    "acc": 79.33,
+    "tok": 240.3,
+    "tok_x_greedy": 1.76
+   },
+   "G_probe_vote_sanity_k00_thr0.75": {
+    "acc": 79.0,
+    "tok": 223.4,
+    "tok_x_greedy": 1.63
+   },
+   "G_probe_vote_sanity_k00_thr0.5": {
+    "acc": 78.67,
+    "tok": 197.0,
+    "tok_x_greedy": 1.44
+   },
+   "G_probe_vote_sanity_k01_thr1.0": {
+    "acc": 83.0,
+    "tok": 635.6,
+    "tok_x_greedy": 4.64
+   },
+   "G_probe_vote_sanity_k01_thr0.75": {
+    "acc": 82.67,
+    "tok": 518.5,
+    "tok_x_greedy": 3.79
+   },
+   "G_probe_vote_sanity_k01_thr0.5": {
+    "acc": 79.67,
+    "tok": 281.2,
+    "tok_x_greedy": 2.05
+   },
+   "G_probe_vote_sanity_k02_thr1.0": {
+    "acc": 84.0,
+    "tok": 847.2,
+    "tok_x_greedy": 6.19
+   },
+   "G_probe_vote_sanity_k02_thr0.75": {
+    "acc": 84.0,
+    "tok": 714.3,
+    "tok_x_greedy": 5.22
+   },
+   "G_probe_vote_sanity_k02_thr0.5": {
+    "acc": 82.33,
+    "tok": 483.3,
+    "tok_x_greedy": 3.53
+   },
+   "G_probe_vote_sanity_k03_thr1.0": {
+    "acc": 85.0,
+    "tok": 1027.5,
+    "tok_x_greedy": 7.51
+   },
+   "G_probe_vote_sanity_k03_thr0.75": {
+    "acc": 84.67,
+    "tok": 866.2,
+    "tok_x_greedy": 6.33
+   },
+   "G_probe_vote_sanity_k03_thr0.5": {
+    "acc": 84.0,
+    "tok": 610.6,
+    "tok_x_greedy": 4.46
+   }
+  },
+  "pvs8_vs_greedy": {
+   "fixes": 25,
+   "breaks": 4,
+   "examples": [
+    {
+     "j": 5,
+     "gold": "9",
+     "greedy": "6.833333",
+     "picked": 9.0,
+     "fix": true,
+     "answers": [
+      6.833333,
+      10.25,
+      6.5,
+      9.0,
+      10.25,
+      6.833333,
+      6.833333,
+      6.833333
+     ],
+     "p": [
+      0.22,
+      0.56,
+      0.17,
+      0.88,
+      0.54,
+      0.22,
+      0.24,
+      0.22
+     ]
+    },
+    {
+     "j": 9,
+     "gold": "39",
+     "greedy": "81",
+     "picked": 39.0,
+     "fix": true,
+     "answers": [
+      81.0,
+      39.0,
+      39.0,
+      39.0,
+      48.0,
+      81.0,
+      81.0,
+      39.0
+     ],
+     "p": [
+      0.88,
+      0.88,
+      0.92,
+      0.9,
+      0.9,
+      0.86,
+      0.86,
+      0.93
+     ]
+    },
+    {
+     "j": 14,
+     "gold": "480",
+     "greedy": "600",
+     "picked": 480.0,
+     "fix": true,
+     "answers": [
+      840.0,
+      480.0,
+      480.0,
+      680.0,
+      680.0,
+      480.0,
+      840.0,
+      360.0
+     ],
+     "p": [
+      0.58,
+      0.43,
+      0.42,
+      0.44,
+      0.38,
+      0.6,
+      0.52,
+      0.37
+     ]
+    },
+    {
+     "j": 24,
+     "gold": "405",
+     "greedy": "225",
+     "picked": 405.0,
+     "fix": true,
+     "answers": [
+      405.0,
+      125.0,
+      225.0,
+      75.0,
+      125.0,
+      405.0,
+      125.0,
+      405.0
+     ],
+     "p": [
+      0.38,
+      0.42,
+      0.37,
+      0.44,
+      0.5,
+      0.51,
+      0.55,
+      0.61
+     ]
+    },
+    {
+     "j": 29,
+     "gold": "22",
+     "greedy": "22",
+     "picked": 33.0,
+     "fix": false,
+     "answers": [
+      22.0,
+      33.0,
+      33.0,
+      33.0,
+      22.0,
+      22.0,
+      22.0,
+      33.0
+     ],
+     "p": [
+      0.78,
+      0.79,
+      0.85,
+      0.84,
+      0.32,
+      0.78,
+      0.73,
+      0.83
+     ]
+    },
+    {
+     "j": 32,
+     "gold": "105",
+     "greedy": "105",
+     "picked": 45.0,
+     "fix": false,
+     "answers": [
+      45.0,
+      0.075,
+      600.0,
+      1.75,
+      150.0,
+      45.0,
+      45.0,
+      105.0
+     ],
+     "p": [
+      0.22,
+      0.03,
+      0.05,
+      0.12,
+      0.27,
+      0.1,
+      0.1,
+      0.18
+     ]
+    }
+   ]
+  },
+  "tensor_select_agree": "300/300"
+ }
+}

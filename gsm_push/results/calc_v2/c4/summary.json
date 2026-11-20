@@ -1,0 +1,110 @@
+{
+ "dev/calc+chain2": {
+  "n": 600,
+  "acc_calc": 79.83,
+  "acc": 80.67,
+  "fixes": 5,
+  "breaks": 0,
+  "fire_rows": 41,
+  "fire_rate": 6.83,
+  "chain_tokens": 179,
+  "silent_identical": "559/559",
+  "extra_tok": -38
+ },
+ "dev/calc+opveto": {
+  "n": 600,
+  "acc_calc": 79.83,
+  "acc": 80.0,
+  "fixes": 1,
+  "breaks": 0,
+  "fire_rows": 12,
+  "fire_rate": 2.0,
+  "chain_tokens": 154,
+  "silent_identical": "588/588",
+  "extra_tok": -36
+ },
+ "dev/calc+chain2+opveto": {
+  "n": 600,
+  "acc_calc": 79.83,
+  "acc": 80.83,
+  "fixes": 6,
+  "breaks": 0,
+  "fire_rows": 41,
+  "fire_rate": 6.83,
+  "chain_tokens": 178,
+  "silent_identical": "549/559",
+  "extra_tok": -73
+ },
+ "dev2/calc+chain2": {
+  "n": 300,
+  "acc_calc": 78.0,
+  "acc": 79.0,
+  "fixes": 3,
+  "breaks": 0,
+  "fire_rows": 25,
+  "fire_rate": 8.33,
+  "chain_tokens": 112,
+  "silent_identical": "275/275",
+  "extra_tok": -9
+ },
+ "dev2/calc+opveto": {
+  "n": 300,
+  "acc_calc": 78.0,
+  "acc": 78.0,
+  "fixes": 0,
+  "breaks": 0,
+  "fire_rows": 5,
+  "fire_rate": 1.67,
+  "chain_tokens": 97,
+  "silent_identical": "295/295",
+  "extra_tok": 41
+ },
+ "dev2/calc+chain2+opveto": {
+  "n": 300,
+  "acc_calc": 78.0,
+  "acc": 79.0,
+  "fixes": 3,
+  "breaks": 0,
+  "fire_rows": 25,
+  "fire_rate": 8.33,
+  "chain_tokens": 112,
+  "silent_identical": "270/275",
+  "extra_tok": 32
+ },
+ "hard/calc+chain2": {
+  "n": 300,
+  "acc_calc": 61.33,
+  "acc": 65.33,
+  "fixes": 12,
+  "breaks": 0,
+  "fire_rows": 18,
+  "fire_rate": 6.0,
+  "chain_tokens": 148,
+  "silent_identical": "282/282",
+  "extra_tok": 4
+ },
+ "hard/calc+opveto": {
+  "n": 300,
+  "acc_calc": 61.33,
+  "acc": 61.0,
+  "fixes": 2,
+  "breaks": 3,
+  "fire_rows": 15,
+  "fire_rate": 5.0,
+  "chain_tokens": 148,
+  "silent_identical": "285/285",
+  "extra_tok": -54
+ },
+ "hard/calc+chain2+opveto": {
+  "n": 300,
+  "acc_calc": 61.33,
+  "acc": 65.0,
+  "fixes": 14,
+  "breaks": 3,
+  "fire_rows": 18,
+  "fire_rate": 6.0,
+  "chain_tokens": 148,
+  "silent_identical": "268/282",
+  "extra_tok": -50
+ }
+}

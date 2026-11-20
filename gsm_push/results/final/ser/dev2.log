@@ -1,0 +1,7 @@
+items 300 S_max 5696 B_max 64
+N8_R1_v1_s1_m0_T1.0 acc=88.33 tok/q=1247.4 natt=8.00 repairs=143 c2rows=55 sec=162
+N4_R1_v1_s1_m0_T1.0 acc=86.33 tok/q=620.1 natt=4.00 repairs=66 c2rows=40 sec=74
+N1_R0_v1_s1_m0_greedy acc=78.00 tok/q=136.9 natt=1.00 repairs=0 c2rows=30 sec=9
+N1_R2_v1_s1_m0_greedy acc=79.33 tok/q=151.8 natt=1.00 repairs=22 c2rows=31 sec=21
+N1_R2_v1_s1_m0_T1.0 acc=79.67 tok/q=152.8 natt=1.00 repairs=18 c2rows=29 sec=22
+DONE

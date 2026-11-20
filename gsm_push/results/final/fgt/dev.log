@@ -1,0 +1,7 @@
+items 600 S_max 1280 gen_max 960 missing_only False forget kernel
+S0 acc=80.00 tok/q 136.0 sec=30 rollback_tok 0 c2_fire_rows 0 san_fire_rows 0
+S1 acc=80.67 tok/q 136.0 sec=34 rollback_tok 0 c2_fire_rows 51 san_fire_rows 0 vsS0 +4/-0 silent_identical 549/549
+S2F_fwntf acc=83.17 tok/q 146.0 sec=63 rollback_tok 0 c2_fire_rows 51 san_fire_rows 27 vsS0 +19/-0 vsS1 +15/-0 silent_identical 573/573
+S2Fn_fwntf acc=83.00 tok/q 145.5 sec=60 rollback_tok 0 c2_fire_rows 51 san_fire_rows 27 vsS0 +18/-0 vsS1 +14/-0 silent_identical 573/573
+S2P_fwntf acc=81.00 tok/q 144.9 sec=94 rollback_tok 0 c2_fire_rows 51 san_fire_rows 27 vsS0 +6/-0 vsS1 +2/-0 silent_identical 573/573
+DONE

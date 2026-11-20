@@ -1,0 +1,173 @@
+{
+ "dev/off": {
+  "n": 600,
+  "rollback_tok": 0,
+  "acts": {},
+  "acc": 79.83,
+  "sec": 21.2,
+  "ntok": 81247,
+  "maxmem": 14.93
+ },
+ "dev/ext": {
+  "n": 600,
+  "rollback_tok": 70,
+  "acts": {
+   "agree": 59,
+   "restate": 50,
+   "rewrite": 12
+  },
+  "acc": 80.67,
+  "sec": 20.7,
+  "ntok": 81245,
+  "maxmem": 14.95,
+  "fire_rows": 12,
+  "fire_rate": 2.0,
+  "events": 12,
+  "vetoes": 5,
+  "fixes": 5,
+  "breaks": 0,
+  "fixes_fired": 5,
+  "breaks_fired": 0,
+  "silent_identical": "588/588",
+  "extra_tok_total": -2,
+  "delta": 0.83
+ },
+ "dev/verify": {
+  "n": 600,
+  "rollback_tok": 60,
+  "acts": {
+   "agree": 1910,
+   "restate": 58,
+   "rewrite": 11
+  },
+  "acc": 80.67,
+  "sec": 20.9,
+  "ntok": 81247,
+  "maxmem": 14.96,
+  "fire_rows": 11,
+  "fire_rate": 1.83,
+  "events": 11,
+  "vetoes": 4,
+  "fixes": 5,
+  "breaks": 0,
+  "fixes_fired": 5,
+  "breaks_fired": 0,
+  "silent_identical": "589/589",
+  "extra_tok_total": 0,
+  "delta": 0.83
+ },
+ "dev2/off": {
+  "n": 300,
+  "rollback_tok": 0,
+  "acts": {},
+  "acc": 78.0,
+  "sec": 10.9,
+  "ntok": 41380,
+  "maxmem": 15.19
+ },
+ "dev2/ext": {
+  "n": 300,
+  "rollback_tok": 39,
+  "acts": {
+   "restate": 39,
+   "agree": 35,
+   "rewrite": 7
+  },
+  "acc": 79.0,
+  "sec": 10.9,
+  "ntok": 41360,
+  "maxmem": 15.2,
+  "fire_rows": 7,
+  "fire_rate": 2.33,
+  "events": 7,
+  "vetoes": 1,
+  "fixes": 3,
+  "breaks": 0,
+  "fixes_fired": 3,
+  "breaks_fired": 0,
+  "silent_identical": "293/293",
+  "extra_tok_total": -20,
+  "delta": 1.0
+ },
+ "dev2/verify": {
+  "n": 300,
+  "rollback_tok": 29,
+  "acts": {
+   "agree": 932,
+   "restate": 44,
+   "rewrite": 6
+  },
+  "acc": 79.0,
+  "sec": 11.0,
+  "ntok": 41369,
+  "maxmem": 15.21,
+  "fire_rows": 6,
+  "fire_rate": 2.0,
+  "events": 6,
+  "vetoes": 0,
+  "fixes": 3,
+  "breaks": 0,
+  "fixes_fired": 3,
+  "breaks_fired": 0,
+  "silent_identical": "294/294",
+  "extra_tok_total": -11,
+  "delta": 1.0
+ },
+ "hard/off": {
+  "n": 300,
+  "rollback_tok": 0,
+  "acts": {},
+  "acc": 61.33,
+  "sec": 11.7,
+  "ntok": 54065,
+  "maxmem": 15.21
+ },
+ "hard/ext": {
+  "n": 300,
+  "rollback_tok": 226,
+  "acts": {
+   "rewrite": 23,
+   "agree": 19,
+   "restate": 21
+  },
+  "acc": 66.33,
+  "sec": 11.9,
+  "ntok": 54084,
+  "maxmem": 15.21,
+  "fire_rows": 23,
+  "fire_rate": 7.67,
+  "events": 23,
+  "vetoes": 2,
+  "fixes": 15,
+  "breaks": 0,
+  "fixes_fired": 15,
+  "breaks_fired": 0,
+  "silent_identical": "277/277",
+  "extra_tok_total": 19,
+  "delta": 5.0
+ },
+ "hard/verify": {
+  "n": 300,
+  "rollback_tok": 290,
+  "acts": {
+   "agree": 927,
+   "rewrite": 31,
+   "restate": 33
+  },
+  "acc": 67.0,
+  "sec": 12.0,
+  "ntok": 54102,
+  "maxmem": 15.21,
+  "fire_rows": 28,
+  "fire_rate": 9.33,
+  "events": 31,
+  "vetoes": 1,
+  "fixes": 17,
+  "breaks": 0,
+  "fixes_fired": 17,
+  "breaks_fired": 0,
+  "silent_identical": "272/272",
+  "extra_tok_total": 37,
+  "delta": 5.67
+ }
+}

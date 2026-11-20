@@ -1,0 +1,7 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+vetoed tokens 4056
+number endings 3155
+model already avoids a digit at 95.4% of number endings
+train: no digit 99.96% | own non-digit choice kept 99.21% | |v| rms 3.14
+held-out: no digit 99.84% | own non-digit choice kept 98.89% | |v| rms 3.14
+saved veto_op_qwen3.pt

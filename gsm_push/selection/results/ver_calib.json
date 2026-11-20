@@ -1,0 +1,38 @@
+{
+ "0.5": {
+  "thr_logit": 0.6308865547180176,
+  "probe_only_fires": 218,
+  "probe_only_fire_rate": 0.14543028685790527,
+  "probe_only_precision": 0.5,
+  "combined_fire_rate": 0.1941294196130754,
+  "combined_precision": 0.6254295532646048,
+  "wrong_caught": 0.5723270440251572
+ },
+ "0.6": {
+  "thr_logit": -0.042059898376464844,
+  "probe_only_fires": 115,
+  "probe_only_fire_rate": 0.07671781187458306,
+  "probe_only_precision": 0.6,
+  "combined_fire_rate": 0.12541694462975317,
+  "combined_precision": 0.7553191489361702,
+  "wrong_caught": 0.44654088050314467
+ },
+ "0.7": {
+  "thr_logit": -0.7772060632705688,
+  "probe_only_fires": 62,
+  "probe_only_fire_rate": 0.04136090727151434,
+  "probe_only_precision": 0.7096774193548387,
+  "combined_fire_rate": 0.09006004002668445,
+  "combined_precision": 0.8666666666666667,
+  "wrong_caught": 0.36792452830188677
+ },
+ "0.8": {
+  "thr_logit": -1.1811330318450928,
+  "probe_only_fires": 47,
+  "probe_only_fire_rate": 0.03135423615743829,
+  "probe_only_precision": 0.8085106382978724,
+  "combined_fire_rate": 0.0800533689126084,
+  "combined_precision": 0.925,
+  "wrong_caught": 0.3490566037735849
+ }
+}

@@ -1,0 +1,14 @@
+items 600
+S0 acc=80.00 tok 81619 sec=14 probe_capture 597
+SILENCE stock_engine==stack_off 575 / 600 same_ok 595
+S1 acc=80.67 tok 81632 sec=13 rollback_tok 36 fire_rows 7 silent_identical 593/593
+casc step plan1 rows 31 sec=2
+casc step re2q rows 9 sec=2
+casc step T1s0 rows 7 sec=1
+S2 acc=83.67 tok 91189 fire_rows 31
+samp rows 9600 mean_ok=79.10 tok/row=135.8 cap 0.9895833134651184 flagged 524 sec=155
+rep step plan1 rows 524 sec=12
+rep step re2q rows 211 sec=6
+rep step off rows 133 sec=3
+rep done repaired 524 still_flagged 105
+DONE

@@ -1,0 +1,4 @@
+n_all 1319
+items 1319 S_max 1280 gen_max 960 missing_only False forget weights
+S2F_fwntf acc=73.39 tok/q 153.0 sec=66 rollback_tok 0 c2_fire_rows 116 san_fire_rows 79
+DONE

@@ -1,0 +1,82 @@
+train files [('T1.0', 1499), ('T0.7', 1499)]
+probe: layer 18 C 0.001
+dev2 T 0.7 {"n": 300, "greedy": 77.0, "greedy_tok": 136.90333333333334, "tok_per_sample": 137.67854166666666, "oracle@16": 93.33, "within_auroc": {"probe": 0.722, "logprob": 0.611, "nq": 108}, "tensor_select_agree": "300/300"}
+  K 1 {'sample0': 77.54, 'majority': 77.54, 'maj_sanity': 77.54, 'probe_vote': 77.54, 'probe_vote_sanity': 77.54, 'probe_select': 77.54, 'logprob_vote': 77.54, 'g+majority': None, 'g+probe_vote_sanity': None} tok 139.0
+  K 2 {'sample0': 78.04, 'majority': 78.26, 'maj_sanity': 79.46, 'probe_vote': 80.84, 'probe_vote_sanity': 81.06, 'probe_select': 80.84, 'logprob_vote': 78.97, 'g+majority': 77.02, 'g+probe_vote_sanity': 80.2} tok 275.5
+  K 4 {'sample0': 77.87, 'majority': 80.6, 'maj_sanity': 82.12, 'probe_vote': 82.71, 'probe_vote_sanity': 83.16, 'probe_select': 81.87, 'logprob_vote': 80.63, 'g+majority': 79.6, 'g+probe_vote_sanity': 82.16} tok 548.3
+  K 8 {'sample0': 78.27, 'majority': 82.03, 'maj_sanity': 83.71, 'probe_vote': 83.6, 'probe_vote_sanity': 84.27, 'probe_select': 82.24, 'logprob_vote': 81.9, 'g+majority': 81.04, 'g+probe_vote_sanity': 83.82} tok 1103.0
+  K 16 {'sample0': 77.0, 'majority': 83.0, 'maj_sanity': 84.0, 'probe_vote': 84.33, 'probe_vote_sanity': 85.0, 'probe_select': 82.33, 'logprob_vote': 82.67, 'g+majority': 81.76, 'g+probe_vote_sanity': 84.64} tok 2202.9
+   probe_vote-majority@2 [np.float64(2.59), np.float64(1.58), np.float64(3.63)]
+   maj_sanity-majority@2 [np.float64(1.2), np.float64(0.74), np.float64(1.76)]
+   probe_vote_sanity-maj_sanity@2 [np.float64(1.6), np.float64(0.69), np.float64(2.5)]
+   probe_select-majority@2 [np.float64(2.59), np.float64(1.57), np.float64(3.64)]
+   logprob_vote-majority@2 [np.float64(0.71), np.float64(-0.07), np.float64(1.48)]
+   majority-greedy@2 [np.float64(1.26), np.float64(-1.42), np.float64(3.99)]
+   probe_vote_sanity-greedy@2 [np.float64(4.06), np.float64(1.41), np.float64(6.77)]
+   g+probe_vote_sanity-greedy@2 [np.float64(3.2), np.float64(1.73), np.float64(4.9)]
+   probe_vote-majority@4 [np.float64(2.11), np.float64(1.23), np.float64(3.07)]
+   maj_sanity-majority@4 [np.float64(1.52), np.float64(0.8), np.float64(2.41)]
+   probe_vote_sanity-maj_sanity@4 [np.float64(1.03), np.float64(0.34), np.float64(1.78)]
+   probe_select-majority@4 [np.float64(1.27), np.float64(-0.38), np.float64(2.9)]
+   logprob_vote-majority@4 [np.float64(0.03), np.float64(-0.43), np.float64(0.49)]
+   majority-greedy@4 [np.float64(3.6), np.float64(0.92), np.float64(6.34)]
+   probe_vote_sanity-greedy@4 [np.float64(6.16), np.float64(3.57), np.float64(8.93)]
+   g+probe_vote_sanity-greedy@4 [np.float64(5.16), np.float64(3.21), np.float64(7.3)]
+   probe_vote-majority@8 [np.float64(1.57), np.float64(0.58), np.float64(2.64)]
+   maj_sanity-majority@8 [np.float64(1.68), np.float64(0.8), np.float64(2.73)]
+   probe_vote_sanity-maj_sanity@8 [np.float64(0.56), np.float64(-0.33), np.float64(1.53)]
+   probe_select-majority@8 [np.float64(0.21), np.float64(-2.09), np.float64(2.47)]
+   logprob_vote-majority@8 [np.float64(-0.13), np.float64(-0.6), np.float64(0.29)]
+   majority-greedy@8 [np.float64(5.03), np.float64(2.32), np.float64(8.01)]
+   probe_vote_sanity-greedy@8 [np.float64(7.27), np.float64(4.53), np.float64(10.17)]
+   g+probe_vote_sanity-greedy@8 [np.float64(6.82), np.float64(4.36), np.float64(9.52)]
+   probe_vote-majority@16 [np.float64(1.33), np.float64(0.0), np.float64(3.0)]
+   maj_sanity-majority@16 [np.float64(1.0), np.float64(0.0), np.float64(2.33)]
+   probe_vote_sanity-maj_sanity@16 [np.float64(1.0), np.float64(-0.67), np.float64(2.67)]
+   probe_select-majority@16 [np.float64(-0.67), np.float64(-3.67), np.float64(2.67)]
+   logprob_vote-majority@16 [np.float64(-0.33), np.float64(-1.0), np.float64(0.0)]
+   majority-greedy@16 [np.float64(6.0), np.float64(2.67), np.float64(9.34)]
+   probe_vote_sanity-greedy@16 [np.float64(8.0), np.float64(4.67), np.float64(11.67)]
+   g+probe_vote_sanity-greedy@16 [np.float64(7.64), np.float64(4.77), np.float64(10.81)]
+   adaptive maj_sanity_k02_thr1.0 {'acc': 83.33, 'tok': 597.7, 'mean_samples': 4.34}
+   adaptive maj_sanity_k02_thr0.75 {'acc': 83.67, 'tok': 550.6, 'mean_samples': 4.0}
+   adaptive maj_sanity_k02_thr0.6 {'acc': 84.0, 'tok': 497.9, 'mean_samples': 3.62}
+   adaptive maj_sanity_k02_thr0.5 {'acc': 79.0, 'tok': 275.5, 'mean_samples': 2.0}
+   adaptive maj_sanity_k04_thr1.0 {'acc': 84.0, 'tok': 1020.8, 'mean_samples': 7.41}
+   adaptive maj_sanity_k04_thr0.75 {'acc': 84.0, 'tok': 829.8, 'mean_samples': 6.03}
+   adaptive maj_sanity_k04_thr0.6 {'acc': 84.0, 'tok': 732.8, 'mean_samples': 5.32}
+   adaptive maj_sanity_k04_thr0.5 {'acc': 83.33, 'tok': 593.7, 'mean_samples': 4.31}
+   adaptive probe_vote_sanity_k02_thr1.0 {'acc': 84.33, 'tok': 606.5, 'mean_samples': 4.41}
+   adaptive probe_vote_sanity_k02_thr0.75 {'acc': 83.0, 'tok': 505.8, 'mean_samples': 3.67}
+   adaptive probe_vote_sanity_k02_thr0.6 {'acc': 82.33, 'tok': 391.8, 'mean_samples': 2.85}
+   adaptive probe_vote_sanity_k02_thr0.5 {'acc': 80.67, 'tok': 275.5, 'mean_samples': 2.0}
+   adaptive probe_vote_sanity_k04_thr1.0 {'acc': 85.33, 'tok': 1020.8, 'mean_samples': 7.41}
+   adaptive probe_vote_sanity_k04_thr0.75 {'acc': 85.33, 'tok': 826.5, 'mean_samples': 6.0}
+   adaptive probe_vote_sanity_k04_thr0.6 {'acc': 85.0, 'tok': 694.8, 'mean_samples': 5.05}
+   adaptive probe_vote_sanity_k04_thr0.5 {'acc': 84.33, 'tok': 594.1, 'mean_samples': 4.31}
+   adaptive G_maj_sanity_k00_thr1.0 {'acc': 78.67, 'tok': 240.3, 'tok_x_greedy': 1.76}
+   adaptive G_maj_sanity_k00_thr0.75 {'acc': 78.67, 'tok': 231.4, 'tok_x_greedy': 1.69}
+   adaptive G_maj_sanity_k00_thr0.5 {'acc': 78.67, 'tok': 211.9, 'tok_x_greedy': 1.55}
+   adaptive G_maj_sanity_k01_thr1.0 {'acc': 81.67, 'tok': 635.6, 'tok_x_greedy': 4.64}
+   adaptive G_maj_sanity_k01_thr0.75 {'acc': 81.67, 'tok': 581.7, 'tok_x_greedy': 4.25}
+   adaptive G_maj_sanity_k01_thr0.5 {'acc': 77.33, 'tok': 281.2, 'tok_x_greedy': 2.05}
+   adaptive G_maj_sanity_k02_thr1.0 {'acc': 82.33, 'tok': 847.2, 'tok_x_greedy': 6.19}
+   adaptive G_maj_sanity_k02_thr0.75 {'acc': 82.33, 'tok': 774.5, 'tok_x_greedy': 5.66}
+   adaptive G_maj_sanity_k02_thr0.5 {'acc': 82.0, 'tok': 510.7, 'tok_x_greedy': 3.73}
+   adaptive G_maj_sanity_k03_thr1.0 {'acc': 82.67, 'tok': 1027.5, 'tok_x_greedy': 7.51}
+   adaptive G_maj_sanity_k03_thr0.75 {'acc': 83.33, 'tok': 847.8, 'tok_x_greedy': 6.19}
+   adaptive G_maj_sanity_k03_thr0.5 {'acc': 82.33, 'tok': 614.8, 'tok_x_greedy': 4.49}
+   adaptive G_probe_vote_sanity_k00_thr1.0 {'acc': 79.33, 'tok': 240.3, 'tok_x_greedy': 1.76}
+   adaptive G_probe_vote_sanity_k00_thr0.75 {'acc': 79.0, 'tok': 223.4, 'tok_x_greedy': 1.63}
+   adaptive G_probe_vote_sanity_k00_thr0.5 {'acc': 78.67, 'tok': 197.0, 'tok_x_greedy': 1.44}
+   adaptive G_probe_vote_sanity_k01_thr1.0 {'acc': 83.0, 'tok': 635.6, 'tok_x_greedy': 4.64}
+   adaptive G_probe_vote_sanity_k01_thr0.75 {'acc': 82.67, 'tok': 518.5, 'tok_x_greedy': 3.79}
+   adaptive G_probe_vote_sanity_k01_thr0.5 {'acc': 79.67, 'tok': 281.2, 'tok_x_greedy': 2.05}
+   adaptive G_probe_vote_sanity_k02_thr1.0 {'acc': 84.0, 'tok': 847.2, 'tok_x_greedy': 6.19}
+   adaptive G_probe_vote_sanity_k02_thr0.75 {'acc': 84.0, 'tok': 714.3, 'tok_x_greedy': 5.22}
+   adaptive G_probe_vote_sanity_k02_thr0.5 {'acc': 82.33, 'tok': 483.3, 'tok_x_greedy': 3.53}
+   adaptive G_probe_vote_sanity_k03_thr1.0 {'acc': 85.0, 'tok': 1027.5, 'tok_x_greedy': 7.51}
+   adaptive G_probe_vote_sanity_k03_thr0.75 {'acc': 84.67, 'tok': 866.2, 'tok_x_greedy': 6.33}
+   adaptive G_probe_vote_sanity_k03_thr0.5 {'acc': 84.0, 'tok': 610.6, 'tok_x_greedy': 4.46}
+   25 fixes 4 breaks (pvs@8 vs greedy)
+ANADONE

@@ -1,0 +1,6 @@
+n_all 1319
+items 1319 S_max 1280 gen_max 960 SAN_CLASSES 3
+S0 acc=54.59 tok/q 173.7 sec=78 rollback_tok 0 c2_fire_rows 0 san_fire_rows 0
+S1 acc=56.03 tok/q 173.4 sec=104 rollback_tok 0 c2_fire_rows 203 san_fire_rows 0 vsS0 +21/-2 silent_identical 1116/1116
+S2_plan acc=56.25 tok/q 176.3 sec=129 rollback_tok 0 c2_fire_rows 204 san_fire_rows 10 vsS0 +24/-2 vsS1 +3/-0 silent_identical 1309/1309
+DONE

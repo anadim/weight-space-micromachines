@@ -1,0 +1,522 @@
+{
+ "probe": {
+  "layer": 18,
+  "C": 0.01,
+  "n_train": 161,
+  "cv": {
+   "L14_C0.001": [
+    0.625,
+    0.7258465361913637
+   ],
+   "L14_C0.003": [
+    0.625,
+    0.7415346380863622
+   ],
+   "L14_C0.01": [
+    0.6666666666666666,
+    0.7474370922646785
+   ],
+   "L14_C0.03": [
+    0.6666666666666666,
+    0.733923578751165
+   ],
+   "L18_C0.001": [
+    0.6666666666666666,
+    0.8069276172724449
+   ],
+   "L18_C0.003": [
+    0.6666666666666666,
+    0.8254116185150667
+   ],
+   "L18_C0.01": [
+    0.7083333333333334,
+    0.8237030133581857
+   ],
+   "L18_C0.03": [
+    0.6666666666666666,
+    0.8109661385523455
+   ],
+   "L22_C0.001": [
+    0.5833333333333334,
+    0.6394843118981051
+   ],
+   "L22_C0.003": [
+    0.625,
+    0.686237962100031
+   ],
+   "L22_C0.01": [
+    0.625,
+    0.7020813917365641
+   ],
+   "L22_C0.03": [
+    0.625,
+    0.6969555762659211
+   ]
+  }
+ },
+ "dev_T1.0": {
+  "n": 24,
+  "T": "1.0",
+  "greedy": 62.5,
+  "greedy_tok": 109.125,
+  "tok_per_sample": 103.21875,
+  "acc": {
+   "sample0@1": 31.94,
+   "majority@1": 31.94,
+   "maj_sanity@1": 31.94,
+   "probe_vote@1": 31.94,
+   "probe_vote_sanity@1": 31.94,
+   "probe_select@1": 31.94,
+   "logprob_vote@1": 31.94,
+   "sample0@2": 26.39,
+   "majority@2": 27.78,
+   "maj_sanity@2": 27.78,
+   "probe_vote@2": 31.94,
+   "probe_vote_sanity@2": 31.94,
+   "probe_select@2": 31.94,
+   "logprob_vote@2": 33.33,
+   "g+majority@2": 62.5,
+   "g+maj_sanity@2": 65.28,
+   "g+probe_vote@2": 59.72,
+   "g+probe_vote_sanity@2": 59.72,
+   "sample0@4": 30.56,
+   "majority@4": 40.28,
+   "maj_sanity@4": 40.28,
+   "probe_vote@4": 45.83,
+   "probe_vote_sanity@4": 45.83,
+   "probe_select@4": 41.67,
+   "logprob_vote@4": 43.06,
+   "g+majority@4": 59.72,
+   "g+maj_sanity@4": 59.72,
+   "g+probe_vote@4": 56.94,
+   "g+probe_vote_sanity@4": 54.17,
+   "sample0@8": 31.94,
+   "majority@8": 45.83,
+   "maj_sanity@8": 47.22,
+   "probe_vote@8": 51.39,
+   "probe_vote_sanity@8": 51.39,
+   "probe_select@8": 50.0,
+   "logprob_vote@8": 48.61,
+   "g+majority@8": 61.11,
+   "g+maj_sanity@8": 66.67,
+   "g+probe_vote@8": 61.11,
+   "g+probe_vote_sanity@8": 63.89,
+   "sample0@16": 29.17,
+   "majority@16": 54.17,
+   "maj_sanity@16": 54.17,
+   "probe_vote@16": 58.33,
+   "probe_vote_sanity@16": 58.33,
+   "probe_select@16": 58.33,
+   "logprob_vote@16": 54.17,
+   "g+majority@16": 62.5,
+   "g+maj_sanity@16": 66.67,
+   "g+probe_vote@16": 62.5,
+   "g+probe_vote_sanity@16": 62.5
+  },
+  "tok": {
+   "K1": 85.9,
+   "K2": 184.0,
+   "K4": 386.0,
+   "K8": 802.5,
+   "K16": 1651.5
+  },
+  "oracle@16": 87.5,
+  "cmp": {
+   "probe_vote-majority@2": [
+    4.17,
+    0.0,
+    8.37
+   ],
+   "maj_sanity-majority@2": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "probe_vote_sanity-maj_sanity@2": [
+    4.17,
+    0.0,
+    8.33
+   ],
+   "probe_select-majority@2": [
+    4.17,
+    0.0,
+    8.33
+   ],
+   "logprob_vote-majority@2": [
+    5.56,
+    -1.39,
+    12.5
+   ],
+   "majority-greedy@2": [
+    -34.72,
+    -58.33,
+    -13.89
+   ],
+   "probe_vote_sanity-greedy@2": [
+    -30.56,
+    -50.0,
+    -12.47
+   ],
+   "g+probe_vote_sanity-greedy@2": [
+    -2.78,
+    -11.11,
+    4.17
+   ],
+   "probe_vote-majority@4": [
+    5.56,
+    -1.39,
+    11.15
+   ],
+   "maj_sanity-majority@4": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "probe_vote_sanity-maj_sanity@4": [
+    5.56,
+    -2.81,
+    12.5
+   ],
+   "probe_select-majority@4": [
+    1.39,
+    -8.37,
+    11.15
+   ],
+   "logprob_vote-majority@4": [
+    2.78,
+    -2.78,
+    9.72
+   ],
+   "majority-greedy@4": [
+    -22.22,
+    -41.67,
+    -5.49
+   ],
+   "probe_vote_sanity-greedy@4": [
+    -16.67,
+    -34.72,
+    4.17
+   ],
+   "g+probe_vote_sanity-greedy@4": [
+    -8.33,
+    -27.78,
+    8.37
+   ],
+   "probe_vote-majority@8": [
+    5.56,
+    -1.39,
+    12.5
+   ],
+   "maj_sanity-majority@8": [
+    1.39,
+    0.0,
+    4.2
+   ],
+   "probe_vote_sanity-maj_sanity@8": [
+    4.17,
+    -1.42,
+    11.11
+   ],
+   "probe_select-majority@8": [
+    4.17,
+    -8.33,
+    16.67
+   ],
+   "logprob_vote-majority@8": [
+    2.78,
+    0.0,
+    5.59
+   ],
+   "majority-greedy@8": [
+    -16.67,
+    -34.79,
+    2.78
+   ],
+   "probe_vote_sanity-greedy@8": [
+    -11.11,
+    -27.81,
+    8.37
+   ],
+   "g+probe_vote_sanity-greedy@8": [
+    1.39,
+    -6.94,
+    11.11
+   ],
+   "probe_vote-majority@16": [
+    4.17,
+    0.0,
+    12.6
+   ],
+   "maj_sanity-majority@16": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "probe_vote_sanity-maj_sanity@16": [
+    4.17,
+    0.0,
+    16.67
+   ],
+   "probe_select-majority@16": [
+    4.17,
+    -12.5,
+    20.83
+   ],
+   "logprob_vote-majority@16": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "majority-greedy@16": [
+    -8.33,
+    -29.17,
+    8.33
+   ],
+   "probe_vote_sanity-greedy@16": [
+    -4.17,
+    -20.83,
+    12.5
+   ],
+   "g+probe_vote_sanity-greedy@16": [
+    -0.0,
+    -15.28,
+    12.5
+   ]
+  },
+  "within_auroc": {
+   "probe": 0.771,
+   "logprob": 0.722,
+   "nq": 21
+  },
+  "adaptive": {
+   "maj_sanity_k02_thr1.0": {
+    "acc": 54.17,
+    "tok": 1651.5,
+    "mean_samples": 16.0
+   },
+   "maj_sanity_k02_thr0.75": {
+    "acc": 50.0,
+    "tok": 1087.2,
+    "mean_samples": 10.53
+   },
+   "maj_sanity_k02_thr0.6": {
+    "acc": 50.0,
+    "tok": 1068.4,
+    "mean_samples": 10.35
+   },
+   "maj_sanity_k04_thr1.0": {
+    "acc": 54.17,
+    "tok": 1651.5,
+    "mean_samples": 16.0
+   },
+   "maj_sanity_k04_thr0.75": {
+    "acc": 54.17,
+    "tok": 1512.1,
+    "mean_samples": 14.65
+   },
+   "maj_sanity_k04_thr0.6": {
+    "acc": 54.17,
+    "tok": 1306.5,
+    "mean_samples": 12.66
+   },
+   "probe_vote_sanity_k02_thr1.0": {
+    "acc": 58.33,
+    "tok": 1651.5,
+    "mean_samples": 16.0
+   },
+   "probe_vote_sanity_k02_thr0.75": {
+    "acc": 45.83,
+    "tok": 738.1,
+    "mean_samples": 7.15
+   },
+   "probe_vote_sanity_k02_thr0.6": {
+    "acc": 37.5,
+    "tok": 535.4,
+    "mean_samples": 5.19
+   },
+   "probe_vote_sanity_k04_thr1.0": {
+    "acc": 58.33,
+    "tok": 1651.5,
+    "mean_samples": 16.0
+   },
+   "probe_vote_sanity_k04_thr0.75": {
+    "acc": 58.33,
+    "tok": 1224.9,
+    "mean_samples": 11.87
+   },
+   "probe_vote_sanity_k04_thr0.6": {
+    "acc": 58.33,
+    "tok": 911.0,
+    "mean_samples": 8.83
+   }
+  },
+  "pvs8_vs_greedy": {
+   "fixes": 2,
+   "breaks": 5,
+   "examples": [
+    {
+     "j": 1,
+     "gold": "3",
+     "greedy": "1.5",
+     "picked": 3.0,
+     "fix": true,
+     "answers": [
+      3.0,
+      3.0,
+      2.0,
+      1.5,
+      4.5,
+      4.0,
+      null,
+      1.75
+     ],
+     "p": [
+      0.84,
+      0.92,
+      0.49,
+      0.46,
+      0.74,
+      0.89,
+      0.0,
+      0.01
+     ]
+    },
+    {
+     "j": 4,
+     "gold": "31",
+     "greedy": "31",
+     "picked": 19.0,
+     "fix": false,
+     "answers": [
+      19.0,
+      37.0,
+      19.0,
+      null,
+      19.0,
+      19.0,
+      10.0,
+      25.0
+     ],
+     "p": [
+      0.17,
+      0.04,
+      0.68,
+      0.0,
+      0.32,
+      0.14,
+      0.25,
+      0.05
+     ]
+    },
+    {
+     "j": 9,
+     "gold": "18",
+     "greedy": "18",
+     "picked": 50.0,
+     "fix": false,
+     "answers": [
+      5.0,
+      50.0,
+      null,
+      625.0,
+      18.0,
+      10.0,
+      null,
+      null
+     ],
+     "p": [
+      0.44,
+      0.67,
+      0.0,
+      0.38,
+      0.6,
+      0.52,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "j": 12,
+     "gold": "60",
+     "greedy": "60",
+     "picked": 75.0,
+     "fix": false,
+     "answers": [
+      21.0,
+      13.0,
+      60.0,
+      50.0,
+      40.0,
+      1.5,
+      40.0,
+      75.0
+     ],
+     "p": [
+      0.16,
+      0.17,
+      0.19,
+      0.06,
+      0.14,
+      0.35,
+      0.01,
+      0.24
+     ]
+    },
+    {
+     "j": 13,
+     "gold": "120",
+     "greedy": "130",
+     "picked": 120.0,
+     "fix": true,
+     "answers": [
+      110.0,
+      380.0,
+      120.0,
+      120.0,
+      120.0,
+      30.0,
+      40.0,
+      120.0
+     ],
+     "p": [
+      0.43,
+      0.25,
+      0.69,
+      0.5,
+      0.12,
+      0.12,
+      0.08,
+      0.62
+     ]
+    },
+    {
+     "j": 15,
+     "gold": "10",
+     "greedy": "10",
+     "picked": 80.0,
+     "fix": false,
+     "answers": [
+      80.0,
+      80.0,
+      11492625000.0,
+      150.0,
+      10.0,
+      2.5,
+      3.84,
+      null
+     ],
+     "p": [
+      0.93,
+      0.83,
+      0.17,
+      0.79,
+      0.94,
+      0.52,
+      0.33,
+      0.0
+     ]
+    }
+   ]
+  }
+ }
+}

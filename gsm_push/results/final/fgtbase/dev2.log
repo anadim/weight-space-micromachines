@@ -1,0 +1,4 @@
+items 300 S_max 1280 gen_max 960 missing_only False forget kernel
+S1 acc=61.67 tok/q 92.6 sec=56 rollback_tok 0 c2_fire_rows 23 san_fire_rows 0
+S2F_fwntf acc=63.33 tok/q 116.4 sec=75 rollback_tok 0 c2_fire_rows 23 san_fire_rows 22 vsS1 +5/-0 silent_identical 278/278
+DONE

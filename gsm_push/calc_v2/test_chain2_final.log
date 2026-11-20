@@ -1,0 +1,9 @@
+<repo>/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+{"form": "chain", "n": 10000, "wrong": 0, "nofire": 0, "fired_unexpected": 0, "calc_s4_double_writes": 0, "double_writes_disagreeing": 0, "calc_writes_after_chain": 0, "ex": []}
+{"form": "comma", "n": 10000, "wrong": 0, "nofire": 0, "fired_unexpected": 0, "calc_s4_double_writes": 0, "double_writes_disagreeing": 0, "calc_writes_after_chain": 0, "ex": []}
+{"form": "sign", "n": 10000, "wrong": 0, "nofire": 0, "fired_unexpected": 0, "calc_s4_double_writes": 0, "double_writes_disagreeing": 0, "calc_writes_after_chain": 0, "ex": []}
+{"form": "decimal", "n": 10000, "wrong": 0, "nofire": 0, "fired_unexpected": 0, "calc_s4_double_writes": 550, "double_writes_disagreeing": 309, "calc_writes_after_chain": 0, "ex": []}
+{"form": "negative", "n": 10000, "wrong": 0, "nofire": 0, "fired_unexpected": 0, "calc_s4_double_writes": 0, "double_writes_disagreeing": 0, "calc_writes_after_chain": 0, "ex": []}
+{"form": "silent", "n": 10000, "acted": 0, "ex": []}
+{"chain2_units": 17063, "nnz": 783953, "symbols": 65}

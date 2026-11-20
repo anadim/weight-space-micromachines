@@ -1,0 +1,5 @@
+items 600 S_max 1280 B_max 128
+N1_R0_v1_s1_m0_greedy acc=80.67 tok/q=136.0 natt=1.00 repairs=0 c2rows=51 sec=16
+N1_R2_v1_s1_m0_greedy acc=83.17 tok/q=150.2 natt=1.00 repairs=40 c2rows=51 sec=38
+N1_R2_v1_s1_m0_T1.0 acc=80.33 tok/q=149.4 natt=1.00 repairs=43 c2rows=52 sec=34
+DONE

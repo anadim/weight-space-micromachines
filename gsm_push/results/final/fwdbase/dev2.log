@@ -1,0 +1,8 @@
+items 300 S_max 1280 gen_max 960 SAN_CLASSES None
+S0 acc=59.00 tok/q 94.3 sec=26 rollback_tok 0 c2_fire_rows 0 san_fire_rows 0
+S1 acc=59.00 tok/q 94.2 sec=25 rollback_tok 0 c2_fire_rows 21 san_fire_rows 0 vsS0 +0/-0 silent_identical 279/279
+S2_generic acc=60.00 tok/q 121.5 sec=64 rollback_tok 0 c2_fire_rows 22 san_fire_rows 21 vsS0 +3/-0 vsS1 +3/-0 silent_identical 279/279
+S2_typed acc=59.67 tok/q 123.0 sec=78 rollback_tok 0 c2_fire_rows 22 san_fire_rows 21 vsS0 +3/-1 vsS1 +3/-1 silent_identical 279/279
+S2_plan acc=59.00 tok/q 146.2 sec=84 rollback_tok 0 c2_fire_rows 21 san_fire_rows 21 vsS0 +1/-1 vsS1 +1/-1 silent_identical 279/279
+S2_reread acc=60.67 tok/q 126.9 sec=93 rollback_tok 0 c2_fire_rows 21 san_fire_rows 21 vsS0 +5/-0 vsS1 +5/-0 silent_identical 279/279
+DONE

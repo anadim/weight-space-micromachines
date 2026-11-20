@@ -1,0 +1,8 @@
+n_all 1319
+items 1319
+S0 acc=54.59 tok 229056 sec=31 probe_capture 1259
+S1 acc=57.62 tok 228664 sec=31 rollback_tok 1595 fire_rows 127 silent_identical 1192/1192
+casc step plan1 rows 69 sec=3
+casc step re2q rows 37 sec=2
+casc step T1s0 rows 19 sec=2
+S2 acc=58.91 tok 262840 fire_rows 69
