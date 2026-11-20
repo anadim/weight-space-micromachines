@@ -260,3 +260,19 @@ code targets 3.12; every one of the repository's 396 `.py` files also compiles u
 
 Not re-runnable on CPU from the clone: `rl/interp/make_fig*.py` and `analyze.py` (need the unreleased dev traces), the
 animation score jobs (need token ids of the GSM generations), everything that loads a model.
+
+## 12. Fresh-clone check of the release-prep branch (2026-11-20, laptop, no GPU, no model)
+
+Clone: `git clone --no-local --branch release-prep` (history at the check: 37 commits, pack 62.8 MB; largest blobs are the shipped
+gadgets `vecs2_forcefix.pt` and `detector_hybrid.pt`, 7.4 MB each).
+
+| check | result |
+|---|---|
+| `py_compile` of every `.py` file (544, Python 3.14) | 0 failures |
+| `bash -n` of every `.sh` file | 0 syntax errors |
+| static import scan (every imported module is stdlib, a pinned / optional third-party package, or a file in the repo) | only external optional deps are missing: `evaluation_lib` (IFBench), `math_verify`, `latex2sympy2_extended`, `sympy` (MATH-500 grader), and `arms` (the unreleased v1 RL engine, `rl/gsm_grpo/prof_v1.py`) |
+| `HF_HUB_OFFLINE=1 N=1000 python gsm_push/calc_v2/test_exact.py` (calc v2 tracker, tokenizer only, 8 s) | 0 wrong, 0 missed, 0 acted on silent / restated text, all 9 forms |
+| `rl/figures/v3/make_rerender_v3.py`, `make_new_v3.py`, `make_rl_curves_all.py`, `make_rl_stack_curves.py`; `figures/blog/review_final/{bars_v2,ifeval_v2,bars_restyle,gsm_compose,latent_write,topic_blocker,make_rl4_toolbox}.py` | all run from the clone; every committed PNG and every `*_numbers.json` byte-identical (SVGs differ only in matplotlib ids) |
+
+Not run here: circuit exactness tests (`tests/test_calc_circuit.py`, `bbh_generic/teamA/test_tools.py`; minutes of CPU),
+`gsm_push/calc_v2/test_chain2.py` and the `sw_fuzz_hook.py` reader / voter fuzz (GPU), and everything that loads a model.

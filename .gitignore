@@ -80,3 +80,4 @@ dfa_tables*.pt
 !gsm_push/final/verifier_probe_L18.pt
 !gsm_push/calc_v2/veto_op_qwen3.pt
 !gsm_push/selection/results/*.pt
+gsm_push/calc_v2/test_exact_result.json
