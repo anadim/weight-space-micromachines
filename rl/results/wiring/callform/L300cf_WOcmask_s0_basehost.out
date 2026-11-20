@@ -1,0 +1,17 @@
+<repo>/micromachines/hdl.py:210: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  self._csr[key] = torch.sparse_coo_tensor(getattr(self, f'wi{l}'), getattr(self, f'wv{l}'), getattr(self, f'shape{l}')).to_sparse_csr()
+links: [('calc@final', 'warm', 1.0, 9636.24)]
+in-wire group: lr 0.0003 eps 1e-08
+co-designed wires: ['out@final', 'out@7', 'out@14', 'out@21'] in-wire lr 0.001
+PARAMS trainable wiring 286,469 = 0.0481% of host (596,049,920) = 11.95% of implant nonzeros (2,396,671)
+arm WOc | impl True links True write False gate0 0.0 train_impl False | pool 8145 dev 800 prefix 1181
+test full {'acc': 46.17134192570129, 'n': 1319, 'n_all': 1319, 'calls': 2.4306292645943897, 'vetoes': 0.0, 'veto_by_ops': {'0': [3154, 0], '1-2': [40, 0], '3-4': [11, 0], '5-6': [1, 0]}}
+test cw_hand {'acc': 47.08112206216831, 'n': 1319, 'n_all': 1319, 'calls': 2.4844579226686885, 'vetoes': 0.0, 'veto_by_ops': {'0': [3264, 0], '1-2': [13, 0]}}
+test hostonly {'acc': 47.61182714177407, 'n': 1319, 'n_all': 1319, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+hard full {'acc': 27.293404094010615, 'n': 1319, 'n_all': 1319, 'calls': 2.4950720242608035, 'vetoes': 0.0, 'veto_by_ops': {'0': [3245, 0], '3-4': [15, 0], '1-2': [17, 0], '7+': [11, 0], '5-6': [3, 0]}}
+hard cw_hand {'acc': 27.59666413949962, 'n': 1319, 'n_all': 1319, 'calls': 2.4814253222137985, 'vetoes': 0.0, 'veto_by_ops': {'0': [3264, 0], '7+': [6, 0], '1-2': [2, 0], '3-4': [1, 0]}}
+hard hostonly {'acc': 22.896133434420015, 'n': 1319, 'n_all': 1319, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+dev full {'acc': 41.625, 'n': 800, 'n_all': 800, 'calls': 2.6275, 'vetoes': 0.0, 'veto_by_ops': {'0': [2058, 0], '1-2': [30, 0], '3-4': [2, 0], '5-6': [1, 0], '7+': [11, 0]}}
+dev cw_hand {'acc': 42.625, 'n': 800, 'n_all': 800, 'calls': 2.59375, 'vetoes': 0.0, 'veto_by_ops': {'0': [2053, 0], '1-2': [10, 0], '7+': [6, 0], '3-4': [6, 0]}}
+dev hostonly {'acc': 37.125, 'n': 800, 'n_all': 800, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+DONE

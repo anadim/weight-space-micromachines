@@ -48,6 +48,9 @@ ap.add_argument('--dev_every', type=int, default=25)
 ap.add_argument('--dev_extra', default='64', help='extra dev evals at these updates (comma list)')
 ap.add_argument('--dev_n', type=int, default=800)
 ap.add_argument('--ckpt_every', type=int, default=100)
+ap.add_argument('--resume_every', type=int, default=-1, help='save a resumable state (run_dir/resume) every N updates (and at u1); relaunch resumes from it')
+ap.add_argument('--mem_gb', type=float, default=0, help='per-process GPU memory cap (GPU sharing)')
+ap.add_argument('--resume_dir', default='', help='where resume states live (e.g. /dev/shm/<run>); default run_dir')
 ap.add_argument('--seed', type=int, default=0); ap.add_argument('--B_max', type=int, default=256)
 ap.add_argument('--cw_lr', type=float, default=None, help='co-designed wires lr (default = link_lr)')
 ap.add_argument('--cw_hidden', type=int, default=None, help='64 (CW/CWout/CWin), 32 (CWlean)'); ap.add_argument('--cw_c', type=float, default=0.1)
@@ -76,27 +79,34 @@ ap.add_argument('--gpu_tag', default='', help='launcher process tag (no effect)'
 ap.add_argument('--warmup', type=int, default=5); ap.add_argument('--fused', type=int, default=1)
 ap.add_argument('--tools', default=','.join(integ.TOOLS_V2), help='LIB: BBH machines attached (integ.TOOLS_V2)')
 ap.add_argument('--ifeval', type=int, default=1, help='LIB: attach the IFEval 14-rule circuit')
+ap.add_argument('--distractors', type=int, default=0, help='LIB: K extra irrelevant implants: copies of the shallow BBH tools with deranged reader symbols AND deranged outputs')
+ap.add_argument('--distr_harmful', type=int, default=0, help='LIB: N reader-permuted copies of calc_gen (fires on ~37%% of rows at u0, writes garbage at gain 1e4)')
+ap.add_argument('--corrupt', default='', help="LIB: tool:a-b,c-d swaps output token rows (e.g. expr_gen:3-8) -> that tool is wrong whenever its output uses a swapped token")
+ap.add_argument('--init_inwire', default='', help='in-wire state to start from; rows mapped by tool name via --init_inwire_names')
+ap.add_argument('--init_inwire_names', default='calc,track_gen,order_gen,interval_gen,turtle_gen,truth_gen,expr_gen,calc_gen,bool_gen')
 ap.add_argument('--scramble', type=int, default=0, help='LIB: derange every non-calculator tool output')
 ap.add_argument('--impl_train', type=int, default=0, help='arm C: every BBH implant weight trainable (exact init, soft writer)')
 ap.add_argument('--impl_lr_reader', type=float, default=1e-4); ap.add_argument('--impl_lr_core', type=float, default=1e-4)
 ap.add_argument('--impl_lr_writer', type=float, default=1e-3); ap.add_argument('--impl_ste', type=int, default=0)
-ap.add_argument('--impl_freeze', default='', help='e.g. expr_gen:core')
+ap.add_argument('--impl_freeze', default='expr_gen:reader,expr_gen:core,calc_gen:reader,calc_gen:core', help='e.g. expr_gen:core')
 ap.add_argument('--_dummy_after_freeze', type=int, default=0); ap.add_argument('--impl_gain', type=float, default=0.0, help='0: calibrate')
 ap.add_argument('--task', default='gsm', choices=['gsm', 'mixed']); ap.add_argument('--host', default='Qwen/Qwen3-0.6B-Base')
 ap.add_argument('--S_max', type=int, default=544); ap.add_argument('--plain', type=int, default=0, help='1: tools attached but never on (plain RL arm)')
 ap.add_argument('--dev_mixed_n', type=int, default=400)
 ap.add_argument('--no_test', type=int, default=0); ap.add_argument('--bench', type=int, default=0)
-ap.add_argument('--dump_ref', type=int, default=0); ap.add_argument('--misfire_probe', type=int, default=0)
+ap.add_argument('--dump_ref', type=int, default=0); ap.add_argument('--snap_stats', type=int, default=0); ap.add_argument('--calc_diag_texts', type=int, default=0); ap.add_argument('--calc_diag', type=int, default=0); ap.add_argument('--misfire_probe', type=int, default=0)
 ap.add_argument('--probe_tool', default='', help='TOOL:SUBPREFIX, e.g. order_gen:order (u0 LOO on those test items)')
 ap.add_argument('--deadline', default='', help='HH:MM UTC; at u5 cut prompts/update so the run (incl. final evals) fits')
 ap.add_argument('--hf_check', type=int, default=1, help='u1: |logp sampler - logp HF teacher-forced| on sampled tokens')
 ap.add_argument('--loo_at', default='', help='LIB: leave-one-out dev evals at these updates (default: final)')
 ap.add_argument('--ifdir', default=os.environ.get('IFDIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'ifeval', 'heldout')))
 a = ap.parse_args()
+if a.resume_every < 0: a.resume_every = 50 if a.updates >= 100 else (25 if a.updates >= 50 else 0)   # auto: resumable every 50 (25 for short runs)
 os.makedirs(a.run_dir, exist_ok=True)
 json.dump(vars(a), open(f'{a.run_dir}/config.json', 'w'), indent=1)
 random.seed(a.seed); torch.manual_seed(a.seed)
 dev = 'cuda'
+if a.mem_gb: torch.cuda.set_per_process_memory_fraction(min(1.0, a.mem_gb * 1e9 / torch.cuda.get_device_properties(0).total_memory))
 torch.backends.cuda.matmul.allow_tf32 = False
 
 # ---- arm -> config ----
@@ -129,8 +139,8 @@ DEFAULT_SPEC = {'W3e': 'calc:7:emb:0.1,calc:14:emb:0.1,calc:21:emb:0.1',
                 'CWout': 'calc:final:warm:1,calc:7:cw,calc:14:cw,calc:21:cw,calc:final:cw',
                 'CWin': 'calc:final:warm:1'}
 TOOL_NAMES = [x for x in a.tools.split(',') if x] if a.arm == 'LIB' else []
-if a.arm == 'LIB':          # CW-lean wiring per tool: out-adapters at L14 + final (zero-init B) + in-wire; calc keeps CW-lean's write
-    DEFAULT_SPEC['LIB'] = ','.join(['calc:final:warm:1', 'calc:14:cw', 'calc:final:cw'] + [f'{n}:14:cw,{n}:final:cw' for n in TOOL_NAMES]
+if a.arm == 'LIB':          # CW-lean wiring per tool (arm C with --impl_train: calc writes through its own soft D, no warm link): out-adapters at L14 + final (zero-init B) + in-wire; calc keeps CW-lean's write
+    DEFAULT_SPEC['LIB'] = ','.join(([] if a.impl_train else ['calc:final:warm:1']) + ['calc:14:cw', 'calc:final:cw'] + [f'{n}:14:cw,{n}:final:cw' for n in TOOL_NAMES]
                                    + (['ifeval_prev:14:cw', 'ifeval:final:cw'] if a.ifeval else []))
 USE_WRITE = a.arm in ('2', 'R', 'W2', 'W1', 'W4', 'CWinR', 'CWinP', 'CWinC', 'CWinO')
 #   CWinO: exact on * and /, deranged on + and - (competence map orthogonal to usefulness-by-size)
@@ -209,7 +219,37 @@ if HAS_IMPL:
                     p_ = torch.randperm(no, generator=g_)
                     if not (p_ == torch.arange(no)).any(): break
                 perm = p_.to(dev)
+            if a.corrupt and a.corrupt.split(':')[0] == n:     # swap output token rows -> wrong whenever a swapped token is written
+                ids_ = (E0.float() @ M_.out_dirs.float().T).argmax(0).tolist()           # token each output row writes
+                perm = torch.arange(len(ids_))
+                for pr in a.corrupt.split(':')[1].split(','):
+                    x_, y_ = pr[0], pr[2]; tx, ty = tok.encode(x_)[0], tok.encode(y_)[0]   # single-char pair 'a-b' (b may be '-')
+                    ix, iy = ids_.index(tx), ids_.index(ty); perm[ix], perm[iy] = iy, ix
+                perm = perm.to(dev); print('CORRUPT', n, a.corrupt, 'rows changed', int((perm != torch.arange(len(ids_), device=dev)).sum()), flush=True)
             TOOLS.append(BBHTool(n, M_, a.B_max, perm=perm))
+        if a.distractors or a.distr_harmful:                # irrelevant implants: deranged reader symbols + deranged outputs
+            import copy as _cpd
+            shallow = [n for n in ('track_gen', 'order_gen', 'interval_gen', 'turtle_gen', 'truth_gen') if n in TOOL_NAMES]
+            gd_ = torch.Generator().manual_seed(9001)
+            for k_ in range(a.distractors + a.distr_harmful):
+                n = shallow[k_ % len(shallow)] if k_ < a.distractors else 'calc_gen'
+                src_ = A_bbh.nets[n]; nets_ = [getattr(x_, 'net', x_) for x_ in (src_.stack1, src_.stack2)]
+                caches_ = [x_._csr for x_ in nets_]
+                for x_ in nets_: x_._csr = {}
+                M_ = _cpd.deepcopy(src_)
+                for x_, c_ in zip(nets_, caches_): x_._csr = c_
+                ns_ = M_.reader_w.shape[0]
+                while True:
+                    ps_ = torch.randperm(ns_, generator=gd_)
+                    if not (ps_ == torch.arange(ns_)).any(): break
+                with torch.no_grad():
+                    M_.reader_w.copy_(M_.reader_w[ps_.to(M_.reader_w.device)]); M_.reader_b.copy_(M_.reader_b[ps_.to(M_.reader_b.device)])
+                no = M_.out_dirs.shape[0]
+                while True:
+                    po_ = torch.randperm(no, generator=gd_)
+                    if not (po_ == torch.arange(no)).any(): break
+                M_.name = f'{n}~d{k_}'
+                TOOLS.append(BBHTool(f'{n}~d{k_}', M_, a.B_max, perm=po_.to(dev)))
         print('BBH tools:', [(t.name, t.n_out, t.K, t.Wn, t.dS) for t in TOOLS], 'veto', veto_bbh, flush=True)
         if a.ifeval:
             import importlib.util
@@ -359,8 +399,20 @@ if HAS_LINKS:
     torch.manual_seed(a.seed)
     if a.init_links:                  # start from saved links; their values become the new reference init (g0, W0)
         sd = torch.load(a.init_links, map_location=dev)
+        on_l = a.init_inwire_names.split(',')
         for k, lk in links.items():
-            lk.load_state_dict(sd[str(k)], strict=False)   # older files lack the lg0 buffer
+            sdk = sd[str(k)]
+            if isinstance(lk, LinkSum) and a.init_inwire:   # phantom runs: tool set differs -> map entries by source name
+                n_saved = len({kk.split('.')[1] for kk in sdk if kk.startswith('ls.')}); off = n_saved - len(on_l)
+                for j_, l_ in enumerate(lk.ls):
+                    src_ = getattr(l_, 'src', None)
+                    i_ = j_ if j_ < off else (off + on_l.index(src_) if src_ in on_l else None)
+                    if i_ is None: continue
+                    sub = {kk[len(f'ls.{i_}.'):]: v_ for kk, v_ in sdk.items() if kk.startswith(f'ls.{i_}.')}
+                    l_.load_state_dict(sub, strict=False)
+                print('links', k, 'name-mapped from', a.init_links, [getattr(l_, 'src', None) for l_ in lk.ls], 'offset', off, flush=True)
+                continue
+            lk.load_state_dict(sdk, strict=False)   # older files lack the lg0 buffer
             for l in (lk.ls if isinstance(lk, LinkSum) else [lk]):
                 if isinstance(l, Link): l.g0.copy_(l.gate.detach()); l.W0.copy_(l.W.detach())
         print('links initialised from', a.init_links, flush=True)
@@ -391,6 +443,12 @@ class MultiInWire(nn.Module):
 TNAMES = (['calc'] + [t_.name for t_ in TOOLS] + (['ifeval'] if IFT is not None else [])) if a.arm == 'LIB' else ['calc']
 NT = len(TNAMES)
 INW = (MultiInWire(a.iw_layer, Q.D, NT) if a.arm == 'LIB' else InWire(a.iw_layer, Q.D)) if HAS_INWIRE else None
+if a.init_inwire and INW is not None:               # phantom-limb runs: start from a trained in-wire, rows mapped by tool name
+    sd_iw = torch.load(a.init_inwire, map_location=dev); on_ = a.init_inwire_names.split(',')
+    with torch.no_grad():
+        for i_, n_ in enumerate(TNAMES[:INW.nt]):
+            if n_ in on_: INW.b[i_] = sd_iw['b'][on_.index(n_)]; INW.v[i_] = sd_iw['v'][on_.index(n_)]
+    print('in-wire initialised from', a.init_inwire, 'rows', [n_ for n_ in TNAMES[:INW.nt] if n_ in on_], flush=True)
 if INW is not None: INW.eps = a.iw_eps
 
 
@@ -452,6 +510,13 @@ if a.impl_train:
         frz_ = [x.split(':')[1] for x in a.impl_freeze.split(',') if x and x.split(':')[0] == t_.name]
         TT.append(TrainableTool(t_, gain_target=gsel, ste_reader=bool(a.impl_ste), freeze=frz_))
         print('impl_train:', t_.name, 'soft gain', gsel, flush=True)
+    class _CalcAd:                           # calc_tag implant seen as a tool for TrainableTool
+        name = 'calc'; perm = None; fast1 = None
+        def __init__(s_, imp_): s_.M = imp_.M; s_.Kt = (imp_.K + imp_.W) * 4; s_.D = torch.zeros_like(imp_.D).float(); s_.imp = imp_
+    CALC_AD = _CalcAd(imp)
+    TT_CALC = TrainableTool(CALC_AD, gain_target=(a.impl_gain or 40.0), ste_reader=bool(a.impl_ste),
+                            freeze=[x.split(':')[1] for x in a.impl_freeze.split(',') if x and x.split(':')[0] == 'calc'])
+    print('impl_train: calc soft gain', a.impl_gain or 40.0, flush=True)
     for tt_ in TT: groups.extend(tt_.groups(a.impl_lr_reader, a.impl_lr_core, a.impl_lr_writer, a.link_eps))
     opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8); base_lrs = [g['lr'] for g in opt.param_groups]
 DRIFT_STREAMS = None
@@ -473,9 +538,12 @@ def impl_drift():
         ids_ = torch.cat([torch.full((DRIFT_STREAMS.shape[0], Kt_), 151643, device=dev), DRIFT_STREAMS], 1)
         out[tt_.t.name] = tt_.drift(E0[ids_], head, tt_.out_ids) | dict(log_gain=float(tt_.log_gain))
     return out
-IMPL_PARAMS = [p_ for tt_ in TT for gr_ in tt_.groups(0, 0, 0, 0) for p_ in gr_['params']]
+if TT: groups.extend(TT_CALC.groups(a.impl_lr_reader, a.impl_lr_core, a.impl_lr_writer, a.link_eps)); opt = torch.optim.AdamW(groups, betas=(0.9, 0.95), weight_decay=0.0, eps=1e-8); base_lrs = [g['lr'] for g in opt.param_groups]
+TTA = TT + ([TT_CALC] if TT else [])          # all trainable implants (BBH tools + calc)
+IMPL_PARAMS = [p_ for tt_ in TTA for gr_ in tt_.groups(0, 0, 0, 0) for p_ in gr_['params']]
 if a.arm == 'LIB':
     eng = LibEngine(W, pre, tok, imp, TOOLS, IFT, E0, links=links, B_max=a.B_max, S_max=a.S_max)
+    if TT: eng.calc_D = CALC_AD.D                # arm C: calc's soft trainable write (refreshed in place)
     eng.chat_stop = MIXED
     eng.imp_on = not a.plain
 else:
@@ -552,7 +620,7 @@ N_WIRE = sum(p.numel() for _, l in (_all_links() if links else []) for p in (l.g
          (sum(p.numel() for p in INW.parameters()) if INW is not None else 0) + (Dp.numel() if TRAIN_IMPL else 0)
 N_IMPL = 0
 if HAS_IMPL:
-    N_IMPL = int(imp.M.stack1.nnz + imp.M.stack2.nnz + (imp.M.reader_w != 0).sum() + (imp.M.reader_b != 0).sum() + (imp.D != 0).sum())
+    N_IMPL = int(getattr(imp.M.stack1, 'net', imp.M.stack1).nnz + getattr(imp.M.stack2, 'net', imp.M.stack2).nnz + (imp.M.reader_w != 0).sum() + (imp.M.reader_b != 0).sum() + (imp.D != 0).sum())
 if a.arm == 'LIB':
     for t_ in TOOLS:
         M_ = t_.M; nn_ = 0
@@ -819,19 +887,20 @@ def _restore_wiring(sv):
 @torch.no_grad()
 def _swap_impl():                              # original implants (arm C): copy frozen weights in, keep the trained ones
     sv = []
-    for tt_ in TT:
+    for tt_ in TTA:
         M, F0 = tt_.t.M, tt_.frozen
         cur = {n_: p_.detach().clone() for n_, p_ in M.named_parameters()}
         cur['_dirs'] = tt_.dirs.detach().clone(); cur['_lg'] = tt_.log_gain.detach().clone(); sv.append(cur)
         f0 = dict(F0.named_parameters()); f0.update(dict(F0.named_buffers()))
         for n_, p_ in M.named_parameters():
-            if n_ in f0: p_.copy_(f0[n_].to(p_.dtype))
+            k_ = n_.replace('stack2.net.', 'stack2.')
+            if k_ in f0: p_.copy_(f0[k_].to(p_.dtype))
         tt_.dirs.copy_(F0.out_dirs.float() if tt_.t.perm is None else F0.out_dirs.float()[tt_.t.perm]); tt_.log_gain.fill_(math.log(float(F0.gain)))
         tt_.refresh()
     return sv
 @torch.no_grad()
 def _restore_impl(sv):
-    for tt_, cur in zip(TT, sv):
+    for tt_, cur in zip(TTA, sv):
         for n_, p_ in tt_.t.M.named_parameters(): p_.copy_(cur[n_])
         tt_.dirs.copy_(cur['_dirs']); tt_.log_gain.copy_(cur['_lg']); tt_.refresh()
 @torch.no_grad()
@@ -850,7 +919,7 @@ def save(tag):
     if links: torch.save({str(k): lk.state_dict() for k, lk in links.items()}, f'{d}/links.pt')
     if INW is not None: torch.save(INW.state_dict(), f'{d}/inwire.pt')
     if TT: torch.save({tt_.t.name: dict(params={n_: p_.detach().cpu() for n_, p_ in tt_.t.M.named_parameters()},
-                                         dirs=tt_.dirs.detach().cpu(), log_gain=tt_.log_gain.detach().cpu()) for tt_ in TT}, f'{d}/implants.pt')
+                                         dirs=tt_.dirs.detach().cpu(), log_gain=tt_.log_gain.detach().cpu()) for tt_ in TTA}, f'{d}/implants.pt')
     if TRAIN_IMPL: torch.save(Dp.detach().cpu(), f'{d}/Dp.pt')
     open(f'{d}/DONE', 'w').close()
 
@@ -911,7 +980,10 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
                 def packed(eb_, nf_):
                     return torch.cat([eb_[j, :n] for j, n in enumerate(lens)] + [torch.zeros(Ltot - sum(lens), nf_, device=dev)])
                 full = torch.cat([eng.tool_prefix[None].expand(len(seqs), -1), full0], 1)
-                Es = {'calc': packed(imp.full(W['E'][full[:, eng.Lt - Kt:]])[:, Kt:] * eng.tool_on[0], imp.n_out)}
+                if getattr(imp, 'tagf', False):
+                    Kt4 = Kt * 4; Es = {'calc': packed(imp.emit_ids(full[:, eng.Lt - Kt4:])[:, Kt4:].float() * eng.tool_on[0], imp.n_out)}
+                else:
+                    Es = {'calc': packed(imp.full(W['E'][full[:, eng.Lt - Kt:]])[:, Kt:] * eng.tool_on[0], imp.n_out)}
                 tf_ = eng.tool_feats(full, eng.Lt)
                 for t_ in TOOLS: Es[t_.name] = packed(tf_[t_.name], t_.n_out)
                 if IFT is not None:                                # recorded IF writes (sparse) at response positions
@@ -942,6 +1014,7 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
                 for k_, n in enumerate(TNAMES): Es[n] = Es[n] * keep[:, k_:k_ + 1].to(Es[n].dtype)
                 fwrite = torch.zeros(Ltot, Q.D, device=dev)
                 for t_ in TOOLS: fwrite += Es[t_.name] @ t_.D
+                if getattr(eng, 'calc_D', None) is not None: fwrite += Es['calc'] @ eng.calc_D
                 feat = {n: Es[n][None] for n in ('calc',) + tuple(t_.name for t_ in TOOLS)}
                 if IFT is not None:
                     fwrite += Es['ifeval']
@@ -952,13 +1025,25 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
                     feat['ifeval'] = fi_[None]; feat['ifeval_prev'] = fp_[None]
                 fwrite = fwrite[None]
                 e = feat['calc']
-            if TT:                                     # arm C: recompute the BBH tools' features WITH grad (same keep mask)
+            if TT:                                     # arm C: implant features WITH grad, only where a tool fired (window per firing
+                # position: e at p depends on the last K+W tokens only); silent positions keep the exact detached value (0).
+                pk_seq = torch.cat([torch.full((n_,), j_, dtype=torch.long) for j_, n_ in enumerate(lens)])
+                pk_pos = torch.cat([torch.arange(n_) for n_ in lens])
+                def _grad_feat(name_, Edet, win_fn, Kw):
+                    fp = (Edet.abs().sum(-1) > 0).nonzero()[:, 0]
+                    if fp.numel() == 0: return Edet
+                    fpc = fp.cpu(); sj, tp = pk_seq[fpc], pk_pos[fpc]
+                    cols = (eng.Lt + tp)[:, None] + torch.arange(-Kw, 1)[None]          # (n, Kw+1) columns in `full`
+                    win = full[sj.to(dev)[:, None], cols.to(dev)]
+                    outs = [checkpoint(win_fn, win[c_:c_ + 16], use_reentrant=False) for c_ in range(0, win.shape[0], 16)]
+                    ew = torch.cat(outs)[:, -1].float()
+                    return Edet.detach().index_put((fp,), ew * (Edet[fp].abs().sum(-1, keepdim=True) > 0).float())
                 fwrite = torch.zeros(Ltot, Q.D, device=dev)
                 for k_t, (t_, tt_) in enumerate(zip(TOOLS, TT)):
-                    sl_ = full[:, eng.Lt - t_.Kt:]
-                    eg_ = t_.M.emit(E0[sl_])[0][:, t_.Kt:].float() * eng.tool_on[1 + k_t]
-                    Eg = packed(eg_, t_.n_out) * keep[:, 1 + k_t:2 + k_t].to(torch.float32)
+                    Eg = _grad_feat(t_.name, Es[t_.name], lambda w_, M_=t_.M: M_.emit(E0[w_])[0], t_.Kt)
                     feat[t_.name] = Eg[None]; fwrite = fwrite + Eg @ tt_.D_eff().float()
+                Ec = _grad_feat('calc', Es['calc'], lambda w_: imp.emit_ids(w_), Kt * 4)
+                feat['calc'] = Ec[None]; fwrite = fwrite + Ec @ TT_CALC.D_eff().float()
                 fwrite = fwrite[None]
         hcap = None
         if INW is not None:
@@ -1054,13 +1139,26 @@ def train_step(batch_q, batch_r, old_lp, adv, n_total_rows, batch_dec=None, batc
     gn = torch.nn.utils.clip_grad_norm_(tp, 1.0)
     if TT:                                             # per-group gradient norms (which implant parts get real gradient)
         st['impl_grad'] = {}
-        for tt_ in TT:
+        for tt_ in TTA:
             for gr_ in tt_.groups(0, 0, 0, 0):
                 gs_ = [p_.grad.detach().float().norm() for p_ in gr_['params'] if p_.grad is not None]
                 st['impl_grad'][gr_['name']] = float(torch.stack(gs_).norm()) if gs_ else 0.0
-        torch.nn.utils.clip_grad_norm_(IMPL_PARAMS, 1.0)
+        for tt_ in TTA:                                # per-group clip (one implant's huge grad must not rescale the others)
+            for gr_ in tt_.groups(0, 0, 0, 0):
+                ps_ = [p_ for p_ in gr_['params'] if p_.grad is not None]
+                for p_ in ps_: torch.nan_to_num_(p_.grad, nan=0.0, posinf=0.0, neginf=0.0)
+                if ps_: torch.nn.utils.clip_grad_norm_(ps_, 1.0)
+    if TT: _pre = {id(p_): p_.detach().clone() for p_ in IMPL_PARAMS}
     opt.step(); opt.zero_grad(set_to_none=True)
-    for tt_ in TT: tt_.refresh()
+    for tt_ in TTA: tt_.refresh()
+    if TT:                                             # health: nonfinite / largest relative move per implant group, nonfinite host
+        hz = {}
+        for g_ in opt.param_groups:
+            nf = sum(int((~torch.isfinite(p_)).sum()) for p_ in g_['params'])
+            mv = max((float((p_.detach() - _pre[id(p_)]).abs().max()) for p_ in g_['params'] if id(p_) in _pre), default=0.0)
+            if id(g_['params'][0]) in _pre: hz[g_.get('name', f'g{len(hz)}')] = dict(nonfinite=nf, abs_move=mv)
+        hz['host_nonfinite'] = sum(int((~torch.isfinite(v)).sum()) for v in P32.values()) if not a.freeze_host else 0
+        st['health'] = hz; del _pre
     with torch.no_grad():   # decoupled L1 on out-wire gates (plain SGD on b_g: lr * lambda * mean g(1-g)), not via Adam
         for _, w_ in _all_cw():
             if getattr(w_, '_l1n', 0):
@@ -1081,12 +1179,12 @@ def hf_check(qids, out, G, nrows=48):
     for j in rows:
         q = qids[j // G]; r = out['tokens'][j]; d = out['dec'][j].to(torch.int64)
         seq = torch.tensor(eng.prefix_ids.tolist() + q + r, device=dev)[None]
-        seqt = torch.cat([eng.tool_prefix[:256][None], seq], 1)        # same padded stream the engine's tools see
+        seqt = torch.cat([eng.tool_prefix[:512][None], seq], 1)        # same padded stream the engine's tools see
         L0 = Lp + len(q)
         T_ = seq.shape[1]
-        e_c = imp.full(W['E'][seqt])[:, 256:]                         # calc (live host embedding, as in decode)
+        e_c = (imp.emit_ids(seqt) if getattr(imp, 'tagf', False) else imp.full(W['E'][seqt]))[:, 512:]                         # calc (live host embedding, as in decode)
         Es = {'calc': e_c[0] * eng.tool_on[0]}
-        for t_ in TOOLS: Es[t_.name] = t_.full(E0[seqt])[0, 256:] * eng.tool_on[1 + TOOLS.index(t_)]
+        for t_ in TOOLS: Es[t_.name] = t_.full(E0[seqt])[0, 512:] * eng.tool_on[1 + TOOLS.index(t_)]
         if IFT is not None:
             wif = torch.zeros(T_, Q.D, device=dev); pz, vz = out['ifw'][j]
             if len(pz): wif[L0 - 1 + pz.to(dev)] = vz.to(dev)
@@ -1133,6 +1231,76 @@ def hf_check(qids, out, G, nrows=48):
     return res
 
 
+def _opt_params():
+    return [p_ for g_ in opt.param_groups for p_ in g_['params']]
+
+
+def _mods_state():
+    m_ = {}
+    if links: m_['links'] = {str(k): lk.state_dict() for k, lk in links.items()}
+    if INW is not None: m_['inw'] = INW.state_dict()
+    m_['cw'] = [w_.state_dict() for _, w_ in _all_cw()]
+    return m_
+
+
+RES_BASE = a.resume_dir or a.run_dir
+os.makedirs(RES_BASE, exist_ok=True)
+
+
+def save_resume(u, init_wiring):
+    """Resumable state: every optimized tensor in fp32, Adam moments in bf16 (disk), module buffers, RNG, INIT_WIRING.
+    Written to resume_new, then swapped in (the old copy is deleted first only when the disk is short)."""
+    import shutil
+    try:
+        d = f'{RES_BASE}/resume_new'; shutil.rmtree(d, ignore_errors=True); os.makedirs(d)
+        if shutil.disk_usage(RES_BASE).free < 7e9: shutil.rmtree(f'{RES_BASE}/resume', ignore_errors=True)
+        ps_ = _opt_params()
+        torch.save([p_.detach().float().cpu() for p_ in ps_], f'{d}/params.pt')
+        osd = opt.state_dict()      # NOTE: its inner state dicts are the LIVE optimizer's; copy, never assign into them
+        osd = dict(param_groups=osd['param_groups'],
+                   state={i_: {k_: (v_.detach().to(torch.bfloat16).cpu() if k_ in ('exp_avg', 'exp_avg_sq') else v_) for k_, v_ in st_.items()}
+                          for i_, st_ in osd['state'].items()})
+        torch.save(osd, f'{d}/opt.pt'); del osd
+        torch.save(dict(u=u, mods=_mods_state(), init_wiring=init_wiring, py_rng=random.getstate(), t_rng=torch.get_rng_state(),
+                        c_rng=torch.cuda.get_rng_state_all(), n_params=len(ps_),
+                        eng_seed=(eng.seed.detach().cpu().clone() if torch.is_tensor(getattr(eng, 'seed', None)) else getattr(eng, 'seed', None))), f'{d}/meta.pt')
+        chk = torch.load(f'{d}/params.pt'); assert len(chk) == len(ps_) and all(c_.shape == p_.shape for c_, p_ in zip(chk, ps_)); del chk
+        open(f'{d}/DONE', 'w').close()
+        shutil.rmtree(f'{RES_BASE}/resume', ignore_errors=True); os.rename(d, f'{RES_BASE}/resume')
+        log({'resume_saved': u}); print('RESUME saved u', u, flush=True)
+    except Exception as e_:
+        log({'resume_save_error': repr(e_), 'u': u}); print('RESUME SAVE ERROR', repr(e_), flush=True)
+
+
+def load_resume():
+    d = f'{RES_BASE}/resume'
+    if not (a.resume_every and os.path.exists(f'{d}/DONE')): return 0, None
+    meta = torch.load(f'{d}/meta.pt', weights_only=False)
+    ps_ = _opt_params(); src = torch.load(f'{d}/params.pt')
+    assert len(src) == len(ps_) == meta['n_params']
+    with torch.no_grad():
+        for p_, s_ in zip(ps_, src): p_.copy_(s_.to(p_.device, p_.dtype))
+    osd = torch.load(f'{d}/opt.pt')
+    for st_ in osd['state'].values():
+        for k_ in ('exp_avg', 'exp_avg_sq'):
+            if k_ in st_: st_[k_] = st_[k_].float()
+    opt.load_state_dict(osd)
+    m_ = meta['mods']
+    if 'links' in m_:
+        for k, lk in links.items(): lk.load_state_dict(m_['links'][str(k)])
+    if 'inw' in m_: INW.load_state_dict(m_['inw'])
+    for (_, w_), sd_ in zip(_all_cw(), m_['cw']): w_.load_state_dict(sd_)
+    for tt_ in TTA if TT else []: tt_.refresh()
+    sync_weights()
+    es_ = meta.get('eng_seed')
+    if es_ is not None:
+        if torch.is_tensor(getattr(eng, 'seed', None)): eng.seed.copy_(es_.to(eng.seed.device))
+        else: eng.seed = es_
+    random.setstate(meta['py_rng']); torch.set_rng_state(meta['t_rng']); torch.cuda.set_rng_state_all(meta['c_rng'])
+    log({'resumed_from': meta['u']}); print('RESUMED from u', meta['u'], flush=True)
+    return meta['u'], meta['init_wiring']
+
+
 # ------------------------------------------------------------------ main loop
 DEV_EXTRA = {int(x) for x in a.dev_extra.split(',') if x}
 t_start = time.time()
@@ -1148,7 +1316,35 @@ if a.eval_ckpt:            # one-shot test evaluation of a saved checkpoint (wir
         INW.load_state_dict(torch.load(f'{a.eval_ckpt}/inwire.pt', map_location=dev))
     if TRAIN_IMPL and os.path.exists(f'{a.eval_ckpt}/Dp.pt'):
         Dp.data.copy_(torch.load(f'{a.eval_ckpt}/Dp.pt').to(dev))
+    if TT and os.path.exists(f'{a.eval_ckpt}/implants.pt'):         # arm C: trained implant weights
+        imp_sd = torch.load(f'{a.eval_ckpt}/implants.pt', map_location=dev)
+        with torch.no_grad():
+            for tt_ in TTA:
+                sd_ = imp_sd[tt_.t.name]
+                for n_, p_ in tt_.t.M.named_parameters(): p_.copy_(sd_['params'][n_].to(p_.dtype))
+                tt_.dirs.copy_(sd_['dirs']); tt_.log_gain.copy_(sd_['log_gain']); tt_.refresh()
     sync_weights()
+    if a.snap_stats and TT:                 # how often the snap changes the forward output vs the raw trained stack value
+        out_ = {}
+        ids_s = DRIFT_STREAMS
+        for tt_ in TTA:
+            M = tt_.t.M
+            if tt_.t.name == 'calc': continue
+            Kt_ = tt_.t.Kt
+            emb_ = E0[torch.cat([torch.full((ids_s.shape[0], Kt_), 151643, device=dev), ids_s], 1)]
+            with torch.no_grad():
+                sym = M.symbols(emb_); win = M.windows(sym); S = M.stack1(win); C_ = M.attend(S, sym[..., M.key])
+                raw = M.stack2.net(torch.cat([win, C_], -1)) if hasattr(M.stack2, 'net') else M.stack2(torch.cat([win, C_], -1))
+                hard = M.stack2(torch.cat([win, C_], -1))
+                e0_, _ = tt_.frozen.emit(emb_)
+            ch = ((raw - hard).abs().amax(-1) > 1e-6)
+            fire0 = e0_.abs().sum(-1) > 0
+            out_[tt_.t.name] = dict(positions=int(ch.numel()), snap_changes_frac=float(ch.float().mean()),
+                                    max_dev=float((raw - hard).abs().max()), firing_orig=int(fire0.sum()),
+                                    snap_changes_at_firing=float(ch[fire0].float().mean()) if fire0.any() else None,
+                                    near_threshold_frac=float(((raw.amax(-1) > 0.3) & (raw.amax(-1) < 0.7)).float().mean()))
+            print('SNAP', tt_.t.name, out_[tt_.t.name], flush=True)
+        json.dump(out_, open(f'{a.run_dir}/snap_stats.json', 'w'), indent=1); sys.exit(0)
     if a.misfire_probe:                     # sampled rollouts (T, G) on TRAIN prompts: reward with vs without an off-type call
         rs_ = random.Random(99); out_mp = {}
         for t_, tools_ in (('ifeval', ['calc', 'expr_gen', 'track_gen']), ('bbh', ['calc'])):
@@ -1276,6 +1472,41 @@ if a.dump_ref:                              # bit-exactness reference for a new 
                notes='greedy; tool_fire_flags[t][i]=1 iff tool i (tnames order) wrote at the step producing token t (post in-wire); '
                      'inwire_dec 1 fire / 2 veto at burst starts; in-wires at init (fire at greedy); wires zero-init')
     json.dump(ref, open(f'{a.run_dir}/engine_reference.json', 'w')); print('DUMPED', len(items), flush=True); sys.exit(0)
+if a.calc_diag and os.environ.get('FORCE_FIRE'):   # diagnostic: every in-wire always fires (no sampled vetoes)
+    with torch.no_grad(): INW.b.fill_(30.0); INW.eps = 0.0
+if a.calc_diag:                             # <calc> vs plain-equation style on GSM: sampled rows (G, T), reward, exactness, length
+    import re as _re
+    rs_ = random.Random(31); items = [r for r in TESTSET if r['type'] == 'gsm']; rs_.shuffle(items); items = items[:a.calc_diag]
+    o_ = eng.generate([QID(r) for r in items], G=a.G, T=a.T, max_new=a.max_new)
+    rows_ = []; MIS = []
+    CALLRE = _re.compile(r'<calc>(.*?)</calc>(.{0,24})', _re.S)
+    for j, t in enumerate(o_['tokens']):
+        r = items[j // a.G]; txt = tok.decode(t); rw = SCORE(t, r)[0]
+        calls = _re.findall(r'<calc>\s*(-?[\d.]+)\s*([-+*/])\s*(-?[\d.]+)\s*</calc>\s*(-?[\d.,]*)', txt)
+        eqs = _re.findall(r'(?<![\w<])(-?[\d.,]+)\s*([-+*/x\u00d7])\s*(-?[\d.,]+)\s*=\s*\$?(-?[\d.,]+)', txt)
+        style = 'calc' if calls else ('plain_eq' if eqs else 'none')
+        bad = 0
+        for A_, op, B_, R_ in calls:
+            try:
+                A2, B2 = float(A_), float(B_); want = {'+': A2 + B2, '-': A2 - B2, '*': A2 * B2, '/': A2 / B2 if B2 else float('nan')}[op]
+                got = float(R_.replace(',', '')) if R_ else float('nan')
+                if not (abs(got - want) <= 1e-6 * max(1, abs(want)) or (op == '/' and abs(got - want) < 1e-6)):
+                    bad += 1; MIS.append(dict(A=A_, op=op, B=B_, R=R_, want=want))
+            except Exception:
+                bad += 1; MIS.append(dict(A=A_, op=op, B=B_, R=R_, want=None))
+        for m_ in CALLRE.finditer(txt): MIS.append(dict(raw_call=m_.group(1), after=m_.group(2))) if a.calc_diag_texts else None
+        rows_.append(dict(text=txt if a.calc_diag_texts else None, p=j // a.G, style=style, reward=rw, ntok=len(t), n_calls=len(calls), bad_calls=bad, n_eq=len(eqs)))
+    out_ = {}
+    for st_ in ('calc', 'plain_eq', 'none'):
+        rr = [x for x in rows_ if x['style'] == st_]
+        out_[st_] = dict(rows=len(rr), reward=sum(x['reward'] for x in rr) / max(1, len(rr)), mean_tokens=sum(x['ntok'] for x in rr) / max(1, len(rr)),
+                         calls=sum(x['n_calls'] for x in rr), wrong_calls=sum(x['bad_calls'] for x in rr))
+    diffs = []
+    for p_ in range(len(items)):
+        g = [x for x in rows_ if x['p'] == p_]; c_ = [x['reward'] for x in g if x['style'] == 'calc']; e_ = [x['reward'] for x in g if x['style'] == 'plain_eq']
+        if c_ and e_: diffs.append(sum(c_) / len(c_) - sum(e_) / len(e_))
+    out_['within_group_calc_minus_plain'] = dict(groups=len(diffs), diff=sum(diffs) / max(1, len(diffs)))
+    print('CALC_DIAG', json.dumps(out_), flush=True); json.dump(dict(summary=out_, rows=rows_, mismatches=MIS), open(f'{a.run_dir}/calc_diag.json', 'w')); sys.exit(0)
 if a.probe_tool:                            # u0 leave-one-out of one tool on its own items, outputs saved
     nm_, sub_ = a.probe_tool.split(':')
     items = [r for r in TESTSET if r['type'] in ('bbh', 'combo') and r.get('task', r.get('sub', '')).startswith(sub_)]
@@ -1319,28 +1550,33 @@ if a.bench:                                 # per-component decode-step cost (CU
         o_ = eng.generate(qs_, G=a.G, T=1.0, max_new=a.max_new); eng.imp_on = True
         print('BENCH generate', md, o_['stats'], flush=True)
     sys.exit(0)
+START_U, _INIT_W_RESUMED = load_resume()
 t_dev0 = time.time()
-res0 = evaluate(devset); res0.update(u=0, t=0); log({'dev': res0}); print('dev@0', res0, flush=True); LAST_DEV = res0
+res0 = {} if START_U else evaluate(devset)
+LAST_DEV = res0
+if not START_U: res0.update(u=0, t=0); log({'dev': res0}); print('dev@0', res0, flush=True)
 T_DEV = time.time() - t_dev0
-if imp is not None:
-    r = evaluate(devset, mode='hostonly', tag='devhost'); r.update(u=0); log({'dev_host_curve': r}); print('host-only@0', r, flush=True)
-    log_h0 = r['devhost_hash']
-    if HAS_EXTRA_LINKS:
-        r = evaluate(devset, mode='linksoff', tag='devlinksoff'); r.update(u=0); log({'dev_linksoff_curve': r})
-if a.arm == 'LIB':
-    r = evaluate(devset, mode='toolsoff', tag='devtoolsoff'); r.update(u=0); log({'dev_toolsoff0': r})
-    print('BITID u0: tools-off hash', r['devtoolsoff_hash'], 'host-only hash', log_h0, 'identical', r['devtoolsoff_hash'] == log_h0, flush=True)
-    log({'bitid_u0': dict(toolsoff=r['devtoolsoff_hash'], hostonly=log_h0, identical=r['devtoolsoff_hash'] == log_h0)})
-    if not MIXED:
-        r = evaluate(devset, mode='calconly', tag='devcalconly'); r.update(u=0); log({'dev_calconly': r}); print('calc-only@0', r, flush=True)
-if TT: d_ = impl_drift(); log({'impl_drift': d_, 'u': 0}); print('IMPL_DRIFT u0', d_, flush=True)
+if not START_U:
+    if imp is not None:
+        r = evaluate(devset, mode='hostonly', tag='devhost'); r.update(u=0); log({'dev_host_curve': r}); print('host-only@0', r, flush=True)
+        log_h0 = r['devhost_hash']
+        if HAS_EXTRA_LINKS:
+            r = evaluate(devset, mode='linksoff', tag='devlinksoff'); r.update(u=0); log({'dev_linksoff_curve': r})
+    if a.arm == 'LIB':
+        r = evaluate(devset, mode='toolsoff', tag='devtoolsoff'); r.update(u=0); log({'dev_toolsoff0': r})
+        print('BITID u0: tools-off hash', r['devtoolsoff_hash'], 'host-only hash', log_h0, 'identical', r['devtoolsoff_hash'] == log_h0, flush=True)
+        log({'bitid_u0': dict(toolsoff=r['devtoolsoff_hash'], hostonly=log_h0, identical=r['devtoolsoff_hash'] == log_h0)})
+        if not MIXED:
+            r = evaluate(devset, mode='calconly', tag='devcalconly'); r.update(u=0); log({'dev_calconly': r}); print('calc-only@0', r, flush=True)
+    if TT: d_ = impl_drift(); log({'impl_drift': d_, 'u': 0}); print('IMPL_DRIFT u0', d_, flush=True)
 TRACK_DRIFT = TRAIN_IMPL or WARM_FINAL is not None
 if TRACK_DRIFT: d0 = writer_drift(); log({'drift': {**d0, 'u': 0}}); print('drift@0', d0, flush=True)
 import copy as _copy
 INIT_WIRING = dict(links={k: _copy.deepcopy(lk.state_dict()) for k, lk in (links or {}).items()},
                    inw=_copy.deepcopy(INW.state_dict()) if INW is not None else None)
+if _INIT_W_RESUMED is not None: INIT_WIRING = _INIT_W_RESUMED
 UPD_T = []; P0_PROMPTS = a.prompts
-for u in range(1, a.updates + 1):
+for u in range(START_U + 1, a.updates + 1):
     for g, b in zip(opt.param_groups, base_lrs): g['lr'] = b * min(1.0, u / a.warmup)
     if a.deadline and (u == 5 or (u > 5 and u % 25 == 1)):   # fit before the deadline: fewer prompts, never fewer updates
         import datetime
@@ -1444,6 +1680,7 @@ for u in range(1, a.updates + 1):
         d_ = impl_drift(); log({'impl_drift': d_, 'u': u}); print('IMPL_DRIFT', u, {k: round(v.get('exact', -1), 4) for k, v in d_.items()}, flush=True)
     if u % a.ckpt_every == 0 or u == a.updates:
         save(f'step_{u:06d}')
+    if a.resume_every and u != a.updates and (u % a.resume_every == 0 or u == START_U + 1): save_resume(u, INIT_WIRING)
 # end-of-run ablations
 if MIXED and a.no_test:
     log({'DONE_RUN': time.time() - t_start}); print('DONE (pilot, no test)', time.time() - t_start, flush=True); sys.exit(0)

@@ -225,7 +225,7 @@ class LibEngine(Engine):
         self.if_prefix_state = None
         # tool/calc features see [256 x <|endoftext|>] + prefix (a short chat prefix is shorter than a tool's K+W window;
         # decode priming and teacher forcing use the same padded stream, so they agree)
-        self.tool_prefix = torch.cat([torch.full((256,), self.eos, device=self.dev, dtype=torch.long), self.prefix_ids])
+        self.tool_prefix = torch.cat([torch.full((512,), self.eos, device=self.dev, dtype=torch.long), self.prefix_ids])
         self.Lt = len(self.tool_prefix)
         self.exact_checks = {t.name: (t.check_exact(E0[self.prefix_ids][None]), getattr(t, 'fast1_check_rand', None))
                              for t in tools if t.fast1 is not None}
@@ -293,7 +293,7 @@ class LibEngine(Engine):
         feat = None; write = None; wf = None; dec = None; lpd = None; outs = {}; hn = None
         BM = self.B_max
         if on:
-            e0 = self.imp.step(emb, B) * self.tool_on[0]
+            e0 = self.imp.step(emb, B, tok) * self.tool_on[0]
             emb0 = self.E0[tok]
             hn = _lnorm(self.iw_h[:B])                                       # previous position's layer-L input
             groups, side, side_if = self._streams()
@@ -320,6 +320,8 @@ class LibEngine(Engine):
                 es = [e0] + [outs[j] for j in range(len(self.tools))]
                 es, dec, lpd, wf = self._decide(es, hn, B)
                 feat = {'calc': es[0]}
+                if getattr(self, 'calc_D', None) is not None:      # arm C: calc writes through its own (soft, trainable) D
+                    write = es[0] @ self.calc_D
                 for j, t in enumerate(self.tools):
                     feat[t.name] = es[j + 1]
                     w_ = es[j + 1] @ t.D
@@ -408,7 +410,7 @@ class LibEngine(Engine):
     def _mut(self):
         m = [self.tokb, self.slot, self.glen, self.done, self.out_tok, self.out_lp, self.out_w, self.out_wt, self.out_dec3]
         if self.imp_on:
-            m += [self.imp.sym_h, self.imp.S_h, self.imp.key_h]
+            m += [self.imp.sym_h, self.imp.S_h, self.imp.key_h] + ([self.imp.fst] if hasattr(self.imp, 'fst') else [])   # calc_tag filter state
             for t in self.tools: m += [t.sym_h, t.S_h, t.key_h]
             if self.mwire is not None: m += [self.iw_h, self.iw_prev, self.iw_sup]
             if self.iftool is not None:
@@ -491,10 +493,12 @@ class LibEngine(Engine):
         allrows = torch.cat(rows); src = torch.cat([torch.full((len(r),), p, device=self.dev) for p, r in enumerate(rows)])
         if on:
             full = torch.cat([self.tool_prefix[None].expand(P, -1), ids], 1)
-            Kc_ = self.imp.K + self.imp.W
+            TAG = getattr(self.imp, 'tagf', False)
+            Kc_ = (self.imp.K + self.imp.W) * (4 if TAG else 1)          # calc_tag: room for the skipped tag tokens
             tail = torch.stack([full[p, self.Lt + len(qids[p]) - Kc_:self.Lt + len(qids[p])] for p in range(P)])
             emb_tail = self.W['E'][tail]
-            ef = self.imp.full(self.W['E'][full[:, self.Lt - Kc_:]])[:, Kc_:] * self.tool_on[0]
+            if TAG: ef = self.imp.emit_ids(full[:, self.Lt - Kc_:])[:, Kc_:] * self.tool_on[0]
+            else: ef = self.imp.full(self.W['E'][full[:, self.Lt - Kc_:]])[:, Kc_:] * self.tool_on[0]
             feat = {'calc': ef}
             tf = self.tool_feats(full, self.Lt)
             feat.update(tf)
@@ -503,6 +507,7 @@ class LibEngine(Engine):
             write = torch.zeros(P, T, Q.D, device=self.dev)
             for i, t in enumerate(self.tools):
                 write[ar, lens - 1] += e_last[i + 1] @ t.D
+            if getattr(self, 'calc_D', None) is not None: write[ar, lens - 1] += e_last[0] @ self.calc_D
             if self.iftool is not None:
                 feat['ifeval_prev'] = torch.zeros(P, T, Q.D, device=self.dev)
                 feat['ifeval'] = feat['ifeval_prev']
@@ -527,7 +532,8 @@ class LibEngine(Engine):
                 self.iw_h[rr] = hc[ss].to(self.iw_h.dtype)
             del hn, kvs, r_
         if on:
-            self.imp.prime_rows(emb_tail[src], allrows)
+            if TAG: self.imp.prime_rows_ids(tail[src], allrows)
+            else: self.imp.prime_rows(emb_tail[src], allrows)
             full0 = full
             for t in self.tools:
                 tl = torch.stack([full0[p, self.Lt + len(qids[p]) - t.Kt:self.Lt + len(qids[p])] for p in range(P)])

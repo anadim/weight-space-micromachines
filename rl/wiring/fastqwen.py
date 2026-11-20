@@ -159,7 +159,7 @@ class Packer:
         return create_block_mask(self.mask_mod, 1, None, self.Ltot, self.Lp + self.Ltot, device=self.dev)
 
 
-def fwd_packed(W, ids, pos, bm, cos_t, sin_t, prefix_kv, links=None, feat=None, final_write=None, capture=None):
+def fwd_packed(W, ids, pos, bm, cos_t, sin_t, prefix_kv, links=None, feat=None, final_write=None, capture=None, pre_write=False):
     """ids (Ltot,) packed suffix tokens; prefix_kv list of (K,V) (KVH,Lp,HD). Returns normalized final hidden (Ltot, D)."""
     flex = _get_flex()
     x = W['E'][ids][None]                                  # (1,L,D)
@@ -184,7 +184,9 @@ def fwd_packed(W, ids, pos, bm, cos_t, sin_t, prefix_kv, links=None, feat=None, 
             x = layer(x, lw, Kp, Vp)
     if links is not None and 'final' in links:
         x = x + links['final'](feat, x).to(x.dtype)
+    x_pre = x                                         # host-only residual (before the calculator's final write)
     if final_write is not None:
         x = x + final_write.to(x.dtype)
+    if pre_write: return rms(x, W['lnf'])[0], rms(x_pre, W['lnf'])[0]
     if capture is not None: return rms(x, W['lnf'])[0], hcap
     return rms(x, W['lnf'])[0]

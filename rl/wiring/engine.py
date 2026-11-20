@@ -19,6 +19,7 @@ class Engine:
     def __init__(self, W, prefix_ids, tok, implant=None, links=None, B_max=512, S_max=544, use_write=True, sync_every=16,
                  kern='triton'):
         self.W, self.tok, self.imp, self.links = W, tok, implant, links
+        self.drop_p = 0.0                                   # tool dropout: P(implant disabled for a whole rollout row)
         if implant is not None and getattr(implant, 'tagf', False): implant.Eref = W['E']   # calc_tag filter feeds
         B_max = next(b for b in B_BUCKETS if b >= B_max)          # graphs run whole buckets
         self.use_write = use_write                    # False: implant runs (feature for links) but its designed write is off
@@ -35,6 +36,7 @@ class Engine:
         z = lambda *s, dt=torch.long: torch.zeros(*s, device=dev, dtype=dt)
         self.tokb, self.slot, self.glen, self.rowid = z(B_max), z(B_max), z(B_max), z(B_max)
         self.done = z(B_max, dt=torch.bool)
+        self.row_on = torch.ones(B_max, device=dev)               # tool dropout mask per live row (1 = implant on)
         self.temp = torch.ones((), device=dev); self.greedy = torch.zeros((), device=dev, dtype=torch.bool)
         self.maxnew = torch.zeros((), device=dev, dtype=torch.long)
         self.out_tok = self.out_lp = self.out_w = None
@@ -59,7 +61,7 @@ class Engine:
         self.imp_on = True                                  # False: host only (implant + links off), separate graphs
         self.Dp = None          # trainable-writer path (W1/W4): fp32 (n_out, d) buffer; when set the end write is e @ Dp
         self.inwire = None      # learned host->implant veto (CW arms); see set_inwire
-        self.partial = None     # partially broken calculator (CWinP); see set_partial
+        self.partial = None; self.partial_ops = None     # partially broken calculator (CWinP/CWinO); see set_partial
         self.stats = {}
         self.refresh()
 
@@ -162,7 +164,7 @@ class Engine:
         imp = self.imp if self.imp_on else None
         links = self.links if self.imp_on else None
         if imp is not None:
-            e = self.imp.step(emb, B, tok)
+            e = self.imp.step(emb, B, tok) * self.row_on[:B, None]
             feat = e
             if self.use_write: write = (e @ self.Dp) if self.Dp is not None else (self.imp.last_w if self.imp.fk is not None else e @ self.imp.D)
             wf = (e.abs().sum(-1) > 0).to(torch.int8)
@@ -243,7 +245,7 @@ class Engine:
         emb = W['E'][tok]
         feat = write = wf = None; dec = lpd = None
         if imp is not None:
-            e = imp.step(emb, B, tok)
+            e = imp.step(emb, B, tok) * self.row_on[:B, None]
             if self.inwire is not None: e, dec, lpd = self._inwire_step(e, B, tok)
             feat = e
             if self.use_write:
@@ -317,7 +319,7 @@ class Engine:
 
     def _mut(self):
         m = [self.tokb, self.slot, self.glen, self.done, self.out_tok, self.out_lp, self.out_w]
-        if self.imp is not None and self.imp_on: m += [self.imp.sym_h, self.imp.S_h, self.imp.key_h]
+        if self.imp is not None and self.imp_on: m += [self.imp.sym_h, self.imp.S_h, self.imp.key_h, self.imp.fst]
         if self.inwire is not None: m += [self.iw_h, self.iw_prev, self.iw_sup, self.out_dec, self.out_ops, self.out_iwl,
                                           self.out_run, self.out_span,
                                           self.iw_run, self.iw_max, self.iw_ops, self.iw_brk, self.iw_cop, self.iw_sop]
@@ -416,11 +418,12 @@ class Engine:
         self._alloc_out(max_new)
         N = len(qids) * G
         ppc = max(1, self.B_max // G)
-        res_tok, res_lp, res_w, res_d, res_o = [], [], [], [], []; res_i = []
+        res_tok, res_lp, res_w, res_d, res_o = [], [], [], [], []; res_i = []; res_on = []
         torch.cuda.synchronize(); t0 = time.time(); steps = 0
         for p0 in range(0, len(qids), ppc):
             qs = qids[p0:p0 + ppc]; n = len(qs) * G
             steps += self._wave(qs, G, T, max_new, greedy)
+            res_on += self._wave_on.tolist()
             ot, ol, ow, gl = self.out_tok[:n].cpu(), self.out_lp[:n].cpu(), self.out_w[:n].cpu(), self._glen_final.cpu()
             od = self.out_dec[:n].cpu(); oo = self.out_ops[:n].cpu()
             oi, orn, osp = self.out_iwl[:n].cpu(), self.out_run[:n].cpu(), self.out_span[:n].cpu()
@@ -432,7 +435,7 @@ class Engine:
         torch.cuda.synchronize(); dt = time.time() - t0
         ntok = sum(map(len, res_tok))
         self.stats = dict(seconds=dt, tokens=ntok, tok_s=ntok / dt, decode_steps=steps, rows=N)
-        return dict(tokens=res_tok, logp=res_lp, wflag=res_w, dec=res_d, ops=res_o, iw=res_i, stats=self.stats)
+        return dict(tokens=res_tok, logp=res_lp, wflag=res_w, dec=res_d, ops=res_o, iw=res_i, on=res_on, stats=self.stats)
 
     def _wave(self, qs, G, T, max_new, greedy):
         n = len(qs) * G; dev = self.dev; DUMMY = self.B_max
@@ -451,6 +454,8 @@ class Engine:
         self.rowid[:n] = torch.arange(n, device=dev)
         self.done[:n] = (first == self.eos) | self.has_nn[first] | (max_new <= 1)
         self.tokb[n:Bb] = self.eos; self.slot[n:Bb] = 0; self.glen[n:Bb] = 0; self.rowid[n:Bb] = DUMMY; self.done[n:Bb] = True
+        self._wave_on = (torch.rand(n, device=dev) >= self.drop_p).float() if self.drop_p > 0 else torch.ones(n, device=dev)
+        self.row_on.fill_(1.0); self.row_on[:n] = self._wave_on
         maxlen = int(lens.max()); live_n = n; step = 0
         glen_final = torch.zeros(n + 1, dtype=torch.long, device=dev)
         while True:
@@ -472,7 +477,7 @@ class Engine:
                 for i in range(Q.NL):
                     self.Kc[i][:n_live, :, :su] = self.Kc[i][idx, :, :su]
                     self.Vc[i][:n_live, :, :su] = self.Vc[i][idx, :, :su]
-                for t in (self.tokb, self.slot, self.glen, self.rowid, self.done):
+                for t in (self.tokb, self.slot, self.glen, self.rowid, self.done, self.row_on):
                     t[:n_live] = t[idx].clone()
                 if self.imp is not None and self.imp_on: self.imp.gather(idx, n_live)
                 if self.inwire is not None:

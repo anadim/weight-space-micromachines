@@ -41,6 +41,19 @@ def _netparams(net):
     return vals, bs
 
 
+class Snap(nn.Module):
+    """stack-2 output snapped to the exact one-hot it is designed to be (argmax if max > 0.5, else all-zero) in the forward
+    pass, straight-through gradient in the backward pass. At the exact initial weights the stack output already IS that
+    one-hot, so u0 is unchanged; after training it keeps the implant silent/discrete (no tiny nonzero leak everywhere)."""
+    def __init__(self, net):
+        super().__init__(); self.net = net
+    def forward(self, x):
+        y = self.net(x)
+        m, i = y.max(-1, keepdim=True)
+        hard = torch.zeros_like(y).scatter_(-1, i, 1.0) * (m > 0.5).to(y.dtype)
+        return hard + (y - y.detach()) if torch.is_grad_enabled() else hard
+
+
 class TrainableTool:
     def __init__(self, tool, gain_target=None, ste_reader=False, freeze=()):
         self.t = tool; M = tool.M
@@ -62,6 +75,7 @@ class TrainableTool:
                 return hard if not torch.is_grad_enabled() else pre + (hard - pre).detach()
             M.symbols = types.MethodType(_sym, M)
         v1, b1 = _netparams(M.stack1); v2, b2 = _netparams(M.stack2)
+        M.stack2 = Snap(M.stack2)                               # discrete forward, straight-through backward
         self.values, self.biases = v1 + v2, b1 + b2
         self.freeze = set(freeze)
         if 'core' in self.freeze:
@@ -83,7 +97,7 @@ class TrainableTool:
         """in-place copies into the decode path's derived tensors (same storage the CUDA graphs read)."""
         t, M = self.t, self.t.M
         t.D.copy_(self.D_eff().float())
-        for net in (M.stack1, M.stack2):
+        for net in (M.stack1, getattr(M.stack2, 'net', M.stack2)):
             n = getattr(net, 'net', net)
             for key, csr in n._csr.items():                     # CSR values: same (row-major) order as the coalesced COO values
                 l = key[0]; csr.values().copy_(getattr(n, f'wv{l}').detach().to(csr.dtype))

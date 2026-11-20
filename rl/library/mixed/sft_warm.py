@@ -29,19 +29,7 @@ for l in open(a.union):
     rows.append(('bbh:' + r['team'], q, comp))
 tr = [json.loads(l) for l in open(f'{C.REPO}/data/gsm8k/train.jsonl')]
 g = [r for r in tr if C.part(r['question']) == 'A']; random.Random(5).shuffle(g)
-import re as _re
-_ANN = _re.compile(r'((?:[\d.$,()]+\s*[-+*/x\u00d7]\s*)*[\d.$,()]+)?\s*=\s*\$?<<([^=>]*)=([^>]*)>>')
-_OP = _re.compile(r'^\s*(-?[\d.]+)\s*([-+*/])\s*(-?[\d.]+)\s*$')
-def calc_env_line(ans):
-    """GSM8K gold 'sold 48/2 = <<48/2=24>>24 clips' -> 'sold <calc>48 / 2</calc> 24 clips' when the annotation is ONE
-    binary op on plain numbers; otherwise the annotation is just removed (plain text kept)."""
-    def sub(m):
-        m2 = _OP.match(m.group(2))
-        if not m2: return (m.group(1) or '') + ' = '
-        return f'<calc>{m2.group(1)} {m2.group(2)} {m2.group(3)}</calc> '
-    out = _ANN.sub(sub, ans)
-    out = _re.sub(r'<calc>([^<]*)</calc> (\S+)', lambda m: f'<calc>{m.group(1)}</calc> {m.group(2)}', out)
-    return _re.sub(r'<<[^>]*>>', '', out)
+from mixed_task import calc_env_line
 for r in g[:a.n_gsm]:
     ans = r['answer']
     if a.calc_env: ans = calc_env_line(ans)

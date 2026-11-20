@@ -1,0 +1,6 @@
+PARAMS trainable wiring 0 = 0.0000% of host (596,049,920) = nan% of implant nonzeros (0)
+arm 1 | impl False links False write False gate0 0.0 train_impl False | pool 8145 dev 800 prefix 1181
+test full {'acc': 68.30932524639879, 'n': 1319, 'n_all': 1319, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+hard full {'acc': 42.2289613343442, 'n': 1319, 'n_all': 1319, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+dev full {'acc': 61.75, 'n': 800, 'n_all': 800, 'calls': 0.0, 'vetoes': None, 'veto_by_ops': None}
+DONE
