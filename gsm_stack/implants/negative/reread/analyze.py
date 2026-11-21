@@ -7,7 +7,7 @@ Breakdown by atlas item category (atlas/data/diverge_{set}.jsonl.gz, dominant_ca
 """
 import gzip, json, os, sys, collections, statistics as S
 
-W = os.path.expanduser('gsm_stack/implants')
+W = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants')
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'job', 'out')
 TAGS = (sys.argv[2] if len(sys.argv) > 2 else 'rrfull,rrask,rrphrase').split(',')
 SEEDS = (7, 11)

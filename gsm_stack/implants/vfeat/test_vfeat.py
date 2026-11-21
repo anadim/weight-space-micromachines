@@ -9,7 +9,7 @@ python3.11 implants/vfeat/test_vfeat.py [--runs]
 import os, sys, types, random, argparse, gzip, json, pickle, math
 import numpy as np, torch
 
-HERE = os.path.dirname(os.path.abspath(__file__)); H = os.path.expanduser('gsm_stack/implants')
+HERE = os.path.dirname(os.path.abspath(__file__)); H = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants')
 ap = argparse.ArgumentParser(); ap.add_argument('--runs', action='store_true'); ap.add_argument('--trials', type=int, default=4096)
 A = ap.parse_args()
 sys.path.insert(0, os.path.join(HERE, 'job', 'stk')); sys.path.insert(0, f'{H}/voter')

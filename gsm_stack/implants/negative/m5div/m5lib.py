@@ -1,7 +1,7 @@
 """M5 (first-step diversity) analysis helpers: load serial-stack rows (fe format = lane wpr, or gen format = aw_hook) into
 per-attempt records with the attempt's FIRST segment tokens and its register answer; voter replica; first-step keys."""
 import os, re, sys, json, gzip, math
-WS = os.path.expanduser('gsm_stack/implants')
+WS = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants')
 sys.path.insert(0, os.path.join(WS, 'atlas'))
 import parse as AP                      # Tok (pure-python decode), Q_IDS
 

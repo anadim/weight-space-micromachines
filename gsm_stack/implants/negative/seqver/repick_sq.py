@@ -9,14 +9,14 @@ Fixes/breaks vs the rung-4 row (its in-stack pick), summed over the 4 seeds; one
 import argparse, gzip, json, os, sys
 import numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.expanduser('gsm_stack/implants/vfrefit/off'))
+sys.path.insert(0, os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/vfrefit/off'))
 import refit as RF
 from refit import sig, fit, acc_row, signp
 
-ROWS = {'trainC': os.path.expanduser('gsm_stack/implants/vfrefit/aw/out/tc_trainC'),
-        'dev': os.path.expanduser('gsm_stack/implants/sidenet/aw/out/sn_dev'),
-        'dev2': os.path.expanduser('gsm_stack/implants/sidenet/aw/out/sn_dev2')}
-TAB = os.path.expanduser('gsm_stack/implants/sidenet/tables/attempts_{}.jsonl.gz')
+ROWS = {'trainC': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/vfrefit/aw/out/tc_trainC'),
+        'dev': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/sidenet/aw/out/sn_dev'),
+        'dev2': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/sidenet/aw/out/sn_dev2')}
+TAB = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/sidenet/tables/attempts_{}.jsonl.gz')
 V5 = ('lg', 'sane', 'nn', 'zt', 'qc')
 STAT_NOLG = [f'{a}_{b}' for a in ('mean', 'max', 'min') for b in V5 if b != 'lg']
 BLD = ['c8', 'lc', 'ssb'] + STAT_NOLG + ['mean_b', 'max_b', 'min_b']
@@ -96,7 +96,7 @@ def main():
     ap.add_argument('--scales', default='1')
     ap.add_argument('--save', default='')
     a = ap.parse_args()
-    Wt = json.load(open(os.path.expanduser('gsm_stack/implants/sidenet/vfsn_BLD_0.001.json')))
+    Wt = json.load(open(os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/sidenet/vfsn_BLD_0.001.json')))
     assert Wt['feats'] == BLD
     th0 = np.array(Wt['th'], np.float64); c00 = float(Wt['c0'])
     sn_tc = np.load(os.path.join(H, 'job/tables/sc_g4.npz'))['c4:HM:lin:pair|trainC']

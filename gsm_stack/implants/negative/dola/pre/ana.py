@@ -9,7 +9,7 @@ Per config (premature layer or dyn, alpha, beta):
 """
 import os, sys, json, gzip, argparse, collections
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__)); WS = os.path.expanduser('gsm_stack/implants')
+HERE = os.path.dirname(os.path.abspath(__file__)); WS = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants')
 ap = argparse.ArgumentParser(); ap.add_argument('--out', default=f'{HERE}/job/out'); a = ap.parse_args()
 rd = lambda fn: [json.loads(l) for l in gzip.open(fn, 'rt')]
 

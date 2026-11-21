@@ -10,7 +10,7 @@ n_right/n, weight |dv|): weighted acc.  No APC here (needs full vocab: GPU job).
 """
 import os, sys, json
 import numpy as np
-WS = os.path.expanduser('gsm_stack/implants'); sys.path.insert(0, f'{WS}/probe/branch')
+WS = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants'); sys.path.insert(0, f'{WS}/probe/branch')
 import fit
 LAYS = fit.LAYS
 ALPHAS = [0.1, 0.25, 0.5, 1.0, 2.0]

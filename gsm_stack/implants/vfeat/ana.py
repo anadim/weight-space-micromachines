@@ -2,7 +2,7 @@
 same registers / tokens), and vs the base rollouts gen/out (different stream on dev waves > 0: global sampler counter)."""
 import os, gzip, json
 import numpy as np
-H = os.path.expanduser('gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
+H = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def vok(v, g):

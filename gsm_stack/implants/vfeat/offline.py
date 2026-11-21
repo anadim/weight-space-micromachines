@@ -6,7 +6,7 @@ trainC streams (2 seed streams + 8 bootstrap 8-subsets per item), and 1-paramete
 """
 import os, sys, json, pickle, collections
 import numpy as np
-H = os.path.expanduser('gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
+H = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, f'{H}/voter')
 import vote as V
 from learn import Listwise

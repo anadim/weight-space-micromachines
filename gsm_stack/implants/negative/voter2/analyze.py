@@ -1,6 +1,6 @@
 """Compare v2 runs (job/out/*_v2.jsonl.gz) with the base stack (gen/out): prefix exactness, vote accuracy, fixes/breaks."""
 import gzip, json, os, sys
-B = os.path.expanduser('gsm_stack/implants/gen/out'); V = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'job/out')
+B = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/gen/out'); V = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'job/out')
 
 def load(p): return {r['idx']: r for r in map(json.loads, gzip.open(p))}
 

@@ -10,7 +10,7 @@ python3.11 implants/voter2/test_voter2.py [--trials 4000] [--runs]
 import os, sys, types, math, random, argparse, gzip, json
 import numpy as np, torch
 
-HERE = os.path.dirname(os.path.abspath(__file__)); H = os.path.expanduser('gsm_stack/implants')
+HERE = os.path.dirname(os.path.abspath(__file__)); H = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants')
 ap = argparse.ArgumentParser(); ap.add_argument('--trials', type=int, default=4000); ap.add_argument('--runs', action='store_true')
 A = ap.parse_args()
 

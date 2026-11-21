@@ -11,6 +11,13 @@ from the base named in `TREE_BASE`. Build a runnable tree with `python3 gsm_stac
 READMEs are progress logs written while the work ran; they quote cluster job-queue commands as
 `<queue-submit> DIR TIMEOUT NAME -- CMD` (run `CMD` inside `DIR` on one GPU) and job ids `j23xxx` (labels only).
 Per-row outputs (`out/`, `tables/`, `*.jsonl.gz`, hidden-state `*.npz`) are not shipped.
+Lane scripts locate each other through `$WSM_ROOT/gsm_stack/implants/...` (default: the current directory), so run
+them from the repo root or set `WSM_ROOT`.
+
+Shared analysis code of the lane (no data): `voter/` (offline voters: `learn.py` with the ClusterLin group scorer that
+rung 3's `vf_w.pt` is fit with, `feats.py`, `vote.py`), `atlas/` (attempt parser `parse.py`, first-divergent-step
+finder `diverge.py`, step tables, the never-solved labelling), `probe/` (hidden-state extraction and probe fits behind
+REPORT.md §3), `vfrefit/off/refit.py` (offline re-pick with refit writer weights, used by `sidenet/repick_sn.py`).
 
 ## Rungs (adopted, all weights)
 

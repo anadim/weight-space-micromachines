@@ -1,0 +1,23 @@
+trainC seeds [23, 29, 31, 37] rows 5996 informative 1815; natt mean 7.93; oracle 95.58
+dev: current-theta re-pick mismatches vs row pick 0; register-acc vs row ok mismatches 0
+dev2: current-theta re-pick mismatches vs row pick 0; register-acc vs row ok mismatches 0
+trainC acc: current VF theta 89.14  base voter pick0 87.99  row ok 89.14
+X0:B18       l2=0  trainC CV 89.14 (+0.00, f/b 0/0) | dev 90.29 (+0.00, 0/0) | dev2 87.33 (+0.00, 0/0)
+X0:E8        l2=0  trainC CV 89.13 (-0.02, f/b 22/23) | dev 90.17 (-0.12, 3/6) | dev2 87.75 (+0.42, 5/0)
+X0:M8        l2=0  trainC CV 89.13 (-0.02, f/b 22/23) | dev 90.17 (-0.12, 3/6) | dev2 87.75 (+0.42, 5/0)
+P:B18        l2=0.01  trainC CV 89.01 (-0.13, f/b 12/20) | dev 90.25 (-0.04, 3/4) | dev2 87.92 (+0.58, 7/0)
+P:B18        l2=0.1  trainC CV 89.11 (-0.03, f/b 3/5) | dev 90.25 (-0.04, 1/2) | dev2 87.50 (+0.17, 2/0)
+P:B18        l2=1  trainC CV 89.14 (+0.00, f/b 1/1) | dev 90.29 (+0.00, 1/1) | dev2 87.33 (+0.00, 0/0)
+P:M8         l2=0.01  trainC CV 89.13 (-0.02, f/b 24/25) | dev 90.04 (-0.25, 4/10) | dev2 87.92 (+0.58, 8/1)
+P:M8         l2=0.1  trainC CV 89.03 (-0.12, f/b 17/24) | dev 90.12 (-0.17, 3/7) | dev2 87.92 (+0.58, 7/0)
+P:M8         l2=1  trainC CV 89.08 (-0.07, f/b 20/24) | dev 90.12 (-0.17, 2/6) | dev2 87.75 (+0.42, 5/0)
+P:M8_PW      l2=0.01  trainC CV 89.11 (-0.03, f/b 24/26) | dev 90.04 (-0.25, 4/10) | dev2 87.92 (+0.58, 8/1)
+P:M8_PW      l2=0.1  trainC CV 89.03 (-0.12, f/b 18/25) | dev 90.12 (-0.17, 3/7) | dev2 87.92 (+0.58, 7/0)
+P:M8_PW      l2=1  trainC CV 89.08 (-0.07, f/b 20/24) | dev 90.12 (-0.17, 2/6) | dev2 87.75 (+0.42, 5/0)
+P:B18_PW     l2=0.01  trainC CV 88.98 (-0.17, f/b 12/22) | dev 90.25 (-0.04, 2/3) | dev2 88.00 (+0.67, 8/0)
+P:B18_PW     l2=0.1  trainC CV 89.13 (-0.02, f/b 3/4) | dev 90.29 (+0.00, 2/2) | dev2 87.50 (+0.17, 2/0)
+P:B18_PW     l2=1  trainC CV 89.14 (+0.00, f/b 1/1) | dev 90.29 (+0.00, 1/1) | dev2 87.33 (+0.00, 0/0)
+P:B18_SH     l2=0.01  trainC CV 89.03 (-0.12, f/b 12/19) | dev 90.25 (-0.04, 3/4) | dev2 87.92 (+0.58, 7/0)
+P:B18_SH     l2=0.1  trainC CV 89.14 (+0.00, f/b 3/3) | dev 90.29 (+0.00, 2/2) | dev2 87.50 (+0.17, 2/0)
+P:B18_SH     l2=1  trainC CV 89.14 (+0.00, f/b 1/1) | dev 90.29 (+0.00, 1/1) | dev2 87.33 (+0.00, 0/0)
+best by trainC CV: X0:B18 l2=0 CV 89.14

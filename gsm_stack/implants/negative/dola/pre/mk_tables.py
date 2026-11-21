@@ -1,6 +1,6 @@
 """Job input: dev/dev2 mixed attempts (probe/branch jobs, with fork lists) + always-right items' seed-7 attempts (atlas)."""
 import gzip, json, os
-WS = os.path.expanduser('gsm_stack/implants'); H = os.path.dirname(os.path.abspath(__file__))
+WS = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants'); H = os.path.dirname(os.path.abspath(__file__))
 rd = lambda fn: [json.loads(l) for l in gzip.open(fn, 'rt')]
 for S in ['dev', 'dev2']:
     J = rd(f'{WS}/probe/branch/job/tables/jobs_{S}.jsonl.gz')

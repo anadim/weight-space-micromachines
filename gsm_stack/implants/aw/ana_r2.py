@@ -1,9 +1,9 @@
 """ladder-r2 analysis: per-seed acc / tok/q / natt / rep/q of aw-format runs, 4-seed means, and paired fixes/breaks.
 python3 implants/aw/ana_r2.py"""
 import glob, gzip, json, os
-A = os.path.expanduser('gsm_stack/implants/aw/dev_tree/out')
-FE = os.path.expanduser('gsm_stack/implants/wpr/fe/out/fe')
-CO = os.path.expanduser('gsm_stack/implants/aw/confirm_old/out')
+A = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/aw/dev_tree/out')
+FE = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/wpr/fe/out/fe')
+CO = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/aw/confirm_old/out')
 SEEDS = [7, 11, 13, 17]
 
 

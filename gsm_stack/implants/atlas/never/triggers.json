@@ -1,0 +1,872 @@
+{
+ "fire": {
+  "nonint_answer|R": [
+   0,
+   23144,
+   0.0
+  ],
+  "nonint_answer|W": [
+   408,
+   5441,
+   7.5
+  ],
+  "roundtrip_no_x2|R": [
+   32,
+   96,
+   33.33
+  ],
+  "roundtrip_no_x2|W": [
+   80,
+   110,
+   72.73
+  ],
+  "target_noun_absent|R": [
+   3989,
+   19043,
+   20.95
+  ],
+  "target_noun_absent|W": [
+   1140,
+   4260,
+   26.76
+  ],
+  "unused_digit|R": [
+   731,
+   23144,
+   3.16
+  ],
+  "unused_digit|W": [
+   490,
+   5441,
+   9.01
+  ],
+  "unused_digit+word|R": [
+   1987,
+   23144,
+   8.59
+  ],
+  "unused_digit+word|W": [
+   861,
+   5441,
+   15.82
+  ]
+ },
+ "lexicon": {
+  "week": {
+   "n_q": 88,
+   "att_acc": 63.0,
+   "always": 26,
+   "slice": [
+    [
+     "dev",
+     14
+    ],
+    [
+     "dev",
+     64
+    ],
+    [
+     "dev",
+     120
+    ],
+    [
+     "dev",
+     121
+    ],
+    [
+     "dev",
+     205
+    ],
+    [
+     "dev",
+     213
+    ],
+    [
+     "dev",
+     217
+    ],
+    [
+     "dev",
+     272
+    ],
+    [
+     "dev",
+     303
+    ],
+    [
+     "dev",
+     360
+    ],
+    [
+     "dev",
+     361
+    ],
+    [
+     "dev",
+     444
+    ],
+    [
+     "dev2",
+     284
+    ],
+    [
+     "dev2",
+     294
+    ],
+    [
+     "dev2",
+     298
+    ]
+   ]
+  },
+  "oz/qt/gal/l": {
+   "n_q": 26,
+   "att_acc": 77.3,
+   "always": 9,
+   "slice": [
+    [
+     "dev",
+     386
+    ],
+    [
+     "dev2",
+     55
+    ]
+   ]
+  },
+  "horseshoe": {
+   "n_q": 1,
+   "att_acc": 0.0,
+   "always": 0,
+   "slice": [
+    [
+     "dev",
+     29
+    ]
+   ]
+  },
+  "cents/coins": {
+   "n_q": 22,
+   "att_acc": 75.0,
+   "always": 5,
+   "slice": [
+    [
+     "dev",
+     349
+    ],
+    [
+     "dev",
+     567
+    ]
+   ]
+  },
+  "ROUNDTRIP": {
+   "n_q": 7,
+   "att_acc": 42.9,
+   "always": 1,
+   "slice": [
+    [
+     "dev",
+     64
+    ],
+    [
+     "dev",
+     423
+    ],
+    [
+     "dev2",
+     195
+    ],
+    [
+     "dev2",
+     262
+    ]
+   ]
+  },
+  "pair": {
+   "n_q": 16,
+   "att_acc": 81.8,
+   "always": 5,
+   "slice": [
+    [
+     "dev",
+     432
+    ]
+   ]
+  },
+  "year/annual": {
+   "n_q": 22,
+   "att_acc": 73.7,
+   "always": 8,
+   "slice": [
+    [
+     "dev",
+     170
+    ],
+    [
+     "dev",
+     374
+    ],
+    [
+     "dev2",
+     262
+    ]
+   ]
+  },
+  "BC/born": {
+   "n_q": 7,
+   "att_acc": 52.2,
+   "always": 0,
+   "slice": [
+    [
+     "dev",
+     191
+    ],
+    [
+     "dev",
+     533
+    ]
+   ]
+  },
+  "ft/in": {
+   "n_q": 3,
+   "att_acc": 64.6,
+   "always": 0,
+   "slice": [
+    [
+     "dev",
+     129
+    ]
+   ]
+  },
+  "couple": {
+   "n_q": 4,
+   "att_acc": 62.5,
+   "always": 1,
+   "slice": [
+    [
+     "dev",
+     136
+    ]
+   ]
+  },
+  "dozen": {
+   "n_q": 15,
+   "att_acc": 81.9,
+   "always": 7,
+   "slice": [
+    [
+     "dev",
+     360
+    ]
+   ]
+  },
+  "tire": {
+   "n_q": 2,
+   "att_acc": 45.3,
+   "always": 0,
+   "slice": [
+    [
+     "dev",
+     496
+    ]
+   ]
+  },
+  "every $": {
+   "n_q": 1,
+   "att_acc": 3.1,
+   "always": 0,
+   "slice": [
+    [
+     "dev",
+     530
+    ]
+   ]
+  }
+ },
+ "per_item": {
+  "dev:5": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:6": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:14": {
+   "W": 29,
+   "W_unused": 1,
+   "W_unused_w": 19,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:21": {
+   "W": 25,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:29": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:36": {
+   "W": 27,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 4,
+   "R_unused_w": 0
+  },
+  "dev:64": {
+   "W": 14,
+   "W_unused": 6,
+   "W_unused_w": 12,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:88": {
+   "W": 29,
+   "W_unused": 15,
+   "W_unused_w": 15,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:106": {
+   "W": 10,
+   "W_unused": 0,
+   "W_unused_w": 10,
+   "R": 4,
+   "R_unused_w": 4
+  },
+  "dev:107": {
+   "W": 29,
+   "W_unused": 28,
+   "W_unused_w": 29,
+   "R": 3,
+   "R_unused_w": 3
+  },
+  "dev:117": {
+   "W": 27,
+   "W_unused": 1,
+   "W_unused_w": 1,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:120": {
+   "W": 32,
+   "W_unused": 2,
+   "W_unused_w": 2,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:121": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:129": {
+   "W": 28,
+   "W_unused": 15,
+   "W_unused_w": 15,
+   "R": 3,
+   "R_unused_w": 3
+  },
+  "dev:136": {
+   "W": 29,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:167": {
+   "W": 29,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:170": {
+   "W": 23,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:175": {
+   "W": 29,
+   "W_unused": 4,
+   "W_unused_w": 4,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:184": {
+   "W": 30,
+   "W_unused": 8,
+   "W_unused_w": 28,
+   "R": 2,
+   "R_unused_w": 2
+  },
+  "dev:190": {
+   "W": 31,
+   "W_unused": 6,
+   "W_unused_w": 6,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:191": {
+   "W": 30,
+   "W_unused": 0,
+   "W_unused_w": 2,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev:205": {
+   "W": 29,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:213": {
+   "W": 17,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:215": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:217": {
+   "W": 29,
+   "W_unused": 3,
+   "W_unused_w": 3,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:236": {
+   "W": 29,
+   "W_unused": 0,
+   "W_unused_w": 25,
+   "R": 3,
+   "R_unused_w": 3
+  },
+  "dev:254": {
+   "W": 29,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev:272": {
+   "W": 29,
+   "W_unused": 3,
+   "W_unused_w": 3,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:273": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:297": {
+   "W": 6,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:303": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:347": {
+   "W": 30,
+   "W_unused": 9,
+   "W_unused_w": 9,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev:349": {
+   "W": 31,
+   "W_unused": 22,
+   "W_unused_w": 22,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:360": {
+   "W": 25,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev:361": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:374": {
+   "W": 32,
+   "W_unused": 14,
+   "W_unused_w": 14,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:386": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:423": {
+   "W": 30,
+   "W_unused": 0,
+   "W_unused_w": 4,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev:432": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:444": {
+   "W": 23,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev:445": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:488": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:496": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:519": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 1,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:522": {
+   "W": 31,
+   "W_unused": 3,
+   "W_unused_w": 3,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:530": {
+   "W": 31,
+   "W_unused": 1,
+   "W_unused_w": 1,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev:533": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 30,
+   "R": 1,
+   "R_unused_w": 1
+  },
+  "dev:564": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:567": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev:599": {
+   "W": 30,
+   "W_unused": 19,
+   "W_unused_w": 19,
+   "R": 2,
+   "R_unused_w": 2
+  },
+  "dev2:7": {
+   "W": 30,
+   "W_unused": 0,
+   "W_unused_w": 26,
+   "R": 2,
+   "R_unused_w": 2
+  },
+  "dev2:16": {
+   "W": 28,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 4,
+   "R_unused_w": 0
+  },
+  "dev2:39": {
+   "W": 28,
+   "W_unused": 0,
+   "W_unused_w": 4,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:46": {
+   "W": 26,
+   "W_unused": 1,
+   "W_unused_w": 1,
+   "R": 4,
+   "R_unused_w": 2
+  },
+  "dev2:51": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:55": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:84": {
+   "W": 32,
+   "W_unused": 5,
+   "W_unused_w": 5,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:109": {
+   "W": 28,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:115": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 2,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:159": {
+   "W": 31,
+   "W_unused": 2,
+   "W_unused_w": 2,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:189": {
+   "W": 30,
+   "W_unused": 2,
+   "W_unused_w": 7,
+   "R": 2,
+   "R_unused_w": 1
+  },
+  "dev2:195": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:199": {
+   "W": 21,
+   "W_unused": 3,
+   "W_unused_w": 3,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev2:212": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:217": {
+   "W": 31,
+   "W_unused": 2,
+   "W_unused_w": 2,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:234": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:255": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:262": {
+   "W": 28,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 4,
+   "R_unused_w": 0
+  },
+  "dev2:263": {
+   "W": 23,
+   "W_unused": 1,
+   "W_unused_w": 1,
+   "R": 2,
+   "R_unused_w": 0
+  },
+  "dev2:274": {
+   "W": 28,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 4,
+   "R_unused_w": 0
+  },
+  "dev2:284": {
+   "W": 31,
+   "W_unused": 21,
+   "W_unused_w": 21,
+   "R": 1,
+   "R_unused_w": 1
+  },
+  "dev2:286": {
+   "W": 32,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 0,
+   "R_unused_w": 0
+  },
+  "dev2:289": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:294": {
+   "W": 31,
+   "W_unused": 0,
+   "W_unused_w": 1,
+   "R": 1,
+   "R_unused_w": 0
+  },
+  "dev2:296": {
+   "W": 27,
+   "W_unused": 3,
+   "W_unused_w": 9,
+   "R": 3,
+   "R_unused_w": 0
+  },
+  "dev2:298": {
+   "W": 18,
+   "W_unused": 0,
+   "W_unused_w": 0,
+   "R": 1,
+   "R_unused_w": 0
+  }
+ },
+ "bycat": {
+  "misread": {
+   "W": 506,
+   "Wu": 31,
+   "Wuw": 66,
+   "items": 17,
+   "items_fire50": 2
+  },
+  "gold_ambig": {
+   "W": 386,
+   "Wu": 1,
+   "Wuw": 4,
+   "items": 13,
+   "items_fire50": 0
+  },
+  "dropped": {
+   "W": 582,
+   "Wu": 92,
+   "Wuw": 162,
+   "items": 20,
+   "items_fire50": 6
+  },
+  "world_units": {
+   "W": 341,
+   "Wu": 38,
+   "Wuw": 75,
+   "items": 11,
+   "items_fire50": 2
+  },
+  "plan": {
+   "W": 297,
+   "Wu": 36,
+   "Wuw": 52,
+   "items": 13,
+   "items_fire50": 3
+  },
+  "wrong_target": {
+   "W": 31,
+   "Wu": 0,
+   "Wuw": 0,
+   "items": 1,
+   "items_fire50": 0
+  },
+  "arith_format": {
+   "W": 31,
+   "Wu": 2,
+   "Wuw": 2,
+   "items": 1,
+   "items_fire50": 0
+  }
+ }
+}

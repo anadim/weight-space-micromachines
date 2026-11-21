@@ -1,0 +1,80 @@
+dev pairs 1686 fork pairs 4083 | host check corr 0.9995 med|diff| 0.044 | tf vs sampled lp mae 0.102 | top2 share 0.668
+trainC pairs 2294 fork pairs 4664 | host check corr 0.9995 med|diff| 0.044 | tf vs sampled lp mae 0.104 | top2 share 0.694
+dev2 pairs 921 fork pairs 2120 | host check corr 0.9995 med|diff| 0.044 | tf vs sampled lp mae 0.107 | top2 share 0.692
+[forks] base_28 l2=0 holdout acc 0.513 acc@25% 0.459
+[forks] had_18 l2=0.001 holdout acc 0.516 acc@25% 0.555
+[forks] had_18 l2=0.01 holdout acc 0.524 acc@25% 0.563
+[forks] had_18 l2=0.1 holdout acc 0.518 acc@25% 0.450
+[forks] had_22 l2=0.001 holdout acc 0.502 acc@25% 0.480
+[forks] had_22 l2=0.01 holdout acc 0.500 acc@25% 0.524
+[forks] had_22 l2=0.1 holdout acc 0.523 acc@25% 0.450
+[forks] had_27 l2=0.001 holdout acc 0.500 acc@25% 0.507
+[forks] had_27 l2=0.01 holdout acc 0.483 acc@25% 0.485
+[forks] had_27 l2=0.1 holdout acc 0.500 acc@25% 0.441
+[forks] had_28 l2=0.001 holdout acc 0.505 acc@25% 0.511
+[forks] had_28 l2=0.01 holdout acc 0.512 acc@25% 0.485
+[forks] had_28 l2=0.1 holdout acc 0.490 acc@25% 0.480
+[forks] had_14+18+22+27+28 l2=0.01 holdout acc 0.513 acc@25% 0.459
+[forks] had_14+18+22+27+28 l2=0.1 holdout acc 0.510 acc@25% 0.472
+[forks] trust_18 l2=0.01 holdout acc 0.521 acc@25% 0.546
+[forks] trust_18 l2=0.1 holdout acc 0.493 acc@25% 0.454
+[forks] trust_22 l2=0.01 holdout acc 0.506 acc@25% 0.454
+[forks] trust_22 l2=0.1 holdout acc 0.502 acc@25% 0.428
+[forks] trust_28 l2=0.01 holdout acc 0.506 acc@25% 0.485
+[forks] trust_28 l2=0.1 holdout acc 0.509 acc@25% 0.511
+[forks] lr_18+22+28_r8 l2=0.001 holdout acc 0.492 acc@25% 0.406
+[forks] lr_18+22+28_r8 l2=0.01 holdout acc 0.497 acc@25% 0.415
+[forks] lr_18+22+28_r32 l2=0.001 holdout acc 0.497 acc@25% 0.472
+[forks] lr_18+22+28_r32 l2=0.01 holdout acc 0.493 acc@25% 0.450
+== train forks -> dev pairs
+  host_argmax        n 1686 acc 0.698 accW 0.581 auc 0.761 acc@10% 0.875 @25% 0.824 @50% 0.796
+  base_28            n 1686 acc 0.698 accW 0.581 auc 0.761 acc@10% 0.875 @25% 0.824 @50% 0.796
+  had_18             n 1686 acc 0.540 accW 0.503 auc 0.551 acc@10% 0.571 @25% 0.561 @50% 0.562
+  had_22             n 1686 acc 0.650 accW 0.552 auc 0.699 acc@10% 0.827 @25% 0.770 @50% 0.725
+  had_27             n 1686 acc 0.514 accW 0.488 auc 0.518 acc@10% 0.464 @25% 0.508 @50% 0.526
+  had_28             n 1686 acc 0.544 accW 0.512 auc 0.557 acc@10% 0.536 @25% 0.568 @50% 0.575
+  had_14+18+22+27+28 n 1686 acc 0.503 accW 0.465 auc 0.503 acc@10% 0.494 @25% 0.501 @50% 0.495
+  trust_18           n 1686 acc 0.496 accW 0.493 auc 0.491 acc@10% 0.476 @25% 0.473 @50% 0.489
+  trust_22           n 1686 acc 0.517 accW 0.503 auc 0.534 acc@10% 0.589 @25% 0.570 @50% 0.547
+  trust_28           n 1686 acc 0.536 accW 0.511 auc 0.548 acc@10% 0.577 @25% 0.582 @50% 0.555
+  lr_18+22+28_r8     n 1686 acc 0.632 accW 0.544 auc 0.679 acc@10% 0.762 @25% 0.727 @50% 0.702
+  lr_18+22+28_r32    n 1686 acc 0.637 accW 0.539 auc 0.687 acc@10% 0.815 @25% 0.734 @50% 0.708
+== train forks -> dev fpairs
+  host_argmax        n 4083 acc 0.515 accW nan auc 0.451 acc@10% 0.422 @25% 0.425 @50% 0.443
+  base_28            n 4083 acc 0.515 accW nan auc 0.451 acc@10% 0.422 @25% 0.425 @50% 0.443
+  had_18             n 4083 acc 0.492 accW nan auc 0.472 acc@10% 0.446 @25% 0.456 @50% 0.467
+  had_22             n 4083 acc 0.498 accW nan auc 0.441 acc@10% 0.414 @25% 0.417 @50% 0.439
+  had_27             n 4083 acc 0.486 accW nan auc 0.470 acc@10% 0.402 @25% 0.444 @50% 0.474
+  had_28             n 4083 acc 0.492 accW nan auc 0.462 acc@10% 0.402 @25% 0.441 @50% 0.467
+  had_14+18+22+27+28 n 4083 acc 0.487 accW nan auc 0.472 acc@10% 0.429 @25% 0.450 @50% 0.466
+  trust_18           n 4083 acc 0.496 accW nan auc 0.498 acc@10% 0.475 @25% 0.487 @50% 0.494
+  trust_22           n 4083 acc 0.520 accW nan auc 0.508 acc@10% 0.532 @25% 0.508 @50% 0.507
+  trust_28           n 4083 acc 0.505 accW nan auc 0.504 acc@10% 0.517 @25% 0.510 @50% 0.509
+  lr_18+22+28_r8     n 4083 acc 0.508 accW nan auc 0.460 acc@10% 0.444 @25% 0.438 @50% 0.462
+  lr_18+22+28_r32    n 4083 acc 0.510 accW nan auc 0.455 acc@10% 0.426 @25% 0.424 @50% 0.449
+== train forks -> dev2 pairs
+  host_argmax        n 921 acc 0.710 accW 0.586 auc 0.757 acc@10% 0.848 @25% 0.826 @50% 0.774
+  base_28            n 921 acc 0.710 accW 0.586 auc 0.756 acc@10% 0.848 @25% 0.826 @50% 0.767
+  had_18             n 921 acc 0.536 accW 0.502 auc 0.559 acc@10% 0.609 @25% 0.587 @50% 0.570
+  had_22             n 921 acc 0.667 accW 0.544 auc 0.716 acc@10% 0.793 @25% 0.791 @50% 0.748
+  had_27             n 921 acc 0.523 accW 0.473 auc 0.545 acc@10% 0.598 @25% 0.557 @50% 0.554
+  had_28             n 921 acc 0.535 accW 0.482 auc 0.566 acc@10% 0.620 @25% 0.617 @50% 0.587
+  had_14+18+22+27+28 n 921 acc 0.532 accW 0.501 auc 0.547 acc@10% 0.522 @25% 0.570 @50% 0.546
+  trust_18           n 921 acc 0.536 accW 0.517 auc 0.546 acc@10% 0.565 @25% 0.543 @50% 0.539
+  trust_22           n 921 acc 0.536 accW 0.533 auc 0.559 acc@10% 0.500 @25% 0.557 @50% 0.578
+  trust_28           n 921 acc 0.561 accW 0.546 auc 0.592 acc@10% 0.641 @25% 0.626 @50% 0.604
+  lr_18+22+28_r8     n 921 acc 0.657 accW 0.580 auc 0.717 acc@10% 0.859 @25% 0.783 @50% 0.743
+  lr_18+22+28_r32    n 921 acc 0.636 accW 0.559 auc 0.689 acc@10% 0.783 @25% 0.730 @50% 0.704
+== train forks -> dev2 fpairs
+  host_argmax        n 2120 acc 0.515 accW nan auc 0.456 acc@10% 0.443 @25% 0.442 @50% 0.449
+  base_28            n 2120 acc 0.515 accW nan auc 0.456 acc@10% 0.448 @25% 0.442 @50% 0.444
+  had_18             n 2120 acc 0.493 accW nan auc 0.470 acc@10% 0.495 @25% 0.462 @50% 0.470
+  had_22             n 2120 acc 0.520 accW nan auc 0.467 acc@10% 0.439 @25% 0.447 @50% 0.470
+  had_27             n 2120 acc 0.495 accW nan auc 0.483 acc@10% 0.491 @25% 0.489 @50% 0.483
+  had_28             n 2120 acc 0.494 accW nan auc 0.479 acc@10% 0.462 @25% 0.502 @50% 0.478
+  had_14+18+22+27+28 n 2120 acc 0.516 accW nan auc 0.489 acc@10% 0.472 @25% 0.485 @50% 0.476
+  trust_18           n 2120 acc 0.520 accW nan auc 0.511 acc@10% 0.495 @25% 0.496 @50% 0.508
+  trust_22           n 2120 acc 0.505 accW nan auc 0.521 acc@10% 0.519 @25% 0.543 @50% 0.521
+  trust_28           n 2120 acc 0.503 accW nan auc 0.514 acc@10% 0.491 @25% 0.521 @50% 0.515
+  lr_18+22+28_r8     n 2120 acc 0.530 accW nan auc 0.483 acc@10% 0.458 @25% 0.464 @50% 0.489
+  lr_18+22+28_r32    n 2120 acc 0.506 accW nan auc 0.474 acc@10% 0.453 @25% 0.445 @50% 0.471

@@ -1,0 +1,16 @@
+aug sub-streams 23984
+trainC seeds [23, 29, 31, 37] rows 5996 informative 1815; natt mean 7.93; oracle 95.58
+dev: current-theta re-pick mismatches vs row pick 0; register-acc vs row ok mismatches 0
+dev2: current-theta re-pick mismatches vs row pick 0; register-acc vs row ok mismatches 0
+trainC acc: current VF theta 89.14  base voter pick0 87.99  row ok 89.14
+B18          l2=0.001  trainC CV 88.86 (-0.28, f/b 16/33) | dev 90.37 (+0.08, 7/5) | dev2 88.17 (+0.83, 11/1)
+B18          l2=0.01  trainC CV 88.79 (-0.35, f/b 19/40) | dev 90.25 (-0.04, 8/9) | dev2 88.25 (+0.92, 12/1)
+SH_PW_LSH    l2=0.001  trainC CV 88.86 (-0.28, f/b 22/39) | dev 90.25 (-0.04, 8/9) | dev2 88.33 (+1.00, 13/1)
+SH_PW_LSH    l2=0.01  trainC CV 88.91 (-0.23, f/b 24/38) | dev 90.37 (+0.08, 9/7) | dev2 88.33 (+1.00, 13/1)
+SH_PW        l2=0.001  trainC CV 88.93 (-0.22, f/b 24/37) | dev 90.21 (-0.08, 8/10) | dev2 88.17 (+0.83, 11/1)
+SH_PW        l2=0.01  trainC CV 88.83 (-0.32, f/b 21/40) | dev 90.17 (-0.12, 8/11) | dev2 88.25 (+0.92, 13/2)
+P:B18        l2=0.001  trainC CV 88.88 (-0.27, f/b 14/30) | dev 90.29 (+0.00, 5/5) | dev2 88.17 (+0.83, 10/0)
+P:B18        l2=0.01  trainC CV 89.06 (-0.08, f/b 11/16) | dev 90.25 (-0.04, 3/4) | dev2 88.00 (+0.67, 8/0)
+P:B18_PW     l2=0.001  trainC CV 88.88 (-0.27, f/b 15/31) | dev 90.29 (+0.00, 7/7) | dev2 88.17 (+0.83, 10/0)
+P:B18_PW     l2=0.01  trainC CV 89.04 (-0.10, f/b 10/16) | dev 90.25 (-0.04, 3/4) | dev2 88.00 (+0.67, 8/0)
+best by trainC CV: P:B18 l2=0.01 CV 89.06

@@ -8,13 +8,13 @@ Paired fixes/breaks vs the row's in-stream VF pick, summed over the 4 seeds; one
 import argparse, gzip, json, os, sys
 import numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.expanduser('gsm_stack/implants/vfrefit/off'))
+sys.path.insert(0, os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/vfrefit/off'))
 import refit as RF
 from refit import sig, fit, acc_row, signp
 
-ROWS = {'trainC': os.path.expanduser('gsm_stack/implants/vfrefit/aw/out/tc_trainC'),
-        'dev': os.path.expanduser('gsm_stack/implants/ladr3/aw/out/avf_dev'),
-        'dev2': os.path.expanduser('gsm_stack/implants/ladr3/aw/out/avf_dev2')}
+ROWS = {'trainC': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/vfrefit/aw/out/tc_trainC'),
+        'dev': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/ladr3/aw/out/avf_dev'),
+        'dev2': os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/ladr3/aw/out/avf_dev2')}
 V5 = ('lg', 'sane', 'nn', 'zt', 'qc')
 
 
@@ -50,7 +50,7 @@ MODES = {
 def load_set(S, sc, cfg):
     gid = {}
     import gzip as gz
-    rows_t = [json.loads(l) for l in gz.open(os.path.expanduser(f'gsm_stack/implants/sidenet/tables/attempts_{S}.jsonl.gz'), 'rt')]
+    rows_t = [json.loads(l) for l in gz.open(os.path.expanduser(os.environ.get('WSM_ROOT', '.') + f'/gsm_stack/implants/sidenet/tables/attempts_{S}.jsonl.gz'), 'rt')]
     v = sc[f'{cfg}|{S}']; assert len(v) == len(rows_t)
     for r, x in zip(rows_t, v): gid[(r['seed'], r['idx'], r['k'])] = float(x)
     D = {}
@@ -78,7 +78,7 @@ def main():
     ap.add_argument('--save', default='')                     # CFG@MODE@L2 -> json weights
     a = ap.parse_args()
     import torch
-    W = torch.load(os.path.expanduser('gsm_stack/implants/ladr3/aw/stk/vf_w.pt'))
+    W = torch.load(os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants/ladr3/aw/stk/vf_w.pt'))
     th0 = np.array(W['th'], np.float64); c00 = float(W['c0'])
     sc = dict(np.load(a.sc))
     cfgs = a.cfgs.split(',') if a.cfgs else sorted({k.split('|')[0] for k in sc})

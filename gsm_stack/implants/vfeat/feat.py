@@ -14,7 +14,7 @@ import os, re, sys, gzip, json, math, pickle
 from fractions import Fraction
 import numpy as np
 
-H = os.path.expanduser('gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
+H = os.path.expanduser(os.environ.get('WSM_ROOT', '.') + '/gsm_stack/implants'); HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, f'{H}/voter')
 from feats import text_numbers, body_text, norm_num
 
