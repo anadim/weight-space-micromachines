@@ -280,7 +280,7 @@ Not run here: circuit exactness tests (`tests/test_calc_circuit.py`, `bbh_generi
 ## 13. Fresh-clone check of the `gsm_stack` release (2026-11-21, laptop, no GPU, no model)
 
 Clone: `git clone --no-local --branch release-prep` after the five `gsm_stack` commits. New material: `gsm_stack/`
-(engine, eval, implants, results, figures; 7.4 MB, ~680 files), `figures/blog/v6/` (2.4 MB), `latent_write/causal_lw/`.
+(engine, eval, implants, results, figures; 7.9 MB, 643 files), `figures/blog/v6/` (2.4 MB), `latent_write/causal_lw/`.
 No file in the new commits is larger than 0.3 MB; no `.pt`, `.safetensors`, `.jsonl.gz`, `.npz` or `.pkl` file was added.
 
 | check | result |
