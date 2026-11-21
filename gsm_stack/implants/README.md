@@ -46,11 +46,6 @@ REPORT.md §3), `vfrefit/off/refit.py` (offline re-pick with refit writer weight
 | `linefix` | step-detector line rewind (resample from the flagged line) | gate failed (+0.05 / −0.07 vs a +1.0 gate); not built |
 | `voter2` | verifier-v2 register in the voter (blended sigmoid score) | null: the pooled AUROC gain is cross-item calibration, it does not change within-item choice |
 
-## Fitted gadgets that are not in git
+## Fitted gadgets (rungs 3 and 4)
 
-`vf_w.pt` (rung 3) and `sn_w.pt` (rung 4) are small fitted weight files. They were not synced from the GPU sandbox
-for this release, so rung 3 / rung 4 cannot be rerun from the repository until they are added to `$WSM_DATA/gadgets/`
-(the launchers copy them into the run tree). Rebuild routes: `vfeat/fitw.py` (needs the split-C rollout cache that
-`vfeat/job/gen.sh` writes) and `sidenet/job/train_sn.py` + `sidenet/mk_snw.py` (needs split-C hidden states from
-`sidenet/job/extract_sn.py`), each one GPU job of rollouts / state extraction plus a CPU fit. The fit settings are in
-`sidenet/vfsn_BLD_0.001.json` and the lane READMEs.
+`vf_w.pt` (rung 3, 1.5 KB) and `sn_w.pt` (rung 4, 35 KB) are small fitted weight files; they ship in `gsm_stack/gadgets/` and `env.sh` copies them into each built tree.

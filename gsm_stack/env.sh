@@ -7,7 +7,7 @@
 #                 $WSM_DATA/gsm_final/rl/ARM/    RL arm outputs: steps.jsonl, step_000100..300/model.safetensors
 #                 $WSM_DATA/gsm_final/logs/      arm logs (rl_ARM.out, rl_queue.log)
 #                 $WSM_DATA/states/              resume states rlstack_ARM.pt (fp32 host + AdamW, ~7 GB, every 2 updates)
-#                 $WSM_DATA/gadgets/             optional fitted gadgets that are not in git (vf_w.pt, sn_w.pt; see COMPLIANCE.md)
+#                 $WSM_DATA/gadgets/             (unused: rung 3/4 gadgets now ship in gsm_stack/gadgets/)
 #   WSM_WORK    scratch: materialized code trees, eval rows, caches (default $WSM_DATA/work)
 #   CKPT_U0     the u0 host checkpoint dir (default $WSM_DATA/ckpt_a2s2)
 #   ARMDIR      RL arm root (default $WSM_DATA/gsm_final)
@@ -41,6 +41,6 @@ gs_tree() {
   python3 "$GS_DIR/mk_tree.py" "$T" "$1" > /dev/null || return 1
   cp "$WSM_ROOT/gsm_push/final/verifier_probe_L18.pt" "$T/stk/"            # 6 KB L18 verifier probe (shipped)
   ln -sf "$DFA_CACHE" "$T/stk/dfa_tables.pt"; ln -sf "$DFA_CACHE" "$T/dig_san/dfa_tables.pt"
-  for g in vf_w.pt sn_w.pt; do [ -f "$WSM_DATA/gadgets/$g" ] && cp "$WSM_DATA/gadgets/$g" "$T/stk/"; done
+  for g in vf_w.pt sn_w.pt; do cp "$GS_DIR/gadgets/$g" "$T/stk/"; done   # rung 3/4 fitted gadgets (shipped, 1.5 KB + 35 KB)
   echo "$T"
 }

@@ -16,8 +16,7 @@ CW N = 4 sd 1.3).
 
 **What is not released:** fine-tuned / RL'd host checkpoints, the resume states (fp32 + AdamW, ~7 GB each), the
 u0 host's own training records (`steps.jsonl` of `a2_u300_s2`; the seed-0 / seed-1 runs of the same recipe are in
-`rl/results/gsm_grpo/H100/long/`), and two fitted gadgets that were not synced for this release (`vf_w.pt`, `sn_w.pt`;
-`implants/README.md`).
+`rl/results/gsm_grpo/H100/long/`). The two small fitted gadgets for rungs 3/4 (`vf_w.pt` 1.5 KB, `sn_w.pt` 35 KB) ship in `gsm_stack/gadgets/`.
 
 **Shipped gadgets** (small, fitted, slow to rebuild): `gsm_push/final/verifier_probe_L18.pt` (6 KB, the layer-18
 verifier probe of the serial voter), `gsm_push/calc_v2/veto_op_qwen3.pt` (6 KB). The calculator veto
