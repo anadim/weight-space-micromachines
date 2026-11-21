@@ -1,5 +1,10 @@
 # RL with implants attached (GSM8K, GRPO, Qwen3-0.6B-Base)
 
+> RL with the **all-weights GSM8K serial stack** attached (arms A, A1, A1W, A1D, B, C, CW, Bb, P; the base-model
+> table 28 → 80.3 vs plain RL 70.8) lives in [`gsm_stack/`](../gsm_stack/README.md): engine `gsm_stack/engine`
+> (`run_arm.sh`), results `gsm_stack/results/RL_RESULTS.md`, curves `gsm_stack/results/curves/`, figures
+> `rl/figures/v3/make_rl_stack_curves.py` (data `rl/figures/v3/data/rlstack/`).
+
 The blog section "Can RL optimize how a model uses implants and how they're wired in?". The host is trained with GRPO
 while an implant is attached inside the forward pass. Arms:
 
@@ -85,7 +90,7 @@ The implant itself stays exact in every arm (the circuit is frozen; writer exact
 Same environment as the RL runs: Python 3.12.3, torch 2.8.0 (CUDA 12.8 / 12.9 wheels), triton 3.4.0, transformers
 4.56.2, one GPU (H100 80GB, A100 80GB PCIe or A40 48GB; the A40 needs `FLEX_SMALL=1`, set automatically by the
 launchers, and `--fused 0` for some wiring arms). Triton needs the Python headers (`Python.h`) to build its launcher;
-put your venv and headers in `gsm_grpo/env_gcr.sh` if needed.
+put your venv and headers in `gsm_grpo/env_local.sh` if needed.
 
 ```
 pip install -r requirements.txt triton==3.4.0

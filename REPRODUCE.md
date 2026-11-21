@@ -63,6 +63,7 @@ rows and judge prompts are in the repo (`bbh_generic/team*/data/`, `bbh_generic/
 | RL with implants | `rl/` (`gsm_grpo/`, `wiring/`, `library/`, `interp/`, `figures/`; `engine2/` = WIP engine) | [12](#12-rl-with-implants-gsm8k-grpo) |
 | Figures | `figures/blog/`, `figures/blog/review_final/`, `rl/figures/`, `rl/figures/v3/` | [13](#13-figures) |
 | GSM8K push past the RL+calc host | `gsm_push/` | [15](#15-gsm8k-push-single-call-implant-stack-on-the-rlcalc-host) |
+| GSM8K single-call stack (all in weights), RL from the base model | `gsm_stack/` | [16](#16-gsm8k-single-call-implant-stack-gsm_stack) |
 
 
 ## 1. First implant: the calculator
@@ -448,7 +449,7 @@ Code: `rl/` (details, all arms and tables: `rl/README.md`). Host: `Qwen/Qwen3-0.
 GPUs used: NVIDIA H100 80GB HBM3 (main 300-update runs, arm R traces, wiring), A100 80GB PCIe (64-update ablation, the
 blog's dev numbers, interp traces), A40 48GB (arm 4 s0 to u500, 4c s0, wiring W1/W3r; needs `FLEX_SMALL=1`, set by the
 launchers). One GPU per run; peak memory ~30-60 GB at `B_max 512` (use `--B_max 128` on smaller GPUs).
-Triton needs `Python.h` (set `C_INCLUDE_PATH` in `rl/gsm_grpo/env_gcr.sh` if your venv lacks it).
+Triton needs `Python.h` (set `C_INCLUDE_PATH` in `rl/gsm_grpo/env_local.sh` if your venv lacks it).
 
 **Data and fixed pieces.**
 ```
@@ -593,6 +594,8 @@ plotted values):
 | `ifeval/heldout/vecs2.pt` (11.6 MB) | > 5 MB | its force_fix rows `ifeval/heldout/vecs2_forcefix.pt` (the only part the circuit reads) |
 | RL figure "RL with and without the calculator" | `rl/interp/make_fig*.py` read the generated dev traces (not released) | the plotted numbers: `rl/interp/stats.json`, `stats_aR.json`, `rl/interp/NOTEBOOK.md` |
 | Wiring arm W3z (links only, exactly zero-init gates) | never run | W3e / W3r (embedding / random init) |
+| gsm_stack: u0 host and RL arm hosts, resume states, eval rows | checkpoints; per-row outputs | `rl/gsm_grpo` + `gsm_stack/engine/run_arm.sh` (§16); tables in `gsm_stack/results/`, dev curves in `gsm_stack/results/curves/` |
+| gsm_stack rung-3 / rung-4 gadgets `vf_w.pt`, `sn_w.pt` | not synced for this release | rebuild routes in `gsm_stack/implants/README.md` |
 | Avenir fonts for figures | license | matplotlib default font fallback |
 
 Across GPU types, bf16 greedy text differs on a few percent of items (e.g. IFEval 0.6B: 58.23 -> 72.83 on an A40, 57.86 ->
@@ -615,3 +618,98 @@ Across GPU types, bf16 greedy text differs on a few percent of items (e.g. IFEva
   tokenizer only).
 * RL with the stack attached (`gsm_push/final/run_rl.sh`, `docs/RL_STACK.md`) was still running at release; no number
   from it is claimed.
+
+## 16. GSM8K single-call implant stack (`gsm_stack/`)
+
+`gsm_stack/README.md` has the overview, `gsm_stack/COMPLIANCE.md` what is in weights, `gsm_stack/results/RL_RESULTS.md`
+every table with CIs. Every number below is one run (GSM8K test or GSM-Hard, 1,319 items each), T = 1, sampling seed
+7, 320 tokens per try, graded on the last number, 95% paired bootstrap with 4,000 resamples
+(`gsm_stack/eval/ana_rltest.py`, `results_tools/pboot.py`, seed-pooled: `results_tools/pbootm.py`).
+
+* **Environment.** As §12: Python 3.12, torch 2.8.0 (cu128 / cu129), triton 3.4.0, transformers 4.56.2; NVRTC from the
+  `nvidia-cuda-nvrtc-cu12` wheel (pulled in by torch). If your image points `TRITON_PTXAS_PATH` at a newer CUDA, run with
+  `WSM_TRITON_BUNDLED=1`.
+* **Hardware.** Every `gsm_stack` number was measured on **one NVIDIA B200** (RL arms and test runs). The code has the
+  same requirements as the §12 / §15 engines and runs on one H100 80 GB (the gsm_push stack, the predecessor of this
+  engine, was run there); no `gsm_stack` number was re-measured on an H100, so compare within one GPU type
+  (bf16 batch-shape noise moves a few rows; §15). On a 48 GB GPU lower `BMAX` / `FE_BMAX`.
+* **Paths.** `gsm_stack/env.sh`: `WSM_DATA` (default `runs/gsm_stack`), `CKPT_U0`, `ARMDIR`. Rows land in
+  `$WSM_WORK/fe/<SET>_<NAME>.jsonl`; each eval line prints a `FE ... acc=` summary.
+* **Running part of a list.** `fe.sh` runs every line of a list and skips lines whose rows exist; lines whose host is
+  an RL arm need that arm's `step_000300` (`grep -v '^#' LIST | grep NAME > my.list` runs a subset).
+
+### 16.1 Hosts (built, not shipped)
+
+```bash
+python data/prepare_gsm.py
+python scripts/rethink_v2/make_scaled_train.py data/gsm8k/train.jsonl data/gsm8k/train_scaled.jsonl
+python scripts/solve_veto.py --device cuda                # runs/veto_qwen3.pt
+# u0 = a2_u300_s2: arm 2 (calculator attached), seed 2, 300 GRPO updates (one GPU; a few hours on an H100, §12)
+cd rl/gsm_grpo && python train2.py --arm 2 --seed 2 --run_dir runs/long/a2_u300_s2 --updates 300 --prompts 64 --G 8 \
+    --T 1.0 --lr 1e-6 --dev_n 800 --dev_every 25 --ckpt_every 100 --fused 1 && cd ../..
+mkdir -p runs/gsm_stack && cp -r rl/gsm_grpo/runs/long/a2_u300_s2/step_000300 runs/gsm_stack/ckpt_a2s2
+# harness check on dev (seed 4242): val_u0 must print 81.33 (the arms' u0 dev vote8); about 1 min on a B200
+grep val_u0 gsm_stack/eval/lists/val.list > /tmp/val_u0.list && GPU=0 bash gsm_stack/eval/fe.sh /tmp/val_u0.list
+```
+
+RL arms (300 updates each, 64 or 256 prompts x G 8, lr 1e-6; arm table in the header of `gsm_stack/engine/run_arm.sh`):
+`GPU=0 bash gsm_stack/engine/run_arm.sh ARM`. Wall time per arm on one B200, from the original runs: Pb (plain RL)
+~40 min, Bb ~75 min, C / C_s* ~1.5 h, CW_s* ~2 h, A1 / A1W ~2.3-2.6 h. Every arm reads `$CKPT_U0` as its implant source,
+so build u0 first even for the base-host arms. RL is not bit-reproducible across GPUs: expect the seed spreads quoted below.
+
+### 16.2 The ladder on the u0 host (GSM8K test; GSM-Hard)
+
+| rung | command | list line | expected test / GSM-Hard | time (B200) |
+|---|---|---|---|---|
+| host, no implants | `bash gsm_stack/eval/fe.sh gsm_stack/eval/lists/test3.list` | `lad_H` (hard: `hard2.list lad_H`) | 67.70 / 39.42 | 1-2.5 min per set |
+| + calc_s4 | same | `lad_C4` (`hard2.list lad_C4`) | 68.69 / 53.90 | |
+| + chain2 | same | `lad_D` (`hard2.list lad_D`) | 69.45 / 54.74 | |
+| S2F (sanity DFA + forget, one try, no missing-answer trigger) | same | `u0_B` (hard: `test4.list u0_B`) | **72.25** / 55.19 | |
+| S2F with the compiled missing-answer trigger | `fe.sh .../miss3.list` | `S2Fw_u0` | 72.63 / 56.03 | |
+| serial N = 8, no position reset | `fe.sh .../test1.list` | `u0_N8` (hard: `test4.list u0_N8`) | 71.87 / 57.54 | ~2 min per set |
+| rung 1: + WPR | `fe.sh .../wpr_rung1.list` | `r1_u0_N8` | **80.67** / 62.17 | not recorded (N = 8 class: ~2 min per set) |
+| rung 2: + adaptive tries | `bash gsm_stack/eval/jobs/rung_job.sh r2 wpr_rung2.list` (runs `test_aw.py` first) | `r2_u0` | **81.58** / 62.62 | not recorded (more tries than rung 1) |
+| rung 3: + Nmax 24 + answer-group voter | `bash gsm_stack/eval/jobs/rung_job.sh r3 wpr_rung3.list` (needs `$WSM_DATA/gadgets/vf_w.pt`, not shipped) | `r3_u0` | **82.71** / 60.42 | 11.5 min (test + hard) |
+| rung 2 + Nmax 24, no voter | `rung_job.sh r3 wpr_r2n24.list` | | 81.50 / **63.53** | |
+| *reference, NON-COMPLIANT: N = 8 + programmatic position reset* | `fe.sh .../test2.list` | `u0_N8pr1` | *80.97* / *62.09* | |
+
+### 16.3 RL from the base model
+
+| row | train | evaluate | expected test (GSM-Hard) |
+|---|---|---|---|
+| base host, no implants, no RL | – | `fe.sh .../base.list` (`baseH`) | 28.05 (10.46) |
+| plain RL, no implants (arm P), seeds 1, 2 | `run_arm.sh Pb_s1`, `Pb_s2` | `seed_Pbs1.list`, `seed_Pbs2.list` | 70.36, 71.19; pooled **70.77** (45.00) |
+| RL + S2F tools, one try (arm Bb), seeds 5, 6, 7 | `run_arm.sh Bb_s5` ... | `seed_Bbs{5,6,7}.list` (compiled trigger) | 72.10, 73.39, 73.39; pooled 72.96 (55.72) |
+| RL + serial stack N = 4 (arm C), seeds 5, 7, 6 | `run_arm.sh C`, `C_s2`, `C_s3` | `test2.list C_N4`, `seed_Cs2.list`, `seed_Cs3.list` | 74.60, 74.68, 75.13; pooled 74.80 (52.97) |
+| RL + serial stack + WPR, N = 4 (arm CW), seeds 0, 1, 2 | `run_arm.sh CW_s0` ... | `seed_CWs{0,1,2}.list` | 77.18, 77.33, 75.06; pooled 76.52 (55.07) |
+| **CW hosts + the rung-2 stack** | (the CW arms) | `rung_job.sh r2 wpr_r2cw.list` | 81.12, 81.43, 78.24; pooled **80.26** (sd 1.76; GSM-Hard 58.76) |
+
+Pooled deltas, e.g. P → CW + rung 2: `python3 gsm_stack/eval/results_tools/pbootm.py test_Pb_s1_u300.jsonl,test_Pb_s2_u300.jsonl test_r2_CW_s0.jsonl,test_r2_CW_s1.jsonl,test_r2_CW_s2.jsonl`
+(in `$WSM_WORK/fe`). Greedy single-attempt references: `greedy_H.list` (base 52.54, P 70.74); 4-shot base 56.48
+(`RL_RESULTS.md` §1).
+
+### 16.4 RL on the u0 host
+
+| row | train | evaluate | expected test (GSM-Hard) |
+|---|---|---|---|
+| A1 (attempt-level credit), N = 8, seeds 3, 4, 6 | `run_arm.sh A1`, `A1_s2`, `A1_s3` | `test1.list A1_N8`, `seed_A1s2_Bs2.list`, `seed_A1s3.list` | 79.76, 80.74, 79.68; pooled 80.06 (63.31) |
+| B (S2F, one try), seeds 1, 2, 3 | `run_arm.sh B`, `B_s2`, `B_s3` | `miss3.list B_u300w`, `seed_A1s2_Bs2.list`, `seed_Bs3.list` | 74.22, 74.00, 73.62; pooled 73.94 (57.82) |
+| A1W hosts + rung 2 (best GSM-Hard) | `run_arm.sh A1W_s{0,1,2}` | `rung_job.sh r2 wpr_r2rl.list` | 79.96 (**64.19**) |
+| implant ablation on the RL hosts | – | `abl_test.list`, `abl_hard.list` | `RL_RESULTS.md` §8 (forget mask off: −8.2 on A1) |
+
+The original A1 arm's seed was not recorded (`run_arm.sh` uses 3); its replicates A1_s2 / A1_s3 are seeds 4 / 6.
+
+### 16.5 CPU checks (no model)
+
+`VERIFY.md` §13 lists what was run from a fresh clone. The adaptive-tries fuzz (`test_aw.py`) also runs at the start of
+every rung job.
+
+### 16.6 Not reproducible from the repository alone
+
+* The hosts (u0, every arm) and the resume states: rebuilt by the commands above.
+* `vf_w.pt` (rung 3) and `sn_w.pt` (rung 4): fitted gadgets that were not synced for this release; rebuild routes in
+  `gsm_stack/implants/README.md`. Without them, rung 3 / 4 and their dev ladder rows cannot be rerun.
+* The eval rows behind the tables and the stack figures (`gsm_stack/figures/make_figs.py` reads them): per-item rows
+  are rebuilt by the lists; the shipped renders are in `gsm_stack/figures/`.
+* The implant lane's dev / dev2 rollouts and hidden-state tables (`implants/*/tables`, `out/`): rebuilt by each lane's
+  `job/` or `aw/` scripts (one GPU job each).

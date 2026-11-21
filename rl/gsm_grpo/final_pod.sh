@@ -2,7 +2,7 @@
 # One-shot final test evals on this pod: lines "name ckpt_dir|base arm [rand]". GSM8K test + GSM-Hard, implant on/off.
 cd "$(dirname "$0")"
 export HF_HUB_OFFLINE=1
-[ -f env_gcr.sh ] && source env_gcr.sh
+[ -f env_local.sh ] && source env_local.sh
 mkdir -p runs/final
 while read -r name ck arm rnd; do
   [ -z "$name" ] && continue

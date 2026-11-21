@@ -4,7 +4,7 @@
 # - on a non-zero exit without DONE_RUN the run is relaunched (resume) up to 3 times
 # - memory cap 0.47 of the GPU by default (two runs per GPU); override with a later --mem_frac
 G=$1; N=$2; shift 2
-cd "$(dirname "$0")"; [ -f env_gcr.sh ] && source env_gcr.sh
+cd "$(dirname "$0")"; [ -f env_local.sh ] && source env_local.sh
 export CALC_MACHINE=calc_tag CALLFORM=1 HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false
 COMMON="--prompts 64 --G 8 --T 1.0 --lr 1e-6 --kl 0 --loss drgrpo --B_max 128 --tok_budget 4096 --fused 0 --dev_every 25 --dev_extra 0 --ckpt_every 100000 --calib_traces runs/cf/cf_calib.jsonl --mem_frac 0.47 --resume_every 50 --resume 1"
 try=0

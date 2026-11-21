@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A100: stop a2_u500_s0 after its u300 dev eval (its checkpoints are u250/u500), then 300-update a1 s0, a2 s1, a1 s1
 # (checkpoint every 50), then the one-shot finals. $1 = PID of the running a2_u500_s0.
-cd "$(dirname "$0")"; export HF_HUB_OFFLINE=1; source env_gcr.sh
+cd "$(dirname "$0")"; export HF_HUB_OFFLINE=1; source env_local.sh
 bash stop_at.sh $1 runs/long/a2_u500_s0 300 >> runs/long_a100.log
 while kill -0 "$1" 2>/dev/null; do sleep 10; done
 for spec in "a1_u300_s0 1 0" "a2_u300_s1 2 1" "a1_u300_s1 1 1"; do

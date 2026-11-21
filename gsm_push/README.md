@@ -5,13 +5,19 @@ arm `a2_u300_s2` of `rl/gsm_grpo`) with new implants only, inside one forward-on
 [`docs/FINAL.md`](docs/FINAL.md); protocol and data discipline (dev = GSM8K train split B, test used once per config):
 [`docs/PROTOCOL.md`](docs/PROTOCOL.md).
 
+> **Superseded by [`gsm_stack/`](../gsm_stack/README.md).** Two parts of this stack are programmatic, so its S2F and
+> S3-serial numbers are **NON-COMPLIANT references** under the all-weights rule (`gsm_stack/COMPLIANCE.md`): S2F's
+> missing-answer trigger is a post-sampling stop-token swap, and S3-serial resets the position ids of each try in
+> Python (`posreset`). The all-weights replacements: S2F 72.25 (trigger off) / 72.63 (compiled trigger), and the serial
+> stack with the weight-space position reset, 80.67 (N = 8), 81.58 (rung 2), 82.71 (rung 3).
+
 | config (GSM8K test, 1,319 items, greedy unless noted) | test | GSM-Hard | tok / q |
 |---|---|---|---|
 | S0: host + calc_s4 (the original calculator) | 71.27 | 54.59 | 137 |
 | S1: + calculator v2, forward-only (`calc_v2/chain2.py` compiled for the +/- subset; `final/calc2.py` hook) | 71.87 | 56.03 | 137 |
-| **S2F**: + answer-sanity DFA + weight-space forget + " We need to find" | **73.39** (+2.12, CI [1.29, 2.96]) | 56.18 | 153 |
-| S3-serial N = 4: S2F inside 4 serial tries + forget + probe vote, one stream, T = 1 | 78.92 | 60.42 | 634 |
-| **S3-serial N = 8** | **80.44** | 62.17 | 1274 |
+| **S2F** (NON-COMPLIANT: stop-token swap): + answer-sanity DFA + weight-space forget + " We need to find" | **73.39** (+2.12, CI [1.29, 2.96]) | 56.18 | 153 |
+| S3-serial N = 4 (NON-COMPLIANT: programmatic position reset): S2F inside 4 serial tries + forget + probe vote, one stream, T = 1 | 78.92 | 60.42 | 634 |
+| **S3-serial N = 8** (NON-COMPLIANT: programmatic position reset) | **80.44** | 62.17 | 1274 |
 
 Numbers are from the run logs in `results/final/*/{test,hard}.log` (one run each; see FINAL.md for CIs, fixes / breaks,
 silence checks and every use of the test set).

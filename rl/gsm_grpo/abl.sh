@@ -3,7 +3,7 @@
 cd "$(dirname "$0")"
 export HF_HUB_OFFLINE=1
 nvidia-smi --query-gpu=name --format=csv,noheader | grep -q A40 && export FLEX_SMALL=1
-[ -f env_gcr.sh ] && source env_gcr.sh
+[ -f env_local.sh ] && source env_local.sh
 while read -r name rest; do
   [ -z "$name" ] && continue
   [ -f runs/abl/$name/steps.jsonl ] && grep -q DONE_RUN runs/abl/$name/steps.jsonl && continue

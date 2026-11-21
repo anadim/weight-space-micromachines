@@ -39,8 +39,44 @@ python tests/test_calc_circuit.py cuda 200   # all pairs 0..199, 4 operations (t
 | Mistake detector | reads hidden states before the final answer; forces "Hmm, wait. Let me rethink this." | GSM8K 52% → 56%; with the calculator 57% GSM8K / 35% GSM-Hard; AUROC 0.85 | [`micromachines/rethink_circuit_v2.py`](micromachines/rethink_circuit_v2.py), [`scripts/rethink_v2/`](scripts/rethink_v2/), [`results/rethink_v2/`](results/rethink_v2/) |
 | Topic blocker | a linear probe on the prompt's last hidden state, compiled into one ReLU unit; writes a decline sentence | blocks ~99% of math requests; 10% of normal requests (vs 6%) | [`topic_fence/`](topic_fence/README.md) |
 | Latent write | computes 23×7 and writes the state of "161" into the residual stream (no text) | (23×7)+58: 15% → 96-99%; word problem 3% → 98% (text tool line: 70%) | [`latent_write/`](latent_write/README.md) |
-| GSM8K push (single call) | calculator v2 (chain2), answer-sanity DFA, forget in weight space, serial tries + ReLU voter, on the frozen RL+calc host | GSM8K test 71.3 → 73.4 (S2F) → 80.4 (8 serial tries, one stream) | [`gsm_push/`](gsm_push/README.md) |
+| GSM8K single-call stack | calculator v2 (chain2), answer-sanity DFA, weight-space forget, serial tries + answer register + ReLU voter, weight-space position reset, adaptive tries, answer-group voter; all in weights, one generation call | GSM8K test 67.7 → 72.3 → 80.7 → 81.6 → 82.7 on the frozen RL+calc host; from the base model with RL 28 → 80.3 (plain RL 70.8) | [`gsm_stack/`](gsm_stack/README.md) (earlier, partly programmatic version: [`gsm_push/`](gsm_push/README.md)) |
 | RL with implants | GRPO on Qwen3-0.6B with implants (and trainable wiring) attached | GSM-Hard 44% (plain RL) vs 55% (RL + calculator); RL learns a half-broken calculator's competence map; mixed tasks 68% vs 36% | [`rl/`](rl/README.md) |
+
+## GSM8K single-call implant stack
+
+[`gsm_stack/`](gsm_stack/README.md): a frozen Qwen3-0.6B host answers a GSM8K question in one generation call, and
+every decision is made by weights; the only code outside the weights is the generator (sampling, token budget, stop on
+eos). What counts as weights, the generator-only exceptions and the non-compliant reference arms are in
+[`gsm_stack/COMPLIANCE.md`](gsm_stack/COMPLIANCE.md); where each host comes from is in
+[`gsm_stack/MODEL_CARD.md`](gsm_stack/MODEL_CARD.md).
+
+| implant | what it does |
+|---|---|
+| calculators `calc_s4`, `chain2` | exact arithmetic on the digits the model writes (+ − × ÷; +/− chains), result written into the residual stream |
+| answer-sanity DFA + phrase writer | a 34-state DFA reads the answer as it is written; a missing or malformed answer makes a pointer writer emit " We need to find" |
+| weight-space forget | 4 fixed extra q/k dims per head hide earlier tries from later ones |
+| serial tries, answer register, voter | N tries in one stream; registers keep each answer, its flags and a layer-18 probe score; a ReLU voter and a writer emit the winner |
+| weight-space position reset (WPR) | an offset register and a fixed rotary table make every try see the question at the first try's distance |
+| adaptive tries | compiled comparators stop at 4 tries when the vote is unanimous and confident, else extend up to 16 |
+| answer-group voter | number-set registers and a fixed linear score pick among groups of equal answers |
+
+Ladder on the frozen RL+calc host (GSM8K test, 1,319 items, T = 1, seed 7, each rung run once; 95% CIs in
+`gsm_stack/README.md`):
+
+| host alone | + calculators | + sanity + forget (S2F) | + 8 tries + WPR | + adaptive tries | + answer-group voter |
+|---|---|---|---|---|---|
+| 67.7 | 69.5 | 72.3 | 80.7 | 81.6 | 82.7 |
+
+RL from the base model (Qwen3-0.6B-Base, 300 GRPO updates, GSM8K test, seed-pooled):
+
+| base, no RL | plain RL, no implants | RL + tools, one try | RL + serial stack | RL + serial stack + WPR | WPR hosts + adaptive tries |
+|---|---|---|---|---|---|
+| 28.1 | **70.8** (2 seeds) | 73.0 (3) | 74.8 (3) | 76.5 (3) | **80.3** (3) |
+
+Without WPR, more tries add nothing (71.9 at N = 8 vs 72.3 with one try): later tries copy earlier ones. The reset in
+weights gives +8.8, the same as the programmatic reset it replaces (−0.3, n.s.). On GSM-Hard the calculator matters most
+(+14.5) and the answer-group voter, fit on GSM8K-train rollouts, costs 2.2 points. The earlier `gsm_push/` stack
+(73.4 / 80.4) used a programmatic missing-answer swap and position reset; it is kept as a labeled reference.
 
 ## Reproducing the headline numbers
 
@@ -63,7 +99,9 @@ One GPU per command; `REPRODUCE.md` has the full commands, the expected values a
 | RL: half-broken calculator, x÷ let through, +− blocked | `cd rl/wiring && bash launch.sh 0 1 40000 "" q4_a100.txt` | `rl/results/wiring/figdata/fig_competence_map.json` | §12 |
 | RL: all implants attached; mixed tasks 68 vs 36 | `bash rl/library/launch/h100_LIB_s0.sh`; `bash rl/library/launch/h100_m1_mixLIB.sh` | `rl/library/NOTEBOOK.md`, `rl/results/library/figdata/` | §12 |
 | RL: distilled links +11 (+24 on big numbers) | `cd rl/wiring && bash launch.sh 0 1 40000 "" q5_a100.txt` | `rl/results/wiring/figdata/W3d_s*.jsonl` | §12 |
-| GSM8K push: 71.3 → 73.4 (S2F), 80.4 (N = 8 serial tries) | `HOOK=stack3_hook.py bash gsm_push/final/run_stk.sh fgtw 0 test - STK_CFGS=S0,S1,S2F_fwntf STK_FORGET=weights STK_FORGET_MOD=forget_ws` (needs the RL+calc host, `CKPT=`) | `gsm_push/results/final/fgtw/test.log`, `ser8/test.log` | §15 |
+| GSM8K stack ladder: 67.7 → 72.3 → 80.7 → 81.6 → 82.7 | `bash gsm_stack/eval/fe.sh gsm_stack/eval/lists/test3.list` (host, calc, chain2, S2F) · `fe.sh .../wpr_rung1.list` · `bash gsm_stack/eval/jobs/rung_job.sh r2 wpr_rung2.list` · `rung_job.sh r3 wpr_rung3.list` (needs the RL+calc host, `CKPT_U0=`) | 67.70, 72.25, 80.67, 81.58, 82.71; `gsm_stack/results/RL_RESULTS.md` §4, §9 | §16 |
+| GSM8K from the base model: 28 → 80.3 vs plain RL 70.8 | `bash gsm_stack/engine/run_arm.sh {Pb_s1,Pb_s2,CW_s0,CW_s1,CW_s2}`, then `fe.sh .../seed_Pbs{1,2}.list` and `rung_job.sh r2 wpr_r2cw.list` | 70.36 / 71.19; 81.12 / 81.43 / 78.24 (pooled 80.26); `RL_RESULTS.md` §10 | §16 |
+| (older) GSM8K push, partly programmatic: 73.4 (S2F), 80.4 (N = 8) | `HOOK=stack3_hook.py bash gsm_push/final/run_stk.sh fgtw 0 test - ...` | `gsm_push/results/final/`; NON-COMPLIANT references (`gsm_stack/COMPLIANCE.md`) | §15 |
 | Blog figures | `bash figures/blog/make_blog_figs.sh`; RL: `cd rl/figures && python make_blog_figs_rl.py && python make_rl45.py && python make_rl6.py`; v3 RL re-renders: `cd rl/figures/v3 && python make_rerender_v3.py && python make_new_v3.py`; review re-renders: `figures/blog/review_final/*.py` (CPU) | `figures/blog/figs/`, `rl/figures/`, `rl/figures/v3/`, `figures/blog/review_final/` | §13 |
 
 ## Repository layout
@@ -76,7 +114,8 @@ The repository is organised by component (one folder per blog section), each wit
 | `scripts/` | GSM / rethink / gate / baseline drivers and implant builders (`solve_veto.py`, `rethink_circuit_build.py`, `rethink_v2/`) |
 | `ifeval/`, `bbh_generic/`, `topic_fence/`, `latent_write/`, `transfer/`, `finetuned_phase/`, `evidence/`, `math500/` | one experiment each: implant builders, eval harnesses, small result records |
 | `rl/` | RL engines and launchers: `gsm_grpo/` (v2 GRPO engine, Triton), `wiring/` (trainable wiring, call-form ladder), `library/` (all tools attached, mixed tasks), `engine2/` (NVRTC megakernel, work in progress), `interp/`, `results/`, `figures/` |
-| `gsm_push/` | the single-call GSM8K implant stack on the RL+calc host (calc v2, sanity DFA, weight-space forget, serial voter) and RL with it attached |
+| `gsm_stack/` | the single-call GSM8K implant stack, all in weights: engine (rel/v5: fast rollout, attention and tool kernels, fast trainer), RL arm launcher, test harness and lists, the implant lane's rungs and negative results, results notes, compliance note, model / data card |
+| `gsm_push/` | the earlier GSM8K stack (calc v2, sanity DFA, forget, serial voter; two parts programmatic), kept for the record |
 | `figures/` | blog figure scripts and rendered figures (`figures/blog/`, `figures/blog/review_final/`) |
 | `results/` | small result records for the top-level GSM / rethink runs |
 | `data/` | data preparation scripts (benchmarks are downloaded, not vendored) |
@@ -103,11 +142,13 @@ fitted pieces are rebuilt by one script each:
 | topic-blocker probes `topic_fence/fitted/*.pt` | `topic_fence/` fit scripts | yes, 0.5 MB |
 | GSM verifier probe `gsm_push/final/verifier_probe_L18.pt`, op veto `gsm_push/calc_v2/veto_op_qwen3.pt` | `gsm_push/selection/` probe fit, `gsm_push/calc_v2/solve_veto_op.py` | yes, 6 KB |
 | sanity DFA tables | `san_engine.build_tables` from the tokenizer, on first use (`$DFA_CACHE`) | no |
+| GSM stack rung-3 voter `vf_w.pt`, rung-4 side-net `sn_w.pt` | `gsm_stack/implants/vfeat/fitw.py`, `gsm_stack/implants/sidenet/mk_snw.py` (need split-C rollouts / states: one GPU job each) | **no, not synced for this release** (rung 3 / 4 need them; `gsm_stack/implants/README.md`) |
+| GSM stack RL hosts (`gsm_stack/engine/run_arm.sh ARM`) | 300 GRPO updates per arm, 0.6-2.6 h on one B200 | no (`gsm_stack/MODEL_CARD.md`) |
 
 ## Hardware
 
-* Every result needs **one GPU**. Runs were done on NVIDIA A100 80 GB, H100 80 GB and A40 48 GB, bf16, greedy decoding
-  unless stated. 0.6B-host runs fit in < 20 GB; the RL runs use 30-60 GB at the default batch (`--B_max 128` for
+* Every result needs **one GPU**. Runs were done on NVIDIA A100 80 GB, H100 80 GB, A40 48 GB and (the `gsm_stack/` RL arms and
+  test runs) B200, bf16, greedy decoding unless stated. 0.6B-host runs fit in < 20 GB; the RL runs use 30-60 GB at the default batch (`--B_max 128` for
   smaller GPUs); the A40 needs `FLEX_SMALL=1` for the RL engines (set by the launchers).
 * bf16 greedy text differs slightly across GPU types and batch sizes (a few percent of items; ~1 point on a benchmark).
   Compare within one GPU type. `REPRODUCE.md` lists which GPU produced each number.
@@ -125,10 +166,16 @@ The RL engines use custom GPU kernels that are compiled at runtime to PTX / cubi
 * `rl/engine2/` (work in progress, no blog number uses it): the 9 BBH/calculator implants as one integer-exact
   megakernel and a fused log-prob head, written in CUDA C++ and compiled at load time with **NVRTC** (cubin for the
   local `sm_XX`), launched through the driver API so the launches stay CUDA-graph capturable.
+* `gsm_stack/engine/` (rel/v5, behind every `gsm_stack` number): the v2 engine plus a continuous-batching rollout loop
+  (`fastroll.py`), Triton attention with the weight-space forget mask and compaction / overlap / split-KV variants
+  (`attn3.py`), the calculator implants as the engine2 integer-exact tool kernel (`tk.py`, `tkdual.py`,
+  `tk3_kernel.cu`, NVRTC), and a packed-sequence fast trainer (`fasttrain.py`, Triton group attention fwd + bwd in
+  `tattn.py`, fused log-prob head `lmhead.cu`). The rollout fast paths were checked bitwise against the plain loop, the fast trainer against the reference trainer
+  (`gsm_stack/engine/stk/KERNEL_NOTES.md`).
 
 ## What is not in the repository
 
-* Model checkpoints: fine-tuned hosts, RL'd hosts, trained wiring. Recipes, seeds and training rows (or seeded
+* Model checkpoints: fine-tuned hosts, RL'd hosts (including every `gsm_stack` arm and its ~7 GB resume states), trained wiring. Recipes, seeds and training rows (or seeded
   generators with SHA-256) are included.
 * Hidden-state dumps and per-row generation dumps (e.g. the call-gate opener states, `gsm_push` rows).
 * Files over 5 MB that scripts rebuild, e.g. the latent-write writer banks (36 MB), the compiled IFEval implant tensor (1.23 GB, `ifeval/full14_compiled/export.py`,

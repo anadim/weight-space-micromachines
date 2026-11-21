@@ -81,3 +81,10 @@ dfa_tables*.pt
 !gsm_push/calc_v2/veto_op_qwen3.pt
 !gsm_push/selection/results/*.pt
 gsm_push/calc_v2/test_exact_result.json
+
+# ---- gsm_stack release (2026-11-21): run trees, eval rows and fitted gadgets live under runs/ (WSM_DATA); never commit
+runs/
+figures/blog/v6/_hero/
+figures/blog/v6/src/fonts/
+gsm_stack/**/out/
+gsm_stack/**/tables/

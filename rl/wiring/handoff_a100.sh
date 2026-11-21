@@ -1,5 +1,5 @@
 #!/bin/bash
-cd "$(dirname "$0")"; source env_gcr.sh; L=runs/handoff.log
+cd "$(dirname "$0")"; source env_local.sh; L=runs/handoff.log
 echo "$(date) waiting for marker (A100)" >> $L
 until grep -q "done a4c_u300_s1" ../gsm_grpo/runs/seq4c.log 2>/dev/null; do sleep 60; done
 echo "$(date) marker seen" >> $L

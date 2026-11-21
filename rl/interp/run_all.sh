@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # A100 machine: all configs, sequential, A100 (same GPU type for every arm)
-cd "$(dirname "$0")"; [ -f ../gsm_grpo/env_gcr.sh ] && source ../gsm_grpo/env_gcr.sh; export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
+cd "$(dirname "$0")"; [ -f ../gsm_grpo/env_local.sh ] && source ../gsm_grpo/env_local.sh; export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
 A=../gsm_grpo/runs/abl
 python dump_traces.py --ckpt base --implant calc --modes on,off --tag base
 python dump_traces.py --ckpt base --implant R --modes on --tag baseR
