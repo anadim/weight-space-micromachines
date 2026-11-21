@@ -1,0 +1,12 @@
+dev   s7: n=600 vf 88.50 | same-stream pick0 87.83 -> d +0.67 (fix 7 brk 3, picks differ 24) | base gen/out 88.50 (token-identical rows 129; on those vf-base +0.00) | tok/q 1218.3 vs 1218.0
+dev   s11: n=600 vf 88.67 | same-stream pick0 88.67 -> d +0.00 (fix 6 brk 6, picks differ 17) | base gen/out 88.33 (token-identical rows 129; on those vf-base +1.55) | tok/q 1225.7 vs 1235.6
+dev   s13: n=600 vf 89.33 | same-stream pick0 89.00 -> d +0.33 (fix 5 brk 3, picks differ 15) | base gen/out 88.50 (token-identical rows 128; on those vf-base +0.78) | tok/q 1213.0 vs 1218.7
+dev   s17: n=600 vf 89.67 | same-stream pick0 88.67 -> d +1.00 (fix 12 brk 6, picks differ 26) | base gen/out 88.67 (token-identical rows 600; on those vf-base +1.00) | tok/q 1221.6 vs 1221.6
+dev2  s7: n=300 vf 84.67 | same-stream pick0 85.33 -> d -0.67 (fix 2 brk 4, picks differ 9) | base gen/out 85.33 (token-identical rows 300; on those vf-base -0.67) | tok/q 1232.5 vs 1232.5
+dev2  s11: n=300 vf 87.33 | same-stream pick0 85.33 -> d +2.00 (fix 7 brk 1, picks differ 12) | base gen/out 85.33 (token-identical rows 300; on those vf-base +2.00) | tok/q 1254.5 vs 1254.5
+dev2  s13: n=300 vf 87.33 | same-stream pick0 85.67 -> d +1.67 (fix 7 brk 2, picks differ 13) | base gen/out 85.67 (token-identical rows 300; on those vf-base +1.67) | tok/q 1238.2 vs 1238.2
+dev2  s17: n=300 vf 86.00 | same-stream pick0 86.67 -> d -0.67 (fix 4 brk 6, picks differ 14) | base gen/out 86.67 (token-identical rows 300; on those vf-base -0.67) | tok/q 1240.8 vs 1240.9
+dev mean over 4 seeds: vf 89.04  pick0 88.54  d +0.50  base gen/out 88.50
+dev2 mean over 4 seeds: vf 86.33  pick0 85.75  d +0.58  base gen/out 85.75
+dev 4-seed same-stream d +0.50  item-bootstrap 95% CI [-0.17, +1.17]
+dev2 4-seed same-stream d +0.58  item-bootstrap 95% CI [-0.33, +1.58]

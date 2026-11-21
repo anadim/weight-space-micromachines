@@ -1,0 +1,10 @@
+baseline b within-AUROC {'trainC': 0.6975, 'dev': 0.7525, 'dev2': 0.6726}
+line-AUROC (trainC OOF / dev / dev2) per config:
+  0.1@100 {'trainC': 0.781, 'dev': 0.781, 'dev2': 0.746} <- best trainC
+  0.1@200 {'trainC': 0.7809, 'dev': 0.7811, 'dev2': 0.7459} 
+  0.1@400 {'trainC': 0.7799, 'dev': 0.7811, 'dev2': 0.7457} 
+  0.1@50 {'trainC': 0.7797, 'dev': 0.78, 'dev2': 0.7456} 
+  0.1@800 {'trainC': 0.7779, 'dev': 0.7808, 'dev2': 0.7452} 
+{"cfg": "0.1@100", "agg": "min", "nan_frac": {"trainC": 0.003, "dev": 0.003, "dev2": 0.002}, "auc_alone": {"trainC": 0.539, "dev": 0.5866, "dev2": 0.4963}, "corr_b": {"trainC": 0.283, "dev": 0.277, "dev2": 0.277}, "v_trainC": 0.0, "sd_prm_tc": 1.546, "inc_grid_trainC": [0.0, -0.0004, -0.0008, -0.0021, -0.0037, -0.0085, -0.0159, -0.023, -0.0362, -0.0478, -0.0678], "auc_inc": {"trainC": 0.6975, "dev": 0.7525, "dev2": 0.6726}, "delta_vs_b": {"trainC": 0.0, "dev": -0.0, "dev2": 0.0}}
+{"cfg": "0.1@100", "agg": "mean", "nan_frac": {"trainC": 0.003, "dev": 0.003, "dev2": 0.002}, "auc_alone": {"trainC": 0.5672, "dev": 0.5863, "dev2": 0.5215}, "corr_b": {"trainC": 0.37, "dev": 0.388, "dev2": 0.363}, "v_trainC": 0.0, "sd_prm_tc": 1.047, "inc_grid_trainC": [0.0, -0.0001, -0.0003, -0.0007, -0.001, -0.0023, -0.0045, -0.0072, -0.0135, -0.0203, -0.0324], "auc_inc": {"trainC": 0.6975, "dev": 0.7525, "dev2": 0.6726}, "delta_vs_b": {"trainC": 0.0, "dev": -0.0, "dev2": 0.0}}
+{"cfg": "0.1@100", "agg": "last", "nan_frac": {"trainC": 0.003, "dev": 0.003, "dev2": 0.002}, "auc_alone": {"trainC": 0.6203, "dev": 0.654, "dev2": 0.592}, "corr_b": {"trainC": 0.709, "dev": 0.712, "dev2": 0.67}, "v_trainC": 0.0, "sd_prm_tc": 1.039, "inc_grid_trainC": [0.0, -0.0002, -0.0002, -0.0005, -0.0008, -0.0019, -0.0039, -0.0059, -0.0101, -0.0137, -0.021], "auc_inc": {"trainC": 0.6975, "dev": 0.7525, "dev2": 0.6726}, "delta_vs_b": {"trainC": 0.0, "dev": -0.0, "dev2": 0.0}}

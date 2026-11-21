@@ -1,0 +1,6 @@
+cluster lg+sane+pr_nnum+pr_z_ntok+pr_qcov_d                          | trainC  88.26 d4 +1.13 d2 +0.00 f61 b27 | dev  89.21 d4 +0.71 d2 +0.58 f33 b16 | dev2  86.33 d4 +0.58 d2 +0.67 f20 b13
+cluster lg+sane+pr_nnum+pr_z_ntok+ntok+pr_qcov_w                     | trainC  88.29 d4 +1.17 d2 +0.00 f61 b26 | dev  89.04 d4 +0.54 d2 +0.50 f32 b19 | dev2  86.17 d4 +0.42 d2 +0.17 f20 b15
+cluster lg+sane                                                      | trainC  87.12 d4 +0.00 d2 +0.00 f8 b8 | dev  88.79 d4 +0.29 d2 +0.33 f11 b4 | dev2  85.83 d4 +0.08 d2 +0.50 f6 b5
+cluster lg+sane+pr_nnum+pr_z_ntok                                    | trainC  88.16 d4 +1.03 d2 +0.00 f61 b30 | dev  89.00 d4 +0.50 d2 +0.50 f31 b19 | dev2  86.08 d4 +0.33 d2 +0.50 f18 b14
+cluster lg+sane+pr_nnum+pr_z_ntok+pr_qcov_w                          | trainC  88.43 d4 +1.30 d2 +0.00 f63 b24 | dev  89.21 d4 +0.71 d2 +0.75 f34 b17 | dev2  86.33 d4 +0.58 d2 +0.50 f22 b15
+cluster lg+sane+pr_nnum+pr_z_ntok+pr_qcov_w+pr_fk77+pr_nmiss_w       | trainC  88.26 d4 +1.13 d2 +0.00 f62 b28 | dev  89.04 d4 +0.54 d2 +0.58 f34 b21 | dev2  86.25 d4 +0.50 d2 +0.50 f20 b14

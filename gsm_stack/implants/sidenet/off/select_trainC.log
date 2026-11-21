@@ -1,0 +1,11 @@
+selection by trainC CV gain only (modes AUG/BLD/P:AUG; B18/REP excluded); top 8 of 114
+tC +0.20 g1 c4:HM:lin:pair       BLD    l2=0.001  | dev +0.21 (19/14) | dev2 +1.17 (17/3) | pooled 36/17 p=0.006
+tC +0.17 g1 c4:HM:mlp:pair       AUG    l2=0.01   | dev -0.08 (14/16) | dev2 +0.67 (13/5) | pooled 27/21 p=0.235
+tC +0.13 g2 c4:HMAE:lin:pair     P:AUG  l2=0.001  | dev +0.17 (15/11) | dev2 +1.00 (14/2) | pooled 29/13 p=0.010
+tC +0.12 g2 c4:HMAE:lin:pair     AUG    l2=0.001  | dev +0.12 (16/13) | dev2 +0.75 (14/5) | pooled 30/18 p=0.056
+tC +0.10 g2 c4:HMAE:mlp:bce      AUG    l2=0.01   | dev +0.04 (12/11) | dev2 +0.67 (13/5) | pooled 25/16 p=0.106
+tC +0.07 g1 c4:HM:mlp:bce        AUG    l2=0.001  | dev -0.21 (12/17) | dev2 +0.58 (15/8) | pooled 27/25 p=0.445
+tC +0.07 g1 c4:HM:mlp:list       P:AUG  l2=0.01   | dev -0.12 (9/12) | dev2 +0.75 (12/3) | pooled 21/15 p=0.203
+tC +0.07 g1 c4:HM:lin:pair       BLD    l2=0.01   | dev +0.04 (14/13) | dev2 +0.92 (16/5) | pooled 30/18 p=0.056
+max dev over all 0.25 ; n with dev>=+0.3 and dev2>=+0.3: 0
+mean over all entries: dev -0.044 dev2 +0.667

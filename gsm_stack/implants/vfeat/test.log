@@ -1,0 +1,7 @@
+[1] numreg fuzz: 8192 random streams, 0 mismatches PASS
+[2] numreg on real dev2 attempts (valid, n=9546): nnum mismatches 0, qcov_d mismatches 0 PASS
+[3] voter fuzz: 7360 rows (vf on + off): vf-pick mismatches 0, pick0 0, vf-off pick 0, committed registers 0, queue (#### X) 0; rows where vf and base differ: 470 PASS
+  attempt 0: body nums [7.5, 12.0, 3000.0, 3012.0] q nums [2.5, 12.0, 3000.0] -> want nn=4 qc=0.667, got nn=4 qc=0.667 nt=35 end=34
+  attempt 1: body nums [1.0, 2.0, 2.5, 12.0, 3000.0] q nums [2.5, 12.0, 3000.0] -> want nn=5 qc=1.000, got nn=5 qc=1.000 nt=62 end=96
+[4] token-level stream: PASS
+ALL PASS

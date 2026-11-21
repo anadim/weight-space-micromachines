@@ -1,0 +1,5 @@
+# task [6] GSM8K test: C (base host + full stack) N4 vs base N4; Ar (NON-COMPLIANT reference, posreset) vs u0 pr1
+C_N4 C test S 4 0 1 1 0
+base_N4 base test S 4 0 1 1 0
+Ar_N8pr1 Ar test S 8 1 1 1 0
+u0_N8pr1 u0 test S 8 1 1 1 0

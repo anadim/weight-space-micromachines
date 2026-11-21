@@ -1,0 +1,86 @@
+--- comp_serial.py.orig	2026-11-21 02:58:08.742289204 +0000
++++ stk/comp_serial.py	2026-11-21 03:05:31.183510502 +0000
+@@ -36,7 +36,8 @@
+ OVL = os.environ.get('FAST_OVL', '0') == '1'      # implant step on a side stream, joined after the last host layer
+ ATT3 = os.environ.get('FAST_ATT3', '0') == '1'    # split-KV prefix + forget-skip suffix attention (attn3.py; fastroll only)
+ import attn3
+-NS = 8          # attempt slots
++NS = int(os.environ.get('SW_NS', 8))          # attempt slots (AW: 16/24 for the adaptive-N extension)
++import aw_adapt as AWA
+ KS = 16         # answer symbols per slot
+ NSYM = 13       # 0-9, '-', '.', pad(12)
+ PAD = 12
+@@ -45,7 +46,26 @@
+ FINAL = ["\n#### ", "#### "]
+ 
+ 
++WPR = os.environ.get('WPR', '0') == '1'      # lane wpr: weight-space position reset (rotary re-phasing writer)
++
++
++def _wpr_rot(x, c, s):
++    """x (B, h, HD) after the host RoPE at the absolute position; c, s (B, 1, HD) fp32 = table row of the offset
++    register: returns R(-off) x = x cos - rot(x) sin (fixed linear map per row), in fp32, cast back."""
++    xf = x.float()
++    return (xf * c - Q.rot(xf) * s).to(x.dtype)
++
++
+ class SerialW(C2Engine):
++    def _wpr_tab(self, off):
++        if getattr(self, '_wpr_c', None) is None:    # fixed fp32 rotary table, rows 0..S_max (built once)
++            inv = 1.0 / (Q.THETA ** (torch.arange(0, Q.HD, 2, dtype=torch.int64).to(device=self.dev, dtype=torch.float) / Q.HD))
++            fr = torch.arange(self.Lp + self.S_max + 8, device=self.dev, dtype=torch.float64)[:, None] * inv.double()[None]
++            emb = torch.cat([fr, fr], -1)
++            self._wpr_c, self._wpr_s = emb.cos().float(), emb.sin().float()
++            self._wpr_ar = torch.arange(self.B_max + 1, device=self.dev)
++        return self._wpr_c[off][:, None], self._wpr_s[off][:, None]
++
+     def sw_setup(self, N=4, acap=320, R=1, posreset=False, probe=None, cache=None, vmode=1, san=True, repmiss=False):
+         tok, dev = self.tok, self.dev
+         V = self.W['E'].shape[0]
+@@ -118,9 +138,11 @@
+         self.acap = int(acap); self.sw_posreset = bool(posreset)
+         self.c_maxf = NS * 2; self.c_forget = True                   # forget_ws: segment labels 0..(slots x 2)
+         self.sw_nmax = int(os.environ.get('SW_NMAX', 8))          # largest N this engine will run (dev evals)
+-        self.sw_maxn = self.sw_nmax * 2 * (acap + 16) + 40
++        self.sw_maxn = int(os.environ.get('SW_MAXN', 0)) or self.sw_nmax * 2 * (acap + 16) + 40
++        self.aw_on = False                                         # AW: aw_adapt.setup() turns A/S/B/C on
+         self.graphs = {}; self.pool = None; self._outshape = None
+         self.stack_setup()
++        if WPR: self._wpr_c = None; self._wpr_tab(torch.zeros(1, dtype=torch.long, device=dev))
+         return self
+ 
+     def set_sw(self, N=None, vmode=None, san=None, repmiss=None, R=None):
+@@ -260,7 +282,10 @@
+         do_wait = end & ~do_rep & (self.s_a[:B] + 1 < self.k_N)
+         do_fin = end & ~do_rep & ~do_wait
+         # ---- voter (fixed ReLU circuit over the slot registers)
+-        has, widx = self._vote(self.R_ok[:B], self.R_bad[:B], self.R_lg[:B], self.R_sym[:B])
++        if self.aw_on:                                              # AW: adaptive N / stop4 / integer guard / room (aw_adapt.py)
++            do_rep, do_wait, do_fin, has, widx = AWA.decide(self, B, end, valid, fl, rbad)
++        else:
++            has, widx = self._vote(self.R_ok[:B], self.R_bad[:B], self.R_lg[:B], self.R_sym[:B])
+         self.s_win[:B] = torch.where(do_fin, torch.where(has, widx, torch.full_like(widx, -1)), self.s_win[:B])
+         # ---- writer pointer: advance, or start a bank
+         p = self.s_p[:B]
+@@ -332,6 +357,11 @@
+             pos = self.Lp + slot - off
+         else:
+             pos = self.Lp + slot
++        wpr = WPR and not self.sw_posreset
++        if wpr:      # weight-space rotary re-phasing (lane wpr): offset register -> fixed rotation table row R(-off)
++            off = torch.where(self.s_fr[:B] > 0, self.s_fr[:B] - self.s_qlen[:B], torch.zeros_like(slot))
++            rc, rs = self._wpr_tab(off)
++            rar = self._wpr_ar[:B]
+         ieee = x.dtype == torch.float32
+         sc = 1.0 / (Q.HD ** 0.5)
+         delta = None
+@@ -345,6 +375,9 @@
+             Kc, Vc = self.Kc[i], self.Vc[i]
+             HK.qk_rope_kernel[(B,)](qkv, lw['qn'], lw['kn'], self.cos_t, self.sin_t, pos, q, Kc, Vc, slot,
+                                     Kc.stride(0), Kc.stride(1), Kc.stride(2), H=Q.H, KVH=Q.KVH, HD=Q.HD, eps=Q.EPS)
++            if wpr:
++                q.copy_(_wpr_rot(q, rc, rs))
++                Kc[rar, :, slot] = _wpr_rot(Kc[rar, :, slot], rc, rs)
+             rbk = 8 if ieee else 32; ns = 1 if ieee else 2
+             if ATT3 and not ieee and getattr(type(self), 'f_att3', False):
+                 attn3.attention(self, i, B, q, Kc, Vc, slot, att, sc)

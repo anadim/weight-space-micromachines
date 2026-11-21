@@ -1,0 +1,60 @@
+--- gsm_stack/eval/trees/v42/stk/comp_serial.py	2026-11-20 23:47:00.000000000 +0000
++++ comp_serial.wpr_fixed.py	2026-11-21 03:26:07.039944536 +0000
+@@ -45,7 +45,27 @@
+ FINAL = ["\n#### ", "#### "]
+ 
+ 
++WPR = os.environ.get('WPR', '0') == '1'      # lane wpr: weight-space position reset (rotary re-phasing writer)
++
++
++def _wpr_rot(x, c, s):
++    """x (B, h, HD) after the host RoPE at the absolute position; c, s (B, 1, HD) fp32 = table row of the offset
++    register: returns R(-off) x = x cos - rot(x) sin (fixed linear map per row), in fp32, cast back."""
++    xf = x.float()
++    return (xf * c - Q.rot(xf) * s).to(x.dtype)
++
++
+ class SerialW(C2Engine):
++    def _wpr_tab(self, off):
++        if getattr(self, '_wpr_c', None) is None:    # fixed fp32 rotary table, rows 0..S_max (built once)
++            inv = 1.0 / (Q.THETA ** (torch.arange(0, Q.HD, 2, dtype=torch.int64).to(device=self.dev, dtype=torch.float) / Q.HD))
++            fr = torch.arange(self.Lp + self.S_max + 8, device=self.dev, dtype=torch.float64)[:, None] * inv.double()[None]
++            emb = torch.cat([fr, fr], -1)
++            self._wpr_c, self._wpr_s = emb.cos().float(), emb.sin().float()
++            # (1, B_max+1): NOT a per-row register (first dim != B_max+1), so fastroll compaction never permutes it
++            self._wpr_ar = torch.arange(self.B_max + 1, device=self.dev).view(1, -1)
++        return self._wpr_c[off][:, None], self._wpr_s[off][:, None]
++
+     def sw_setup(self, N=4, acap=320, R=1, posreset=False, probe=None, cache=None, vmode=1, san=True, repmiss=False):
+         tok, dev = self.tok, self.dev
+         V = self.W['E'].shape[0]
+@@ -121,6 +141,7 @@
+         self.sw_maxn = self.sw_nmax * 2 * (acap + 16) + 40
+         self.graphs = {}; self.pool = None; self._outshape = None
+         self.stack_setup()
++        if WPR: self._wpr_c = None; self._wpr_tab(torch.zeros(1, dtype=torch.long, device=dev))
+         return self
+ 
+     def set_sw(self, N=None, vmode=None, san=None, repmiss=None, R=None):
+@@ -332,6 +353,11 @@
+             pos = self.Lp + slot - off
+         else:
+             pos = self.Lp + slot
++        wpr = WPR and not self.sw_posreset
++        if wpr:      # weight-space rotary re-phasing (lane wpr): offset register -> fixed rotation table row R(-off)
++            off = torch.where(self.s_fr[:B] > 0, self.s_fr[:B] - self.s_qlen[:B], torch.zeros_like(slot))
++            rc, rs = self._wpr_tab(off)
++            rar = self._wpr_ar[0, :B]
+         ieee = x.dtype == torch.float32
+         sc = 1.0 / (Q.HD ** 0.5)
+         delta = None
+@@ -345,6 +371,9 @@
+             Kc, Vc = self.Kc[i], self.Vc[i]
+             HK.qk_rope_kernel[(B,)](qkv, lw['qn'], lw['kn'], self.cos_t, self.sin_t, pos, q, Kc, Vc, slot,
+                                     Kc.stride(0), Kc.stride(1), Kc.stride(2), H=Q.H, KVH=Q.KVH, HD=Q.HD, eps=Q.EPS)
++            if wpr:
++                q.copy_(_wpr_rot(q, rc, rs))
++                Kc[rar, :, slot] = _wpr_rot(Kc[rar, :, slot], rc, rs)
+             rbk = 8 if ieee else 32; ns = 1 if ieee else 2
+             if ATT3 and not ieee and getattr(type(self), 'f_att3', False):
+                 attn3.attention(self, i, B, q, Kc, Vc, slot, att, sc)

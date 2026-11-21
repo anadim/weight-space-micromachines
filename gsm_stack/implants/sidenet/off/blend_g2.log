@@ -1,0 +1,10 @@
+lg {'trainC': np.float64(0.6423), 'dev': np.float64(0.7273), 'dev2': np.float64(0.6433)}
+c4:A:lin:bce           sn trainC 0.6234 dev 0.6978 dev2 0.6132 | blend w=0.3 trainC 0.6459 dev 0.7373 dev2 0.6447 | w=.5 trainC 0.6451 dev 0.7341 dev2 0.6403
+c4:E:lin:bce           sn trainC 0.6479 dev 0.7155 dev2 0.6889 | blend w=0.6 trainC 0.6564 dev 0.7391 dev2 0.6809 | w=.5 trainC 0.6559 dev 0.7423 dev2 0.6757
+c4:HMA:lin:bce         sn trainC 0.6826 dev 0.7341 dev2 0.6606 | blend w=0.9 trainC 0.6850 dev 0.7421 dev2 0.6652 | w=.5 trainC 0.6738 dev 0.7552 dev2 0.6682
+c4:HMA:mlpr:pair       sn trainC 0.6753 dev 0.7326 dev2 0.6373 | blend w=0.7 trainC 0.6851 dev 0.7601 dev2 0.6587 | w=.5 trainC 0.6809 dev 0.7634 dev2 0.6636
+c4:HMAE:lin:bce        sn trainC 0.6861 dev 0.7429 dev2 0.6839 | blend w=0.9 trainC 0.6883 dev 0.7503 dev2 0.6870 | w=.5 trainC 0.6763 dev 0.7586 dev2 0.6801
+c4:HMAE:lin:pair       sn trainC 0.7007 dev 0.7352 dev2 0.6697 | blend w=0.8 trainC 0.7038 dev 0.7516 dev2 0.6776 | w=.5 trainC 0.6924 dev 0.7602 dev2 0.6771
+c4:HMAE:mlp:bce        sn trainC 0.6692 dev 0.7341 dev2 0.6627 | blend w=0.7 trainC 0.6762 dev 0.7598 dev2 0.6758 | w=.5 trainC 0.6716 dev 0.7609 dev2 0.6746
+c4:HMAE:mlpr:bce       sn trainC 0.6788 dev 0.7337 dev2 0.6724 | blend w=0.8 trainC 0.6834 dev 0.7509 dev2 0.6815 | w=.5 trainC 0.6733 dev 0.7561 dev2 0.6758
+c8:HMAE:lin:bce        sn trainC 0.6908 dev 0.7445 dev2 0.6750 | blend w=0.9 trainC 0.6930 dev 0.7533 dev2 0.6804 | w=.5 trainC 0.6798 dev 0.7612 dev2 0.6782

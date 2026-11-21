@@ -1,0 +1,7 @@
+pr1_s11 u0 dev S 8 1 1 1 0 FE_SEED=11
+pr1_s13 u0 dev S 8 1 1 1 0 FE_SEED=13
+pr1_s17 u0 dev S 8 1 1 1 0 FE_SEED=17
+pr1_s7 u0 dev2 S 8 1 1 1 0 FE_SEED=7
+pr1_s11 u0 dev2 S 8 1 1 1 0 FE_SEED=11
+pr1_s13 u0 dev2 S 8 1 1 1 0 FE_SEED=13
+pr1_s17 u0 dev2 S 8 1 1 1 0 FE_SEED=17

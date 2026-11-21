@@ -1,0 +1,30 @@
+## dev: within-item AUROC by item dominant category (n items)
+relation   n=145 qcov_w=0.526 nmiss_w=0.474 nnum=0.577 z_ntok=0.530 fk77=0.407 lg=0.765
+dropped    n= 62 qcov_w=0.552 nmiss_w=0.448 nnum=0.639 z_ntok=0.592 fk77=0.382 lg=0.773
+operand    n= 35 qcov_w=0.550 nmiss_w=0.450 nnum=0.499 z_ntok=0.446 fk77=0.383 lg=0.738
+target     n= 29 qcov_w=0.532 nmiss_w=0.468 nnum=0.761 z_ntok=0.652 fk77=0.417 lg=0.803
+unit       n=  5 qcov_w=0.505 nmiss_w=0.495 nnum=0.535 z_ntok=0.492 fk77=0.465 lg=0.826
+plan       n=  8 qcov_w=0.505 nmiss_w=0.495 nnum=0.533 z_ntok=0.535 fk77=0.433 lg=0.752
+## dev: gap streams (base vote wrong, some kept attempt right): right cluster vs voted wrong cluster (cluster means)
+n gap streams 122 right-count dist {3: 18, 1: 65, 2: 32, 4: 7}
+  pr_qcov_w    right>wrong  20  equal  99  right<wrong   3
+  pr_nmiss_w   right>wrong   3  equal  99  right<wrong  20
+  pr_nnum      right>wrong  78  equal  17  right<wrong  27
+  pr_z_ntok    right>wrong  84  equal   0  right<wrong  38
+  pr_fk77      right>wrong  64  equal   0  right<wrong  58
+  lg           right>wrong  74  equal   0  right<wrong  48
+## dev2: within-item AUROC by item dominant category (n items)
+relation   n= 78 qcov_w=0.533 nmiss_w=0.467 nnum=0.589 z_ntok=0.519 fk77=0.393 lg=0.695
+dropped    n= 34 qcov_w=0.529 nmiss_w=0.471 nnum=0.651 z_ntok=0.593 fk77=0.436 lg=0.591
+operand    n= 16 qcov_w=0.518 nmiss_w=0.482 nnum=0.388 z_ntok=0.465 fk77=0.394 lg=0.743
+target     n= 13 qcov_w=0.578 nmiss_w=0.422 nnum=0.652 z_ntok=0.711 fk77=0.440 lg=0.811
+unit       n=  3 qcov_w=0.658 nmiss_w=0.342 nnum=0.617 z_ntok=0.523 fk77=0.284 lg=0.518
+plan       n=  6 qcov_w=0.500 nmiss_w=0.500 nnum=0.174 z_ntok=0.350 fk77=0.394 lg=0.619
+## dev2: gap streams (base vote wrong, some kept attempt right): right cluster vs voted wrong cluster (cluster means)
+n gap streams 97 right-count dist {1: 51, 2: 22, 3: 15, 4: 8, 5: 1}
+  pr_qcov_w    right>wrong  11  equal  82  right<wrong   4
+  pr_nmiss_w   right>wrong   4  equal  82  right<wrong  11
+  pr_nnum      right>wrong  47  equal  19  right<wrong  31
+  pr_z_ntok    right>wrong  69  equal   0  right<wrong  28
+  pr_fk77      right>wrong  43  equal   0  right<wrong  54
+  lg           right>wrong  38  equal   0  right<wrong  59

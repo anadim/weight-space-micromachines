@@ -1,0 +1,10 @@
+dev pr_dmax: AUROC pooled 0.204 within-item 0.307
+dev pr_dcnt: AUROC pooled 0.355 within-item 0.409
+dev2 pr_dmax: AUROC pooled 0.169 within-item 0.372
+dev2 pr_dcnt: AUROC pooled 0.365 within-item 0.447
+lg+sane                                                 dev CV 88.96 d +0.46 f23 b12 | dev2 (dev-fit) 85.00 d -0.75 f6 b15
+lg+sane+pr_dmax                                         dev CV 89.00 d +0.50 f27 b15 | dev2 (dev-fit) 85.17 d -0.58 f12 b19
+lg+sane+pr_dcnt                                         dev CV 88.88 d +0.38 f23 b14 | dev2 (dev-fit) 85.00 d -0.75 f6 b15
+lg+sane+pr_nnum+pr_z_ntok+pr_qcov_d                     dev CV 89.38 d +0.88 f32 b11 | dev2 (dev-fit) 85.58 d -0.17 f19 b21
+lg+sane+pr_nnum+pr_z_ntok+pr_qcov_d+pr_dmax             dev CV 89.21 d +0.71 f32 b15 | dev2 (dev-fit) 85.67 d -0.08 f20 b21
+lg+sane+pr_nnum+pr_z_ntok+pr_qcov_d+pr_dcnt             dev CV 89.21 d +0.71 f31 b14 | dev2 (dev-fit) 85.67 d -0.08 f19 b20

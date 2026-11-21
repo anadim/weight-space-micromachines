@@ -1,0 +1,7 @@
+wpr_s11 u0 dev S 8 0 1 1 0 FE_SEED=11 WPR=1
+wpr_s13 u0 dev S 8 0 1 1 0 FE_SEED=13 WPR=1
+wpr_s17 u0 dev S 8 0 1 1 0 FE_SEED=17 WPR=1
+wpr_s7 u0 dev2 S 8 0 1 1 0 FE_SEED=7 WPR=1
+wpr_s11 u0 dev2 S 8 0 1 1 0 FE_SEED=11 WPR=1
+wpr_s13 u0 dev2 S 8 0 1 1 0 FE_SEED=13 WPR=1
+wpr_s17 u0 dev2 S 8 0 1 1 0 FE_SEED=17 WPR=1

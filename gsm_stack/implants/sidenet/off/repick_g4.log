@@ -1,0 +1,4 @@
+## c4:HM:lin:pair
+B18    l2=0.001 trainC CV 88.86 (-0.28, 22/39) | dev 90.21 (-0.08, 5/7; 90.33/90.67/89.83/90.00) | dev2 88.00 (+0.67, 9/1; 88.33/88.00/88.00/87.67) | pooled 14/8 p=0.143
+BLD    l2=0.001 trainC CV 89.36 (+0.22, 56/43) | dev 90.50 (+0.21, 20/15; 90.67/90.83/90.17/90.33) | dev2 88.42 (+1.08, 17/4; 89.00/88.00/88.33/88.33) | pooled 37/19 p=0.011
+saved ['c8', 'lc', 'ssb', 'mean_sane', 'mean_nn', 'mean_zt', 'mean_qc', 'max_sane', 'max_nn', 'max_zt', 'max_qc', 'min_sane', 'min_nn', 'min_zt', 'min_qc', 'mean_b', 'max_b', 'min_b']

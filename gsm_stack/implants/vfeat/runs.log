@@ -1,0 +1,10 @@
+  dev2 s7: rows 300, token-identical to base 300; attempts 2400: nnum mismatches 0, qcov_d 0, ntok 0
+  dev2 s11: rows 300, token-identical to base 300; attempts 2400: nnum mismatches 0, qcov_d 0, ntok 0
+  dev2 s13: rows 300, token-identical to base 300; attempts 2400: nnum mismatches 0, qcov_d 0, ntok 0
+  dev2 s17: rows 300, token-identical to base 300; attempts 2400: nnum mismatches 0, qcov_d 0, ntok 0
+  dev s7: rows 600, token-identical to base 129; attempts 1028: nnum mismatches 1, qcov_d 1, ntok 1
+  dev s11: rows 600, token-identical to base 129; attempts 1032: nnum mismatches 0, qcov_d 0, ntok 0
+  dev s13: rows 600, token-identical to base 128; attempts 1024: nnum mismatches 0, qcov_d 0, ntok 0
+  dev s17: rows 600, token-identical to base 600; attempts 4800: nnum mismatches 0, qcov_d 0, ntok 0
+[runs] in-stream registers vs offline: PASS
+ALL PASS

@@ -1,0 +1,7 @@
+control dev: delta=0 rung-4 theta pick mismatches vs rung-4 rows = 0
+control dev2: delta=0 rung-4 theta pick mismatches vs rung-4 rows = 0
+control: delta=0 fresh trainC fit l2 1e-3 vs rung-4 theta: max |dtheta| 0.00e+00
+## q1.c4_xc_a4mh_alone:inc:sel scale 1
+X0 (r4 theta) | dev 90.33 (-0.12, 8/11; 90.17/90.50/90.33/90.33) | dev2 88.42 (+0.08, 10/9; 88.67/88.00/88.33/88.67) | pooled 18/20 p=0.686
+BLD l2=0.001 | trainC CV 89.18 (-0.28 vs r4-theta, 21/38) | dev 90.46 (+0.00, 5/5; 90.83/90.50/90.17/90.33) | dev2 88.17 (-0.17, 4/6; 88.00/88.00/88.67/88.00) | pooled 9/11 p=0.748
+BLD l2=0.01 | trainC CV 89.13 (-0.33 vs r4-theta, 19/39) | dev 90.42 (-0.04, 6/7; 90.33/90.50/90.50/90.33) | dev2 88.25 (-0.08, 4/5; 88.33/88.00/88.33/88.33) | pooled 10/12 p=0.738

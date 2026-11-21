@@ -1,0 +1,53 @@
+56a57,60
+> SN = os.environ.get('AW_SN', '')            # lane sidenet: multi-layer linear verifier register + BLD writer (aw_sn.py)
+> if SN:
+>     assert VF, 'AW_SN needs AW_VF=1'
+>     import aw_sn as ASN
+176a181,188
+>         if SN:      # side-net registers: '####' projection, line-end projection sum + count, per-step line-end gate, slot score
+>             self.sn_L, self.sn_W, self.sn_b, self.sn_th, self.sn_c0 = ASN.load(SN, dev)
+>             self.t_NL = torch.tensor(['\n' in t for t in txt], device=dev)
+>             self.s_snH, self.s_snM = z(Bp, dt=torch.float32), z(Bp, dt=torch.float32)
+>             self.s_sncnt = z(Bp); self.s_snml = z(Bp, dt=torch.bool); self.s_snhs = z(Bp, dt=torch.bool)
+>             self._sn_ns = None
+>             self.R_sn = torch.full((Bp, NS), -30.0, device=dev, dtype=torch.float64)
+>             self._sn_u = torch.zeros(Bp, 2, device=dev, dtype=torch.float32)
+179c191,192
+<         return self.vf_b.tensors() + [self.vfq_S, self.vfq_n, self.s_vnt, self.s_pk0, self.R_nn, self.R_qc, self.R_nt]
+---
+>         return self.vf_b.tensors() + [self.vfq_S, self.vfq_n, self.s_vnt, self.s_pk0, self.R_nn, self.R_qc, self.R_nt] + (
+>             [self.s_snH, self.s_snM, self.s_sncnt, self.s_snml, self.s_snhs, self.R_sn] if SN else [])
+243a257
+>             if SN: self.R_sn.fill_(-30.0)
+249a264
+>         if SN: self._rec[-1].update(sn=self.R_sn[:n].cpu())
+343a359,362
+>         if SN:      # commit the side-net score; gate this step's line-end read: host token with '\n', segment before '####'
+>             snv = self.s_snH[:B].double() + self.s_snM[:B].double() / self.s_sncnt[:B].clamp(min=1).double() + self.sn_b
+>             self.R_sn[:B] = torch.where(oh, snv[:, None], self.R_sn[:B])
+>             self.s_snml[:B] = rd & self.t_NL[tok] & ~self.s_snhs[:B] & ~cap_probe & ~end
+355,356c374,379
+<             has, widx = AVF.vf_vote(self.R_ok[:B], self.R_bad[:B], self.R_lg[:B], self.R_sym[:B], self.R_nn[:B], self.R_qc[:B],
+<                                     self.R_nt[:B], self.s_a[:B] + 1, self.k_san, self.vf_th, self.vf_c0)
+---
+>             if SN:
+>                 has, widx = ASN.vf_vote_sn(self.R_ok[:B], self.R_bad[:B], self.R_lg[:B], self.R_sn[:B], self.R_sym[:B], self.R_nn[:B],
+>                                            self.R_qc[:B], self.R_nt[:B], self.s_a[:B] + 1, self.k_san, self.sn_th, self.sn_c0)
+>             else:
+>                 has, widx = AVF.vf_vote(self.R_ok[:B], self.R_bad[:B], self.R_lg[:B], self.R_sym[:B], self.R_nn[:B], self.R_qc[:B],
+>                                         self.R_nt[:B], self.s_a[:B] + 1, self.k_san, self.vf_th, self.vf_c0)
+396a420,422
+>         if SN:
+>             for t_ in (self.s_snH, self.s_snM, self.s_sncnt): t_[:B] = torch.where(newseg, torch.zeros_like(t_[:B]), t_[:B])
+>             self.s_snhs[:B] = self.s_snhs[:B] & ~newseg; self._sn_ns = newseg      # a '####' at an END step belongs to the ended segment
+443a470
+>         if SN: snu = self._sn_u[:B]; snu.zero_()
+449a477
+>             if SN and i in self.sn_W: snu += x.float() @ self.sn_W[i]       # x = layer-i input: fixed (D, 2) projection [H, M]
+475a504,509
+>         if SN:      # '####' token: set the H projection; gated line-end token: add the M projection, count
+>             cp = cap_probe & ~self._sn_ns
+>             self.s_snH[:B] = torch.where(cp, snu[:, 0], self.s_snH[:B]); self.s_snhs[:B] = self.s_snhs[:B] | cp
+>             ml = self.s_snml[:B]
+>             self.s_snM[:B] = self.s_snM[:B] + torch.where(ml, snu[:, 1], torch.zeros_like(snu[:, 1]))
+>             self.s_sncnt[:B] = self.s_sncnt[:B] + ml.long()

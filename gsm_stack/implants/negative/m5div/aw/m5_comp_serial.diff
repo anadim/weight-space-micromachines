@@ -1,0 +1,60 @@
+--- comp_serial.base.py	2026-11-21 04:10:49.054481984 +0000
++++ stk/comp_serial.py	2026-11-21 04:10:49.070786243 +0000
+@@ -38,6 +38,8 @@
+ import attn3
+ NS = int(os.environ.get('SW_NS', 8))          # attempt slots (AW: 16/24 for the adaptive-N extension)
+ import aw_adapt as AWA
++M5 = os.environ.get('M5DIV', '')            # lane m5div: first-step diversity (m5div.py); unset = code path untouched
++if M5: import m5div as M5D
+ KS = 16         # answer symbols per slot
+ NSYM = 13       # 0-9, '-', '.', pad(12)
+ PAD = 12
+@@ -144,6 +146,8 @@
+         self.graphs = {}; self.pool = None; self._outshape = None
+         self.stack_setup()
+         if WPR: self._wpr_c = None; self._wpr_tab(torch.zeros(1, dtype=torch.long, device=dev))
++        self.m5_on = False
++        if M5: M5D.setup(self, M5, txt)
+         return self
+ 
+     def set_sw(self, N=None, vmode=None, san=None, repmiss=None, R=None):
+@@ -175,6 +179,7 @@
+         if hasattr(self, 'R_sym'):
+             m += [self.s_dfa, self.s_wr, self.s_c, self.s_k, self.s_lg, self.s_lgset, self.R_sym, self.R_ok, self.R_bad, self.R_lg,
+                   self.s_a, self.s_rep, self.s_nf, self.s_fr, self.s_qlen, self.s_p, self.s_win, self.s_fin, self.s_nrep, self.s_pe]
++            if getattr(self, 'm5_on', False): m += M5D.regs(self)
+         im = self.imp
+         if hasattr(im, 'chain'): m += [im.chain.sym_h, im.chain.S_h, im.chain.key_h, im.chain.fst]
+         return m
+@@ -189,6 +194,7 @@
+         for t in (self.s_dfa, self.s_c, self.s_k, self.s_a, self.s_rep, self.s_nf, self.s_p, self.s_nrep): t.zero_()
+         for t in (self.s_wr, self.s_lgset, self.R_ok, self.R_bad, self.s_fin, self.s_pe): t.zero_()
+         self.s_lg.zero_(); self.R_lg.fill_(-30.0); self.R_sym.fill_(PAD); self.s_fr.fill_(-1); self.s_win.fill_(-1)
++        if self.m5_on: M5D.reset(self)
+         st = C2Engine._wave(self, qs, G, T, max_new, greedy)
+         n = len(qs) * G
+         self._rec.append(dict(sym=self.R_sym[:n].cpu(), ok=self.R_ok[:n].cpu(), bad=self.R_bad[:n].cpu(), lg=self.R_lg[:n].cpu(),
+@@ -261,6 +267,7 @@
+         cur = self.R_sym[bi, a, kk]
+         self.R_sym[bi, a, kk] = torch.where(store, sy, cur)
+         self.s_k[:B] = self.s_k[:B] + store.long()
++        j0 = self.s_c[:B].clone() if self.m5_on else None
+         self.s_c[:B] = self.s_c[:B] + rd.long()
+         # END trigger
+         closed = rd & self.t_done[dfa1] & ~self.t_done[dfa0]
+@@ -325,6 +332,7 @@
+         self.s_dfa[:B] = torch.where(newseg | do_fin, torch.zeros_like(dfa1), dfa1)
+         for t_ in (self.s_c, self.s_k): t_[:B] = torch.where(newseg, torch.zeros_like(t_[:B]), t_[:B])
+         self.s_lgset[:B] = self.s_lgset[:B] & ~newseg
++        if self.m5_on: M5D.step(self, B, tok, rd, live, j0, do_wait, newseg, writing)
+         bits = (writing.to(torch.int8) * 2) + ((do_rep | do_wait | do_fin) & live).to(torch.int8) * 8
+         return write, bits, cap_probe
+ 
+@@ -399,6 +407,7 @@
+         x += sw.to(x.dtype)
+         HK.add_rms_kernel[(B,)](x, x, W['lnf'], h, D=Q.D, HAS_DELTA=False, eps=Q.EPS)
+         logits = F.linear(h, W['E'])
++        if self.m5_on: M5D.apply(self, B, logits)
+         nxt, lp = self.nxt_b[:B], self.lp_b[:B]
+         HK.sample_kernel[(B,)](logits, self.temp, self.greedy, self.seed, nxt, lp, logits.shape[1], BV=2048, num_warps=8)
+         self.seed += 1

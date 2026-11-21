@@ -1,0 +1,6 @@
+lg {'trainC': np.float64(0.6423), 'dev': np.float64(0.7273), 'dev2': np.float64(0.6433)}
+all:HMA:mlp:bce        sn trainC 0.6538 dev 0.7296 dev2 0.6321 | blend w=0.7 trainC 0.6667 dev 0.7528 dev2 0.6590 | w=.5 trainC 0.6635 dev 0.7538 dev2 0.6599
+c4:HM:mlp:bce          sn trainC 0.6682 dev 0.7306 dev2 0.6675 | blend w=0.8 trainC 0.6733 dev 0.7455 dev2 0.6772 | w=.5 trainC 0.6667 dev 0.7572 dev2 0.6730
+c4:HM:mlpr:bce         sn trainC 0.6735 dev 0.7348 dev2 0.6653 | blend w=0.8 trainC 0.6761 dev 0.7477 dev2 0.6746 | w=.5 trainC 0.6682 dev 0.7565 dev2 0.6718
+c4:HMAE:mlp:bce        sn trainC 0.6630 dev 0.7370 dev2 0.6646 | blend w=0.8 trainC 0.6681 dev 0.7498 dev2 0.6758 | w=.5 trainC 0.6632 dev 0.7525 dev2 0.6714
+c4:HMAE:mlpr:pair      sn trainC 0.6779 dev 0.7372 dev2 0.6688 | blend w=0.7 trainC 0.6823 dev 0.7550 dev2 0.6792 | w=.5 trainC 0.6771 dev 0.7558 dev2 0.6761

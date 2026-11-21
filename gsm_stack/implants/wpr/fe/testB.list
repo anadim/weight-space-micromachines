@@ -1,0 +1,3 @@
+# needs rl/B/step_000300
+B_u300 B test B 1 0 1 1 0
+B_u300 B hard B 1 0 1 1 0 STK_MISSING_ONLY=1

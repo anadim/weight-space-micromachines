@@ -1,0 +1,4 @@
+# task [6] GSM-Hard (1,319), safe settings: plain majority, no sanity filter, repair only missing; B with STK_MISSING_ONLY=1
+A1_N8 A1 hard S 8 0 0 0 1
+u0_N8 u0 hard S 8 0 0 0 1
+u0_B u0 hard B 1 0 1 1 0 STK_MISSING_ONLY=1

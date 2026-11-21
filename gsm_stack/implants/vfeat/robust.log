@@ -1,0 +1,8 @@
+boot_seed 1 l2 0.001 | dev d4 +0.71 CI[+0.00,+1.42] f34 b17 | dev2 d4 +0.58 CI[-0.33,+1.58] f22 b15
+  theta (raw units, order = [c/8, log c, sum sig(lg), mean f, max f, min f] x f in ['lg', 'sane', 'pr_nnum', 'pr_z_ntok', 'pr_qcov_w'] ):
+   [-1.336, 0.981, 0.318, 0.46, 0.0, 1.978, 0.326, -0.169, 0.277, 0.0, 1.473, 0.303, 0.957, -0.01, 0.0, -1.902, -0.308, 2.217] c0 -5.257
+boot_seed 1 l2 0.01 | dev d4 +0.50 CI[-0.17,+1.17] f28 b16 | dev2 d4 +0.67 CI[-0.25,+1.67] f21 b13
+boot_seed 2 l2 0.001 | dev d4 +0.79 CI[+0.08,+1.50] f35 b16 | dev2 d4 +0.67 CI[-0.33,+1.67] f22 b14
+boot_seed 2 l2 0.01 | dev d4 +0.62 CI[-0.04,+1.33] f30 b15 | dev2 d4 +0.58 CI[-0.33,+1.67] f21 b14
+boot_seed 3 l2 0.001 | dev d4 +0.75 CI[+0.04,+1.50] f35 b17 | dev2 d4 +0.50 CI[-0.50,+1.58] f21 b15
+boot_seed 3 l2 0.01 | dev d4 +0.58 CI[-0.08,+1.29] f31 b17 | dev2 d4 +0.75 CI[-0.25,+1.83] f22 b13

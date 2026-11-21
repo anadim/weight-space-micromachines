@@ -1,0 +1,11 @@
+# task [10] controls / ablations on dev (600), host u0 (a2_u300_s2), T=1, seed 11. Offline from ser8/fo8 registers:
+# voter off (last attempt only), plain majority; prompt-only = fo8 graded on its last attempt.
+ser8_s11 u0 dev S 8 0 1 1 0 FE_SEED=11
+sc8_s11 u0 dev SC 8 0 1 1 0 FE_SEED=11
+fo8_s11 u0 dev S 8 0 1 1 0 FE_SEED=11 FE_FORGET=0 FAST_ATT3=0
+ser4_s11 u0 dev S 4 0 1 1 0 FE_SEED=11
+sc4_s11 u0 dev SC 4 0 1 1 0 FE_SEED=11
+H_s11 u0 dev H 1 0 1 1 0 FE_SEED=11
+C4_s11 u0 dev C4 1 0 1 1 0 FE_SEED=11
+D_s11 u0 dev D 1 0 1 1 0 FE_SEED=11
+B_s11 u0 dev B 1 0 1 1 0 FE_SEED=11
