@@ -32,3 +32,7 @@
 {"u": 30, "reward": 0.328125, "natt": 4.0, "repairs": 2.125, "win_none": 0.0, "len": 824.796875, "roll_s": 84.11096048355103, "gen_tokens": 105574, "kept_groups": 13, "mem_gb": 37.763536384, "loss": -0.0005889263411518186, "clipfrac": 0.0028425547966428213, "ratio": 1.0000984535083155, "ntok_train": 74229, "n_docs": 626, "n_micro": 8, "grad_norm": 0.1325278878211975, "train_s": 25.47994041442871}
 {"u": 31, "reward": 0.28125, "natt": 4.0, "repairs": 1.953125, "win_none": 0.0234375, "len": 738.03125, "roll_s": 67.23034811019897, "gen_tokens": 94468, "kept_groups": 12, "mem_gb": 37.766768128, "loss": 0.002385716652497649, "clipfrac": 0.0026501437049755517, "ratio": 1.0000775133498656, "ntok_train": 53582, "n_docs": 543, "n_micro": 6, "grad_norm": 0.12569285929203033, "train_s": 18.4704749584198}
 {"u": 32, "reward": 0.2578125, "natt": 4.0, "repairs": 2.09375, "win_none": 0.015625, "len": 764.6796875, "roll_s": 79.13688039779663, "gen_tokens": 97879, "kept_groups": 9, "mem_gb": 37.766768128, "loss": -0.003441698892856948, "clipfrac": 0.002726043529463078, "ratio": 1.0002148995487037, "ntok_train": 45854, "n_docs": 422, "n_micro": 5, "grad_norm": 0.11813043802976608, "train_s": 15.709174633026123}
+{"resumed_from": 30}
+{"resumed_from": 30}
+{"resumed_from": 30}
+{"resumed_from": 30}

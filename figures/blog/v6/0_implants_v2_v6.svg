@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1610" width="1600" height="1610">
+<defs>
+<marker id="aI" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#222222"/></marker>
+<marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#118659"/></marker>
+<marker id="aB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2f74a8"/></marker>
+<marker id="aP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d4fa3"/></marker>
+</defs><rect width="1600" height="1610" fill="#ffffff"/>
+<text x="48" y="84" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="54" font-weight="700" fill="#222222" text-anchor="start">One model, many implants</text>
+<rect x="180.0" y="132" width="260" height="66" rx="10" fill="#ffffff" stroke="#222222" stroke-width="2.5"/>
+<text x="310.0" y="176" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="30" font-weight="400" fill="#222222" text-anchor="middle">next token</text>
+<rect x="32" y="250" width="1536" height="1050" rx="14" fill="#fafbfc" stroke="#222222" stroke-width="2.5"/>
+<text x="60" y="286" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="700" fill="#6b7280" text-anchor="start" letter-spacing="3">ONE MODEL</text>
+<rect x="60" y="300" width="500" height="968" rx="12" fill="#ffffff" stroke="#222222" stroke-width="3"/>
+<path d="M310.0 300V210" stroke="#222222" stroke-width="3" marker-end="url(#aI)"/>
+<text x="86" y="350" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="30" font-weight="700" fill="#222222" text-anchor="start" letter-spacing="3">LANGUAGE MODEL</text>
+<text x="86" y="386" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#6b7280" text-anchor="start">small Qwen · own weights frozen</text>
+<rect x="86" y="420" width="448" height="48" rx="8" fill="#f1f3f5" stroke="#222222" stroke-width="2"/>
+<text x="310.0" y="454.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="400" fill="#6b7280" text-anchor="middle">output head</text>
+<path d="M310.0 552V468" stroke="#222222" stroke-width="2"/>
+<circle cx="310.0" cy="512" r="17" fill="#ffffff" stroke="#118659" stroke-width="3.5"/>
+<path d="M301.0 512h18M310.0 503v18" stroke="#118659" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="86" y="552" width="448" height="48" rx="8" fill="#f1f3f5" stroke="#222222" stroke-width="2"/>
+<text x="310.0" y="586.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="400" fill="#6b7280" text-anchor="middle">layer 28</text>
+<circle cx="310.0" cy="628" r="4" fill="#6b7280"/>
+<circle cx="310.0" cy="644" r="4" fill="#6b7280"/>
+<circle cx="310.0" cy="660" r="4" fill="#6b7280"/>
+<rect x="86" y="690" width="448" height="170" rx="8" fill="#f1f6fb" stroke="#2f74a8" stroke-width="2.5"/>
+<text x="310.0" y="742" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#1d4f73" text-anchor="middle">layers 12–24</text>
+<path d="M116 802H504" stroke="#2f74a8" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="240.0" y="786" width="140" height="32" fill="#f1f6fb"/>
+<text x="310.0" y="810" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#1d4f73" text-anchor="middle">layer 16</text>
+<circle cx="310.0" cy="912" r="4" fill="#6b7280"/>
+<circle cx="310.0" cy="928" r="4" fill="#6b7280"/>
+<circle cx="310.0" cy="944" r="4" fill="#6b7280"/>
+<rect x="86" y="1062" width="448" height="96" rx="8" fill="#f6f3fb" stroke="#6d4fa3" stroke-width="2.5"/>
+<text x="310.0" y="1120.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#4b2f7f" text-anchor="middle">layers 1–12</text>
+<rect x="86" y="1196" width="448" height="48" rx="8" fill="#f1f3f5" stroke="#222222" stroke-width="2"/>
+<text x="310.0" y="1230.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="400" fill="#6b7280" text-anchor="middle">embeddings</text>
+<rect x="622" y="300" width="878" height="402" rx="10" fill="#f3f9f5" stroke="#b2dac4" stroke-width="3"/>
+<text x="648" y="346" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#03623f" text-anchor="start" letter-spacing="2">READ TOKENS → WRITE TOKENS</text>
+<path d="M714.95 414.0v-11.200000000000001M714.95 470.0v11.200000000000001M703.75 425.2h-11.200000000000001M759.75 425.2h11.200000000000001M731.75 414.0v-11.200000000000001M731.75 470.0v11.200000000000001M703.75 442.0h-11.200000000000001M759.75 442.0h11.200000000000001M748.55 414.0v-11.200000000000001M748.55 470.0v11.200000000000001M703.75 458.8h-11.200000000000001M759.75 458.8h11.200000000000001" stroke="#118659" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="703.75" y="414.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="4"/>
+<rect x="721.67" y="431.92" width="20.16" height="20.16" rx="4" fill="#118659"/>
+<text x="731.75" y="526" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#03623f" text-anchor="middle">calculator</text>
+<text x="731.75" y="558" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="middle">exact + − × ÷</text>
+<path d="M934.45 414.0v-11.200000000000001M934.45 470.0v11.200000000000001M923.25 425.2h-11.200000000000001M979.25 425.2h11.200000000000001M951.25 414.0v-11.200000000000001M951.25 470.0v11.200000000000001M923.25 442.0h-11.200000000000001M979.25 442.0h11.200000000000001M968.05 414.0v-11.200000000000001M968.05 470.0v11.200000000000001M923.25 458.8h-11.200000000000001M979.25 458.8h11.200000000000001" stroke="#118659" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="923.25" y="414.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="4"/>
+<rect x="941.17" y="431.92" width="20.16" height="20.16" rx="4" fill="#118659"/>
+<rect x="991.25" y="388" width="92" height="28" rx="14" fill="#374151"/>
+<text x="1037.49" y="409" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">trained</text>
+<text x="951.25" y="526" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#03623f" text-anchor="middle">eyes</text>
+<text x="951.25" y="558" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="middle">CNN on pixel tokens</text>
+<rect x="1160.75" y="396.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="3" opacity="0.4"/>
+<rect x="1151.75" y="405.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="3" opacity="0.65"/>
+<path d="M1153.95 414.0v-11.200000000000001M1153.95 470.0v11.200000000000001M1142.75 425.2h-11.200000000000001M1198.75 425.2h11.200000000000001M1170.75 414.0v-11.200000000000001M1170.75 470.0v11.200000000000001M1142.75 442.0h-11.200000000000001M1198.75 442.0h11.200000000000001M1187.55 414.0v-11.200000000000001M1187.55 470.0v11.200000000000001M1142.75 458.8h-11.200000000000001M1198.75 458.8h11.200000000000001" stroke="#118659" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="1142.75" y="414.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="4"/>
+<rect x="1160.67" y="431.92" width="20.16" height="20.16" rx="4" fill="#118659"/>
+<text x="1170.75" y="526" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#03623f" text-anchor="middle">IFEval rules</text>
+<text x="1170.75" y="558" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="middle">×14, no fine-tune</text>
+<rect x="1380.25" y="396.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="3" opacity="0.4"/>
+<rect x="1371.25" y="405.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="3" opacity="0.65"/>
+<path d="M1373.45 414.0v-11.200000000000001M1373.45 470.0v11.200000000000001M1362.25 425.2h-11.200000000000001M1418.25 425.2h11.200000000000001M1390.25 414.0v-11.200000000000001M1390.25 470.0v11.200000000000001M1362.25 442.0h-11.200000000000001M1418.25 442.0h11.200000000000001M1407.05 414.0v-11.200000000000001M1407.05 470.0v11.200000000000001M1362.25 458.8h-11.200000000000001M1418.25 458.8h11.200000000000001" stroke="#118659" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="1362.25" y="414.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#118659" stroke-width="4"/>
+<rect x="1380.17" y="431.92" width="20.16" height="20.16" rx="4" fill="#118659"/>
+<text x="1390.25" y="526" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#03623f" text-anchor="middle">BBH implants</text>
+<text x="1390.25" y="558" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="middle">×8</text>
+<text x="648" y="636" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="start">BBH implants: track · order · interval · walk · truth ·</text>
+<text x="648" y="668" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#03623f" text-anchor="start">expr · calc · bool</text>
+<path d="M622 512H334.0" stroke="#118659" stroke-width="4" marker-end="url(#aG)"/>
+<rect x="622" y="730" width="878" height="228" rx="10" fill="#f1f6fb" stroke="#bcd4e8" stroke-width="3"/>
+<text x="648" y="776" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#1d4f73" text-anchor="start" letter-spacing="2">READ HIDDEN STATES → WRITE TOKENS</text>
+<path d="M675.2 820.0v-11.200000000000001M675.2 876.0v11.200000000000001M664.0 831.2h-11.200000000000001M720.0 831.2h11.200000000000001M692.0 820.0v-11.200000000000001M692.0 876.0v11.200000000000001M664.0 848.0h-11.200000000000001M720.0 848.0h11.200000000000001M708.8 820.0v-11.200000000000001M708.8 876.0v11.200000000000001M664.0 864.8h-11.200000000000001M720.0 864.8h11.200000000000001" stroke="#2f74a8" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="664.0" y="820.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#2f74a8" stroke-width="4"/>
+<rect x="681.92" y="837.92" width="20.16" height="20.16" rx="4" fill="#2f74a8"/>
+<text x="754.0" y="826" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#1d4f73" text-anchor="start">mistake detector</text>
+<rect x="646.0" y="896" width="92" height="28" rx="14" fill="#374151"/>
+<text x="692.24" y="917" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">trained</text>
+<text x="754.0" y="860" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#1d4f73" text-anchor="start">3 probe heads, layers 12–24</text>
+<text x="754.0" y="892" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="600" fill="#1d4f73" text-anchor="start">→ “Hmm, wait…”</text>
+<path d="M1114.2 820.0v-11.200000000000001M1114.2 876.0v11.200000000000001M1103.0 831.2h-11.200000000000001M1159.0 831.2h11.200000000000001M1131.0 820.0v-11.200000000000001M1131.0 876.0v11.200000000000001M1103.0 848.0h-11.200000000000001M1159.0 848.0h11.200000000000001M1147.8 820.0v-11.200000000000001M1147.8 876.0v11.200000000000001M1103.0 864.8h-11.200000000000001M1159.0 864.8h11.200000000000001" stroke="#2f74a8" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="1103.0" y="820.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#2f74a8" stroke-width="4"/>
+<rect x="1120.92" y="837.92" width="20.16" height="20.16" rx="4" fill="#2f74a8"/>
+<text x="1193.0" y="826" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#1d4f73" text-anchor="start">topic blocker</text>
+<rect x="1085.0" y="896" width="92" height="28" rx="14" fill="#374151"/>
+<text x="1131.24" y="917" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">trained</text>
+<text x="1193.0" y="860" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#1d4f73" text-anchor="start">probe at layer 16</text>
+<text x="1193.0" y="892" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="600" fill="#1d4f73" text-anchor="start">→ decline + end reply</text>
+<path d="M534 820H616" stroke="#2f74a8" stroke-width="3.5" stroke-dasharray="8 7" marker-end="url(#aB)"/>
+<path d="M622 760H594V520" fill="none" stroke="#2f74a8" stroke-width="4" marker-end="url(#aB)"/>
+<rect x="622" y="986" width="878" height="282" rx="10" fill="#f6f3fb" stroke="#d3c8ea" stroke-width="3"/>
+<text x="648" y="1032" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#4b2f7f" text-anchor="start" letter-spacing="2">READ TOKENS → WRITE HIDDEN STATES</text>
+<path d="M675.2 1082.0v-11.200000000000001M675.2 1138.0v11.200000000000001M664.0 1093.2h-11.200000000000001M720.0 1093.2h11.200000000000001M692.0 1082.0v-11.200000000000001M692.0 1138.0v11.200000000000001M664.0 1110.0h-11.200000000000001M720.0 1110.0h11.200000000000001M708.8 1082.0v-11.200000000000001M708.8 1138.0v11.200000000000001M664.0 1126.8h-11.200000000000001M720.0 1126.8h11.200000000000001" stroke="#6d4fa3" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="664.0" y="1082.0" width="56" height="56" rx="7.28" fill="#ffffff" stroke="#6d4fa3" stroke-width="4"/>
+<rect x="681.92" y="1099.92" width="20.16" height="20.16" rx="4" fill="#6d4fa3"/>
+<text x="754" y="1088.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#4b2f7f" text-anchor="start">latent write</text>
+<text x="754" y="1122.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#4b2f7f" text-anchor="start">writes “There are 161 pens.” as activations,</text>
+<text x="754" y="1154.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#4b2f7f" text-anchor="start">not text (layer ≤ 12)</text>
+<text x="754" y="1186.0" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="600" fill="#4b2f7f" text-anchor="start">→ the model uses it as its own thought</text>
+<path d="M622 1110.0H548" stroke="#6d4fa3" stroke-width="4" marker-end="url(#aP)"/>
+<rect x="60.0" y="1352" width="46.0" height="62" rx="10" fill="#ffffff" stroke="#cfd5dc" stroke-width="2.2"/>
+<text x="83.0" y="1394" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="400" fill="#6b7280" text-anchor="middle">…</text>
+<rect x="116.0" y="1352" width="262.0" height="62" rx="10" fill="#ffffff" stroke="#222222" stroke-width="2.2"/>
+<text x="247.0" y="1394" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="400" fill="#222222" text-anchor="middle">2595 + 3075 =</text>
+<rect x="408.0" y="1352" width="118.0" height="62" rx="10" fill="#cee7d9" stroke="#118659" stroke-width="3"/>
+<text x="467.0" y="1394" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="600" fill="#03623f" text-anchor="middle">5670</text>
+<rect x="556.0" y="1352" width="172.0" height="62" rx="10" fill="#ffffff" stroke="#222222" stroke-width="2.2"/>
+<text x="642.0" y="1394" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="400" fill="#222222" text-anchor="middle">cookies</text>
+<rect x="738.0" y="1352" width="46.0" height="62" rx="10" fill="#ffffff" stroke="#222222" stroke-width="2.2"/>
+<text x="761.0" y="1394" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="400" fill="#222222" text-anchor="middle">…</text>
+<path d="M310.0 1342V1276" stroke="#222222" stroke-width="3" marker-end="url(#aI)"/>
+<path d="M310.0 1286H1534V450H1508" fill="none" stroke="#222222" stroke-width="2.5" marker-end="url(#aI)"/>
+<path d="M1534 1110.0H1508" fill="none" stroke="#222222" stroke-width="2.5" marker-end="url(#aI)"/>
+<circle cx="1534" cy="1110.0" r="5" fill="#222222"/>
+<circle cx="310.0" cy="1286" r="5" fill="#222222"/>
+<path d="M120 1426v10H374v-10" fill="none" stroke="#222222" stroke-width="2.5"/>
+<text x="247.0" y="1472" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="400" fill="#222222" text-anchor="middle">model</text>
+<path d="M412 1426v10H522v-10" fill="none" stroke="#118659" stroke-width="2.5"/>
+<text x="467.0" y="1472" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#03623f" text-anchor="middle">implant</text>
+<path d="M560 1426v10H780v-10" fill="none" stroke="#222222" stroke-width="2.5"/>
+<text x="670.0" y="1472" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="400" fill="#222222" text-anchor="middle">model</text>
+<path d="M896.0 1359.0v-6.0M896.0 1389.0v6.0M890.0 1365.0h-6.0M920.0 1365.0h6.0M905.0 1359.0v-6.0M905.0 1389.0v6.0M890.0 1374.0h-6.0M920.0 1374.0h6.0M914.0 1359.0v-6.0M914.0 1389.0v6.0M890.0 1383.0h-6.0M920.0 1383.0h6.0" stroke="#6b7280" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="890.0" y="1359.0" width="30" height="30" rx="3.9000000000000004" fill="#ffffff" stroke="#6b7280" stroke-width="4"/>
+<rect x="899.6" y="1368.6" width="10.799999999999999" height="10.799999999999999" rx="4" fill="#6b7280"/>
+<text x="937" y="1382" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#222222" text-anchor="start">compiled circuit, written by Claude</text>
+<rect x="888" y="1416" width="92" height="28" rx="14" fill="#374151"/>
+<text x="934.24" y="1437" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">trained</text>
+<text x="992.48" y="1437" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="400" fill="#222222" text-anchor="start">has a trained part (CNN, probes)</text>
+<text x="48" y="1528" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="21" font-weight="400" fill="#6b7280" text-anchor="start">Implants never touch the model’s own weights; their readers and write directions are fitted to the host model.</text>
+<text x="48" y="1558" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="21" font-weight="400" fill="#6b7280" text-anchor="start">Only the BBH implants and eyes also use a small fine-tune of the model (a few hundred examples at most) to</text>
+<text x="48" y="1588" font-family="'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="21" font-weight="400" fill="#6b7280" text-anchor="start">teach it the call format. Everything else runs on the untouched model.</text>
+</svg>
