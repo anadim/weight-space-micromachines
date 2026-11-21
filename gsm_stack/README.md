@@ -94,4 +94,8 @@ GPU=0 bash gsm_stack/engine/run_arm.sh CW_s0                               # one
 ```
 
 Every published number, with its command, seed, hardware and time: `REPRODUCE.md` §16. CPU checks that need no
-model: `python3 gsm_stack/eval/trees/...` fuzz tests listed in `VERIFY.md` §13.
+model or GPU (`VERIFY.md` §13), e.g. the adaptive-tries fuzz:
+
+```bash
+python3 gsm_stack/mk_tree.py /tmp/r2 r2 && (cd /tmp/r2/stk && STK_DIR=$PWD python3 test_aw.py)    # AW FUZZ PASS
+```

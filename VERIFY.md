@@ -276,3 +276,32 @@ gadgets `vecs2_forcefix.pt` and `detector_hybrid.pt`, 7.4 MB each).
 
 Not run here: circuit exactness tests (`tests/test_calc_circuit.py`, `bbh_generic/teamA/test_tools.py`; minutes of CPU),
 `gsm_push/calc_v2/test_chain2.py` and the `sw_fuzz_hook.py` reader / voter fuzz (GPU), and everything that loads a model.
+
+## 13. Fresh-clone check of the `gsm_stack` release (2026-11-21, laptop, no GPU, no model)
+
+Clone: `git clone --no-local --branch release-prep` after the five `gsm_stack` commits. New material: `gsm_stack/`
+(engine, eval, implants, results, figures; 7.4 MB, ~680 files), `figures/blog/v6/` (2.4 MB), `latent_write/causal_lw/`.
+No file in the new commits is larger than 0.3 MB; no `.pt`, `.safetensors`, `.jsonl.gz`, `.npz` or `.pkl` file was added.
+
+| check | result |
+|---|---|
+| `compile()` of every `.py` file in the clone (832, Python 3.14) | 0 failures |
+| `bash -n` of every tracked `.sh` file (194) | 0 syntax errors |
+| static import scan of the new folders: every code tree built with `mk_tree.py` (7 named trees + 11 lane overlays) and every other new `.py` file; each import must be stdlib, a pinned / optional third-party package, or a module on that file's path | all resolve except `arms` / `data` in `engine/wiring/prof_v1.py` (the unreleased v1 engine profiler, as in §12) |
+| overlay trees vs the original source trees (file by file, after the release path edits) | identical for all 18 trees, except `stk/KERNEL_NOTES.md` (release header added) and two deleted `*.rung4` backup copies |
+| `mk_tree.py r2` / `r3`, then `test_aw.py` (adaptive tries vs the python references, 20,000 + 20,000 cases) | AW FUZZ PASS on both trees, 0 mismatches (10 s) |
+| `implants/negative/m5div/aw/test_m5.py` on its tree | M5 FUZZ PASS (3,405 biased steps, 0 mismatches) |
+| `implants/negative/dola/aw/test_dola.py` on its tree | DOLA FUZZ OK (1,853 rows, max abs p diff 7.6e-7) |
+| `implants/negative/trunc/test_trunc.py` | OK (300 random cases) |
+| `implants/negative/voter2/test_voter2.py --trials 2000` | PASS (0 pick / queue mismatches, both weightings) |
+| `latent_write/causal_lw/fuzz_ctrig.py 2000` (tokenizer only) | exact match on 10,000 scans, 6,601 fires |
+| `HF_HUB_OFFLINE=1 N=1000 python gsm_push/calc_v2/test_exact.py` | 0 wrong, 0 missed, 0 acted on silent / restated text |
+| `rl/figures/v3/make_rl_stack_curves.py` with the final rlstack data | PNGs and `rlstack_numbers.json` byte-identical to the shipped renders |
+| `figures/blog/v6`: `gsm8k/make_gsm8k_figs.py`, `diagram/make_serial_diagram.py`, `src/make_implants_figure_v6.py`, `src/rf/bbh_bars_v6.py`, `src/wsm_static_v6.py` (in a scratch copy) | all run; output differs only in the font (Avenir not shipped) |
+| `gsm_stack/eval/results_tools/devtab.py` / `devcmp.py` on `results/curves/` | A1 u0 dev vote8 81.33 / 78.00 and CW_s0 / CW_s1 u0 51.67, as in `RL_RESULTS.md` |
+| grep of the working tree and of every added line and message of the new commits for host names, user names, home paths, cluster paths, e-mail addresses and token patterns | none in the new material (pre-existing hits are `\n4` escapes in text dumps and "ssh" in old notes); see the note below on commit metadata |
+
+Not run here: anything that needs triton or a GPU (`test_adapt_refs.py` imports triton; `wprk_fuzz.py`,
+`sw_fuzz_hook.py`, `jobs/tattn_test.py`), the rung-3 / rung-4 register fuzz (`test_vf.py`, `test_sn.py`: they load the
+unshipped `vf_w.pt` / `sn_w.pt`), `implants/vfeat/test_vfeat.py` (expects its job tree materialized in place), and
+every model run.
