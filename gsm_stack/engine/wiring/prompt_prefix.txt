@@ -1,0 +1,53 @@
+Question: Gretchen read that you should spend 10 minutes walking for every 90 minutes you spend sitting. If Gretchen spends 6 hours working at her desk, how long will she spend walking?
+Answer: First find the total number of minutes Gretchen spends sitting at her desk: 6 hours * 60 minutes/hour = 360 minutes
+Then divide this amount by 90 minutes to find how many walking breaks Gretchen takes: 360 minutes / 90 minutes/break = 4 breaks
+Then multiply the number of breaks by the length of each break to find how long Gretchen spends walking: 4 breaks * 10 minutes/break = 40 minutes
+#### 40
+
+Question: Jairus read 20 pages of the newspaper. Arniel read 2 more than twice the number of pages Jairus read. How many pages have they read altogether?
+Answer: Twice the number of pages Jairus read is 20 x 2 = 40.
+Arniel read 40 + 2 = 42 pages of the newspaper.
+Jairus and Arniel read 20 + 42 = 62 pages altogether.
+#### 62
+
+Question: There are 28 students in a classroom. Half of them have 5 notebooks each and the other half have 3 notebooks each. How many notebooks in total are in the classroom?
+Answer: Half of the class consists of 28 students / 2 = 14 students.
+One half of the students have 14 students * 3 notebooks/student = 42 notebooks.
+The other half have 14 students * 5 notebooks/student = 70 notebooks.
+There are 42 notebooks + 70 notebooks = 112 notebooks in total in the classroom.
+#### 112
+
+Question: Rex is taking lessons for his driver’s license. He wants to take 40 hour-long lessons before his test, and decides to have two-hour sessions twice a week until he has done his test. After 6 weeks, how many more weeks will Rex need to continue taking lessons to reach his goal?
+Answer: Each week, Rex is taking 2 hour-long lessons * 2 times a week = 4 lessons.
+After 6 weeks, he has done 4 lessons per week * 6 weeks = 24 lessons.
+So Rex still needs 40 total lessons – 24 lessons taken = 16 lessons.
+He will therefore need lessons for another 16 lessons / 4 lessons per week = 4 weeks.
+#### 4
+
+Question: Suraya picked 12 apples more than Caleb, and Caleb picked 5 apples less than Kayla. If Kayla picked 20 apples, how many more apples did Suraya pick than Kayla?
+Answer: Caleb picked 20 - 5 = 15 apples.
+Suraya picked 12 + 15 = 27 apples.
+Suraya picked 27 - 20 = 7 apples more than Kayla
+#### 7
+
+Question: Jim has 2 rows of 4 trees to start.  When he turns 10 he decides to plant a new row of trees every year on his birthday.  On his 15th birthday after he doubles the number of trees he has.  How many trees does he have?
+Answer: He started with 2*4=8 trees
+He plants trees for 15-10=5 years
+So he planted 5*4=20 trees
+So he had 20+8=28 trees
+After doubling them he had 28*2=56 trees
+#### 56
+
+Question: Joey studies for his SAT exams 2 hours per night 5 nights a week.  On the weekends, he studies 3 hours a day.  If his SAT exam is 6 weeks away, how much time will Joey spend studying?
+Answer: Joey studies 2 hours a night 5 nights a week so that's 2*5 = 10 hours
+He studies 3 hours a day on the weekends so that's 3*2 = 6 hours
+In one week, Joey studies 10+6 = 16 hours
+He has 6 weeks till his exams and he studies for 16 hours a week so that's 6*16 = 96 hours of studying
+#### 96
+
+Question: At Hank’s cafe, he sells big stack pancakes which have 5 pancakes and short stack pancakes which have 3 pancakes.  If 9 customers order the short stack and 6 customers order the big stack, how many pancakes does Hank need to make?
+Answer: For the short stack orders, Hank needs to make 3 x 9 = 27 pancakes.
+For the big stack orders, he needs to make 5 x 6 = 30 pancakes.
+Altogether, Hank needs to make 27 + 30 = 57 pancakes.
+#### 57
+

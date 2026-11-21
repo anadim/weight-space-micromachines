@@ -1,0 +1,3 @@
+# rung 1 (WPR only) rerun on stk_r2 code (handoff fastroll eos fix), same B_max/SMAX as wpr_rung1.list: FE_TREE=r2 bash fe.sh wpr_r1f.list
+r1f_u0_N8 u0 test S 8 0 1 1 0 WPR=1
+r1f_u0_N8 u0 hard S 8 0 0 0 1 WPR=1

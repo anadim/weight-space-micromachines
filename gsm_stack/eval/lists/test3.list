@@ -1,0 +1,5 @@
+# task [6] B u300 vs u0 (StackHD, T=1) + task [8] all-weights ladder rungs on test (host a2_u300_s2 = u0, T=1, seed 7)
+u0_B u0 test B 1 0 1 1 0
+lad_H u0 test H 1 0 1 1 0
+lad_C4 u0 test C4 1 0 1 1 0
+lad_D u0 test D 1 0 1 1 0

@@ -1,0 +1,4 @@
+S2Fw_u0 u0 test B 1 0 1 1 0 FE_MISS=w
+B_u300w B test B 1 0 1 1 0 FE_MISS=w
+S2Fw_u0 u0 hard B 1 0 1 1 0 STK_MISSING_ONLY=1 FE_MISS=w
+B_u300w B hard B 1 0 1 1 0 STK_MISSING_ONLY=1 FE_MISS=w

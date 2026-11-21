@@ -1,0 +1,4 @@
+# [17](2) rung 2 (WPR + adaptive tries A + stop4 S + integer guard B + cap C, all weights), u0 host, seed 7, once.
+# run: FE_TREE=r2 FE_BMAX=128 FE_SMAX=8192 bash fe.sh wpr_rung2.list. Hard: RM=1 protocol (repair missing only) -> B inert.
+r2_u0 u0 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_u0 u0 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

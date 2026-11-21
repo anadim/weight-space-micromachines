@@ -1,0 +1,5 @@
+val_Bw2 u0 dev B 1 0 1 1 0 FE_MODE=greedy FE_MISS=w
+val2_Bw2 u0 dev2 B 1 0 1 1 0 FE_MODE=greedy FE_MISS=w
+val_BwT u0 dev B 1 0 1 1 0 FE_MISS=w
+val_BhT u0 dev B 1 0 1 1 0 FE_MISS=hook
+val_B0T u0 dev B 1 0 1 1 0

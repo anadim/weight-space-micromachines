@@ -1,0 +1,10 @@
+# task [10](2) matched controls on TEST, once (seed 7): self-consistency at matched tokens, forget-mask off (prompt-only
+# retry). Serial references = test_{u0,A1}_N{4,8}. Voter-off / plain-majority are offline from the serial rows.
+sc8_u0 u0 test SC 8 0 1 1 0
+sc4_u0 u0 test SC 4 0 1 1 0
+fo8_u0 u0 test S 8 0 1 1 0 FE_FORGET=0 FAST_ATT3=0
+sc8_A1 A1 test SC 8 0 1 1 0
+sc4_A1 A1 test SC 4 0 1 1 0
+fo8_A1 A1 test S 8 0 1 1 0 FE_FORGET=0 FAST_ATT3=0
+sc8_u0 u0 hard SC 8 0 1 1 0 STK_MISSING_ONLY=1
+sc8_A1 A1 hard SC 8 0 1 1 0 STK_MISSING_ONLY=1

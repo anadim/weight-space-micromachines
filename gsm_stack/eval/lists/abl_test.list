@@ -1,0 +1,24 @@
+# task [14]5: implant-dependence ablation on TEST (once, seed 7) for the RL checkpoints: remove one implant at a time from the
+# trained model. Paired references: test_A1_N8 (S 8 0 1 1 0), test_C_N4 (S 4 0 1 1 0), test_B_u300 (B 1 0 1 1 0).
+# FE_IMP=chain2: calc_s4 removed; FE_IMP=calc: chain2 removed; FE_IMP=none: both calculators removed; SAN 0: sanity filter off;
+# FE_FORGET=0: forget mask off; VM 0: plain-majority vote instead of the probe voter; B: FE_COMP=0 = compiled triggers off.
+abA1_nocalc A1 test S 8 0 1 1 0 FE_IMP=chain2
+abA1_nochain A1 test S 8 0 1 1 0 FE_IMP=calc
+abA1_notools A1 test S 8 0 1 1 0 FE_IMP=none
+abA1_nosan A1 test S 8 0 1 0 0
+abA1_nofgt A1 test S 8 0 1 1 0 FE_FORGET=0 FAST_ATT3=0
+abA1_vote0 A1 test S 8 0 0 1 0
+abC_nocalc C test S 4 0 1 1 0 FE_IMP=chain2
+abC_nochain C test S 4 0 1 1 0 FE_IMP=calc
+abC_notools C test S 4 0 1 1 0 FE_IMP=none
+abC_nosan C test S 4 0 1 0 0
+abC_nofgt C test S 4 0 1 1 0 FE_FORGET=0 FAST_ATT3=0
+abC_vote0 C test S 4 0 0 1 0
+abB_nocalc B test B 1 0 1 1 0 FE_IMP=chain2
+abB_nochain B test B 1 0 1 1 0 FE_IMP=calc
+abB_notools B test B 1 0 1 1 0 FE_IMP=none
+abB_nocomp B test B 1 0 1 1 0 FE_COMP=0
+abB_nofgt B test B 1 0 1 1 0 FE_FORGET=0
+# task [14]6 / [13b]: same-token self-consistency (separate samples, plain majority) on the RL checkpoints
+sc4_C C test SC 4 0 1 1 0
+sc4_B B test SC 4 0 1 1 0

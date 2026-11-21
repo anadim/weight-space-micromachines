@@ -1,0 +1,4 @@
+# rung 3 (the implant lane handoff implants/rungs/rung3: rung 2 + Nmax 24 + answer-group voter as registers AW_VF=1), u0 host, seed 7, once.
+# run: bash jobs/rung_job.sh r3 wpr_rung3.list (test_aw fuzz, then FE_TREE=r3 FE_BMAX=128 FE_SMAX=8192 bash fe.sh wpr_rung3.list). Hard: RM=1, VM 0, SAN 0 as rung 2; the VF pick replaces the final vote.
+r3_u0 u0 test S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1
+r3_u0 u0 hard S 8 0 0 0 1 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1

@@ -1,0 +1,6 @@
+# task [6] GSM8K test (1,319), one run each, T=1 seed 7. A1 (chosen on dev) and its matched u0 baselines
+A1_N8 A1 test S 8 0 1 1 0
+u0_N8 u0 test S 8 0 1 1 0
+A1_N4 A1 test S 4 0 1 1 0
+u0_N4 u0 test S 4 0 1 1 0
+val_A A dev S 8 0 1 1 0 FE_SEED=4242

@@ -1,0 +1,4 @@
+abhA1_nocalc A1 hard S 8 0 0 0 1 FE_IMP=chain2
+abhA1_notools A1 hard S 8 0 0 0 1 FE_IMP=none
+abhA1_nochain A1 hard S 8 0 0 0 1 FE_IMP=calc
+abhB_notools B hard B 1 0 1 1 0 STK_MISSING_ONLY=1 FE_IMP=none

@@ -1,0 +1,7 @@
+# RL + rung-2 stack: A1W (WPR inside RL) u300 hosts, seeds 0-2, rung-2 env (A/S/B/C as tuned on u0 dev, not retuned). Once each.
+r2_A1W_s0 A1W_s0 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_A1W_s1 A1W_s1 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_A1W_s2 A1W_s2 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_A1W_s0 A1W_s0 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_A1W_s1 A1W_s1 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_A1W_s2 A1W_s2 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

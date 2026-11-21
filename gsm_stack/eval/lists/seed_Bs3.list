@@ -1,0 +1,2 @@
+B_s3_u300w B_s3 test B 1 0 1 1 0 FE_MISS=w
+B_s3_u300w B_s3 hard B 1 0 1 1 0 STK_MISSING_ONLY=1 FE_MISS=w

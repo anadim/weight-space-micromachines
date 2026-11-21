@@ -1,0 +1,5 @@
+# task [14]2 split of "base -> C": the base host alone (no implants, no RL) and with the calculators only, same prompt / T=1 / seed 7
+baseH base test H 1 0 1 1 0
+baseD base test D 1 0 1 1 0
+baseB base test B 1 0 1 1 0
+baseH base hard H 1 0 1 1 0

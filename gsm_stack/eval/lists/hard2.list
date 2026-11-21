@@ -1,0 +1,8 @@
+# [10](4) GSM-Hard for every headline config (serial: plain majority, no sanity filter, repair missing only)
+A1_N4 A1 hard S 4 0 0 0 1
+u0_N4 u0 hard S 4 0 0 0 1
+C_N4 C hard S 4 0 0 0 1
+lad_H u0 hard H 1 0 1 1 0
+lad_C4 u0 hard C4 1 0 1 1 0
+lad_D u0 hard D 1 0 1 1 0
+u0_N8pr1 u0 hard S 8 1 0 0 1

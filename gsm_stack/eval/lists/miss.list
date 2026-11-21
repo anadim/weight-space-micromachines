@@ -1,0 +1,6 @@
+# [12] item 1: S2F all-weights (B stack, u0 host = a2_u300_s2), greedy: missing trigger hook (programmatic) vs w (compiled)
+val_Bh u0 dev B 1 0 1 1 0 FE_MODE=greedy FE_MISS=hook
+val_Bw u0 dev B 1 0 1 1 0 FE_MODE=greedy FE_MISS=w
+val2_B0 u0 dev2 B 1 0 1 1 0 FE_MODE=greedy
+val2_Bh u0 dev2 B 1 0 1 1 0 FE_MODE=greedy FE_MISS=hook
+val2_Bw u0 dev2 B 1 0 1 1 0 FE_MODE=greedy FE_MISS=w

@@ -1,0 +1,5 @@
+A1_N8 A1 hard S 8 0 0 0 1
+u0_N8 u0 hard S 8 0 0 0 1
+u0_B u0 hard B 1 0 1 1 0 STK_MISSING_ONLY=1
+B_u300 B test B 1 0 1 1 0
+B_u300 B hard B 1 0 1 1 0 STK_MISSING_ONLY=1

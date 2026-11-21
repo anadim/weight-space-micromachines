@@ -1,0 +1,5 @@
+A1_s2_N8 A1_s2 test S 8 0 1 1 0
+A1_s2_N4 A1_s2 test S 4 0 1 1 0
+A1_s2_N8 A1_s2 hard S 8 0 0 0 1
+B_s2_u300w B_s2 test B 1 0 1 1 0 FE_MISS=w
+B_s2_u300w B_s2 hard B 1 0 1 1 0 STK_MISSING_ONLY=1 FE_MISS=w
