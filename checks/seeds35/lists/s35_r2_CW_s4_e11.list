@@ -1,0 +1,3 @@
+# seeds35 row 4 (CW host + rung 2; as wpr_r2cw / q34s4_CW_s*, on stk_r2q), test + Hard, eval seed 11, T=1, once
+r2_CW_s4_s11 CW_s4 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=11
+r2_CW_s4_s11 CW_s4 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=11

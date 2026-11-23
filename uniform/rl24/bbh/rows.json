@@ -1,0 +1,232 @@
+{
+ "metric": "BBH-27 mean acc (%)",
+ "sets": {
+  "mean27": {
+   "label": "BBH 27-task mean",
+   "rows": [
+    {
+     "row": "0",
+     "label": "plain Base",
+     "configs": [
+      "base_plain"
+     ],
+     "mean": 41.19,
+     "seeds": [
+      41.19
+     ],
+     "ci95": [
+      40.08,
+      42.28
+     ],
+     "tokq": 222.2
+    },
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "ft2_t0_u0"
+     ],
+     "mean": 32.59,
+     "seeds": [
+      32.59
+     ],
+     "ci95": [
+      31.52,
+      33.65
+     ],
+     "tokq": 135.0
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "F0_s0_u300",
+      "F0_s1_u300",
+      "F0_s2_u300"
+     ],
+     "mean": 42.27,
+     "seeds": [
+      41.14,
+      43.15,
+      42.52
+     ],
+     "ci95": [
+      41.41,
+      43.12
+     ],
+     "tokq": 143.6
+    },
+    {
+     "row": "2'",
+     "label": "plain Base + RL",
+     "configs": [
+      "P0_s0_u300",
+      "P0_s1_u300",
+      "P0_s2_u300"
+     ],
+     "mean": 53.63,
+     "seeds": [
+      53.91,
+      54.09,
+      52.9
+     ],
+     "ci95": [
+      52.64,
+      54.61
+     ],
+     "tokq": 200.7
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "ft2_tools_gate"
+     ],
+     "mean": 54.99,
+     "seeds": [
+      54.99
+     ],
+     "ci95": [
+      54.05,
+      55.92
+     ],
+     "tokq": 133.6
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "I0_s0_u300",
+      "I0_s1_u300",
+      "I0_s2_u300"
+     ],
+     "mean": 60.24,
+     "seeds": [
+      60.31,
+      60.11,
+      60.29
+     ],
+     "ci95": [
+      59.5,
+      60.97
+     ],
+     "tokq": 139.6
+    }
+   ]
+  },
+  "tool12": {
+   "label": "BBH 12 tool tasks",
+   "rows": [
+    {
+     "row": "0",
+     "label": "plain Base",
+     "configs": [
+      "base_plain"
+     ],
+     "mean": 43.47,
+     "seeds": [
+      43.47
+     ],
+     "ci95": [
+      41.83,
+      45.07
+     ],
+     "tokq": 222.2
+    },
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "ft2_t0_u0"
+     ],
+     "mean": 36.57,
+     "seeds": [
+      36.57
+     ],
+     "ci95": [
+      35.07,
+      38.17
+     ],
+     "tokq": 135.0
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "F0_s0_u300",
+      "F0_s1_u300",
+      "F0_s2_u300"
+     ],
+     "mean": 56.34,
+     "seeds": [
+      54.7,
+      57.33,
+      57.0
+     ],
+     "ci95": [
+      55.23,
+      57.47
+     ],
+     "tokq": 143.6
+    },
+    {
+     "row": "2'",
+     "label": "plain Base + RL",
+     "configs": [
+      "P0_s0_u300",
+      "P0_s1_u300",
+      "P0_s2_u300"
+     ],
+     "mean": 70.44,
+     "seeds": [
+      71.43,
+      71.03,
+      68.87
+     ],
+     "ci95": [
+      69.14,
+      71.74
+     ],
+     "tokq": 200.7
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "ft2_tools_gate"
+     ],
+     "mean": 86.8,
+     "seeds": [
+      86.8
+     ],
+     "ci95": [
+      85.73,
+      87.87
+     ],
+     "tokq": 133.6
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "I0_s0_u300",
+      "I0_s1_u300",
+      "I0_s2_u300"
+     ],
+     "mean": 97.64,
+     "seeds": [
+      97.87,
+      96.57,
+      98.5
+     ],
+     "ci95": [
+      97.21,
+      98.06
+     ],
+     "tokq": 139.6
+    }
+   ]
+  }
+ },
+ "notes": "BBH-27 (6,511 items), BBH 3-shot CoT harness of bbh_generic/callgate (cg_gate_gen), greedy, max_new 600, fast engine. Rows 1-4 host = ft_int_v2 = Qwen3-0.6B-Base + \u00a76.1 tool-call FT (teams' own 432 rows; whole-host weight change, shared by rows 1-4, [29]); row 0 = plain Base, row 2' = RL from plain Base. Implants = 8 compiled BBH tools + call gate refit on ft_int_v2. RL: GRPO 300 u, 64x8, lr 1e-6, T 1, Dr.GRPO, kl 0, synthetic look-alike train data (seed 200). CI = paired item bootstrap (10k, stratified by task) over seed-averaged items."
+}

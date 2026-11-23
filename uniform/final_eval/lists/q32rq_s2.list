@@ -1,0 +1,2 @@
+# [32] reproducibility: row 4 (CW_s2 + rung 2) on GSM8K test with the current stk_r2q build (row 4 was j23509, older tree). T=1 seed 7.
+rq_CW_s2 CW_s2 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

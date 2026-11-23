@@ -1,0 +1,5 @@
+# [28] 1.7B row 1 (plain Qwen3-1.7B-Base, same line as 0.6B baseH) + idle check (greedy dev600: host only vs calc_s4+chain2 attached)
+base17H base test H 1 0 1 1 0
+base17H base hard H 1 0 1 1 0
+idH base dev H 1 0 1 1 0 FE_MODE=greedy
+idD base dev D 1 0 1 1 0 FE_MODE=greedy

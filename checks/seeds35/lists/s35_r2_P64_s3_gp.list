@@ -1,0 +1,4 @@
+# seeds35 row 2b (P64 host + untrained rung 2 at eval, row-4 settings; as q34att_s*), GSM-Plus testmini, eval seeds 7/11/13, T=1, once each
+gp_r2_P64_s3 P64_s3 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+gp_r2_P64_s3_s11 P64_s3 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=11
+gp_r2_P64_s3_s13 P64_s3 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=13

@@ -1,0 +1,23 @@
+# seeds35 GSM8K jobs (job ids are labels only; each line = one job on one B200). Columns: submitted (UTC), RL arm, job name, job label, command.
+# RL commands run from the release root; eval commands run from uniform/final_eval/ with the lists of checks/seeds35/lists/ copied (or linked) there.
+-	CW_s3	rl_CW_s3	j25308	GPU=0 bash gsm_stack/engine/run_arm.sh CW_s3
+-	CW_s4	rl_CW_s4	j25309	GPU=0 bash gsm_stack/engine/run_arm.sh CW_s4
+-	CW_s5	rl_CW_s5	j25310	GPU=0 bash gsm_stack/engine/run_arm.sh CW_s5
+-	P64_s3	rl_P64_s3	j25311	GPU=0 bash gsm_stack/engine/run_arm.sh P64_s3
+-	P64_s4	rl_P64_s4	j25312	GPU=0 bash gsm_stack/engine/run_arm.sh P64_s4
+-	P64_s5	rl_P64_s5	j25313	GPU=0 bash gsm_stack/engine/run_arm.sh P64_s5
+2026-11-23T07:15:05Z	CW_s3	s35r4_7_CW_s3	j25357	bash fepack.sh stk_r2q s35_r2_CW_s3_t.list s35_r2_CW_s3_h.list
+2026-11-23T07:15:06Z	CW_s4	s35r4_7_CW_s4	j25358	bash fepack.sh stk_r2q s35_r2_CW_s4_t.list s35_r2_CW_s4_h.list
+2026-11-23T07:28:25Z	P64_s3	s35H_P64_s3	j25362	bash fejob.sh stk s35_H_P64_s3.list
+2026-11-23T07:28:25Z	P64_s3	s35att7_P64_s3	j25363	bash fepack.sh stk_r2q s35_r2_P64_s3_t.list s35_r2_P64_s3_h.list
+2026-11-23T07:41:05Z	P64_s4	s35H_P64_s4	j25366	bash fejob.sh stk s35_H_P64_s4.list
+2026-11-23T07:41:06Z	P64_s4	s35att7_P64_s4	j25367	bash fepack.sh stk_r2q s35_r2_P64_s4_t.list s35_r2_P64_s4_h.list
+2026-11-23T07:54:47Z	P64_s5	s35H_P64_s5	j25370	bash fejob.sh stk s35_H_P64_s5.list
+2026-11-23T07:54:48Z	P64_s5	s35att7_P64_s5	j25371	bash fepack.sh stk_r2q s35_r2_P64_s5_t.list s35_r2_P64_s5_h.list
+2026-11-23T08:26:45Z	CW_s3	s35r4x_CW_s3	j25376	bash fepack.sh stk_r2q s35_r2_CW_s3_e11.list s35_r2_CW_s3_e13.list s35_r2_CW_s3_gp.list
+2026-11-23T08:27:47Z	CW_s4	s35r4x_CW_s4	j25378	bash fepack.sh stk_r2q s35_r2_CW_s4_e11.list s35_r2_CW_s4_e13.list s35_r2_CW_s4_gp.list
+2026-11-23T08:29:48Z	P64_s3	s35attx_P64_s3	j25379	bash fepack.sh stk_r2q s35_r2_P64_s3_e11.list s35_r2_P64_s3_e13.list s35_r2_P64_s3_gp.list
+2026-11-23T08:32:37Z	P64_s4	s35attx_P64_s4	j25381	bash fepack.sh stk_r2q s35_r2_P64_s4_e11.list s35_r2_P64_s4_e13.list s35_r2_P64_s4_gp.list
+2026-11-23T08:35:38Z	P64_s5	s35attx_P64_s5	j25382	bash fepack.sh stk_r2q s35_r2_P64_s5_e11.list s35_r2_P64_s5_e13.list s35_r2_P64_s5_gp.list
+2026-11-23T08:57:25Z	CW_s5	s35r4_7_CW_s5	j25385	bash fepack.sh stk_r2q s35_r2_CW_s5_t.list s35_r2_CW_s5_h.list
+2026-11-23T08:57:26Z	CW_s5	s35r4x_CW_s5	j25386	bash fepack.sh stk_r2q s35_r2_CW_s5_e11.list s35_r2_CW_s5_e13.list s35_r2_CW_s5_gp.list

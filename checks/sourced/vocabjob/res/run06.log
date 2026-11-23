@@ -1,0 +1,9 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+== Qwen/Qwen3-0.6B-Base: embedding rows 151936, tokenizer entries 151669
+calc_s3: 26 symbols x 151936 rows = 3,950,336 cells, mismatches 0; rows read as some symbol 35; worst non-target pre-act -2.000 (clamps to 0), worst target pre-act 6.000 (clamps to 1)
+calc_s4: 26 symbols x 151936 rows = 3,950,336 cells, mismatches 0; rows read as some symbol 35; worst non-target pre-act -2.000 (clamps to 0), worst target pre-act 6.000 (clamps to 1)
+  regex ascii digit 0-9: 10 tokens contain it; 10 are reader symbols; 0 are not, e.g. []
+  regex any unicode digit (\d): 22 tokens contain it; 10 are reader symbols; 12 are not, e.g. ['１', '２', '０', '３', '５', '４', '６', '８', '７', '９', '１０', '２０']
+  regex + - * / = x ×: 4782 tokens contain it; 15 are reader symbols; 4767 are not, e.g. ['//', '**', '----', '->', '==', '="', '****', ' //', '--------', '</', ' =>', '********', '====', ' ==', ' */']
+  ASCII single-digit tokens: 10; tokens mixing an ASCII digit with other chars: 0 e.g. []
+wrote out/vocab_reader_Qwen3-0.6B-Base.json

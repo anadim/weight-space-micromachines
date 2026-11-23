@@ -1,0 +1,4 @@
+# [34] fill 09:08Z: 0.6B [33] ablation steps N1 / fixN4 / fixN8 (test) at eval seed 11, pairs with row-1/3 seeds 11/13; T=1, once
+q33_N1_s11 base test S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 FE_SEED=11
+q33_fixN4_s11 base test S 4 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 FE_SEED=11
+q33_fixN8_s11 base test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 FE_SEED=11

@@ -1,0 +1,583 @@
+{
+ "host": "Qwen3-0.6B-Base (BBH rows: + \u00a76.1 call-FT, [29])",
+ "decoding": "T=1 seed 7, once per config",
+ "rl": "GRPO 300 u, 64 prompts x 8, lr 1e-6, T=1, train data only",
+ "panels": {
+  "gsm8k": {
+   "metric": "accuracy (%)",
+   "sets": {
+    "test": {
+     "label": "GSM8K test (1319)",
+     "rows": [
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "baseH"
+       ],
+       "mean": 28.05,
+       "seeds": [
+        28.05
+       ],
+       "ci95": [
+        25.47,
+        30.4
+       ],
+       "tokq": 102.6
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "P64_s0",
+        "P64_s1",
+        "P64_s2"
+       ],
+       "mean": 68.49,
+       "seeds": [
+        69.07,
+        67.78,
+        68.61
+       ],
+       "ci95": [
+        66.36,
+        70.56
+       ],
+       "tokq": 129.4
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "r2_base"
+       ],
+       "mean": 57.39,
+       "seeds": [
+        57.39
+       ],
+       "ci95": [
+        54.89,
+        59.97
+       ],
+       "tokq": 2649.5
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "r2_CW_s0",
+        "r2_CW_s1",
+        "r2_CW_s2"
+       ],
+       "mean": 80.26,
+       "seeds": [
+        81.12,
+        81.43,
+        78.24
+       ],
+       "ci95": [
+        78.34,
+        82.06
+       ],
+       "tokq": 1612.2
+      }
+     ]
+    },
+    "hard": {
+     "label": "GSM-Hard (1319)",
+     "rows": [
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "baseH"
+       ],
+       "mean": 10.46,
+       "seeds": [
+        10.46
+       ],
+       "ci95": [
+        8.79,
+        12.13
+       ],
+       "tokq": 126.7
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "P64_s0",
+        "P64_s1",
+        "P64_s2"
+       ],
+       "mean": 41.19,
+       "seeds": [
+        41.24,
+        41.7,
+        40.64
+       ],
+       "ci95": [
+        38.84,
+        43.54
+       ],
+       "tokq": 164.1
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "r2_base"
+       ],
+       "mean": 35.94,
+       "seeds": [
+        35.94
+       ],
+       "ci95": [
+        33.43,
+        38.59
+       ],
+       "tokq": 3829.8
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "r2_CW_s0",
+        "r2_CW_s1",
+        "r2_CW_s2"
+       ],
+       "mean": 58.76,
+       "seeds": [
+        56.71,
+        61.18,
+        58.38
+       ],
+       "ci95": [
+        56.36,
+        61.21
+       ],
+       "tokq": 2655.3
+      }
+     ]
+    }
+   }
+  },
+  "ifeval": {
+   "metric": "prompt-strict acc (%)",
+   "sets": {
+    "ifeval541": {
+     "label": "IFEval 541 prompt-strict",
+     "rows": [
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "u0_plain"
+       ],
+       "mean": 12.94,
+       "seeds": [
+        12.94
+       ],
+       "ci95": [
+        10.17,
+        15.9
+       ],
+       "tokq": 1889.3
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "P_s0",
+        "P_s1",
+        "P_s2"
+       ],
+       "mean": 43.56,
+       "seeds": [
+        43.62,
+        46.77,
+        40.3
+       ],
+       "ci95": [
+        39.86,
+        47.44
+       ],
+       "tokq": 572.6
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "u0_imp"
+       ],
+       "mean": 34.75,
+       "seeds": [
+        34.75
+       ],
+       "ci95": [
+        30.68,
+        38.82
+       ],
+       "tokq": 1388.2
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "I_s0",
+        "I_s1",
+        "I_s2"
+       ],
+       "mean": 48.37,
+       "seeds": [
+        49.17,
+        48.24,
+        47.69
+       ],
+       "ci95": [
+        44.49,
+        52.19
+       ],
+       "tokq": 1363.6
+      }
+     ]
+    },
+    "ifeval541_inst": {
+     "label": "IFEval 541 instruction-level strict",
+     "rows": [
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "u0_plain"
+       ],
+       "mean": 23.98,
+       "seeds": [
+        23.98
+       ],
+       "ci95": [
+        21.25,
+        26.72
+       ],
+       "tokq": 1889.3
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "P_s0",
+        "P_s1",
+        "P_s2"
+       ],
+       "mean": 56.59,
+       "seeds": [
+        56.71,
+        59.71,
+        53.36
+       ],
+       "ci95": [
+        53.73,
+        59.46
+       ],
+       "tokq": 572.6
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "u0_imp"
+       ],
+       "mean": 47.48,
+       "seeds": [
+        47.48
+       ],
+       "ci95": [
+        44.12,
+        50.85
+       ],
+       "tokq": 1388.2
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "I_s0",
+        "I_s1",
+        "I_s2"
+       ],
+       "mean": 60.35,
+       "seeds": [
+        61.27,
+        60.43,
+        59.35
+       ],
+       "ci95": [
+        57.45,
+        63.28
+       ],
+       "tokq": 1363.6
+      }
+     ]
+    },
+    "ifeval541_2b": {
+     "label": "IFEval 541 prompt-strict, secondary: row-2 hosts with the implant attached at eval only",
+     "rows": [
+      {
+       "row": "2b",
+       "label": "host + RL, implants attached at eval only",
+       "configs": [
+        "P_s0",
+        "P_s1",
+        "P_s2"
+       ],
+       "mean": 52.68,
+       "seeds": [
+        54.16,
+        54.71,
+        49.17
+       ],
+       "ci95": [
+        48.92,
+        56.44
+       ],
+       "tokq": 545.8
+      }
+     ]
+    }
+   },
+   "notes": "host Qwen3-0.6B-Base; format = Qwen3 chat template with thinking off (empty think block), same for all rows; greedy, max_new 2048; seeded lm_eval IFEval scorer; implant = full14 compiled 14-rule circuit with a frozen Qwen3-0.6B LM-head snapshot (no refit to Base); rows 2/4: GRPO (Dr.GRPO) 300 u, 64x8, lr 1e-6, T 1, kl 0, train max_new 1024, fresh gen_data prompts (seed 200, filtered vs the 541), reward = lm_eval prompt-strict; row 4 trained with the implant attached. ci95 = item bootstrap (10000) of the seed-averaged per-item score. tokq = mean generated tokens per prompt (stop excluded). Rows 2/4 are trained under the same format; plain Base in this format often degenerates (row 1 tokq near the 2048 cap)."
+  },
+  "bbh": {
+   "metric": "BBH-27 mean acc (%)",
+   "sets": {
+    "mean27": {
+     "label": "BBH 27-task mean",
+     "rows": [
+      {
+       "row": "0",
+       "label": "plain Base",
+       "configs": [
+        "base_plain"
+       ],
+       "mean": 41.19,
+       "seeds": [
+        41.19
+       ],
+       "ci95": [
+        40.08,
+        42.28
+       ],
+       "tokq": 222.2
+      },
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "ft2_t0_u0"
+       ],
+       "mean": 32.59,
+       "seeds": [
+        32.59
+       ],
+       "ci95": [
+        31.52,
+        33.65
+       ],
+       "tokq": 135.0
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "F0_s0_u300",
+        "F0_s1_u300",
+        "F0_s2_u300"
+       ],
+       "mean": 42.27,
+       "seeds": [
+        41.14,
+        43.15,
+        42.52
+       ],
+       "ci95": [
+        41.41,
+        43.12
+       ],
+       "tokq": 143.6
+      },
+      {
+       "row": "2'",
+       "label": "plain Base + RL",
+       "configs": [
+        "P0_s0_u300",
+        "P0_s1_u300",
+        "P0_s2_u300"
+       ],
+       "mean": 53.63,
+       "seeds": [
+        53.91,
+        54.09,
+        52.9
+       ],
+       "ci95": [
+        52.64,
+        54.61
+       ],
+       "tokq": 200.7
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "ft2_tools_gate"
+       ],
+       "mean": 54.99,
+       "seeds": [
+        54.99
+       ],
+       "ci95": [
+        54.05,
+        55.92
+       ],
+       "tokq": 133.6
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "I0_s0_u300",
+        "I0_s1_u300",
+        "I0_s2_u300"
+       ],
+       "mean": 60.24,
+       "seeds": [
+        60.31,
+        60.11,
+        60.29
+       ],
+       "ci95": [
+        59.5,
+        60.97
+       ],
+       "tokq": 139.6
+      }
+     ]
+    },
+    "tool12": {
+     "label": "BBH 12 tool tasks",
+     "rows": [
+      {
+       "row": "0",
+       "label": "plain Base",
+       "configs": [
+        "base_plain"
+       ],
+       "mean": 43.47,
+       "seeds": [
+        43.47
+       ],
+       "ci95": [
+        41.83,
+        45.07
+       ],
+       "tokq": 222.2
+      },
+      {
+       "row": "1",
+       "label": "host",
+       "configs": [
+        "ft2_t0_u0"
+       ],
+       "mean": 36.57,
+       "seeds": [
+        36.57
+       ],
+       "ci95": [
+        35.07,
+        38.17
+       ],
+       "tokq": 135.0
+      },
+      {
+       "row": "2",
+       "label": "host + RL",
+       "configs": [
+        "F0_s0_u300",
+        "F0_s1_u300",
+        "F0_s2_u300"
+       ],
+       "mean": 56.34,
+       "seeds": [
+        54.7,
+        57.33,
+        57.0
+       ],
+       "ci95": [
+        55.23,
+        57.47
+       ],
+       "tokq": 143.6
+      },
+      {
+       "row": "2'",
+       "label": "plain Base + RL",
+       "configs": [
+        "P0_s0_u300",
+        "P0_s1_u300",
+        "P0_s2_u300"
+       ],
+       "mean": 70.44,
+       "seeds": [
+        71.43,
+        71.03,
+        68.87
+       ],
+       "ci95": [
+        69.14,
+        71.74
+       ],
+       "tokq": 200.7
+      },
+      {
+       "row": "3",
+       "label": "host + implants",
+       "configs": [
+        "ft2_tools_gate"
+       ],
+       "mean": 86.8,
+       "seeds": [
+        86.8
+       ],
+       "ci95": [
+        85.73,
+        87.87
+       ],
+       "tokq": 133.6
+      },
+      {
+       "row": "4",
+       "label": "host + implants + RL",
+       "configs": [
+        "I0_s0_u300",
+        "I0_s1_u300",
+        "I0_s2_u300"
+       ],
+       "mean": 97.64,
+       "seeds": [
+        97.87,
+        96.57,
+        98.5
+       ],
+       "ci95": [
+        97.21,
+        98.06
+       ],
+       "tokq": 139.6
+      }
+     ]
+    }
+   },
+   "notes": "BBH-27 (6,511 items), BBH 3-shot CoT harness of bbh_generic/callgate (cg_gate_gen), greedy, max_new 600, fast engine. Rows 1-4 host = ft_int_v2 = Qwen3-0.6B-Base + \u00a76.1 tool-call FT (teams' own 432 rows; whole-host weight change, shared by rows 1-4, [29]); row 0 = plain Base, row 2' = RL from plain Base. Implants = 8 compiled BBH tools + call gate refit on ft_int_v2. RL: GRPO 300 u, 64x8, lr 1e-6, T 1, Dr.GRPO, kl 0, synthetic look-alike train data (seed 200). CI = paired item bootstrap (10k, stratified by task) over seed-averaged items."
+  }
+ }
+}

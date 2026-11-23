@@ -1,0 +1,4 @@
+imp: local prompt-strict 49.91 (n=541); number_sentences items 46, local pass 21
+  remote prompt-strict 49.91; response sha mismatches 0; items whose strict differs 0 (number_sentences 0, other 0: [])
+plain: local prompt-strict 31.79 (n=541); number_sentences items 46, local pass 17
+  remote prompt-strict 31.79; response sha mismatches 0; items whose strict differs 0 (number_sentences 0, other 0: [])

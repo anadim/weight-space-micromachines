@@ -1,0 +1,36 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "ckpt": "model.safetensors",
+ "sd": "sd_inst.pt",
+ "max_new": 2048,
+ "fmt": "chat",
+ "n": 541,
+ "imp": {
+  "seconds": 160.4082956314087,
+  "tokens": 671750,
+  "tok_s": 4187.750997264933,
+  "decode_steps": 8336,
+  "rows": 541,
+  "admits": 34,
+  "prompt_state_s": 7.664642572402954,
+  "tok_q": 1241.260628465804,
+  "fired": 199
+ },
+ "plain": {
+  "seconds": 109.1529655456543,
+  "tokens": 759514,
+  "tok_s": 6958.253458375584,
+  "decode_steps": 9072,
+  "rows": 541,
+  "admits": 29,
+  "prompt_state_s": 0.000335693359375,
+  "tok_q": 1403.5674676524955,
+  "fired": 0
+ },
+ "idle": {
+  "n_idle": 342,
+  "silent_in_subset_run": 340,
+  "identical_subset_run": 340,
+  "identical_in_full_runs": 320
+ }
+}

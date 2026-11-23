@@ -1,0 +1,36 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "ckpt": "$RL24_DATA/ifeval/rl/I_s0/step_000300/model.safetensors",
+ "sd": "$RL24_DATA/ifeval/eng/sd_inst.pt",
+ "max_new": 2048,
+ "fmt": "chat",
+ "n": 541,
+ "imp": {
+  "seconds": 56.29214000701904,
+  "tokens": 672238,
+  "tok_s": 11941.951397054348,
+  "decode_steps": 4096,
+  "rows": 541,
+  "admits": 19,
+  "prompt_state_s": 5.812583923339844,
+  "tok_q": 1242.1552680221812,
+  "fired": 203
+ },
+ "plain": {
+  "seconds": 31.396189212799072,
+  "tokens": 773361,
+  "tok_s": 24632.320653894174,
+  "decode_steps": 4096,
+  "rows": 541,
+  "admits": 15,
+  "prompt_state_s": 8.20159912109375e-05,
+  "tok_q": 1429.1663585951942,
+  "fired": 0
+ },
+ "idle": {
+  "n_idle": 338,
+  "silent_in_subset_run": 338,
+  "identical_subset_run": 338,
+  "identical_in_full_runs": 338
+ }
+}

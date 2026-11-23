@@ -1,0 +1,4 @@
+Qwen/Qwen3-1.7B-Base cache $HF_HOME/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1
+Qwen/Qwen3-1.7B cache $HF_HOME/hub/models--Qwen--Qwen3-1.7B/snapshots/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+Qwen/Qwen3-1.7B vocab identical to Qwen3-0.6B: True chat template (thinking off) identical: True
+Qwen/Qwen3-1.7B-Base vocab identical to Qwen3-0.6B: True chat template (thinking off) identical: True

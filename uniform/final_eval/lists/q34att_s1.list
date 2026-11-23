@@ -1,0 +1,3 @@
+# [34] fill 09:55Z: 'attach after RL' control for GSM8K 0.6B (row 2b): row-2 host P64_s1 + untrained rung 2 at eval, settings identical to row 4 (r2_CW_s1); T=1, seed 7, once
+r2_P64_s1 P64_s1 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_P64_s1 P64_s1 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

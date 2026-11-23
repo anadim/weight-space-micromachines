@@ -1,0 +1,2 @@
+# [34] fill 08:31Z: C16 on GSM-Plus testmini: CW + rung 3 (stk_r3), T=1 seed 7, once
+gp_r3_CW_s2 CW_s2 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1

@@ -1,0 +1,3 @@
+# [33]/[32](b) Base host-only majority at row-3 (Base + rung 2) compute: N = 26 test (2649/103 tok/q), 30 Hard (3830/127). T=1 seed 7, once.
+scH26_base base test SCH 26 0 1 1 0
+scH30_base base hard SCH 30 0 1 1 0

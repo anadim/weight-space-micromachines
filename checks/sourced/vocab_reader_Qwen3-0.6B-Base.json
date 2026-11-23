@@ -1,0 +1,605 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "vocab_rows": 151936,
+ "tokenizer_len": 151669,
+ "machines": {
+  "calc_s3": {
+   "n_syms": 26,
+   "cells_checked": 3950336,
+   "mismatches": 0,
+   "rows_flagged_any": 35,
+   "per_symbol": {
+    "0": {
+     "tokens": [
+      "0"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.33
+    },
+    "1": {
+     "tokens": [
+      "1"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2407
+    },
+    "2": {
+     "tokens": [
+      "2"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2586
+    },
+    "3": {
+     "tokens": [
+      "3"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2522
+    },
+    "4": {
+     "tokens": [
+      "4"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2447
+    },
+    "5": {
+     "tokens": [
+      "5"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2505
+    },
+    "6": {
+     "tokens": [
+      "6"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2488
+    },
+    "7": {
+     "tokens": [
+      "7"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.21
+    },
+    "8": {
+     "tokens": [
+      "8"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2344
+    },
+    "9": {
+     "tokens": [
+      "9"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2453
+    },
+    "+": {
+     "tokens": [
+      "+",
+      " +"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3744
+    },
+    "-": {
+     "tokens": [
+      "-",
+      " -"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4187
+    },
+    "*": {
+     "tokens": [
+      "*",
+      " *"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3507
+    },
+    "/": {
+     "tokens": [
+      "/",
+      " /"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4937
+    },
+    ".": {
+     "tokens": [
+      "."
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4635
+    },
+    "CS": {
+     "tokens": [
+      " ",
+      " $",
+      "$"
+     ],
+     "n_tokens": 3,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2191
+    },
+    "CE": {
+     "tokens": [
+      "=",
+      " ="
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4151
+    },
+    "OS": {
+     "tokens": [
+      " "
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.5855
+    },
+    "OE": {
+     "tokens": [
+      " "
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.5855
+    },
+    "N+": {
+     "tokens": [
+      "+-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4353
+    },
+    "N-": {
+     "tokens": [
+      "--"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.302
+    },
+    "N*": {
+     "tokens": [
+      "*-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4141
+    },
+    "N/": {
+     "tokens": [
+      "/-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.5064
+    },
+    "SP": {
+     "tokens": [
+      " ",
+      " $"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3391
+    },
+    "CSN": {
+     "tokens": [
+      "\n",
+      ".\n",
+      ":\n",
+      ",\n",
+      " \n"
+     ],
+     "n_tokens": 5,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.1439
+    },
+    "X2": {
+     "tokens": [
+      " x",
+      " ×"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.0923
+    }
+   }
+  },
+  "calc_s4": {
+   "n_syms": 26,
+   "cells_checked": 3950336,
+   "mismatches": 0,
+   "rows_flagged_any": 35,
+   "per_symbol": {
+    "0": {
+     "tokens": [
+      "0"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.33
+    },
+    "1": {
+     "tokens": [
+      "1"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2407
+    },
+    "2": {
+     "tokens": [
+      "2"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2586
+    },
+    "3": {
+     "tokens": [
+      "3"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2522
+    },
+    "4": {
+     "tokens": [
+      "4"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2447
+    },
+    "5": {
+     "tokens": [
+      "5"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2505
+    },
+    "6": {
+     "tokens": [
+      "6"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2488
+    },
+    "7": {
+     "tokens": [
+      "7"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.21
+    },
+    "8": {
+     "tokens": [
+      "8"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2344
+    },
+    "9": {
+     "tokens": [
+      "9"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2453
+    },
+    "+": {
+     "tokens": [
+      "+",
+      " +"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3744
+    },
+    "-": {
+     "tokens": [
+      "-",
+      " -"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4187
+    },
+    "*": {
+     "tokens": [
+      "*",
+      " *"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3507
+    },
+    "/": {
+     "tokens": [
+      "/",
+      " /"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4937
+    },
+    ".": {
+     "tokens": [
+      "."
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4635
+    },
+    "CS": {
+     "tokens": [
+      " ",
+      " $",
+      "$"
+     ],
+     "n_tokens": 3,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.2191
+    },
+    "CE": {
+     "tokens": [
+      "=",
+      " ="
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4151
+    },
+    "OS": {
+     "tokens": [
+      " ",
+      " $"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3391
+    },
+    "OE": {
+     "tokens": [
+      " "
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.5855
+    },
+    "N+": {
+     "tokens": [
+      "+-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4353
+    },
+    "N-": {
+     "tokens": [
+      "--"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.302
+    },
+    "N*": {
+     "tokens": [
+      "*-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.4141
+    },
+    "N/": {
+     "tokens": [
+      "/-"
+     ],
+     "n_tokens": 1,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.5064
+    },
+    "SP": {
+     "tokens": [
+      " ",
+      " $"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.3391
+    },
+    "CSN": {
+     "tokens": [
+      "\n",
+      ".\n",
+      ":\n",
+      ",\n",
+      " \n"
+     ],
+     "n_tokens": 5,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.1439
+    },
+    "X2": {
+     "tokens": [
+      " x",
+      " ×"
+     ],
+     "n_tokens": 2,
+     "max_preact_other": -2.0,
+     "min_preact_target": 6.0,
+     "rel_gap": 0.0923
+    }
+   }
+  }
+ },
+ "regex": {
+  "ascii digit 0-9": {
+   "tokens_containing": 10,
+   "read_by_calculator": 10,
+   "not_read": 0,
+   "examples_not_read": []
+  },
+  "any unicode digit (\\d)": {
+   "tokens_containing": 22,
+   "read_by_calculator": 10,
+   "not_read": 12,
+   "examples_not_read": [
+    "１",
+    "２",
+    "０",
+    "３",
+    "５",
+    "４",
+    "６",
+    "８",
+    "７",
+    "９",
+    "１０",
+    "２０"
+   ]
+  },
+  "+ - * / = x ×": {
+   "tokens_containing": 4782,
+   "read_by_calculator": 15,
+   "not_read": 4767,
+   "examples_not_read": [
+    "//",
+    "**",
+    "----",
+    "->",
+    "==",
+    "=\"",
+    "****",
+    " //",
+    "--------",
+    "</",
+    " =>",
+    "********",
+    "====",
+    " ==",
+    " */",
+    " </",
+    "////",
+    " */\n",
+    "----------------",
+    "========",
+    "****************",
+    " !=",
+    "**\n",
+    "++",
+    " ///",
+    "/*",
+    "://",
+    "='",
+    "////////",
+    "={",
+    " --",
+    " *\n",
+    "../",
+    "-s",
+    " /*",
+    "--------------------------------",
+    " +=",
+    "-m",
+    "-b",
+    " ->"
+   ]
+  }
+ },
+ "ascii_single_digit_tokens": [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9"
+ ],
+ "tokens_with_ascii_digit_and_other_chars": 0
+}

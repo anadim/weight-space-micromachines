@@ -1,0 +1,7 @@
+# [25](a) CW + rung 4 (stk_r4), seeds 0-2, test then hard, once
+r4_CW_s0 CW_s0 test S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt
+r4_CW_s1 CW_s1 test S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt
+r4_CW_s2 CW_s2 test S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt
+r4_CW_s0 CW_s0 hard S 8 0 0 0 1 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt
+r4_CW_s1 CW_s1 hard S 8 0 0 0 1 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt
+r4_CW_s2 CW_s2 hard S 8 0 0 0 1 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 AW_SN=sn_w.pt

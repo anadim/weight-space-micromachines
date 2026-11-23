@@ -1,0 +1,36 @@
+{
+ "model": "$FT2_HOST",
+ "ckpt": null,
+ "sd": "$RL24_DATA/ifeval/eng/sd_inst.pt",
+ "max_new": 2048,
+ "fmt": "chat",
+ "n": 541,
+ "imp": {
+  "seconds": 32.747963666915894,
+  "tokens": 357494,
+  "tok_s": 10916.526097198634,
+  "decode_steps": 2336,
+  "rows": 541,
+  "admits": 20,
+  "prompt_state_s": 2.8487818241119385,
+  "tok_q": 660.0332717190388,
+  "fired": 264
+ },
+ "plain": {
+  "seconds": 20.548248529434204,
+  "tokens": 420707,
+  "tok_s": 20474.105099388933,
+  "decode_steps": 2560,
+  "rows": 541,
+  "admits": 24,
+  "prompt_state_s": 7.152557373046875e-05,
+  "tok_q": 776.9186691312384,
+  "fired": 0
+ },
+ "idle": {
+  "n_idle": 277,
+  "silent_in_subset_run": 277,
+  "identical_subset_run": 277,
+  "identical_in_full_runs": 277
+ }
+}

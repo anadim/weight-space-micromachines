@@ -1,0 +1,2 @@
+dev {'n_in': 420, 'n_keep': 415, 'n_drop': 5, 'jacc_max': 0.45180722891566266, 'jacc_p99': 0.3627450980392157, 'unique_prompts': 415, 'sha256': '2f314da1fe2b90bd183054282757ae59dfb213c20090272a74f1ba79557f245a'}
+train {'n_in': 20300, 'n_keep': 18219, 'n_drop': 2081, 'jacc_max': 0.5212121212121212, 'jacc_p99': 0.3729508196721312, 'unique_prompts': 18219, 'sha256': 'fdbec3d19f4497cb6363eabe9ab101c8042469d462772f1cd8c660c0b7ee59bd'}

@@ -1,0 +1,2 @@
+# 1.7B GSM-Plus fresh set, row 3 (same line as r3_test, set gsmplus)
+gp_r2_17 base gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 SW_DMARG=40

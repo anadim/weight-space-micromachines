@@ -1,0 +1,6 @@
+# [32](b)+(d) matched-compute majority on GSM-Plus testmini: N=12 (test-like tok/q of row 4) for P64 s0-2 and Base, N=26 for Base (row-3 compute). T=1 seed 7, once.
+gp_scH12_P64_s0 P64_s0 gsmplus SCH 12 0 1 1 0
+gp_scH12_P64_s1 P64_s1 gsmplus SCH 12 0 1 1 0
+gp_scH12_P64_s2 P64_s2 gsmplus SCH 12 0 1 1 0
+gp_scH12_base base gsmplus SCH 12 0 1 1 0
+gp_scH26_base base gsmplus SCH 26 0 1 1 0

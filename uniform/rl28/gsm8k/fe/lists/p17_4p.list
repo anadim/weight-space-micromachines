@@ -1,0 +1,10 @@
+# [34] fill: row 4p (1.7B) = CW17 s0-2 with the stack REMOVED, 1 sample, row-2 protocol; T=1, seed 7, once
+H_CW17_s0 CW17_s0 test H 1 0 1 1 0
+H_CW17_s0 CW17_s0 hard H 1 0 1 1 0
+gp_H_CW17_s0 CW17_s0 gsmplus H 1 0 1 1 0
+H_CW17_s1 CW17_s1 test H 1 0 1 1 0
+H_CW17_s1 CW17_s1 hard H 1 0 1 1 0
+gp_H_CW17_s1 CW17_s1 gsmplus H 1 0 1 1 0
+H_CW17_s2 CW17_s2 test H 1 0 1 1 0
+H_CW17_s2 CW17_s2 hard H 1 0 1 1 0
+gp_H_CW17_s2 CW17_s2 gsmplus H 1 0 1 1 0

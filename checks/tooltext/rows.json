@@ -1,0 +1,2425 @@
+{
+ "host": "Qwen3-0.6B-Base",
+ "metric": "accuracy (%)",
+ "sets": {
+  "test": {
+   "label": "GSM8K test (1319)",
+   "rows": [
+    {
+     "row": "0",
+     "label": "Base, plain 8-shot prompt (no RL)",
+     "configs": [
+      "ev_base1/test_s7",
+      "ev_base1/test_s11",
+      "ev_base1/test_s13"
+     ],
+     "mean": 28.2,
+     "seeds": [
+      27.29,
+      28.43,
+      28.89
+     ],
+     "ci95": [
+      26.38,
+      29.95
+     ],
+     "tokq": 101.2,
+     "tokq_model": 101.2,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.0046,
+     "fmt": 87.41,
+     "s_per_q_single_stream": 0.2819
+    },
+    {
+     "row": "02",
+     "label": "Base + calculator implant (no RL)",
+     "configs": [
+      "ev_base2/test_s7",
+      "ev_base2/test_s11",
+      "ev_base2/test_s13"
+     ],
+     "mean": 29.06,
+     "seeds": [
+      27.75,
+      30.86,
+      28.58
+     ],
+     "ci95": [
+      27.32,
+      30.81
+     ],
+     "tokq": 101.3,
+     "tokq_model": 101.3,
+     "calls_q": 1.89,
+     "s_per_q_batched": 0.00729,
+     "fmt": 87.06,
+     "s_per_q_single_stream": 0.3421
+    },
+    {
+     "row": "0X",
+     "label": "Base, <calc> 8-shot prompt + text tool (no RL)",
+     "configs": [
+      "ev_baseX/test_s7",
+      "ev_baseX/test_s11",
+      "ev_baseX/test_s13"
+     ],
+     "mean": 26.18,
+     "seeds": [
+      27.9,
+      24.87,
+      25.78
+     ],
+     "ci95": [
+      24.44,
+      27.95
+     ],
+     "tokq": 130.9,
+     "tokq_model": 123.5,
+     "calls_q": 2.83,
+     "s_per_q_batched": 0.00595,
+     "fmt": 89.51,
+     "s_per_q_single_stream": 0.3794
+    },
+    {
+     "row": "1",
+     "label": "plain RL (arm 1), train seed 0",
+     "configs": [
+      "ev_a1s0/test_s7",
+      "ev_a1s0/test_s11",
+      "ev_a1s0/test_s13"
+     ],
+     "mean": 68.74,
+     "seeds": [
+      67.85,
+      68.01,
+      70.36
+     ],
+     "ci95": [
+      66.57,
+      70.79
+     ],
+     "tokq": 130.9,
+     "tokq_model": 130.9,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00477,
+     "fmt": 98.46,
+     "s_per_q_single_stream": 0.3581
+    },
+    {
+     "row": "2",
+     "label": "RL + calculator implant, 1 attempt (arm 2), train seed 0",
+     "configs": [
+      "ev_a2s0/test_s7",
+      "ev_a2s0/test_s11",
+      "ev_a2s0/test_s13"
+     ],
+     "mean": 69.75,
+     "seeds": [
+      69.75,
+      69.67,
+      69.83
+     ],
+     "ci95": [
+      67.53,
+      71.87
+     ],
+     "tokq": 126.2,
+     "tokq_model": 126.2,
+     "calls_q": 2.96,
+     "s_per_q_batched": 0.00745,
+     "fmt": 99.04,
+     "s_per_q_single_stream": 0.4313
+    },
+    {
+     "row": "X",
+     "label": "RL + text calculator tool (arm X), train seed 0",
+     "configs": [
+      "ev_Xs0/test_s7",
+      "ev_Xs0/test_s11",
+      "ev_Xs0/test_s13"
+     ],
+     "mean": 68.76,
+     "seeds": [
+      68.69,
+      68.39,
+      69.22
+     ],
+     "ci95": [
+      66.69,
+      70.86
+     ],
+     "tokq": 147.5,
+     "tokq_model": 139.9,
+     "calls_q": 3.1,
+     "s_per_q_batched": 0.00589,
+     "fmt": 98.26,
+     "s_per_q_single_stream": 0.434
+    },
+    {
+     "row": "1\u00b7k",
+     "label": "arm 1, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a1s0/test_s7",
+      "ev_a1s0/test_s11",
+      "ev_a1s0/test_s13",
+      "ev_a1s1/test_s7",
+      "ev_a1s1/test_s11",
+      "ev_a1s1/test_s13",
+      "ev_a1s2/test_s7",
+      "ev_a1s2/test_s11",
+      "ev_a1s2/test_s13",
+      "ev_a1s3/test_s7",
+      "ev_a1s3/test_s11",
+      "ev_a1s3/test_s13",
+      "ev_a1s4/test_s7",
+      "ev_a1s4/test_s11",
+      "ev_a1s4/test_s13",
+      "ev_a1s5/test_s7",
+      "ev_a1s5/test_s11",
+      "ev_a1s5/test_s13",
+      "ev_a1s6/test_s7",
+      "ev_a1s6/test_s11",
+      "ev_a1s6/test_s13",
+      "ev_a1s7/test_s7",
+      "ev_a1s7/test_s11",
+      "ev_a1s7/test_s13",
+      "ev_a1s8/test_s7",
+      "ev_a1s8/test_s11",
+      "ev_a1s8/test_s13",
+      "ev_a1s9/test_s7",
+      "ev_a1s9/test_s11",
+      "ev_a1s9/test_s13",
+      "ev_a1s10/test_s7",
+      "ev_a1s10/test_s11",
+      "ev_a1s10/test_s13",
+      "ev_a1s11/test_s7",
+      "ev_a1s11/test_s11",
+      "ev_a1s11/test_s13"
+     ],
+     "mean": 68.37,
+     "seeds": [
+      67.85,
+      68.01,
+      70.36,
+      70.36,
+      69.14,
+      69.37,
+      68.99,
+      67.63,
+      68.01,
+      68.39,
+      69.07,
+      68.76,
+      66.49,
+      68.23,
+      65.81,
+      69.6,
+      70.66,
+      68.76,
+      68.23,
+      68.16,
+      68.76,
+      67.48,
+      66.87,
+      66.41,
+      68.69,
+      68.61,
+      68.99,
+      67.63,
+      68.69,
+      67.1,
+      68.16,
+      69.67,
+      70.2,
+      67.32,
+      67.25,
+      67.48
+     ],
+     "ci95": [
+      66.52,
+      70.19
+     ],
+     "tokq": 133.3,
+     "tokq_model": 133.3,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00479,
+     "fmt": 98.61,
+     "s_per_q_single_stream": 0.3612,
+     "train_seed_means": [
+      68.74,
+      69.62,
+      68.21,
+      68.74,
+      66.84,
+      69.67,
+      68.39,
+      66.92,
+      68.76,
+      67.8,
+      69.35,
+      67.35
+     ]
+    },
+    {
+     "row": "2\u00b7k",
+     "label": "arm 2, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a2s0/test_s7",
+      "ev_a2s0/test_s11",
+      "ev_a2s0/test_s13",
+      "ev_a2s1/test_s7",
+      "ev_a2s1/test_s11",
+      "ev_a2s1/test_s13",
+      "ev_a2s2/test_s7",
+      "ev_a2s2/test_s11",
+      "ev_a2s2/test_s13",
+      "ev_a2s3/test_s7",
+      "ev_a2s3/test_s11",
+      "ev_a2s3/test_s13",
+      "ev_a2s4/test_s7",
+      "ev_a2s4/test_s11",
+      "ev_a2s4/test_s13",
+      "ev_a2s5/test_s7",
+      "ev_a2s5/test_s11",
+      "ev_a2s5/test_s13",
+      "ev_a2s6/test_s7",
+      "ev_a2s6/test_s11",
+      "ev_a2s6/test_s13",
+      "ev_a2s7/test_s7",
+      "ev_a2s7/test_s11",
+      "ev_a2s7/test_s13",
+      "ev_a2s8/test_s7",
+      "ev_a2s8/test_s11",
+      "ev_a2s8/test_s13",
+      "ev_a2s9/test_s7",
+      "ev_a2s9/test_s11",
+      "ev_a2s9/test_s13",
+      "ev_a2s10/test_s7",
+      "ev_a2s10/test_s11",
+      "ev_a2s10/test_s13",
+      "ev_a2s11/test_s7",
+      "ev_a2s11/test_s11",
+      "ev_a2s11/test_s13"
+     ],
+     "mean": 69.74,
+     "seeds": [
+      69.75,
+      69.67,
+      69.83,
+      70.89,
+      70.28,
+      69.67,
+      70.58,
+      70.2,
+      69.67,
+      68.69,
+      70.43,
+      71.57,
+      70.66,
+      70.2,
+      70.13,
+      69.37,
+      71.42,
+      70.89,
+      67.85,
+      69.07,
+      70.58,
+      68.99,
+      68.39,
+      69.37,
+      68.31,
+      69.22,
+      69.29,
+      68.92,
+      69.22,
+      68.23,
+      70.2,
+      68.92,
+      71.19,
+      69.37,
+      69.75,
+      69.67
+     ],
+     "ci95": [
+      67.86,
+      71.52
+     ],
+     "tokq": 128.0,
+     "tokq_model": 128.0,
+     "calls_q": 3.0,
+     "s_per_q_batched": 0.00745,
+     "fmt": 99.02,
+     "s_per_q_single_stream": 0.4218,
+     "train_seed_means": [
+      69.75,
+      70.28,
+      70.15,
+      70.23,
+      70.33,
+      70.56,
+      69.17,
+      68.92,
+      68.94,
+      68.79,
+      70.1,
+      69.6
+     ]
+    },
+    {
+     "row": "X\u00b7k",
+     "label": "arm X, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_Xs0/test_s7",
+      "ev_Xs0/test_s11",
+      "ev_Xs0/test_s13",
+      "ev_Xs1/test_s7",
+      "ev_Xs1/test_s11",
+      "ev_Xs1/test_s13",
+      "ev_Xs2/test_s7",
+      "ev_Xs2/test_s11",
+      "ev_Xs2/test_s13",
+      "ev_Xs3/test_s7",
+      "ev_Xs3/test_s11",
+      "ev_Xs3/test_s13",
+      "ev_Xs4/test_s7",
+      "ev_Xs4/test_s11",
+      "ev_Xs4/test_s13",
+      "ev_Xs5/test_s7",
+      "ev_Xs5/test_s11",
+      "ev_Xs5/test_s13",
+      "ev_Xs6/test_s7",
+      "ev_Xs6/test_s11",
+      "ev_Xs6/test_s13",
+      "ev_Xs7/test_s7",
+      "ev_Xs7/test_s11",
+      "ev_Xs7/test_s13",
+      "ev_Xs8/test_s7",
+      "ev_Xs8/test_s11",
+      "ev_Xs8/test_s13",
+      "ev_Xs9/test_s7",
+      "ev_Xs9/test_s11",
+      "ev_Xs9/test_s13",
+      "ev_Xs10/test_s7",
+      "ev_Xs10/test_s11",
+      "ev_Xs10/test_s13",
+      "ev_Xs11/test_s7",
+      "ev_Xs11/test_s11",
+      "ev_Xs11/test_s13"
+     ],
+     "mean": 69.29,
+     "seeds": [
+      68.69,
+      68.39,
+      69.22,
+      69.98,
+      69.67,
+      68.92,
+      67.78,
+      68.01,
+      67.7,
+      69.52,
+      69.98,
+      69.98,
+      69.45,
+      70.43,
+      68.69,
+      69.67,
+      70.58,
+      69.29,
+      68.39,
+      69.22,
+      70.81,
+      69.22,
+      69.29,
+      69.14,
+      69.14,
+      70.74,
+      69.9,
+      68.99,
+      69.98,
+      69.9,
+      68.54,
+      68.92,
+      69.52,
+      70.13,
+      67.78,
+      68.76
+     ],
+     "ci95": [
+      67.43,
+      71.1
+     ],
+     "tokq": 148.5,
+     "tokq_model": 140.9,
+     "calls_q": 3.09,
+     "s_per_q_batched": 0.00593,
+     "fmt": 98.14,
+     "s_per_q_single_stream": 0.4322,
+     "train_seed_means": [
+      68.76,
+      69.52,
+      67.83,
+      69.83,
+      69.52,
+      69.85,
+      69.47,
+      69.22,
+      69.93,
+      69.62,
+      68.99,
+      68.89
+     ]
+    },
+    {
+     "row": "X\u00b75",
+     "label": "arm X, train seeds 0-4, cap on all tokens (as [35])",
+     "configs": [
+      "ev_Xs0/test_s7",
+      "ev_Xs0/test_s11",
+      "ev_Xs0/test_s13",
+      "ev_Xs1/test_s7",
+      "ev_Xs1/test_s11",
+      "ev_Xs1/test_s13",
+      "ev_Xs2/test_s7",
+      "ev_Xs2/test_s11",
+      "ev_Xs2/test_s13",
+      "ev_Xs3/test_s7",
+      "ev_Xs3/test_s11",
+      "ev_Xs3/test_s13",
+      "ev_Xs4/test_s7",
+      "ev_Xs4/test_s11",
+      "ev_Xs4/test_s13"
+     ],
+     "mean": 69.09,
+     "seeds": [
+      68.69,
+      68.39,
+      69.22,
+      69.98,
+      69.67,
+      68.92,
+      67.78,
+      68.01,
+      67.7,
+      69.52,
+      69.98,
+      69.98,
+      69.45,
+      70.43,
+      68.69
+     ],
+     "ci95": [
+      67.17,
+      70.95
+     ],
+     "tokq": 149.8,
+     "tokq_model": 142.2,
+     "calls_q": 3.09,
+     "s_per_q_batched": 0.00592,
+     "fmt": 98.02,
+     "s_per_q_single_stream": 0.4362,
+     "train_seed_means": [
+      68.76,
+      69.52,
+      67.83,
+      69.83,
+      69.52
+     ]
+    },
+    {
+     "row": "Xm\u00b75",
+     "label": "[37](a) arm X, train seeds 0-4, cap on model tokens only (+128 tool tokens)",
+     "configs": [
+      "e37a_Xs0/test_s7",
+      "e37a_Xs0/test_s11",
+      "e37a_Xs0/test_s13",
+      "e37a_Xs1/test_s7",
+      "e37a_Xs1/test_s11",
+      "e37a_Xs1/test_s13",
+      "e37a_Xs2/test_s7",
+      "e37a_Xs2/test_s11",
+      "e37a_Xs2/test_s13",
+      "e37a_Xs3/test_s7",
+      "e37a_Xs3/test_s11",
+      "e37a_Xs3/test_s13",
+      "e37a_Xs4/test_s7",
+      "e37a_Xs4/test_s11",
+      "e37a_Xs4/test_s13"
+     ],
+     "mean": 69.16,
+     "seeds": [
+      68.39,
+      68.92,
+      68.61,
+      68.76,
+      69.75,
+      70.05,
+      68.99,
+      67.85,
+      66.49,
+      71.04,
+      70.13,
+      69.75,
+      69.98,
+      69.9,
+      68.84
+     ],
+     "ci95": [
+      67.23,
+      70.99
+     ],
+     "tokq": 150.0,
+     "tokq_model": 142.4,
+     "calls_q": 3.09,
+     "s_per_q_batched": 0.00622,
+     "fmt": 98.59,
+     "s_per_q_single_stream": 0.4364,
+     "train_seed_means": [
+      68.64,
+      69.52,
+      67.78,
+      70.31,
+      69.57
+     ]
+    },
+    {
+     "row": "2\u00b75",
+     "label": "arm 2, train seeds 0-4",
+     "configs": [
+      "ev_a2s0/test_s7",
+      "ev_a2s0/test_s11",
+      "ev_a2s0/test_s13",
+      "ev_a2s1/test_s7",
+      "ev_a2s1/test_s11",
+      "ev_a2s1/test_s13",
+      "ev_a2s2/test_s7",
+      "ev_a2s2/test_s11",
+      "ev_a2s2/test_s13",
+      "ev_a2s3/test_s7",
+      "ev_a2s3/test_s11",
+      "ev_a2s3/test_s13",
+      "ev_a2s4/test_s7",
+      "ev_a2s4/test_s11",
+      "ev_a2s4/test_s13"
+     ],
+     "mean": 70.15,
+     "seeds": [
+      69.75,
+      69.67,
+      69.83,
+      70.89,
+      70.28,
+      69.67,
+      70.58,
+      70.2,
+      69.67,
+      68.69,
+      70.43,
+      71.57,
+      70.66,
+      70.2,
+      70.13
+     ],
+     "ci95": [
+      68.23,
+      72.01
+     ],
+     "tokq": 128.6,
+     "tokq_model": 128.6,
+     "calls_q": 3.01,
+     "s_per_q_batched": 0.00749,
+     "fmt": 98.99,
+     "s_per_q_single_stream": 0.4252,
+     "train_seed_means": [
+      69.75,
+      70.28,
+      70.15,
+      70.23,
+      70.33
+     ]
+    }
+   ],
+   "diffs": [
+    {
+     "pair": "X - 2",
+     "delta": -0.99,
+     "ci95": [
+      -2.55,
+      0.63
+     ]
+    },
+    {
+     "pair": "X - 1",
+     "delta": 0.03,
+     "ci95": [
+      -1.62,
+      1.67
+     ]
+    },
+    {
+     "pair": "2 - 1",
+     "delta": 1.01,
+     "ci95": [
+      -0.45,
+      2.6
+     ]
+    },
+    {
+     "pair": "0X - 0",
+     "delta": -2.02,
+     "ci95": [
+      -3.54,
+      -0.48
+     ]
+    },
+    {
+     "pair": "02 - 0",
+     "delta": 0.86,
+     "ci95": [
+      0.03,
+      1.74
+     ]
+    },
+    {
+     "pair": "0X - 02",
+     "delta": -2.88,
+     "ci95": [
+      -4.45,
+      -1.36
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 2\u00b7k",
+     "delta": -0.45,
+     "ci95": [
+      -1.24,
+      0.36
+     ],
+     "ci95_seeds_items": [
+      -1.5,
+      0.54
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 1\u00b7k",
+     "delta": 0.92,
+     "ci95": [
+      0.11,
+      1.81
+     ],
+     "ci95_seeds_items": [
+      -0.2,
+      2.03
+     ]
+    },
+    {
+     "pair": "2\u00b7k - 1\u00b7k",
+     "delta": 1.37,
+     "ci95": [
+      0.77,
+      2.03
+     ],
+     "ci95_seeds_items": [
+      0.4,
+      2.35
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - X\u00b75",
+     "delta": 0.07,
+     "ci95": [
+      -0.35,
+      0.51
+     ],
+     "ci95_seeds_items": [
+      -1.13,
+      1.26
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - 2\u00b75",
+     "delta": -0.99,
+     "ci95": [
+      -1.87,
+      -0.12
+     ],
+     "ci95_seeds_items": [
+      -2.34,
+      0.33
+     ]
+    }
+   ]
+  },
+  "hard": {
+   "label": "GSM-Hard (1319)",
+   "rows": [
+    {
+     "row": "0",
+     "label": "Base, plain 8-shot prompt (no RL)",
+     "configs": [
+      "ev_base1/hard_s7",
+      "ev_base1/hard_s11",
+      "ev_base1/hard_s13"
+     ],
+     "mean": 11.25,
+     "seeds": [
+      10.92,
+      11.22,
+      11.6
+     ],
+     "ci95": [
+      10.06,
+      12.43
+     ],
+     "tokq": 127.0,
+     "tokq_model": 127.0,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00474,
+     "fmt": 82.06
+    },
+    {
+     "row": "02",
+     "label": "Base + calculator implant (no RL)",
+     "configs": [
+      "ev_base2/hard_s7",
+      "ev_base2/hard_s11",
+      "ev_base2/hard_s13"
+     ],
+     "mean": 14.89,
+     "seeds": [
+      14.63,
+      14.33,
+      15.69
+     ],
+     "ci95": [
+      13.6,
+      16.2
+     ],
+     "tokq": 127.9,
+     "tokq_model": 127.9,
+     "calls_q": 1.82,
+     "s_per_q_batched": 0.00752,
+     "fmt": 81.45
+    },
+    {
+     "row": "0X",
+     "label": "Base, <calc> 8-shot prompt + text tool (no RL)",
+     "configs": [
+      "ev_baseX/hard_s7",
+      "ev_baseX/hard_s11",
+      "ev_baseX/hard_s13"
+     ],
+     "mean": 15.77,
+     "seeds": [
+      16.68,
+      14.56,
+      16.07
+     ],
+     "ci95": [
+      14.35,
+      17.18
+     ],
+     "tokq": 165.2,
+     "tokq_model": 149.9,
+     "calls_q": 2.82,
+     "s_per_q_batched": 0.00608,
+     "fmt": 82.87
+    },
+    {
+     "row": "1",
+     "label": "plain RL (arm 1), train seed 0",
+     "configs": [
+      "ev_a1s0/hard_s7",
+      "ev_a1s0/hard_s11",
+      "ev_a1s0/hard_s13"
+     ],
+     "mean": 41.39,
+     "seeds": [
+      41.09,
+      41.39,
+      41.7
+     ],
+     "ci95": [
+      39.1,
+      43.77
+     ],
+     "tokq": 166.3,
+     "tokq_model": 166.3,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00503,
+     "fmt": 95.58
+    },
+    {
+     "row": "2",
+     "label": "RL + calculator implant, 1 attempt (arm 2), train seed 0",
+     "configs": [
+      "ev_a2s0/hard_s7",
+      "ev_a2s0/hard_s11",
+      "ev_a2s0/hard_s13"
+     ],
+     "mean": 53.8,
+     "seeds": [
+      53.37,
+      53.53,
+      54.51
+     ],
+     "ci95": [
+      51.38,
+      56.23
+     ],
+     "tokq": 163.0,
+     "tokq_model": 163.0,
+     "calls_q": 2.84,
+     "s_per_q_batched": 0.00789,
+     "fmt": 96.46
+    },
+    {
+     "row": "X",
+     "label": "RL + text calculator tool (arm X), train seed 0",
+     "configs": [
+      "ev_Xs0/hard_s7",
+      "ev_Xs0/hard_s11",
+      "ev_Xs0/hard_s13"
+     ],
+     "mean": 55.34,
+     "seeds": [
+      54.74,
+      55.34,
+      55.95
+     ],
+     "ci95": [
+      52.87,
+      57.9
+     ],
+     "tokq": 189.7,
+     "tokq_model": 171.5,
+     "calls_q": 3.01,
+     "s_per_q_batched": 0.00629,
+     "fmt": 92.47
+    },
+    {
+     "row": "1\u00b7k",
+     "label": "arm 1, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a1s0/hard_s7",
+      "ev_a1s0/hard_s11",
+      "ev_a1s0/hard_s13",
+      "ev_a1s1/hard_s7",
+      "ev_a1s1/hard_s11",
+      "ev_a1s1/hard_s13",
+      "ev_a1s2/hard_s7",
+      "ev_a1s2/hard_s11",
+      "ev_a1s2/hard_s13",
+      "ev_a1s3/hard_s7",
+      "ev_a1s3/hard_s11",
+      "ev_a1s3/hard_s13",
+      "ev_a1s4/hard_s7",
+      "ev_a1s4/hard_s11",
+      "ev_a1s4/hard_s13",
+      "ev_a1s5/hard_s7",
+      "ev_a1s5/hard_s11",
+      "ev_a1s5/hard_s13",
+      "ev_a1s6/hard_s7",
+      "ev_a1s6/hard_s11",
+      "ev_a1s6/hard_s13",
+      "ev_a1s7/hard_s7",
+      "ev_a1s7/hard_s11",
+      "ev_a1s7/hard_s13",
+      "ev_a1s8/hard_s7",
+      "ev_a1s8/hard_s11",
+      "ev_a1s8/hard_s13",
+      "ev_a1s9/hard_s7",
+      "ev_a1s9/hard_s11",
+      "ev_a1s9/hard_s13",
+      "ev_a1s10/hard_s7",
+      "ev_a1s10/hard_s11",
+      "ev_a1s10/hard_s13",
+      "ev_a1s11/hard_s7",
+      "ev_a1s11/hard_s11",
+      "ev_a1s11/hard_s13"
+     ],
+     "mean": 41.54,
+     "seeds": [
+      41.09,
+      41.39,
+      41.7,
+      41.39,
+      42.91,
+      42.23,
+      43.44,
+      41.47,
+      41.47,
+      41.17,
+      41.93,
+      42.76,
+      40.49,
+      40.64,
+      40.49,
+      40.11,
+      42.0,
+      42.3,
+      41.47,
+      41.62,
+      40.56,
+      41.62,
+      42.3,
+      42.76,
+      40.86,
+      40.94,
+      40.26,
+      41.39,
+      42.38,
+      41.32,
+      42.61,
+      40.49,
+      41.77,
+      41.85,
+      41.85,
+      40.26
+     ],
+     "ci95": [
+      39.4,
+      43.78
+     ],
+     "tokq": 168.5,
+     "tokq_model": 168.5,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00504,
+     "fmt": 95.75,
+     "train_seed_means": [
+      41.39,
+      42.18,
+      42.13,
+      41.95,
+      40.54,
+      41.47,
+      41.22,
+      42.23,
+      40.69,
+      41.7,
+      41.62,
+      41.32
+     ]
+    },
+    {
+     "row": "2\u00b7k",
+     "label": "arm 2, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a2s0/hard_s7",
+      "ev_a2s0/hard_s11",
+      "ev_a2s0/hard_s13",
+      "ev_a2s1/hard_s7",
+      "ev_a2s1/hard_s11",
+      "ev_a2s1/hard_s13",
+      "ev_a2s2/hard_s7",
+      "ev_a2s2/hard_s11",
+      "ev_a2s2/hard_s13",
+      "ev_a2s3/hard_s7",
+      "ev_a2s3/hard_s11",
+      "ev_a2s3/hard_s13",
+      "ev_a2s4/hard_s7",
+      "ev_a2s4/hard_s11",
+      "ev_a2s4/hard_s13",
+      "ev_a2s5/hard_s7",
+      "ev_a2s5/hard_s11",
+      "ev_a2s5/hard_s13",
+      "ev_a2s6/hard_s7",
+      "ev_a2s6/hard_s11",
+      "ev_a2s6/hard_s13",
+      "ev_a2s7/hard_s7",
+      "ev_a2s7/hard_s11",
+      "ev_a2s7/hard_s13",
+      "ev_a2s8/hard_s7",
+      "ev_a2s8/hard_s11",
+      "ev_a2s8/hard_s13",
+      "ev_a2s9/hard_s7",
+      "ev_a2s9/hard_s11",
+      "ev_a2s9/hard_s13",
+      "ev_a2s10/hard_s7",
+      "ev_a2s10/hard_s11",
+      "ev_a2s10/hard_s13",
+      "ev_a2s11/hard_s7",
+      "ev_a2s11/hard_s11",
+      "ev_a2s11/hard_s13"
+     ],
+     "mean": 54.08,
+     "seeds": [
+      53.37,
+      53.53,
+      54.51,
+      53.98,
+      54.28,
+      54.66,
+      53.9,
+      53.98,
+      53.07,
+      53.53,
+      53.75,
+      54.21,
+      54.36,
+      54.89,
+      55.19,
+      55.57,
+      56.56,
+      55.8,
+      52.77,
+      52.46,
+      51.48,
+      54.81,
+      55.04,
+      54.81,
+      54.06,
+      52.92,
+      54.44,
+      52.92,
+      55.88,
+      52.46,
+      53.9,
+      52.62,
+      53.3,
+      54.36,
+      54.21,
+      55.19
+     ],
+     "ci95": [
+      51.89,
+      56.36
+     ],
+     "tokq": 163.9,
+     "tokq_model": 163.9,
+     "calls_q": 2.89,
+     "s_per_q_batched": 0.00789,
+     "fmt": 96.52,
+     "train_seed_means": [
+      53.8,
+      54.31,
+      53.65,
+      53.83,
+      54.81,
+      55.98,
+      52.24,
+      54.89,
+      53.8,
+      53.75,
+      53.27,
+      54.59
+     ]
+    },
+    {
+     "row": "X\u00b7k",
+     "label": "arm X, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_Xs0/hard_s7",
+      "ev_Xs0/hard_s11",
+      "ev_Xs0/hard_s13",
+      "ev_Xs1/hard_s7",
+      "ev_Xs1/hard_s11",
+      "ev_Xs1/hard_s13",
+      "ev_Xs2/hard_s7",
+      "ev_Xs2/hard_s11",
+      "ev_Xs2/hard_s13",
+      "ev_Xs3/hard_s7",
+      "ev_Xs3/hard_s11",
+      "ev_Xs3/hard_s13",
+      "ev_Xs4/hard_s7",
+      "ev_Xs4/hard_s11",
+      "ev_Xs4/hard_s13",
+      "ev_Xs5/hard_s7",
+      "ev_Xs5/hard_s11",
+      "ev_Xs5/hard_s13",
+      "ev_Xs6/hard_s7",
+      "ev_Xs6/hard_s11",
+      "ev_Xs6/hard_s13",
+      "ev_Xs7/hard_s7",
+      "ev_Xs7/hard_s11",
+      "ev_Xs7/hard_s13",
+      "ev_Xs8/hard_s7",
+      "ev_Xs8/hard_s11",
+      "ev_Xs8/hard_s13",
+      "ev_Xs9/hard_s7",
+      "ev_Xs9/hard_s11",
+      "ev_Xs9/hard_s13",
+      "ev_Xs10/hard_s7",
+      "ev_Xs10/hard_s11",
+      "ev_Xs10/hard_s13",
+      "ev_Xs11/hard_s7",
+      "ev_Xs11/hard_s11",
+      "ev_Xs11/hard_s13"
+     ],
+     "mean": 55.97,
+     "seeds": [
+      54.74,
+      55.34,
+      55.95,
+      57.09,
+      56.1,
+      55.72,
+      56.03,
+      55.04,
+      54.89,
+      55.95,
+      56.41,
+      56.56,
+      55.27,
+      56.63,
+      56.18,
+      55.34,
+      56.86,
+      55.8,
+      56.25,
+      56.71,
+      57.01,
+      55.57,
+      57.7,
+      56.63,
+      55.34,
+      55.8,
+      56.48,
+      55.8,
+      56.56,
+      55.42,
+      55.65,
+      56.18,
+      56.18,
+      55.72,
+      54.81,
+      55.34
+     ],
+     "ci95": [
+      53.76,
+      58.27
+     ],
+     "tokq": 190.0,
+     "tokq_model": 171.9,
+     "calls_q": 2.99,
+     "s_per_q_batched": 0.00628,
+     "fmt": 92.65,
+     "train_seed_means": [
+      55.34,
+      56.31,
+      55.32,
+      56.31,
+      56.03,
+      56.0,
+      56.66,
+      56.63,
+      55.88,
+      55.93,
+      56.0,
+      55.29
+     ]
+    },
+    {
+     "row": "X\u00b75",
+     "label": "arm X, train seeds 0-4, cap on all tokens (as [35])",
+     "configs": [
+      "ev_Xs0/hard_s7",
+      "ev_Xs0/hard_s11",
+      "ev_Xs0/hard_s13",
+      "ev_Xs1/hard_s7",
+      "ev_Xs1/hard_s11",
+      "ev_Xs1/hard_s13",
+      "ev_Xs2/hard_s7",
+      "ev_Xs2/hard_s11",
+      "ev_Xs2/hard_s13",
+      "ev_Xs3/hard_s7",
+      "ev_Xs3/hard_s11",
+      "ev_Xs3/hard_s13",
+      "ev_Xs4/hard_s7",
+      "ev_Xs4/hard_s11",
+      "ev_Xs4/hard_s13"
+     ],
+     "mean": 55.86,
+     "seeds": [
+      54.74,
+      55.34,
+      55.95,
+      57.09,
+      56.1,
+      55.72,
+      56.03,
+      55.04,
+      54.89,
+      55.95,
+      56.41,
+      56.56,
+      55.27,
+      56.63,
+      56.18
+     ],
+     "ci95": [
+      53.61,
+      58.16
+     ],
+     "tokq": 191.4,
+     "tokq_model": 173.4,
+     "calls_q": 2.99,
+     "s_per_q_batched": 0.0063,
+     "fmt": 92.27,
+     "train_seed_means": [
+      55.34,
+      56.31,
+      55.32,
+      56.31,
+      56.03
+     ]
+    },
+    {
+     "row": "Xm\u00b75",
+     "label": "[37](a) arm X, train seeds 0-4, cap on model tokens only (+128 tool tokens)",
+     "configs": [
+      "e37a_Xs0/hard_s7",
+      "e37a_Xs0/hard_s11",
+      "e37a_Xs0/hard_s13",
+      "e37a_Xs1/hard_s7",
+      "e37a_Xs1/hard_s11",
+      "e37a_Xs1/hard_s13",
+      "e37a_Xs2/hard_s7",
+      "e37a_Xs2/hard_s11",
+      "e37a_Xs2/hard_s13",
+      "e37a_Xs3/hard_s7",
+      "e37a_Xs3/hard_s11",
+      "e37a_Xs3/hard_s13",
+      "e37a_Xs4/hard_s7",
+      "e37a_Xs4/hard_s11",
+      "e37a_Xs4/hard_s13"
+     ],
+     "mean": 57.26,
+     "seeds": [
+      56.86,
+      56.79,
+      56.63,
+      59.21,
+      57.39,
+      57.47,
+      57.92,
+      55.72,
+      56.1,
+      57.32,
+      57.92,
+      56.86,
+      58.3,
+      57.09,
+      57.24
+     ],
+     "ci95": [
+      55.07,
+      59.56
+     ],
+     "tokq": 193.4,
+     "tokq_model": 175.1,
+     "calls_q": 3.02,
+     "s_per_q_batched": 0.0067,
+     "fmt": 95.42,
+     "train_seed_means": [
+      56.76,
+      58.02,
+      56.58,
+      57.37,
+      57.54
+     ]
+    },
+    {
+     "row": "2\u00b75",
+     "label": "arm 2, train seeds 0-4",
+     "configs": [
+      "ev_a2s0/hard_s7",
+      "ev_a2s0/hard_s11",
+      "ev_a2s0/hard_s13",
+      "ev_a2s1/hard_s7",
+      "ev_a2s1/hard_s11",
+      "ev_a2s1/hard_s13",
+      "ev_a2s2/hard_s7",
+      "ev_a2s2/hard_s11",
+      "ev_a2s2/hard_s13",
+      "ev_a2s3/hard_s7",
+      "ev_a2s3/hard_s11",
+      "ev_a2s3/hard_s13",
+      "ev_a2s4/hard_s7",
+      "ev_a2s4/hard_s11",
+      "ev_a2s4/hard_s13"
+     ],
+     "mean": 54.08,
+     "seeds": [
+      53.37,
+      53.53,
+      54.51,
+      53.98,
+      54.28,
+      54.66,
+      53.9,
+      53.98,
+      53.07,
+      53.53,
+      53.75,
+      54.21,
+      54.36,
+      54.89,
+      55.19
+     ],
+     "ci95": [
+      51.86,
+      56.37
+     ],
+     "tokq": 164.9,
+     "tokq_model": 164.9,
+     "calls_q": 2.89,
+     "s_per_q_batched": 0.0079,
+     "fmt": 96.23,
+     "train_seed_means": [
+      53.8,
+      54.31,
+      53.65,
+      53.83,
+      54.81
+     ]
+    }
+   ],
+   "diffs": [
+    {
+     "pair": "X - 2",
+     "delta": 1.54,
+     "ci95": [
+      -0.33,
+      3.36
+     ]
+    },
+    {
+     "pair": "X - 1",
+     "delta": 13.95,
+     "ci95": [
+      11.83,
+      16.02
+     ]
+    },
+    {
+     "pair": "2 - 1",
+     "delta": 12.41,
+     "ci95": [
+      10.54,
+      14.3
+     ]
+    },
+    {
+     "pair": "0X - 0",
+     "delta": 4.52,
+     "ci95": [
+      3.13,
+      5.84
+     ]
+    },
+    {
+     "pair": "02 - 0",
+     "delta": 3.64,
+     "ci95": [
+      2.83,
+      4.5
+     ]
+    },
+    {
+     "pair": "0X - 02",
+     "delta": 0.88,
+     "ci95": [
+      -0.51,
+      2.25
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 2\u00b7k",
+     "delta": 1.9,
+     "ci95": [
+      0.73,
+      2.97
+     ],
+     "ci95_seeds_items": [
+      0.65,
+      3.19
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 1\u00b7k",
+     "delta": 14.44,
+     "ci95": [
+      12.84,
+      15.94
+     ],
+     "ci95_seeds_items": [
+      12.82,
+      16.22
+     ]
+    },
+    {
+     "pair": "2\u00b7k - 1\u00b7k",
+     "delta": 12.54,
+     "ci95": [
+      11.18,
+      13.93
+     ],
+     "ci95_seeds_items": [
+      11.01,
+      14.16
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - X\u00b75",
+     "delta": 1.39,
+     "ci95": [
+      0.81,
+      2.02
+     ],
+     "ci95_seeds_items": [
+      0.35,
+      2.47
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - 2\u00b75",
+     "delta": 3.17,
+     "ci95": [
+      1.96,
+      4.35
+     ],
+     "ci95_seeds_items": [
+      1.76,
+      4.63
+     ]
+    }
+   ]
+  },
+  "gsmplus": {
+   "label": "GSM-Plus testmini (2100)",
+   "rows": [
+    {
+     "row": "0",
+     "label": "Base, plain 8-shot prompt (no RL)",
+     "configs": [
+      "ev_base1/gsmplus_s7",
+      "ev_base1/gsmplus_s11",
+      "ev_base1/gsmplus_s13"
+     ],
+     "mean": 19.54,
+     "seeds": [
+      18.62,
+      19.67,
+      20.33
+     ],
+     "ci95": [
+      18.32,
+      20.78
+     ],
+     "tokq": 119.5,
+     "tokq_model": 119.5,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00488,
+     "fmt": 81.4
+    },
+    {
+     "row": "02",
+     "label": "Base + calculator implant (no RL)",
+     "configs": [
+      "ev_base2/gsmplus_s7",
+      "ev_base2/gsmplus_s11",
+      "ev_base2/gsmplus_s13"
+     ],
+     "mean": 19.83,
+     "seeds": [
+      19.67,
+      20.57,
+      19.24
+     ],
+     "ci95": [
+      18.57,
+      21.1
+     ],
+     "tokq": 119.4,
+     "tokq_model": 119.4,
+     "calls_q": 2.06,
+     "s_per_q_batched": 0.00754,
+     "fmt": 80.81
+    },
+    {
+     "row": "0X",
+     "label": "Base, <calc> 8-shot prompt + text tool (no RL)",
+     "configs": [
+      "ev_baseX/gsmplus_s7",
+      "ev_baseX/gsmplus_s11",
+      "ev_baseX/gsmplus_s13"
+     ],
+     "mean": 17.32,
+     "seeds": [
+      17.38,
+      17.38,
+      17.19
+     ],
+     "ci95": [
+      16.14,
+      18.48
+     ],
+     "tokq": 151.8,
+     "tokq_model": 143.1,
+     "calls_q": 2.96,
+     "s_per_q_batched": 0.00622,
+     "fmt": 83.86
+    },
+    {
+     "row": "1",
+     "label": "plain RL (arm 1), train seed 0",
+     "configs": [
+      "ev_a1s0/gsmplus_s7",
+      "ev_a1s0/gsmplus_s11",
+      "ev_a1s0/gsmplus_s13"
+     ],
+     "mean": 55.32,
+     "seeds": [
+      55.38,
+      54.57,
+      56.0
+     ],
+     "ci95": [
+      53.51,
+      57.16
+     ],
+     "tokq": 157.6,
+     "tokq_model": 157.6,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.00509,
+     "fmt": 96.35
+    },
+    {
+     "row": "2",
+     "label": "RL + calculator implant, 1 attempt (arm 2), train seed 0",
+     "configs": [
+      "ev_a2s0/gsmplus_s7",
+      "ev_a2s0/gsmplus_s11",
+      "ev_a2s0/gsmplus_s13"
+     ],
+     "mean": 55.03,
+     "seeds": [
+      55.14,
+      55.62,
+      54.33
+     ],
+     "ci95": [
+      53.17,
+      56.94
+     ],
+     "tokq": 149.7,
+     "tokq_model": 149.7,
+     "calls_q": 3.24,
+     "s_per_q_batched": 0.00771,
+     "fmt": 98.27
+    },
+    {
+     "row": "X",
+     "label": "RL + text calculator tool (arm X), train seed 0",
+     "configs": [
+      "ev_Xs0/gsmplus_s7",
+      "ev_Xs0/gsmplus_s11",
+      "ev_Xs0/gsmplus_s13"
+     ],
+     "mean": 52.86,
+     "seeds": [
+      52.57,
+      53.52,
+      52.48
+     ],
+     "ci95": [
+      50.97,
+      54.75
+     ],
+     "tokq": 172.6,
+     "tokq_model": 163.4,
+     "calls_q": 3.36,
+     "s_per_q_batched": 0.00629,
+     "fmt": 96.65
+    },
+    {
+     "row": "1\u00b7k",
+     "label": "arm 1, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a1s0/gsmplus_s7",
+      "ev_a1s0/gsmplus_s11",
+      "ev_a1s0/gsmplus_s13",
+      "ev_a1s1/gsmplus_s7",
+      "ev_a1s1/gsmplus_s11",
+      "ev_a1s1/gsmplus_s13",
+      "ev_a1s2/gsmplus_s7",
+      "ev_a1s2/gsmplus_s11",
+      "ev_a1s2/gsmplus_s13",
+      "ev_a1s3/gsmplus_s7",
+      "ev_a1s3/gsmplus_s11",
+      "ev_a1s3/gsmplus_s13",
+      "ev_a1s4/gsmplus_s7",
+      "ev_a1s4/gsmplus_s11",
+      "ev_a1s4/gsmplus_s13",
+      "ev_a1s5/gsmplus_s7",
+      "ev_a1s5/gsmplus_s11",
+      "ev_a1s5/gsmplus_s13",
+      "ev_a1s6/gsmplus_s7",
+      "ev_a1s6/gsmplus_s11",
+      "ev_a1s6/gsmplus_s13",
+      "ev_a1s7/gsmplus_s7",
+      "ev_a1s7/gsmplus_s11",
+      "ev_a1s7/gsmplus_s13",
+      "ev_a1s8/gsmplus_s7",
+      "ev_a1s8/gsmplus_s11",
+      "ev_a1s8/gsmplus_s13",
+      "ev_a1s9/gsmplus_s7",
+      "ev_a1s9/gsmplus_s11",
+      "ev_a1s9/gsmplus_s13",
+      "ev_a1s10/gsmplus_s7",
+      "ev_a1s10/gsmplus_s11",
+      "ev_a1s10/gsmplus_s13",
+      "ev_a1s11/gsmplus_s7",
+      "ev_a1s11/gsmplus_s11",
+      "ev_a1s11/gsmplus_s13"
+     ],
+     "mean": 54.32,
+     "seeds": [
+      55.38,
+      54.57,
+      56.0,
+      54.24,
+      55.29,
+      54.14,
+      53.24,
+      54.33,
+      54.86,
+      54.71,
+      53.57,
+      54.81,
+      53.76,
+      53.19,
+      52.67,
+      55.38,
+      55.76,
+      54.33,
+      54.19,
+      54.62,
+      55.19,
+      54.43,
+      53.19,
+      54.67,
+      54.43,
+      54.38,
+      54.33,
+      54.29,
+      54.43,
+      54.52,
+      53.81,
+      53.9,
+      52.43,
+      54.43,
+      53.9,
+      54.14
+     ],
+     "ci95": [
+      52.68,
+      55.95
+     ],
+     "tokq": 158.7,
+     "tokq_model": 158.7,
+     "calls_q": 0.0,
+     "s_per_q_batched": 0.0051,
+     "fmt": 96.84,
+     "train_seed_means": [
+      55.32,
+      54.56,
+      54.14,
+      54.37,
+      53.21,
+      55.16,
+      54.67,
+      54.1,
+      54.38,
+      54.41,
+      53.38,
+      54.16
+     ]
+    },
+    {
+     "row": "2\u00b7k",
+     "label": "arm 2, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_a2s0/gsmplus_s7",
+      "ev_a2s0/gsmplus_s11",
+      "ev_a2s0/gsmplus_s13",
+      "ev_a2s1/gsmplus_s7",
+      "ev_a2s1/gsmplus_s11",
+      "ev_a2s1/gsmplus_s13",
+      "ev_a2s2/gsmplus_s7",
+      "ev_a2s2/gsmplus_s11",
+      "ev_a2s2/gsmplus_s13",
+      "ev_a2s3/gsmplus_s7",
+      "ev_a2s3/gsmplus_s11",
+      "ev_a2s3/gsmplus_s13",
+      "ev_a2s4/gsmplus_s7",
+      "ev_a2s4/gsmplus_s11",
+      "ev_a2s4/gsmplus_s13",
+      "ev_a2s5/gsmplus_s7",
+      "ev_a2s5/gsmplus_s11",
+      "ev_a2s5/gsmplus_s13",
+      "ev_a2s6/gsmplus_s7",
+      "ev_a2s6/gsmplus_s11",
+      "ev_a2s6/gsmplus_s13",
+      "ev_a2s7/gsmplus_s7",
+      "ev_a2s7/gsmplus_s11",
+      "ev_a2s7/gsmplus_s13",
+      "ev_a2s8/gsmplus_s7",
+      "ev_a2s8/gsmplus_s11",
+      "ev_a2s8/gsmplus_s13",
+      "ev_a2s9/gsmplus_s7",
+      "ev_a2s9/gsmplus_s11",
+      "ev_a2s9/gsmplus_s13",
+      "ev_a2s10/gsmplus_s7",
+      "ev_a2s10/gsmplus_s11",
+      "ev_a2s10/gsmplus_s13",
+      "ev_a2s11/gsmplus_s7",
+      "ev_a2s11/gsmplus_s11",
+      "ev_a2s11/gsmplus_s13"
+     ],
+     "mean": 55.02,
+     "seeds": [
+      55.14,
+      55.62,
+      54.33,
+      56.0,
+      54.9,
+      55.0,
+      54.52,
+      55.1,
+      53.9,
+      54.38,
+      54.76,
+      56.19,
+      55.14,
+      55.33,
+      55.05,
+      55.52,
+      55.19,
+      55.57,
+      54.62,
+      55.52,
+      55.0,
+      54.38,
+      54.81,
+      55.57,
+      53.95,
+      54.52,
+      55.38,
+      54.62,
+      53.1,
+      54.05,
+      54.57,
+      55.43,
+      56.57,
+      54.24,
+      56.33,
+      56.48
+     ],
+     "ci95": [
+      53.39,
+      56.71
+     ],
+     "tokq": 152.5,
+     "tokq_model": 152.5,
+     "calls_q": 3.3,
+     "s_per_q_batched": 0.00777,
+     "fmt": 97.79,
+     "train_seed_means": [
+      55.03,
+      55.3,
+      54.51,
+      55.11,
+      55.17,
+      55.43,
+      55.05,
+      54.92,
+      54.62,
+      53.92,
+      55.52,
+      55.68
+     ]
+    },
+    {
+     "row": "X\u00b7k",
+     "label": "arm X, train seeds pooled (0/1/2/3/4/5/6/7/8/9/10/11)",
+     "configs": [
+      "ev_Xs0/gsmplus_s7",
+      "ev_Xs0/gsmplus_s11",
+      "ev_Xs0/gsmplus_s13",
+      "ev_Xs1/gsmplus_s7",
+      "ev_Xs1/gsmplus_s11",
+      "ev_Xs1/gsmplus_s13",
+      "ev_Xs2/gsmplus_s7",
+      "ev_Xs2/gsmplus_s11",
+      "ev_Xs2/gsmplus_s13",
+      "ev_Xs3/gsmplus_s7",
+      "ev_Xs3/gsmplus_s11",
+      "ev_Xs3/gsmplus_s13",
+      "ev_Xs4/gsmplus_s7",
+      "ev_Xs4/gsmplus_s11",
+      "ev_Xs4/gsmplus_s13",
+      "ev_Xs5/gsmplus_s7",
+      "ev_Xs5/gsmplus_s11",
+      "ev_Xs5/gsmplus_s13",
+      "ev_Xs6/gsmplus_s7",
+      "ev_Xs6/gsmplus_s11",
+      "ev_Xs6/gsmplus_s13",
+      "ev_Xs7/gsmplus_s7",
+      "ev_Xs7/gsmplus_s11",
+      "ev_Xs7/gsmplus_s13",
+      "ev_Xs8/gsmplus_s7",
+      "ev_Xs8/gsmplus_s11",
+      "ev_Xs8/gsmplus_s13",
+      "ev_Xs9/gsmplus_s7",
+      "ev_Xs9/gsmplus_s11",
+      "ev_Xs9/gsmplus_s13",
+      "ev_Xs10/gsmplus_s7",
+      "ev_Xs10/gsmplus_s11",
+      "ev_Xs10/gsmplus_s13",
+      "ev_Xs11/gsmplus_s7",
+      "ev_Xs11/gsmplus_s11",
+      "ev_Xs11/gsmplus_s13"
+     ],
+     "mean": 54.27,
+     "seeds": [
+      52.57,
+      53.52,
+      52.48,
+      54.71,
+      55.14,
+      55.9,
+      53.24,
+      53.19,
+      54.76,
+      54.43,
+      53.62,
+      54.14,
+      54.38,
+      55.1,
+      54.57,
+      54.57,
+      54.19,
+      55.0,
+      54.43,
+      54.33,
+      54.9,
+      54.71,
+      55.43,
+      55.52,
+      52.81,
+      53.05,
+      53.71,
+      54.81,
+      52.76,
+      55.48,
+      53.0,
+      54.62,
+      54.52,
+      54.81,
+      54.48,
+      54.9
+     ],
+     "ci95": [
+      52.61,
+      55.89
+     ],
+     "tokq": 173.7,
+     "tokq_model": 164.5,
+     "calls_q": 3.32,
+     "s_per_q_batched": 0.00633,
+     "fmt": 96.01,
+     "train_seed_means": [
+      52.86,
+      55.25,
+      53.73,
+      54.06,
+      54.68,
+      54.59,
+      54.56,
+      55.22,
+      53.19,
+      54.35,
+      54.05,
+      54.73
+     ]
+    },
+    {
+     "row": "X\u00b75",
+     "label": "arm X, train seeds 0-4, cap on all tokens (as [35])",
+     "configs": [
+      "ev_Xs0/gsmplus_s7",
+      "ev_Xs0/gsmplus_s11",
+      "ev_Xs0/gsmplus_s13",
+      "ev_Xs1/gsmplus_s7",
+      "ev_Xs1/gsmplus_s11",
+      "ev_Xs1/gsmplus_s13",
+      "ev_Xs2/gsmplus_s7",
+      "ev_Xs2/gsmplus_s11",
+      "ev_Xs2/gsmplus_s13",
+      "ev_Xs3/gsmplus_s7",
+      "ev_Xs3/gsmplus_s11",
+      "ev_Xs3/gsmplus_s13",
+      "ev_Xs4/gsmplus_s7",
+      "ev_Xs4/gsmplus_s11",
+      "ev_Xs4/gsmplus_s13"
+     ],
+     "mean": 54.12,
+     "seeds": [
+      52.57,
+      53.52,
+      52.48,
+      54.71,
+      55.14,
+      55.9,
+      53.24,
+      53.19,
+      54.76,
+      54.43,
+      53.62,
+      54.14,
+      54.38,
+      55.1,
+      54.57
+     ],
+     "ci95": [
+      52.42,
+      55.81
+     ],
+     "tokq": 175.3,
+     "tokq_model": 166.2,
+     "calls_q": 3.31,
+     "s_per_q_batched": 0.00634,
+     "fmt": 96.04,
+     "train_seed_means": [
+      52.86,
+      55.25,
+      53.73,
+      54.06,
+      54.68
+     ]
+    },
+    {
+     "row": "Xm\u00b75",
+     "label": "[37](a) arm X, train seeds 0-4, cap on model tokens only (+128 tool tokens)",
+     "configs": [
+      "e37a_Xs0/gsmplus_s7",
+      "e37a_Xs0/gsmplus_s11",
+      "e37a_Xs0/gsmplus_s13",
+      "e37a_Xs1/gsmplus_s7",
+      "e37a_Xs1/gsmplus_s11",
+      "e37a_Xs1/gsmplus_s13",
+      "e37a_Xs2/gsmplus_s7",
+      "e37a_Xs2/gsmplus_s11",
+      "e37a_Xs2/gsmplus_s13",
+      "e37a_Xs3/gsmplus_s7",
+      "e37a_Xs3/gsmplus_s11",
+      "e37a_Xs3/gsmplus_s13",
+      "e37a_Xs4/gsmplus_s7",
+      "e37a_Xs4/gsmplus_s11",
+      "e37a_Xs4/gsmplus_s13"
+     ],
+     "mean": 54.43,
+     "seeds": [
+      52.48,
+      52.95,
+      53.24,
+      54.86,
+      55.95,
+      56.19,
+      54.9,
+      53.86,
+      53.86,
+      54.05,
+      55.76,
+      54.05,
+      55.14,
+      54.95,
+      54.24
+     ],
+     "ci95": [
+      52.77,
+      56.08
+     ],
+     "tokq": 175.5,
+     "tokq_model": 166.2,
+     "calls_q": 3.32,
+     "s_per_q_batched": 0.00649,
+     "fmt": 96.98,
+     "train_seed_means": [
+      52.89,
+      55.67,
+      54.21,
+      54.62,
+      54.78
+     ]
+    },
+    {
+     "row": "2\u00b75",
+     "label": "arm 2, train seeds 0-4",
+     "configs": [
+      "ev_a2s0/gsmplus_s7",
+      "ev_a2s0/gsmplus_s11",
+      "ev_a2s0/gsmplus_s13",
+      "ev_a2s1/gsmplus_s7",
+      "ev_a2s1/gsmplus_s11",
+      "ev_a2s1/gsmplus_s13",
+      "ev_a2s2/gsmplus_s7",
+      "ev_a2s2/gsmplus_s11",
+      "ev_a2s2/gsmplus_s13",
+      "ev_a2s3/gsmplus_s7",
+      "ev_a2s3/gsmplus_s11",
+      "ev_a2s3/gsmplus_s13",
+      "ev_a2s4/gsmplus_s7",
+      "ev_a2s4/gsmplus_s11",
+      "ev_a2s4/gsmplus_s13"
+     ],
+     "mean": 55.03,
+     "seeds": [
+      55.14,
+      55.62,
+      54.33,
+      56.0,
+      54.9,
+      55.0,
+      54.52,
+      55.1,
+      53.9,
+      54.38,
+      54.76,
+      56.19,
+      55.14,
+      55.33,
+      55.05
+     ],
+     "ci95": [
+      53.34,
+      56.76
+     ],
+     "tokq": 153.3,
+     "tokq_model": 153.3,
+     "calls_q": 3.31,
+     "s_per_q_batched": 0.00779,
+     "fmt": 97.6,
+     "train_seed_means": [
+      55.03,
+      55.3,
+      54.51,
+      55.11,
+      55.17
+     ]
+    }
+   ],
+   "diffs": [
+    {
+     "pair": "X - 2",
+     "delta": -2.17,
+     "ci95": [
+      -3.56,
+      -0.92
+     ]
+    },
+    {
+     "pair": "X - 1",
+     "delta": -2.46,
+     "ci95": [
+      -3.9,
+      -1.06
+     ]
+    },
+    {
+     "pair": "2 - 1",
+     "delta": -0.29,
+     "ci95": [
+      -1.63,
+      1.02
+     ]
+    },
+    {
+     "pair": "0X - 0",
+     "delta": -2.22,
+     "ci95": [
+      -3.35,
+      -1.11
+     ]
+    },
+    {
+     "pair": "02 - 0",
+     "delta": 0.29,
+     "ci95": [
+      -0.33,
+      0.94
+     ]
+    },
+    {
+     "pair": "0X - 02",
+     "delta": -2.51,
+     "ci95": [
+      -3.62,
+      -1.43
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 2\u00b7k",
+     "delta": -0.75,
+     "ci95": [
+      -1.36,
+      -0.11
+     ],
+     "ci95_seeds_items": [
+      -1.6,
+      0.13
+     ]
+    },
+    {
+     "pair": "X\u00b7k - 1\u00b7k",
+     "delta": -0.05,
+     "ci95": [
+      -0.77,
+      0.63
+     ],
+     "ci95_seeds_items": [
+      -1.0,
+      1.0
+     ]
+    },
+    {
+     "pair": "2\u00b7k - 1\u00b7k",
+     "delta": 0.7,
+     "ci95": [
+      0.18,
+      1.22
+     ],
+     "ci95_seeds_items": [
+      -0.04,
+      1.51
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - X\u00b75",
+     "delta": 0.31,
+     "ci95": [
+      -0.1,
+      0.74
+     ],
+     "ci95_seeds_items": [
+      -0.9,
+      1.52
+     ]
+    },
+    {
+     "pair": "Xm\u00b75 - 2\u00b75",
+     "delta": -0.59,
+     "ci95": [
+      -1.38,
+      0.16
+     ],
+     "ci95_seeds_items": [
+      -1.82,
+      0.59
+     ]
+    }
+   ]
+  }
+ },
+ "notes": "[35] text-tool baseline. gsm_grpo recipe (8-shot prefix, Dr.GRPO, 300 u, 64 prompts x 8, lr 1e-6, T 1, max_new 320, seed 0), all three arms trained with the same code, one B200 per job. Eval: T = 1, one attempt, eval seeds 7/11/13, max_new 320, batched engine (B_max 512). Tool tokens count toward max_new and toward tok/q; tok/q (model) excludes them. CI: item bootstrap of the per-item seed mean; pooled rows also give a two-level (train seed x item) bootstrap CI for differences.",
+ "gsmplus_by_ptype": {
+  "seed 0": [
+   {
+    "ptype": "adding operation",
+    "n": 300,
+    "arm1": 44.11,
+    "arm2": 43.89,
+    "armX": 41.22,
+    "x_minus_2": -2.67,
+    "ci95": [
+     -6.33,
+     1.11
+    ]
+   },
+   {
+    "ptype": "digit expansion",
+    "n": 300,
+    "arm1": 64.44,
+    "arm2": 62.78,
+    "armX": 62.11,
+    "x_minus_2": -0.67,
+    "ci95": [
+     -4.11,
+     2.44
+    ]
+   },
+   {
+    "ptype": "distraction insertion",
+    "n": 300,
+    "arm1": 41.33,
+    "arm2": 40.89,
+    "armX": 36.89,
+    "x_minus_2": -4.0,
+    "ci95": [
+     -7.67,
+     -0.44
+    ]
+   },
+   {
+    "ptype": "integer-decimal-fraction conversion",
+    "n": 300,
+    "arm1": 55.22,
+    "arm2": 57.33,
+    "armX": 57.33,
+    "x_minus_2": 0.0,
+    "ci95": [
+     -3.67,
+     3.44
+    ]
+   },
+   {
+    "ptype": "numerical substitution",
+    "n": 300,
+    "arm1": 60.33,
+    "arm2": 60.0,
+    "armX": 58.0,
+    "x_minus_2": -2.0,
+    "ci95": [
+     -5.44,
+     1.22
+    ]
+   },
+   {
+    "ptype": "problem understanding",
+    "n": 300,
+    "arm1": 70.22,
+    "arm2": 69.67,
+    "armX": 68.22,
+    "x_minus_2": -1.44,
+    "ci95": [
+     -4.67,
+     1.78
+    ]
+   },
+   {
+    "ptype": "reversing operation",
+    "n": 300,
+    "arm1": 51.56,
+    "arm2": 50.67,
+    "armX": 46.22,
+    "x_minus_2": -4.44,
+    "ci95": [
+     -7.89,
+     -1.0
+    ]
+   },
+   {
+    "ptype": "ALL",
+    "n": 2100,
+    "arm1": 55.32,
+    "arm2": 55.03,
+    "armX": 52.86,
+    "x_minus_2": -2.17,
+    "ci95": [
+     -3.49,
+     -0.86
+    ]
+   }
+  ],
+  "train seeds 0/1/2/3/4/5/6/7/8/9/10/11": [
+   {
+    "ptype": "adding operation",
+    "n": 300,
+    "arm1": 42.05,
+    "arm2": 43.31,
+    "armX": 42.24,
+    "x_minus_2": -1.07,
+    "ci95": [
+     -2.87,
+     0.67
+    ]
+   },
+   {
+    "ptype": "digit expansion",
+    "n": 300,
+    "arm1": 62.19,
+    "arm2": 63.3,
+    "armX": 63.08,
+    "x_minus_2": -0.21,
+    "ci95": [
+     -2.04,
+     1.56
+    ]
+   },
+   {
+    "ptype": "distraction insertion",
+    "n": 300,
+    "arm1": 40.94,
+    "arm2": 39.66,
+    "armX": 38.6,
+    "x_minus_2": -1.06,
+    "ci95": [
+     -2.69,
+     0.57
+    ]
+   },
+   {
+    "ptype": "integer-decimal-fraction conversion",
+    "n": 300,
+    "arm1": 55.12,
+    "arm2": 58.14,
+    "armX": 58.35,
+    "x_minus_2": 0.21,
+    "ci95": [
+     -1.67,
+     2.08
+    ]
+   },
+   {
+    "ptype": "numerical substitution",
+    "n": 300,
+    "arm1": 60.25,
+    "arm2": 60.35,
+    "armX": 60.15,
+    "x_minus_2": -0.2,
+    "ci95": [
+     -2.19,
+     1.7
+    ]
+   },
+   {
+    "ptype": "problem understanding",
+    "n": 300,
+    "arm1": 69.04,
+    "arm2": 69.7,
+    "armX": 68.9,
+    "x_minus_2": -0.81,
+    "ci95": [
+     -2.44,
+     0.84
+    ]
+   },
+   {
+    "ptype": "reversing operation",
+    "n": 300,
+    "arm1": 50.67,
+    "arm2": 50.69,
+    "armX": 48.58,
+    "x_minus_2": -2.11,
+    "ci95": [
+     -3.56,
+     -0.69
+    ]
+   },
+   {
+    "ptype": "ALL",
+    "n": 2100,
+    "arm1": 54.32,
+    "arm2": 55.02,
+    "armX": 54.27,
+    "x_minus_2": -0.75,
+    "ci95": [
+     -1.43,
+     -0.09
+    ]
+   }
+  ]
+ }
+}

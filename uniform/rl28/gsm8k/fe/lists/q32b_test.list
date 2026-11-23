@@ -1,0 +1,5 @@
+# [32](b) 1.7B matched compute (test): N = round(row-4 tok/q 1853 / row-2 tok/q 117.8) = 16; SCH, T=1 seed 7, once
+scH16_P17_s0 P17_s0 test SCH 16 0 1 1 0
+scH16_P17_s1 P17_s1 test SCH 16 0 1 1 0
+scH16_P17_s2 P17_s2 test SCH 16 0 1 1 0
+scH16_base17 base test SCH 16 0 1 1 0

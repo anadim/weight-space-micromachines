@@ -1,0 +1,2 @@
+# task [33] Base ablations of rung 2 on GSM8K test, seed 7, once. Reference r2_base 57.39 (WPR, adaptive N 8->16), base_N4 28.43 (serial N=4, no WPR).
+q33_vote0 base test S 8 0 0 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

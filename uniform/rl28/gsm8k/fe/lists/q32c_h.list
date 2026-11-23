@@ -1,0 +1,5 @@
+# [32](c) row 1 eval-seed repeats (T=1 seeds 11, 13; seed 7 = base17H)
+base17H_s11 base test H 1 0 1 1 0 FE_SEED=11
+base17H_s11 base hard H 1 0 1 1 0 FE_SEED=11
+base17H_s13 base test H 1 0 1 1 0 FE_SEED=13
+base17H_s13 base hard H 1 0 1 1 0 FE_SEED=13

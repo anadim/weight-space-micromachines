@@ -1,0 +1,29 @@
+date (UTC): 2026-11-22T05:35:23+00:00
+command: python calc_sweep_0_199.py ../repo cpu 200   (release: python tests/calc_sweep_0_199.py . cpu 200 from the repo root)
+host: CPU sandbox | python 3.11.18
+sha256 b9df2f36e633a70c1a64e98b95ff569326a07a57d3bcb8c64edd36c46a35869f  tests/calc_sweep_0_199.py
+sha256 1a827b2be43990b6cb73335124448026e2cb57a367378fca2b6085267d4d02a6  tests/test_calc_circuit.py
+sha256 3e511d71940a952ba2ea3e7b01fb8056d3bd2b499a61b893726fdfef1888ff4b  micromachines/circuits/calc.py
+sha256 cb6813cc69db4fab505880a7c5244548044a05ba93a67df6a9d9983e546269b8  micromachines/hdl.py
+sha256 220cdadc0cb94b9e961f0ca5faa10b208e5187fea9c5de2b1ce45a592ea7da35  micromachines/calcfmt.py
+stack1 units 20189 layers 16 nnz 831645 (dense would be 73170302 ) | stack2 units 8479 layers 19 nnz 766105 (dense 18473526 )
+torch 2.15.0+cpu | threads 24 | device cpu
+sha256 compiled weights (stack1+stack2 buffers): 34ffe63639e072a953503b37a2cb1c4b5adcd453a0e1756cafa5163abff99a64
+range: a, b in 0..199, ops + - * /, 160000 cases; batch 4096
+op +: 40000 cases, 40000 correct, 0 wrong, 0 non-one-hot/unterminated batch-steps, 99.3s
+op -: 40000 cases, 40000 correct, 0 wrong, 0 non-one-hot/unterminated batch-steps, 102.3s
+op *: 40000 cases, 40000 correct, 0 wrong, 0 non-one-hot/unterminated batch-steps, 126.4s
+op /: 40000 cases, 40000 correct, 0 wrong, 0 non-one-hot/unterminated batch-steps, 197.1s
+
+summary
+ op | cases | correct | wrong | non-one-hot
+ + | 40000 | 40000 | 0 | 0
+ - | 40000 | 40000 | 0 | 0
+ * | 40000 | 40000 | 0 | 0
+ / | 40000 | 40000 | 0 | 0
+ all | 160000 | 160000 | 0 | 0
+
+failures: 0
+examples net (ref): 199*199 -> '39601' ('39601'), 198/7 -> '28.285714' ('28.285714'), 5/0 -> '' (''), 0/0 -> '' (''), 0-199 -> '-199' ('-199'), 199+199 -> '398' ('398'), 1/3 -> '0.333333' ('0.333333')
+total runtime 530.3s
+RESULT PASS

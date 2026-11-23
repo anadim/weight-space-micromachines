@@ -1,0 +1,4 @@
+# [34] fill: GSM-Plus matched compute done right for 0.6B: N = round(row-4 gp tok/q 2446 / row-2 gp tok/q 154.6) = 16 (q32bd_gp used the test N = 12, 24% fewer tokens). SCH, T=1 seed 7, once.
+gp_scH16_P64_s0 P64_s0 gsmplus SCH 16 0 1 1 0
+gp_scH16_P64_s1 P64_s1 gsmplus SCH 16 0 1 1 0
+gp_scH16_P64_s2 P64_s2 gsmplus SCH 16 0 1 1 0

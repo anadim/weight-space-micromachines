@@ -1,0 +1,3 @@
+# [34] fill 12:25Z: rung 2 (row-4 settings) on C. C = RL with the stack at N=4, no WPR; compare r2_CW (WPR) and r2_P64; T=1, seed 7, once
+r2_C C test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_C C hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

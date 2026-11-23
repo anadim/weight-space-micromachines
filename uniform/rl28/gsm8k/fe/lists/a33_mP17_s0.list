@@ -1,0 +1,5 @@
+# [34] fill (mechanism of 4 − 2b, 1.7B): [33] steps N=1 / fixed N=8 on P17_s0 + rung 2, test + Hard; T=1, seed 7, once
+m_N1_P17_s0 P17_s0 test S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 SW_DMARG=40
+m_fixN8_P17_s0 P17_s0 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 SW_DMARG=40
+m_N1_P17_s0 P17_s0 hard S 1 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 SW_DMARG=40
+m_fixN8_P17_s0 P17_s0 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 SW_DMARG=40

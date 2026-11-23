@@ -1,0 +1,36 @@
+{
+ "model": "Qwen/Qwen3-0.6B-Base",
+ "ckpt": null,
+ "sd": "$RL24_DATA/ifeval/eng/sd_inst.pt",
+ "max_new": 2048,
+ "fmt": "chat",
+ "n": 541,
+ "imp": {
+  "seconds": 56.84387946128845,
+  "tokens": 751176,
+  "tok_s": 13214.72086562217,
+  "decode_steps": 4096,
+  "rows": 541,
+  "admits": 12,
+  "prompt_state_s": 5.558018922805786,
+  "tok_q": 1388.1515711645102,
+  "fired": 250
+ },
+ "plain": {
+  "seconds": 30.996785163879395,
+  "tokens": 1022130,
+  "tok_s": 32975.35517299677,
+  "decode_steps": 4224,
+  "rows": 541,
+  "admits": 6,
+  "prompt_state_s": 9.989738464355469e-05,
+  "tok_q": 1889.2513863216266,
+  "fired": 0
+ },
+ "idle": {
+  "n_idle": 291,
+  "silent_in_subset_run": 291,
+  "identical_subset_run": 291,
+  "identical_in_full_runs": 291
+ }
+}

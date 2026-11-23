@@ -1,0 +1,2 @@
+# [34] fill: 1.7B GSM-Plus matched compute, N = round(row-4 tok/q 2725 / row-2 tok/q 140) = 19 and round(row-3 tok/q 3080 / row-1 tok/q 126) = 24; SCH, T=1 seed 7, once
+gp_scH24_base17 base gsmplus SCH 24 0 1 1 0

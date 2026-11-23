@@ -1,0 +1,33 @@
+== test
+  T2   seeds 0/1/2/3/4/5/6/7 acc  70.25 | wrong w/ slip  1.66 | wrong, no slip 28.10 | unparsed 1.40 (at cap 0.98) | items w/ multi-op eq  33.9% | tok/q 146.0 | calls/q 3.14
+        slipped equations per 100 q: inside a <calc> call  1.77, outside calls  2.75 (multi-op  1.20, binary  3.32)
+  T1   seeds 0/1/2/3/4/5/6/7/8 acc  69.43 | wrong w/ slip  1.64 | wrong, no slip 28.93 | unparsed 1.61 (at cap 1.11) | items w/ multi-op eq  31.8% | tok/q 144.7 | calls/q 3.16
+        slipped equations per 100 q: inside a <calc> call  1.45, outside calls  2.75 (multi-op  1.34, binary  2.86)
+  I0   seeds 0/1/2/3/4/5/6/7 acc  69.97 | wrong w/ slip  1.78 | wrong, no slip 28.25 | unparsed 1.54 (at cap 1.20) | items w/ multi-op eq  33.9% | tok/q 147.1 | calls/q 3.15
+        slipped equations per 100 q: inside a <calc> call  1.63, outside calls  2.79 (multi-op  1.32, binary  3.10)
+  Itok seeds 0/1/2/3/4/5/6/7 acc  70.28 | wrong w/ slip  2.04 | wrong, no slip 27.68 | unparsed 1.48 (at cap 1.18) | items w/ multi-op eq  34.7% | tok/q 168.1 | calls/q 3.23
+        slipped equations per 100 q: inside a <calc> call  1.71, outside calls  3.93 (multi-op  1.69, binary  3.95)
+  Ie0  seeds 0/1/2/3/4/5/6/7/8 acc  70.37 | wrong w/ slip  1.80 | wrong, no slip 27.83 | unparsed 1.62 (at cap 1.28) | items w/ multi-op eq  31.7% | tok/q 148.5 | calls/q 3.14
+        slipped equations per 100 q: inside a <calc> call  1.52, outside calls  3.14 (multi-op  1.49, binary  3.18)
+== hard
+  T2   seeds 0/1/2/3/4/5/6/7 acc  58.49 | wrong w/ slip  3.08 | wrong, no slip 38.43 | unparsed 4.76 (at cap 4.01) | items w/ multi-op eq  33.7% | tok/q 178.9 | calls/q 3.07
+        slipped equations per 100 q: inside a <calc> call  4.34, outside calls  2.67 (multi-op  1.39, binary  5.62)
+  T1   seeds 0/1/2/3/4/5/6/7/8 acc  57.30 | wrong w/ slip  2.96 | wrong, no slip 39.74 | unparsed 5.04 (at cap 4.10) | items w/ multi-op eq  31.1% | tok/q 177.6 | calls/q 3.07
+        slipped equations per 100 q: inside a <calc> call  3.98, outside calls  2.73 (multi-op  1.41, binary  5.30)
+  I0   seeds 0/1/2/3/4/5/6/7 acc  58.91 | wrong w/ slip  3.34 | wrong, no slip 37.76 | unparsed 4.97 (at cap 4.37) | items w/ multi-op eq  33.7% | tok/q 180.8 | calls/q 3.09
+        slipped equations per 100 q: inside a <calc> call  4.76, outside calls  2.90 (multi-op  1.53, binary  6.13)
+  Itok seeds 0/1/2/3/4/5/6/7 acc  59.14 | wrong w/ slip  3.64 | wrong, no slip 37.22 | unparsed 5.32 (at cap 4.70) | items w/ multi-op eq  34.6% | tok/q 197.6 | calls/q 3.15
+        slipped equations per 100 q: inside a <calc> call  4.94, outside calls  3.83 (multi-op  2.10, binary  6.66)
+  Ie0  seeds 0/1/2/3/4/5/6/7/8 acc  58.49 | wrong w/ slip  3.01 | wrong, no slip 38.50 | unparsed 5.05 (at cap 4.34) | items w/ multi-op eq  31.4% | tok/q 181.0 | calls/q 3.08
+        slipped equations per 100 q: inside a <calc> call  4.26, outside calls  3.00 (multi-op  1.67, binary  5.60)
+== gsmplus
+  T2   seeds 0/1/2/3/4/5/6/7 acc  54.94 | wrong w/ slip  3.32 | wrong, no slip 41.73 | unparsed 3.50 (at cap 3.07) | items w/ multi-op eq  37.5% | tok/q 170.9 | calls/q 3.40
+        slipped equations per 100 q: inside a <calc> call  2.64, outside calls  4.38 (multi-op  1.85, binary  5.17)
+  T1   seeds 0/1/2/3/4/5/6/7/8 acc  54.54 | wrong w/ slip  3.20 | wrong, no slip 42.26 | unparsed 3.61 (at cap 3.13) | items w/ multi-op eq  34.8% | tok/q 169.2 | calls/q 3.42
+        slipped equations per 100 q: inside a <calc> call  2.25, outside calls  4.37 (multi-op  1.91, binary  4.71)
+  I0   seeds 0/1/2/3/4/5/6/7 acc  54.99 | wrong w/ slip  3.53 | wrong, no slip 41.48 | unparsed 3.37 (at cap 3.12) | items w/ multi-op eq  37.6% | tok/q 172.7 | calls/q 3.42
+        slipped equations per 100 q: inside a <calc> call  2.43, outside calls  4.80 (multi-op  2.22, binary  5.01)
+  Itok seeds 0/1/2/3/4/5/6/7 acc  55.43 | wrong w/ slip  3.98 | wrong, no slip 40.59 | unparsed 3.84 (at cap 3.55) | items w/ multi-op eq  38.9% | tok/q 190.8 | calls/q 3.48
+        slipped equations per 100 q: inside a <calc> call  2.45, outside calls  6.03 (multi-op  2.79, binary  5.69)
+  Ie0  seeds 0/1/2/3/4/5/6/7/8 acc  55.17 | wrong w/ slip  3.41 | wrong, no slip 41.42 | unparsed 3.75 (at cap 3.48) | items w/ multi-op eq  35.6% | tok/q 173.7 | calls/q 3.40
+        slipped equations per 100 q: inside a <calc> call  2.22, outside calls  4.76 (multi-op  2.30, binary  4.69)

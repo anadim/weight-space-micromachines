@@ -1,0 +1,2 @@
+# [28] row 3: 1.7B-Base + rung 2 (stk_r2q_17, refit probe/stoprow), same line as 0.6B r2_base; T=1 seed 7, once
+r2_17 base test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 SW_DMARG=40

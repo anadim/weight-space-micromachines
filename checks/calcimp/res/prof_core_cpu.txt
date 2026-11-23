@@ -1,0 +1,4 @@
+cpu n=1: 16.7 ms/call
+cpu n=8: 31.0 ms/call
+cpu n=32: 32.7 ms/call
+cpu n=128: 39.6 ms/call

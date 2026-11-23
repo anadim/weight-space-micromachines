@@ -1,0 +1,5 @@
+# [34] fill 12:42Z: rung 2 (row-4 settings) on P64_s1 vs CW_s1 at u100 — does 4 − 2b shrink with RL updates like the bare-host gap? test + Hard; T=1, seed 7, once
+r2_P64_s1_u100 P64_s1@100 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_P64_s1_u100 P64_s1@100 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_CW_s1_u100 CW_s1@100 test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_CW_s1_u100 CW_s1@100 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

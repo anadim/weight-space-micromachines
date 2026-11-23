@@ -1,0 +1,2 @@
+# seeds35 row 2b (P64 host + untrained rung 2 at eval, row-4 settings; as q34att_s*), GSM-Hard, eval seed 7, T=1, once
+r2_P64_s3 P64_s3 hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

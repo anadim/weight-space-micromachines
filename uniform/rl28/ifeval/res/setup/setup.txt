@@ -1,0 +1,1 @@
+mean SM% 84.1 over 91 samples

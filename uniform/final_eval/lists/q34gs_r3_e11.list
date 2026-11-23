@@ -1,0 +1,2 @@
+# [34] fill 08:20Z: 0.6B GSM-Plus row 3 (Base + rung 2, stk_r2q) at eval seed 11, T=1, once
+gp_r2_base_s11 base gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=11

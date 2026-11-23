@@ -1,0 +1,3 @@
+# [26]/[25](a) uniform GSM8K row 3: Qwen3-0.6B-Base host (no RL) + rung 2 (stk_r2q), T=1 seed 7, once
+r2_base base test S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+r2_base base hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

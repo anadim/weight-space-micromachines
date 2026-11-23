@@ -1,0 +1,12 @@
+{
+ "calls": 580834,
+ "distinct": 71574,
+ "adversarial": 300141,
+ "seconds": 482.27713203430176,
+ "mismatched_distinct": 6270,
+ "mismatched_calls": 119,
+ "reproduced_calls_pct": 99.97951221863734,
+ "mismatched_adversarial": 6170,
+ "fuzz_distinct": 234385,
+ "fuzz_err_frac": 0.3659
+}

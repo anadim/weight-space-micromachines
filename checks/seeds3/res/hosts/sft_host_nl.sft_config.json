@@ -1,0 +1,12 @@
+{
+ "out": "sft_host_nl.tmp",
+ "host": "Qwen/Qwen3-0.6B",
+ "steps": 80,
+ "bs": 16,
+ "lr": 1e-05,
+ "n_gsm": 200,
+ "noisy": 0.0,
+ "calc_env": 0,
+ "union": "union_nl.jsonl",
+ "n_rows": 619
+}

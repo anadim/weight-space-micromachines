@@ -1,0 +1,6 @@
+FE audit hard r2_CW17_s0 writer_steps=150019 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669
+FE audit hard r2_CW17_s1 writer_steps=138901 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669
+FE audit hard r2_CW17_s2 writer_steps=162963 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669
+FE audit test r2_CW17_s0 writer_steps=107550 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669
+FE audit test r2_CW17_s1 writer_steps=110174 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669
+FE audit test r2_CW17_s2 writer_steps=116795 sampled_ne_written=0 rows_with_mis=0 stop_tok=151669

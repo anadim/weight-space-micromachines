@@ -1,6 +1,6 @@
 # Weight-Space Micromachines: Brain Implants for LLMs
 
-Code for the blog post **[Weight-Space Micromachines: Brain Implants for LLMs](BLOG_URL_PLACEHOLDER)**.
+Code for the blog post **[Weight-Space Micromachines: Brain Implants for LLMs](https://papail.io/papers/wsm/)**.
 
 A weight-space micromachine (an "implant") is a small machine that a coding agent (Claude Code) writes straight into
 weights and bolts onto a frozen language model. It reads the same tokens as the model (or its hidden states), stays
@@ -16,13 +16,32 @@ Falcon3); implants are rebuilt from code. No model weights are in the repository
 * [`DETAILS.md`](DETAILS.md): the full project notes (components, disclosures, the retired first BBH pass that overfit
   the test, caveats, exceptions to the in-weights rule). [`VERIFY.md`](VERIFY.md): what was re-run from a fresh clone.
 
+## Results at a glance
+
+Blog numbers, rounded as in the blog; exact values, seeds and commands in the `REPRODUCE.md` section named.
+
+| result (Qwen3-0.6B-Base unless noted) | blog | REPRODUCE |
+|---|---|---|
+| Calculator, frozen host: 4–5-digit multiplication; GSM-Hard | near 0% → 100%; 27% → 35% | §1 |
+| Mistake detector: GSM8K | 52% → 56% | §9 |
+| Topic blocker (Qwen3-1.7B chat): math requests caught; normal requests blocked | ~99%; ~4% | §10 |
+| Latent write: two-step sum in one shot, no text | 15% → 97% | §11 |
+| IFEval, frozen Qwen3-0.6B (chat) + 14 rule implants | 58% → 72% | §5 |
+| BIG-Bench Hard, 9 implants (8 tools + call gate), no RL | 41% → 55% | §6, §17 |
+| IFEval, frozen Base + 14 rule implants, no RL | 13% → 35% | §17, §22 |
+| GSM8K, frozen RL'd host + 8 implants, one generation call | 68% → 83% | §16 |
+| GSM-Hard after 300 RL updates: with vs without the calculator (3 seeds) | 55% vs 44% | §12 |
+| RL with implants vs plain RL: GSM8K / BBH / IFEval (on top of RL: +12 / +7 / +3; +17 on GSM-Hard) | 80% vs 68% / 60% vs 54% / 48% vs 46% | §17, §22 (6 RL seeds on GSM8K, IFEval) |
+| Mixed GSM / BBH / IFEval tasks, RL with all implants vs plain RL (Qwen3-0.6B chat, 3 seeds) | 58% vs 45% | §12, §23 |
+| Qwen3-1.7B-Base GSM8K: plain RL + implants attached after vs plain RL | 90% vs 81% | §18 |
+
 ## Quick start (CPU)
 
 ```bash
 pip install -r requirements.txt     # Python 3.12, torch 2.8, transformers 4.56 (CPU build is fine here)
 python demo.py                      # frozen Qwen3-0.6B-Base + calculator implant; checks bit-identical logits when silent
-python tests/test_calc_circuit.py cpu        # calculator circuit vs exact Python reference (no model; ~4-5 min on a laptop CPU)
-python tests/test_calc_circuit.py cuda 200   # all pairs 0..199, 4 operations (the blog's "every pair up to 199"; GPU, or ~30 min with cpu)
+python tests/test_calc_circuit.py cpu        # the blog's calculator test: all pairs 0..59, signed -40..39, 12k random, 4 operations (no model; ~4-5 min on a laptop CPU)
+python tests/test_calc_circuit.py cuda 200   # all pairs 0..199, 4 operations (160k cases, stronger than the blog's test; GPU, or ~30 min with cpu)
 (cd bbh_generic/teamA && TOOL_DEVICE=cpu PYTHONPATH=../.. python test_tools.py 50)   # BBH track/order implants vs Python reference (Qwen tokenizer, ~1 min)
 ```
 
@@ -30,17 +49,17 @@ python tests/test_calc_circuit.py cuda 200   # all pairs 0..199, 4 operations (t
 
 | implant | what it computes | blog headline | code |
 |---|---|---|---|
-| Calculator | exact + − × ÷ on the digits the model writes (`calc_s3`, `calc_s4`; ~30-50 ReLU layers, ~1-2M weights) | ×: 4% → 100% (Qwen2.5-0.5B); GSM-Hard 27% → 35% (Qwen3-0.6B) | [`micromachines/circuits/calc.py`](micromachines/circuits/calc.py), [`scripts/run_gsm.py`](scripts/run_gsm.py) |
+| Calculator | exact + − × ÷ on the digits the model writes (`calc_s3`, `calc_s4`; ~50 ReLU layers, ~2.4M weights) | 4–5-digit ×: near 0% → 100%; GSM-Hard 27% → 35% (Qwen3-0.6B-Base) | [`micromachines/circuits/calc.py`](micromachines/circuits/calc.py), [`scripts/run_gsm.py`](scripts/run_gsm.py) |
 | Calls taught by fine-tuning | the model learns to write `<calc>48 * 2</calc>` / `<tool_call>…</tool_call>`, the implant fills in the answer | GSM-Hard ~13% → 23%; BBH-style 29% → 75% with ~100 examples | [`finetuned_phase/`](finetuned_phase/README.md), [`bbh_generic/ft100/`](bbh_generic/ft100/README.md) |
 | Eyes | a small CNN (421k weights) reads MNIST digits pasted in as pixel tokens | 95% vs 4% with 32 examples; plain fine-tuning needs ~16,000 | [`finetuned_phase/eyes_and_finetune/`](finetuned_phase/README.md), [`evidence/eyes_sweep/`](evidence/README.md) |
 | 14 IFEval rule implants | reader + enforcer per rule (no commas, lowercase, end phrase, …); ~9k ReLU units in plain weights | 58% → 72% on IFEval (fixed 80, broke 3; 324/324 silent prompts byte-identical) | [`ifeval/`](ifeval/README.md) |
 | 8 BBH implants + call gate | `track`, `order`, `interval`, `walk`, truth, `expr`, `calc`, `bool`; a hidden-state gate that blocks stray calls | 12 tool tasks 43% → 84%; 27-task mean 48% → 55% with the gate | [`bbh_generic/`](bbh_generic/README.md), [`bbh_generic/callgate/`](bbh_generic/callgate/README.md) |
 | Transfer | same circuits, refit reader + writer for a new host | Qwen3-1.7B / 4B; SmolLM2, Granite (calculator), SmolLM2 (IFEval) | [`transfer/xfamily/`](transfer/xfamily/README.md), [`ifeval/transfer/`](ifeval/transfer/README.md), [`bbh_generic/transfer/`](bbh_generic/transfer/README.md) |
 | Mistake detector | reads hidden states before the final answer; forces "Hmm, wait. Let me rethink this." | GSM8K 52% → 56%; with the calculator 57% GSM8K / 35% GSM-Hard; AUROC 0.85 | [`micromachines/rethink_circuit_v2.py`](micromachines/rethink_circuit_v2.py), [`scripts/rethink_v2/`](scripts/rethink_v2/), [`results/rethink_v2/`](results/rethink_v2/) |
-| Topic blocker | a linear probe on the prompt's last hidden state, compiled into one ReLU unit; writes a decline sentence | blocks ~99% of math requests; 10% of normal requests (vs 6%) | [`topic_fence/`](topic_fence/README.md) |
-| Latent write | computes 23×7 and writes the state of "161" into the residual stream (no text) | (23×7)+58: 15% → 96-99%; word problem 3% → 98% (text tool line: 70%) | [`latent_write/`](latent_write/README.md) |
-| GSM8K single-call stack | calculator v2 (chain2), answer-sanity DFA, weight-space forget, serial tries + answer register + ReLU voter, weight-space position reset, adaptive tries, answer-group voter; all in weights, one generation call | GSM8K test 67.7 → 72.3 → 80.7 → 81.6 → 82.7 on the frozen RL+calc host; from the base model with RL 28 → 80.3 (plain RL 70.8) | [`gsm_stack/`](gsm_stack/README.md) (earlier, partly programmatic version: [`gsm_push/`](gsm_push/README.md)) |
-| RL with implants | GRPO on Qwen3-0.6B with implants (and trainable wiring) attached | GSM-Hard 44% (plain RL) vs 55% (RL + calculator); RL learns a half-broken calculator's competence map; mixed tasks 68% vs 36% | [`rl/`](rl/README.md) |
+| Topic blocker | a linear probe on the prompt's last hidden state, compiled into one ReLU unit; writes a decline sentence | catches ~99% of math requests; blocks ~4% of normal requests (fires on 23% of non-math MMLU questions) | [`topic_fence/`](topic_fence/README.md) |
+| Latent write | computes 23×7 and writes the state of "161" into the residual stream (no text) | (23×7)+58: 15% → 96-99%; word problem 3% → 98% | [`latent_write/`](latent_write/README.md) |
+| GSM8K single-call stack | calculator v2 (chain2), answer-sanity DFA, weight-space forget, serial tries + answer register + ReLU voter, weight-space position reset, adaptive tries, answer-group voter; all in weights, one generation call | GSM8K test 67.7 → 72.3 → 80.7 → 81.6 → 82.7 on the frozen RL+calc host; RL from the base model with the stack 80% vs plain RL 68% (6 RL seeds) | [`gsm_stack/`](gsm_stack/README.md) (earlier, partly programmatic version: [`gsm_push/`](gsm_push/README.md)) |
+| RL with implants | GRPO on Qwen3-0.6B with implants (and trainable wiring) attached | GSM-Hard 44% (plain RL) vs 55% (RL + calculator); RL learns a half-broken calculator's competence map; mixed tasks 58% vs 45% (3 seeds) | [`rl/`](rl/README.md) |
 
 ## GSM8K single-call implant stack
 
@@ -67,11 +86,15 @@ Ladder on the frozen RL+calc host (GSM8K test, 1,319 items, T = 1, seed 7, each 
 |---|---|---|---|---|---|
 | 67.7 | 69.5 | 72.3 | 80.7 | 81.6 | 82.7 |
 
-RL from the base model (Qwen3-0.6B-Base, 300 GRPO updates, GSM8K test, seed-pooled):
+RL from the base model (Qwen3-0.6B-Base, 300 GRPO updates, GSM8K test, seed-pooled; bold = blog §5.1 rows, 6 RL seeds,
+REPRODUCE §22):
 
-| base, no RL | plain RL, no implants | RL + tools, one try | RL + serial stack | RL + serial stack + WPR | WPR hosts + adaptive tries |
+| base, no RL | plain RL, no implants (P64) | RL + tools, one try | RL + serial stack | RL + serial stack + WPR | WPR hosts + adaptive tries (CW) |
 |---|---|---|---|---|---|
-| 28.1 | **70.8** (2 seeds) | 73.0 (3) | 74.8 (3) | 76.5 (3) | **80.3** (3) |
+| 28.1 | **68.3** (6 seeds) | 73.0 (3) | 74.8 (3) | 76.5 (3) | **80.4** (6) |
+
+P64 trains on 64 prompts per update, as the CW arm does. An earlier plain-RL arm at 256 prompts per update (Pb, 2
+seeds) reached 70.8; at 3 seeds CW gave 80.3 (REPRODUCE §16.3).
 
 Without WPR, more tries add nothing (71.9 at N = 8 vs 72.3 with one try): later tries copy earlier ones. The reset in
 weights gives +8.8, the same as the programmatic reset it replaces (−0.3, n.s.). On GSM-Hard the calculator matters most
@@ -85,7 +108,7 @@ One GPU per command; `REPRODUCE.md` has the full commands, the expected values a
 | blog number | command (from the repo root unless shown) | expected / result file | REPRODUCE |
 |---|---|---|---|
 | Calculator: GSM8K 52 → 53, GSM-Hard 27 → 35 (Qwen3-0.6B-Base) | `python scripts/solve_veto.py --device cuda && python scripts/run_gsm.py out/hard_calc.json --split hard --mode calc --bs 32` (and `--mode plain`, `--split test`) | 52.24 → 53.37, 27.29 → 35.03; `results/gsm_full_implant/` | §1 |
-| Calculator: × 4% → 100% (Qwen2.5-0.5B) | `cd finetuned_phase/calc_icl && python calc_icl.py 100` | 4.0 → 100.0; `finetuned_phase/results/calc_icl_100.json` | §1 |
+| Calculator: 4–5-digit × near 0% → 100% (Qwen3-0.6B-Base) | `PYTHONPATH=. python evidence/code/item1_calc.py --n 100 --bs 120 --out evidence/item1` | base 1% / 0% at 4×4 / 5×5 digits, implant 100% in every cell; `evidence/item1/` (earlier phase, Qwen2.5-0.5B: 4.0 → 100.0, `finetuned_phase/calc_icl/`) | §1 |
 | Fine-tune with calls: GSM-Hard 13 → 23, templates 51 → 99 | `cd finetuned_phase/eyes_and_finetune && bash seedjobs.sh` | `finetuned_phase/results/reported_numbers.json` | §2 |
 | Eyes: 95% vs 4% at 32 examples | `bash evidence/code/eyes_sweep3.sh` (after `eyes.py cnn` / `eyes.py data 16000`) | 94.7 vs 3.7 (4 seeds); `evidence/eyes_sweep/results/` | §3 |
 | IFEval 58 → 72 | `bash ifeval/transfer/run_all.sh` | 57.86 → 72.09, +80 / −3; `ifeval/transfer/results/q06_score.txt` | §5 |
@@ -93,14 +116,14 @@ One GPU per command; `REPRODUCE.md` has the full commands, the expected values a
 | Call gate: 27-task 48 → 55, stray calls 59% → 4% | `for s in states probe bbh sets arc report; do bash bbh_generic/callgate/code/run_callgate.sh $s; done` | 48.36 → 54.58; 59.2% → 3.8% | §6.2 |
 | Transfer to 1.7B / 4B and other families | `bash bbh_generic/transfer/code/run_transfer.sh q17` · `bash transfer/xfamily/code/drvr.sh …` | `bbh_generic/transfer/RESULTS.md`, `transfer/xfamily/` | §8 |
 | Mistake detector: 52 → 56; + calculator 57 / 35 | `bash scripts/rethink_v2/queue.sh scripts/rethink_v2/jobs_hybrid.txt 4` | `results/rethink_v2/summary.json` | §9 |
-| Topic blocker ~99% / 10% vs 6% | `bash topic_fence/run_test.sh` | `topic_fence/results/q17_math_table.txt` | §10 |
+| Topic blocker: catches ~99%; blocks ~4% of normal requests, fires on 23% of non-math MMLU | `bash topic_fence/run_test.sh` | `probe_text_stop`: pos 98.7, ret_fire 4.2, mmlu_fire 23.0; `topic_fence/results/q17_math_table.txt` | §10 |
 | Latent write 15 → 96-99 | `bash latent_write/run_all.sh` | `latent_write/summary.md` | §11 |
 | RL: GSM-Hard 44 vs 55 after 300 updates (3 seeds) | `cd rl/gsm_grpo && python train2.py --arm 2 --seed 0 --run_dir runs/long/a2_s0 --updates 300 --prompts 64 --G 8 --T 1.0 --lr 1e-6 --dev_n 800 --dev_every 25 --ckpt_every 100 --fused 1` (arm 1 = no implant), then `final_eval.py` | `rl/results/gsm_grpo/H100/final/` | §12 |
 | RL: half-broken calculator, x÷ let through, +− blocked | `cd rl/wiring && bash launch.sh 0 1 40000 "" q4_a100.txt` | `rl/results/wiring/figdata/fig_competence_map.json` | §12 |
-| RL: all implants attached; mixed tasks 68 vs 36 | `bash rl/library/launch/h100_LIB_s0.sh`; `bash rl/library/launch/h100_m1_mixLIB.sh` | `rl/library/NOTEBOOK.md`, `rl/results/library/figdata/` | §12 |
-| RL: distilled links +11 (+24 on big numbers) | `cd rl/wiring && bash launch.sh 0 1 40000 "" q5_a100.txt` | `rl/results/wiring/figdata/W3d_s*.jsonl` | §12 |
+| RL: all implants attached (GSM-Hard ahead of the scrambled set in 3 of 3 seeds); mixed tasks 58 vs 45 (3 seeds) | `bash rl/library/launch/h100_LIB_s0.sh`; `bash rl/library/launch/h100_m1_mixLIB.sh`; seeds 1-2 and the 3-seed mixed rerun: REPRODUCE §23 (`checks/seeds3/`) | LIB vs LIBscr GSM-Hard 56.1 / 56.2 / 55.2 vs 51.9 / 41.6 / 51.3; mixed 57.8 vs 44.7, paired +13.1 [+8.7, +17.6] (earlier one-seed run: 68.2 vs 36.3); `rl/library/NOTEBOOK.md`, `rl/results/library/figdata/` | §12, §23 |
+| RL: distilled links 15-20% stronger, +13 on GSM-Hard (3 seeds) | `cd rl/wiring && bash launch.sh 0 1 40000 "" q5_a100.txt` | GSM-Hard links on − host only +14.6 / +13.5 / +11.7 (3-seed rerun, §23); dev gap of the original runs +11 (+24 on big numbers), `rl/results/wiring/figdata/W3d_s*.jsonl` | §12, §23 |
 | GSM8K stack ladder: 67.7 → 72.3 → 80.7 → 81.6 → 82.7 | `bash gsm_stack/eval/fe.sh gsm_stack/eval/lists/test3.list` (host, calc, chain2, S2F) · `fe.sh .../wpr_rung1.list` · `bash gsm_stack/eval/jobs/rung_job.sh r2 wpr_rung2.list` · `rung_job.sh r3 wpr_rung3.list` (needs the RL+calc host, `CKPT_U0=`) | 67.70, 72.25, 80.67, 81.58, 82.71; `gsm_stack/results/RL_RESULTS.md` §4, §9 | §16 |
-| GSM8K from the base model: 28 → 80.3 vs plain RL 70.8 | `bash gsm_stack/engine/run_arm.sh {Pb_s1,Pb_s2,CW_s0,CW_s1,CW_s2}`, then `fe.sh .../seed_Pbs{1,2}.list` and `rung_job.sh r2 wpr_r2cw.list` | 70.36 / 71.19; 81.12 / 81.43 / 78.24 (pooled 80.26); `RL_RESULTS.md` §10 | §16 |
+| GSM8K from the base model (blog §5.1): RL with implants 80.4 vs plain RL 68.3 (6 RL seeds) | `bash gsm_stack/engine/run_arm.sh {P64_s0..P64_s5,CW_s0..CW_s5}`, then the §17 / §22 evals | 68.32 vs 80.44; `checks/seeds35/RESULTS.md`. Earlier arm Pb (256 prompts/update, not the blog row): 70.36 / 71.19 (`fe.sh .../seed_Pbs{1,2}.list`); CW at 3 seeds 81.12 / 81.43 / 78.24 (`rung_job.sh r2 wpr_r2cw.list`; `RL_RESULTS.md` §10) | §16, §22 |
 | (older) GSM8K push, partly programmatic: 73.4 (S2F), 80.4 (N = 8) | `HOOK=stack3_hook.py bash gsm_push/final/run_stk.sh fgtw 0 test - ...` | `gsm_push/results/final/`; NON-COMPLIANT references (`gsm_stack/COMPLIANCE.md`) | §15 |
 | Blog figures | `bash figures/blog/make_blog_figs.sh`; RL: `cd rl/figures && python make_blog_figs_rl.py && python make_rl45.py && python make_rl6.py`; v3 RL re-renders: `cd rl/figures/v3 && python make_rerender_v3.py && python make_new_v3.py`; review re-renders: `figures/blog/review_final/*.py` (CPU) | `figures/blog/figs/`, `rl/figures/`, `rl/figures/v3/`, `figures/blog/review_final/` | §13 |
 
@@ -115,7 +138,9 @@ The repository is organised by component (one folder per blog section), each wit
 | `ifeval/`, `bbh_generic/`, `topic_fence/`, `latent_write/`, `transfer/`, `finetuned_phase/`, `evidence/`, `math500/` | one experiment each: implant builders, eval harnesses, small result records |
 | `rl/` | RL engines and launchers: `gsm_grpo/` (v2 GRPO engine, Triton), `wiring/` (trainable wiring, call-form ladder), `library/` (all tools attached, mixed tasks), `engine2/` (NVRTC megakernel, work in progress), `interp/`, `results/`, `figures/` |
 | `gsm_stack/` | the single-call GSM8K implant stack, all in weights: engine (rel/v5: fast rollout, attention and tool kernels, fast trainer), RL arm launcher, test harness and lists, the implant lane's rungs and negative results, results notes, compliance note, model / data card |
-| `gsm_push/` | the earlier GSM8K stack (calc v2, sanity DFA, forget, serial voter; two parts programmatic), kept for the record |
+| `gsm_push/` | the earlier GSM8K stack (calc v2, sanity DFA, forget, serial voter; two parts programmatic), kept for the record. Note: the blog's appendix A.3 names `gsm_push/` as the one-call stack; the all-in-weights stack of blog §4.4 and §5 is `gsm_stack/` |
+| `uniform/` | the blog §5.1 / §6 rows (host / + RL / + implants / + both) on Qwen3-0.6B-Base (`final_eval/`, `rl24/` BBH and IFEval) and Qwen3-1.7B-Base (`rl28/`): eval lists, overlay code trees, launchers, per-item correctness rows (no generated text), result tables (REPRODUCE §17–§19) |
+| `checks/` | later checks behind the final blog numbers, one folder each with README / RESULTS and CPU analysis scripts over the shipped text-free per-item results: `tooltext/` (text calculator tool baseline, §20), `calcimp/` (tool vs implant at 28 seeds, §21), `seeds35/` (§5.1 rows at 6 RL seeds, §22), `seeds3/` (3-seed checks, §23), `offtask/` (MMLU / ARC / HellaSwag / WinoGrande / NQ after RL, §24), `sourced/` (§4.4 numbers, §25) |
 | `figures/` | blog figure scripts and rendered figures (`figures/blog/`, `figures/blog/review_final/`) |
 | `results/` | small result records for the top-level GSM / rethink runs |
 | `data/` | data preparation scripts (benchmarks are downloaded, not vendored) |

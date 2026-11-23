@@ -1,0 +1,2 @@
+# [33]/[32] row 4 (CW_s1 + rung 2) with plain majority instead of the probe voter, GSM8K test, stk_r2q. T=1 seed 7.
+rq_CW_vote0_s1 CW_s1 test S 8 0 0 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

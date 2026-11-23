@@ -1,0 +1,7 @@
+# [26] uniform GSM8K row 2: P64 (plain RL from Base, 64 prompts x G8) u300, 1 sample, T=1 seed 7, once
+P64_s0 P64_s0 test H 1 0 1 1 0
+P64_s0 P64_s0 hard H 1 0 1 1 0
+P64_s1 P64_s1 test H 1 0 1 1 0
+P64_s1 P64_s1 hard H 1 0 1 1 0
+P64_s2 P64_s2 test H 1 0 1 1 0
+P64_s2 P64_s2 hard H 1 0 1 1 0

@@ -1,0 +1,4 @@
+# [34] fill: 1.7B [33] ablation steps N1 / fixN4 / fixN8 at eval seed 13 (pairs with row-3 seeds 11/13 from [32](c)); T=1, once
+q33_N1_17_s13 base hard S 1 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 SW_DMARG=40 FE_SEED=13
+q33_fixN4_17_s13 base hard S 4 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 SW_DMARG=40 FE_SEED=13
+q33_fixN8_17_s13 base hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 SW_DMARG=40 FE_SEED=13

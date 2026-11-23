@@ -1,0 +1,3 @@
+# [29] cheap test: GSM8K rows 1 and 3 on the BBH call-FT host ft_int_v2 (Base + §6.1 call FT) vs Base (baseH / r2_base); T=1 seed 7, once
+ft2H ft_int_v2 test H 1 0 1 1 0
+ft2H ft_int_v2 hard H 1 0 1 1 0

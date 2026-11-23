@@ -1,0 +1,10 @@
+# task [32](c) eval-seed repeats of row 1 (Base H, T=1) at seeds 11 / 13; seed 7 = baseH.
+baseH_s11 base test H 1 0 1 1 0 FE_SEED=11
+baseH_s11 base hard H 1 0 1 1 0 FE_SEED=11
+baseH_s13 base test H 1 0 1 1 0 FE_SEED=13
+baseH_s13 base hard H 1 0 1 1 0 FE_SEED=13
+# task [32](d) GSM-Plus testmini (§11.8 harness), uniform rows 1 and 2 (0.6B), T=1 seed 7, once
+gp_baseH base gsmplus H 1 0 1 1 0
+gp_P64_s0 P64_s0 gsmplus H 1 0 1 1 0
+gp_P64_s1 P64_s1 gsmplus H 1 0 1 1 0
+gp_P64_s2 P64_s2 gsmplus H 1 0 1 1 0

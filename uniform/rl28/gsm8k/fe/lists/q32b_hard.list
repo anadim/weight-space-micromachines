@@ -1,0 +1,5 @@
+# [32](b) 1.7B matched compute (hard): N = round(row-4 tok/q 3090 / row-2 tok/q 152.4) = 20; SCH, T=1 seed 7, once
+scH20_P17_s0 P17_s0 hard SCH 20 0 1 1 0
+scH20_P17_s1 P17_s1 hard SCH 20 0 1 1 0
+scH20_P17_s2 P17_s2 hard SCH 20 0 1 1 0
+scH20_base17 base hard SCH 20 0 1 1 0

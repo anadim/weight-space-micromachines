@@ -1,0 +1,4 @@
+# [34] fill, stk_r2q_17, T=1, once
+gp_scH19_P17_s0_e13 P17_s0 gsmplus SCH 19 0 1 1 0 FE_SEED=13
+gp_scH19_P17_s1_e13 P17_s1 gsmplus SCH 19 0 1 1 0 FE_SEED=13
+gp_scH19_P17_s2_e13 P17_s2 gsmplus SCH 19 0 1 1 0 FE_SEED=13

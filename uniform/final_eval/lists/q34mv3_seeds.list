@@ -1,0 +1,5 @@
+# [34] fill 07:40Z: 0.6B 1-MV3 (Base, matched to row-3 tok/q) at eval seeds 11/13, to pair with row-3 seeds 11/13 ([32](c)); T=1, once
+scH26_base_e11 base test SCH 26 0 1 1 0 FE_SEED=11
+scH30_base_e11 base hard SCH 30 0 1 1 0 FE_SEED=11
+scH26_base_e13 base test SCH 26 0 1 1 0 FE_SEED=13
+scH30_base_e13 base hard SCH 30 0 1 1 0 FE_SEED=13

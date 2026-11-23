@@ -1,0 +1,21 @@
+== test  (items x 15 runs = 19785)
+  a2  acc  70.15 | wrong w/ arithmetic slip  4.54 | wrong, no slip 25.31 | unparsed 1.01 | items w/ multi-op eq  31.0% | tok/q 128.6 | calls/q 3.01
+      slipped equations: multi-op 1755, binary 680, inside a <calc> call 0; unparsed at token cap 0.79
+  X   acc  69.09 | wrong w/ arithmetic slip  1.76 | wrong, no slip 29.14 | unparsed 1.98 | items w/ multi-op eq  31.9% | tok/q 142.2 | calls/q 3.09
+      slipped equations: multi-op 310, binary 573, inside a <calc> call 271; unparsed at token cap 1.42
+  Xm  acc  69.16 | wrong w/ arithmetic slip  1.85 | wrong, no slip 28.99 | unparsed 1.41 | items w/ multi-op eq  32.0% | tok/q 142.4 | calls/q 3.09
+      slipped equations: multi-op 306, binary 586, inside a <calc> call 279; unparsed at token cap 0.93
+== hard  (items x 15 runs = 19785)
+  a2  acc  54.08 | wrong w/ arithmetic slip  9.09 | wrong, no slip 36.83 | unparsed 3.77 | items w/ multi-op eq  30.1% | tok/q 164.9 | calls/q 2.89
+      slipped equations: multi-op 2134, binary 1427, inside a <calc> call 0; unparsed at token cap 3.26
+  X   acc  55.86 | wrong w/ arithmetic slip  3.97 | wrong, no slip 40.17 | unparsed 7.73 | items w/ multi-op eq  31.3% | tok/q 173.4 | calls/q 2.99
+      slipped equations: multi-op 394, binary 1153, inside a <calc> call 901; unparsed at token cap 6.72
+  Xm  acc  57.26 | wrong w/ arithmetic slip  3.39 | wrong, no slip 39.35 | unparsed 4.58 | items w/ multi-op eq  31.7% | tok/q 175.1 | calls/q 3.02
+      slipped equations: multi-op 371, binary 1075, inside a <calc> call 801; unparsed at token cap 3.53
+== gsmplus  (items x 15 runs = 31500)
+  a2  acc  55.03 | wrong w/ arithmetic slip  7.97 | wrong, no slip 37.01 | unparsed 2.40 | items w/ multi-op eq  32.9% | tok/q 153.3 | calls/q 3.31
+      slipped equations: multi-op 3408, binary 1593, inside a <calc> call 0; unparsed at token cap 2.11
+  X   acc  54.12 | wrong w/ arithmetic slip  3.60 | wrong, no slip 42.28 | unparsed 3.96 | items w/ multi-op eq  35.0% | tok/q 166.2 | calls/q 3.31
+      slipped equations: multi-op 730, binary 1549, inside a <calc> call 684; unparsed at token cap 3.41
+  Xm  acc  54.43 | wrong w/ arithmetic slip  3.52 | wrong, no slip 42.05 | unparsed 3.02 | items w/ multi-op eq  35.2% | tok/q 166.2 | calls/q 3.32
+      slipped equations: multi-op 781, binary 1526, inside a <calc> call 652; unparsed at token cap 2.50

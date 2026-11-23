@@ -1,0 +1,3 @@
+# task [20] R9 fresh confirmatory set: GSM-Plus testmini, 7 answerable types (2100 items; uniform/final_eval/data/prepare_gsmplus.py).
+# Declared 14:45Z before any run: each config's GSM8K-TEST protocol (same row flags as its test row), T=1 seed 7, one pass, no reruns.
+gp_r3_u0 u0 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1

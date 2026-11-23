@@ -1,0 +1,5 @@
+# [34] fill: 1.7B 1-MV3 (Base17, matched to row-3 tok/q) at eval seeds 11/13, stk_r2q_17, T=1, once
+scH21_base17_e11 base test SCH 21 0 1 1 0 FE_SEED=11
+scH26_base17_e11 base hard SCH 26 0 1 1 0 FE_SEED=11
+scH21_base17_e13 base test SCH 21 0 1 1 0 FE_SEED=13
+scH26_base17_e13 base hard SCH 26 0 1 1 0 FE_SEED=13

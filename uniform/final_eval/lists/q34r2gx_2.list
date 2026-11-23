@@ -1,0 +1,4 @@
+# [34] fill 12:49Z: rung 2 (row-4 settings) on GSM-Plus for the Bb / Pb / C arms (completes the arm comparison on the third set); T=1, seed 7, once
+gp_r2_Bb_s7 Bb_s7 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+gp_r2_Pb_s3 Pb_s3 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400
+gp_r2_C_s3 C_s3 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400

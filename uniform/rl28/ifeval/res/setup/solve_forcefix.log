@@ -1,0 +1,10 @@
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 109.75it/s]
+Qwen/Qwen3-1.7B d = 2048
+answers 420
+states torch.Size([56840, 2048]) state rms 40.1091423034668 max |h| 1840.0
+force fails for 3134 tokens
+force fixed 1190 of 3134 still failing [124, 125, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 27487, 51088, 77150, 79270, 80091, 83971, 88372, 119346, 119347, 119348, 119349, 122290, 123306, 123806, 123821, 123828, 123848]
+diag: forced token wins on a fresh random state for 149700/151644 vocab tokens
+saved 1190

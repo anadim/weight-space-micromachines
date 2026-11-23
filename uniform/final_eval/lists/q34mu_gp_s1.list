@@ -1,0 +1,5 @@
+# [34] fill 13:06Z: rung 2 at N=1 on P64_s1 / CW_s1 at u100/u200 on GSM-Plus (completes j24039); T=1, seed 7, once
+gp_m_N1_P64_s1_u100 P64_s1@100 gsmplus S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400
+gp_m_N1_P64_s1_u200 P64_s1@200 gsmplus S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400
+gp_m_N1_CW_s1_u100 CW_s1@100 gsmplus S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400
+gp_m_N1_CW_s1_u200 CW_s1@200 gsmplus S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400

@@ -17,7 +17,8 @@ staircase, prefix-count compaction instead of `torch.sort`, static < 2^52 exactn
 | `sym.py` | symbolic integer wires (affine forms + proven intervals) lowered to exact ReLU units; uses `wsm_hdl.py` (same file as `../compiled_v2/wsm_hdl.py`) |
 | `circ14.py` | transliteration of `circuit.py` (line numbers in comments) into two netlists: STEP and WRITE |
 | `execu.py` | export to a state_dict of plain tensors, and the generic 4-op executor |
-| `export.py` | builds the netlists + force table and saves `implant14_sd.pt` |
+| `export.py` | builds the netlists + force table and saves `implant14_sd.pt` (`--shared 1`: shared-weights export, see below) |
+| `check_shared.py` | bitwise identity of the shared-weights export against the full export |
 | `build_test.py` | prints ReLU units / wires / the exactness bound per netlist (CPU, seconds) |
 | `run_c.py` | IFEval generation driven by the compiled implant (same decode loop/batches as `../transfer/run_t.py`); `--shadow 1` runs `circuit.py` alongside and compares all registers, the blocked mask, decisions and writes at every step |
 | `compare.py` | byte-identity of two runs + silence vs the plain run |
@@ -42,6 +43,13 @@ Inputs it reads from the working directory: `tables.py` + its cache `tables.pt` 
 original sha256 `be07bb5b...a52647`), `vocab_strs.json` (sha256 `4a3b1686...a05e`), `vecs2_forcefix.pt` (in the repo; sha256
 `2d5ee108...e6bd`), and `Qwen/Qwen3-0.6B` from Hugging Face. The netlist build is deterministic; the force table is computed from the
 host weights with the same code as `circuit.Circuit.force`.
+
+**Shared-weights export** (`export.py OUT.pt --shared 1`): stores neither the LM-head copy `voc.E` nor the force table
+`force.F`; the executor reads the host's own (tied) LM-head / embedding matrix (`Executor(sd, host_E=model.lm_head.weight)`,
+done by `run_c.py`) and computes the force rows of the gathered tokens on the fly with the ops that built the table.
+348.2M -> 38.7M numbers (1.23 GB -> 0.30 GB). `python check_shared.py FULL.pt SHARED.pt` (from `ifeval/heldout`, same
+PYTHONPATH) checks the tensors, `voc.E` == the host matrix and every force row bitwise; a full run on all 541 prompts gave
+text identical to the full export and to `circuit.py` (silent prompts byte-identical).
 
 ## Reproduce
 

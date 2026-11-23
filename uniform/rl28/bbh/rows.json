@@ -1,0 +1,232 @@
+{
+ "metric": "BBH-27 mean acc (%)",
+ "sets": {
+  "mean27": {
+   "label": "BBH 27-task mean",
+   "rows": [
+    {
+     "row": "0",
+     "label": "plain Base",
+     "configs": [
+      "base17_plain"
+     ],
+     "mean": 51.74,
+     "seeds": [
+      51.74
+     ],
+     "ci95": [
+      50.59,
+      52.85
+     ],
+     "tokq": 205.6
+    },
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "ft17_t0_u0"
+     ],
+     "mean": 42.26,
+     "seeds": [
+      42.26
+     ],
+     "ci95": [
+      41.16,
+      43.37
+     ],
+     "tokq": 166.6
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "F17_s0_u300",
+      "F17_s1_u300",
+      "F17_s2_u300"
+     ],
+     "mean": 51.58,
+     "seeds": [
+      51.21,
+      51.84,
+      51.68
+     ],
+     "ci95": [
+      50.6,
+      52.54
+     ],
+     "tokq": 152.5
+    },
+    {
+     "row": "2'",
+     "label": "plain Base + RL",
+     "configs": [
+      "P17_s0_u300",
+      "P17_s1_u300",
+      "P17_s2_u300"
+     ],
+     "mean": 66.95,
+     "seeds": [
+      67.2,
+      67.33,
+      66.33
+     ],
+     "ci95": [
+      66.06,
+      67.84
+     ],
+     "tokq": 194.7
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "ft17_tools_gate"
+     ],
+     "mean": 66.33,
+     "seeds": [
+      66.33
+     ],
+     "ci95": [
+      65.39,
+      67.28
+     ],
+     "tokq": 161.2
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "I17_s0_u300",
+      "I17_s1_u300",
+      "I17_s2_u300"
+     ],
+     "mean": 68.29,
+     "seeds": [
+      68.29,
+      68.25,
+      68.34
+     ],
+     "ci95": [
+      67.48,
+      69.12
+     ],
+     "tokq": 158.0
+    }
+   ]
+  },
+  "tool12": {
+   "label": "BBH 12 tool tasks",
+   "rows": [
+    {
+     "row": "0",
+     "label": "plain Base",
+     "configs": [
+      "base17_plain"
+     ],
+     "mean": 55.37,
+     "seeds": [
+      55.37
+     ],
+     "ci95": [
+      53.73,
+      56.97
+     ],
+     "tokq": 205.6
+    },
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "ft17_t0_u0"
+     ],
+     "mean": 41.9,
+     "seeds": [
+      41.9
+     ],
+     "ci95": [
+      40.4,
+      43.43
+     ],
+     "tokq": 166.6
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "F17_s0_u300",
+      "F17_s1_u300",
+      "F17_s2_u300"
+     ],
+     "mean": 60.88,
+     "seeds": [
+      60.47,
+      61.23,
+      60.93
+     ],
+     "ci95": [
+      59.66,
+      62.13
+     ],
+     "tokq": 152.5
+    },
+    {
+     "row": "2'",
+     "label": "plain Base + RL",
+     "configs": [
+      "P17_s0_u300",
+      "P17_s1_u300",
+      "P17_s2_u300"
+     ],
+     "mean": 86.17,
+     "seeds": [
+      86.6,
+      86.0,
+      85.9
+     ],
+     "ci95": [
+      85.26,
+      87.07
+     ],
+     "tokq": 194.7
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "ft17_tools_gate"
+     ],
+     "mean": 95.73,
+     "seeds": [
+      95.73
+     ],
+     "ci95": [
+      95.03,
+      96.43
+     ],
+     "tokq": 161.2
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "I17_s0_u300",
+      "I17_s1_u300",
+      "I17_s2_u300"
+     ],
+     "mean": 99.29,
+     "seeds": [
+      99.1,
+      99.23,
+      99.53
+     ],
+     "ci95": [
+      99.02,
+      99.53
+     ],
+     "tokq": 158.0
+    }
+   ]
+  }
+ },
+ "notes": "BBH-27 (6,511 items), BBH 3-shot CoT harness of bbh_generic/callgate (cg_gate_gen), greedy, max_new 600, fast engine. Rows 1-4 host = ft17 = Qwen3-1.7B-Base + \u00a76.1 tool-call FT (ft_int_v2 recipe) (teams' own 432 rows; whole-host weight change, shared by rows 1-4, [29]); row 0 = plain Base, row 2' = RL from plain Base. Implants = 8 compiled BBH tools + call gate refit on ft17 (veto_q17). Host Qwen3-1.7B-Base ([28]). RL: GRPO 300 u, 64x8, lr 1e-6, T 1, Dr.GRPO, kl 0, synthetic look-alike train data (seed 200). CI = paired item bootstrap (10k, stratified by task) over seed-averaged items."
+}

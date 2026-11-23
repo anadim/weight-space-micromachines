@@ -1,0 +1,2 @@
+# [34](a) 1.7B row-3 matched compute (test): N = round(row-3 tok/q 2232 / row-1 tok/q 105.5) = 21; Base SCH, T=1 seed 7, once
+scH21_base17 base test SCH 21 0 1 1 0

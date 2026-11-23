@@ -1,0 +1,3 @@
+# [34] fill 11:25Z (mechanism of 4 − 2b, GSM-Plus): rung 2 at N=1 / fixed N=8 on P64_s2; T=1, seed 7, once
+gp_m_N1_P64_s2 P64_s2 gsmplus S 1 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400
+gp_m_fixN8_P64_s2 P64_s2 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400

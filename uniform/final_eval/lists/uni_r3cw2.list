@@ -1,0 +1,3 @@
+# [26]/[25](a) uniform GSM8K row 4 extra column: CW_s2 (RL with implants from base) + rung 3, once
+r3_CW_s2 CW_s2 test S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1
+r3_CW_s2 CW_s2 hard S 8 0 0 0 1 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1

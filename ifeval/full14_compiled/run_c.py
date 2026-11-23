@@ -1,6 +1,7 @@
 """run.py (frozen Team D decode loop, identical batches/padding/hook) with the COMPILED implant (exported state_dict + executor).
 
 python run_c.py DATA.jsonl OUT.jsonl --sd implant14_sd.pt [--shadow 1] [--bs 24] [--shard i/n] [--max_new 2048]
+(--sd may be a shared-weights export, export.py --shared 1: the executor then reads the host's lm_head.weight)
 --shadow 1: circuit.py runs alongside on the same inputs (it does NOT drive generation); every step()/write() its 414 registers,
 its blocked set, its emitted token and its bf16 write are compared with the compiled implant's; mismatches -> OUT.shadow.log.
 """
@@ -43,8 +44,8 @@ class Compiled:
     """circuit.py interface on top of the executor (reset / step / write / report)."""
 
     def __init__(self, sd):
-        self.ex = Executor(sd, device='cuda')
-        self.E = self.ex.sd['voc.E']; self.g = self.ex.sd['voc.g']; self.eps = float(self.ex.sd['voc.eps'])
+        self.ex = Executor(sd, device='cuda', host_E=model.lm_head.weight)   # host_E: used only by a shared-weights export
+        self.E = self.ex.E; self.g = self.ex.sd['voc.g']; self.eps = float(self.ex.sd['voc.eps'])
 
     def reset(self, B): self.ex.reset(B); self.ffail = torch.zeros(B, device='cuda')
 

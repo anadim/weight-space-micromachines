@@ -1,0 +1,2 @@
+# [34](a) 1.7B row-3 matched compute (hard): N = round(row-3 tok/q 3531 / row-1 tok/q 138.0) = 26; Base SCH, T=1 seed 7, once
+scH26_base17 base hard SCH 26 0 1 1 0

@@ -1,0 +1,4 @@
+# [34] fill 08:47Z: C16 on GSM-Plus at eval seed 13: CW s0-2 + rung 3 (stk_r3), T=1, once; pairs with row-4 GSM-Plus seeds (j23956/57)
+gp_r3_CW_s0_s13 CW_s0 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 FE_SEED=13
+gp_r3_CW_s1_s13 CW_s1 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 FE_SEED=13
+gp_r3_CW_s2_s13 CW_s2 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=24 SW_MAXN=7936 AW_ADAPT=A=0.7/24/4:S=4/0.5:B=3:C=400 AW_VF=1 FE_SEED=13

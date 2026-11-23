@@ -1,0 +1,22 @@
+{
+ "T": "ev_fT4_s%d",
+ "I": "ev_fI_s%d",
+ "I0": "ev_fI0_s%d",
+ "Itok": "ev_fItok_s%d",
+ "T1": "ev_Ts%d",
+ "desc_T": "host lr 4e-6 ([41]-selected)",
+ "desc_I": "host lr 2e-6, link lr 1e-2, in-wire floor 0.05, links tok+7/14/21/final, link init N(0,1e-3) ([41]-selected)",
+ "desc_I0": "host lr 2e-6 (= I's)",
+ "desc_Itok": "host lr 2e-6, writer lr 1e-2 (= I's)",
+ "desc_T1": "host lr 1e-6 ([35] default; reference)",
+ "I1": "ev_fI1_s%d",
+ "desc_I1": "host lr 1e-6 ([35] default; reference), I* wiring config",
+ "Ie0": "ev_fIe0_s%d",
+ "desc_Ie0": "= I's u300 checkpoints, re-evaluated with the in-wire floor off (--iw_eps_eval 0; trained with 0.05)",
+ "I01": "ev_fI01_s%d",
+ "desc_I01": "host lr 1e-6 (= I1's)",
+ "Itok1": "ev_fItok1_s%d",
+ "desc_Itok1": "host lr 1e-6, writer lr 1e-2 (= I1's)",
+ "T2": "ev_fT2_s%d",
+ "desc_T2": "host lr 2e-6 (= I's; 300-u lr-bracket point added 01:10Z Mon)"
+}

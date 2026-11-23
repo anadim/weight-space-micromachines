@@ -1,0 +1,313 @@
+{
+ "host": "Qwen3-1.7B-Base",
+ "metric": "accuracy (%)",
+ "sets": {
+  "test": {
+   "label": "GSM8K test (1319)",
+   "rows": [
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "base17H"
+     ],
+     "mean": 45.26,
+     "seeds": [
+      45.26
+     ],
+     "ci95": [
+      42.53,
+      47.76
+     ],
+     "tokq": 105.5
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "P17_s0",
+      "P17_s1",
+      "P17_s2"
+     ],
+     "mean": 80.62,
+     "seeds": [
+      80.36,
+      80.21,
+      81.27
+     ],
+     "ci95": [
+      78.77,
+      82.41
+     ],
+     "tokq": 117.8
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "r2_17"
+     ],
+     "mean": 83.47,
+     "seeds": [
+      83.47
+     ],
+     "ci95": [
+      81.35,
+      85.44
+     ],
+     "tokq": 2232.0
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "r2_CW17_s0",
+      "r2_CW17_s1",
+      "r2_CW17_s2"
+     ],
+     "mean": 87.89,
+     "seeds": [
+      87.79,
+      88.25,
+      87.64
+     ],
+     "ci95": [
+      86.33,
+      89.46
+     ],
+     "tokq": 1853.3
+    },
+    {
+     "row": "2-MV",
+     "label": "[32](b) host + RL, N samples + majority (tok/q matched to row 4)",
+     "configs": [
+      "scH16_P17_s0",
+      "scH16_P17_s1",
+      "scH16_P17_s2"
+     ],
+     "mean": 86.56,
+     "seeds": [
+      86.43,
+      86.13,
+      87.11
+     ],
+     "ci95": [
+      84.94,
+      88.17
+     ],
+     "tokq": 1876.7
+    },
+    {
+     "row": "1-MV",
+     "label": "[32](b) host, N samples + majority (same N)",
+     "configs": [
+      "scH16_base17"
+     ],
+     "mean": 78.62,
+     "seeds": [
+      78.62
+     ],
+     "ci95": [
+      76.42,
+      80.67
+     ],
+     "tokq": 1697.9
+    },
+    {
+     "row": "1-seeds",
+     "label": "[32](c) host, eval seeds 7/11/13",
+     "configs": [
+      "base17H",
+      "base17H_s11",
+      "base17H_s13"
+     ],
+     "mean": 46.15,
+     "seeds": [
+      45.26,
+      47.08,
+      46.1
+     ],
+     "ci95": [
+      44.15,
+      47.97
+     ],
+     "tokq": 105.6
+    },
+    {
+     "row": "3-seeds",
+     "label": "[32](c) host + implants, eval seeds 7/11/13",
+     "configs": [
+      "r2_17",
+      "r2_17_s11",
+      "r2_17_s13"
+     ],
+     "mean": 83.5,
+     "seeds": [
+      83.47,
+      83.62,
+      83.4
+     ],
+     "ci95": [
+      81.78,
+      85.29
+     ],
+     "tokq": 2215.4
+    }
+   ]
+  },
+  "hard": {
+   "label": "GSM-Hard (1319)",
+   "rows": [
+    {
+     "row": "1",
+     "label": "host",
+     "configs": [
+      "base17H"
+     ],
+     "mean": 24.49,
+     "seeds": [
+      24.49
+     ],
+     "ci95": [
+      22.14,
+      26.76
+     ],
+     "tokq": 138.0
+    },
+    {
+     "row": "2",
+     "label": "host + RL",
+     "configs": [
+      "P17_s0",
+      "P17_s1",
+      "P17_s2"
+     ],
+     "mean": 56.63,
+     "seeds": [
+      56.1,
+      56.94,
+      56.86
+     ],
+     "ci95": [
+      54.28,
+      59.11
+     ],
+     "tokq": 152.4
+    },
+    {
+     "row": "3",
+     "label": "host + implants",
+     "configs": [
+      "r2_17"
+     ],
+     "mean": 57.01,
+     "seeds": [
+      57.01
+     ],
+     "ci95": [
+      54.36,
+      59.67
+     ],
+     "tokq": 3531.4
+    },
+    {
+     "row": "4",
+     "label": "host + implants + RL",
+     "configs": [
+      "r2_CW17_s0",
+      "r2_CW17_s1",
+      "r2_CW17_s2"
+     ],
+     "mean": 67.55,
+     "seeds": [
+      67.32,
+      67.25,
+      68.08
+     ],
+     "ci95": [
+      65.28,
+      69.95
+     ],
+     "tokq": 3090.0
+    },
+    {
+     "row": "2-MV",
+     "label": "[32](b) host + RL, N samples + majority (tok/q matched to row 4)",
+     "configs": [
+      "scH20_P17_s0",
+      "scH20_P17_s1",
+      "scH20_P17_s2"
+     ],
+     "mean": 62.75,
+     "seeds": [
+      63.08,
+      62.24,
+      62.93
+     ],
+     "ci95": [
+      60.37,
+      65.3
+     ],
+     "tokq": 3054.6
+    },
+    {
+     "row": "1-MV",
+     "label": "[32](b) host, N samples + majority (same N)",
+     "configs": [
+      "scH20_base17"
+     ],
+     "mean": 48.14,
+     "seeds": [
+      48.14
+     ],
+     "ci95": [
+      45.49,
+      50.8
+     ],
+     "tokq": 2764.0
+    },
+    {
+     "row": "1-seeds",
+     "label": "[32](c) host, eval seeds 7/11/13",
+     "configs": [
+      "base17H",
+      "base17H_s11",
+      "base17H_s13"
+     ],
+     "mean": 24.51,
+     "seeds": [
+      24.49,
+      24.87,
+      24.18
+     ],
+     "ci95": [
+      22.72,
+      26.31
+     ],
+     "tokq": 138.9
+    },
+    {
+     "row": "3-seeds",
+     "label": "[32](c) host + implants, eval seeds 7/11/13",
+     "configs": [
+      "r2_17",
+      "r2_17_s11",
+      "r2_17_s13"
+     ],
+     "mean": 55.8,
+     "seeds": [
+      57.01,
+      55.5,
+      54.89
+     ],
+     "ci95": [
+      53.35,
+      58.2
+     ],
+     "tokq": 3528.3
+    }
+   ]
+  }
+ },
+ "notes": "[28] uniform 4-row protocol on Qwen3-1.7B-Base (same implants as 0.6B; readers/writers refit, verifier probe and stop row refit on 1.7B train/dev600 data; circuits unchanged). T=1 seed 7, once per config. RL: GRPO 300 u, 64 prompts x 8, lr 1e-6, T=1, train only. Row 3/4 = rung 2 (stk_r2q_17, SW_DMARG=40). See uniform/rl28/gsm8k/RESULTS.md."
+}

@@ -1,0 +1,2 @@
+# [34] fill: 1.7B analog of the [33] Base ablations of rung 2 (GSM-Hard, plain majority as the Hard rows, seed 7, once; +SW_DMARG=40 as the 1.7B row 3)
+q33_N1_17 base hard S 1 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 SW_DMARG=40

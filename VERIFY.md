@@ -305,3 +305,47 @@ Not run here: anything that needs triton or a GPU (`test_adapt_refs.py` imports 
 `sw_fuzz_hook.py`, `jobs/tattn_test.py`), the rung-3 / rung-4 register fuzz (`test_vf.py`, `test_sn.py`: they load the
 unshipped `vf_w.pt` / `sn_w.pt`), `implants/vfeat/test_vfeat.py` (expects its job tree materialized in place), and
 every model run.
+
+## 14. Fresh-clone check of the final-blog update (2026-11-23, CPU only, no GPU, no model)
+
+Clone: `git clone --no-local` of a `git add -A` snapshot of the release tree (what a commit of it contains). New material
+(see `RELEASE_NOTES.md`): `uniform/` (582 files, 11.1 MB) and `checks/` (six folders, 324 files + 2 symlinks, 13.3 MB),
+plus 4 small files elsewhere; 24.5 MB in all. 9 existing files changed (including this file), none removed. The largest new file is 2.9 MB
+(`checks/calcimp/tt/res/train_steps.jsonl.gz`, per-update training scalars). Every `.jsonl.gz` holds per-item ids,
+answers, correctness and token counts only (no generated text, token ids or log-likelihoods). The only new `.pt` files
+are four gadgets of 10–23 KB that the code trees load.
+
+| check | result |
+|---|---|
+| tracked files in the clone | 3,783 (175 MB without `.git`); nothing under `uniform/` or `checks/` is git-ignored; the 6 gadget `.pt` files re-included in `.gitignore` (incl. `gsm_stack/gadgets/{vf_w,sn_w}.pt`) are tracked |
+| `py_compile` of every `.py` file (Python 3.12.3) | 1,078 / 1,078 (192 in `uniform/` + `checks/`); only pre-existing `invalid escape '\s'` warnings in base copies of `serial_stack.py` / `serial_engine.py` |
+| `bash -n` of every `.sh` file | 253 / 253 (54 in `uniform/` + `checks/`) |
+| static import scan of `uniform/` and `checks/` (192 files; stdlib, pinned packages, same dir / parents, `sys.path` edits, `mk_tree` `TREE_BASE` chains, `setup.sh` / `mk_code.sh` assembly) | all resolve except `arms` in `uniform/rl28/gsm8k/trees/*/wiring/prof_v1.py` (the unreleased v1 profiler, as in §12 / §13; no documented command uses it) |
+| §20 `checks/tooltext/ana_tt.py --write` | byte-identical (`rows.json`, `res/ana_tt_12seeds.txt`), 2 min |
+| §21 `checks/calcimp/ana38.py --write`, `--all --write`, `--all --sens --write` | byte-identical (`rows38*.json`, `res/ana38_*.txt`), 6 / 7.5 / 8.5 min |
+| §21 `sel300.py 8` / `20`, `ana_sweep.py`, `links38.py` (`fI` + `fItok`, 8 seeds; `fI`, 20 seeds) | byte-identical to `res/` |
+| §22 `checks/seeds35/ana35.py --stamp 2026-11-23T10:40Z`; `ifana/analyze6.py` (s0-5, s012), `perseed.py`, `nltk_check.py` | byte-identical (`AUTO_final.md`, `table_s0-5.md`, `check012.md`, `rows_s*.json`, `perseed.txt`, `nltk_check.md`) |
+| §23 `checks/seeds3/{try8,summarize,libpair,mixpair}.py` | byte-identical to the shipped `.md` (numpy 2.4 for `mixpair.py`) |
+| §24 `checks/offtask/ana_ot.py` (0.6B and `OT_SIZE=17`) | byte-identical (`ana06.md`, `ana17.md`, `rows06.json`, `rows17.json`), 7 min each |
+| §25 `checks/sourced` (a)–(f) | byte-identical to the `*.out.md` files, ≤ 13 s each |
+| §25 (g) `nv32.py` | `datasets` not installed, so `data/prepare_gsm.py` was not run; with GSM8K files from an earlier run (all 5 match `code_data.sha256`) the output is byte-identical to `nv32_dev36.out.md` |
+| §17 `make_uniform_json.py`, `q33/deltas.py`, `rl24/ifeval/analyze.py` + `analyze29.py`, `rl24/bbh/w/final_ana.sh`, `q32/bbh_pertask.py` | byte-identical (`uniform.json`, `deltas.txt`, `RESULTS_TABLE.md`, `rows.json`, `table_final.md`, `bbh_pertask.md`) |
+| §17 `ana_uni.py`, `q32/ana_q32.py` (all 17 modes), `q33/decomp.py`, `mech_2b.py` (print only) | every effect and CI in §17 that these print matches REPRODUCE, after one stale CI was corrected (§17.6 "3 − 1-MV3"). The two C14 CIs of §17.1 come from GPU eval rows that are not in `items/` |
+| §18 `rl28/gsm8k/mkrows.py`, `rl28/ifeval/analyze.py`, `rl28/bbh/w/final_ana.sh`, `pertask.py` | byte-identical (`rows.json`, `RESULTS_TABLE.md`, `table_final.md`) |
+| §18 `rl28/gsm8k/mkresults.py` | `RESULTS.md` identical except its `Generated … at` wall-clock line |
+| §18 `ana17.py`, `fe_gp/ana_v17.py`, `fe_gp/ana_gp17.py` (print only) | every §18 CI matches, after two stale GSM-Hard CIs in the §18.1 effect table were corrected to the `RESULTS.md` values |
+| rung-3 / rung-4 register fuzz (`test_vf.py`, `test_sn.py`) with the now-tracked `vf_w.pt` / `sn_w.pt`: `mk_tree.py` trees `rungs/rung3`, `rungs/rung4`, gadgets copied in as `gs_tree` does, the test (+ `sidenet/aw/vf_learn_ref.py`) placed at the tree root, `sidenet/repick_sn.py` and `vfrefit/off/refit.py` on the path | VF FUZZ PASS on both trees (20,000 picks, 0 mismatches; 5.5 / 6 min); SN FUZZ PASS on rung 4 (20,000 trials, 0 mismatches, 0 near ties; 11.5 min) |
+| grep for host / user names, home and cluster paths, queue tools, e-mail addresses and token patterns in `uniform/`, `checks/`, `README.md`, `REPRODUCE.md`, including every decompressed `.gz` | none. The only matches are false positives: the variable `gq` in `fasttrain.py`, and the byte string `gcr9` inside compressed data that is not present once decompressed |
+
+Fixed during this check (docs and two launch defaults; no numbers in tables computed from data changed):
+- the three stale CIs above;
+- REPRODUCE §21 now gives both `links38.py` runs that make `res/links38.txt`;
+- REPRODUCE §17.8 now redirects `bbh_pertask.py` (it prints to stdout);
+- the GSM-Plus path in `checks/{tooltext,calcimp/tt}/mk_code.sh` (default `GSMPLUS`), their READMEs, REPRODUCE §20 and three
+  `uniform/final_eval/lists/gp_*.list` comments now points to `uniform/final_eval/data/prepare_gsmplus.py`, which writes
+  `$WSM_ROOT/data/gsmplus/testmini.jsonl`.
+
+The §13 note that `vf_w.pt` / `sn_w.pt` are unshipped no longer applies: they are in `gsm_stack/gadgets/` and tracked.
+
+Not run here: every GPU or model run (all training, every eval list, `vocabjob` of §25 (h)), `data/prepare_gsm.py` and
+`prepare_gsmplus.py` (downloads), the scripts that need generated text (not shipped), and `uniform/rl28/gsm8k/trees/*/wiring/prof_v1.py`.

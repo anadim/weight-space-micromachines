@@ -1,0 +1,9 @@
+# [34] fill, stk_r2q_17, T=1, once
+gp_base17H_s11 base gsmplus H 1 0 1 1 0 FE_SEED=11
+gp_base17H_s13 base gsmplus H 1 0 1 1 0 FE_SEED=13
+gp_P17_s0_s11 P17_s0 gsmplus H 1 0 1 1 0 FE_SEED=11
+gp_P17_s1_s11 P17_s1 gsmplus H 1 0 1 1 0 FE_SEED=11
+gp_P17_s2_s11 P17_s2 gsmplus H 1 0 1 1 0 FE_SEED=11
+gp_P17_s0_s13 P17_s0 gsmplus H 1 0 1 1 0 FE_SEED=13
+gp_P17_s1_s13 P17_s1 gsmplus H 1 0 1 1 0 FE_SEED=13
+gp_P17_s2_s13 P17_s2 gsmplus H 1 0 1 1 0 FE_SEED=13

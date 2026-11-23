@@ -1,0 +1,12 @@
+{
+ "out": "hosts/sft_host",
+ "host": "Qwen/Qwen3-0.6B",
+ "steps": 80,
+ "bs": 16,
+ "lr": 1e-05,
+ "n_gsm": 200,
+ "noisy": 0.0,
+ "calc_env": 0,
+ "union": "bbh_generic/integrate/data/train_union_v2.jsonl",
+ "n_rows": 632
+}

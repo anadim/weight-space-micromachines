@@ -1,0 +1,10 @@
+# seeds35 row 2: P64_s4 (plain RL from Base, 64x8, u300), 1 sample (H), T=1; seed 7 test/Hard = uni_p64 protocol, + eval seeds 11/13 (q34s2_P64) and GSM-Plus seeds 7/11/13 (q32cd_h / q34gs_h)
+P64_s4 P64_s4 test H 1 0 1 1 0
+P64_s4 P64_s4 hard H 1 0 1 1 0
+P64_s4_s11 P64_s4 test H 1 0 1 1 0 FE_SEED=11
+P64_s4_s11 P64_s4 hard H 1 0 1 1 0 FE_SEED=11
+P64_s4_s13 P64_s4 test H 1 0 1 1 0 FE_SEED=13
+P64_s4_s13 P64_s4 hard H 1 0 1 1 0 FE_SEED=13
+gp_P64_s4 P64_s4 gsmplus H 1 0 1 1 0
+gp_P64_s4_s11 P64_s4 gsmplus H 1 0 1 1 0 FE_SEED=11
+gp_P64_s4_s13 P64_s4 gsmplus H 1 0 1 1 0 FE_SEED=13

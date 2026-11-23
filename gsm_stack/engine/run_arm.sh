@@ -18,6 +18,10 @@
 #   A_s2 / B_s2   second seeds of A / B (seed 4 / 2);  A1_s2 / A1_s3 / A1_s4 / A_s3 / B_s3 / C_s2 / C_s3: seeds 4/6/8/6/3/7/6
 #   Bb_sK / Pb_sK  B config from the BASE host / plain RL with no implants (RL_ARM=P) from the base host, seed K
 #   A1D_s0 / A1D_s1 / A1D_s2   A1 + diversity term RL_DIV=0.5 (seeds 0 / 1 / 4)
+#   P64_sK   uniform row 2 (REPRODUCE.md section 17.2): plain RL (RL_ARM=P) from the base host at 64 prompts x G8 (Pb used 256)
+#   A1WL_sK / A1WD_sK   dev fixes of A1W: A1W at lr 3e-7 / A1W + RL_DIV=0.5
+#   LRP_<lr> / LRC_<lr>  host-LR check: the P64_s0 / CW_s0 config at lr <lr> (e.g. LRP_2e-6), seed 0, 100 updates, dev every 25
+#   LRQ_<lr> / LRD_<lr>  the same at 300 updates (endpoint check for a candidate lr)
 #   C600   C continued: host $ARMDIR/rl/C/step_000300, fresh AdamW + warmup, 300 more updates (u counts from 0), seed 5
 #   CW600  CW_s0 continued the same way (host $ARMDIR/rl/CW_s0/step_000300, WPR=1, seed 0)
 #   (any other name starting with C / A / B: that config, e.g. smoke tests with RL_UPDATES=2 in a scratch ARMDIR)
@@ -33,9 +37,16 @@ source "$(dirname "${BASH_SOURCE[0]}")/../env.sh"
 export RL_RESUME_DIR=${RL_RESUME_DIR:-$WSM_DATA/states} RL_RESUME_EVERY=${RL_RESUME_EVERY:-2}
 case $ARM in
   Bb_s*) CFG=B; HOST="--host_ckpt base"; SEED=${ARM#Bb_s}; SMAX=1280; NMAX=4; PR=256; BM=384; XENV="";;
+  P64_s*) CFG=P; HOST="--host_ckpt base"; SEED=${ARM#P64_s}; SMAX=1280; NMAX=4; PR=64; BM=384; XENV="";;   # uniform row 2: plain RL at 64 prompts/update
   Pb_s*) CFG=P; HOST="--host_ckpt base"; SEED=${ARM#Pb_s}; SMAX=1280; NMAX=4; PR=256; BM=384; XENV="";;
   CW_s*) CFG=A; HOST="--host_ckpt base"; SEED=${ARM#CW_s}; SMAX=2944; NMAX=4; PR=64; BM=384; XENV="WPR=1";;
+  A1WL_s*) CFG=A1; HOST=""; SEED=${ARM#A1WL_s}; SMAX=5696; NMAX=8; PR=64; BM=192; XENV="WPR=1"; LRX="--lr 3e-7";;   # A1W at lr 3e-7
+  A1WD_s*) CFG=A1; HOST=""; SEED=${ARM#A1WD_s}; SMAX=5696; NMAX=8; PR=64; BM=192; XENV="WPR=1 RL_DIV=0.5";;   # A1W + diversity term
   A1W_s*) CFG=A1; HOST=""; SEED=${ARM#A1W_s}; SMAX=5696; NMAX=8; PR=64; BM=192; XENV="WPR=1";;
+  LRP_*) CFG=P; HOST="--host_ckpt base"; SEED=0; SMAX=1280; NMAX=4; PR=64; BM=384; XENV=""; LRX="--lr ${ARM#LRP_}"; UPD=100;;    # P64_s0 at another lr, 100 u
+  LRC_*) CFG=A; HOST="--host_ckpt base"; SEED=0; SMAX=2944; NMAX=4; PR=64; BM=384; XENV="WPR=1"; LRX="--lr ${ARM#LRC_}"; UPD=100;;   # CW_s0 at another lr, 100 u
+  LRQ_*) CFG=P; HOST="--host_ckpt base"; SEED=0; SMAX=1280; NMAX=4; PR=64; BM=384; XENV=""; LRX="--lr ${ARM#LRQ_}"; UPD=300;;    # P64_s0 at another lr, 300 u
+  LRD_*) CFG=A; HOST="--host_ckpt base"; SEED=0; SMAX=2944; NMAX=4; PR=64; BM=384; XENV="WPR=1"; LRX="--lr ${ARM#LRD_}"; UPD=300;;   # CW_s0 at another lr, 300 u
   C*)   CFG=A;  HOST="--host_ckpt base"; SEED=5; SMAX=2944; NMAX=4; PR=64;  BM=384; XENV="";;
   A1*)  CFG=A1; HOST=""; SEED=3; SMAX=5696; NMAX=8; PR=64;  BM=192; XENV="";;
   Ar*)  CFG=A;  HOST=""; SEED=3; SMAX=5696; NMAX=8; PR=64;  BM=192; XENV="RL_POSRESET=1";;
@@ -71,9 +82,9 @@ BMAX=${BMAX:-$BM}
 cd $WIRING_DIR
 for try in 1 2 3; do
   echo "$(date -u +%FT%TZ) start $ARM (RL_ARM=$CFG seed $SEED $XENV, tree $(cat $H/TREE)) gpu$CUDA_VISIBLE_DEVICES B_max $BMAX try$try" >> $QL
-  env RL_RUN=$RUN RL_ARM=$CFG SW_NMAX=$NMAX RL_N=4 RL_PROMPTS=${RL_PROMPTS:-$PR} RL_G=8 RL_UPDATES=${RL_UPDATES:-300} RL_SEED=$SEED \
+  env RL_RUN=$RUN RL_ARM=$CFG SW_NMAX=$NMAX RL_N=4 RL_PROMPTS=${RL_PROMPTS:-$PR} RL_G=8 RL_UPDATES=${RL_UPDATES:-${UPD:-300}} RL_SEED=$SEED \
     STK_FORGET_M=10000 $XENV python3 $H/dig_san/tw_dump_lean.py --run_dir $D/rd/rl_$ARM --arm 2 --fused 0 --B_max $BMAX \
-    --tok_budget 16384 --eval_ckpt $CKPT_U0 $HOST >> $LOGF 2>&1
+    --tok_budget 16384 --eval_ckpt $CKPT_U0 $HOST $LRX >> $LOGF 2>&1
   rc=$?
   if tail -n 50 $LOGF | grep -q RLDONE; then echo "$(date -u +%FT%TZ) done $ARM" >> $QL; exit 0; fi
   echo "$(date -u +%FT%TZ) FAIL $ARM rc=$rc (resume)" >> $QL

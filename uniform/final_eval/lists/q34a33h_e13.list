@@ -1,0 +1,4 @@
+# [34] fill 09:40Z: 0.6B [33] ablation steps on GSM-Hard (Hard protocol: plain majority, as row 3 Hard), eval seed 13; pairs with row-1/3 Hard seeds; T=1, once
+q33_N1_s13 base hard S 1 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=B=3:C=400 FE_SEED=13
+q33_fixN4_s13 base hard S 4 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 FE_SEED=13
+q33_fixN8_s13 base hard S 8 0 0 0 1 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=S=4/0.5:B=3:C=400 FE_SEED=13

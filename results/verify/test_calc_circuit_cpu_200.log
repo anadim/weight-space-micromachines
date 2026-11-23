@@ -1,0 +1,14 @@
+2026-11-22T05:44:40Z
+command: python3.11 tests/test_calc_circuit.py cpu 200
+stack1 units 20189 layers 16 nnz 831645 (dense would be 73170302 ) | stack2 units 8479 layers 19 nnz 766105 (dense 18473526 )
+smoke: 43 cases, 0 wrong, 0 non-one-hot steps, 18.3s
+exhaustive 0..199: 160000 cases, 0 wrong, 0 non-one-hot steps, 471.6s
+exhaustive signed -40..39: 25600 cases, 0 wrong, 0 non-one-hot steps, 88.2s
+random +: 3000 cases, 0 wrong, 0 non-one-hot steps, 38.0s
+random -: 3000 cases, 0 wrong, 0 non-one-hot steps, 37.4s
+random *: 3000 cases, 0 wrong, 0 non-one-hot steps, 51.7s
+random /: 3000 cases, 0 wrong, 0 non-one-hot steps, 36.2s
+malformed: 30 cases, 0 wrong, 0 non-one-hot steps, 3.5s
+TOTAL FAILURES 0
+PASS
+exit 0 wall 749s

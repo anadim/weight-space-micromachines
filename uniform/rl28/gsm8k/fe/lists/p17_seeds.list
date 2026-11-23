@@ -1,0 +1,13 @@
+# [34] fill, stk_r2q_17, T=1, once
+P17_s0_s11 P17_s0 test H 1 0 1 1 0 FE_SEED=11
+P17_s0_s11 P17_s0 hard H 1 0 1 1 0 FE_SEED=11
+P17_s1_s11 P17_s1 test H 1 0 1 1 0 FE_SEED=11
+P17_s1_s11 P17_s1 hard H 1 0 1 1 0 FE_SEED=11
+P17_s2_s11 P17_s2 test H 1 0 1 1 0 FE_SEED=11
+P17_s2_s11 P17_s2 hard H 1 0 1 1 0 FE_SEED=11
+P17_s0_s13 P17_s0 test H 1 0 1 1 0 FE_SEED=13
+P17_s0_s13 P17_s0 hard H 1 0 1 1 0 FE_SEED=13
+P17_s1_s13 P17_s1 test H 1 0 1 1 0 FE_SEED=13
+P17_s1_s13 P17_s1 hard H 1 0 1 1 0 FE_SEED=13
+P17_s2_s13 P17_s2 test H 1 0 1 1 0 FE_SEED=13
+P17_s2_s13 P17_s2 hard H 1 0 1 1 0 FE_SEED=13

@@ -1,0 +1,3 @@
+# [34] fill 07:20Z: 0.6B GSM-Plus row 4 (CW_s2 + rung 2) at eval seeds 11/13, stk_r2q, T=1, once
+gp_r2_CW_s2_s11 CW_s2 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=11
+gp_r2_CW_s2_s13 CW_s2 gsmplus S 8 0 1 1 0 WPR=1 SW_NS=16 SW_MAXN=7936 AW_ADAPT=A=0.7/16/4:S=4/0.5:B=3:C=400 FE_SEED=13

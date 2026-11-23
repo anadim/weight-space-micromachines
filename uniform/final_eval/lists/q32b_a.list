@@ -1,0 +1,5 @@
+# task [32](b) matched-compute control: N separate host-only samples (P protocol, as SCH in §11.7) + plain majority. N = 12 test / 16 Hard so tok/q ~ row 4 (1612 / 2655). T=1 seed 7, once.
+scH12_P64_s0 P64_s0 test SCH 12 0 1 1 0
+scH16_P64_s0 P64_s0 hard SCH 16 0 1 1 0
+scH12_P64_s1 P64_s1 test SCH 12 0 1 1 0
+scH16_P64_s1 P64_s1 hard SCH 16 0 1 1 0

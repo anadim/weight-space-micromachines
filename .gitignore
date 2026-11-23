@@ -88,3 +88,11 @@ figures/blog/v6/_hero/
 figures/blog/v6/src/fonts/
 gsm_stack/**/out/
 gsm_stack/**/tables/
+
+# ---- release 2026-11-23 (uniform rows, checks): small fitted gadgets that the code trees load (each <= 35 KB)
+!gsm_stack/gadgets/vf_w.pt
+!gsm_stack/gadgets/sn_w.pt
+!uniform/final_eval/trees/stk_r2q/stk/stoprow.pt
+!uniform/rl28/gsm8k/trees/arm17/stk/verifier_probe_L18_q17.pt
+!uniform/rl28/gsm8k/trees/stk_r2q_17/stk/stoprow.pt
+!uniform/rl28/gsm8k/trees/stk_r2q_17/stk/verifier_probe_L18_q17.pt

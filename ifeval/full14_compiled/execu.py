@@ -14,6 +14,9 @@ Executor op set (nothing else touches the implant's state):
   Readout (inside the vocab op): x = h*rsqrt(mean(h^2)+eps)*g ; logits = bf16(x) @ E^T with E, g a COPY of the host's LM-head rows
   and final-norm gain stored in this state_dict. The rmsnorm (square-mean-rsqrt) is the one op outside the four (see NOTEBOOK).
   Output: the write row index widx -> W = FORCE[widx] (gather of a fixed row; row V is the zero row).
+  Shared-weights export (no voc.E / force.F in the state_dict): E is the host's own LM-head matrix (tied with the input
+  embedding in Qwen3-0.6B), passed as Executor(..., host_E=model.lm_head.weight), and the force row of widx is computed from
+  that row with the ops that built the FORCE table (export.force_table): bit-identical rows, see Executor._force.
 """
 import torch, numpy as np
 from collections import OrderedDict
@@ -104,8 +107,11 @@ def export_prog(prog, which, n_in_names, sd):
     return list(outs.keys())
 
 
-def export(progs, spec, tb, E, g, eps, F):
-    """-> (state_dict, meta). meta = names only (registers / outputs), also stored as tensors of bytes."""
+def export(progs, spec, tb, E, g, eps, F, shared=None):
+    """-> (state_dict, meta). meta = names only (registers / outputs), also stored as tensors of bytes.
+    shared = dict(fix_tok, fix_rows, gain, chunk): shared-weights export. Neither the LM-head copy E nor the force table F is
+    stored (F may be None); the executor reads the host's own (tied) LM-head / embedding matrix and computes the force rows
+    of the gathered tokens on the fly (Executor._force, same ops as export.force_table)."""
     sd = OrderedDict()
     regs = list(spec)
     sd['reg.init'] = torch.tensor([float(spec[n][2]) for n in regs], dtype=torch.float64)
@@ -126,9 +132,16 @@ def export(progs, spec, tb, E, g, eps, F):
     sd['voc.POW1H'] = P1
     sd['voc.HTB'] = FEAT[:, c['HT']] + NEGBIG * (1 - FEAT[:, c['HASAN']])
     sd['voc.LEAD'] = lead.clone()
-    sd['voc.E'] = E.detach().clone()                                 # copy of the host LM-head rows (bf16)
+    if shared is None: sd['voc.E'] = E.detach().clone()              # copy of the host LM-head rows (bf16)
     sd['voc.g'] = g.detach().float().clone(); sd['voc.eps'] = torch.tensor(float(eps))
-    sd['force.F'] = F                                                # (V+1, d) force rows, row V = 0
+    if shared is None:
+        sd['force.F'] = F                                            # (V+1, d) force rows, row V = 0
+    else:
+        sd['force.fix_tok'] = shared['fix_tok'].long().clone()       # the frozen force_fix rows (vecs2_forcefix.pt), sorted by token
+        sd['force.fix_rows'] = shared['fix_rows'].float().clone()
+        sd['force.gain'] = torch.tensor(float(shared['gain']), dtype=torch.float64)
+        sd['force.chunk'] = torch.tensor([int(shared['chunk'])], dtype=torch.long)
+        sd['voc.shape'] = torch.tensor(list(E.shape), dtype=torch.long)   # the host matrix the implant expects
     meta = dict(regs=regs, wres=wres)
     sd['meta.regs'] = torch.tensor(list('\n'.join(regs).encode()), dtype=torch.uint8)
     sd['meta.wres'] = torch.tensor(list('\n'.join(wres).encode()), dtype=torch.uint8)
@@ -141,7 +154,7 @@ def _s(t): return bytes(t.tolist()).decode()
 class Executor:
     """Runs the exported state_dict. Interface mirrors circuit.Circuit: reset(B), step(ids), write(h), report()."""
 
-    def __init__(self, sd, device='cuda', check=False):
+    def __init__(self, sd, device='cuda', check=False, host_E=None):
         self.dev = device; self.check = check
         self.meta = {k: v for k, v in sd.items() if k.endswith(('.out', '.table', '.Wshape', '.nwires'))}   # small ints, kept on CPU
         self.sd = {k: v.to(device) for k, v in sd.items()}
@@ -153,6 +166,16 @@ class Executor:
         self.tname = {k: _s(v) for k, v in self.meta.items() if k.endswith('.table')}
         self.nw = {k: int(v[0]) for k, v in self.meta.items() if k.endswith('.nwires')}
         self.tables = {k[4:]: v for k, v in self.sd.items() if k.startswith('tab.')}
+        self.shared = 'voc.E' not in sd
+        if self.shared:
+            assert host_E is not None, 'shared-weights implant: pass host_E=model.lm_head.weight (the host LM-head / embedding)'
+            assert list(host_E.shape) == sd['voc.shape'].tolist(), (tuple(host_E.shape), sd['voc.shape'].tolist())
+            self.E = host_E.detach().to(device)
+            self.fix_idx = torch.full((self.E.shape[0],), -1, dtype=torch.long, device=device)
+            ft = self.sd['force.fix_tok']; self.fix_idx[ft] = torch.arange(ft.numel(), device=device)
+            self.fix_rows = self.sd['force.fix_rows']; self.gain = float(sd['force.gain']); self.chunk = int(sd['force.chunk'][0])
+        else:
+            self.E = self.sd['voc.E']
 
     def _ops(self, which):
         keys = sorted({k.rsplit('.', 1)[0] for k in self.sd if k.startswith(which + '.') and k.split('.')[1].isdigit()})
@@ -249,7 +272,7 @@ class Executor:
         self._last_blk = blk
         # readout (host final state through the stored LM-head copy)
         x = h.float(); x = x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + sd['voc.eps']) * sd['voc.g']
-        lg = x.to(sd['voc.E'].dtype) @ sd['voc.E'].T
+        lg = x.to(self.E.dtype) @ self.E.T
         top = lg.argmax(-1)
         blf = blk.float()
         blocked = blf.gather(1, top[:, None])[:, 0].double()
@@ -284,6 +307,26 @@ class Executor:
         self.state = y[:, :R]
         self.wout = {n.lstrip('@'): y[:, R + i] for i, n in enumerate(self.wres)}
         widx = self._idx(self.wout['widx'])
-        return self.sd['force.F'][widx]
+        return self._force(widx) if self.shared else self.sd['force.F'][widx]
+
+    def _force(self, widx):
+        """FORCE[widx] without the table: rows of the host matrix through the same ops as export.force_table
+        (= circuit.Circuit.force), row V -> 0. The rows go through the per-row mean in blocks of exactly `chunk` rows (padded),
+        the block shape the table was built with: the CUDA reduction's thread layout depends on the number of rows."""
+        E, g, C = self.E, self.sd['voc.g'], self.chunk
+        act = widx < E.shape[0]
+        t = torch.where(act, widx, torch.zeros_like(widx))
+        n = t.shape[0]
+        if n % C: t = torch.cat([t, t.new_zeros(C - n % C)])
+        rows = []
+        for s in range(0, t.shape[0], C):
+            tt = t[s:s + C]
+            d = E[tt].float() / g
+            d = d * torch.rsqrt(d.pow(2).mean(-1, keepdim=True))
+            fi = self.fix_idx[tt]
+            d = torch.where((fi >= 0)[:, None], self.fix_rows[fi.clamp(min=0)], d)
+            rows.append(d * self.gain)
+        W = torch.cat(rows)[:n]
+        return torch.where(act[:, None], W, torch.zeros_like(W))
 
     def reg(self, n): return self.state[:, self.ri[n]]
